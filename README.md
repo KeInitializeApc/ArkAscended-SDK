@@ -7,11 +7,5 @@ This repository is committed to staying up-to-date with every Ark update. We ens
 How Updates are Handled
 Regular Updates: This repository will be updated promptly following each Ark update.
 
-Guidelines for Contributions
-Ensure any information added is accurate and directly related to Ark updates.
-Provide clear and detailed descriptions for any changes proposed or made.
-Follow the standard guidelines for pull requests and issue creation.
-Community
-Connect with fellow Ark enthusiasts and stay updated on discussions and announcements:
 
 Discord: Ark Ascended Discord Server [(link to Discord server)](https://discord.gg/qb7fvnVT)
