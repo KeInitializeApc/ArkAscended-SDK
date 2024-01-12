@@ -43,12 +43,12 @@ class UPrimalItemConsumable_Honey_C* UPrimalItemConsumable_Honey_C::GetDefaultOb
 // Function PrimalItemConsumable_Honey.PrimalItemConsumable_Honey_C.BPNotifyDropped
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            FromCharacter                                                    (Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bWasThrown                                                       (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class APrimalBuff*                 CallFunc_StaticAddBuff_ReturnValue                               (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, EditConst, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class APrimalCharacter*            FromCharacter                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               bWasThrown                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class APrimalBuff*                 CallFunc_StaticAddBuff_ReturnValue                               (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, EditConst, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-bool UPrimalItemConsumable_Honey_C::BPNotifyDropped()
+void UPrimalItemConsumable_Honey_C::BPNotifyDropped(class APrimalCharacter** FromCharacter, bool bWasThrown, class APrimalBuff* CallFunc_StaticAddBuff_ReturnValue, bool* CallFunc_IsValid_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,10 +57,16 @@ bool UPrimalItemConsumable_Honey_C::BPNotifyDropped()
 
 	Params::UPrimalItemConsumable_Honey_C_BPNotifyDropped_Params Parms{};
 
+	Parms.bWasThrown = bWasThrown;
+	Parms.CallFunc_StaticAddBuff_ReturnValue = CallFunc_StaticAddBuff_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (FromCharacter != nullptr)
+		*FromCharacter = Parms.FromCharacter;
+
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 }
 

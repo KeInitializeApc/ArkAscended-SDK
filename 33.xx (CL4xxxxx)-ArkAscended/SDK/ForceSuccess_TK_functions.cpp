@@ -43,9 +43,9 @@ class UForceSuccess_TK_C* UForceSuccess_TK_C::GetDefaultObj()
 // Function ForceSuccess_TK.ForceSuccess_TK_C.ReceiveExecute
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (BlueprintVisible, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
 
-class AActor* UForceSuccess_TK_C::ReceiveExecute()
+void UForceSuccess_TK_C::ReceiveExecute(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,7 +57,8 @@ class AActor* UForceSuccess_TK_C::ReceiveExecute()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -65,10 +66,10 @@ class AActor* UForceSuccess_TK_C::ReceiveExecute()
 // Function ForceSuccess_TK.ForceSuccess_TK_C.ExecuteUbergraph_ForceSuccess_TK
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, BlueprintVisible, Net, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class AActor*                      K2Node_Event_OwnerActor                                          (EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      K2Node_Event_OwnerActor                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, SubobjectReference)
 
-void UForceSuccess_TK_C::ExecuteUbergraph_ForceSuccess_TK(int32 EntryPoint, class AActor** K2Node_Event_OwnerActor)
+int32 UForceSuccess_TK_C::ExecuteUbergraph_ForceSuccess_TK(class AActor* K2Node_Event_OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -77,12 +78,11 @@ void UForceSuccess_TK_C::ExecuteUbergraph_ForceSuccess_TK(int32 EntryPoint, clas
 
 	Params::UForceSuccess_TK_C_ExecuteUbergraph_ForceSuccess_TK_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
+	Parms.K2Node_Event_OwnerActor = K2Node_Event_OwnerActor;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (K2Node_Event_OwnerActor != nullptr)
-		*K2Node_Event_OwnerActor = Parms.K2Node_Event_OwnerActor;
+	return Parms.ReturnValue;
 
 }
 

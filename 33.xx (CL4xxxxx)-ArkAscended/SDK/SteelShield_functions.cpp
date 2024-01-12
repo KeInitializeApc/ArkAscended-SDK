@@ -235,10 +235,10 @@ void USteelShieldSubsystem::Stop()
 // Function SteelShield.SteelShieldSubsystem.Start
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              TokenNum                                                         (Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              TokenNum                                                         (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 USteelShieldSubsystem::Start(bool* ReturnValue)
+bool USteelShieldSubsystem::Start(int32 TokenNum)
 {
 	static class UFunction* Func = nullptr;
 
@@ -247,6 +247,7 @@ int32 USteelShieldSubsystem::Start(bool* ReturnValue)
 
 	Params::USteelShieldSubsystem_Start_Params Parms{};
 
+	Parms.TokenNum = TokenNum;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -255,9 +256,6 @@ int32 USteelShieldSubsystem::Start(bool* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -267,10 +265,10 @@ int32 USteelShieldSubsystem::Start(bool* ReturnValue)
 // Function SteelShield.SteelShieldSubsystem.SetTokenProvider
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      TokenProviderClass                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class USteelShieldTokenProvider*   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      TokenProviderClass                                               (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class USteelShieldTokenProvider*   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* USteelShieldSubsystem::SetTokenProvider(class USteelShieldTokenProvider** ReturnValue)
+class USteelShieldTokenProvider* USteelShieldSubsystem::SetTokenProvider(class UClass* TokenProviderClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -279,6 +277,7 @@ class UClass* USteelShieldSubsystem::SetTokenProvider(class USteelShieldTokenPro
 
 	Params::USteelShieldSubsystem_SetTokenProvider_Params Parms{};
 
+	Parms.TokenProviderClass = TokenProviderClass;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -288,9 +287,6 @@ class UClass* USteelShieldSubsystem::SetTokenProvider(class USteelShieldTokenPro
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -299,9 +295,9 @@ class UClass* USteelShieldSubsystem::SetTokenProvider(class USteelShieldTokenPro
 // DelegateFunction SteelShield.SteelShieldSubsystem.OnInitializedBP__DelegateSignature
 // (MulticastDelegate, Public, Delegate)
 // Parameters:
-// bool                               bSuccessful                                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bSuccessful                                                      (Edit, ConstParm, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool USteelShieldSubsystem::OnInitializedBP__DelegateSignature()
+void USteelShieldSubsystem::OnInitializedBP__DelegateSignature(bool bSuccessful)
 {
 	static class UFunction* Func = nullptr;
 
@@ -310,10 +306,9 @@ bool USteelShieldSubsystem::OnInitializedBP__DelegateSignature()
 
 	Params::USteelShieldSubsystem_OnInitializedBP__DelegateSignature_Params Parms{};
 
+	Parms.bSuccessful = bSuccessful;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -321,9 +316,9 @@ bool USteelShieldSubsystem::OnInitializedBP__DelegateSignature()
 // Function SteelShield.SteelShieldSubsystem.IsRolloverInProgress
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USteelShieldSubsystem::IsRolloverInProgress(bool* ReturnValue)
+bool USteelShieldSubsystem::IsRolloverInProgress()
 {
 	static class UFunction* Func = nullptr;
 
@@ -341,8 +336,7 @@ void USteelShieldSubsystem::IsRolloverInProgress(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -350,9 +344,9 @@ void USteelShieldSubsystem::IsRolloverInProgress(bool* ReturnValue)
 // Function SteelShield.SteelShieldSubsystem.IsEnabled
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USteelShieldSubsystem::IsEnabled(bool* ReturnValue)
+bool USteelShieldSubsystem::IsEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -370,8 +364,7 @@ void USteelShieldSubsystem::IsEnabled(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -379,9 +372,9 @@ void USteelShieldSubsystem::IsEnabled(bool* ReturnValue)
 // Function SteelShield.SteelShieldSubsystem.GetTokenProvider
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class USteelShieldTokenProvider*   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USteelShieldTokenProvider*   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USteelShieldSubsystem::GetTokenProvider(class USteelShieldTokenProvider** ReturnValue)
+class USteelShieldTokenProvider* USteelShieldSubsystem::GetTokenProvider()
 {
 	static class UFunction* Func = nullptr;
 
@@ -399,8 +392,7 @@ void USteelShieldSubsystem::GetTokenProvider(class USteelShieldTokenProvider** R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 

@@ -35,8 +35,8 @@ struct FConstraintAndActiveChannel
 {
 public:
 	TSoftObjectPtr<class UTickableConstraint>    Constraint;                                        // 0x0(0x30)(BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-	struct FMovieSceneConstraintChannel          ActiveChannel;                                     // 0x30(0x100)(ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	class UTickableConstraint*                   ConstraintCopyToSpawn;                             // 0x130(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	struct FMovieSceneConstraintChannel          ActiveChannel;                                     // 0x30(0x100)(Edit, ExportObject, EditFixedSize, Parm, InstancedReference, SubobjectReference)
+	class UTickableConstraint*                   ConstraintCopyToSpawn;                             // 0x130(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x40 - 0x28)
@@ -44,7 +44,7 @@ public:
 struct FConstraintTickFunction : public FTickFunction
 {
 public:
-	uint8                                        Pad_BD4[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_EEB[0x18];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

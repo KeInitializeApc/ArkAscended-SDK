@@ -50,9 +50,9 @@ enum class ESubLevelStripMode : uint8
 struct FAutoCompleteCommand
 {
 public:
-	class FString                                Command;                                           // 0x0(0x10)(ConstParm, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	class FString                                Desc;                                              // 0x10(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_22A2[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	class FString                                Command;                                           // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FString                                Desc;                                              // 0x10(0x10)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2991[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -69,7 +69,7 @@ public:
 struct FTemplateMapInfoOverride
 {
 public:
-	struct FSoftObjectPath                       Thumbnail;                                         // 0x0(0x20)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FSoftObjectPath                       Thumbnail;                                         // 0x0(0x20)(Edit, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
 	struct FSoftObjectPath                       Map;                                               // 0x20(0x20)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
 	class FText                                  DisplayName;                                       // 0x40(0x18)(BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient)
 };

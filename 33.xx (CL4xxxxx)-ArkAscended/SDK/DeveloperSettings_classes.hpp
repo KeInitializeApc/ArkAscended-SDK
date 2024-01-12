@@ -14,7 +14,7 @@ namespace SDK
 class UDeveloperSettings : public UObject
 {
 public:
-	uint8                                        Pad_CD[0x10];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1CF[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UDeveloperSettings* GetDefaultObj();
@@ -37,7 +37,7 @@ public:
 class UPlatformSettings : public UObject
 {
 public:
-	uint8                                        Pad_D2[0x18];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1D0[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UPlatformSettings* GetDefaultObj();
@@ -49,8 +49,8 @@ public:
 class UPlatformSettingsManager : public UObject
 {
 public:
-	TMap<class UClass*, struct FPlatformSettingsInstances> SettingsMap;                                       // 0x28(0x50)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_D5[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	TMap<class UClass*, struct FPlatformSettingsInstances> SettingsMap;                                       // 0x28(0x50)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D1[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UPlatformSettingsManager* GetDefaultObj();

@@ -47,9 +47,9 @@ public:
 class UAudioAnalyzerNRT : public UAudioAnalyzerAssetBase
 {
 public:
-	class USoundWave*                            Sound;                                             // 0x28(0x8)(Edit, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        DurationInSeconds;                                 // 0x30(0x4)(Edit, ConstParm, Net, EditFixedSize, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1F46[0x44];                                    // Fixing Size Of Struct > TateDumper <
+	class USoundWave*                            Sound;                                             // 0x28(0x8)(Edit, ConstParm, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        DurationInSeconds;                                 // 0x30(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2652[0x44];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAudioAnalyzerNRT* GetDefaultObj();
@@ -62,15 +62,15 @@ class UAudioAnalyzer : public UObject
 {
 public:
 	class UAudioBus*                             AudioBus;                                          // 0x28(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
-	uint8                                        Pad_1F50[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_2665[0x8];                                     // Fixing Size After Last Property  > TateDumper <
 	class UAudioAnalyzerSubsystem*               AudioAnalyzerSubsystem;                            // 0x38(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, EditConst, GlobalConfig)
-	uint8                                        Pad_1F51[0x50];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2666[0x50];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAudioAnalyzer* GetDefaultObj();
 
 	class UObject* StopAnalyzing();
-	class UAudioBus* StartAnalyzing();
+	class UObject* StartAnalyzing(class UAudioBus** AudioBusToAnalyze);
 };
 
 // 0x20 (0x50 - 0x30)
@@ -78,8 +78,8 @@ public:
 class UAudioAnalyzerSubsystem : public UEngineSubsystem
 {
 public:
-	TArray<class UAudioAnalyzer*>                AudioAnalyzers;                                    // 0x30(0x10)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1F55[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	TArray<class UAudioAnalyzer*>                AudioAnalyzers;                                    // 0x30(0x10)(Edit, ExportObject, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2667[0x10];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAudioAnalyzerSubsystem* GetDefaultObj();

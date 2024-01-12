@@ -183,9 +183,9 @@ class UClothingSimulationInteractor* UClothingSimulationInteractor::GetDefaultOb
 // Function ClothingSystemRuntimeInterface.ClothingSimulationInteractor.SetNumSubsteps
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NumSubsteps                                                      (BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              NumSubsteps                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UClothingSimulationInteractor::SetNumSubsteps(int32* NumSubsteps)
+int32 UClothingSimulationInteractor::SetNumSubsteps()
 {
 	static class UFunction* Func = nullptr;
 
@@ -203,8 +203,7 @@ void UClothingSimulationInteractor::SetNumSubsteps(int32* NumSubsteps)
 
 	Func->FunctionFlags = Flgs;
 
-	if (NumSubsteps != nullptr)
-		*NumSubsteps = Parms.NumSubsteps;
+	return Parms.ReturnValue;
 
 }
 
@@ -212,9 +211,9 @@ void UClothingSimulationInteractor::SetNumSubsteps(int32* NumSubsteps)
 // Function ClothingSystemRuntimeInterface.ClothingSimulationInteractor.SetNumIterations
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NumIterations                                                    (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              NumIterations                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UClothingSimulationInteractor::SetNumIterations()
+void UClothingSimulationInteractor::SetNumIterations(int32* NumIterations)
 {
 	static class UFunction* Func = nullptr;
 
@@ -232,7 +231,8 @@ int32 UClothingSimulationInteractor::SetNumIterations()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NumIterations != nullptr)
+		*NumIterations = Parms.NumIterations;
 
 }
 
@@ -240,9 +240,9 @@ int32 UClothingSimulationInteractor::SetNumIterations()
 // Function ClothingSystemRuntimeInterface.ClothingSimulationInteractor.SetMaxNumIterations
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              MaxNumIterations                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              MaxNumIterations                                                 (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UClothingSimulationInteractor::SetMaxNumIterations(int32* MaxNumIterations)
+int32 UClothingSimulationInteractor::SetMaxNumIterations()
 {
 	static class UFunction* Func = nullptr;
 
@@ -260,8 +260,7 @@ void UClothingSimulationInteractor::SetMaxNumIterations(int32* MaxNumIterations)
 
 	Func->FunctionFlags = Flgs;
 
-	if (MaxNumIterations != nullptr)
-		*MaxNumIterations = Parms.MaxNumIterations;
+	return Parms.ReturnValue;
 
 }
 
@@ -269,9 +268,9 @@ void UClothingSimulationInteractor::SetMaxNumIterations(int32* MaxNumIterations)
 // Function ClothingSystemRuntimeInterface.ClothingSimulationInteractor.SetAnimDriveSpringStiffness
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InStiffness                                                      (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InStiffness                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UClothingSimulationInteractor::SetAnimDriveSpringStiffness(float* InStiffness)
+float UClothingSimulationInteractor::SetAnimDriveSpringStiffness()
 {
 	static class UFunction* Func = nullptr;
 
@@ -289,8 +288,7 @@ void UClothingSimulationInteractor::SetAnimDriveSpringStiffness(float* InStiffne
 
 	Func->FunctionFlags = Flgs;
 
-	if (InStiffness != nullptr)
-		*InStiffness = Parms.InStiffness;
+	return Parms.ReturnValue;
 
 }
 
@@ -322,9 +320,9 @@ void UClothingSimulationInteractor::PhysicsAssetUpdated()
 // Function ClothingSystemRuntimeInterface.ClothingSimulationInteractor.GetSimulationTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UClothingSimulationInteractor::GetSimulationTime(float* ReturnValue)
+float UClothingSimulationInteractor::GetSimulationTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -342,8 +340,7 @@ void UClothingSimulationInteractor::GetSimulationTime(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -351,9 +348,9 @@ void UClothingSimulationInteractor::GetSimulationTime(float* ReturnValue)
 // Function ClothingSystemRuntimeInterface.ClothingSimulationInteractor.GetNumSubsteps
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UClothingSimulationInteractor::GetNumSubsteps(int32* ReturnValue)
+int32 UClothingSimulationInteractor::GetNumSubsteps()
 {
 	static class UFunction* Func = nullptr;
 
@@ -371,8 +368,7 @@ void UClothingSimulationInteractor::GetNumSubsteps(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -380,9 +376,9 @@ void UClothingSimulationInteractor::GetNumSubsteps(int32* ReturnValue)
 // Function ClothingSystemRuntimeInterface.ClothingSimulationInteractor.GetNumKinematicParticles
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UClothingSimulationInteractor::GetNumKinematicParticles(int32* ReturnValue)
+int32 UClothingSimulationInteractor::GetNumKinematicParticles()
 {
 	static class UFunction* Func = nullptr;
 
@@ -400,8 +396,7 @@ void UClothingSimulationInteractor::GetNumKinematicParticles(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -409,9 +404,9 @@ void UClothingSimulationInteractor::GetNumKinematicParticles(int32* ReturnValue)
 // Function ClothingSystemRuntimeInterface.ClothingSimulationInteractor.GetNumIterations
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UClothingSimulationInteractor::GetNumIterations(int32* ReturnValue)
+int32 UClothingSimulationInteractor::GetNumIterations()
 {
 	static class UFunction* Func = nullptr;
 
@@ -429,8 +424,7 @@ void UClothingSimulationInteractor::GetNumIterations(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -438,9 +432,9 @@ void UClothingSimulationInteractor::GetNumIterations(int32* ReturnValue)
 // Function ClothingSystemRuntimeInterface.ClothingSimulationInteractor.GetNumDynamicParticles
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UClothingSimulationInteractor::GetNumDynamicParticles(int32* ReturnValue)
+int32 UClothingSimulationInteractor::GetNumDynamicParticles()
 {
 	static class UFunction* Func = nullptr;
 
@@ -458,8 +452,7 @@ void UClothingSimulationInteractor::GetNumDynamicParticles(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -467,9 +460,9 @@ void UClothingSimulationInteractor::GetNumDynamicParticles(int32* ReturnValue)
 // Function ClothingSystemRuntimeInterface.ClothingSimulationInteractor.GetNumCloths
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UClothingSimulationInteractor::GetNumCloths(int32* ReturnValue)
+int32 UClothingSimulationInteractor::GetNumCloths()
 {
 	static class UFunction* Func = nullptr;
 
@@ -487,8 +480,7 @@ void UClothingSimulationInteractor::GetNumCloths(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -496,10 +488,10 @@ void UClothingSimulationInteractor::GetNumCloths(int32* ReturnValue)
 // Function ClothingSystemRuntimeInterface.ClothingSimulationInteractor.GetClothingInteractor
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ClothingAssetName                                                (ConstParm, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UClothingInteractor*         ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ClothingAssetName                                                (Edit, BlueprintVisible, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UClothingInteractor*         ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UClothingSimulationInteractor::GetClothingInteractor(class FString* ClothingAssetName, class UClothingInteractor** ReturnValue)
+class UClothingInteractor* UClothingSimulationInteractor::GetClothingInteractor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -517,11 +509,7 @@ void UClothingSimulationInteractor::GetClothingInteractor(class FString* Clothin
 
 	Func->FunctionFlags = Flgs;
 
-	if (ClothingAssetName != nullptr)
-		*ClothingAssetName = std::move(Parms.ClothingAssetName);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -529,7 +517,7 @@ void UClothingSimulationInteractor::GetClothingInteractor(class FString* Clothin
 // Function ClothingSystemRuntimeInterface.ClothingSimulationInteractor.EnableGravityOverride
 // (Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     InVector                                                         (BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     InVector                                                         (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
 struct FVector UClothingSimulationInteractor::EnableGravityOverride()
 {

@@ -14,10 +14,10 @@ namespace SDK
 class UOptimusSettings : public UDeveloperSettings
 {
 public:
-	enum class EOptimusDefaultDeformerMode       DefaultMode;                                       // 0x38(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_E1F[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	TSoftObjectPtr<class UMeshDeformer>          DefaultDeformer;                                   // 0x40(0x30)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Transient, EditConst, SubobjectReference)
-	TSoftObjectPtr<class UMeshDeformer>          DefaultRecomputeTangentDeformer;                   // 0x70(0x30)(Net, EditFixedSize, Transient, EditConst, SubobjectReference)
+	enum class EOptimusDefaultDeformerMode       DefaultMode;                                       // 0x38(0x1)(ConstParm, BlueprintReadOnly, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_152A[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TSoftObjectPtr<class UMeshDeformer>          DefaultDeformer;                                   // 0x40(0x30)(Edit, ConstParm, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference)
+	TSoftObjectPtr<class UMeshDeformer>          DefaultRecomputeTangentDeformer;                   // 0x70(0x30)(BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusSettings* GetDefaultObj();

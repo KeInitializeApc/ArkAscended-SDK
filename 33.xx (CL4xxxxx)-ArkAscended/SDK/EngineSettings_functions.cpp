@@ -71,9 +71,9 @@ class UGameMapsSettings* UGameMapsSettings::GetDefaultObj()
 // Function EngineSettings.GameMapsSettings.SetSkipAssigningGamepadToPlayer1
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bSkipFirstPlayer                                                 (Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bSkipFirstPlayer                                                 (ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UGameMapsSettings::SetSkipAssigningGamepadToPlayer1(bool bSkipFirstPlayer)
+bool UGameMapsSettings::SetSkipAssigningGamepadToPlayer1()
 {
 	static class UFunction* Func = nullptr;
 
@@ -82,7 +82,6 @@ void UGameMapsSettings::SetSkipAssigningGamepadToPlayer1(bool bSkipFirstPlayer)
 
 	Params::UGameMapsSettings_SetSkipAssigningGamepadToPlayer1_Params Parms{};
 
-	Parms.bSkipFirstPlayer = bSkipFirstPlayer;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -92,15 +91,17 @@ void UGameMapsSettings::SetSkipAssigningGamepadToPlayer1(bool bSkipFirstPlayer)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function EngineSettings.GameMapsSettings.GetSkipAssigningGamepadToPlayer1
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UGameMapsSettings::GetSkipAssigningGamepadToPlayer1(bool* ReturnValue)
+bool UGameMapsSettings::GetSkipAssigningGamepadToPlayer1()
 {
 	static class UFunction* Func = nullptr;
 
@@ -118,8 +119,7 @@ void UGameMapsSettings::GetSkipAssigningGamepadToPlayer1(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -127,9 +127,9 @@ void UGameMapsSettings::GetSkipAssigningGamepadToPlayer1(bool* ReturnValue)
 // Function EngineSettings.GameMapsSettings.GetGameMapsSettings
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UGameMapsSettings*           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UGameMapsSettings*           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UGameMapsSettings::GetGameMapsSettings(class UGameMapsSettings** ReturnValue)
+class UGameMapsSettings* UGameMapsSettings::GetGameMapsSettings()
 {
 	static class UFunction* Func = nullptr;
 
@@ -147,8 +147,7 @@ void UGameMapsSettings::GetGameMapsSettings(class UGameMapsSettings** ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 

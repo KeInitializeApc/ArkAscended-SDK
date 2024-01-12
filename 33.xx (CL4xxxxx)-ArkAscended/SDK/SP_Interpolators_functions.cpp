@@ -43,9 +43,9 @@ class USPInterpolatorsBPLibrary* USPInterpolatorsBPLibrary::GetDefaultObj()
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.ResetIIRInterpolatorVector
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FIIRInterpolatorVector      Interpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FIIRInterpolatorVector      Interpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 
-struct FIIRInterpolatorVector USPInterpolatorsBPLibrary::ResetIIRInterpolatorVector()
+void USPInterpolatorsBPLibrary::ResetIIRInterpolatorVector(struct FIIRInterpolatorVector* Interpolator)
 {
 	static class UFunction* Func = nullptr;
 
@@ -63,7 +63,8 @@ struct FIIRInterpolatorVector USPInterpolatorsBPLibrary::ResetIIRInterpolatorVec
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
 
 }
 
@@ -71,9 +72,9 @@ struct FIIRInterpolatorVector USPInterpolatorsBPLibrary::ResetIIRInterpolatorVec
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.ResetIIRInterpolatorRotator
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FIIRInterpolatorRotator     Interpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FIIRInterpolatorRotator     Interpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 
-struct FIIRInterpolatorRotator USPInterpolatorsBPLibrary::ResetIIRInterpolatorRotator()
+void USPInterpolatorsBPLibrary::ResetIIRInterpolatorRotator(struct FIIRInterpolatorRotator* Interpolator)
 {
 	static class UFunction* Func = nullptr;
 
@@ -91,7 +92,8 @@ struct FIIRInterpolatorRotator USPInterpolatorsBPLibrary::ResetIIRInterpolatorRo
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
 
 }
 
@@ -99,9 +101,9 @@ struct FIIRInterpolatorRotator USPInterpolatorsBPLibrary::ResetIIRInterpolatorRo
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.ResetIIRInterpolatorFloat
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FIIRInterpolatorFloat       Interpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FIIRInterpolatorFloat       Interpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 
-struct FIIRInterpolatorFloat USPInterpolatorsBPLibrary::ResetIIRInterpolatorFloat()
+void USPInterpolatorsBPLibrary::ResetIIRInterpolatorFloat(struct FIIRInterpolatorFloat* Interpolator)
 {
 	static class UFunction* Func = nullptr;
 
@@ -119,7 +121,8 @@ struct FIIRInterpolatorFloat USPInterpolatorsBPLibrary::ResetIIRInterpolatorFloa
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
 
 }
 
@@ -127,9 +130,9 @@ struct FIIRInterpolatorFloat USPInterpolatorsBPLibrary::ResetIIRInterpolatorFloa
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.ResetDoubleIIRInterpolatorVector
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FDoubleIIRInterpolatorVectorInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FDoubleIIRInterpolatorVectorInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 
-struct FDoubleIIRInterpolatorVector USPInterpolatorsBPLibrary::ResetDoubleIIRInterpolatorVector()
+void USPInterpolatorsBPLibrary::ResetDoubleIIRInterpolatorVector(struct FDoubleIIRInterpolatorVector* Interpolator)
 {
 	static class UFunction* Func = nullptr;
 
@@ -147,7 +150,8 @@ struct FDoubleIIRInterpolatorVector USPInterpolatorsBPLibrary::ResetDoubleIIRInt
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
 
 }
 
@@ -155,9 +159,9 @@ struct FDoubleIIRInterpolatorVector USPInterpolatorsBPLibrary::ResetDoubleIIRInt
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.ResetDoubleIIRInterpolatorRotator
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FDoubleIIRInterpolatorRotatorInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FDoubleIIRInterpolatorRotatorInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 
-struct FDoubleIIRInterpolatorRotator USPInterpolatorsBPLibrary::ResetDoubleIIRInterpolatorRotator()
+void USPInterpolatorsBPLibrary::ResetDoubleIIRInterpolatorRotator(struct FDoubleIIRInterpolatorRotator* Interpolator)
 {
 	static class UFunction* Func = nullptr;
 
@@ -175,7 +179,8 @@ struct FDoubleIIRInterpolatorRotator USPInterpolatorsBPLibrary::ResetDoubleIIRIn
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
 
 }
 
@@ -183,9 +188,9 @@ struct FDoubleIIRInterpolatorRotator USPInterpolatorsBPLibrary::ResetDoubleIIRIn
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.ResetDoubleIIRInterpolatorFloat
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FDoubleIIRInterpolatorFloat Interpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FDoubleIIRInterpolatorFloat Interpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 
-struct FDoubleIIRInterpolatorFloat USPInterpolatorsBPLibrary::ResetDoubleIIRInterpolatorFloat()
+void USPInterpolatorsBPLibrary::ResetDoubleIIRInterpolatorFloat(struct FDoubleIIRInterpolatorFloat* Interpolator)
 {
 	static class UFunction* Func = nullptr;
 
@@ -203,7 +208,8 @@ struct FDoubleIIRInterpolatorFloat USPInterpolatorsBPLibrary::ResetDoubleIIRInte
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
 
 }
 
@@ -211,9 +217,9 @@ struct FDoubleIIRInterpolatorFloat USPInterpolatorsBPLibrary::ResetDoubleIIRInte
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.ResetCritDampedSpringInterpolatorVector
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCritDampSpringInterpolatorVectorInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FCritDampSpringInterpolatorVectorInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 
-struct FCritDampSpringInterpolatorVector USPInterpolatorsBPLibrary::ResetCritDampedSpringInterpolatorVector()
+void USPInterpolatorsBPLibrary::ResetCritDampedSpringInterpolatorVector(struct FCritDampSpringInterpolatorVector* Interpolator)
 {
 	static class UFunction* Func = nullptr;
 
@@ -231,7 +237,8 @@ struct FCritDampSpringInterpolatorVector USPInterpolatorsBPLibrary::ResetCritDam
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
 
 }
 
@@ -239,9 +246,9 @@ struct FCritDampSpringInterpolatorVector USPInterpolatorsBPLibrary::ResetCritDam
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.ResetCritDampedSpringInterpolatorRotator
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCritDampSpringInterpolatorRotatorInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FCritDampSpringInterpolatorRotatorInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 
-struct FCritDampSpringInterpolatorRotator USPInterpolatorsBPLibrary::ResetCritDampedSpringInterpolatorRotator()
+void USPInterpolatorsBPLibrary::ResetCritDampedSpringInterpolatorRotator(struct FCritDampSpringInterpolatorRotator* Interpolator)
 {
 	static class UFunction* Func = nullptr;
 
@@ -259,7 +266,8 @@ struct FCritDampSpringInterpolatorRotator USPInterpolatorsBPLibrary::ResetCritDa
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
 
 }
 
@@ -267,9 +275,9 @@ struct FCritDampSpringInterpolatorRotator USPInterpolatorsBPLibrary::ResetCritDa
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.ResetAccelInterpolatorVector
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAccelerationInterpolatorVectorInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FAccelerationInterpolatorVectorInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 
-struct FAccelerationInterpolatorVector USPInterpolatorsBPLibrary::ResetAccelInterpolatorVector()
+void USPInterpolatorsBPLibrary::ResetAccelInterpolatorVector(struct FAccelerationInterpolatorVector* Interpolator)
 {
 	static class UFunction* Func = nullptr;
 
@@ -287,7 +295,8 @@ struct FAccelerationInterpolatorVector USPInterpolatorsBPLibrary::ResetAccelInte
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
 
 }
 
@@ -295,9 +304,9 @@ struct FAccelerationInterpolatorVector USPInterpolatorsBPLibrary::ResetAccelInte
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.ResetAccelInterpolatorRotator
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAccelerationInterpolatorRotatorInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FAccelerationInterpolatorRotatorInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 
-struct FAccelerationInterpolatorRotator USPInterpolatorsBPLibrary::ResetAccelInterpolatorRotator()
+void USPInterpolatorsBPLibrary::ResetAccelInterpolatorRotator(struct FAccelerationInterpolatorRotator* Interpolator)
 {
 	static class UFunction* Func = nullptr;
 
@@ -315,7 +324,8 @@ struct FAccelerationInterpolatorRotator USPInterpolatorsBPLibrary::ResetAccelInt
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
 
 }
 
@@ -323,9 +333,9 @@ struct FAccelerationInterpolatorRotator USPInterpolatorsBPLibrary::ResetAccelInt
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.ResetAccelInterpolatorFloat
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAccelerationInterpolatorFloatInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FAccelerationInterpolatorFloatInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 
-struct FAccelerationInterpolatorFloat USPInterpolatorsBPLibrary::ResetAccelInterpolatorFloat()
+void USPInterpolatorsBPLibrary::ResetAccelInterpolatorFloat(struct FAccelerationInterpolatorFloat* Interpolator)
 {
 	static class UFunction* Func = nullptr;
 
@@ -343,7 +353,8 @@ struct FAccelerationInterpolatorFloat USPInterpolatorsBPLibrary::ResetAccelInter
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
 
 }
 
@@ -351,12 +362,12 @@ struct FAccelerationInterpolatorFloat USPInterpolatorsBPLibrary::ResetAccelInter
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.EvalIIRInterpolatorVector
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FIIRInterpolatorVector      Interpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     NewGoal                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FIIRInterpolatorVector      Interpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     NewGoal                                                          (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USPInterpolatorsBPLibrary::EvalIIRInterpolatorVector(struct FVector* ReturnValue)
+struct FVector USPInterpolatorsBPLibrary::EvalIIRInterpolatorVector(struct FIIRInterpolatorVector* Interpolator, struct FVector* NewGoal, float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -374,8 +385,14 @@ float USPInterpolatorsBPLibrary::EvalIIRInterpolatorVector(struct FVector* Retur
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
+
+	if (NewGoal != nullptr)
+		*NewGoal = std::move(Parms.NewGoal);
+
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 	return Parms.ReturnValue;
 
@@ -385,12 +402,12 @@ float USPInterpolatorsBPLibrary::EvalIIRInterpolatorVector(struct FVector* Retur
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.EvalIIRInterpolatorRotator
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FIIRInterpolatorRotator     Interpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FRotator                    NewGoal                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FIIRInterpolatorRotator     Interpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FRotator                    NewGoal                                                          (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USPInterpolatorsBPLibrary::EvalIIRInterpolatorRotator(struct FRotator* ReturnValue)
+struct FRotator USPInterpolatorsBPLibrary::EvalIIRInterpolatorRotator(struct FIIRInterpolatorRotator* Interpolator, struct FRotator* NewGoal, float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -408,8 +425,14 @@ float USPInterpolatorsBPLibrary::EvalIIRInterpolatorRotator(struct FRotator* Ret
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
+
+	if (NewGoal != nullptr)
+		*NewGoal = std::move(Parms.NewGoal);
+
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 	return Parms.ReturnValue;
 
@@ -419,12 +442,12 @@ float USPInterpolatorsBPLibrary::EvalIIRInterpolatorRotator(struct FRotator* Ret
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.EvalIIRInterpolatorFloat
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FIIRInterpolatorFloat       Interpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              NewGoal                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FIIRInterpolatorFloat       Interpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              NewGoal                                                          (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USPInterpolatorsBPLibrary::EvalIIRInterpolatorFloat(float* ReturnValue)
+float USPInterpolatorsBPLibrary::EvalIIRInterpolatorFloat(struct FIIRInterpolatorFloat* Interpolator, float* NewGoal, float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -442,8 +465,14 @@ float USPInterpolatorsBPLibrary::EvalIIRInterpolatorFloat(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
+
+	if (NewGoal != nullptr)
+		*NewGoal = Parms.NewGoal;
+
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 	return Parms.ReturnValue;
 
@@ -453,12 +482,12 @@ float USPInterpolatorsBPLibrary::EvalIIRInterpolatorFloat(float* ReturnValue)
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.EvalDoubleIIRInterpolatorVector
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FDoubleIIRInterpolatorVectorInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     NewGoal                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FDoubleIIRInterpolatorVectorInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     NewGoal                                                          (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USPInterpolatorsBPLibrary::EvalDoubleIIRInterpolatorVector(struct FVector* ReturnValue)
+struct FVector USPInterpolatorsBPLibrary::EvalDoubleIIRInterpolatorVector(struct FDoubleIIRInterpolatorVector* Interpolator, struct FVector* NewGoal, float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -476,8 +505,14 @@ float USPInterpolatorsBPLibrary::EvalDoubleIIRInterpolatorVector(struct FVector*
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
+
+	if (NewGoal != nullptr)
+		*NewGoal = std::move(Parms.NewGoal);
+
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 	return Parms.ReturnValue;
 
@@ -487,12 +522,12 @@ float USPInterpolatorsBPLibrary::EvalDoubleIIRInterpolatorVector(struct FVector*
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.EvalDoubleIIRInterpolatorRotator
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FDoubleIIRInterpolatorRotatorInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FRotator                    NewGoal                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FDoubleIIRInterpolatorRotatorInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FRotator                    NewGoal                                                          (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USPInterpolatorsBPLibrary::EvalDoubleIIRInterpolatorRotator(struct FRotator* ReturnValue)
+struct FRotator USPInterpolatorsBPLibrary::EvalDoubleIIRInterpolatorRotator(struct FDoubleIIRInterpolatorRotator* Interpolator, struct FRotator* NewGoal, float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -510,8 +545,14 @@ float USPInterpolatorsBPLibrary::EvalDoubleIIRInterpolatorRotator(struct FRotato
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
+
+	if (NewGoal != nullptr)
+		*NewGoal = std::move(Parms.NewGoal);
+
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 	return Parms.ReturnValue;
 
@@ -521,12 +562,12 @@ float USPInterpolatorsBPLibrary::EvalDoubleIIRInterpolatorRotator(struct FRotato
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.EvalDoubleIIRInterpolatorFloat
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FDoubleIIRInterpolatorFloat Interpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              NewGoal                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FDoubleIIRInterpolatorFloat Interpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              NewGoal                                                          (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USPInterpolatorsBPLibrary::EvalDoubleIIRInterpolatorFloat(float* ReturnValue)
+float USPInterpolatorsBPLibrary::EvalDoubleIIRInterpolatorFloat(struct FDoubleIIRInterpolatorFloat* Interpolator, float* NewGoal, float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -544,8 +585,14 @@ float USPInterpolatorsBPLibrary::EvalDoubleIIRInterpolatorFloat(float* ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
+
+	if (NewGoal != nullptr)
+		*NewGoal = Parms.NewGoal;
+
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 	return Parms.ReturnValue;
 
@@ -555,12 +602,12 @@ float USPInterpolatorsBPLibrary::EvalDoubleIIRInterpolatorFloat(float* ReturnVal
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.EvalCritDampedSpringInterpolatorVector
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FCritDampSpringInterpolatorVectorInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     NewGoal                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FCritDampSpringInterpolatorVectorInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     NewGoal                                                          (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USPInterpolatorsBPLibrary::EvalCritDampedSpringInterpolatorVector(struct FVector* ReturnValue)
+struct FVector USPInterpolatorsBPLibrary::EvalCritDampedSpringInterpolatorVector(struct FCritDampSpringInterpolatorVector* Interpolator, struct FVector* NewGoal, float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -578,8 +625,14 @@ float USPInterpolatorsBPLibrary::EvalCritDampedSpringInterpolatorVector(struct F
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
+
+	if (NewGoal != nullptr)
+		*NewGoal = std::move(Parms.NewGoal);
+
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 	return Parms.ReturnValue;
 
@@ -589,12 +642,12 @@ float USPInterpolatorsBPLibrary::EvalCritDampedSpringInterpolatorVector(struct F
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.EvalCritDampedSpringInterpolatorRotator
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FCritDampSpringInterpolatorRotatorInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FRotator                    NewGoal                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FCritDampSpringInterpolatorRotatorInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FRotator                    NewGoal                                                          (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USPInterpolatorsBPLibrary::EvalCritDampedSpringInterpolatorRotator(struct FRotator* ReturnValue)
+struct FRotator USPInterpolatorsBPLibrary::EvalCritDampedSpringInterpolatorRotator(struct FCritDampSpringInterpolatorRotator* Interpolator, struct FRotator* NewGoal, float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -612,8 +665,14 @@ float USPInterpolatorsBPLibrary::EvalCritDampedSpringInterpolatorRotator(struct 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
+
+	if (NewGoal != nullptr)
+		*NewGoal = std::move(Parms.NewGoal);
+
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 	return Parms.ReturnValue;
 
@@ -623,12 +682,12 @@ float USPInterpolatorsBPLibrary::EvalCritDampedSpringInterpolatorRotator(struct 
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.EvalAccelInterpolatorVector
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FAccelerationInterpolatorVectorInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     NewGoal                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAccelerationInterpolatorVectorInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     NewGoal                                                          (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USPInterpolatorsBPLibrary::EvalAccelInterpolatorVector(struct FVector* ReturnValue)
+struct FVector USPInterpolatorsBPLibrary::EvalAccelInterpolatorVector(struct FAccelerationInterpolatorVector* Interpolator, struct FVector* NewGoal, float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -646,8 +705,14 @@ float USPInterpolatorsBPLibrary::EvalAccelInterpolatorVector(struct FVector* Ret
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
+
+	if (NewGoal != nullptr)
+		*NewGoal = std::move(Parms.NewGoal);
+
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 	return Parms.ReturnValue;
 
@@ -657,12 +722,12 @@ float USPInterpolatorsBPLibrary::EvalAccelInterpolatorVector(struct FVector* Ret
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.EvalAccelInterpolatorRotator
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FAccelerationInterpolatorRotatorInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FRotator                    NewGoal                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAccelerationInterpolatorRotatorInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FRotator                    NewGoal                                                          (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USPInterpolatorsBPLibrary::EvalAccelInterpolatorRotator(struct FRotator* ReturnValue)
+struct FRotator USPInterpolatorsBPLibrary::EvalAccelInterpolatorRotator(struct FAccelerationInterpolatorRotator* Interpolator, struct FRotator* NewGoal, float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -680,8 +745,14 @@ float USPInterpolatorsBPLibrary::EvalAccelInterpolatorRotator(struct FRotator* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
+
+	if (NewGoal != nullptr)
+		*NewGoal = std::move(Parms.NewGoal);
+
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 	return Parms.ReturnValue;
 
@@ -691,12 +762,12 @@ float USPInterpolatorsBPLibrary::EvalAccelInterpolatorRotator(struct FRotator* R
 // Function SP_Interpolators.SPInterpolatorsBPLibrary.EvalAccelInterpolatorFloat
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAccelerationInterpolatorFloatInterpolator                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              NewGoal                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAccelerationInterpolatorFloatInterpolator                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              NewGoal                                                          (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USPInterpolatorsBPLibrary::EvalAccelInterpolatorFloat(float* ReturnValue)
+float USPInterpolatorsBPLibrary::EvalAccelInterpolatorFloat(struct FAccelerationInterpolatorFloat* Interpolator, float* NewGoal, float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -714,8 +785,14 @@ float USPInterpolatorsBPLibrary::EvalAccelInterpolatorFloat(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Interpolator != nullptr)
+		*Interpolator = std::move(Parms.Interpolator);
+
+	if (NewGoal != nullptr)
+		*NewGoal = Parms.NewGoal;
+
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 	return Parms.ReturnValue;
 

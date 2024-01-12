@@ -18,7 +18,7 @@ namespace Params
 struct URadialSlider_SetValueTags_Params
 {
 public:
-	TArray<float>                                InValueTags;                                       // 0x0(0x10)(Edit, ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<float>                                InValueTags;                                       // 0x0(0x10)(ConstParm, BlueprintVisible, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct URadialSlider_SetValue_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -34,7 +34,7 @@ public:
 struct URadialSlider_SetUseVerticalDrag_Params
 {
 public:
-	bool                                         InUseVerticalDrag;                                 // 0x0(0x1)(Edit, Net, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         InUseVerticalDrag;                                 // 0x0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -42,7 +42,7 @@ public:
 struct URadialSlider_SetStepSize_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x88 (0x88 - 0x0)
@@ -50,7 +50,7 @@ public:
 struct URadialSlider_SetSliderRange_Params
 {
 public:
-	struct FRuntimeFloatCurve                    InSliderRange;                                     // 0x0(0x88)(Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FRuntimeFloatCurve                    InSliderRange;                                     // 0x0(0x88)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -58,7 +58,7 @@ public:
 struct URadialSlider_SetSliderProgressColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -66,7 +66,7 @@ public:
 struct URadialSlider_SetSliderHandleStartAngle_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -74,7 +74,7 @@ public:
 struct URadialSlider_SetSliderHandleEndAngle_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -82,7 +82,7 @@ public:
 struct URadialSlider_SetSliderHandleColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -90,7 +90,7 @@ public:
 struct URadialSlider_SetSliderBarColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -98,7 +98,7 @@ public:
 struct URadialSlider_SetShowSliderHandle_Params
 {
 public:
-	bool                                         InShowSliderHandle;                                // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         InShowSliderHandle;                                // 0x0(0x1)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -106,7 +106,7 @@ public:
 struct URadialSlider_SetShowSliderHand_Params
 {
 public:
-	bool                                         InShowSliderHand;                                  // 0x0(0x1)(ConstParm, BlueprintVisible, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         InShowSliderHand;                                  // 0x0(0x1)(Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -114,7 +114,7 @@ public:
 struct URadialSlider_SetLocked_Params
 {
 public:
-	bool                                         InValue;                                           // 0x0(0x1)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	bool                                         InValue;                                           // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -122,7 +122,7 @@ public:
 struct URadialSlider_SetHandStartEndRatio_Params
 {
 public:
-	struct FVector2D                             InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FVector2D                             InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -130,7 +130,7 @@ public:
 struct URadialSlider_SetCustomDefaultValue_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -138,7 +138,7 @@ public:
 struct URadialSlider_SetCenterBackgroundColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -146,7 +146,7 @@ public:
 struct URadialSlider_SetAngularOffset_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -154,7 +154,7 @@ public:
 struct URadialSlider_GetValue_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -162,7 +162,7 @@ public:
 struct URadialSlider_GetNormalizedSliderHandlePosition_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -170,7 +170,7 @@ public:
 struct URadialSlider_GetCustomDefaultValue_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 }

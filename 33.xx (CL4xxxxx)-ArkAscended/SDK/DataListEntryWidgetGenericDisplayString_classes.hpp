@@ -14,7 +14,7 @@ namespace SDK
 class UDataListEntryWidgetGenericDisplayString_C : public UDataListEntryWidget
 {
 public:
-	class UDataListEntryButton*                  MyDataListButton;                                  // 0x3F8(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, GlobalConfig, SubobjectReference)
+	class UDataListEntryButton*                  MyDataListButton;                                  // 0x3F8(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UDataListEntryWidgetGenericDisplayString_C* GetDefaultObj();

@@ -18,7 +18,7 @@ namespace Params
 struct UAttack_SRV_C_ReceiveActivation_Params
 {
 public:
-	class AActor*                                OwnerActor;                                        // 0x0(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+	class AActor*                                OwnerActor;                                        // 0x0(0x8)(BlueprintVisible, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct UAttack_SRV_C_ReceiveDeactivation_Params
 {
 public:
-	class AActor*                                OwnerActor;                                        // 0x0(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+	class AActor*                                OwnerActor;                                        // 0x0(0x8)(BlueprintVisible, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -34,10 +34,10 @@ public:
 struct UAttack_SRV_C_ExecuteUbergraph_Attack_SRV_Params
 {
 public:
-	int32                                        EntryPoint;                                        // 0x0(0x4)(ConstParm, BlueprintVisible, Net, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_2B8F[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class AActor*                                K2Node_Event_OwnerActor;                           // 0x8(0x8)(EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
-	class AActor*                                K2Node_Event_OwnerActor_1;                         // 0x10(0x8)(EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference, Interp)
+	int32                                        EntryPoint;                                        // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_243A[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class AActor*                                K2Node_Event_OwnerActor;                           // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, SubobjectReference)
+	class AActor*                                K2Node_Event_OwnerActor_1;                         // 0x10(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, SubobjectReference, Interp)
 };
 
 }

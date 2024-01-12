@@ -19,7 +19,7 @@ namespace SDK
 struct FArrayOfStrings
 {
 public:
-	TArray<class FString>                        StringArray_3_042E4BCC4FCFD13EE6278BB57BF57A53;    // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	TArray<class FString>                        StringArray_3_042E4BCC4FCFD13EE6278BB57BF57A53;    // 0x0(0x10)(BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 };
 
 }

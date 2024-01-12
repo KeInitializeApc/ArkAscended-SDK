@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class AARActor* GetDefaultObj();
 
-	class UClass* AddARComponent(const struct FGuid& NativeID, class UARComponent** ReturnValue);
+	class UARComponent* AddARComponent(class UClass* InComponentClass);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -30,67 +30,67 @@ public:
 	static class UClass* StaticClass();
 	static class UARBlueprintLibrary* GetDefaultObj();
 
-	class USceneComponent* UnpinComponent();
-	enum class EARCaptureType ToggleARCapture(bool bOnOff, bool* ReturnValue);
+	void UnpinComponent(class USceneComponent** ComponentToUnpin);
+	bool ToggleARCapture(enum class EARCaptureType* CaptureType);
 	void StopARSession();
-	class UARSessionConfig* StartARSession();
-	void SetEnabledXRCamera(bool bOnOff);
-	float SetARWorldScale();
-	bool SetARWorldOriginLocationAndRotation();
-	struct FTransform SetAlignmentTransform();
-	class UARPin* SaveARPinToLocalStore(bool* ReturnValue);
-	struct FIntPoint ResizeXRCamera(struct FIntPoint* ReturnValue);
-	class UARPin* RemovePin();
-	class FName RemoveARPinFromLocalStore();
+	void StartARSession(class UARSessionConfig* SessionConfig);
+	bool SetEnabledXRCamera();
+	void SetARWorldScale(float* InWorldScale);
+	void SetARWorldOriginLocationAndRotation(const struct FVector& OriginLocation, const struct FRotator& OriginRotation, bool* bIsTransformInWorldSpace, bool* bMaintainUpDirection);
+	void SetAlignmentTransform(struct FTransform* InAlignmentTransform);
+	bool SaveARPinToLocalStore(class FName* InSaveName, class UARPin** InPin);
+	struct FIntPoint ResizeXRCamera(const struct FIntPoint& InSize);
+	void RemovePin(class UARPin** PinToRemove);
+	void RemoveARPinFromLocalStore(class FName* InSaveName);
 	void RemoveAllARPinsFromLocalStore();
-	struct FARTraceResult PinComponentToTraceResult(class FName* DebugName, class UARPin** ReturnValue);
-	class UARPin* PinComponentToARPin(bool* ReturnValue);
-	struct FTransform PinComponent(class UARTrackedGeometry** TrackedGeometry, class FName* DebugName, class UARPin** ReturnValue);
+	class UARPin* PinComponentToTraceResult(class USceneComponent** ComponentToPin, struct FARTraceResult* TraceResult);
+	bool PinComponentToARPin(class USceneComponent** ComponentToPin, class UARPin** Pin);
+	class UARPin* PinComponent(class USceneComponent** ComponentToPin, struct FTransform* PinToWorldTransform);
 	void PauseARSession();
-	void LoadARPinsFromLocalStore(TMap<class FName, class UARPin*>* ReturnValue);
-	bool LineTraceTrackedObjects3D(struct FVector* Start, const struct FVector& End, TArray<struct FARTraceResult>* ReturnValue);
-	bool LineTraceTrackedObjects(TArray<struct FARTraceResult>* ReturnValue);
-	enum class EARSessionType IsSessionTypeSupported(bool* ReturnValue);
-	enum class EARSessionTrackingFeature IsSessionTrackingFeatureSupported(bool* ReturnValue);
-	enum class EARSceneReconstruction IsSceneReconstructionSupported(bool* ReturnValue);
-	void IsARSupported(bool* ReturnValue);
-	void IsARPinLocalStoreSupported(bool* ReturnValue);
-	void IsARPinLocalStoreReady(bool* ReturnValue);
-	void GetWorldMappingStatus(enum class EARWorldMappingState* ReturnValue);
-	void GetTrackingQualityReason(enum class EARTrackingQualityReason* ReturnValue);
-	void GetTrackingQuality(enum class EARTrackingQuality* ReturnValue);
-	enum class EARSessionType GetSupportedVideoFormats(TArray<struct FARVideoFormat>* ReturnValue);
-	void GetSessionConfig(class UARSessionConfig** ReturnValue);
-	void GetPointCloud(TArray<struct FVector>* ReturnValue);
-	void GetPersonSegmentationImage(class UARTexture** ReturnValue);
-	void GetPersonSegmentationDepthImage(class UARTexture** ReturnValue);
-	float GetObjectClassificationAtLocation(bool* ReturnValue);
-	void GetNumberOfTrackedFacesSupported(int32* ReturnValue);
-	void GetCurrentLightEstimate(class UARLightEstimate** ReturnValue);
-	struct FARCameraIntrinsics GetCameraIntrinsics(bool* ReturnValue);
-	void GetCameraImage(class UARTextureCameraImage** ReturnValue);
-	void GetCameraDepth(class UARTextureCameraDepth** ReturnValue);
-	void GetARWorldScale(float* ReturnValue);
-	enum class EARTextureType GetARTexture(class UARTexture** ReturnValue);
-	void GetARSessionStatus(struct FARSessionStatus* ReturnValue);
-	void GetAllTrackedPoses(TArray<class UARTrackedPose*>* ReturnValue);
-	void GetAllTrackedPoints(TArray<class UARTrackedPoint*>* ReturnValue);
-	void GetAllTrackedPlanes(TArray<class UARPlaneGeometry*>* ReturnValue);
-	void GetAllTrackedImages(TArray<class UARTrackedImage*>* ReturnValue);
-	void GetAllTrackedEnvironmentCaptureProbes(TArray<class UAREnvironmentCaptureProbe*>* ReturnValue);
-	void GetAllTracked2DPoses(TArray<struct FARPose2D>* ReturnValue);
-	void GetAllPins(TArray<class UARPin*>* ReturnValue);
-	class UClass* GetAllGeometriesByClass(TArray<class UARTrackedGeometry*>* ReturnValue);
-	void GetAllGeometries(TArray<class UARTrackedGeometry*>* ReturnValue);
-	void GetAlignmentTransform(struct FTransform* ReturnValue);
-	class FString FindTrackedPointsByName(TArray<class UARTrackedPoint*>* ReturnValue);
-	float DebugDrawTrackedGeometry(class UARTrackedGeometry** TrackedGeometry, struct FLinearColor* Color);
-	float DebugDrawPin(class UARPin* ARPin, struct FLinearColor* Color, float Scale);
-	struct FVector CalculateClosestIntersection();
-	struct FTransform CalculateAlignmentTransform();
-	bool AddTrackedPointWithName(struct FTransform* WorldTransform, bool* ReturnValue);
-	float AddRuntimeCandidateImage(class FString* FriendlyName, class UARCandidateImage** ReturnValue);
-	struct FVector AddManualEnvironmentCaptureProbe(struct FVector* Location, bool* ReturnValue);
+	TMap<class FName, class UARPin*> LoadARPinsFromLocalStore();
+	TArray<struct FARTraceResult> LineTraceTrackedObjects3D(struct FVector* Start, const struct FVector& End, bool* bTestFeaturePoints, bool* bTestGroundPlane, bool* bTestPlaneExtents, bool* bTestPlaneBoundaryPolygon);
+	TArray<struct FARTraceResult> LineTraceTrackedObjects(struct FVector2D* ScreenCoord, bool* bTestFeaturePoints, bool* bTestGroundPlane, bool* bTestPlaneExtents, bool* bTestPlaneBoundaryPolygon);
+	bool IsSessionTypeSupported(enum class EARSessionType SessionType);
+	bool IsSessionTrackingFeatureSupported(enum class EARSessionType SessionType, enum class EARSessionTrackingFeature* SessionTrackingFeature);
+	bool IsSceneReconstructionSupported(enum class EARSessionType SessionType, enum class EARSceneReconstruction* SceneReconstructionMethod);
+	bool IsARSupported();
+	bool IsARPinLocalStoreSupported();
+	bool IsARPinLocalStoreReady();
+	enum class EARWorldMappingState GetWorldMappingStatus();
+	enum class EARTrackingQualityReason GetTrackingQualityReason();
+	enum class EARTrackingQuality GetTrackingQuality();
+	TArray<struct FARVideoFormat> GetSupportedVideoFormats(enum class EARSessionType SessionType);
+	class UARSessionConfig* GetSessionConfig();
+	TArray<struct FVector> GetPointCloud();
+	class UARTexture* GetPersonSegmentationImage();
+	class UARTexture* GetPersonSegmentationDepthImage();
+	bool GetObjectClassificationAtLocation(struct FVector* InWorldLocation, enum class EARObjectClassification* OutClassification, const struct FVector& OutClassificationLocation, float MaxLocationDiff);
+	int32 GetNumberOfTrackedFacesSupported();
+	class UARLightEstimate* GetCurrentLightEstimate();
+	bool GetCameraIntrinsics(const struct FARCameraIntrinsics& OutCameraIntrinsics);
+	class UARTextureCameraImage* GetCameraImage();
+	class UARTextureCameraDepth* GetCameraDepth();
+	float GetARWorldScale();
+	class UARTexture* GetARTexture(enum class EARTextureType TextureType);
+	struct FARSessionStatus GetARSessionStatus();
+	TArray<class UARTrackedPose*> GetAllTrackedPoses();
+	TArray<class UARTrackedPoint*> GetAllTrackedPoints();
+	TArray<class UARPlaneGeometry*> GetAllTrackedPlanes();
+	TArray<class UARTrackedImage*> GetAllTrackedImages();
+	TArray<class UAREnvironmentCaptureProbe*> GetAllTrackedEnvironmentCaptureProbes();
+	TArray<struct FARPose2D> GetAllTracked2DPoses();
+	TArray<class UARPin*> GetAllPins();
+	TArray<class UARTrackedGeometry*> GetAllGeometriesByClass(class UClass* GeometryClass);
+	TArray<class UARTrackedGeometry*> GetAllGeometries();
+	struct FTransform GetAlignmentTransform();
+	TArray<class UARTrackedPoint*> FindTrackedPointsByName(const class FString& PointName);
+	class UObject* DebugDrawTrackedGeometry(struct FLinearColor* Color, float OutlineThickness, float PersistForSeconds);
+	class UObject* DebugDrawPin(class UARPin* ARPin, struct FLinearColor* Color, float Scale, float PersistForSeconds);
+	void CalculateClosestIntersection(const TArray<struct FVector>& StartPoints, const TArray<struct FVector>& EndPoints, const struct FVector& ClosestIntersection);
+	void CalculateAlignmentTransform(const struct FTransform& TransformInFirstCoordinateSystem, const struct FTransform& TransformInSecondCoordinateSystem, const struct FTransform& AlignmentTransform);
+	bool AddTrackedPointWithName(const class FString& PointName, bool bDeletePointsWithSameName);
+	class UARCandidateImage* AddRuntimeCandidateImage(class UARSessionConfig* SessionConfig, class UTexture2D* CandidateTexture, class FString* FriendlyName, float PhysicalWidth);
+	bool AddManualEnvironmentCaptureProbe(struct FVector* Location);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -102,12 +102,12 @@ public:
 	static class UClass* StaticClass();
 	static class UARTraceResultLibrary* GetDefaultObj();
 
-	struct FARTraceResult GetTrackedGeometry(class UARTrackedGeometry** ReturnValue);
-	struct FARTraceResult GetTraceChannel(enum class EARLineTraceChannels* ReturnValue);
-	struct FARTraceResult GetLocalTransform(struct FTransform* ReturnValue);
-	struct FARTraceResult GetLocalToWorldTransform(struct FTransform* ReturnValue);
-	struct FARTraceResult GetLocalToTrackingTransform(struct FTransform* ReturnValue);
-	struct FARTraceResult GetDistanceFromCamera(float* ReturnValue);
+	class UARTrackedGeometry* GetTrackedGeometry(struct FARTraceResult* TraceResult);
+	enum class EARLineTraceChannels GetTraceChannel(struct FARTraceResult* TraceResult);
+	struct FTransform GetLocalTransform(struct FARTraceResult* TraceResult);
+	struct FTransform GetLocalToWorldTransform(struct FARTraceResult* TraceResult);
+	struct FTransform GetLocalToTrackingTransform(struct FARTraceResult* TraceResult);
+	float GetDistanceFromCamera(struct FARTraceResult* TraceResult);
 };
 
 // 0x20 (0x50 - 0x30)
@@ -115,7 +115,7 @@ public:
 class UARBaseAsyncTaskBlueprintProxy : public UBlueprintAsyncActionBase
 {
 public:
-	uint8                                        Pad_23D4[0x20];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2A4C[0x20];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARBaseAsyncTaskBlueprintProxy* GetDefaultObj();
@@ -127,14 +127,14 @@ public:
 class UARSaveWorldAsyncTaskBlueprintProxy : public UARBaseAsyncTaskBlueprintProxy
 {
 public:
-	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x50(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnFailed;                                          // 0x60(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_23E1[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x50(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnFailed;                                          // 0x60(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2A50[0x10];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARSaveWorldAsyncTaskBlueprintProxy* GetDefaultObj();
 
-	class UObject* ARSaveWorld(class UARSaveWorldAsyncTaskBlueprintProxy** ReturnValue);
+	class UARSaveWorldAsyncTaskBlueprintProxy* ARSaveWorld();
 };
 
 // 0x60 (0xB0 - 0x50)
@@ -142,14 +142,14 @@ public:
 class UARGetCandidateObjectAsyncTaskBlueprintProxy : public UARBaseAsyncTaskBlueprintProxy
 {
 public:
-	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x50(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnFailed;                                          // 0x60(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2401[0x40];                                    // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x50(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnFailed;                                          // 0x60(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2A56[0x40];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARGetCandidateObjectAsyncTaskBlueprintProxy* GetDefaultObj();
 
-	struct FVector ARGetCandidateObject(struct FVector* Location, class UARGetCandidateObjectAsyncTaskBlueprintProxy** ReturnValue);
+	class UARGetCandidateObjectAsyncTaskBlueprintProxy* ARGetCandidateObject(struct FVector* Location);
 };
 
 // 0x80 (0x348 - 0x2C8)
@@ -157,24 +157,24 @@ public:
 class UARComponent : public USceneComponent
 {
 public:
-	struct FGuid                                 NativeID;                                          // 0x2C8(0x10)(Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2412[0x30];                                    // Fixing Size After Last Property  > TateDumper <
-	bool                                         bUseDefaultReplication;                            // 0x308(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2415[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class UMaterialInterface*                    DefaultMeshMaterial;                               // 0x310(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	class UMaterialInterface*                    DefaultWireframeMeshMaterial;                      // 0x318(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+	struct FGuid                                 NativeID;                                          // 0x2C8(0x10)(Edit, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2A62[0x30];                                    // Fixing Size After Last Property  > TateDumper <
+	bool                                         bUseDefaultReplication;                            // 0x308(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2A64[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class UMaterialInterface*                    DefaultMeshMaterial;                               // 0x310(0x8)(Edit, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class UMaterialInterface*                    DefaultWireframeMeshMaterial;                      // 0x318(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
 	class UMRMeshComponent*                      MRMeshComponent;                                   // 0x320(0x8)(EditFixedSize, ReturnParm, Transient, Config, GlobalConfig)
-	class UARTrackedGeometry*                    MyTrackedGeometry;                                 // 0x328(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2418[0x18];                                    // Fixing Size Of Struct > TateDumper <
+	class UARTrackedGeometry*                    MyTrackedGeometry;                                 // 0x328(0x8)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2A66[0x18];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARComponent* GetDefaultObj();
 
 	void UpdateVisualization();
-	void SetNativeID(const struct FGuid& NativeID);
+	struct FGuid SetNativeID();
 	void ReceiveRemove();
 	void OnRep_Payload();
-	void GetMRMesh(class UMRMeshComponent** ReturnValue);
+	class UMRMeshComponent* GetMRMesh();
 };
 
 // 0xD8 (0x420 - 0x348)
@@ -182,18 +182,18 @@ public:
 class UARPlaneComponent : public UARComponent
 {
 public:
-	uint8                                        Pad_2438[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FARPlaneUpdatePayload                 ReplicatedPayload;                                 // 0x350(0xD0)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2A70[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FARPlaneUpdatePayload                 ReplicatedPayload;                                 // 0x350(0xD0)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARPlaneComponent* GetDefaultObj();
 
-	enum class EPlaneComponentDebugMode SetPlaneComponentDebugMode();
-	TMap<enum class EARObjectClassification, struct FLinearColor> SetObjectClassificationDebugColors();
-	struct FARPlaneUpdatePayload ServerUpdatePayload();
+	void SetPlaneComponentDebugMode(enum class EPlaneComponentDebugMode* NewDebugMode);
+	void SetObjectClassificationDebugColors(TMap<enum class EARObjectClassification, struct FLinearColor>* InColors);
+	void ServerUpdatePayload(struct FARPlaneUpdatePayload* NewPayload);
 	struct FARPlaneUpdatePayload ReceiveUpdate();
 	struct FARPlaneUpdatePayload ReceiveAdd();
-	void GetObjectClassificationDebugColors(TMap<enum class EARObjectClassification, struct FLinearColor>* ReturnValue);
+	TMap<enum class EARObjectClassification, struct FLinearColor> GetObjectClassificationDebugColors();
 };
 
 // 0x8 (0x350 - 0x348)
@@ -201,13 +201,13 @@ public:
 class UARPointComponent : public UARComponent
 {
 public:
-	struct FARPointUpdatePayload                 ReplicatedPayload;                                 // 0x348(0x1)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2447[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	struct FARPointUpdatePayload                 ReplicatedPayload;                                 // 0x348(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2A75[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARPointComponent* GetDefaultObj();
 
-	struct FARPointUpdatePayload ServerUpdatePayload();
+	void ServerUpdatePayload(struct FARPointUpdatePayload* NewPayload);
 	struct FARPointUpdatePayload ReceiveUpdate();
 	struct FARPointUpdatePayload ReceiveAdd();
 };
@@ -217,18 +217,18 @@ public:
 class UARFaceComponent : public UARComponent
 {
 public:
-	enum class EARFaceTransformMixing            TransformSetting;                                  // 0x348(0x1)(EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bUpdateVertexNormal;                               // 0x349(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bFaceOutOfScreen;                                  // 0x34A(0x1)(BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2451[0x5];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FARFaceUpdatePayload                  ReplicatedPayload;                                 // 0x350(0x60)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2452[0x20];                                    // Fixing Size Of Struct > TateDumper <
+	enum class EARFaceTransformMixing            TransformSetting;                                  // 0x348(0x1)(Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bUpdateVertexNormal;                               // 0x349(0x1)(ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bFaceOutOfScreen;                                  // 0x34A(0x1)(Edit, BlueprintVisible, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2A7D[0x5];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FARFaceUpdatePayload                  ReplicatedPayload;                                 // 0x350(0x60)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2A7E[0x20];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARFaceComponent* GetDefaultObj();
 
-	enum class EFaceComponentDebugMode SetFaceComponentDebugMode();
-	struct FARFaceUpdatePayload ServerUpdatePayload();
+	void SetFaceComponentDebugMode(enum class EFaceComponentDebugMode* NewDebugMode);
+	void ServerUpdatePayload(struct FARFaceUpdatePayload* NewPayload);
 	struct FARFaceUpdatePayload ReceiveUpdate();
 	struct FARFaceUpdatePayload ReceiveAdd();
 };
@@ -238,14 +238,14 @@ public:
 class UARImageComponent : public UARComponent
 {
 public:
-	uint8                                        Pad_2459[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FARImageUpdatePayload                 ReplicatedPayload;                                 // 0x350(0xA0)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2A85[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FARImageUpdatePayload                 ReplicatedPayload;                                 // 0x350(0xA0)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARImageComponent* GetDefaultObj();
 
-	enum class EImageComponentDebugMode SetImageComponentDebugMode();
-	struct FARImageUpdatePayload ServerUpdatePayload();
+	void SetImageComponentDebugMode(enum class EImageComponentDebugMode* NewDebugMode);
+	void ServerUpdatePayload(struct FARImageUpdatePayload* NewPayload);
 	struct FARImageUpdatePayload ReceiveUpdate();
 	struct FARImageUpdatePayload ReceiveAdd();
 };
@@ -255,14 +255,14 @@ public:
 class UARQRCodeComponent : public UARComponent
 {
 public:
-	uint8                                        Pad_2464[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FARQRCodeUpdatePayload                ReplicatedPayload;                                 // 0x350(0xB0)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2A91[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FARQRCodeUpdatePayload                ReplicatedPayload;                                 // 0x350(0xB0)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARQRCodeComponent* GetDefaultObj();
 
-	enum class EQRCodeComponentDebugMode SetQRCodeComponentDebugMode();
-	struct FARQRCodeUpdatePayload ServerUpdatePayload();
+	void SetQRCodeComponentDebugMode(enum class EQRCodeComponentDebugMode* NewDebugMode);
+	void ServerUpdatePayload(struct FARQRCodeUpdatePayload* NewPayload);
 	struct FARQRCodeUpdatePayload ReceiveUpdate();
 	struct FARQRCodeUpdatePayload ReceiveAdd();
 };
@@ -272,14 +272,14 @@ public:
 class UARPoseComponent : public UARComponent
 {
 public:
-	uint8                                        Pad_2471[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FARPoseUpdatePayload                  ReplicatedPayload;                                 // 0x350(0x70)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2A99[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FARPoseUpdatePayload                  ReplicatedPayload;                                 // 0x350(0x70)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARPoseComponent* GetDefaultObj();
 
-	enum class EPoseComponentDebugMode SetPoseComponentDebugMode();
-	struct FARPoseUpdatePayload ServerUpdatePayload();
+	void SetPoseComponentDebugMode(enum class EPoseComponentDebugMode* NewDebugMode);
+	void ServerUpdatePayload(struct FARPoseUpdatePayload* NewPayload);
 	struct FARPoseUpdatePayload ReceiveUpdate();
 	struct FARPoseUpdatePayload ReceiveAdd();
 };
@@ -289,13 +289,13 @@ public:
 class UAREnvironmentProbeComponent : public UARComponent
 {
 public:
-	uint8                                        Pad_247B[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FAREnvironmentProbeUpdatePayload      ReplicatedPayload;                                 // 0x350(0x60)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2AA1[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FAREnvironmentProbeUpdatePayload      ReplicatedPayload;                                 // 0x350(0x60)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UAREnvironmentProbeComponent* GetDefaultObj();
 
-	struct FAREnvironmentProbeUpdatePayload ServerUpdatePayload();
+	void ServerUpdatePayload(struct FAREnvironmentProbeUpdatePayload* NewPayload);
 	struct FAREnvironmentProbeUpdatePayload ReceiveUpdate();
 	struct FAREnvironmentProbeUpdatePayload ReceiveAdd();
 };
@@ -305,13 +305,13 @@ public:
 class UARObjectComponent : public UARComponent
 {
 public:
-	uint8                                        Pad_2485[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FARObjectUpdatePayload                ReplicatedPayload;                                 // 0x350(0x60)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2AAA[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FARObjectUpdatePayload                ReplicatedPayload;                                 // 0x350(0x60)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARObjectComponent* GetDefaultObj();
 
-	struct FARObjectUpdatePayload ServerUpdatePayload();
+	void ServerUpdatePayload(struct FARObjectUpdatePayload* NewPayload);
 	struct FARObjectUpdatePayload ReceiveUpdate();
 	struct FARObjectUpdatePayload ReceiveAdd();
 };
@@ -321,13 +321,13 @@ public:
 class UARMeshComponent : public UARComponent
 {
 public:
-	uint8                                        Pad_248F[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FARMeshUpdatePayload                  ReplicatedPayload;                                 // 0x350(0x90)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2AAD[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FARMeshUpdatePayload                  ReplicatedPayload;                                 // 0x350(0x90)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARMeshComponent* GetDefaultObj();
 
-	struct FARMeshUpdatePayload ServerUpdatePayload();
+	void ServerUpdatePayload(struct FARMeshUpdatePayload* NewPayload);
 	struct FARMeshUpdatePayload ReceiveUpdate();
 	struct FARMeshUpdatePayload ReceiveAdd();
 };
@@ -337,14 +337,14 @@ public:
 class UARGeoAnchorComponent : public UARComponent
 {
 public:
-	uint8                                        Pad_249C[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FARGeoAnchorUpdatePayload             ReplicatedPayload;                                 // 0x350(0xA0)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2AAF[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FARGeoAnchorUpdatePayload             ReplicatedPayload;                                 // 0x350(0xA0)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARGeoAnchorComponent* GetDefaultObj();
 
-	enum class EGeoAnchorComponentDebugMode SetGeoAnchorComponentDebugMode();
-	struct FARGeoAnchorUpdatePayload ServerUpdatePayload();
+	void SetGeoAnchorComponentDebugMode(enum class EGeoAnchorComponentDebugMode* NewDebugMode);
+	void ServerUpdatePayload(struct FARGeoAnchorUpdatePayload* NewPayload);
 	struct FARGeoAnchorUpdatePayload ReceiveUpdate();
 	struct FARGeoAnchorUpdatePayload ReceiveAdd();
 };
@@ -358,11 +358,11 @@ public:
 	static class UClass* StaticClass();
 	static class UARDependencyHandler* GetDefaultObj();
 
-	class UARSessionConfig* StartARSessionLatent(const struct FLatentActionInfo& LatentInfo);
-	enum class EARServicePermissionRequestResult RequestARSessionPermission(const struct FLatentActionInfo& LatentInfo);
-	enum class EARServiceInstallRequestResult InstallARService(const struct FLatentActionInfo& LatentInfo);
-	void GetARDependencyHandler(class UARDependencyHandler** ReturnValue);
-	enum class EARServiceAvailability CheckARServiceAvailability(const struct FLatentActionInfo& LatentInfo);
+	struct FLatentActionInfo StartARSessionLatent(class UARSessionConfig* SessionConfig);
+	struct FLatentActionInfo RequestARSessionPermission(class UARSessionConfig* SessionConfig, enum class EARServicePermissionRequestResult OutPermissionResult);
+	struct FLatentActionInfo InstallARService(enum class EARServiceInstallRequestResult OutInstallResult);
+	class UARDependencyHandler* GetARDependencyHandler();
+	struct FLatentActionInfo CheckARServiceAvailability(enum class EARServiceAvailability OutAvailability);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -374,12 +374,12 @@ public:
 	static class UClass* StaticClass();
 	static class UARGeoTrackingSupport* GetDefaultObj();
 
-	void GetGeoTrackingSupport(class UARGeoTrackingSupport** ReturnValue);
-	void GetGeoTrackingStateReason(enum class EARGeoTrackingStateReason* ReturnValue);
-	void GetGeoTrackingState(enum class EARGeoTrackingState* ReturnValue);
-	void GetGeoTrackingAccuracy(enum class EARGeoTrackingAccuracy* ReturnValue);
-	class FString AddGeoAnchorAtLocationWithAltitude(float Latitude, float AltitudeMeters, bool* ReturnValue);
-	class FString AddGeoAnchorAtLocation(float Latitude, bool* ReturnValue);
+	class UARGeoTrackingSupport* GetGeoTrackingSupport();
+	enum class EARGeoTrackingStateReason GetGeoTrackingStateReason();
+	enum class EARGeoTrackingState GetGeoTrackingState();
+	enum class EARGeoTrackingAccuracy GetGeoTrackingAccuracy();
+	bool AddGeoAnchorAtLocationWithAltitude(const class FString& OptionalAnchorName);
+	bool AddGeoAnchorAtLocation(const class FString& OptionalAnchorName);
 };
 
 // 0x50 (0xA0 - 0x50)
@@ -387,16 +387,16 @@ public:
 class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy : public UARBaseAsyncTaskBlueprintProxy
 {
 public:
-	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x50(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnFailed;                                          // 0x60(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2503[0x30];                                    // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x50(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnFailed;                                          // 0x60(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2ACF[0x30];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy* GetDefaultObj();
 
-	class FString GeoTrackingAvailabilityDelegate__DelegateSignature(bool bIsAvailable);
-	float CheckGeoTrackingAvailabilityAtLocation(float Latitude, class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy** ReturnValue);
-	class UObject* CheckGeoTrackingAvailability(class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy** ReturnValue);
+	class FString GeoTrackingAvailabilityDelegate__DelegateSignature();
+	class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy* CheckGeoTrackingAvailabilityAtLocation();
+	class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy* CheckGeoTrackingAvailability();
 };
 
 // 0x58 (0xA8 - 0x50)
@@ -404,15 +404,15 @@ public:
 class UGetGeoLocationAsyncTaskBlueprintProxy : public UARBaseAsyncTaskBlueprintProxy
 {
 public:
-	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x50(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnFailed;                                          // 0x60(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_250A[0x38];                                    // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x50(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnFailed;                                          // 0x60(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2AD5[0x38];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGetGeoLocationAsyncTaskBlueprintProxy* GetDefaultObj();
 
-	class FString GetGeoLocationDelegate__DelegateSignature(float Latitude, float* Altitude);
-	class UObject* GetGeoLocationAtWorldPosition(const struct FVector& WorldPosition, class UGetGeoLocationAsyncTaskBlueprintProxy** ReturnValue);
+	class FString GetGeoLocationDelegate__DelegateSignature();
+	class UGetGeoLocationAsyncTaskBlueprintProxy* GetGeoLocationAtWorldPosition();
 };
 
 // 0x38 (0x300 - 0x2C8)
@@ -420,17 +420,17 @@ public:
 class UARLifeCycleComponent : public USceneComponent
 {
 public:
-	FMulticastInlineDelegateProperty_            OnARActorSpawnedDelegate;                          // 0x2C8(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnARActorToBeDestroyedDelegate;                    // 0x2D8(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2515[0x18];                                    // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            OnARActorSpawnedDelegate;                          // 0x2C8(0x10)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnARActorToBeDestroyedDelegate;                    // 0x2D8(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2ADF[0x18];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARLifeCycleComponent* GetDefaultObj();
 
-	void ServerSpawnARActor(class UClass* ComponentClass, const struct FGuid& NativeID);
+	struct FGuid ServerSpawnARActor();
 	void ServerDestroyARActor(class AARActor** Actor);
 	void InstanceARActorToBeDestroyedDelegate__DelegateSignature(class AARActor** Actor);
-	void InstanceARActorSpawnedDelegate__DelegateSignature(class UClass* ComponentClass, const struct FGuid& NativeID, class AARActor* SpawnedActor);
+	class AARActor* InstanceARActorSpawnedDelegate__DelegateSignature();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -449,16 +449,16 @@ public:
 class UARBasicLightEstimate : public UARLightEstimate
 {
 public:
-	float                                        AmbientIntensityLumens;                            // 0x28(0x4)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        AmbientColorTemperatureKelvin;                     // 0x2C(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FLinearColor                          AmbientColor;                                      // 0x30(0x10)(BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        AmbientIntensityLumens;                            // 0x28(0x4)(Net, EditFixedSize, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        AmbientColorTemperatureKelvin;                     // 0x2C(0x4)(BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FLinearColor                          AmbientColor;                                      // 0x30(0x10)(Edit, ExportObject, EditFixedSize, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARBasicLightEstimate* GetDefaultObj();
 
-	void GetAmbientIntensityLumens(float* ReturnValue);
-	void GetAmbientColorTemperatureKelvin(float* ReturnValue);
-	void GetAmbientColor(struct FLinearColor* ReturnValue);
+	float GetAmbientIntensityLumens();
+	float GetAmbientColorTemperatureKelvin();
+	struct FLinearColor GetAmbientColor();
 };
 
 // 0x0 (0x4C8 - 0x4C8)
@@ -477,27 +477,27 @@ public:
 class UARPin : public UObject
 {
 public:
-	class UARTrackedGeometry*                    TrackedGeometry;                                   // 0x28(0x8)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	class USceneComponent*                       PinnedComponent;                                   // 0x30(0x8)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2535[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            LocalToTrackingTransform;                          // 0x40(0x60)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FTransform                            LocalToAlignedTrackingTransform;                   // 0xA0(0x60)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EARTrackingState                  TrackingState;                                     // 0x100(0x1)(Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2537[0x1F];                                    // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            OnARTrackingStateChanged;                          // 0x120(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnARTransformUpdated;                              // 0x130(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2538[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	class UARTrackedGeometry*                    TrackedGeometry;                                   // 0x28(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class USceneComponent*                       PinnedComponent;                                   // 0x30(0x8)(ConstParm, ExportObject, Net, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2AEC[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            LocalToTrackingTransform;                          // 0x40(0x60)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FTransform                            LocalToAlignedTrackingTransform;                   // 0xA0(0x60)(BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARTrackingState                  TrackingState;                                     // 0x100(0x1)(BlueprintVisible, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2AEF[0x1F];                                    // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            OnARTrackingStateChanged;                          // 0x120(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnARTransformUpdated;                              // 0x130(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2AF0[0x10];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARPin* GetDefaultObj();
 
-	void GetTrackingState(enum class EARTrackingState* ReturnValue);
-	void GetTrackedGeometry(class UARTrackedGeometry** ReturnValue);
-	void GetPinnedComponent(class USceneComponent** ReturnValue);
-	void GetLocalToWorldTransform(struct FTransform* ReturnValue);
-	void GetLocalToTrackingTransform(struct FTransform* ReturnValue);
-	void GetDebugName(class FName* ReturnValue);
-	float DebugDraw(struct FLinearColor* Color, float Scale);
+	enum class EARTrackingState GetTrackingState();
+	class UARTrackedGeometry* GetTrackedGeometry();
+	class USceneComponent* GetPinnedComponent();
+	struct FTransform GetLocalToWorldTransform();
+	struct FTransform GetLocalToTrackingTransform();
+	class FName GetDebugName();
+	class UWorld* DebugDraw(struct FLinearColor* Color, float Scale, float PersistForSeconds);
 };
 
 // 0xE0 (0x110 - 0x30)
@@ -505,94 +505,94 @@ public:
 class UARSessionConfig : public UDataAsset
 {
 public:
-	bool                                         bGenerateMeshDataFromTrackedGeometry;              // 0x30(0x1)(ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bGenerateCollisionForMeshData;                     // 0x31(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bGenerateNavMeshForMeshData;                       // 0x32(0x1)(Edit, ConstParm, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bUseMeshDataForOcclusion;                          // 0x33(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bRenderMeshDataInWireframe;                        // 0x34(0x1)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bTrackSceneObjects;                                // 0x35(0x1)(ConstParm, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bUsePersonSegmentationForOcclusion;                // 0x36(0x1)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bUseSceneDepthForOcclusion;                        // 0x37(0x1)(ConstParm, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bUseAutomaticImageScaleEstimation;                 // 0x38(0x1)(BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bUseStandardOnboardingUX;                          // 0x39(0x1)(Edit, ConstParm, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EARWorldAlignment                 WorldAlignment;                                    // 0x3A(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EARSessionType                    SessionType;                                       // 0x3B(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig)
-	enum class EARPlaneDetectionMode             PlaneDetectionMode;                                // 0x3C(0x1)(Edit, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bHorizontalPlaneDetection;                         // 0x3D(0x1)(Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bVerticalPlaneDetection;                           // 0x3E(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bEnableAutoFocus;                                  // 0x3F(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EARLightEstimationMode            LightEstimationMode;                               // 0x40(0x1)(ConstParm, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EARFrameSyncMode                  FrameSyncMode;                                     // 0x41(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bEnableAutomaticCameraOverlay;                     // 0x42(0x1)(ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bEnableAutomaticCameraTracking;                    // 0x43(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bResetCameraTracking;                              // 0x44(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bResetTrackedObjects;                              // 0x45(0x1)(BlueprintVisible, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_259A[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<class UARCandidateImage*>             CandidateImages;                                   // 0x48(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	int32                                        MaxNumSimultaneousImagesTracked;                   // 0x58(0x4)(ConstParm, ExportObject, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EAREnvironmentCaptureProbeType    EnvironmentCaptureProbeType;                       // 0x5C(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_259C[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<uint8>                                WorldMapData;                                      // 0x60(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<class UARCandidateObject*>            CandidateObjects;                                  // 0x70(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FARVideoFormat                        DesiredVideoFormat;                                // 0x80(0xC)(ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bUseOptimalVideoFormat;                            // 0x8C(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EARFaceTrackingDirection          FaceTrackingDirection;                             // 0x8D(0x1)(BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EARFaceTrackingUpdate             FaceTrackingUpdate;                                // 0x8E(0x1)(ConstParm, BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_259E[0x1];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        MaxNumberOfTrackedFaces;                           // 0x90(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_25A1[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<uint8>                                SerializedARCandidateImageDatabase;                // 0x98(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EARSessionTrackingFeature         EnabledSessionTrackingFeature;                     // 0xA8(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EARSceneReconstruction            SceneReconstructionMethod;                         // 0xA9(0x1)(ConstParm, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_25A3[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	class UClass*                                PlaneComponentClass;                               // 0xB0(0x8)(BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	class UClass*                                PointComponentClass;                               // 0xB8(0x8)(Edit, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	class UClass*                                FaceComponentClass;                                // 0xC0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	class UClass*                                ImageComponentClass;                               // 0xC8(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	class UClass*                                QRCodeComponentClass;                              // 0xD0(0x8)(Edit, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	class UClass*                                PoseComponentClass;                                // 0xD8(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	class UClass*                                EnvironmentProbeComponentClass;                    // 0xE0(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	class UClass*                                ObjectComponentClass;                              // 0xE8(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	class UClass*                                MeshComponentClass;                                // 0xF0(0x8)(ConstParm, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	class UClass*                                GeoAnchorComponentClass;                           // 0xF8(0x8)(Edit, BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	class UMaterialInterface*                    DefaultMeshMaterial;                               // 0x100(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	class UMaterialInterface*                    DefaultWireframeMeshMaterial;                      // 0x108(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bGenerateMeshDataFromTrackedGeometry;              // 0x30(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bGenerateCollisionForMeshData;                     // 0x31(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bGenerateNavMeshForMeshData;                       // 0x32(0x1)(Net, EditFixedSize, Parm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bUseMeshDataForOcclusion;                          // 0x33(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bRenderMeshDataInWireframe;                        // 0x34(0x1)(Edit, BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bTrackSceneObjects;                                // 0x35(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bUsePersonSegmentationForOcclusion;                // 0x36(0x1)(Edit, ExportObject, Net, Parm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bUseSceneDepthForOcclusion;                        // 0x37(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bUseAutomaticImageScaleEstimation;                 // 0x38(0x1)(Edit, ExportObject, Parm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bUseStandardOnboardingUX;                          // 0x39(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARWorldAlignment                 WorldAlignment;                                    // 0x3A(0x1)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARSessionType                    SessionType;                                       // 0x3B(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	enum class EARPlaneDetectionMode             PlaneDetectionMode;                                // 0x3C(0x1)(ConstParm, ExportObject, Net, EditFixedSize, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bHorizontalPlaneDetection;                         // 0x3D(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bVerticalPlaneDetection;                           // 0x3E(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bEnableAutoFocus;                                  // 0x3F(0x1)(ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARLightEstimationMode            LightEstimationMode;                               // 0x40(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARFrameSyncMode                  FrameSyncMode;                                     // 0x41(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bEnableAutomaticCameraOverlay;                     // 0x42(0x1)(Edit, ConstParm, Net, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bEnableAutomaticCameraTracking;                    // 0x43(0x1)(Edit, ConstParm, BlueprintReadOnly, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bResetCameraTracking;                              // 0x44(0x1)(ExportObject, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bResetTrackedObjects;                              // 0x45(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B1C[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<class UARCandidateImage*>             CandidateImages;                                   // 0x48(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	int32                                        MaxNumSimultaneousImagesTracked;                   // 0x58(0x4)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EAREnvironmentCaptureProbeType    EnvironmentCaptureProbeType;                       // 0x5C(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B21[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<uint8>                                WorldMapData;                                      // 0x60(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class UARCandidateObject*>            CandidateObjects;                                  // 0x70(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FARVideoFormat                        DesiredVideoFormat;                                // 0x80(0xC)(Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bUseOptimalVideoFormat;                            // 0x8C(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARFaceTrackingDirection          FaceTrackingDirection;                             // 0x8D(0x1)(Edit, ExportObject, Net, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARFaceTrackingUpdate             FaceTrackingUpdate;                                // 0x8E(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B25[0x1];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        MaxNumberOfTrackedFaces;                           // 0x90(0x4)(ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B26[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<uint8>                                SerializedARCandidateImageDatabase;                // 0x98(0x10)(Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARSessionTrackingFeature         EnabledSessionTrackingFeature;                     // 0xA8(0x1)(BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARSceneReconstruction            SceneReconstructionMethod;                         // 0xA9(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B27[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	class UClass*                                PlaneComponentClass;                               // 0xB0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	class UClass*                                PointComponentClass;                               // 0xB8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	class UClass*                                FaceComponentClass;                                // 0xC0(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	class UClass*                                ImageComponentClass;                               // 0xC8(0x8)(Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	class UClass*                                QRCodeComponentClass;                              // 0xD0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	class UClass*                                PoseComponentClass;                                // 0xD8(0x8)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	class UClass*                                EnvironmentProbeComponentClass;                    // 0xE0(0x8)(Net, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	class UClass*                                ObjectComponentClass;                              // 0xE8(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	class UClass*                                MeshComponentClass;                                // 0xF0(0x8)(Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	class UClass*                                GeoAnchorComponentClass;                           // 0xF8(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	class UMaterialInterface*                    DefaultMeshMaterial;                               // 0x100(0x8)(Edit, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class UMaterialInterface*                    DefaultWireframeMeshMaterial;                      // 0x108(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARSessionConfig* GetDefaultObj();
 
-	void ShouldResetTrackedObjects(bool* ReturnValue);
-	void ShouldResetCameraTracking(bool* ReturnValue);
-	void ShouldRenderCameraOverlay(bool* ReturnValue);
-	void ShouldEnableCameraTracking(bool* ReturnValue);
-	void ShouldEnableAutoFocus(bool* ReturnValue);
+	bool ShouldResetTrackedObjects();
+	bool ShouldResetCameraTracking();
+	bool ShouldRenderCameraOverlay();
+	bool ShouldEnableCameraTracking();
+	bool ShouldEnableAutoFocus();
 	void SetWorldMapData(const TArray<uint8>& WorldMapData);
 	void SetSessionTrackingFeatureToEnable(enum class EARSessionTrackingFeature InSessionTrackingFeature);
 	void SetSceneReconstructionMethod(enum class EARSceneReconstruction InSceneReconstructionMethod);
-	bool SetResetTrackedObjects();
-	bool SetResetCameraTracking();
-	enum class EARFaceTrackingUpdate SetFaceTrackingUpdate();
-	void SetFaceTrackingDirection(enum class EARFaceTrackingDirection* InDirection);
-	bool SetEnableAutoFocus();
-	struct FARVideoFormat SetDesiredVideoFormat();
-	TArray<class UARCandidateObject*> SetCandidateObjectList();
-	void GetWorldMapData(TArray<uint8>* ReturnValue);
-	void GetWorldAlignment(enum class EARWorldAlignment* ReturnValue);
-	void GetSessionType(enum class EARSessionType* ReturnValue);
-	void GetSceneReconstructionMethod(enum class EARSceneReconstruction* ReturnValue);
-	void GetPlaneDetectionMode(enum class EARPlaneDetectionMode* ReturnValue);
-	void GetMaxNumSimultaneousImagesTracked(int32* ReturnValue);
-	void GetLightEstimationMode(enum class EARLightEstimationMode* ReturnValue);
-	void GetFrameSyncMode(enum class EARFrameSyncMode* ReturnValue);
-	void GetFaceTrackingUpdate(enum class EARFaceTrackingUpdate* ReturnValue);
-	void GetFaceTrackingDirection(enum class EARFaceTrackingDirection* ReturnValue);
-	void GetEnvironmentCaptureProbeType(enum class EAREnvironmentCaptureProbeType* ReturnValue);
-	void GetEnabledSessionTrackingFeature(enum class EARSessionTrackingFeature* ReturnValue);
-	void GetDesiredVideoFormat(struct FARVideoFormat* ReturnValue);
-	void GetCandidateObjectList(TArray<class UARCandidateObject*>* ReturnValue);
-	void GetCandidateImageList(TArray<class UARCandidateImage*>* ReturnValue);
-	class UARCandidateObject* AddCandidateObject();
-	class UARCandidateImage* AddCandidateImage();
+	void SetResetTrackedObjects(bool bNewValue);
+	void SetResetCameraTracking(bool bNewValue);
+	void SetFaceTrackingUpdate(enum class EARFaceTrackingUpdate InUpdate);
+	enum class EARFaceTrackingDirection SetFaceTrackingDirection();
+	void SetEnableAutoFocus(bool bNewValue);
+	void SetDesiredVideoFormat(const struct FARVideoFormat& NewFormat);
+	void SetCandidateObjectList(const TArray<class UARCandidateObject*>& InCandidateObjects);
+	TArray<uint8> GetWorldMapData();
+	enum class EARWorldAlignment GetWorldAlignment();
+	enum class EARSessionType GetSessionType();
+	enum class EARSceneReconstruction GetSceneReconstructionMethod();
+	enum class EARPlaneDetectionMode GetPlaneDetectionMode();
+	int32 GetMaxNumSimultaneousImagesTracked();
+	enum class EARLightEstimationMode GetLightEstimationMode();
+	enum class EARFrameSyncMode GetFrameSyncMode();
+	enum class EARFaceTrackingUpdate GetFaceTrackingUpdate();
+	enum class EARFaceTrackingDirection GetFaceTrackingDirection();
+	enum class EAREnvironmentCaptureProbeType GetEnvironmentCaptureProbeType();
+	enum class EARSessionTrackingFeature GetEnabledSessionTrackingFeature();
+	struct FARVideoFormat GetDesiredVideoFormat();
+	TArray<class UARCandidateObject*> GetCandidateObjectList();
+	TArray<class UARCandidateImage*> GetCandidateImageList();
+	void AddCandidateObject(class UARCandidateObject* CandidateObject);
+	void AddCandidateImage(class UARCandidateImage* NewCandidateImage);
 };
 
 // 0x68 (0x618 - 0x5B0)
@@ -600,16 +600,16 @@ public:
 class AARSharedWorldGameMode : public AGameMode
 {
 public:
-	int32                                        BufferSizePerChunk;                                // 0x5B0(0x4)(ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_25AE[0x64];                                    // Fixing Size Of Struct > TateDumper <
+	int32                                        BufferSizePerChunk;                                // 0x5B0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B31[0x64];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class AARSharedWorldGameMode* GetDefaultObj();
 
-	void SetPreviewImageData(const TArray<uint8>& ImageData);
+	TArray<uint8> SetPreviewImageData();
 	void SetARWorldSharingIsReady();
-	void SetARSharedWorldData(const TArray<uint8>& ARWorldData);
-	void GetARSharedWorldGameState(class AARSharedWorldGameState** ReturnValue);
+	TArray<uint8> SetARSharedWorldData();
+	class AARSharedWorldGameState* GetARSharedWorldGameState();
 };
 
 // 0x38 (0x5E8 - 0x5B0)
@@ -617,13 +617,13 @@ public:
 class AARSharedWorldGameState : public AGameState
 {
 public:
-	TArray<uint8>                                PreviewImageData;                                  // 0x5B0(0x10)(Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<uint8>                                ARWorldData;                                       // 0x5C0(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	int32                                        PreviewImageBytesTotal;                            // 0x5D0(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	int32                                        ARWorldBytesTotal;                                 // 0x5D4(0x4)(ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	int32                                        PreviewImageBytesDelivered;                        // 0x5D8(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	int32                                        ARWorldBytesDelivered;                             // 0x5DC(0x4)(BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_25B8[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<uint8>                                PreviewImageData;                                  // 0x5B0(0x10)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<uint8>                                ARWorldData;                                       // 0x5C0(0x10)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	int32                                        PreviewImageBytesTotal;                            // 0x5D0(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	int32                                        ARWorldBytesTotal;                                 // 0x5D4(0x4)(Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	int32                                        PreviewImageBytesDelivered;                        // 0x5D8(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	int32                                        ARWorldBytesDelivered;                             // 0x5DC(0x4)(Edit, ExportObject, Net, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B36[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class AARSharedWorldGameState* GetDefaultObj();
@@ -636,15 +636,15 @@ public:
 class AARSharedWorldPlayerController : public APlayerController
 {
 public:
-	uint8                                        Pad_25E3[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2B3F[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class AARSharedWorldPlayerController* GetDefaultObj();
 
 	void ServerMarkReadyForReceiving();
-	int32 ClientUpdatePreviewImageData(TArray<uint8>* Buffer);
-	int32 ClientUpdateARWorldData(TArray<uint8>* Buffer);
-	void ClientInitSharedWorld(int32 PreviewImageSize, int32 ARWorldDataSize);
+	TArray<uint8> ClientUpdatePreviewImageData();
+	TArray<uint8> ClientUpdateARWorldData();
+	int32 ClientInitSharedWorld();
 };
 
 // 0x10 (0x4E8 - 0x4D8)
@@ -652,13 +652,13 @@ public:
 class AARSkyLight : public ASkyLight
 {
 public:
-	class UAREnvironmentCaptureProbe*            CaptureProbe;                                      // 0x4D8(0x8)(Edit, ConstParm, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_25E9[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	class UAREnvironmentCaptureProbe*            CaptureProbe;                                      // 0x4D8(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B42[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class AARSkyLight* GetDefaultObj();
 
-	void SetEnvironmentCaptureProbe(class UAREnvironmentCaptureProbe* InCaptureProbe);
+	class UAREnvironmentCaptureProbe* SetEnvironmentCaptureProbe();
 };
 
 // 0x28 (0x200 - 0x1D8)
@@ -666,10 +666,10 @@ public:
 class UARTexture : public UTexture
 {
 public:
-	enum class EARTextureType                    TextureType;                                       // 0x1D8(0x1)(ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_25EB[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        Timestamp;                                         // 0x1DC(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FGuid                                 ExternalTextureGuid;                               // 0x1E0(0x10)(ConstParm, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARTextureType                    TextureType;                                       // 0x1D8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B44[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Timestamp;                                         // 0x1DC(0x4)(ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FGuid                                 ExternalTextureGuid;                               // 0x1E0(0x10)(Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 	struct FVector2D                             Size;                                              // 0x1F0(0x10)(Edit, ExportObject, EditFixedSize, ReturnParm, Transient, Config)
 
 	static class UClass* StaticClass();
@@ -693,10 +693,10 @@ public:
 class UARTextureCameraDepth : public UARTexture
 {
 public:
-	enum class EARDepthQuality                   DepthQuality;                                      // 0x200(0x1)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EARDepthAccuracy                  DepthAccuracy;                                     // 0x201(0x1)(Edit, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bIsTemporallySmoothed;                             // 0x202(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_25F3[0xD];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EARDepthQuality                   DepthQuality;                                      // 0x200(0x1)(ConstParm, Net, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARDepthAccuracy                  DepthAccuracy;                                     // 0x201(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bIsTemporallySmoothed;                             // 0x202(0x1)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B48[0xD];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARTextureCameraDepth* GetDefaultObj();
@@ -708,12 +708,12 @@ public:
 class UAREnvironmentCaptureProbeTexture : public UTextureCube
 {
 public:
-	enum class EARTextureType                    TextureType;                                       // 0x270(0x1)(ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_25F4[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        Timestamp;                                         // 0x274(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FGuid                                 ExternalTextureGuid;                               // 0x278(0x10)(ConstParm, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARTextureType                    TextureType;                                       // 0x270(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B4B[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Timestamp;                                         // 0x274(0x4)(ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FGuid                                 ExternalTextureGuid;                               // 0x278(0x10)(Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 	struct FVector2D                             Size;                                              // 0x288(0x10)(Edit, ExportObject, EditFixedSize, ReturnParm, Transient, Config)
-	uint8                                        Pad_25F6[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2B4C[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAREnvironmentCaptureProbeTexture* GetDefaultObj();
@@ -736,35 +736,35 @@ public:
 class UARTrackedGeometry : public UObject
 {
 public:
-	struct FGuid                                 UniqueID;                                          // 0x28(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2659[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            LocalToTrackingTransform;                          // 0x40(0x60)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FTransform                            LocalToAlignedTrackingTransform;                   // 0xA0(0x60)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EARTrackingState                  TrackingState;                                     // 0x100(0x1)(Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_265A[0xF];                                     // Fixing Size After Last Property  > TateDumper <
-	class UMRMeshComponent*                      UnderlyingMesh;                                    // 0x110(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EARObjectClassification           ObjectClassification;                              // 0x118(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	enum class EARSpatialMeshUsageFlags          SpatialMeshUsageFlags;                             // 0x119(0x1)(Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_265B[0x16];                                    // Fixing Size After Last Property  > TateDumper <
-	int32                                        LastUpdateFrameNumber;                             // 0x130(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_265C[0xC];                                     // Fixing Size After Last Property  > TateDumper <
-	class FName                                  DebugName;                                         // 0x140(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_265D[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	struct FGuid                                 UniqueID;                                          // 0x28(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2B6E[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            LocalToTrackingTransform;                          // 0x40(0x60)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FTransform                            LocalToAlignedTrackingTransform;                   // 0xA0(0x60)(BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARTrackingState                  TrackingState;                                     // 0x100(0x1)(BlueprintVisible, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B6F[0xF];                                     // Fixing Size After Last Property  > TateDumper <
+	class UMRMeshComponent*                      UnderlyingMesh;                                    // 0x110(0x8)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EARObjectClassification           ObjectClassification;                              // 0x118(0x1)(Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	enum class EARSpatialMeshUsageFlags          SpatialMeshUsageFlags;                             // 0x119(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B72[0x16];                                    // Fixing Size After Last Property  > TateDumper <
+	int32                                        LastUpdateFrameNumber;                             // 0x130(0x4)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B73[0xC];                                     // Fixing Size After Last Property  > TateDumper <
+	class FName                                  DebugName;                                         // 0x140(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B75[0x10];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARTrackedGeometry* GetDefaultObj();
 
-	void IsTracked(bool* ReturnValue);
-	void HasSpatialMeshUsageFlag(enum class EARSpatialMeshUsageFlags InFlag, bool* ReturnValue);
-	void GetUnderlyingMesh(class UMRMeshComponent** ReturnValue);
-	void GetTrackingState(enum class EARTrackingState* ReturnValue);
-	void GetObjectClassification(enum class EARObjectClassification* ReturnValue);
-	void GetName(class FString* ReturnValue);
-	void GetLocalToWorldTransform(struct FTransform* ReturnValue);
-	void GetLocalToTrackingTransform(struct FTransform* ReturnValue);
-	void GetLastUpdateTimestamp(float* ReturnValue);
-	void GetLastUpdateFrameNumber(int32* ReturnValue);
-	void GetDebugName(class FName* ReturnValue);
+	bool IsTracked();
+	bool HasSpatialMeshUsageFlag();
+	class UMRMeshComponent* GetUnderlyingMesh();
+	enum class EARTrackingState GetTrackingState();
+	enum class EARObjectClassification GetObjectClassification();
+	class FString GetName();
+	struct FTransform GetLocalToWorldTransform();
+	struct FTransform GetLocalToTrackingTransform();
+	float GetLastUpdateTimestamp();
+	int32 GetLastUpdateFrameNumber();
+	class FName GetDebugName();
 };
 
 // 0x58 (0x1B0 - 0x158)
@@ -772,22 +772,22 @@ public:
 class UARPlaneGeometry : public UARTrackedGeometry
 {
 public:
-	enum class EARPlaneOrientation               Orientation;                                       // 0x158(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference)
-	uint8                                        Pad_2669[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	enum class EARPlaneOrientation               Orientation;                                       // 0x158(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig)
+	uint8                                        Pad_2B81[0x7];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FVector                               Center;                                            // 0x160(0x18)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-	struct FVector                               Extent;                                            // 0x178(0x18)(Edit, ExportObject, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<struct FVector>                       BoundaryPolygon;                                   // 0x190(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	class UARPlaneGeometry*                      SubsumedBy;                                        // 0x1A0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_266B[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	struct FVector                               Extent;                                            // 0x178(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FVector>                       BoundaryPolygon;                                   // 0x190(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	class UARPlaneGeometry*                      SubsumedBy;                                        // 0x1A0(0x8)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B83[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARPlaneGeometry* GetDefaultObj();
 
-	void GetSubsumedBy(class UARPlaneGeometry** ReturnValue);
-	void GetOrientation(enum class EARPlaneOrientation* ReturnValue);
-	void GetExtent(struct FVector* ReturnValue);
-	void GetCenter(struct FVector* ReturnValue);
-	void GetBoundaryPolygonInLocalSpace(TArray<struct FVector>* ReturnValue);
+	class UARPlaneGeometry* GetSubsumedBy();
+	enum class EARPlaneOrientation GetOrientation();
+	struct FVector GetExtent();
+	struct FVector GetCenter();
+	TArray<struct FVector> GetBoundaryPolygonInLocalSpace();
 };
 
 // 0x8 (0x160 - 0x158)
@@ -795,7 +795,7 @@ public:
 class UARTrackedPoint : public UARTrackedGeometry
 {
 public:
-	uint8                                        Pad_266E[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2B85[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARTrackedPoint* GetDefaultObj();
@@ -807,14 +807,14 @@ public:
 class UARTrackedImage : public UARTrackedGeometry
 {
 public:
-	class UARCandidateImage*                     DetectedImage;                                     // 0x158(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FVector2D                             EstimatedSize;                                     // 0x160(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	class UARCandidateImage*                     DetectedImage;                                     // 0x158(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	struct FVector2D                             EstimatedSize;                                     // 0x160(0x10)(ExportObject, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARTrackedImage* GetDefaultObj();
 
-	void GetEstimateSize(struct FVector2D* ReturnValue);
-	void GetDetectedImage(class UARCandidateImage** ReturnValue);
+	struct FVector2D GetEstimateSize();
+	class UARCandidateImage* GetDetectedImage();
 };
 
 // 0x20 (0x190 - 0x170)
@@ -822,9 +822,9 @@ public:
 class UARTrackedQRCode : public UARTrackedImage
 {
 public:
-	class FString                                QRCode;                                            // 0x170(0x10)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                QRCode;                                            // 0x170(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 	int32                                        Version;                                           // 0x180(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnInstance)
-	uint8                                        Pad_2681[0xC];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2B8F[0xC];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARTrackedQRCode* GetDefaultObj();
@@ -836,21 +836,21 @@ public:
 class UARFaceGeometry : public UARTrackedGeometry
 {
 public:
-	struct FVector                               LookAtTarget;                                      // 0x158(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bIsTracked;                                        // 0x170(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_26C9[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TMap<enum class EARFaceBlendShape, float>    BlendShapes;                                       // 0x178(0x50)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_26CA[0x38];                                    // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            LeftEyeTransform;                                  // 0x200(0x60)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FTransform                            RightEyeTransform;                                 // 0x260(0x60)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               LookAtTarget;                                      // 0x158(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	bool                                         bIsTracked;                                        // 0x170(0x1)(ExportObject, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B98[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TMap<enum class EARFaceBlendShape, float>    BlendShapes;                                       // 0x178(0x50)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B9B[0x38];                                    // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            LeftEyeTransform;                                  // 0x200(0x60)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FTransform                            RightEyeTransform;                                 // 0x260(0x60)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARFaceGeometry* GetDefaultObj();
 
-	void GetWorldSpaceEyeTransform(enum class EAREye* Eye, struct FTransform* ReturnValue);
-	void GetLocalSpaceEyeTransform(enum class EAREye* Eye, struct FTransform* ReturnValue);
-	void GetBlendShapeValue(enum class EARFaceBlendShape* BlendShape, float* ReturnValue);
-	void GetBlendShapes(TMap<enum class EARFaceBlendShape, float>* ReturnValue);
+	struct FTransform GetWorldSpaceEyeTransform();
+	struct FTransform GetLocalSpaceEyeTransform();
+	float GetBlendShapeValue();
+	TMap<enum class EARFaceBlendShape, float> GetBlendShapes();
 };
 
 // 0x28 (0x180 - 0x158)
@@ -858,15 +858,15 @@ public:
 class UAREnvironmentCaptureProbe : public UARTrackedGeometry
 {
 public:
-	struct FVector                               Extent;                                            // 0x158(0x18)(Edit, ExportObject, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	class UAREnvironmentCaptureProbeTexture*     EnvironmentCaptureTexture;                         // 0x170(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_26D1[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	struct FVector                               Extent;                                            // 0x158(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UAREnvironmentCaptureProbeTexture*     EnvironmentCaptureTexture;                         // 0x170(0x8)(ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2BA2[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAREnvironmentCaptureProbe* GetDefaultObj();
 
-	void GetExtent(struct FVector* ReturnValue);
-	void GetEnvironmentCaptureTexture(class UAREnvironmentCaptureProbeTexture** ReturnValue);
+	struct FVector GetExtent();
+	class UAREnvironmentCaptureProbeTexture* GetEnvironmentCaptureTexture();
 };
 
 // 0x8 (0x160 - 0x158)
@@ -874,12 +874,12 @@ public:
 class UARTrackedObject : public UARTrackedGeometry
 {
 public:
-	class UARCandidateObject*                    DetectedObject;                                    // 0x158(0x8)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	class UARCandidateObject*                    DetectedObject;                                    // 0x158(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARTrackedObject* GetDefaultObj();
 
-	void GetDetectedObject(class UARCandidateObject** ReturnValue);
+	class UARCandidateObject* GetDetectedObject();
 };
 
 // 0x58 (0x1B0 - 0x158)
@@ -887,13 +887,13 @@ public:
 class UARTrackedPose : public UARTrackedGeometry
 {
 public:
-	struct FARPose3D                             TrackedPose;                                       // 0x158(0x50)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_26D9[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	struct FARPose3D                             TrackedPose;                                       // 0x158(0x50)(BlueprintVisible, Net, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2BAC[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARTrackedPose* GetDefaultObj();
 
-	void GetTrackedPoseData(struct FARPose3D* ReturnValue);
+	struct FARPose3D GetTrackedPoseData();
 };
 
 // 0x8 (0x160 - 0x158)
@@ -901,12 +901,12 @@ public:
 class UARMeshGeometry : public UARTrackedGeometry
 {
 public:
-	uint8                                        Pad_26DF[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2BB9[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARMeshGeometry* GetDefaultObj();
 
-	float GetObjectClassificationAtLocation(bool* ReturnValue);
+	bool GetObjectClassificationAtLocation(struct FVector* InWorldLocation, enum class EARObjectClassification* OutClassification, const struct FVector& OutClassificationLocation, float MaxLocationDiff);
 };
 
 // 0x18 (0x170 - 0x158)
@@ -914,15 +914,15 @@ public:
 class UARGeoAnchor : public UARTrackedGeometry
 {
 public:
-	uint8                                        Pad_26E7[0x18];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2BCA[0x18];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARGeoAnchor* GetDefaultObj();
 
-	void GetLongitude(float* ReturnValue);
-	void GetLatitude(float* ReturnValue);
-	void GetAltitudeSource(enum class EARAltitudeSource* ReturnValue);
-	void GetAltitudeMeters(float* ReturnValue);
+	float GetLongitude();
+	float GetLatitude();
+	enum class EARAltitudeSource GetAltitudeSource();
+	float GetAltitudeMeters();
 };
 
 // 0x150 (0x208 - 0xB8)
@@ -930,27 +930,27 @@ public:
 class UARTrackableNotifyComponent : public UActorComponent
 {
 public:
-	FMulticastInlineDelegateProperty_            OnAddTrackedGeometry;                              // 0xB8(0x10)(ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnUpdateTrackedGeometry;                           // 0xC8(0x10)(Edit, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnRemoveTrackedGeometry;                           // 0xD8(0x10)(ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnAddTrackedPlane;                                 // 0xE8(0x10)(ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnUpdateTrackedPlane;                              // 0xF8(0x10)(Edit, ConstParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnRemoveTrackedPlane;                              // 0x108(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnAddTrackedPoint;                                 // 0x118(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnUpdateTrackedPoint;                              // 0x128(0x10)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnRemoveTrackedPoint;                              // 0x138(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnAddTrackedImage;                                 // 0x148(0x10)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnUpdateTrackedImage;                              // 0x158(0x10)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnRemoveTrackedImage;                              // 0x168(0x10)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnAddTrackedFace;                                  // 0x178(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnUpdateTrackedFace;                               // 0x188(0x10)(BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnRemoveTrackedFace;                               // 0x198(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnAddTrackedEnvProbe;                              // 0x1A8(0x10)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnUpdateTrackedEnvProbe;                           // 0x1B8(0x10)(Edit, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnRemoveTrackedEnvProbe;                           // 0x1C8(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnAddTrackedObject;                                // 0x1D8(0x10)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnUpdateTrackedObject;                             // 0x1E8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnRemoveTrackedObject;                             // 0x1F8(0x10)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnAddTrackedGeometry;                              // 0xB8(0x10)(Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnUpdateTrackedGeometry;                           // 0xC8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnRemoveTrackedGeometry;                           // 0xD8(0x10)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnAddTrackedPlane;                                 // 0xE8(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnUpdateTrackedPlane;                              // 0xF8(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnRemoveTrackedPlane;                              // 0x108(0x10)(Edit, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnAddTrackedPoint;                                 // 0x118(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnUpdateTrackedPoint;                              // 0x128(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnRemoveTrackedPoint;                              // 0x138(0x10)(Edit, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnAddTrackedImage;                                 // 0x148(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnUpdateTrackedImage;                              // 0x158(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnRemoveTrackedImage;                              // 0x168(0x10)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnAddTrackedFace;                                  // 0x178(0x10)(ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnUpdateTrackedFace;                               // 0x188(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnRemoveTrackedFace;                               // 0x198(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnAddTrackedEnvProbe;                              // 0x1A8(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnUpdateTrackedEnvProbe;                           // 0x1B8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnRemoveTrackedEnvProbe;                           // 0x1C8(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnAddTrackedObject;                                // 0x1D8(0x10)(Edit, ConstParm, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnUpdateTrackedObject;                             // 0x1E8(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnRemoveTrackedObject;                             // 0x1F8(0x10)(Edit, ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARTrackableNotifyComponent* GetDefaultObj();
@@ -973,21 +973,21 @@ public:
 class UARCandidateImage : public UDataAsset
 {
 public:
-	class UTexture2D*                            CandidateTexture;                                  // 0x30(0x8)(Edit, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	class UTexture2D*                            CandidateTexture;                                  // 0x30(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 	class FString                                FriendlyName;                                      // 0x38(0x10)(Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
 	float                                        Width;                                             // 0x48(0x4)(ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
 	float                                        Height;                                            // 0x4C(0x4)(BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
-	enum class EARCandidateImageOrientation      Orientation;                                       // 0x50(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference)
-	uint8                                        Pad_270A[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EARCandidateImageOrientation      Orientation;                                       // 0x50(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig)
+	uint8                                        Pad_2BE8[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UARCandidateImage* GetDefaultObj();
 
-	void GetPhysicalWidth(float* ReturnValue);
-	void GetPhysicalHeight(float* ReturnValue);
-	void GetOrientation(enum class EARCandidateImageOrientation* ReturnValue);
-	void GetFriendlyName(class FString* ReturnValue);
-	void GetCandidateTexture(class UTexture2D** ReturnValue);
+	float GetPhysicalWidth();
+	float GetPhysicalHeight();
+	enum class EARCandidateImageOrientation GetOrientation();
+	class FString GetFriendlyName();
+	class UTexture2D* GetCandidateTexture();
 };
 
 // 0x58 (0x88 - 0x30)
@@ -995,19 +995,19 @@ public:
 class UARCandidateObject : public UDataAsset
 {
 public:
-	TArray<uint8>                                CandidateObjectData;                               // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<uint8>                                CandidateObjectData;                               // 0x30(0x10)(ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 	class FString                                FriendlyName;                                      // 0x40(0x10)(Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
-	struct FBox                                  BoundingBox;                                       // 0x50(0x38)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FBox                                  BoundingBox;                                       // 0x50(0x38)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UARCandidateObject* GetDefaultObj();
 
-	void SetFriendlyName(const class FString& NewName);
+	class FString SetFriendlyName();
 	TArray<uint8> SetCandidateObjectData();
 	struct FBox SetBoundingBox();
-	void GetFriendlyName(class FString* ReturnValue);
-	void GetCandidateObjectData(TArray<uint8>* ReturnValue);
-	void GetBoundingBox(struct FBox* ReturnValue);
+	class FString GetFriendlyName();
+	TArray<uint8> GetCandidateObjectData();
+	struct FBox GetBoundingBox();
 };
 
 }

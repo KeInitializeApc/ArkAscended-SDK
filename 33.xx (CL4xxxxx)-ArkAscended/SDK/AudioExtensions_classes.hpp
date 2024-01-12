@@ -73,18 +73,18 @@ public:
 	static class UClass* StaticClass();
 	static class IAudioParameterControllerInterface* GetDefaultObj();
 
-	void SetTriggerParameter(class FName InName);
-	class FString SetStringParameter(class FName InName);
-	TArray<class FString> SetStringArrayParameter(class FName InName);
-	void SetParameters_Blueprint(TArray<struct FAudioParameter>* InParameters);
-	class UObject* SetObjectParameter(class FName InName);
-	TArray<class UObject*> SetObjectArrayParameter(class FName InName);
-	void SetIntParameter(class FName InName, int32* InInt);
-	TArray<int32> SetIntArrayParameter(class FName InName);
-	float SetFloatParameter(class FName InName);
-	TArray<float> SetFloatArrayParameter(class FName InName);
-	bool SetBoolParameter(class FName InName);
-	TArray<bool> SetBoolArrayParameter(class FName InName);
+	class FName SetTriggerParameter();
+	class FString SetStringParameter();
+	TArray<class FString> SetStringArrayParameter();
+	TArray<struct FAudioParameter> SetParameters_Blueprint();
+	class UObject* SetObjectParameter();
+	TArray<class UObject*> SetObjectArrayParameter();
+	int32 SetIntParameter();
+	TArray<int32> SetIntArrayParameter();
+	class FName SetFloatParameter(float InFloat);
+	TArray<float> SetFloatArrayParameter();
+	class FName SetBoolParameter(bool* InBool);
+	TArray<bool> SetBoolArrayParameter();
 	void ResetParameters();
 };
 
@@ -94,7 +94,7 @@ class UAudioCodecEncoderSettings : public UObject
 {
 public:
 	int32                                        Version;                                           // 0x28(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnInstance)
-	uint8                                        Pad_1FD2[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2725[0x4];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAudioCodecEncoderSettings* GetDefaultObj();
@@ -128,7 +128,7 @@ public:
 class USoundModulatorBase : public UObject
 {
 public:
-	uint8                                        Pad_1FD6[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2728[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USoundModulatorBase* GetDefaultObj();
@@ -162,7 +162,7 @@ public:
 class USoundfieldEffectBase : public UObject
 {
 public:
-	class USoundfieldEffectSettingsBase*         Settings;                                          // 0x28(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class USoundfieldEffectSettingsBase*         Settings;                                          // 0x28(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class USoundfieldEffectBase* GetDefaultObj();
@@ -185,7 +185,7 @@ public:
 class UWaveformTransformationChain : public UObject
 {
 public:
-	TArray<class UWaveformTransformationBase*>   Transformations;                                   // 0x28(0x10)(ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class UWaveformTransformationBase*>   Transformations;                                   // 0x28(0x10)(Edit, ConstParm, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UWaveformTransformationChain* GetDefaultObj();
@@ -197,8 +197,8 @@ public:
 class UAudioPcmEncoderSettings : public UAudioCodecEncoderSettings
 {
 public:
-	enum class EPcmBitDepthConversion            BitDepthConversion;                                // 0x30(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1FE3[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EPcmBitDepthConversion            BitDepthConversion;                                // 0x30(0x1)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_272E[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAudioPcmEncoderSettings* GetDefaultObj();

@@ -14,10 +14,10 @@ namespace SDK
 class UOpenColorIOSettings : public UDeveloperSettings
 {
 public:
-	uint8                                        bUseLegacyProcessor : 1;                           // Mask: 0x1, PropSize: 0x10x38(0x1)(ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        bUse32fLUT : 1;                                    // Mask: 0x2, PropSize: 0x10x38(0x1)(ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        bSupportInverseViewTransforms : 1;                 // Mask: 0x4, PropSize: 0x10x38(0x1)(ConstParm, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_56F[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        bUseLegacyProcessor : 1;                           // Mask: 0x1, PropSize: 0x10x38(0x1)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        bUse32fLUT : 1;                                    // Mask: 0x2, PropSize: 0x10x38(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        bSupportInverseViewTransforms : 1;                 // Mask: 0x4, PropSize: 0x10x38(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7E2[0x7];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOpenColorIOSettings* GetDefaultObj();
@@ -33,7 +33,7 @@ public:
 	static class UClass* StaticClass();
 	static class UOpenColorIOBlueprintLibrary* GetDefaultObj();
 
-	class UObject* ApplyColorSpaceTransform(struct FOpenColorIOColorConversionSettings* ConversionSettings, class UTexture* InputTexture, class UTextureRenderTarget2D* OutputRenderTarget, bool* ReturnValue);
+	bool ApplyColorSpaceTransform();
 };
 
 // 0x140 (0x168 - 0x28)
@@ -41,17 +41,17 @@ public:
 class UOpenColorIOColorTransform : public UObject
 {
 public:
-	class UOpenColorIOConfiguration*             ConfigurationOwner;                                // 0x28(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	bool                                         bIsDisplayViewType;                                // 0x30(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_581[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class FString                                SourceColorSpace;                                  // 0x38(0x10)(ConstParm, ExportObject, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	class FString                                DestinationColorSpace;                             // 0x48(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	class FString                                Display;                                           // 0x58(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+	class UOpenColorIOConfiguration*             ConfigurationOwner;                                // 0x28(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bIsDisplayViewType;                                // 0x30(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7F4[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class FString                                SourceColorSpace;                                  // 0x38(0x10)(ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                DestinationColorSpace;                             // 0x48(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                Display;                                           // 0x58(0x10)(BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
 	class FString                                View;                                              // 0x68(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, EditConst)
-	enum class EOpenColorIOViewTransformDirection DisplayViewDirection;                              // 0x78(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	uint8                                        Pad_582[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	TMap<int32, class UTexture*>                 Textures;                                          // 0x80(0x50)(EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_583[0x98];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EOpenColorIOViewTransformDirection DisplayViewDirection;                              // 0x78(0x1)(Edit, ConstParm, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7F8[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	TMap<int32, class UTexture*>                 Textures;                                          // 0x80(0x50)(Edit, EditFixedSize, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7F9[0x98];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOpenColorIOColorTransform* GetDefaultObj();
@@ -63,11 +63,11 @@ public:
 class UOpenColorIOConfiguration : public UObject
 {
 public:
-	struct FFilePath                             ConfigurationFile;                                 // 0x28(0x10)(ExportObject, BlueprintReadOnly, DisableEditOnInstance, InstancedReference)
-	TArray<struct FOpenColorIOColorSpace>        DesiredColorSpaces;                                // 0x38(0x10)(Edit, ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<struct FOpenColorIODisplayView>       DesiredDisplayViews;                               // 0x48(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<class UOpenColorIOColorTransform*>    ColorTransforms;                                   // 0x58(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_588[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	struct FFilePath                             ConfigurationFile;                                 // 0x28(0x10)(ConstParm, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference)
+	TArray<struct FOpenColorIOColorSpace>        DesiredColorSpaces;                                // 0x38(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FOpenColorIODisplayView>       DesiredDisplayViews;                               // 0x48(0x10)(BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class UOpenColorIOColorTransform*>    ColorTransforms;                                   // 0x58(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_804[0x30];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOpenColorIOConfiguration* GetDefaultObj();
@@ -80,18 +80,18 @@ public:
 class UOpenColorIODisplayExtensionWrapper : public UObject
 {
 public:
-	uint8                                        Pad_59E[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_82E[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOpenColorIODisplayExtensionWrapper* GetDefaultObj();
 
-	void SetSceneExtensionIsActiveFunctions(TArray<struct FSceneViewExtensionIsActiveFunctor>* IsActiveFunctions);
-	void SetSceneExtensionIsActiveFunction(struct FSceneViewExtensionIsActiveFunctor* IsActiveFunction);
-	void SetOpenColorIOConfiguration(struct FOpenColorIODisplayConfiguration* InDisplayConfiguration);
+	TArray<struct FSceneViewExtensionIsActiveFunctor> SetSceneExtensionIsActiveFunctions();
+	struct FSceneViewExtensionIsActiveFunctor SetSceneExtensionIsActiveFunction();
+	struct FOpenColorIODisplayConfiguration SetOpenColorIOConfiguration();
 	void RemoveSceneExtension();
-	void GetOpenColorIOConfiguration(struct FOpenColorIODisplayConfiguration* ReturnValue);
-	void CreateOpenColorIODisplayExtension(struct FOpenColorIODisplayConfiguration* InDisplayConfiguration, struct FSceneViewExtensionIsActiveFunctor* IsActiveFunction, class UOpenColorIODisplayExtensionWrapper** ReturnValue);
-	void CreateInGameOpenColorIODisplayExtension(struct FOpenColorIODisplayConfiguration* InDisplayConfiguration, class UOpenColorIODisplayExtensionWrapper** ReturnValue);
+	struct FOpenColorIODisplayConfiguration GetOpenColorIOConfiguration();
+	class UOpenColorIODisplayExtensionWrapper* CreateOpenColorIODisplayExtension();
+	class UOpenColorIODisplayExtensionWrapper* CreateInGameOpenColorIODisplayExtension();
 };
 
 }

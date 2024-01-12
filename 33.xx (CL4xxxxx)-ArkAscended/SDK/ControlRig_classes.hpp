@@ -14,177 +14,177 @@ namespace SDK
 class URigHierarchy : public UObject
 {
 public:
-	uint8                                        Pad_E4F[0x60];                                     // Fixing Size After Last Property  > TateDumper <
-	uint16                                       TopologyVersion;                                   // 0x88(0x2)(ConstParm, ExportObject, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
-	uint16                                       MetadataVersion;                                   // 0x8A(0x2)(Edit, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
-	uint16                                       MetadataTagVersion;                                // 0x8C(0x2)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bEnableDirtyPropagation;                           // 0x8E(0x1)(ConstParm, ExportObject, Net, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_E50[0x99];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        TransformStackIndex;                               // 0x128(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_E51[0x74];                                     // Fixing Size After Last Property  > TateDumper <
-	class URigHierarchyController*               HierarchyController;                               // 0x1A0(0x8)(BlueprintVisible, BlueprintReadOnly, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_E52[0x58];                                     // Fixing Size After Last Property  > TateDumper <
-	TMap<struct FRigElementKey, struct FRigElementKey> PreviousNameMap;                                   // 0x200(0x50)(EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_E54[0x80];                                     // Fixing Size After Last Property  > TateDumper <
-	class URigHierarchy*                         HierarchyForCacheValidation;                       // 0x2D0(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_E55[0x78];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_10BD[0x60];                                    // Fixing Size After Last Property  > TateDumper <
+	uint16                                       TopologyVersion;                                   // 0x88(0x2)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint16                                       MetadataVersion;                                   // 0x8A(0x2)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint16                                       MetadataTagVersion;                                // 0x8C(0x2)(Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bEnableDirtyPropagation;                           // 0x8E(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_10BF[0x99];                                    // Fixing Size After Last Property  > TateDumper <
+	int32                                        TransformStackIndex;                               // 0x128(0x4)(Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_10C0[0x74];                                    // Fixing Size After Last Property  > TateDumper <
+	class URigHierarchyController*               HierarchyController;                               // 0x1A0(0x8)(Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_10C1[0x58];                                    // Fixing Size After Last Property  > TateDumper <
+	TMap<struct FRigElementKey, struct FRigElementKey> PreviousNameMap;                                   // 0x200(0x50)(BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_10C4[0x80];                                    // Fixing Size After Last Property  > TateDumper <
+	class URigHierarchy*                         HierarchyForCacheValidation;                       // 0x2D0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_10C6[0x78];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class URigHierarchy* GetDefaultObj();
 
-	bool UnsetCurveValueByIndex();
-	bool UnsetCurveValue();
-	bool SwitchToWorldSpace(bool* bAffectChildren, bool* ReturnValue);
-	bool SwitchToParent(bool* bAffectChildren, bool* ReturnValue);
-	bool SwitchToDefaultParent(bool* bAffectChildren, bool* ReturnValue);
-	void SortKeys(TArray<struct FRigElementKey>* InKeys, TArray<struct FRigElementKey>* ReturnValue);
-	struct FVector SetVectorMetadata(bool* ReturnValue);
-	TArray<struct FVector> SetVectorArrayMetadata(bool* ReturnValue);
-	struct FTransform SetTransformMetadata(bool* ReturnValue);
-	TArray<struct FTransform> SetTransformArrayMetadata(bool* ReturnValue);
-	class FName SetTag(bool* ReturnValue);
-	struct FRotator SetRotatorMetadata(bool* ReturnValue);
-	TArray<struct FRotator> SetRotatorArrayMetadata(bool* ReturnValue);
-	struct FRigElementKey SetRigElementKeyMetadata(bool* ReturnValue);
-	TArray<struct FRigElementKey> SetRigElementKeyArrayMetadata(bool* ReturnValue);
-	struct FQuat SetQuatMetadata(bool* ReturnValue);
-	TArray<struct FQuat> SetQuatArrayMetadata(bool* ReturnValue);
+	bool UnsetCurveValueByIndex(int32* InElementIndex);
+	bool UnsetCurveValue(struct FRigElementKey* InKey);
+	bool SwitchToWorldSpace(bool* bInitial);
+	bool SwitchToParent(const struct FRigElementKey& InParent, bool* bInitial);
+	bool SwitchToDefaultParent(bool* bInitial);
+	TArray<struct FRigElementKey> SortKeys();
+	bool SetVectorMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetVectorArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetTransformMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetTransformArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetTag(struct FRigElementKey* InItem);
+	bool SetRotatorMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetRotatorArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetRigElementKeyMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetRigElementKeyArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetQuatMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetQuatArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
 	void SetPose_ForBlueprint(const struct FRigPose& InPose);
-	bool SetParentWeightArray(bool* bAffectChildren, bool* ReturnValue);
-	bool SetParentWeight(bool* bAffectChildren, bool* ReturnValue);
-	class FName SetNameMetadata(bool* ReturnValue);
-	TArray<class FName> SetNameArrayMetadata(bool* ReturnValue);
-	bool SetLocalTransformByIndex(const struct FTransform& InTransform, bool* bAffectChildren);
-	bool SetLocalTransform(const struct FTransform& InTransform, bool* bAffectChildren);
-	struct FLinearColor SetLinearColorMetadata(bool* ReturnValue);
-	TArray<struct FLinearColor> SetLinearColorArrayMetadata(bool* ReturnValue);
-	int32 SetInt32Metadata(bool* ReturnValue);
-	TArray<int32> SetInt32ArrayMetadata(bool* ReturnValue);
-	bool SetGlobalTransformByIndex(const struct FTransform& InTransform, bool* bAffectChildren);
-	bool SetGlobalTransform(const struct FTransform& InTransform, bool* bAffectChildren);
-	float SetFloatMetadata(bool* ReturnValue);
-	TArray<float> SetFloatArrayMetadata(bool* ReturnValue);
-	bool SetCurveValueByIndex();
-	bool SetCurveValue();
-	bool SetControlVisibilityByIndex();
-	bool SetControlVisibility();
-	bool SetControlValueByIndex();
-	bool SetControlValue();
-	bool SetControlShapeTransformByIndex(const struct FTransform& InTransform);
-	bool SetControlShapeTransform(const struct FTransform& InTransform);
-	bool SetControlSettingsByIndex(bool bForce);
-	bool SetControlSettings(bool bForce);
-	bool SetControlPreferredRotatorByIndex();
-	bool SetControlPreferredRotator();
-	bool SetControlOffsetTransformByIndex(const struct FTransform& InTransform, bool* bAffectChildren);
-	bool SetControlOffsetTransform(const struct FTransform& InTransform, bool* bAffectChildren);
-	bool SetBoolMetadata(bool* ReturnValue);
-	TArray<bool> SetBoolArrayMetadata(bool* ReturnValue);
+	bool SetParentWeightArray(bool* bInitial);
+	bool SetParentWeight(const struct FRigElementKey& InParent, bool* bInitial);
+	bool SetNameMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetNameArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetLocalTransformByIndex(int32* InElementIndex, bool* bInitial);
+	bool SetLocalTransform(struct FRigElementKey* InKey, bool* bInitial);
+	bool SetLinearColorMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetLinearColorArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetInt32Metadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetInt32ArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetGlobalTransformByIndex(int32* InElementIndex, bool* bInitial);
+	bool SetGlobalTransform(struct FRigElementKey* InKey, bool* bInitial);
+	bool SetFloatMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetFloatArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetCurveValueByIndex(int32* InElementIndex);
+	bool SetCurveValue(struct FRigElementKey* InKey);
+	bool SetControlVisibilityByIndex(int32* InElementIndex);
+	bool SetControlVisibility(struct FRigElementKey* InKey);
+	bool SetControlValueByIndex(int32* InElementIndex);
+	bool SetControlValue(struct FRigElementKey* InKey);
+	bool SetControlShapeTransformByIndex(int32* InElementIndex, bool* bInitial);
+	bool SetControlShapeTransform(struct FRigElementKey* InKey, bool* bInitial);
+	bool SetControlSettingsByIndex(int32* InElementIndex, bool* bForce);
+	bool SetControlSettings(struct FRigElementKey* InKey, bool* bForce);
+	bool SetControlPreferredRotatorByIndex(int32* InElementIndex, bool* bInitial);
+	bool SetControlPreferredRotator(struct FRigElementKey* InKey, bool* bInitial);
+	bool SetControlOffsetTransformByIndex(int32* InElementIndex, bool* bInitial);
+	bool SetControlOffsetTransform(struct FRigElementKey* InKey, bool* bInitial);
+	bool SetBoolMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool SetBoolArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
 	bool SendAutoKeyEvent();
 	void ResetToDefault();
 	enum class ERigElementType ResetPoseToInitial();
 	void ResetCurveValues();
 	void Reset();
-	class FName RemoveMetadata(bool* ReturnValue);
-	struct FRigElementKey RemoveAllMetadata(bool* ReturnValue);
-	void Num(int32* ReturnValue);
-	struct FVector2D MakeControlValueFromVector2D(struct FRigControlValue* ReturnValue);
-	struct FVector MakeControlValueFromVector(struct FRigControlValue* ReturnValue);
-	struct FTransformNoScale MakeControlValueFromTransformNoScale(struct FRigControlValue* ReturnValue);
-	struct FTransform MakeControlValueFromTransform(struct FRigControlValue* ReturnValue);
-	struct FRotator MakeControlValueFromRotator(struct FRigControlValue* ReturnValue);
-	int32 MakeControlValueFromInt(struct FRigControlValue* ReturnValue);
-	float MakeControlValueFromFloat(struct FRigControlValue* ReturnValue);
-	struct FEulerTransform MakeControlValueFromEulerTransform(struct FRigControlValue* ReturnValue);
-	bool MakeControlValueFromBool(struct FRigControlValue* ReturnValue);
-	int32 IsValidIndex(bool* ReturnValue);
-	int32 IsSelectedByIndex(bool* ReturnValue);
-	struct FRigElementKey IsSelected(bool* ReturnValue);
-	struct FRigElementKey IsProcedural(bool* ReturnValue);
-	struct FRigElementKey IsParentedTo(bool* ReturnValue);
-	int32 IsCurveValueSetByIndex(bool* ReturnValue);
-	struct FRigElementKey IsCurveValueSet(bool* ReturnValue);
-	void IsControllerAvailable(bool* ReturnValue);
-	class FName HasTag(bool* ReturnValue);
-	class FName GetVectorMetadata(const struct FVector& DefaultValue, struct FVector* ReturnValue);
-	struct FRigControlValue GetVectorFromControlValue(struct FVector* ReturnValue);
-	class FName GetVectorArrayMetadata(TArray<struct FVector>* ReturnValue);
-	struct FRigControlValue GetVector2DFromControlValue(struct FVector2D* ReturnValue);
-	struct FRigControlValue GetTransformNoScaleFromControlValue(struct FTransformNoScale* ReturnValue);
-	class FName GetTransformMetadata(const struct FTransform& DefaultValue, struct FTransform* ReturnValue);
-	struct FRigControlValue GetTransformFromControlValue(struct FTransform* ReturnValue);
-	class FName GetTransformArrayMetadata(TArray<struct FTransform>* ReturnValue);
-	struct FRigElementKey GetTags(TArray<class FName>* ReturnValue);
-	enum class ERigElementType GetSelectedKeys(TArray<struct FRigElementKey>* ReturnValue);
-	class FName GetRotatorMetadata(const struct FRotator& DefaultValue, struct FRotator* ReturnValue);
-	struct FRigControlValue GetRotatorFromControlValue(struct FRotator* ReturnValue);
-	class FName GetRotatorArrayMetadata(TArray<struct FRotator>* ReturnValue);
-	void GetRootElementKeys(TArray<struct FRigElementKey>* ReturnValue);
-	bool GetRigidBodyKeys(TArray<struct FRigElementKey>* ReturnValue);
-	class FName GetRigElementKeyMetadata(const struct FRigElementKey& DefaultValue, struct FRigElementKey* ReturnValue);
-	class FName GetRigElementKeyArrayMetadata(TArray<struct FRigElementKey>* ReturnValue);
-	bool GetReferenceKeys(TArray<struct FRigElementKey>* ReturnValue);
-	class FName GetQuatMetadata(const struct FQuat& DefaultValue, struct FQuat* ReturnValue);
-	class FName GetQuatArrayMetadata(TArray<struct FQuat>* ReturnValue);
-	struct FRigElementKey GetPreviousParent(struct FRigElementKey* ReturnValue);
-	struct FRigElementKey GetPreviousName(class FName* ReturnValue);
-	bool GetPose(struct FRigPose* ReturnValue);
-	bool GetParentWeightArray(TArray<struct FRigElementWeight>* ReturnValue);
-	bool GetParentWeight(struct FRigElementWeight* ReturnValue);
-	bool GetParentTransformByIndex(struct FTransform* ReturnValue);
-	bool GetParentTransform(struct FTransform* ReturnValue);
-	bool GetParents(TArray<struct FRigElementKey>* ReturnValue);
-	struct FRigElementKey GetNumberOfParents(int32* ReturnValue);
-	bool GetNullKeys(TArray<struct FRigElementKey>* ReturnValue);
-	class FName GetNameMetadata(class FName DefaultValue, class FName* ReturnValue);
-	class FName GetNameArrayMetadata(TArray<class FName>* ReturnValue);
-	class FName GetMetadataType(enum class ERigMetadataType* ReturnValue);
-	struct FRigElementKey GetMetadataNames(TArray<class FName>* ReturnValue);
-	bool GetLocalTransformByIndex(struct FTransform* ReturnValue);
-	bool GetLocalTransform(struct FTransform* ReturnValue);
-	struct FRigElementKey GetLocalIndex_ForBlueprint(int32* ReturnValue);
-	bool GetLocalControlShapeTransformByIndex(struct FTransform* ReturnValue);
-	bool GetLocalControlShapeTransform(struct FTransform* ReturnValue);
-	class FName GetLinearColorMetadata(const struct FLinearColor& DefaultValue, struct FLinearColor* ReturnValue);
-	class FName GetLinearColorArrayMetadata(TArray<struct FLinearColor>* ReturnValue);
-	TArray<int32> GetKeys(TArray<struct FRigElementKey>* ReturnValue);
-	int32 GetKey(struct FRigElementKey* ReturnValue);
-	struct FRigControlValue GetIntFromControlValue(int32* ReturnValue);
-	class FName GetInt32Metadata(int32 DefaultValue, int32* ReturnValue);
-	class FName GetInt32ArrayMetadata(TArray<int32>* ReturnValue);
-	struct FRigElementKey GetIndex_ForBlueprint(int32* ReturnValue);
-	bool GetGlobalTransformByIndex(struct FTransform* ReturnValue);
-	bool GetGlobalTransform(struct FTransform* ReturnValue);
-	bool GetGlobalControlShapeTransformByIndex(struct FTransform* ReturnValue);
-	bool GetGlobalControlShapeTransform(struct FTransform* ReturnValue);
-	bool GetGlobalControlOffsetTransformByIndex(struct FTransform* ReturnValue);
-	bool GetGlobalControlOffsetTransform(struct FTransform* ReturnValue);
-	class FName GetFloatMetadata(float DefaultValue, float* ReturnValue);
-	struct FRigControlValue GetFloatFromControlValue(float* ReturnValue);
-	class FName GetFloatArrayMetadata(TArray<float>* ReturnValue);
-	struct FRigElementKey GetFirstParent(struct FRigElementKey* ReturnValue);
-	struct FRigControlValue GetEulerTransformFromControlValue(struct FEulerTransform* ReturnValue);
-	struct FRigElementKey GetDefaultParent(struct FRigElementKey* ReturnValue);
-	int32 GetCurveValueByIndex(float* ReturnValue);
-	struct FRigElementKey GetCurveValue(float* ReturnValue);
-	void GetCurveKeys(TArray<struct FRigElementKey>* ReturnValue);
-	enum class ERigControlValueType GetControlValueByIndex(struct FRigControlValue* ReturnValue);
-	enum class ERigControlValueType GetControlValue(struct FRigControlValue* ReturnValue);
-	bool GetControlPreferredRotatorByIndex(struct FRotator* ReturnValue);
-	bool GetControlPreferredRotator(struct FRotator* ReturnValue);
-	void GetController(bool* bCreateIfNeeded, class URigHierarchyController** ReturnValue);
-	bool GetControlKeys(TArray<struct FRigElementKey>* ReturnValue);
-	bool GetChildren(TArray<struct FRigElementKey>* ReturnValue);
-	class FName GetBoolMetadata(bool DefaultValue, bool* ReturnValue);
-	class FName GetBoolArrayMetadata(TArray<bool>* ReturnValue);
-	bool GetBoneKeys(TArray<struct FRigElementKey>* ReturnValue);
-	bool GetAllKeys_ForBlueprint(TArray<struct FRigElementKey>* ReturnValue);
-	struct FRigElementKey FindNull_ForBlueprintOnly(struct FRigNullElement* ReturnValue);
-	struct FRigElementKey FindControl_ForBlueprintOnly(struct FRigControlElement* ReturnValue);
-	struct FRigElementKey FindBone_ForBlueprintOnly(struct FRigBoneElement* ReturnValue);
-	bool CopyPose();
-	class URigHierarchy* CopyHierarchy();
-	struct FRigElementKey Contains_ForBlueprint(bool* ReturnValue);
+	bool RemoveMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	bool RemoveAllMetadata(struct FRigElementKey* InItem);
+	int32 Num();
+	struct FRigControlValue MakeControlValueFromVector2D();
+	struct FRigControlValue MakeControlValueFromVector();
+	struct FRigControlValue MakeControlValueFromTransformNoScale();
+	struct FRigControlValue MakeControlValueFromTransform();
+	struct FRigControlValue MakeControlValueFromRotator();
+	struct FRigControlValue MakeControlValueFromInt();
+	struct FRigControlValue MakeControlValueFromFloat();
+	struct FRigControlValue MakeControlValueFromEulerTransform();
+	struct FRigControlValue MakeControlValueFromBool();
+	bool IsValidIndex(int32* InElementIndex);
+	bool IsSelectedByIndex();
+	bool IsSelected(struct FRigElementKey* InKey);
+	bool IsProcedural(struct FRigElementKey* InKey);
+	bool IsParentedTo(const struct FRigElementKey& InParent);
+	bool IsCurveValueSetByIndex(int32* InElementIndex);
+	bool IsCurveValueSet(struct FRigElementKey* InKey);
+	bool IsControllerAvailable();
+	bool HasTag(struct FRigElementKey* InItem);
+	struct FVector GetVectorMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	struct FVector GetVectorFromControlValue();
+	TArray<struct FVector> GetVectorArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	struct FVector2D GetVector2DFromControlValue();
+	struct FTransformNoScale GetTransformNoScaleFromControlValue();
+	struct FTransform GetTransformMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	struct FTransform GetTransformFromControlValue();
+	TArray<struct FTransform> GetTransformArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	TArray<class FName> GetTags(struct FRigElementKey* InItem);
+	TArray<struct FRigElementKey> GetSelectedKeys();
+	struct FRotator GetRotatorMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	struct FRotator GetRotatorFromControlValue();
+	TArray<struct FRotator> GetRotatorArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	TArray<struct FRigElementKey> GetRootElementKeys();
+	TArray<struct FRigElementKey> GetRigidBodyKeys(bool* bTraverse);
+	struct FRigElementKey GetRigElementKeyMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	TArray<struct FRigElementKey> GetRigElementKeyArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	TArray<struct FRigElementKey> GetReferenceKeys(bool* bTraverse);
+	struct FQuat GetQuatMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	TArray<struct FQuat> GetQuatArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	struct FRigElementKey GetPreviousParent(struct FRigElementKey* InKey);
+	class FName GetPreviousName(struct FRigElementKey* InKey);
+	struct FRigPose GetPose(bool* bInitial);
+	TArray<struct FRigElementWeight> GetParentWeightArray(bool* bInitial);
+	struct FRigElementWeight GetParentWeight(const struct FRigElementKey& InParent, bool* bInitial);
+	struct FTransform GetParentTransformByIndex(int32* InElementIndex, bool* bInitial);
+	struct FTransform GetParentTransform(struct FRigElementKey* InKey, bool* bInitial);
+	TArray<struct FRigElementKey> GetParents(struct FRigElementKey* InKey, bool bRecursive);
+	int32 GetNumberOfParents(struct FRigElementKey* InKey);
+	TArray<struct FRigElementKey> GetNullKeys(bool* bTraverse);
+	class FName GetNameMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	TArray<class FName> GetNameArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	enum class ERigMetadataType GetMetadataType(struct FRigElementKey* InItem, class FName* InMetadataName);
+	TArray<class FName> GetMetadataNames(struct FRigElementKey* InItem);
+	struct FTransform GetLocalTransformByIndex(int32* InElementIndex, bool* bInitial);
+	struct FTransform GetLocalTransform(struct FRigElementKey* InKey, bool* bInitial);
+	int32 GetLocalIndex_ForBlueprint(struct FRigElementKey* InKey);
+	struct FTransform GetLocalControlShapeTransformByIndex(int32* InElementIndex, bool* bInitial);
+	struct FTransform GetLocalControlShapeTransform(struct FRigElementKey* InKey, bool* bInitial);
+	struct FLinearColor GetLinearColorMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	TArray<struct FLinearColor> GetLinearColorArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	TArray<struct FRigElementKey> GetKeys();
+	struct FRigElementKey GetKey(int32* InElementIndex);
+	int32 GetIntFromControlValue();
+	int32 GetInt32Metadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	TArray<int32> GetInt32ArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	int32 GetIndex_ForBlueprint(struct FRigElementKey* InKey);
+	struct FTransform GetGlobalTransformByIndex(int32* InElementIndex, bool* bInitial);
+	struct FTransform GetGlobalTransform(struct FRigElementKey* InKey, bool* bInitial);
+	struct FTransform GetGlobalControlShapeTransformByIndex(int32* InElementIndex, bool* bInitial);
+	struct FTransform GetGlobalControlShapeTransform(struct FRigElementKey* InKey, bool* bInitial);
+	struct FTransform GetGlobalControlOffsetTransformByIndex(int32* InElementIndex, bool* bInitial);
+	struct FTransform GetGlobalControlOffsetTransform(struct FRigElementKey* InKey, bool* bInitial);
+	float GetFloatMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	float GetFloatFromControlValue();
+	TArray<float> GetFloatArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	struct FRigElementKey GetFirstParent(struct FRigElementKey* InKey);
+	struct FEulerTransform GetEulerTransformFromControlValue();
+	struct FRigElementKey GetDefaultParent(struct FRigElementKey* InKey);
+	float GetCurveValueByIndex(int32* InElementIndex);
+	float GetCurveValue(struct FRigElementKey* InKey);
+	TArray<struct FRigElementKey> GetCurveKeys();
+	struct FRigControlValue GetControlValueByIndex(int32* InElementIndex);
+	struct FRigControlValue GetControlValue(struct FRigElementKey* InKey);
+	struct FRotator GetControlPreferredRotatorByIndex(int32* InElementIndex, bool* bInitial);
+	struct FRotator GetControlPreferredRotator(struct FRigElementKey* InKey, bool* bInitial);
+	class URigHierarchyController* GetController();
+	TArray<struct FRigElementKey> GetControlKeys(bool* bTraverse);
+	TArray<struct FRigElementKey> GetChildren(struct FRigElementKey* InKey, bool bRecursive);
+	bool GetBoolMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	TArray<bool> GetBoolArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName);
+	TArray<struct FRigElementKey> GetBoneKeys(bool* bTraverse);
+	TArray<struct FRigElementKey> GetAllKeys_ForBlueprint(bool* bTraverse);
+	struct FRigNullElement FindNull_ForBlueprintOnly(struct FRigElementKey* InKey);
+	struct FRigControlElement FindControl_ForBlueprintOnly(struct FRigElementKey* InKey);
+	struct FRigBoneElement FindBone_ForBlueprintOnly(struct FRigElementKey* InKey);
+	void CopyPose(class URigHierarchy** InHierarchy, bool* bCurrent, bool* bInitial, bool* bWeights, bool* bMatchPoseInGlobalIfNeeded);
+	void CopyHierarchy(class URigHierarchy** InHierarchy);
+	bool Contains_ForBlueprint(struct FRigElementKey* InKey);
 };
 
 // 0x38 (0x90 - 0x58)
@@ -193,7 +193,7 @@ class UTransformableControlHandle : public UTransformableHandle
 {
 public:
 	TSoftObjectPtr<class UControlRig>            ControlRig;                                        // 0x58(0x30)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst)
-	class FName                                  ControlName;                                       // 0x88(0x8)(ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	class FName                                  ControlName;                                       // 0x88(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UTransformableControlHandle* GetDefaultObj();
@@ -205,22 +205,22 @@ public:
 class UControlRig : public URigVMHost
 {
 public:
-	uint8                                        Pad_EEC[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	enum class ERigExecutionType                 ExecutionType;                                     // 0x188(0x1)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_EEF[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FRigHierarchySettings                 HierarchySettings;                                 // 0x18C(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-	TMap<struct FRigElementKey, struct FRigControlElementCustomization> ControlCustomizations;                             // 0x190(0x50)(ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-	class URigHierarchy*                         DynamicHierarchy;                                  // 0x1E0(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-	TArray<TSoftObjectPtr<class UControlRigShapeLibrary>> ShapeLibraries;                                    // 0x1E8(0x10)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_EF1[0x18];                                     // Fixing Size After Last Property  > TateDumper <
-	class UAnimationDataSourceRegistry*          DataSourceRegistry;                                // 0x210(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_EF2[0x90];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FRigInfluenceMapPerEvent              Influences;                                        // 0x2A8(0x60)(Edit, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-	class UControlRig*                           InteractionRig;                                    // 0x308(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-	class UClass*                                InteractionRigClass;                               // 0x310(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_EF3[0xC0];                                     // Fixing Size After Last Property  > TateDumper <
-	FMulticastSparseDelegateProperty_            OnControlSelected_BP;                              // 0x3D8(0x1)(BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_EF4[0x1F];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1122[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	enum class ERigExecutionType                 ExecutionType;                                     // 0x188(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1125[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FRigHierarchySettings                 HierarchySettings;                                 // 0x18C(0x4)(Edit, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	TMap<struct FRigElementKey, struct FRigControlElementCustomization> ControlCustomizations;                             // 0x190(0x50)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	class URigHierarchy*                         DynamicHierarchy;                                  // 0x1E0(0x8)(BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	TArray<TSoftObjectPtr<class UControlRigShapeLibrary>> ShapeLibraries;                                    // 0x1E8(0x10)(Edit, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1129[0x18];                                    // Fixing Size After Last Property  > TateDumper <
+	class UAnimationDataSourceRegistry*          DataSourceRegistry;                                // 0x210(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_112A[0x90];                                    // Fixing Size After Last Property  > TateDumper <
+	struct FRigInfluenceMapPerEvent              Influences;                                        // 0x2A8(0x60)(Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	class UControlRig*                           InteractionRig;                                    // 0x308(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	class UClass*                                InteractionRigClass;                               // 0x310(0x8)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_112C[0xC0];                                    // Fixing Size After Last Property  > TateDumper <
+	FMulticastSparseDelegateProperty_            OnControlSelected_BP;                              // 0x3D8(0x1)(Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_112E[0x1F];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UControlRig* GetDefaultObj();
@@ -230,15 +230,15 @@ public:
 	bool SelectControl();
 	void RequestConstruction();
 	bool OnControlSelectedBP__DelegateSignature(struct FRigControlElement* Control);
-	class FName IsControlSelected(bool* ReturnValue);
-	void GetInteractionRigClass(class UClass** ReturnValue);
-	void GetInteractionRig(class UControlRig** ReturnValue);
-	void GetHostingActor(class AActor** ReturnValue);
-	void GetHierarchy(class URigHierarchy** ReturnValue);
-	class UClass* FindControlRigs(class UObject* Outer, TArray<class UControlRig*>* ReturnValue);
-	void CurrentControlSelection(TArray<class FName>* ReturnValue);
-	class FName CreateTransformableControlHandle(class UObject* Outer, class UTransformableControlHandle** ReturnValue);
-	void ClearControlSelection(bool* ReturnValue);
+	bool IsControlSelected();
+	class UClass* GetInteractionRigClass();
+	class UControlRig* GetInteractionRig();
+	class AActor* GetHostingActor();
+	class URigHierarchy* GetHierarchy();
+	TArray<class UControlRig*> FindControlRigs(class UObject* Outer);
+	TArray<class FName> CurrentControlSelection();
+	class UTransformableControlHandle* CreateTransformableControlHandle(class UObject* Outer);
+	bool ClearControlSelection();
 };
 
 // 0x8 (0x350 - 0x348)
@@ -246,7 +246,7 @@ public:
 class UControlRigAnimInstance : public UAnimInstance
 {
 public:
-	uint8                                        Pad_EF7[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1134[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UControlRigAnimInstance* GetDefaultObj();
@@ -269,78 +269,78 @@ public:
 class UControlRigComponent : public UPrimitiveComponent
 {
 public:
-	class UClass*                                ControlRigClass;                                   // 0x698(0x8)(ConstParm, ZeroConstructor, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnPreInitializeDelegate;                           // 0x6A0(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnPostInitializeDelegate;                          // 0x6B0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnPreConstructionDelegate;                         // 0x6C0(0x10)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnPostConstructionDelegate;                        // 0x6D0(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnPreForwardsSolveDelegate;                        // 0x6E0(0x10)(Edit, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnPostForwardsSolveDelegate;                       // 0x6F0(0x10)(ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<struct FControlRigComponentMappedElement> UserDefinedElements;                               // 0x700(0x10)(EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FControlRigComponentMappedElement> MappedElements;                                    // 0x710(0x10)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bEnableLazyEvaluation;                             // 0x720(0x1)(BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_100C[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        LazyEvaluationPositionThreshold;                   // 0x724(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	float                                        LazyEvaluationRotationThreshold;                   // 0x728(0x4)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	float                                        LazyEvaluationScaleThreshold;                      // 0x72C(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bResetTransformBeforeTick;                         // 0x730(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bResetInitialsBeforeConstruction;                  // 0x731(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bUpdateRigOnTick;                                  // 0x732(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bUpdateInEditor;                                   // 0x733(0x1)(ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bDrawBones;                                        // 0x734(0x1)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bShowDebugDrawing;                                 // 0x735(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_100D[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	class UClass*                                ControlRigClass;                                   // 0x698(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnPreInitializeDelegate;                           // 0x6A0(0x10)(BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnPostInitializeDelegate;                          // 0x6B0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnPreConstructionDelegate;                         // 0x6C0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnPostConstructionDelegate;                        // 0x6D0(0x10)(ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnPreForwardsSolveDelegate;                        // 0x6E0(0x10)(Edit, ConstParm, BlueprintVisible, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnPostForwardsSolveDelegate;                       // 0x6F0(0x10)(Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FControlRigComponentMappedElement> UserDefinedElements;                               // 0x700(0x10)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FControlRigComponentMappedElement> MappedElements;                                    // 0x710(0x10)(BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bEnableLazyEvaluation;                             // 0x720(0x1)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_123D[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        LazyEvaluationPositionThreshold;                   // 0x724(0x4)(Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        LazyEvaluationRotationThreshold;                   // 0x728(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        LazyEvaluationScaleThreshold;                      // 0x72C(0x4)(Edit, ConstParm, BlueprintVisible, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bResetTransformBeforeTick;                         // 0x730(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bResetInitialsBeforeConstruction;                  // 0x731(0x1)(ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bUpdateRigOnTick;                                  // 0x732(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bUpdateInEditor;                                   // 0x733(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bDrawBones;                                        // 0x734(0x1)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bShowDebugDrawing;                                 // 0x735(0x1)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1245[0x2];                                     // Fixing Size After Last Property  > TateDumper <
 	class UControlRig*                           ControlRig;                                        // 0x738(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst)
-	uint8                                        Pad_100E[0xC0];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1246[0xC0];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UControlRigComponent* GetDefaultObj();
 
-	float Update();
-	void SetObjectBinding(class UObject** InObjectToBind);
-	void SetMappedElements(TArray<struct FControlRigComponentMappedElement>* NewMappedElements);
-	void SetInitialSpaceTransform(class FName* SpaceName, struct FTransform* InitialTransform, enum class EControlRigComponentSpace Space);
-	bool SetInitialBoneTransform(class FName BoneName, struct FTransform* InitialTransform, enum class EControlRigComponentSpace Space);
+	void Update(float* DeltaTime);
+	class UObject* SetObjectBinding();
+	TArray<struct FControlRigComponentMappedElement> SetMappedElements();
+	enum class EControlRigComponentSpace SetInitialSpaceTransform();
+	enum class EControlRigComponentSpace SetInitialBoneTransform(class FName BoneName, bool* bPropagateToChildren);
 	class FName SetControlVector2D(const struct FVector2D& Value);
-	class FName SetControlTransform(const struct FTransform& Value, enum class EControlRigComponentSpace Space);
-	class FName SetControlScale(const struct FVector& Value, enum class EControlRigComponentSpace Space);
-	class FName SetControlRotator(const struct FRotator& Value, enum class EControlRigComponentSpace Space);
-	void SetControlRigClass(class UClass** InControlRigClass);
-	class FName SetControlPosition(const struct FVector& Value, enum class EControlRigComponentSpace Space);
-	class FName SetControlOffset(struct FTransform* OffsetTransform, enum class EControlRigComponentSpace Space);
+	enum class EControlRigComponentSpace SetControlTransform(const struct FTransform& Value);
+	enum class EControlRigComponentSpace SetControlScale(const struct FVector& Value);
+	enum class EControlRigComponentSpace SetControlRotator(const struct FRotator& Value);
+	class UClass* SetControlRigClass();
+	enum class EControlRigComponentSpace SetControlPosition(const struct FVector& Value);
+	enum class EControlRigComponentSpace SetControlOffset();
 	class FName SetControlInt(int32 Value);
 	class FName SetControlFloat(float Value);
 	class FName SetControlBool(bool Value);
-	bool SetBoneTransform(class FName BoneName, struct FTransform* Transform, enum class EControlRigComponentSpace Space);
-	void SetBoneInitialTransformsFromSkeletalMesh(class USkeletalMesh** InSkeletalMesh);
-	void OnPreInitialize(class UControlRigComponent** Component);
-	void OnPreForwardsSolve(class UControlRigComponent** Component);
-	void OnPreConstruction(class UControlRigComponent** Component);
-	void OnPostInitialize(class UControlRigComponent** Component);
-	void OnPostForwardsSolve(class UControlRigComponent** Component);
-	void OnPostConstruction(class UControlRigComponent** Component);
+	float SetBoneTransform(class FName BoneName, struct FTransform* Transform, bool* bPropagateToChildren);
+	class USkeletalMesh* SetBoneInitialTransformsFromSkeletalMesh();
+	class UControlRigComponent* OnPreInitialize();
+	class UControlRigComponent* OnPreForwardsSolve();
+	class UControlRigComponent* OnPreConstruction();
+	class UControlRigComponent* OnPostInitialize();
+	class UControlRigComponent* OnPostForwardsSolve();
+	class UControlRigComponent* OnPostConstruction();
 	void Initialize();
-	void GetSpaceTransform(class FName* SpaceName, enum class EControlRigComponentSpace Space, struct FTransform* ReturnValue);
-	void GetInitialSpaceTransform(class FName* SpaceName, enum class EControlRigComponentSpace Space, struct FTransform* ReturnValue);
-	void GetInitialBoneTransform(class FName BoneName, enum class EControlRigComponentSpace Space, struct FTransform* ReturnValue);
-	void GetElementNames(enum class ERigElementType ElementType, TArray<class FName>* ReturnValue);
-	class FName GetControlVector2D(struct FVector2D* ReturnValue);
-	class FName GetControlTransform(enum class EControlRigComponentSpace Space, struct FTransform* ReturnValue);
-	class FName GetControlScale(enum class EControlRigComponentSpace Space, struct FVector* ReturnValue);
-	class FName GetControlRotator(enum class EControlRigComponentSpace Space, struct FRotator* ReturnValue);
-	void GetControlRig(class UControlRig** ReturnValue);
-	class FName GetControlPosition(enum class EControlRigComponentSpace Space, struct FVector* ReturnValue);
-	class FName GetControlOffset(enum class EControlRigComponentSpace Space, struct FTransform* ReturnValue);
-	class FName GetControlInt(int32* ReturnValue);
-	class FName GetControlFloat(float* ReturnValue);
-	class FName GetControlBool(bool* ReturnValue);
-	void GetBoneTransform(class FName BoneName, enum class EControlRigComponentSpace Space, struct FTransform* ReturnValue);
-	void GetAbsoluteTime(float* ReturnValue);
-	void DoesElementExist(class FName* Name, enum class ERigElementType ElementType, bool* ReturnValue);
+	struct FTransform GetSpaceTransform();
+	struct FTransform GetInitialSpaceTransform();
+	struct FTransform GetInitialBoneTransform(class FName BoneName);
+	TArray<class FName> GetElementNames();
+	struct FVector2D GetControlVector2D();
+	struct FTransform GetControlTransform();
+	struct FVector GetControlScale();
+	struct FRotator GetControlRotator();
+	class UControlRig* GetControlRig();
+	struct FVector GetControlPosition();
+	struct FTransform GetControlOffset();
+	int32 GetControlInt();
+	float GetControlFloat();
+	bool GetControlBool();
+	struct FTransform GetBoneTransform(class FName BoneName);
+	float GetAbsoluteTime();
+	bool DoesElementExist(class FName* Name);
 	void ClearMappedElements();
-	void CanExecute(bool* ReturnValue);
+	bool CanExecute();
 	TArray<struct FControlRigComponentMappedCurve> AddMappedSkeletalMesh(class USkeletalMeshComponent* SkeletalMeshComponent);
-	void AddMappedElements(TArray<struct FControlRigComponentMappedElement>* NewMappedElements);
+	TArray<struct FControlRigComponentMappedElement> AddMappedElements();
 	void AddMappedComponents(const TArray<struct FControlRigComponentMappedComponent>& Components);
 	void AddMappedCompleteSkeletalMesh(class USkeletalMeshComponent* SkeletalMeshComponent);
 };
@@ -350,22 +350,22 @@ public:
 class AControlRigControlActor : public AActor
 {
 public:
-	class AActor*                                ActorToTrack;                                      // 0x4C8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	class UClass*                                ControlRigClass;                                   // 0x4D0(0x8)(ConstParm, ZeroConstructor, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	bool                                         bRefreshOnTick;                                    // 0x4D8(0x1)(Net, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bIsSelectable;                                     // 0x4D9(0x1)(ExportObject, BlueprintReadOnly, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_101C[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	class UMaterialInterface*                    MaterialOverride;                                  // 0x4E0(0x8)(ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	class FString                                ColorParameter;                                    // 0x4E8(0x10)(BlueprintReadOnly, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bCastShadows;                                      // 0x4F8(0x1)(Edit, ExportObject, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_101E[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class USceneComponent*                       ActorRootComponent;                                // 0x500(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	class AActor*                                ActorToTrack;                                      // 0x4C8(0x8)(Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	class UClass*                                ControlRigClass;                                   // 0x4D0(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bRefreshOnTick;                                    // 0x4D8(0x1)(BlueprintVisible, ExportObject, Net, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bIsSelectable;                                     // 0x4D9(0x1)(BlueprintVisible, Net, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1267[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	class UMaterialInterface*                    MaterialOverride;                                  // 0x4E0(0x8)(Edit, ConstParm, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class FString                                ColorParameter;                                    // 0x4E8(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bCastShadows;                                      // 0x4F8(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1269[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class USceneComponent*                       ActorRootComponent;                                // 0x500(0x8)(Edit, ConstParm, ExportObject, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 	TSoftObjectPtr<class UControlRig>            ControlRig;                                        // 0x508(0x30)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst)
-	TArray<class FName>                          ControlNames;                                      // 0x538(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FTransform>                    ShapeTransforms;                                   // 0x548(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	TArray<class FName>                          ControlNames;                                      // 0x538(0x10)(BlueprintVisible, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FTransform>                    ShapeTransforms;                                   // 0x548(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 	TArray<class UStaticMeshComponent*>          Components;                                        // 0x558(0x10)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor)
-	TArray<class UMaterialInstanceDynamic*>      Materials;                                         // 0x568(0x10)(Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	class FName                                  ColorParameterName;                                // 0x578(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	TArray<class UMaterialInstanceDynamic*>      Materials;                                         // 0x568(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	class FName                                  ColorParameterName;                                // 0x578(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class AControlRigControlActor* GetDefaultObj();
@@ -380,35 +380,35 @@ public:
 class AControlRigShapeActor : public AActor
 {
 public:
-	class USceneComponent*                       ActorRootComponent;                                // 0x4C8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	class USceneComponent*                       ActorRootComponent;                                // 0x4C8(0x8)(Edit, ConstParm, ExportObject, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 	class UStaticMeshComponent*                  StaticMeshComponent;                               // 0x4D0(0x8)(Edit, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-	uint32                                       ControlRigIndex;                                   // 0x4D8(0x4)(Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+	uint32                                       ControlRigIndex;                                   // 0x4D8(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 	TWeakObjectPtr<class UControlRig>            ControlRig;                                        // 0x4DC(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst)
-	class FName                                  ControlName;                                       // 0x4E4(0x8)(ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-	class FName                                  ShapeName;                                         // 0x4EC(0x8)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-	class FName                                  ColorParameterName;                                // 0x4F4(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1057[0x10];                                    // Fixing Size After Last Property  > TateDumper <
-	uint8                                        bSelected : 1;                                     // Mask: 0x1, PropSize: 0x10x50C(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-	uint8                                        bHovered : 1;                                      // Mask: 0x2, PropSize: 0x10x50C(0x1)(BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1059[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	class FName                                  ControlName;                                       // 0x4E4(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class FName                                  ShapeName;                                         // 0x4EC(0x8)(Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+	class FName                                  ColorParameterName;                                // 0x4F4(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_12A4[0x10];                                    // Fixing Size After Last Property  > TateDumper <
+	uint8                                        bSelected : 1;                                     // Mask: 0x1, PropSize: 0x10x50C(0x1)(BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	uint8                                        bHovered : 1;                                      // Mask: 0x2, PropSize: 0x10x50C(0x1)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_12A8[0x3];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class AControlRigShapeActor* GetDefaultObj();
 
-	bool SetSelected();
-	bool SetSelectable();
-	bool SetHovered();
-	void SetGlobalTransform(const struct FTransform& InTransform);
-	bool SetEnabled();
-	struct FTransform OnTransformChanged();
-	bool OnSelectionChanged();
-	bool OnManipulatingChanged();
-	bool OnHoveredChanged();
+	void SetSelected(bool bInSelected);
+	void SetSelectable(bool bInSelectable);
+	void SetHovered(bool bInHovered);
+	struct FTransform SetGlobalTransform();
+	void SetEnabled(bool bInEnabled);
+	void OnTransformChanged(struct FTransform* NewTransform);
+	void OnSelectionChanged(bool bIsSelected);
+	void OnManipulatingChanged(bool bIsManipulating);
+	void OnHoveredChanged(bool bIsSelected);
 	bool OnEnabledChanged();
-	void IsSelectedInEditor(bool* ReturnValue);
-	void IsHovered(bool* ReturnValue);
-	void IsEnabled(bool* ReturnValue);
-	void GetGlobalTransform(struct FTransform* ReturnValue);
+	bool IsSelectedInEditor();
+	bool IsHovered();
+	bool IsEnabled();
+	struct FTransform GetGlobalTransform();
 };
 
 // 0x148 (0x170 - 0x28)
@@ -416,13 +416,13 @@ public:
 class UControlRigShapeLibrary : public UObject
 {
 public:
-	uint8                                        Pad_105E[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FControlRigShapeDefinition            DefaultShape;                                      // 0x30(0xB0)(ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-	TSoftObjectPtr<class UMaterial>              DefaultMaterial;                                   // 0xE0(0x30)(ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig)
-	TSoftObjectPtr<class UMaterial>              XRayMaterial;                                      // 0x110(0x30)(ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	class FName                                  MaterialColorParameter;                            // 0x140(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FControlRigShapeDefinition>    Shapes;                                            // 0x148(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_105F[0x18];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_12B1[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FControlRigShapeDefinition            DefaultShape;                                      // 0x30(0xB0)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+	TSoftObjectPtr<class UMaterial>              DefaultMaterial;                                   // 0xE0(0x30)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig)
+	TSoftObjectPtr<class UMaterial>              XRayMaterial;                                      // 0x110(0x30)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FName                                  MaterialColorParameter;                            // 0x140(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FControlRigShapeDefinition>    Shapes;                                            // 0x148(0x10)(Edit, ExportObject, Net, Parm, Config, EditConst, SubobjectReference)
+	uint8                                        Pad_12B5[0x18];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UControlRigShapeLibrary* GetDefaultObj();
@@ -434,26 +434,26 @@ public:
 class UControlRigTestData : public UObject
 {
 public:
-	struct FSoftObjectPath                       ControlRigObjectPath;                              // 0x28(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+	struct FSoftObjectPath                       ControlRigObjectPath;                              // 0x28(0x20)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 	struct FControlRigTestDataFrame              Initial;                                           // 0x48(0x90)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor)
-	TArray<struct FControlRigTestDataFrame>      InputFrames;                                       // 0xD8(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FControlRigTestDataFrame>      OutputFrames;                                      // 0xE8(0x10)(Edit, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	TArray<int32>                                FramesToSkip;                                      // 0xF8(0x10)(ConstParm, BlueprintVisible, Net, Parm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	double                                       Tolerance;                                         // 0x108(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1091[0x40];                                    // Fixing Size Of Struct > TateDumper <
+	TArray<struct FControlRigTestDataFrame>      InputFrames;                                       // 0xD8(0x10)(EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FControlRigTestDataFrame>      OutputFrames;                                      // 0xE8(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<int32>                                FramesToSkip;                                      // 0xF8(0x10)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	double                                       Tolerance;                                         // 0x108(0x8)(Edit, BlueprintReadOnly, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_12E7[0x40];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UControlRigTestData* GetDefaultObj();
 
-	bool SetupReplay(bool* ReturnValue);
+	bool SetupReplay(class UControlRig** InControlRig, bool* bGroundTruth);
 	void ReleaseReplay();
-	double Record(bool* ReturnValue);
-	void IsReplaying(bool* ReturnValue);
-	void IsRecording(bool* ReturnValue);
-	bool GetTimeRange(struct FVector2D* ReturnValue);
-	void GetPlaybackMode(enum class EControlRigTestDataPlaybackMode* ReturnValue);
-	bool GetFrameIndexForTime(int32* ReturnValue);
-	class FString CreateNewAsset(class UControlRigTestData** ReturnValue);
+	bool Record(class UControlRig** InControlRig, double* InRecordingDuration);
+	bool IsReplaying();
+	bool IsRecording();
+	struct FVector2D GetTimeRange(bool* bInput);
+	enum class EControlRigTestDataPlaybackMode GetPlaybackMode();
+	int32 GetFrameIndexForTime(double* InSeconds, bool* bInput);
+	class UControlRigTestData* CreateNewAsset(class FString* InDesiredPackagePath, const class FString& InBlueprintPathName);
 };
 
 // 0x40 (0x68 - 0x28)
@@ -461,8 +461,8 @@ public:
 class UControlRigValidator : public UObject
 {
 public:
-	TArray<class UControlRigValidationPass*>     Passes;                                            // 0x28(0x10)(ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1098[0x30];                                    // Fixing Size Of Struct > TateDumper <
+	TArray<class UControlRigValidationPass*>     Passes;                                            // 0x28(0x10)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_12EB[0x30];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UControlRigValidator* GetDefaultObj();
@@ -485,7 +485,7 @@ public:
 class UAdditiveControlRig : public UControlRig
 {
 public:
-	uint8                                        Pad_109C[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_12EC[0x10];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAdditiveControlRig* GetDefaultObj();
@@ -497,9 +497,9 @@ public:
 class UFKControlRig : public UControlRig
 {
 public:
-	TArray<bool>                                 IsControlActive;                                   // 0x3F8(0x10)(ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	enum class EControlRigFKRigExecuteMode       ApplyMode;                                         // 0x408(0x1)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_10A1[0x2F];                                    // Fixing Size Of Struct > TateDumper <
+	TArray<bool>                                 IsControlActive;                                   // 0x3F8(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EControlRigFKRigExecuteMode       ApplyMode;                                         // 0x408(0x1)(ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_12ED[0x2F];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UFKControlRig* GetDefaultObj();
@@ -511,43 +511,43 @@ public:
 class URigHierarchyController : public UObject
 {
 public:
-	bool                                         bReportWarningsAndErrors;                          // 0x28(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_11D4[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	bool                                         bReportWarningsAndErrors;                          // 0x28(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_14B2[0x3];                                     // Fixing Size After Last Property  > TateDumper <
 	TWeakObjectPtr<class URigHierarchy>          Hierarchy;                                         // 0x2C(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig)
-	uint8                                        Pad_11D5[0x6C];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_14B3[0x6C];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class URigHierarchyController* GetDefaultObj();
 
-	bool SetSelection(TArray<struct FRigElementKey>* InKeys, bool* ReturnValue);
-	bool SetParent(bool* ReturnValue);
-	class URigHierarchy* SetHierarchy();
-	bool SetDisplayName(class FName InDisplayName, class FName* ReturnValue);
-	bool SetControlSettings(bool* ReturnValue);
-	bool SelectElement(bool* ReturnValue);
-	bool ReorderElement(bool* ReturnValue);
-	bool RenameElement(class FName InName, struct FRigElementKey* ReturnValue);
-	bool RemoveParent(bool* ReturnValue);
-	bool RemoveElement(bool* ReturnValue);
-	bool RemoveAllParents(bool* ReturnValue);
-	bool MirrorElements(TArray<struct FRigElementKey>* InKeys, TArray<struct FRigElementKey>* ReturnValue);
-	bool ImportFromText(TArray<struct FRigElementKey>* ReturnValue);
-	bool ImportCurves(TArray<struct FRigElementKey>* ReturnValue);
-	bool ImportBones(TArray<struct FRigElementKey>* ReturnValue);
-	void GetHierarchy(class URigHierarchy** ReturnValue);
-	struct FRigElementKey GetControlSettings(struct FRigControlSettings* ReturnValue);
-	void ExportToText(TArray<struct FRigElementKey>* InKeys, class FString* ReturnValue);
-	void ExportSelectionToText(class FString* ReturnValue);
-	bool DuplicateElements(TArray<struct FRigElementKey>* InKeys, TArray<struct FRigElementKey>* ReturnValue);
-	struct FRigElementKey DeselectElement(bool* ReturnValue);
-	void ClearSelection(bool* ReturnValue);
-	bool AddRigidBody(class FName InName, struct FRigElementKey* ReturnValue);
-	bool AddParent(bool* ReturnValue);
-	bool AddNull(class FName InName, const struct FTransform& InTransform, struct FRigElementKey* ReturnValue);
-	bool AddCurve(class FName InName, struct FRigElementKey* ReturnValue);
-	bool AddControl_ForBlueprint(class FName InName, struct FRigElementKey* ReturnValue);
-	bool AddBone(class FName InName, const struct FTransform& InTransform, struct FRigElementKey* ReturnValue);
-	bool AddAnimationChannel_ForBlueprint(class FName InName, struct FRigElementKey* ReturnValue);
+	bool SetSelection();
+	bool SetParent(const struct FRigElementKey& InParent, bool* bMaintainGlobalTransform);
+	void SetHierarchy(class URigHierarchy** InHierarchy);
+	class FName SetDisplayName(struct FRigElementKey* InControl, bool* bRenameElement);
+	bool SetControlSettings(struct FRigElementKey* InKey);
+	bool SelectElement(struct FRigElementKey* InKey, bool* bClearSelection);
+	bool ReorderElement();
+	struct FRigElementKey RenameElement(bool* bClearSelection);
+	bool RemoveParent(const struct FRigElementKey& InParent, bool* bMaintainGlobalTransform);
+	bool RemoveElement();
+	bool RemoveAllParents(bool* bMaintainGlobalTransform);
+	TArray<struct FRigElementKey> MirrorElements(bool* bSelectNewElements);
+	TArray<struct FRigElementKey> ImportFromText(class FString* InContent, bool* bReplaceExistingElements, bool* bSelectNewElements);
+	TArray<struct FRigElementKey> ImportCurves(class USkeleton** InSkeleton, class FName* InNameSpace, bool* bSelectCurves);
+	TArray<struct FRigElementKey> ImportBones(class USkeleton** InSkeleton, class FName* InNameSpace, bool* bReplaceExistingBones, bool* bRemoveObsoleteBones, bool* bSelectBones);
+	class URigHierarchy* GetHierarchy();
+	struct FRigControlSettings GetControlSettings(struct FRigElementKey* InKey);
+	class FString ExportToText();
+	class FString ExportSelectionToText();
+	TArray<struct FRigElementKey> DuplicateElements(bool* bSelectNewElements);
+	bool DeselectElement(struct FRigElementKey* InKey);
+	bool ClearSelection();
+	struct FRigElementKey AddRigidBody(const struct FRigElementKey& InParent, struct FTransform* InLocalTransform);
+	bool AddParent(const struct FRigElementKey& InParent, bool* bMaintainGlobalTransform);
+	struct FRigElementKey AddNull(const struct FRigElementKey& InParent, bool* bTransformInGlobal);
+	struct FRigElementKey AddCurve();
+	struct FRigElementKey AddControl_ForBlueprint(const struct FRigElementKey& InParent);
+	struct FRigElementKey AddBone(const struct FRigElementKey& InParent, bool* bTransformInGlobal, enum class ERigBoneType* InBoneType);
+	struct FRigElementKey AddAnimationChannel_ForBlueprint(struct FRigElementKey* InParentControl);
 };
 
 // 0x8 (0x350 - 0x348)
@@ -555,7 +555,7 @@ public:
 class UControlRigLayerInstance : public UAnimInstance
 {
 public:
-	uint8                                        Pad_11DE[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_14C6[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UControlRigLayerInstance* GetDefaultObj();
@@ -567,7 +567,7 @@ public:
 class UControlRigObjectHolder : public UObject
 {
 public:
-	TArray<class UObject*>                       Objects;                                           // 0x28(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class UObject*>                       Objects;                                           // 0x28(0x10)(ConstParm, ExportObject, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UControlRigObjectHolder* GetDefaultObj();
@@ -579,10 +579,10 @@ public:
 class UControlRigSequence : public ULevelSequence
 {
 public:
-	TSoftObjectPtr<class UAnimSequence>          LastExportedToAnimationSequence;                   // 0x220(0x30)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	TSoftObjectPtr<class USkeletalMesh>          LastExportedUsingSkeletalMesh;                     // 0x250(0x30)(Edit, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	float                                        LastExportedFrameRate;                             // 0x280(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_11E9[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	TSoftObjectPtr<class UAnimSequence>          LastExportedToAnimationSequence;                   // 0x220(0x30)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TSoftObjectPtr<class USkeletalMesh>          LastExportedUsingSkeletalMesh;                     // 0x250(0x30)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        LastExportedFrameRate;                             // 0x280(0x4)(Edit, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_14CC[0x4];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UControlRigSequence* GetDefaultObj();
@@ -594,19 +594,19 @@ public:
 class UMovieSceneControlRigParameterSection : public UMovieSceneParameterSection
 {
 public:
-	uint8                                        Pad_11F0[0x48];                                    // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_14CF[0x48];                                    // Fixing Size After Last Property  > TateDumper <
 	class UControlRig*                           ControlRig;                                        // 0x1A0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst)
-	class UClass*                                ControlRigClass;                                   // 0x1A8(0x8)(ConstParm, ZeroConstructor, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	TArray<bool>                                 ControlsMask;                                      // 0x1B0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	struct FMovieSceneTransformMask              TransformMask;                                     // 0x1C0(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_11F6[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UClass*                                ControlRigClass;                                   // 0x1A8(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<bool>                                 ControlsMask;                                      // 0x1B0(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FMovieSceneTransformMask              TransformMask;                                     // 0x1C0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_14D3[0x4];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FMovieSceneFloatChannel               Weight;                                            // 0x1C8(0x110)(Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-	TMap<class FName, struct FChannelMapInfo>    ControlChannelMap;                                 // 0x2D8(0x50)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FEnumParameterNameAndCurve>    EnumParameterNamesAndCurves;                       // 0x328(0x10)(ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FIntegerParameterNameAndCurve> IntegerParameterNamesAndCurves;                    // 0x338(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FSpaceControlNameAndChannel>   SpaceChannels;                                     // 0x348(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FConstraintAndActiveChannel>   ConstraintsChannels;                               // 0x358(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_11FB[0x68];                                    // Fixing Size Of Struct > TateDumper <
+	TMap<class FName, struct FChannelMapInfo>    ControlChannelMap;                                 // 0x2D8(0x50)(Edit, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FEnumParameterNameAndCurve>    EnumParameterNamesAndCurves;                       // 0x328(0x10)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FIntegerParameterNameAndCurve> IntegerParameterNamesAndCurves;                    // 0x338(0x10)(ConstParm, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FSpaceControlNameAndChannel>   SpaceChannels;                                     // 0x348(0x10)(ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FConstraintAndActiveChannel>   ConstraintsChannels;                               // 0x358(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_14D5[0x68];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneControlRigParameterSection* GetDefaultObj();
@@ -618,11 +618,11 @@ public:
 class UMovieSceneControlRigParameterTrack : public UMovieSceneNameableTrack
 {
 public:
-	uint8                                        Pad_1201[0x40];                                    // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_14D9[0x40];                                    // Fixing Size After Last Property  > TateDumper <
 	class UControlRig*                           ControlRig;                                        // 0xD8(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst)
-	class UMovieSceneSection*                    SectionToKey;                                      // 0xE0(0x8)(ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	TArray<class UMovieSceneSection*>            Sections;                                          // 0xE8(0x10)(ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	class FName                                  TrackName;                                         // 0xF8(0x8)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UMovieSceneSection*                    SectionToKey;                                      // 0xE0(0x8)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class UMovieSceneSection*>            Sections;                                          // 0xE8(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	class FName                                  TrackName;                                         // 0xF8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneControlRigParameterTrack* GetDefaultObj();
@@ -661,13 +661,13 @@ public:
 	static class UClass* StaticClass();
 	static class UControlRigPoseAsset* GetDefaultObj();
 
-	bool SelectControls();
-	bool SavePose();
-	class FName ReplaceControlName(class FName NewName);
-	bool PastePose();
-	struct FControlRigControlPose GetCurrentPose();
-	void GetControlNames(TArray<class FName>* ReturnValue);
-	class FName DoesMirrorMatch(bool* ReturnValue);
+	void SelectControls(class UControlRig** InControlRig, bool* bDoMirror);
+	void SavePose(class UControlRig** InControlRig, bool* bUseAll);
+	class FName ReplaceControlName(class FName* CurrentName);
+	void PastePose(class UControlRig** InControlRig, bool* bDoKey, bool* bDoMirror);
+	void GetCurrentPose(class UControlRig** InControlRig, struct FControlRigControlPose* OutPose);
+	TArray<class FName> GetControlNames();
+	bool DoesMirrorMatch();
 };
 
 // 0x28 (0x50 - 0x28)
@@ -675,11 +675,11 @@ public:
 class UControlRigPoseMirrorSettings : public UObject
 {
 public:
-	class FString                                RightSide;                                         // 0x28(0x10)(Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	class FString                                LeftSide;                                          // 0x38(0x10)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	enum class EAxis                             MirrorAxis;                                        // 0x48(0x1)(Edit, ConstParm, BlueprintReadOnly, Parm, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	enum class EAxis                             AxisToFlip;                                        // 0x49(0x1)(Edit, BlueprintVisible, ExportObject, Parm, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1260[0x6];                                     // Fixing Size Of Struct > TateDumper <
+	class FString                                RightSide;                                         // 0x28(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FString                                LeftSide;                                          // 0x38(0x10)(BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EAxis                             MirrorAxis;                                        // 0x48(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EAxis                             AxisToFlip;                                        // 0x49(0x1)(Edit, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_14FA[0x6];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UControlRigPoseMirrorSettings* GetDefaultObj();
@@ -691,7 +691,7 @@ public:
 class UControlRigPoseProjectSettings : public UObject
 {
 public:
-	TArray<struct FDirectoryPath>                RootSaveDirs;                                      // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+	TArray<struct FDirectoryPath>                RootSaveDirs;                                      // 0x28(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UControlRigPoseProjectSettings* GetDefaultObj();
@@ -703,11 +703,11 @@ public:
 class UControlRigSnapSettings : public UObject
 {
 public:
-	bool                                         bKeepOffset;                                       // 0x28(0x1)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bSnapPosition;                                     // 0x29(0x1)(BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bSnapRotation;                                     // 0x2A(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bSnapScale;                                        // 0x2B(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_126B[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bKeepOffset;                                       // 0x28(0x1)(ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bSnapPosition;                                     // 0x29(0x1)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bSnapRotation;                                     // 0x2A(0x1)(ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bSnapScale;                                        // 0x2B(0x1)(ConstParm, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_14FF[0x4];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UControlRigSnapSettings* GetDefaultObj();
@@ -720,12 +720,12 @@ class UControlRigWorkflowOptions : public URigVMUserWorkflowOptions
 {
 public:
 	class URigHierarchy*                         Hierarchy;                                         // 0x98(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig)
-	TArray<struct FRigElementKey>                Selection;                                         // 0xA0(0x10)(Edit, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FRigElementKey>                Selection;                                         // 0xA0(0x10)(ConstParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UControlRigWorkflowOptions* GetDefaultObj();
 
-	void EnsureAtLeastOneRigElementSelected(bool* ReturnValue);
+	bool EnsureAtLeastOneRigElementSelected();
 };
 
 // 0x8 (0xB8 - 0xB0)
@@ -733,13 +733,13 @@ public:
 class UControlRigTransformWorkflowOptions : public UControlRigWorkflowOptions
 {
 public:
-	enum class ERigTransformType                 TransformType;                                     // 0xB0(0x1)(ExportObject, Net, OutParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1284[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	enum class ERigTransformType                 TransformType;                                     // 0xB0(0x1)(BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1507[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UControlRigTransformWorkflowOptions* GetDefaultObj();
 
-	class UObject* ProvideWorkflows(TArray<struct FRigVMUserWorkflow>* ReturnValue);
+	TArray<struct FRigVMUserWorkflow> ProvideWorkflows(class UObject** InSubject);
 };
 
 // 0x98 (0xC0 - 0x28)
@@ -747,17 +747,17 @@ public:
 class UControlRigNumericalValidationPass : public UControlRigValidationPass
 {
 public:
-	bool                                         bCheckControls;                                    // 0x28(0x1)(Edit, ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bCheckBones;                                       // 0x29(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bCheckCurves;                                      // 0x2A(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1289[0x1];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        TranslationPrecision;                              // 0x2C(0x4)(ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	float                                        RotationPrecision;                                 // 0x30(0x4)(EditFixedSize, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	float                                        ScalePrecision;                                    // 0x34(0x4)(ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	float                                        CurvePrecision;                                    // 0x38(0x4)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	class FName                                  EventNameA;                                        // 0x3C(0x8)(ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	class FName                                  EventNameB;                                        // 0x44(0x8)(BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_128C[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	bool                                         bCheckControls;                                    // 0x28(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bCheckBones;                                       // 0x29(0x1)(ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bCheckCurves;                                      // 0x2A(0x1)(Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1509[0x1];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        TranslationPrecision;                              // 0x2C(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        RotationPrecision;                                 // 0x30(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        ScalePrecision;                                    // 0x34(0x4)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        CurvePrecision;                                    // 0x38(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FName                                  EventNameA;                                        // 0x3C(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FName                                  EventNameB;                                        // 0x44(0x8)(BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1538[0x4];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FRigPose                              Pose;                                              // 0x50(0x70)(ConstParm, Net, OutParm, ReturnParm, Transient, EditConst)
 
 	static class UClass* StaticClass();

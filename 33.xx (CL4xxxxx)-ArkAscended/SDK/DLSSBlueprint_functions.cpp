@@ -43,9 +43,9 @@ class UDLSSLibrary* UDLSSLibrary::GetDefaultObj()
 // Function DLSSBlueprint.DLSSLibrary.SetDLSSSharpness
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// float                              Sharpness                                                        (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              Sharpness                                                        (Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UDLSSLibrary::SetDLSSSharpness(float* Sharpness)
+float UDLSSLibrary::SetDLSSSharpness()
 {
 	static class UFunction* Func = nullptr;
 
@@ -63,8 +63,7 @@ void UDLSSLibrary::SetDLSSSharpness(float* Sharpness)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Sharpness != nullptr)
-		*Sharpness = Parms.Sharpness;
+	return Parms.ReturnValue;
 
 }
 
@@ -72,10 +71,10 @@ void UDLSSLibrary::SetDLSSSharpness(float* Sharpness)
 // Function DLSSBlueprint.DLSSLibrary.SetDLSSMode
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class EUDLSSMode              DLSSMode                                                         (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EUDLSSMode              DLSSMode                                                         (ExportObject, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-class UObject* UDLSSLibrary::SetDLSSMode(enum class EUDLSSMode* DLSSMode)
+enum class EUDLSSMode UDLSSLibrary::SetDLSSMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -93,9 +92,6 @@ class UObject* UDLSSLibrary::SetDLSSMode(enum class EUDLSSMode* DLSSMode)
 
 	Func->FunctionFlags = Flgs;
 
-	if (DLSSMode != nullptr)
-		*DLSSMode = Parms.DLSSMode;
-
 	return Parms.ReturnValue;
 
 }
@@ -104,9 +100,9 @@ class UObject* UDLSSLibrary::SetDLSSMode(enum class EUDLSSMode* DLSSMode)
 // Function DLSSBlueprint.DLSSLibrary.QueryDLSSSupport
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUDLSSSupport           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EUDLSSSupport           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDLSSLibrary::QueryDLSSSupport(enum class EUDLSSSupport* ReturnValue)
+enum class EUDLSSSupport UDLSSLibrary::QueryDLSSSupport()
 {
 	static class UFunction* Func = nullptr;
 
@@ -124,8 +120,7 @@ void UDLSSLibrary::QueryDLSSSupport(enum class EUDLSSSupport* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -133,9 +128,9 @@ void UDLSSLibrary::QueryDLSSSupport(enum class EUDLSSSupport* ReturnValue)
 // Function DLSSBlueprint.DLSSLibrary.QueryDLSSRRSupport
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUDLSSSupport           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EUDLSSSupport           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDLSSLibrary::QueryDLSSRRSupport(enum class EUDLSSSupport* ReturnValue)
+enum class EUDLSSSupport UDLSSLibrary::QueryDLSSRRSupport()
 {
 	static class UFunction* Func = nullptr;
 
@@ -153,8 +148,7 @@ void UDLSSLibrary::QueryDLSSRRSupport(enum class EUDLSSSupport* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -162,9 +156,9 @@ void UDLSSLibrary::QueryDLSSRRSupport(enum class EUDLSSSupport* ReturnValue)
 // Function DLSSBlueprint.DLSSLibrary.IsDLSSSupported
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDLSSLibrary::IsDLSSSupported(bool* ReturnValue)
+bool UDLSSLibrary::IsDLSSSupported()
 {
 	static class UFunction* Func = nullptr;
 
@@ -182,8 +176,7 @@ void UDLSSLibrary::IsDLSSSupported(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -191,9 +184,9 @@ void UDLSSLibrary::IsDLSSSupported(bool* ReturnValue)
 // Function DLSSBlueprint.DLSSLibrary.IsDLSSRRSupported
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDLSSLibrary::IsDLSSRRSupported(bool* ReturnValue)
+bool UDLSSLibrary::IsDLSSRRSupported()
 {
 	static class UFunction* Func = nullptr;
 
@@ -211,8 +204,7 @@ void UDLSSLibrary::IsDLSSRRSupported(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -220,9 +212,9 @@ void UDLSSLibrary::IsDLSSRRSupported(bool* ReturnValue)
 // Function DLSSBlueprint.DLSSLibrary.IsDLSSRREnabled
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDLSSLibrary::IsDLSSRREnabled(bool* ReturnValue)
+bool UDLSSLibrary::IsDLSSRREnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -240,8 +232,7 @@ void UDLSSLibrary::IsDLSSRREnabled(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -249,10 +240,10 @@ void UDLSSLibrary::IsDLSSRREnabled(bool* ReturnValue)
 // Function DLSSBlueprint.DLSSLibrary.IsDLSSModeSupported
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUDLSSMode              DLSSMode                                                         (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EUDLSSMode              DLSSMode                                                         (ExportObject, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDLSSLibrary::IsDLSSModeSupported(enum class EUDLSSMode* DLSSMode, bool* ReturnValue)
+bool UDLSSLibrary::IsDLSSModeSupported()
 {
 	static class UFunction* Func = nullptr;
 
@@ -270,11 +261,7 @@ void UDLSSLibrary::IsDLSSModeSupported(enum class EUDLSSMode* DLSSMode, bool* Re
 
 	Func->FunctionFlags = Flgs;
 
-	if (DLSSMode != nullptr)
-		*DLSSMode = Parms.DLSSMode;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -282,9 +269,9 @@ void UDLSSLibrary::IsDLSSModeSupported(enum class EUDLSSMode* DLSSMode, bool* Re
 // Function DLSSBlueprint.DLSSLibrary.IsDLSSEnabled
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDLSSLibrary::IsDLSSEnabled(bool* ReturnValue)
+bool UDLSSLibrary::IsDLSSEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -302,8 +289,7 @@ void UDLSSLibrary::IsDLSSEnabled(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -311,9 +297,9 @@ void UDLSSLibrary::IsDLSSEnabled(bool* ReturnValue)
 // Function DLSSBlueprint.DLSSLibrary.IsDLAAEnabled
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDLSSLibrary::IsDLAAEnabled(bool* ReturnValue)
+bool UDLSSLibrary::IsDLAAEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -331,8 +317,7 @@ void UDLSSLibrary::IsDLAAEnabled(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -340,9 +325,9 @@ void UDLSSLibrary::IsDLAAEnabled(bool* ReturnValue)
 // Function DLSSBlueprint.DLSSLibrary.GetSupportedDLSSModes
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// TArray<enum class EUDLSSMode>      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<enum class EUDLSSMode>      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDLSSLibrary::GetSupportedDLSSModes(TArray<enum class EUDLSSMode>* ReturnValue)
+TArray<enum class EUDLSSMode> UDLSSLibrary::GetSupportedDLSSModes()
 {
 	static class UFunction* Func = nullptr;
 
@@ -360,8 +345,7 @@ void UDLSSLibrary::GetSupportedDLSSModes(TArray<enum class EUDLSSMode>* ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -369,9 +353,9 @@ void UDLSSLibrary::GetSupportedDLSSModes(TArray<enum class EUDLSSMode>* ReturnVa
 // Function DLSSBlueprint.DLSSLibrary.GetDLSSSharpness
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDLSSLibrary::GetDLSSSharpness(float* ReturnValue)
+float UDLSSLibrary::GetDLSSSharpness()
 {
 	static class UFunction* Func = nullptr;
 
@@ -389,8 +373,7 @@ void UDLSSLibrary::GetDLSSSharpness(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -398,10 +381,10 @@ void UDLSSLibrary::GetDLSSSharpness(float* ReturnValue)
 // Function DLSSBlueprint.DLSSLibrary.GetDLSSScreenPercentageRange
 // (Final, RequiredAPI, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              MinScreenPercentage                                              (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              MaxScreenPercentage                                              (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              MinScreenPercentage                                              (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              MaxScreenPercentage                                              (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UDLSSLibrary::GetDLSSScreenPercentageRange(float* MinScreenPercentage, float* MaxScreenPercentage)
+float UDLSSLibrary::GetDLSSScreenPercentageRange()
 {
 	static class UFunction* Func = nullptr;
 
@@ -419,11 +402,7 @@ void UDLSSLibrary::GetDLSSScreenPercentageRange(float* MinScreenPercentage, floa
 
 	Func->FunctionFlags = Flgs;
 
-	if (MinScreenPercentage != nullptr)
-		*MinScreenPercentage = Parms.MinScreenPercentage;
-
-	if (MaxScreenPercentage != nullptr)
-		*MaxScreenPercentage = Parms.MaxScreenPercentage;
+	return Parms.ReturnValue;
 
 }
 
@@ -431,10 +410,10 @@ void UDLSSLibrary::GetDLSSScreenPercentageRange(float* MinScreenPercentage, floa
 // Function DLSSBlueprint.DLSSLibrary.GetDLSSRRMinimumDriverVersion
 // (Final, RequiredAPI, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              MinDriverVersionMajor                                            (Edit, ConstParm, BlueprintVisible, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              MinDriverVersionMinor                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              MinDriverVersionMajor                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// int32                              MinDriverVersionMinor                                            (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UDLSSLibrary::GetDLSSRRMinimumDriverVersion(int32* MinDriverVersionMajor, int32* MinDriverVersionMinor)
+int32 UDLSSLibrary::GetDLSSRRMinimumDriverVersion()
 {
 	static class UFunction* Func = nullptr;
 
@@ -452,11 +431,7 @@ void UDLSSLibrary::GetDLSSRRMinimumDriverVersion(int32* MinDriverVersionMajor, i
 
 	Func->FunctionFlags = Flgs;
 
-	if (MinDriverVersionMajor != nullptr)
-		*MinDriverVersionMajor = Parms.MinDriverVersionMajor;
-
-	if (MinDriverVersionMinor != nullptr)
-		*MinDriverVersionMinor = Parms.MinDriverVersionMinor;
+	return Parms.ReturnValue;
 
 }
 
@@ -464,16 +439,16 @@ void UDLSSLibrary::GetDLSSRRMinimumDriverVersion(int32* MinDriverVersionMajor, i
 // Function DLSSBlueprint.DLSSLibrary.GetDLSSModeInformation
 // (Final, RequiredAPI, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUDLSSMode              DLSSMode                                                         (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   ScreenResolution                                                 (Net, OutParm)
-// bool                               bIsSupported                                                     (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              OptimalScreenPercentage                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bIsFixedScreenPercentage                                         (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              MinScreenPercentage                                              (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              MaxScreenPercentage                                              (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              OptimalSharpness                                                 (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EUDLSSMode              DLSSMode                                                         (ExportObject, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   ScreenResolution                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor)
+// bool                               bIsSupported                                                     (Edit, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              OptimalScreenPercentage                                          (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bIsFixedScreenPercentage                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              MinScreenPercentage                                              (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              MaxScreenPercentage                                              (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              OptimalSharpness                                                 (ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UDLSSLibrary::GetDLSSModeInformation(enum class EUDLSSMode* DLSSMode, struct FVector2D* ScreenResolution, bool* bIsSupported, float* OptimalScreenPercentage, bool* bIsFixedScreenPercentage, float* MinScreenPercentage, float* MaxScreenPercentage, float* OptimalSharpness)
+float UDLSSLibrary::GetDLSSModeInformation(struct FVector2D* ScreenResolution)
 {
 	static class UFunction* Func = nullptr;
 
@@ -491,29 +466,10 @@ void UDLSSLibrary::GetDLSSModeInformation(enum class EUDLSSMode* DLSSMode, struc
 
 	Func->FunctionFlags = Flgs;
 
-	if (DLSSMode != nullptr)
-		*DLSSMode = Parms.DLSSMode;
-
 	if (ScreenResolution != nullptr)
 		*ScreenResolution = std::move(Parms.ScreenResolution);
 
-	if (bIsSupported != nullptr)
-		*bIsSupported = Parms.bIsSupported;
-
-	if (OptimalScreenPercentage != nullptr)
-		*OptimalScreenPercentage = Parms.OptimalScreenPercentage;
-
-	if (bIsFixedScreenPercentage != nullptr)
-		*bIsFixedScreenPercentage = Parms.bIsFixedScreenPercentage;
-
-	if (MinScreenPercentage != nullptr)
-		*MinScreenPercentage = Parms.MinScreenPercentage;
-
-	if (MaxScreenPercentage != nullptr)
-		*MaxScreenPercentage = Parms.MaxScreenPercentage;
-
-	if (OptimalSharpness != nullptr)
-		*OptimalSharpness = Parms.OptimalSharpness;
+	return Parms.ReturnValue;
 
 }
 
@@ -521,9 +477,9 @@ void UDLSSLibrary::GetDLSSModeInformation(enum class EUDLSSMode* DLSSMode, struc
 // Function DLSSBlueprint.DLSSLibrary.GetDLSSMode
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUDLSSMode              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EUDLSSMode              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDLSSLibrary::GetDLSSMode(enum class EUDLSSMode* ReturnValue)
+enum class EUDLSSMode UDLSSLibrary::GetDLSSMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -541,8 +497,7 @@ void UDLSSLibrary::GetDLSSMode(enum class EUDLSSMode* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -550,10 +505,10 @@ void UDLSSLibrary::GetDLSSMode(enum class EUDLSSMode* ReturnValue)
 // Function DLSSBlueprint.DLSSLibrary.GetDLSSMinimumDriverVersion
 // (Final, RequiredAPI, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              MinDriverVersionMajor                                            (Edit, ConstParm, BlueprintVisible, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              MinDriverVersionMinor                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              MinDriverVersionMajor                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// int32                              MinDriverVersionMinor                                            (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UDLSSLibrary::GetDLSSMinimumDriverVersion(int32* MinDriverVersionMajor, int32* MinDriverVersionMinor)
+int32 UDLSSLibrary::GetDLSSMinimumDriverVersion()
 {
 	static class UFunction* Func = nullptr;
 
@@ -571,11 +526,7 @@ void UDLSSLibrary::GetDLSSMinimumDriverVersion(int32* MinDriverVersionMajor, int
 
 	Func->FunctionFlags = Flgs;
 
-	if (MinDriverVersionMajor != nullptr)
-		*MinDriverVersionMajor = Parms.MinDriverVersionMajor;
-
-	if (MinDriverVersionMinor != nullptr)
-		*MinDriverVersionMinor = Parms.MinDriverVersionMinor;
+	return Parms.ReturnValue;
 
 }
 
@@ -583,9 +534,9 @@ void UDLSSLibrary::GetDLSSMinimumDriverVersion(int32* MinDriverVersionMajor, int
 // Function DLSSBlueprint.DLSSLibrary.GetDefaultDLSSMode
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUDLSSMode              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EUDLSSMode              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDLSSLibrary::GetDefaultDLSSMode(enum class EUDLSSMode* ReturnValue)
+enum class EUDLSSMode UDLSSLibrary::GetDefaultDLSSMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -603,8 +554,7 @@ void UDLSSLibrary::GetDefaultDLSSMode(enum class EUDLSSMode* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 

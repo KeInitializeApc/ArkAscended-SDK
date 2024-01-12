@@ -43,10 +43,10 @@ class UAssetTagsSubsystem* UAssetTagsSubsystem::GetDefaultObj()
 // Function AssetTags.AssetTagsSubsystem.K2_GetCollectionsContainingAsset
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FSoftObjectPath             AssetPath                                                        (BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSoftObjectPath             AssetPath                                                        (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAssetTagsSubsystem::K2_GetCollectionsContainingAsset(const struct FSoftObjectPath& AssetPath, TArray<class FName>* ReturnValue)
+TArray<class FName> UAssetTagsSubsystem::K2_GetCollectionsContainingAsset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,7 +55,6 @@ void UAssetTagsSubsystem::K2_GetCollectionsContainingAsset(const struct FSoftObj
 
 	Params::UAssetTagsSubsystem_K2_GetCollectionsContainingAsset_Params Parms{};
 
-	Parms.AssetPath = AssetPath;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -65,8 +64,7 @@ void UAssetTagsSubsystem::K2_GetCollectionsContainingAsset(const struct FSoftObj
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -74,10 +72,10 @@ void UAssetTagsSubsystem::K2_GetCollectionsContainingAsset(const struct FSoftObj
 // Function AssetTags.AssetTagsSubsystem.GetCollectionsContainingAssetPtr
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     AssetPtr                                                         (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     AssetPtr                                                         (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAssetTagsSubsystem::GetCollectionsContainingAssetPtr(class UObject* AssetPtr, TArray<class FName>* ReturnValue)
+TArray<class FName> UAssetTagsSubsystem::GetCollectionsContainingAssetPtr()
 {
 	static class UFunction* Func = nullptr;
 
@@ -86,7 +84,6 @@ void UAssetTagsSubsystem::GetCollectionsContainingAssetPtr(class UObject* AssetP
 
 	Params::UAssetTagsSubsystem_GetCollectionsContainingAssetPtr_Params Parms{};
 
-	Parms.AssetPtr = AssetPtr;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -96,8 +93,7 @@ void UAssetTagsSubsystem::GetCollectionsContainingAssetPtr(class UObject* AssetP
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -106,9 +102,9 @@ void UAssetTagsSubsystem::GetCollectionsContainingAssetPtr(class UObject* AssetP
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
 // struct FAssetData                  AssetData                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FAssetData UAssetTagsSubsystem::GetCollectionsContainingAssetData(TArray<class FName>* ReturnValue)
+TArray<class FName> UAssetTagsSubsystem::GetCollectionsContainingAssetData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -126,9 +122,6 @@ struct FAssetData UAssetTagsSubsystem::GetCollectionsContainingAssetData(TArray<
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -137,10 +130,10 @@ struct FAssetData UAssetTagsSubsystem::GetCollectionsContainingAssetData(TArray<
 // Function AssetTags.AssetTagsSubsystem.GetCollectionsContainingAsset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        AssetPathName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AssetPathName                                                    (ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAssetTagsSubsystem::GetCollectionsContainingAsset(class FName AssetPathName, TArray<class FName>* ReturnValue)
+TArray<class FName> UAssetTagsSubsystem::GetCollectionsContainingAsset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -149,7 +142,6 @@ void UAssetTagsSubsystem::GetCollectionsContainingAsset(class FName AssetPathNam
 
 	Params::UAssetTagsSubsystem_GetCollectionsContainingAsset_Params Parms{};
 
-	Parms.AssetPathName = AssetPathName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -159,8 +151,7 @@ void UAssetTagsSubsystem::GetCollectionsContainingAsset(class FName AssetPathNam
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -168,9 +159,9 @@ void UAssetTagsSubsystem::GetCollectionsContainingAsset(class FName AssetPathNam
 // Function AssetTags.AssetTagsSubsystem.GetCollections
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAssetTagsSubsystem::GetCollections(TArray<class FName>* ReturnValue)
+TArray<class FName> UAssetTagsSubsystem::GetCollections()
 {
 	static class UFunction* Func = nullptr;
 
@@ -188,8 +179,7 @@ void UAssetTagsSubsystem::GetCollections(TArray<class FName>* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -198,9 +188,9 @@ void UAssetTagsSubsystem::GetCollections(TArray<class FName>* ReturnValue)
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class FName                        Name                                                             (ConstParm, Net, OutParm)
-// TArray<struct FAssetData>          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FAssetData>          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAssetTagsSubsystem::GetAssetsInCollection(class FName* Name, TArray<struct FAssetData>* ReturnValue)
+TArray<struct FAssetData> UAssetTagsSubsystem::GetAssetsInCollection(class FName* Name)
 {
 	static class UFunction* Func = nullptr;
 
@@ -221,8 +211,7 @@ void UAssetTagsSubsystem::GetAssetsInCollection(class FName* Name, TArray<struct
 	if (Name != nullptr)
 		*Name = Parms.Name;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -231,9 +220,9 @@ void UAssetTagsSubsystem::GetAssetsInCollection(class FName* Name, TArray<struct
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class FName                        Name                                                             (ConstParm, Net, OutParm)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAssetTagsSubsystem::CollectionExists(class FName* Name, bool* ReturnValue)
+bool UAssetTagsSubsystem::CollectionExists(class FName* Name)
 {
 	static class UFunction* Func = nullptr;
 
@@ -254,8 +243,7 @@ void UAssetTagsSubsystem::CollectionExists(class FName* Name, bool* ReturnValue)
 	if (Name != nullptr)
 		*Name = Parms.Name;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 

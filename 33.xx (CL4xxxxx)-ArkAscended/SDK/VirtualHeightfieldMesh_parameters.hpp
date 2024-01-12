@@ -18,8 +18,8 @@ namespace Params
 struct UVirtualHeightfieldMeshComponent_GatherHideFlags_Params
 {
 public:
-	bool                                         InOutHidePrimitivesInEditor;                       // 0x0(0x1)(ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	bool                                         InOutHidePrimitivesInGame;                         // 0x1(0x1)(ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         InOutHidePrimitivesInEditor;                       // 0x0(0x1)(BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         InOutHidePrimitivesInGame;                         // 0x1(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 }

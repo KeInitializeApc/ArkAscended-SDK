@@ -14,7 +14,7 @@ namespace SDK
 class UMovieSceneGeometryCacheSection : public UMovieSceneSection
 {
 public:
-	struct FMovieSceneGeometryCacheParams        Params;                                            // 0xF0(0x48)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	struct FMovieSceneGeometryCacheParams        Params;                                            // 0xF0(0x48)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneGeometryCacheSection* GetDefaultObj();
@@ -26,8 +26,8 @@ public:
 class UMovieSceneGeometryCacheTrack : public UMovieSceneNameableTrack
 {
 public:
-	uint8                                        Pad_901[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class UMovieSceneSection*>            AnimationSections;                                 // 0xA0(0x10)(Net, EditFixedSize, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_D56[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<class UMovieSceneSection*>            AnimationSections;                                 // 0xA0(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneGeometryCacheTrack* GetDefaultObj();

@@ -43,9 +43,9 @@ class IPrimalItemArmor_SaddleGeneric_Tek_Interface_C* IPrimalItemArmor_SaddleGen
 // Function PrimalItemArmor_SaddleGeneric_Tek_Interface.PrimalItemArmor_SaddleGeneric_Tek_Interface_C.IGet Max Ammo
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              RetVal                                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, Config, EditConst, SubobjectReference)
+// int32                              RetVal                                                           (Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
 
-void IPrimalItemArmor_SaddleGeneric_Tek_Interface_C::IGet_Max_Ammo(int32 RetVal)
+int32 IPrimalItemArmor_SaddleGeneric_Tek_Interface_C::IGet_Max_Ammo()
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,9 +54,10 @@ void IPrimalItemArmor_SaddleGeneric_Tek_Interface_C::IGet_Max_Ammo(int32 RetVal)
 
 	Params::IPrimalItemArmor_SaddleGeneric_Tek_Interface_C_IGet_Max_Ammo_Params Parms{};
 
-	Parms.RetVal = RetVal;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 

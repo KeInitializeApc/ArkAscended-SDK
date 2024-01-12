@@ -43,11 +43,11 @@ class AARActor* AARActor::GetDefaultObj()
 // Function AugmentedReality.ARActor.AddARComponent
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UClass*                      InComponentClass                                                 (BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FGuid                       NativeID                                                         (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// class UARComponent*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InComponentClass                                                 (Edit, ExportObject, EditFixedSize, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FGuid                       NativeID                                                         (Edit, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UARComponent*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* AARActor::AddARComponent(const struct FGuid& NativeID, class UARComponent** ReturnValue)
+class UARComponent* AARActor::AddARComponent(class UClass* InComponentClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -56,7 +56,7 @@ class UClass* AARActor::AddARComponent(const struct FGuid& NativeID, class UARCo
 
 	Params::AARActor_AddARComponent_Params Parms{};
 
-	Parms.NativeID = NativeID;
+	Parms.InComponentClass = InComponentClass;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -65,9 +65,6 @@ class UClass* AARActor::AddARComponent(const struct FGuid& NativeID, class UARCo
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -105,9 +102,9 @@ class UARBlueprintLibrary* UARBlueprintLibrary::GetDefaultObj()
 // Function AugmentedReality.ARBlueprintLibrary.UnpinComponent
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class USceneComponent*             ComponentToUnpin                                                 (ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class USceneComponent*             ComponentToUnpin                                                 (Edit, ConstParm, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class USceneComponent* UARBlueprintLibrary::UnpinComponent()
+void UARBlueprintLibrary::UnpinComponent(class USceneComponent** ComponentToUnpin)
 {
 	static class UFunction* Func = nullptr;
 
@@ -125,7 +122,8 @@ class USceneComponent* UARBlueprintLibrary::UnpinComponent()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ComponentToUnpin != nullptr)
+		*ComponentToUnpin = Parms.ComponentToUnpin;
 
 }
 
@@ -133,11 +131,11 @@ class USceneComponent* UARBlueprintLibrary::UnpinComponent()
 // Function AugmentedReality.ARBlueprintLibrary.ToggleARCapture
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               bOnOff                                                           (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class EARCaptureType          CaptureType                                                      (Edit, ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bOnOff                                                           (ConstParm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EARCaptureType          CaptureType                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EARCaptureType UARBlueprintLibrary::ToggleARCapture(bool bOnOff, bool* ReturnValue)
+bool UARBlueprintLibrary::ToggleARCapture(enum class EARCaptureType* CaptureType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -146,7 +144,6 @@ enum class EARCaptureType UARBlueprintLibrary::ToggleARCapture(bool bOnOff, bool
 
 	Params::UARBlueprintLibrary_ToggleARCapture_Params Parms{};
 
-	Parms.bOnOff = bOnOff;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -156,8 +153,8 @@ enum class EARCaptureType UARBlueprintLibrary::ToggleARCapture(bool bOnOff, bool
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (CaptureType != nullptr)
+		*CaptureType = Parms.CaptureType;
 
 	return Parms.ReturnValue;
 
@@ -191,9 +188,9 @@ void UARBlueprintLibrary::StopARSession()
 // Function AugmentedReality.ARBlueprintLibrary.StartARSession
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UARSessionConfig*            SessionConfig                                                    (ConstParm, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UARSessionConfig*            SessionConfig                                                    (Edit, ConstParm, Net, EditFixedSize, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UARSessionConfig* UARBlueprintLibrary::StartARSession()
+void UARBlueprintLibrary::StartARSession(class UARSessionConfig* SessionConfig)
 {
 	static class UFunction* Func = nullptr;
 
@@ -201,6 +198,33 @@ class UARSessionConfig* UARBlueprintLibrary::StartARSession()
 		Func = Class->GetFunction("ARBlueprintLibrary", "StartARSession");
 
 	Params::UARBlueprintLibrary_StartARSession_Params Parms{};
+
+	Parms.SessionConfig = SessionConfig;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+}
+
+
+// Function AugmentedReality.ARBlueprintLibrary.SetEnabledXRCamera
+// (Final, Native, Static, Public, BlueprintCallable)
+// Parameters:
+// bool                               bOnOff                                                           (ConstParm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+
+bool UARBlueprintLibrary::SetEnabledXRCamera()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("ARBlueprintLibrary", "SetEnabledXRCamera");
+
+	Params::UARBlueprintLibrary_SetEnabledXRCamera_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -216,39 +240,12 @@ class UARSessionConfig* UARBlueprintLibrary::StartARSession()
 }
 
 
-// Function AugmentedReality.ARBlueprintLibrary.SetEnabledXRCamera
-// (Final, Native, Static, Public, BlueprintCallable)
-// Parameters:
-// bool                               bOnOff                                                           (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-
-void UARBlueprintLibrary::SetEnabledXRCamera(bool bOnOff)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("ARBlueprintLibrary", "SetEnabledXRCamera");
-
-	Params::UARBlueprintLibrary_SetEnabledXRCamera_Params Parms{};
-
-	Parms.bOnOff = bOnOff;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
 // Function AugmentedReality.ARBlueprintLibrary.SetARWorldScale
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// float                              InWorldScale                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InWorldScale                                                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-float UARBlueprintLibrary::SetARWorldScale()
+void UARBlueprintLibrary::SetARWorldScale(float* InWorldScale)
 {
 	static class UFunction* Func = nullptr;
 
@@ -266,7 +263,8 @@ float UARBlueprintLibrary::SetARWorldScale()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InWorldScale != nullptr)
+		*InWorldScale = Parms.InWorldScale;
 
 }
 
@@ -274,12 +272,12 @@ float UARBlueprintLibrary::SetARWorldScale()
 // Function AugmentedReality.ARBlueprintLibrary.SetARWorldOriginLocationAndRotation
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     OriginLocation                                                   (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FRotator                    OriginRotation                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bIsTransformInWorldSpace                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bMaintainUpDirection                                             (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     OriginLocation                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FRotator                    OriginRotation                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bIsTransformInWorldSpace                                         (ExportObject, Net, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bMaintainUpDirection                                             (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UARBlueprintLibrary::SetARWorldOriginLocationAndRotation()
+void UARBlueprintLibrary::SetARWorldOriginLocationAndRotation(const struct FVector& OriginLocation, const struct FRotator& OriginRotation, bool* bIsTransformInWorldSpace, bool* bMaintainUpDirection)
 {
 	static class UFunction* Func = nullptr;
 
@@ -288,6 +286,8 @@ bool UARBlueprintLibrary::SetARWorldOriginLocationAndRotation()
 
 	Params::UARBlueprintLibrary_SetARWorldOriginLocationAndRotation_Params Parms{};
 
+	Parms.OriginLocation = OriginLocation;
+	Parms.OriginRotation = OriginRotation;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -297,7 +297,11 @@ bool UARBlueprintLibrary::SetARWorldOriginLocationAndRotation()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bIsTransformInWorldSpace != nullptr)
+		*bIsTransformInWorldSpace = Parms.bIsTransformInWorldSpace;
+
+	if (bMaintainUpDirection != nullptr)
+		*bMaintainUpDirection = Parms.bMaintainUpDirection;
 
 }
 
@@ -305,9 +309,9 @@ bool UARBlueprintLibrary::SetARWorldOriginLocationAndRotation()
 // Function AugmentedReality.ARBlueprintLibrary.SetAlignmentTransform
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTransform                  InAlignmentTransform                                             (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  InAlignmentTransform                                             (ConstParm, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FTransform UARBlueprintLibrary::SetAlignmentTransform()
+void UARBlueprintLibrary::SetAlignmentTransform(struct FTransform* InAlignmentTransform)
 {
 	static class UFunction* Func = nullptr;
 
@@ -325,7 +329,8 @@ struct FTransform UARBlueprintLibrary::SetAlignmentTransform()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InAlignmentTransform != nullptr)
+		*InAlignmentTransform = std::move(Parms.InAlignmentTransform);
 
 }
 
@@ -333,11 +338,11 @@ struct FTransform UARBlueprintLibrary::SetAlignmentTransform()
 // Function AugmentedReality.ARBlueprintLibrary.SaveARPinToLocalStore
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InSaveName                                                       (ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UARPin*                      InPin                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InSaveName                                                       (Edit, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UARPin*                      InPin                                                            (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UARPin* UARBlueprintLibrary::SaveARPinToLocalStore(bool* ReturnValue)
+bool UARBlueprintLibrary::SaveARPinToLocalStore(class FName* InSaveName, class UARPin** InPin)
 {
 	static class UFunction* Func = nullptr;
 
@@ -355,8 +360,11 @@ class UARPin* UARBlueprintLibrary::SaveARPinToLocalStore(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InSaveName != nullptr)
+		*InSaveName = Parms.InSaveName;
+
+	if (InPin != nullptr)
+		*InPin = Parms.InPin;
 
 	return Parms.ReturnValue;
 
@@ -366,10 +374,10 @@ class UARPin* UARBlueprintLibrary::SaveARPinToLocalStore(bool* ReturnValue)
 // Function AugmentedReality.ARBlueprintLibrary.ResizeXRCamera
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FIntPoint                   InSize                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// struct FIntPoint                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FIntPoint                   InSize                                                           (ExportObject, Net, EditFixedSize, Parm, Transient, EditConst, SubobjectReference)
+// struct FIntPoint                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FIntPoint UARBlueprintLibrary::ResizeXRCamera(struct FIntPoint* ReturnValue)
+struct FIntPoint UARBlueprintLibrary::ResizeXRCamera(const struct FIntPoint& InSize)
 {
 	static class UFunction* Func = nullptr;
 
@@ -378,6 +386,7 @@ struct FIntPoint UARBlueprintLibrary::ResizeXRCamera(struct FIntPoint* ReturnVal
 
 	Params::UARBlueprintLibrary_ResizeXRCamera_Params Parms{};
 
+	Parms.InSize = InSize;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -387,9 +396,6 @@ struct FIntPoint UARBlueprintLibrary::ResizeXRCamera(struct FIntPoint* ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -398,9 +404,9 @@ struct FIntPoint UARBlueprintLibrary::ResizeXRCamera(struct FIntPoint* ReturnVal
 // Function AugmentedReality.ARBlueprintLibrary.RemovePin
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UARPin*                      PinToRemove                                                      (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UARPin*                      PinToRemove                                                      (Edit, ConstParm, BlueprintVisible, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UARPin* UARBlueprintLibrary::RemovePin()
+void UARBlueprintLibrary::RemovePin(class UARPin** PinToRemove)
 {
 	static class UFunction* Func = nullptr;
 
@@ -418,7 +424,8 @@ class UARPin* UARBlueprintLibrary::RemovePin()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PinToRemove != nullptr)
+		*PinToRemove = Parms.PinToRemove;
 
 }
 
@@ -426,9 +433,9 @@ class UARPin* UARBlueprintLibrary::RemovePin()
 // Function AugmentedReality.ARBlueprintLibrary.RemoveARPinFromLocalStore
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InSaveName                                                       (ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InSaveName                                                       (Edit, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class FName UARBlueprintLibrary::RemoveARPinFromLocalStore()
+void UARBlueprintLibrary::RemoveARPinFromLocalStore(class FName* InSaveName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -446,7 +453,8 @@ class FName UARBlueprintLibrary::RemoveARPinFromLocalStore()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InSaveName != nullptr)
+		*InSaveName = Parms.InSaveName;
 
 }
 
@@ -478,12 +486,12 @@ void UARBlueprintLibrary::RemoveAllARPinsFromLocalStore()
 // Function AugmentedReality.ARBlueprintLibrary.PinComponentToTraceResult
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class USceneComponent*             ComponentToPin                                                   (Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FARTraceResult              TraceResult                                                      (Edit, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class FName                        DebugName                                                        (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UARPin*                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USceneComponent*             ComponentToPin                                                   (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARTraceResult              TraceResult                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        DebugName                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UARPin*                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FARTraceResult UARBlueprintLibrary::PinComponentToTraceResult(class FName* DebugName, class UARPin** ReturnValue)
+class UARPin* UARBlueprintLibrary::PinComponentToTraceResult(class USceneComponent** ComponentToPin, struct FARTraceResult* TraceResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -501,11 +509,11 @@ struct FARTraceResult UARBlueprintLibrary::PinComponentToTraceResult(class FName
 
 	Func->FunctionFlags = Flgs;
 
-	if (DebugName != nullptr)
-		*DebugName = Parms.DebugName;
+	if (ComponentToPin != nullptr)
+		*ComponentToPin = Parms.ComponentToPin;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (TraceResult != nullptr)
+		*TraceResult = std::move(Parms.TraceResult);
 
 	return Parms.ReturnValue;
 
@@ -515,11 +523,11 @@ struct FARTraceResult UARBlueprintLibrary::PinComponentToTraceResult(class FName
 // Function AugmentedReality.ARBlueprintLibrary.PinComponentToARPin
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class USceneComponent*             ComponentToPin                                                   (Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UARPin*                      Pin                                                              (Edit, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USceneComponent*             ComponentToPin                                                   (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UARPin*                      Pin                                                              (ConstParm, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UARPin* UARBlueprintLibrary::PinComponentToARPin(bool* ReturnValue)
+bool UARBlueprintLibrary::PinComponentToARPin(class USceneComponent** ComponentToPin, class UARPin** Pin)
 {
 	static class UFunction* Func = nullptr;
 
@@ -537,8 +545,11 @@ class UARPin* UARBlueprintLibrary::PinComponentToARPin(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (ComponentToPin != nullptr)
+		*ComponentToPin = Parms.ComponentToPin;
+
+	if (Pin != nullptr)
+		*Pin = Parms.Pin;
 
 	return Parms.ReturnValue;
 
@@ -548,13 +559,13 @@ class UARPin* UARBlueprintLibrary::PinComponentToARPin(bool* ReturnValue)
 // Function AugmentedReality.ARBlueprintLibrary.PinComponent
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class USceneComponent*             ComponentToPin                                                   (Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTransform                  PinToWorldTransform                                              (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UARTrackedGeometry*          TrackedGeometry                                                  (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// class FName                        DebugName                                                        (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UARPin*                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USceneComponent*             ComponentToPin                                                   (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  PinToWorldTransform                                              (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UARTrackedGeometry*          TrackedGeometry                                                  (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        DebugName                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UARPin*                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTransform UARBlueprintLibrary::PinComponent(class UARTrackedGeometry** TrackedGeometry, class FName* DebugName, class UARPin** ReturnValue)
+class UARPin* UARBlueprintLibrary::PinComponent(class USceneComponent** ComponentToPin, struct FTransform* PinToWorldTransform)
 {
 	static class UFunction* Func = nullptr;
 
@@ -572,14 +583,11 @@ struct FTransform UARBlueprintLibrary::PinComponent(class UARTrackedGeometry** T
 
 	Func->FunctionFlags = Flgs;
 
-	if (TrackedGeometry != nullptr)
-		*TrackedGeometry = Parms.TrackedGeometry;
+	if (ComponentToPin != nullptr)
+		*ComponentToPin = Parms.ComponentToPin;
 
-	if (DebugName != nullptr)
-		*DebugName = Parms.DebugName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (PinToWorldTransform != nullptr)
+		*PinToWorldTransform = std::move(Parms.PinToWorldTransform);
 
 	return Parms.ReturnValue;
 
@@ -613,9 +621,9 @@ void UARBlueprintLibrary::PauseARSession()
 // Function AugmentedReality.ARBlueprintLibrary.LoadARPinsFromLocalStore
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TMap<class FName, class UARPin*>   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TMap<class FName, class UARPin*>   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::LoadARPinsFromLocalStore(TMap<class FName, class UARPin*>* ReturnValue)
+TMap<class FName, class UARPin*> UARBlueprintLibrary::LoadARPinsFromLocalStore()
 {
 	static class UFunction* Func = nullptr;
 
@@ -633,8 +641,7 @@ void UARBlueprintLibrary::LoadARPinsFromLocalStore(TMap<class FName, class UARPi
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -644,13 +651,13 @@ void UARBlueprintLibrary::LoadARPinsFromLocalStore(TMap<class FName, class UARPi
 // Parameters:
 // struct FVector                     Start                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
 // struct FVector                     End                                                              (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance)
-// bool                               bTestFeaturePoints                                               (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bTestGroundPlane                                                 (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bTestPlaneExtents                                                (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bTestPlaneBoundaryPolygon                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FARTraceResult>      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bTestFeaturePoints                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bTestGroundPlane                                                 (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bTestPlaneExtents                                                (Edit, ConstParm, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bTestPlaneBoundaryPolygon                                        (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FARTraceResult>      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UARBlueprintLibrary::LineTraceTrackedObjects3D(struct FVector* Start, const struct FVector& End, TArray<struct FARTraceResult>* ReturnValue)
+TArray<struct FARTraceResult> UARBlueprintLibrary::LineTraceTrackedObjects3D(struct FVector* Start, const struct FVector& End, bool* bTestFeaturePoints, bool* bTestGroundPlane, bool* bTestPlaneExtents, bool* bTestPlaneBoundaryPolygon)
 {
 	static class UFunction* Func = nullptr;
 
@@ -672,8 +679,17 @@ bool UARBlueprintLibrary::LineTraceTrackedObjects3D(struct FVector* Start, const
 	if (Start != nullptr)
 		*Start = std::move(Parms.Start);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (bTestFeaturePoints != nullptr)
+		*bTestFeaturePoints = Parms.bTestFeaturePoints;
+
+	if (bTestGroundPlane != nullptr)
+		*bTestGroundPlane = Parms.bTestGroundPlane;
+
+	if (bTestPlaneExtents != nullptr)
+		*bTestPlaneExtents = Parms.bTestPlaneExtents;
+
+	if (bTestPlaneBoundaryPolygon != nullptr)
+		*bTestPlaneBoundaryPolygon = Parms.bTestPlaneBoundaryPolygon;
 
 	return Parms.ReturnValue;
 
@@ -683,14 +699,14 @@ bool UARBlueprintLibrary::LineTraceTrackedObjects3D(struct FVector* Start, const
 // Function AugmentedReality.ARBlueprintLibrary.LineTraceTrackedObjects
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   ScreenCoord                                                      (Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bTestFeaturePoints                                               (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bTestGroundPlane                                                 (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bTestPlaneExtents                                                (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bTestPlaneBoundaryPolygon                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FARTraceResult>      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ScreenCoord                                                      (Net, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bTestFeaturePoints                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bTestGroundPlane                                                 (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bTestPlaneExtents                                                (Edit, ConstParm, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bTestPlaneBoundaryPolygon                                        (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FARTraceResult>      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UARBlueprintLibrary::LineTraceTrackedObjects(TArray<struct FARTraceResult>* ReturnValue)
+TArray<struct FARTraceResult> UARBlueprintLibrary::LineTraceTrackedObjects(struct FVector2D* ScreenCoord, bool* bTestFeaturePoints, bool* bTestGroundPlane, bool* bTestPlaneExtents, bool* bTestPlaneBoundaryPolygon)
 {
 	static class UFunction* Func = nullptr;
 
@@ -708,8 +724,20 @@ bool UARBlueprintLibrary::LineTraceTrackedObjects(TArray<struct FARTraceResult>*
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (ScreenCoord != nullptr)
+		*ScreenCoord = std::move(Parms.ScreenCoord);
+
+	if (bTestFeaturePoints != nullptr)
+		*bTestFeaturePoints = Parms.bTestFeaturePoints;
+
+	if (bTestGroundPlane != nullptr)
+		*bTestGroundPlane = Parms.bTestGroundPlane;
+
+	if (bTestPlaneExtents != nullptr)
+		*bTestPlaneExtents = Parms.bTestPlaneExtents;
+
+	if (bTestPlaneBoundaryPolygon != nullptr)
+		*bTestPlaneBoundaryPolygon = Parms.bTestPlaneBoundaryPolygon;
 
 	return Parms.ReturnValue;
 
@@ -719,10 +747,10 @@ bool UARBlueprintLibrary::LineTraceTrackedObjects(TArray<struct FARTraceResult>*
 // Function AugmentedReality.ARBlueprintLibrary.IsSessionTypeSupported
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EARSessionType          SessionType                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARSessionType          SessionType                                                      (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EARSessionType UARBlueprintLibrary::IsSessionTypeSupported(bool* ReturnValue)
+bool UARBlueprintLibrary::IsSessionTypeSupported(enum class EARSessionType SessionType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -731,6 +759,7 @@ enum class EARSessionType UARBlueprintLibrary::IsSessionTypeSupported(bool* Retu
 
 	Params::UARBlueprintLibrary_IsSessionTypeSupported_Params Parms{};
 
+	Parms.SessionType = SessionType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -739,9 +768,6 @@ enum class EARSessionType UARBlueprintLibrary::IsSessionTypeSupported(bool* Retu
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -751,11 +777,11 @@ enum class EARSessionType UARBlueprintLibrary::IsSessionTypeSupported(bool* Retu
 // Function AugmentedReality.ARBlueprintLibrary.IsSessionTrackingFeatureSupported
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EARSessionType          SessionType                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig)
-// enum class EARSessionTrackingFeatureSessionTrackingFeature                                           (BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARSessionType          SessionType                                                      (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+// enum class EARSessionTrackingFeatureSessionTrackingFeature                                           (Edit, ExportObject, Net, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EARSessionTrackingFeature UARBlueprintLibrary::IsSessionTrackingFeatureSupported(bool* ReturnValue)
+bool UARBlueprintLibrary::IsSessionTrackingFeatureSupported(enum class EARSessionType SessionType, enum class EARSessionTrackingFeature* SessionTrackingFeature)
 {
 	static class UFunction* Func = nullptr;
 
@@ -764,6 +790,7 @@ enum class EARSessionTrackingFeature UARBlueprintLibrary::IsSessionTrackingFeatu
 
 	Params::UARBlueprintLibrary_IsSessionTrackingFeatureSupported_Params Parms{};
 
+	Parms.SessionType = SessionType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -773,8 +800,8 @@ enum class EARSessionTrackingFeature UARBlueprintLibrary::IsSessionTrackingFeatu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (SessionTrackingFeature != nullptr)
+		*SessionTrackingFeature = Parms.SessionTrackingFeature;
 
 	return Parms.ReturnValue;
 
@@ -784,11 +811,11 @@ enum class EARSessionTrackingFeature UARBlueprintLibrary::IsSessionTrackingFeatu
 // Function AugmentedReality.ARBlueprintLibrary.IsSceneReconstructionSupported
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EARSessionType          SessionType                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig)
-// enum class EARSceneReconstruction  SceneReconstructionMethod                                        (ConstParm, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARSessionType          SessionType                                                      (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+// enum class EARSceneReconstruction  SceneReconstructionMethod                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EARSceneReconstruction UARBlueprintLibrary::IsSceneReconstructionSupported(bool* ReturnValue)
+bool UARBlueprintLibrary::IsSceneReconstructionSupported(enum class EARSessionType SessionType, enum class EARSceneReconstruction* SceneReconstructionMethod)
 {
 	static class UFunction* Func = nullptr;
 
@@ -797,6 +824,7 @@ enum class EARSceneReconstruction UARBlueprintLibrary::IsSceneReconstructionSupp
 
 	Params::UARBlueprintLibrary_IsSceneReconstructionSupported_Params Parms{};
 
+	Parms.SessionType = SessionType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -806,8 +834,8 @@ enum class EARSceneReconstruction UARBlueprintLibrary::IsSceneReconstructionSupp
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (SceneReconstructionMethod != nullptr)
+		*SceneReconstructionMethod = Parms.SceneReconstructionMethod;
 
 	return Parms.ReturnValue;
 
@@ -817,9 +845,9 @@ enum class EARSceneReconstruction UARBlueprintLibrary::IsSceneReconstructionSupp
 // Function AugmentedReality.ARBlueprintLibrary.IsARSupported
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::IsARSupported(bool* ReturnValue)
+bool UARBlueprintLibrary::IsARSupported()
 {
 	static class UFunction* Func = nullptr;
 
@@ -837,8 +865,7 @@ void UARBlueprintLibrary::IsARSupported(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -846,9 +873,9 @@ void UARBlueprintLibrary::IsARSupported(bool* ReturnValue)
 // Function AugmentedReality.ARBlueprintLibrary.IsARPinLocalStoreSupported
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::IsARPinLocalStoreSupported(bool* ReturnValue)
+bool UARBlueprintLibrary::IsARPinLocalStoreSupported()
 {
 	static class UFunction* Func = nullptr;
 
@@ -866,8 +893,7 @@ void UARBlueprintLibrary::IsARPinLocalStoreSupported(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -875,9 +901,9 @@ void UARBlueprintLibrary::IsARPinLocalStoreSupported(bool* ReturnValue)
 // Function AugmentedReality.ARBlueprintLibrary.IsARPinLocalStoreReady
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::IsARPinLocalStoreReady(bool* ReturnValue)
+bool UARBlueprintLibrary::IsARPinLocalStoreReady()
 {
 	static class UFunction* Func = nullptr;
 
@@ -895,8 +921,7 @@ void UARBlueprintLibrary::IsARPinLocalStoreReady(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -904,9 +929,9 @@ void UARBlueprintLibrary::IsARPinLocalStoreReady(bool* ReturnValue)
 // Function AugmentedReality.ARBlueprintLibrary.GetWorldMappingStatus
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EARWorldMappingState    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARWorldMappingState    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetWorldMappingStatus(enum class EARWorldMappingState* ReturnValue)
+enum class EARWorldMappingState UARBlueprintLibrary::GetWorldMappingStatus()
 {
 	static class UFunction* Func = nullptr;
 
@@ -924,8 +949,7 @@ void UARBlueprintLibrary::GetWorldMappingStatus(enum class EARWorldMappingState*
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -933,9 +957,9 @@ void UARBlueprintLibrary::GetWorldMappingStatus(enum class EARWorldMappingState*
 // Function AugmentedReality.ARBlueprintLibrary.GetTrackingQualityReason
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EARTrackingQualityReasonReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARTrackingQualityReasonReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetTrackingQualityReason(enum class EARTrackingQualityReason* ReturnValue)
+enum class EARTrackingQualityReason UARBlueprintLibrary::GetTrackingQualityReason()
 {
 	static class UFunction* Func = nullptr;
 
@@ -953,8 +977,7 @@ void UARBlueprintLibrary::GetTrackingQualityReason(enum class EARTrackingQuality
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -962,9 +985,9 @@ void UARBlueprintLibrary::GetTrackingQualityReason(enum class EARTrackingQuality
 // Function AugmentedReality.ARBlueprintLibrary.GetTrackingQuality
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EARTrackingQuality      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARTrackingQuality      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetTrackingQuality(enum class EARTrackingQuality* ReturnValue)
+enum class EARTrackingQuality UARBlueprintLibrary::GetTrackingQuality()
 {
 	static class UFunction* Func = nullptr;
 
@@ -982,8 +1005,7 @@ void UARBlueprintLibrary::GetTrackingQuality(enum class EARTrackingQuality* Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -991,10 +1013,10 @@ void UARBlueprintLibrary::GetTrackingQuality(enum class EARTrackingQuality* Retu
 // Function AugmentedReality.ARBlueprintLibrary.GetSupportedVideoFormats
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// enum class EARSessionType          SessionType                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig)
-// TArray<struct FARVideoFormat>      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARSessionType          SessionType                                                      (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+// TArray<struct FARVideoFormat>      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EARSessionType UARBlueprintLibrary::GetSupportedVideoFormats(TArray<struct FARVideoFormat>* ReturnValue)
+TArray<struct FARVideoFormat> UARBlueprintLibrary::GetSupportedVideoFormats(enum class EARSessionType SessionType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1003,6 +1025,7 @@ enum class EARSessionType UARBlueprintLibrary::GetSupportedVideoFormats(TArray<s
 
 	Params::UARBlueprintLibrary_GetSupportedVideoFormats_Params Parms{};
 
+	Parms.SessionType = SessionType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1012,9 +1035,6 @@ enum class EARSessionType UARBlueprintLibrary::GetSupportedVideoFormats(TArray<s
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -1023,9 +1043,9 @@ enum class EARSessionType UARBlueprintLibrary::GetSupportedVideoFormats(TArray<s
 // Function AugmentedReality.ARBlueprintLibrary.GetSessionConfig
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UARSessionConfig*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARSessionConfig*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetSessionConfig(class UARSessionConfig** ReturnValue)
+class UARSessionConfig* UARBlueprintLibrary::GetSessionConfig()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1043,8 +1063,7 @@ void UARBlueprintLibrary::GetSessionConfig(class UARSessionConfig** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1052,9 +1071,9 @@ void UARBlueprintLibrary::GetSessionConfig(class UARSessionConfig** ReturnValue)
 // Function AugmentedReality.ARBlueprintLibrary.GetPointCloud
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// TArray<struct FVector>             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector>             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetPointCloud(TArray<struct FVector>* ReturnValue)
+TArray<struct FVector> UARBlueprintLibrary::GetPointCloud()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1072,8 +1091,7 @@ void UARBlueprintLibrary::GetPointCloud(TArray<struct FVector>* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1081,9 +1099,9 @@ void UARBlueprintLibrary::GetPointCloud(TArray<struct FVector>* ReturnValue)
 // Function AugmentedReality.ARBlueprintLibrary.GetPersonSegmentationImage
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UARTexture*                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARTexture*                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetPersonSegmentationImage(class UARTexture** ReturnValue)
+class UARTexture* UARBlueprintLibrary::GetPersonSegmentationImage()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1101,8 +1119,7 @@ void UARBlueprintLibrary::GetPersonSegmentationImage(class UARTexture** ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1110,9 +1127,9 @@ void UARBlueprintLibrary::GetPersonSegmentationImage(class UARTexture** ReturnVa
 // Function AugmentedReality.ARBlueprintLibrary.GetPersonSegmentationDepthImage
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UARTexture*                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARTexture*                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetPersonSegmentationDepthImage(class UARTexture** ReturnValue)
+class UARTexture* UARBlueprintLibrary::GetPersonSegmentationDepthImage()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1130,8 +1147,7 @@ void UARBlueprintLibrary::GetPersonSegmentationDepthImage(class UARTexture** Ret
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1139,13 +1155,13 @@ void UARBlueprintLibrary::GetPersonSegmentationDepthImage(class UARTexture** Ret
 // Function AugmentedReality.ARBlueprintLibrary.GetObjectClassificationAtLocation
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     InWorldLocation                                                  (Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EARObjectClassification OutClassification                                                (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     OutClassificationLocation                                        (Edit, Net, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              MaxLocationDiff                                                  (ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     InWorldLocation                                                  (ConstParm, BlueprintReadOnly, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EARObjectClassification OutClassification                                                (ExportObject, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     OutClassificationLocation                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              MaxLocationDiff                                                  (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UARBlueprintLibrary::GetObjectClassificationAtLocation(bool* ReturnValue)
+bool UARBlueprintLibrary::GetObjectClassificationAtLocation(struct FVector* InWorldLocation, enum class EARObjectClassification* OutClassification, const struct FVector& OutClassificationLocation, float MaxLocationDiff)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1154,6 +1170,8 @@ float UARBlueprintLibrary::GetObjectClassificationAtLocation(bool* ReturnValue)
 
 	Params::UARBlueprintLibrary_GetObjectClassificationAtLocation_Params Parms{};
 
+	Parms.OutClassificationLocation = OutClassificationLocation;
+	Parms.MaxLocationDiff = MaxLocationDiff;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1163,8 +1181,11 @@ float UARBlueprintLibrary::GetObjectClassificationAtLocation(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InWorldLocation != nullptr)
+		*InWorldLocation = std::move(Parms.InWorldLocation);
+
+	if (OutClassification != nullptr)
+		*OutClassification = Parms.OutClassification;
 
 	return Parms.ReturnValue;
 
@@ -1174,9 +1195,9 @@ float UARBlueprintLibrary::GetObjectClassificationAtLocation(bool* ReturnValue)
 // Function AugmentedReality.ARBlueprintLibrary.GetNumberOfTrackedFacesSupported
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetNumberOfTrackedFacesSupported(int32* ReturnValue)
+int32 UARBlueprintLibrary::GetNumberOfTrackedFacesSupported()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1194,8 +1215,7 @@ void UARBlueprintLibrary::GetNumberOfTrackedFacesSupported(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1203,9 +1223,9 @@ void UARBlueprintLibrary::GetNumberOfTrackedFacesSupported(int32* ReturnValue)
 // Function AugmentedReality.ARBlueprintLibrary.GetCurrentLightEstimate
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UARLightEstimate*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARLightEstimate*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetCurrentLightEstimate(class UARLightEstimate** ReturnValue)
+class UARLightEstimate* UARBlueprintLibrary::GetCurrentLightEstimate()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1223,8 +1243,7 @@ void UARBlueprintLibrary::GetCurrentLightEstimate(class UARLightEstimate** Retur
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1232,10 +1251,10 @@ void UARBlueprintLibrary::GetCurrentLightEstimate(class UARLightEstimate** Retur
 // Function AugmentedReality.ARBlueprintLibrary.GetCameraIntrinsics
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FARCameraIntrinsics         OutCameraIntrinsics                                              (Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARCameraIntrinsics         OutCameraIntrinsics                                              (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FARCameraIntrinsics UARBlueprintLibrary::GetCameraIntrinsics(bool* ReturnValue)
+bool UARBlueprintLibrary::GetCameraIntrinsics(const struct FARCameraIntrinsics& OutCameraIntrinsics)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1244,6 +1263,7 @@ struct FARCameraIntrinsics UARBlueprintLibrary::GetCameraIntrinsics(bool* Return
 
 	Params::UARBlueprintLibrary_GetCameraIntrinsics_Params Parms{};
 
+	Parms.OutCameraIntrinsics = OutCameraIntrinsics;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1253,9 +1273,6 @@ struct FARCameraIntrinsics UARBlueprintLibrary::GetCameraIntrinsics(bool* Return
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -1264,9 +1281,9 @@ struct FARCameraIntrinsics UARBlueprintLibrary::GetCameraIntrinsics(bool* Return
 // Function AugmentedReality.ARBlueprintLibrary.GetCameraImage
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UARTextureCameraImage*       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARTextureCameraImage*       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetCameraImage(class UARTextureCameraImage** ReturnValue)
+class UARTextureCameraImage* UARBlueprintLibrary::GetCameraImage()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1284,8 +1301,7 @@ void UARBlueprintLibrary::GetCameraImage(class UARTextureCameraImage** ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1293,9 +1309,9 @@ void UARBlueprintLibrary::GetCameraImage(class UARTextureCameraImage** ReturnVal
 // Function AugmentedReality.ARBlueprintLibrary.GetCameraDepth
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UARTextureCameraDepth*       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARTextureCameraDepth*       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetCameraDepth(class UARTextureCameraDepth** ReturnValue)
+class UARTextureCameraDepth* UARBlueprintLibrary::GetCameraDepth()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1313,8 +1329,7 @@ void UARBlueprintLibrary::GetCameraDepth(class UARTextureCameraDepth** ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1322,9 +1337,9 @@ void UARBlueprintLibrary::GetCameraDepth(class UARTextureCameraDepth** ReturnVal
 // Function AugmentedReality.ARBlueprintLibrary.GetARWorldScale
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetARWorldScale(float* ReturnValue)
+float UARBlueprintLibrary::GetARWorldScale()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1342,8 +1357,7 @@ void UARBlueprintLibrary::GetARWorldScale(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1351,10 +1365,10 @@ void UARBlueprintLibrary::GetARWorldScale(float* ReturnValue)
 // Function AugmentedReality.ARBlueprintLibrary.GetARTexture
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// enum class EARTextureType          TextureType                                                      (ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UARTexture*                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARTextureType          TextureType                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UARTexture*                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EARTextureType UARBlueprintLibrary::GetARTexture(class UARTexture** ReturnValue)
+class UARTexture* UARBlueprintLibrary::GetARTexture(enum class EARTextureType TextureType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1363,6 +1377,7 @@ enum class EARTextureType UARBlueprintLibrary::GetARTexture(class UARTexture** R
 
 	Params::UARBlueprintLibrary_GetARTexture_Params Parms{};
 
+	Parms.TextureType = TextureType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1372,9 +1387,6 @@ enum class EARTextureType UARBlueprintLibrary::GetARTexture(class UARTexture** R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -1383,9 +1395,9 @@ enum class EARTextureType UARBlueprintLibrary::GetARTexture(class UARTexture** R
 // Function AugmentedReality.ARBlueprintLibrary.GetARSessionStatus
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FARSessionStatus            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARSessionStatus            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetARSessionStatus(struct FARSessionStatus* ReturnValue)
+struct FARSessionStatus UARBlueprintLibrary::GetARSessionStatus()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1403,8 +1415,7 @@ void UARBlueprintLibrary::GetARSessionStatus(struct FARSessionStatus* ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1412,9 +1423,9 @@ void UARBlueprintLibrary::GetARSessionStatus(struct FARSessionStatus* ReturnValu
 // Function AugmentedReality.ARBlueprintLibrary.GetAllTrackedPoses
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TArray<class UARTrackedPose*>      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UARTrackedPose*>      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetAllTrackedPoses(TArray<class UARTrackedPose*>* ReturnValue)
+TArray<class UARTrackedPose*> UARBlueprintLibrary::GetAllTrackedPoses()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1432,8 +1443,7 @@ void UARBlueprintLibrary::GetAllTrackedPoses(TArray<class UARTrackedPose*>* Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1441,9 +1451,9 @@ void UARBlueprintLibrary::GetAllTrackedPoses(TArray<class UARTrackedPose*>* Retu
 // Function AugmentedReality.ARBlueprintLibrary.GetAllTrackedPoints
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TArray<class UARTrackedPoint*>     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UARTrackedPoint*>     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetAllTrackedPoints(TArray<class UARTrackedPoint*>* ReturnValue)
+TArray<class UARTrackedPoint*> UARBlueprintLibrary::GetAllTrackedPoints()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1461,8 +1471,7 @@ void UARBlueprintLibrary::GetAllTrackedPoints(TArray<class UARTrackedPoint*>* Re
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1470,9 +1479,9 @@ void UARBlueprintLibrary::GetAllTrackedPoints(TArray<class UARTrackedPoint*>* Re
 // Function AugmentedReality.ARBlueprintLibrary.GetAllTrackedPlanes
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TArray<class UARPlaneGeometry*>    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UARPlaneGeometry*>    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetAllTrackedPlanes(TArray<class UARPlaneGeometry*>* ReturnValue)
+TArray<class UARPlaneGeometry*> UARBlueprintLibrary::GetAllTrackedPlanes()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1490,8 +1499,7 @@ void UARBlueprintLibrary::GetAllTrackedPlanes(TArray<class UARPlaneGeometry*>* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1499,9 +1507,9 @@ void UARBlueprintLibrary::GetAllTrackedPlanes(TArray<class UARPlaneGeometry*>* R
 // Function AugmentedReality.ARBlueprintLibrary.GetAllTrackedImages
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TArray<class UARTrackedImage*>     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UARTrackedImage*>     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetAllTrackedImages(TArray<class UARTrackedImage*>* ReturnValue)
+TArray<class UARTrackedImage*> UARBlueprintLibrary::GetAllTrackedImages()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1519,8 +1527,7 @@ void UARBlueprintLibrary::GetAllTrackedImages(TArray<class UARTrackedImage*>* Re
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1528,9 +1535,9 @@ void UARBlueprintLibrary::GetAllTrackedImages(TArray<class UARTrackedImage*>* Re
 // Function AugmentedReality.ARBlueprintLibrary.GetAllTrackedEnvironmentCaptureProbes
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TArray<class UAREnvironmentCaptureProbe*>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UAREnvironmentCaptureProbe*>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetAllTrackedEnvironmentCaptureProbes(TArray<class UAREnvironmentCaptureProbe*>* ReturnValue)
+TArray<class UAREnvironmentCaptureProbe*> UARBlueprintLibrary::GetAllTrackedEnvironmentCaptureProbes()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1548,8 +1555,7 @@ void UARBlueprintLibrary::GetAllTrackedEnvironmentCaptureProbes(TArray<class UAR
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1557,9 +1563,9 @@ void UARBlueprintLibrary::GetAllTrackedEnvironmentCaptureProbes(TArray<class UAR
 // Function AugmentedReality.ARBlueprintLibrary.GetAllTracked2DPoses
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TArray<struct FARPose2D>           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FARPose2D>           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetAllTracked2DPoses(TArray<struct FARPose2D>* ReturnValue)
+TArray<struct FARPose2D> UARBlueprintLibrary::GetAllTracked2DPoses()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1577,8 +1583,7 @@ void UARBlueprintLibrary::GetAllTracked2DPoses(TArray<struct FARPose2D>* ReturnV
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1586,9 +1591,9 @@ void UARBlueprintLibrary::GetAllTracked2DPoses(TArray<struct FARPose2D>* ReturnV
 // Function AugmentedReality.ARBlueprintLibrary.GetAllPins
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TArray<class UARPin*>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UARPin*>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetAllPins(TArray<class UARPin*>* ReturnValue)
+TArray<class UARPin*> UARBlueprintLibrary::GetAllPins()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1606,8 +1611,7 @@ void UARBlueprintLibrary::GetAllPins(TArray<class UARPin*>* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1615,10 +1619,10 @@ void UARBlueprintLibrary::GetAllPins(TArray<class UARPin*>* ReturnValue)
 // Function AugmentedReality.ARBlueprintLibrary.GetAllGeometriesByClass
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      GeometryClass                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class UARTrackedGeometry*>  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      GeometryClass                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class UARTrackedGeometry*>  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UARBlueprintLibrary::GetAllGeometriesByClass(TArray<class UARTrackedGeometry*>* ReturnValue)
+TArray<class UARTrackedGeometry*> UARBlueprintLibrary::GetAllGeometriesByClass(class UClass* GeometryClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1627,6 +1631,7 @@ class UClass* UARBlueprintLibrary::GetAllGeometriesByClass(TArray<class UARTrack
 
 	Params::UARBlueprintLibrary_GetAllGeometriesByClass_Params Parms{};
 
+	Parms.GeometryClass = GeometryClass;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1636,9 +1641,6 @@ class UClass* UARBlueprintLibrary::GetAllGeometriesByClass(TArray<class UARTrack
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -1647,9 +1649,9 @@ class UClass* UARBlueprintLibrary::GetAllGeometriesByClass(TArray<class UARTrack
 // Function AugmentedReality.ARBlueprintLibrary.GetAllGeometries
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TArray<class UARTrackedGeometry*>  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UARTrackedGeometry*>  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetAllGeometries(TArray<class UARTrackedGeometry*>* ReturnValue)
+TArray<class UARTrackedGeometry*> UARBlueprintLibrary::GetAllGeometries()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1667,8 +1669,7 @@ void UARBlueprintLibrary::GetAllGeometries(TArray<class UARTrackedGeometry*>* Re
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1676,9 +1677,9 @@ void UARBlueprintLibrary::GetAllGeometries(TArray<class UARTrackedGeometry*>* Re
 // Function AugmentedReality.ARBlueprintLibrary.GetAlignmentTransform
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBlueprintLibrary::GetAlignmentTransform(struct FTransform* ReturnValue)
+struct FTransform UARBlueprintLibrary::GetAlignmentTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1696,8 +1697,7 @@ void UARBlueprintLibrary::GetAlignmentTransform(struct FTransform* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1705,10 +1705,10 @@ void UARBlueprintLibrary::GetAlignmentTransform(struct FTransform* ReturnValue)
 // Function AugmentedReality.ARBlueprintLibrary.FindTrackedPointsByName
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      PointName                                                        (Net, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class UARTrackedPoint*>     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      PointName                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class UARTrackedPoint*>     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UARBlueprintLibrary::FindTrackedPointsByName(TArray<class UARTrackedPoint*>* ReturnValue)
+TArray<class UARTrackedPoint*> UARBlueprintLibrary::FindTrackedPointsByName(const class FString& PointName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1717,6 +1717,7 @@ class FString UARBlueprintLibrary::FindTrackedPointsByName(TArray<class UARTrack
 
 	Params::UARBlueprintLibrary_FindTrackedPointsByName_Params Parms{};
 
+	Parms.PointName = PointName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1725,9 +1726,6 @@ class FString UARBlueprintLibrary::FindTrackedPointsByName(TArray<class UARTrack
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -1737,13 +1735,13 @@ class FString UARBlueprintLibrary::FindTrackedPointsByName(TArray<class UARTrack
 // Function AugmentedReality.ARBlueprintLibrary.DebugDrawTrackedGeometry
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UARTrackedGeometry*          TrackedGeometry                                                  (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARTrackedGeometry*          TrackedGeometry                                                  (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FLinearColor                Color                                                            (Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
-// float                              OutlineThickness                                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              PersistForSeconds                                                (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              OutlineThickness                                                 (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              PersistForSeconds                                                (BlueprintVisible, EditFixedSize, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-float UARBlueprintLibrary::DebugDrawTrackedGeometry(class UARTrackedGeometry** TrackedGeometry, struct FLinearColor* Color)
+class UObject* UARBlueprintLibrary::DebugDrawTrackedGeometry(struct FLinearColor* Color, float OutlineThickness, float PersistForSeconds)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1752,6 +1750,8 @@ float UARBlueprintLibrary::DebugDrawTrackedGeometry(class UARTrackedGeometry** T
 
 	Params::UARBlueprintLibrary_DebugDrawTrackedGeometry_Params Parms{};
 
+	Parms.OutlineThickness = OutlineThickness;
+	Parms.PersistForSeconds = PersistForSeconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1760,9 +1760,6 @@ float UARBlueprintLibrary::DebugDrawTrackedGeometry(class UARTrackedGeometry** T
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (TrackedGeometry != nullptr)
-		*TrackedGeometry = Parms.TrackedGeometry;
 
 	if (Color != nullptr)
 		*Color = std::move(Parms.Color);
@@ -1776,12 +1773,12 @@ float UARBlueprintLibrary::DebugDrawTrackedGeometry(class UARTrackedGeometry** T
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UARPin*                      ARPin                                                            (BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig)
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FLinearColor                Color                                                            (Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
 // float                              Scale                                                            (Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
-// float                              PersistForSeconds                                                (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              PersistForSeconds                                                (BlueprintVisible, EditFixedSize, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-float UARBlueprintLibrary::DebugDrawPin(class UARPin* ARPin, struct FLinearColor* Color, float Scale)
+class UObject* UARBlueprintLibrary::DebugDrawPin(class UARPin* ARPin, struct FLinearColor* Color, float Scale, float PersistForSeconds)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1792,6 +1789,7 @@ float UARBlueprintLibrary::DebugDrawPin(class UARPin* ARPin, struct FLinearColor
 
 	Parms.ARPin = ARPin;
 	Parms.Scale = Scale;
+	Parms.PersistForSeconds = PersistForSeconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1812,11 +1810,11 @@ float UARBlueprintLibrary::DebugDrawPin(class UARPin* ARPin, struct FLinearColor
 // Function AugmentedReality.ARBlueprintLibrary.CalculateClosestIntersection
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// TArray<struct FVector>             StartPoints                                                      (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FVector>             EndPoints                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     ClosestIntersection                                              (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             StartPoints                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             EndPoints                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     ClosestIntersection                                              (BlueprintVisible, ExportObject, Net, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVector UARBlueprintLibrary::CalculateClosestIntersection()
+void UARBlueprintLibrary::CalculateClosestIntersection(const TArray<struct FVector>& StartPoints, const TArray<struct FVector>& EndPoints, const struct FVector& ClosestIntersection)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1825,6 +1823,9 @@ struct FVector UARBlueprintLibrary::CalculateClosestIntersection()
 
 	Params::UARBlueprintLibrary_CalculateClosestIntersection_Params Parms{};
 
+	Parms.StartPoints = StartPoints;
+	Parms.EndPoints = EndPoints;
+	Parms.ClosestIntersection = ClosestIntersection;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1834,19 +1835,17 @@ struct FVector UARBlueprintLibrary::CalculateClosestIntersection()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AugmentedReality.ARBlueprintLibrary.CalculateAlignmentTransform
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTransform                  TransformInFirstCoordinateSystem                                 (ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTransform                  TransformInSecondCoordinateSystem                                (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTransform                  AlignmentTransform                                               (ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  TransformInFirstCoordinateSystem                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  TransformInSecondCoordinateSystem                                (Edit, ExportObject, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  AlignmentTransform                                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FTransform UARBlueprintLibrary::CalculateAlignmentTransform()
+void UARBlueprintLibrary::CalculateAlignmentTransform(const struct FTransform& TransformInFirstCoordinateSystem, const struct FTransform& TransformInSecondCoordinateSystem, const struct FTransform& AlignmentTransform)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1855,6 +1854,9 @@ struct FTransform UARBlueprintLibrary::CalculateAlignmentTransform()
 
 	Params::UARBlueprintLibrary_CalculateAlignmentTransform_Params Parms{};
 
+	Parms.TransformInFirstCoordinateSystem = TransformInFirstCoordinateSystem;
+	Parms.TransformInSecondCoordinateSystem = TransformInSecondCoordinateSystem;
+	Parms.AlignmentTransform = AlignmentTransform;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1864,20 +1866,18 @@ struct FTransform UARBlueprintLibrary::CalculateAlignmentTransform()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AugmentedReality.ARBlueprintLibrary.AddTrackedPointWithName
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTransform                  WorldTransform                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FString                      PointName                                                        (Net, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bDeletePointsWithSameName                                        (ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  WorldTransform                                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+// class FString                      PointName                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bDeletePointsWithSameName                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UARBlueprintLibrary::AddTrackedPointWithName(struct FTransform* WorldTransform, bool* ReturnValue)
+bool UARBlueprintLibrary::AddTrackedPointWithName(const class FString& PointName, bool bDeletePointsWithSameName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1886,6 +1886,8 @@ bool UARBlueprintLibrary::AddTrackedPointWithName(struct FTransform* WorldTransf
 
 	Params::UARBlueprintLibrary_AddTrackedPointWithName_Params Parms{};
 
+	Parms.PointName = PointName;
+	Parms.bDeletePointsWithSameName = bDeletePointsWithSameName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1894,12 +1896,6 @@ bool UARBlueprintLibrary::AddTrackedPointWithName(struct FTransform* WorldTransf
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (WorldTransform != nullptr)
-		*WorldTransform = std::move(Parms.WorldTransform);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -1909,13 +1905,13 @@ bool UARBlueprintLibrary::AddTrackedPointWithName(struct FTransform* WorldTransf
 // Function AugmentedReality.ARBlueprintLibrary.AddRuntimeCandidateImage
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UARSessionConfig*            SessionConfig                                                    (ConstParm, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UTexture2D*                  CandidateTexture                                                 (Edit, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UARSessionConfig*            SessionConfig                                                    (Edit, ConstParm, Net, EditFixedSize, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UTexture2D*                  CandidateTexture                                                 (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 // class FString                      FriendlyName                                                     (Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
-// float                              PhysicalWidth                                                    (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UARCandidateImage*           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              PhysicalWidth                                                    (ConstParm, BlueprintReadOnly, EditFixedSize, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UARCandidateImage*           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UARBlueprintLibrary::AddRuntimeCandidateImage(class FString* FriendlyName, class UARCandidateImage** ReturnValue)
+class UARCandidateImage* UARBlueprintLibrary::AddRuntimeCandidateImage(class UARSessionConfig* SessionConfig, class UTexture2D* CandidateTexture, class FString* FriendlyName, float PhysicalWidth)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1924,6 +1920,9 @@ float UARBlueprintLibrary::AddRuntimeCandidateImage(class FString* FriendlyName,
 
 	Params::UARBlueprintLibrary_AddRuntimeCandidateImage_Params Parms{};
 
+	Parms.SessionConfig = SessionConfig;
+	Parms.CandidateTexture = CandidateTexture;
+	Parms.PhysicalWidth = PhysicalWidth;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1936,9 +1935,6 @@ float UARBlueprintLibrary::AddRuntimeCandidateImage(class FString* FriendlyName,
 	if (FriendlyName != nullptr)
 		*FriendlyName = std::move(Parms.FriendlyName);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -1948,10 +1944,10 @@ float UARBlueprintLibrary::AddRuntimeCandidateImage(class FString* FriendlyName,
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// struct FVector                     Extent                                                           (Edit, ExportObject, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     Extent                                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector UARBlueprintLibrary::AddManualEnvironmentCaptureProbe(struct FVector* Location, bool* ReturnValue)
+bool UARBlueprintLibrary::AddManualEnvironmentCaptureProbe(struct FVector* Location)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1971,9 +1967,6 @@ struct FVector UARBlueprintLibrary::AddManualEnvironmentCaptureProbe(struct FVec
 
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -2011,10 +2004,10 @@ class UARTraceResultLibrary* UARTraceResultLibrary::GetDefaultObj()
 // Function AugmentedReality.ARTraceResultLibrary.GetTrackedGeometry
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FARTraceResult              TraceResult                                                      (Edit, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UARTrackedGeometry*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARTraceResult              TraceResult                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UARTrackedGeometry*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FARTraceResult UARTraceResultLibrary::GetTrackedGeometry(class UARTrackedGeometry** ReturnValue)
+class UARTrackedGeometry* UARTraceResultLibrary::GetTrackedGeometry(struct FARTraceResult* TraceResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2032,8 +2025,8 @@ struct FARTraceResult UARTraceResultLibrary::GetTrackedGeometry(class UARTracked
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (TraceResult != nullptr)
+		*TraceResult = std::move(Parms.TraceResult);
 
 	return Parms.ReturnValue;
 
@@ -2043,10 +2036,10 @@ struct FARTraceResult UARTraceResultLibrary::GetTrackedGeometry(class UARTracked
 // Function AugmentedReality.ARTraceResultLibrary.GetTraceChannel
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FARTraceResult              TraceResult                                                      (Edit, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EARLineTraceChannels    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARTraceResult              TraceResult                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EARLineTraceChannels    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FARTraceResult UARTraceResultLibrary::GetTraceChannel(enum class EARLineTraceChannels* ReturnValue)
+enum class EARLineTraceChannels UARTraceResultLibrary::GetTraceChannel(struct FARTraceResult* TraceResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2064,8 +2057,8 @@ struct FARTraceResult UARTraceResultLibrary::GetTraceChannel(enum class EARLineT
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (TraceResult != nullptr)
+		*TraceResult = std::move(Parms.TraceResult);
 
 	return Parms.ReturnValue;
 
@@ -2075,10 +2068,10 @@ struct FARTraceResult UARTraceResultLibrary::GetTraceChannel(enum class EARLineT
 // Function AugmentedReality.ARTraceResultLibrary.GetLocalTransform
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FARTraceResult              TraceResult                                                      (Edit, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARTraceResult              TraceResult                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FARTraceResult UARTraceResultLibrary::GetLocalTransform(struct FTransform* ReturnValue)
+struct FTransform UARTraceResultLibrary::GetLocalTransform(struct FARTraceResult* TraceResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2096,8 +2089,8 @@ struct FARTraceResult UARTraceResultLibrary::GetLocalTransform(struct FTransform
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (TraceResult != nullptr)
+		*TraceResult = std::move(Parms.TraceResult);
 
 	return Parms.ReturnValue;
 
@@ -2107,10 +2100,10 @@ struct FARTraceResult UARTraceResultLibrary::GetLocalTransform(struct FTransform
 // Function AugmentedReality.ARTraceResultLibrary.GetLocalToWorldTransform
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FARTraceResult              TraceResult                                                      (Edit, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARTraceResult              TraceResult                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FARTraceResult UARTraceResultLibrary::GetLocalToWorldTransform(struct FTransform* ReturnValue)
+struct FTransform UARTraceResultLibrary::GetLocalToWorldTransform(struct FARTraceResult* TraceResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2128,8 +2121,8 @@ struct FARTraceResult UARTraceResultLibrary::GetLocalToWorldTransform(struct FTr
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (TraceResult != nullptr)
+		*TraceResult = std::move(Parms.TraceResult);
 
 	return Parms.ReturnValue;
 
@@ -2139,10 +2132,10 @@ struct FARTraceResult UARTraceResultLibrary::GetLocalToWorldTransform(struct FTr
 // Function AugmentedReality.ARTraceResultLibrary.GetLocalToTrackingTransform
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FARTraceResult              TraceResult                                                      (Edit, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARTraceResult              TraceResult                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FARTraceResult UARTraceResultLibrary::GetLocalToTrackingTransform(struct FTransform* ReturnValue)
+struct FTransform UARTraceResultLibrary::GetLocalToTrackingTransform(struct FARTraceResult* TraceResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2160,8 +2153,8 @@ struct FARTraceResult UARTraceResultLibrary::GetLocalToTrackingTransform(struct 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (TraceResult != nullptr)
+		*TraceResult = std::move(Parms.TraceResult);
 
 	return Parms.ReturnValue;
 
@@ -2171,10 +2164,10 @@ struct FARTraceResult UARTraceResultLibrary::GetLocalToTrackingTransform(struct 
 // Function AugmentedReality.ARTraceResultLibrary.GetDistanceFromCamera
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FARTraceResult              TraceResult                                                      (Edit, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARTraceResult              TraceResult                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FARTraceResult UARTraceResultLibrary::GetDistanceFromCamera(float* ReturnValue)
+float UARTraceResultLibrary::GetDistanceFromCamera(struct FARTraceResult* TraceResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2192,8 +2185,8 @@ struct FARTraceResult UARTraceResultLibrary::GetDistanceFromCamera(float* Return
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (TraceResult != nullptr)
+		*TraceResult = std::move(Parms.TraceResult);
 
 	return Parms.ReturnValue;
 
@@ -2259,10 +2252,10 @@ class UARSaveWorldAsyncTaskBlueprintProxy* UARSaveWorldAsyncTaskBlueprintProxy::
 // Function AugmentedReality.ARSaveWorldAsyncTaskBlueprintProxy.ARSaveWorld
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UARSaveWorldAsyncTaskBlueprintProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARSaveWorldAsyncTaskBlueprintProxy*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UARSaveWorldAsyncTaskBlueprintProxy::ARSaveWorld(class UARSaveWorldAsyncTaskBlueprintProxy** ReturnValue)
+class UARSaveWorldAsyncTaskBlueprintProxy* UARSaveWorldAsyncTaskBlueprintProxy::ARSaveWorld()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2279,9 +2272,6 @@ class UObject* UARSaveWorldAsyncTaskBlueprintProxy::ARSaveWorld(class UARSaveWor
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -2319,12 +2309,12 @@ class UARGetCandidateObjectAsyncTaskBlueprintProxy* UARGetCandidateObjectAsyncTa
 // Function AugmentedReality.ARGetCandidateObjectAsyncTaskBlueprintProxy.ARGetCandidateObject
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// struct FVector                     Extent                                                           (Edit, ExportObject, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UARGetCandidateObjectAsyncTaskBlueprintProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     Extent                                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARGetCandidateObjectAsyncTaskBlueprintProxy*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector UARGetCandidateObjectAsyncTaskBlueprintProxy::ARGetCandidateObject(struct FVector* Location, class UARGetCandidateObjectAsyncTaskBlueprintProxy** ReturnValue)
+class UARGetCandidateObjectAsyncTaskBlueprintProxy* UARGetCandidateObjectAsyncTaskBlueprintProxy::ARGetCandidateObject(struct FVector* Location)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2344,9 +2334,6 @@ struct FVector UARGetCandidateObjectAsyncTaskBlueprintProxy::ARGetCandidateObjec
 
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -2408,9 +2395,9 @@ void UARComponent::UpdateVisualization()
 // Function AugmentedReality.ARComponent.SetNativeID
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FGuid                       NativeID                                                         (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FGuid                       NativeID                                                         (Edit, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-void UARComponent::SetNativeID(const struct FGuid& NativeID)
+struct FGuid UARComponent::SetNativeID()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2419,7 +2406,6 @@ void UARComponent::SetNativeID(const struct FGuid& NativeID)
 
 	Params::UARComponent_SetNativeID_Params Parms{};
 
-	Parms.NativeID = NativeID;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2428,6 +2414,8 @@ void UARComponent::SetNativeID(const struct FGuid& NativeID)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -2477,9 +2465,9 @@ void UARComponent::OnRep_Payload()
 // Function AugmentedReality.ARComponent.GetMRMesh
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMRMeshComponent*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMRMeshComponent*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARComponent::GetMRMesh(class UMRMeshComponent** ReturnValue)
+class UMRMeshComponent* UARComponent::GetMRMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2497,8 +2485,7 @@ void UARComponent::GetMRMesh(class UMRMeshComponent** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2534,9 +2521,9 @@ class UARPlaneComponent* UARPlaneComponent::GetDefaultObj()
 // Function AugmentedReality.ARPlaneComponent.SetPlaneComponentDebugMode
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// enum class EPlaneComponentDebugModeNewDebugMode                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EPlaneComponentDebugModeNewDebugMode                                                     (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class EPlaneComponentDebugMode UARPlaneComponent::SetPlaneComponentDebugMode()
+void UARPlaneComponent::SetPlaneComponentDebugMode(enum class EPlaneComponentDebugMode* NewDebugMode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2554,7 +2541,8 @@ enum class EPlaneComponentDebugMode UARPlaneComponent::SetPlaneComponentDebugMod
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewDebugMode != nullptr)
+		*NewDebugMode = Parms.NewDebugMode;
 
 }
 
@@ -2562,9 +2550,9 @@ enum class EPlaneComponentDebugMode UARPlaneComponent::SetPlaneComponentDebugMod
 // Function AugmentedReality.ARPlaneComponent.SetObjectClassificationDebugColors
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TMap<enum class EARObjectClassification, struct FLinearColor>InColors                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TMap<enum class EARObjectClassification, struct FLinearColor>InColors                                                         (ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-TMap<enum class EARObjectClassification, struct FLinearColor> UARPlaneComponent::SetObjectClassificationDebugColors()
+void UARPlaneComponent::SetObjectClassificationDebugColors(TMap<enum class EARObjectClassification, struct FLinearColor>* InColors)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2582,7 +2570,8 @@ TMap<enum class EARObjectClassification, struct FLinearColor> UARPlaneComponent:
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InColors != nullptr)
+		*InColors = Parms.InColors;
 
 }
 
@@ -2590,9 +2579,9 @@ TMap<enum class EARObjectClassification, struct FLinearColor> UARPlaneComponent:
 // Function AugmentedReality.ARPlaneComponent.ServerUpdatePayload
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// struct FARPlaneUpdatePayload       NewPayload                                                       (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARPlaneUpdatePayload       NewPayload                                                       (ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FARPlaneUpdatePayload UARPlaneComponent::ServerUpdatePayload()
+void UARPlaneComponent::ServerUpdatePayload(struct FARPlaneUpdatePayload* NewPayload)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2610,7 +2599,8 @@ struct FARPlaneUpdatePayload UARPlaneComponent::ServerUpdatePayload()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewPayload != nullptr)
+		*NewPayload = std::move(Parms.NewPayload);
 
 }
 
@@ -2618,7 +2608,7 @@ struct FARPlaneUpdatePayload UARPlaneComponent::ServerUpdatePayload()
 // Function AugmentedReality.ARPlaneComponent.ReceiveUpdate
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARPlaneUpdatePayload       Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARPlaneUpdatePayload       Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARPlaneUpdatePayload UARPlaneComponent::ReceiveUpdate()
 {
@@ -2640,7 +2630,7 @@ struct FARPlaneUpdatePayload UARPlaneComponent::ReceiveUpdate()
 // Function AugmentedReality.ARPlaneComponent.ReceiveAdd
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARPlaneUpdatePayload       Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARPlaneUpdatePayload       Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARPlaneUpdatePayload UARPlaneComponent::ReceiveAdd()
 {
@@ -2662,9 +2652,9 @@ struct FARPlaneUpdatePayload UARPlaneComponent::ReceiveAdd()
 // Function AugmentedReality.ARPlaneComponent.GetObjectClassificationDebugColors
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// TMap<enum class EARObjectClassification, struct FLinearColor>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TMap<enum class EARObjectClassification, struct FLinearColor>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARPlaneComponent::GetObjectClassificationDebugColors(TMap<enum class EARObjectClassification, struct FLinearColor>* ReturnValue)
+TMap<enum class EARObjectClassification, struct FLinearColor> UARPlaneComponent::GetObjectClassificationDebugColors()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2682,8 +2672,7 @@ void UARPlaneComponent::GetObjectClassificationDebugColors(TMap<enum class EAROb
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2719,9 +2708,9 @@ class UARPointComponent* UARPointComponent::GetDefaultObj()
 // Function AugmentedReality.ARPointComponent.ServerUpdatePayload
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// struct FARPointUpdatePayload       NewPayload                                                       (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARPointUpdatePayload       NewPayload                                                       (ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FARPointUpdatePayload UARPointComponent::ServerUpdatePayload()
+void UARPointComponent::ServerUpdatePayload(struct FARPointUpdatePayload* NewPayload)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2739,7 +2728,8 @@ struct FARPointUpdatePayload UARPointComponent::ServerUpdatePayload()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewPayload != nullptr)
+		*NewPayload = std::move(Parms.NewPayload);
 
 }
 
@@ -2747,7 +2737,7 @@ struct FARPointUpdatePayload UARPointComponent::ServerUpdatePayload()
 // Function AugmentedReality.ARPointComponent.ReceiveUpdate
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARPointUpdatePayload       Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARPointUpdatePayload       Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARPointUpdatePayload UARPointComponent::ReceiveUpdate()
 {
@@ -2769,7 +2759,7 @@ struct FARPointUpdatePayload UARPointComponent::ReceiveUpdate()
 // Function AugmentedReality.ARPointComponent.ReceiveAdd
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARPointUpdatePayload       Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARPointUpdatePayload       Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARPointUpdatePayload UARPointComponent::ReceiveAdd()
 {
@@ -2819,9 +2809,9 @@ class UARFaceComponent* UARFaceComponent::GetDefaultObj()
 // Function AugmentedReality.ARFaceComponent.SetFaceComponentDebugMode
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// enum class EFaceComponentDebugMode NewDebugMode                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EFaceComponentDebugMode NewDebugMode                                                     (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class EFaceComponentDebugMode UARFaceComponent::SetFaceComponentDebugMode()
+void UARFaceComponent::SetFaceComponentDebugMode(enum class EFaceComponentDebugMode* NewDebugMode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2839,7 +2829,8 @@ enum class EFaceComponentDebugMode UARFaceComponent::SetFaceComponentDebugMode()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewDebugMode != nullptr)
+		*NewDebugMode = Parms.NewDebugMode;
 
 }
 
@@ -2847,9 +2838,9 @@ enum class EFaceComponentDebugMode UARFaceComponent::SetFaceComponentDebugMode()
 // Function AugmentedReality.ARFaceComponent.ServerUpdatePayload
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// struct FARFaceUpdatePayload        NewPayload                                                       (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARFaceUpdatePayload        NewPayload                                                       (ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FARFaceUpdatePayload UARFaceComponent::ServerUpdatePayload()
+void UARFaceComponent::ServerUpdatePayload(struct FARFaceUpdatePayload* NewPayload)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2867,7 +2858,8 @@ struct FARFaceUpdatePayload UARFaceComponent::ServerUpdatePayload()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewPayload != nullptr)
+		*NewPayload = std::move(Parms.NewPayload);
 
 }
 
@@ -2875,7 +2867,7 @@ struct FARFaceUpdatePayload UARFaceComponent::ServerUpdatePayload()
 // Function AugmentedReality.ARFaceComponent.ReceiveUpdate
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARFaceUpdatePayload        Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARFaceUpdatePayload        Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARFaceUpdatePayload UARFaceComponent::ReceiveUpdate()
 {
@@ -2897,7 +2889,7 @@ struct FARFaceUpdatePayload UARFaceComponent::ReceiveUpdate()
 // Function AugmentedReality.ARFaceComponent.ReceiveAdd
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARFaceUpdatePayload        Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARFaceUpdatePayload        Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARFaceUpdatePayload UARFaceComponent::ReceiveAdd()
 {
@@ -2947,9 +2939,9 @@ class UARImageComponent* UARImageComponent::GetDefaultObj()
 // Function AugmentedReality.ARImageComponent.SetImageComponentDebugMode
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// enum class EImageComponentDebugModeNewDebugMode                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EImageComponentDebugModeNewDebugMode                                                     (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class EImageComponentDebugMode UARImageComponent::SetImageComponentDebugMode()
+void UARImageComponent::SetImageComponentDebugMode(enum class EImageComponentDebugMode* NewDebugMode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2967,7 +2959,8 @@ enum class EImageComponentDebugMode UARImageComponent::SetImageComponentDebugMod
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewDebugMode != nullptr)
+		*NewDebugMode = Parms.NewDebugMode;
 
 }
 
@@ -2975,9 +2968,9 @@ enum class EImageComponentDebugMode UARImageComponent::SetImageComponentDebugMod
 // Function AugmentedReality.ARImageComponent.ServerUpdatePayload
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// struct FARImageUpdatePayload       NewPayload                                                       (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARImageUpdatePayload       NewPayload                                                       (ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FARImageUpdatePayload UARImageComponent::ServerUpdatePayload()
+void UARImageComponent::ServerUpdatePayload(struct FARImageUpdatePayload* NewPayload)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2995,7 +2988,8 @@ struct FARImageUpdatePayload UARImageComponent::ServerUpdatePayload()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewPayload != nullptr)
+		*NewPayload = std::move(Parms.NewPayload);
 
 }
 
@@ -3003,7 +2997,7 @@ struct FARImageUpdatePayload UARImageComponent::ServerUpdatePayload()
 // Function AugmentedReality.ARImageComponent.ReceiveUpdate
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARImageUpdatePayload       Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARImageUpdatePayload       Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARImageUpdatePayload UARImageComponent::ReceiveUpdate()
 {
@@ -3025,7 +3019,7 @@ struct FARImageUpdatePayload UARImageComponent::ReceiveUpdate()
 // Function AugmentedReality.ARImageComponent.ReceiveAdd
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARImageUpdatePayload       Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARImageUpdatePayload       Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARImageUpdatePayload UARImageComponent::ReceiveAdd()
 {
@@ -3075,9 +3069,9 @@ class UARQRCodeComponent* UARQRCodeComponent::GetDefaultObj()
 // Function AugmentedReality.ARQRCodeComponent.SetQRCodeComponentDebugMode
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// enum class EQRCodeComponentDebugModeNewDebugMode                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EQRCodeComponentDebugModeNewDebugMode                                                     (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class EQRCodeComponentDebugMode UARQRCodeComponent::SetQRCodeComponentDebugMode()
+void UARQRCodeComponent::SetQRCodeComponentDebugMode(enum class EQRCodeComponentDebugMode* NewDebugMode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3095,7 +3089,8 @@ enum class EQRCodeComponentDebugMode UARQRCodeComponent::SetQRCodeComponentDebug
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewDebugMode != nullptr)
+		*NewDebugMode = Parms.NewDebugMode;
 
 }
 
@@ -3103,9 +3098,9 @@ enum class EQRCodeComponentDebugMode UARQRCodeComponent::SetQRCodeComponentDebug
 // Function AugmentedReality.ARQRCodeComponent.ServerUpdatePayload
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// struct FARQRCodeUpdatePayload      NewPayload                                                       (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARQRCodeUpdatePayload      NewPayload                                                       (ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FARQRCodeUpdatePayload UARQRCodeComponent::ServerUpdatePayload()
+void UARQRCodeComponent::ServerUpdatePayload(struct FARQRCodeUpdatePayload* NewPayload)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3123,7 +3118,8 @@ struct FARQRCodeUpdatePayload UARQRCodeComponent::ServerUpdatePayload()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewPayload != nullptr)
+		*NewPayload = std::move(Parms.NewPayload);
 
 }
 
@@ -3131,7 +3127,7 @@ struct FARQRCodeUpdatePayload UARQRCodeComponent::ServerUpdatePayload()
 // Function AugmentedReality.ARQRCodeComponent.ReceiveUpdate
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARQRCodeUpdatePayload      Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARQRCodeUpdatePayload      Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARQRCodeUpdatePayload UARQRCodeComponent::ReceiveUpdate()
 {
@@ -3153,7 +3149,7 @@ struct FARQRCodeUpdatePayload UARQRCodeComponent::ReceiveUpdate()
 // Function AugmentedReality.ARQRCodeComponent.ReceiveAdd
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARQRCodeUpdatePayload      Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARQRCodeUpdatePayload      Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARQRCodeUpdatePayload UARQRCodeComponent::ReceiveAdd()
 {
@@ -3203,9 +3199,9 @@ class UARPoseComponent* UARPoseComponent::GetDefaultObj()
 // Function AugmentedReality.ARPoseComponent.SetPoseComponentDebugMode
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// enum class EPoseComponentDebugMode NewDebugMode                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EPoseComponentDebugMode NewDebugMode                                                     (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class EPoseComponentDebugMode UARPoseComponent::SetPoseComponentDebugMode()
+void UARPoseComponent::SetPoseComponentDebugMode(enum class EPoseComponentDebugMode* NewDebugMode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3223,7 +3219,8 @@ enum class EPoseComponentDebugMode UARPoseComponent::SetPoseComponentDebugMode()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewDebugMode != nullptr)
+		*NewDebugMode = Parms.NewDebugMode;
 
 }
 
@@ -3231,9 +3228,9 @@ enum class EPoseComponentDebugMode UARPoseComponent::SetPoseComponentDebugMode()
 // Function AugmentedReality.ARPoseComponent.ServerUpdatePayload
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// struct FARPoseUpdatePayload        NewPayload                                                       (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARPoseUpdatePayload        NewPayload                                                       (ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FARPoseUpdatePayload UARPoseComponent::ServerUpdatePayload()
+void UARPoseComponent::ServerUpdatePayload(struct FARPoseUpdatePayload* NewPayload)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3251,7 +3248,8 @@ struct FARPoseUpdatePayload UARPoseComponent::ServerUpdatePayload()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewPayload != nullptr)
+		*NewPayload = std::move(Parms.NewPayload);
 
 }
 
@@ -3259,7 +3257,7 @@ struct FARPoseUpdatePayload UARPoseComponent::ServerUpdatePayload()
 // Function AugmentedReality.ARPoseComponent.ReceiveUpdate
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARPoseUpdatePayload        Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARPoseUpdatePayload        Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARPoseUpdatePayload UARPoseComponent::ReceiveUpdate()
 {
@@ -3281,7 +3279,7 @@ struct FARPoseUpdatePayload UARPoseComponent::ReceiveUpdate()
 // Function AugmentedReality.ARPoseComponent.ReceiveAdd
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARPoseUpdatePayload        Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARPoseUpdatePayload        Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARPoseUpdatePayload UARPoseComponent::ReceiveAdd()
 {
@@ -3331,9 +3329,9 @@ class UAREnvironmentProbeComponent* UAREnvironmentProbeComponent::GetDefaultObj(
 // Function AugmentedReality.AREnvironmentProbeComponent.ServerUpdatePayload
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// struct FAREnvironmentProbeUpdatePayloadNewPayload                                                       (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FAREnvironmentProbeUpdatePayloadNewPayload                                                       (ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FAREnvironmentProbeUpdatePayload UAREnvironmentProbeComponent::ServerUpdatePayload()
+void UAREnvironmentProbeComponent::ServerUpdatePayload(struct FAREnvironmentProbeUpdatePayload* NewPayload)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3351,7 +3349,8 @@ struct FAREnvironmentProbeUpdatePayload UAREnvironmentProbeComponent::ServerUpda
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewPayload != nullptr)
+		*NewPayload = std::move(Parms.NewPayload);
 
 }
 
@@ -3359,7 +3358,7 @@ struct FAREnvironmentProbeUpdatePayload UAREnvironmentProbeComponent::ServerUpda
 // Function AugmentedReality.AREnvironmentProbeComponent.ReceiveUpdate
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FAREnvironmentProbeUpdatePayloadPayload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAREnvironmentProbeUpdatePayloadPayload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FAREnvironmentProbeUpdatePayload UAREnvironmentProbeComponent::ReceiveUpdate()
 {
@@ -3381,7 +3380,7 @@ struct FAREnvironmentProbeUpdatePayload UAREnvironmentProbeComponent::ReceiveUpd
 // Function AugmentedReality.AREnvironmentProbeComponent.ReceiveAdd
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FAREnvironmentProbeUpdatePayloadPayload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAREnvironmentProbeUpdatePayloadPayload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FAREnvironmentProbeUpdatePayload UAREnvironmentProbeComponent::ReceiveAdd()
 {
@@ -3431,9 +3430,9 @@ class UARObjectComponent* UARObjectComponent::GetDefaultObj()
 // Function AugmentedReality.ARObjectComponent.ServerUpdatePayload
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// struct FARObjectUpdatePayload      NewPayload                                                       (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARObjectUpdatePayload      NewPayload                                                       (ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FARObjectUpdatePayload UARObjectComponent::ServerUpdatePayload()
+void UARObjectComponent::ServerUpdatePayload(struct FARObjectUpdatePayload* NewPayload)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3451,7 +3450,8 @@ struct FARObjectUpdatePayload UARObjectComponent::ServerUpdatePayload()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewPayload != nullptr)
+		*NewPayload = std::move(Parms.NewPayload);
 
 }
 
@@ -3459,7 +3459,7 @@ struct FARObjectUpdatePayload UARObjectComponent::ServerUpdatePayload()
 // Function AugmentedReality.ARObjectComponent.ReceiveUpdate
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARObjectUpdatePayload      Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARObjectUpdatePayload      Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARObjectUpdatePayload UARObjectComponent::ReceiveUpdate()
 {
@@ -3481,7 +3481,7 @@ struct FARObjectUpdatePayload UARObjectComponent::ReceiveUpdate()
 // Function AugmentedReality.ARObjectComponent.ReceiveAdd
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARObjectUpdatePayload      Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARObjectUpdatePayload      Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARObjectUpdatePayload UARObjectComponent::ReceiveAdd()
 {
@@ -3531,9 +3531,9 @@ class UARMeshComponent* UARMeshComponent::GetDefaultObj()
 // Function AugmentedReality.ARMeshComponent.ServerUpdatePayload
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// struct FARMeshUpdatePayload        NewPayload                                                       (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARMeshUpdatePayload        NewPayload                                                       (ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FARMeshUpdatePayload UARMeshComponent::ServerUpdatePayload()
+void UARMeshComponent::ServerUpdatePayload(struct FARMeshUpdatePayload* NewPayload)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3551,7 +3551,8 @@ struct FARMeshUpdatePayload UARMeshComponent::ServerUpdatePayload()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewPayload != nullptr)
+		*NewPayload = std::move(Parms.NewPayload);
 
 }
 
@@ -3559,7 +3560,7 @@ struct FARMeshUpdatePayload UARMeshComponent::ServerUpdatePayload()
 // Function AugmentedReality.ARMeshComponent.ReceiveUpdate
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARMeshUpdatePayload        Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARMeshUpdatePayload        Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARMeshUpdatePayload UARMeshComponent::ReceiveUpdate()
 {
@@ -3581,7 +3582,7 @@ struct FARMeshUpdatePayload UARMeshComponent::ReceiveUpdate()
 // Function AugmentedReality.ARMeshComponent.ReceiveAdd
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARMeshUpdatePayload        Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARMeshUpdatePayload        Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARMeshUpdatePayload UARMeshComponent::ReceiveAdd()
 {
@@ -3631,9 +3632,9 @@ class UARGeoAnchorComponent* UARGeoAnchorComponent::GetDefaultObj()
 // Function AugmentedReality.ARGeoAnchorComponent.SetGeoAnchorComponentDebugMode
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// enum class EGeoAnchorComponentDebugModeNewDebugMode                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EGeoAnchorComponentDebugModeNewDebugMode                                                     (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class EGeoAnchorComponentDebugMode UARGeoAnchorComponent::SetGeoAnchorComponentDebugMode()
+void UARGeoAnchorComponent::SetGeoAnchorComponentDebugMode(enum class EGeoAnchorComponentDebugMode* NewDebugMode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3651,7 +3652,8 @@ enum class EGeoAnchorComponentDebugMode UARGeoAnchorComponent::SetGeoAnchorCompo
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewDebugMode != nullptr)
+		*NewDebugMode = Parms.NewDebugMode;
 
 }
 
@@ -3659,9 +3661,9 @@ enum class EGeoAnchorComponentDebugMode UARGeoAnchorComponent::SetGeoAnchorCompo
 // Function AugmentedReality.ARGeoAnchorComponent.ServerUpdatePayload
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// struct FARGeoAnchorUpdatePayload   NewPayload                                                       (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARGeoAnchorUpdatePayload   NewPayload                                                       (ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FARGeoAnchorUpdatePayload UARGeoAnchorComponent::ServerUpdatePayload()
+void UARGeoAnchorComponent::ServerUpdatePayload(struct FARGeoAnchorUpdatePayload* NewPayload)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3679,7 +3681,8 @@ struct FARGeoAnchorUpdatePayload UARGeoAnchorComponent::ServerUpdatePayload()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewPayload != nullptr)
+		*NewPayload = std::move(Parms.NewPayload);
 
 }
 
@@ -3687,7 +3690,7 @@ struct FARGeoAnchorUpdatePayload UARGeoAnchorComponent::ServerUpdatePayload()
 // Function AugmentedReality.ARGeoAnchorComponent.ReceiveUpdate
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARGeoAnchorUpdatePayload   Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARGeoAnchorUpdatePayload   Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARGeoAnchorUpdatePayload UARGeoAnchorComponent::ReceiveUpdate()
 {
@@ -3709,7 +3712,7 @@ struct FARGeoAnchorUpdatePayload UARGeoAnchorComponent::ReceiveUpdate()
 // Function AugmentedReality.ARGeoAnchorComponent.ReceiveAdd
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FARGeoAnchorUpdatePayload   Payload                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARGeoAnchorUpdatePayload   Payload                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FARGeoAnchorUpdatePayload UARGeoAnchorComponent::ReceiveAdd()
 {
@@ -3759,11 +3762,11 @@ class UARDependencyHandler* UARDependencyHandler::GetDefaultObj()
 // Function AugmentedReality.ARDependencyHandler.StartARSessionLatent
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UARSessionConfig*            SessionConfig                                                    (ConstParm, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FLatentActionInfo           LatentInfo                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARSessionConfig*            SessionConfig                                                    (Edit, ConstParm, Net, EditFixedSize, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FLatentActionInfo           LatentInfo                                                       (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UARSessionConfig* UARDependencyHandler::StartARSessionLatent(const struct FLatentActionInfo& LatentInfo)
+struct FLatentActionInfo UARDependencyHandler::StartARSessionLatent(class UARSessionConfig* SessionConfig)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3772,7 +3775,7 @@ class UARSessionConfig* UARDependencyHandler::StartARSessionLatent(const struct 
 
 	Params::UARDependencyHandler_StartARSessionLatent_Params Parms{};
 
-	Parms.LatentInfo = LatentInfo;
+	Parms.SessionConfig = SessionConfig;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3790,12 +3793,12 @@ class UARSessionConfig* UARDependencyHandler::StartARSessionLatent(const struct 
 // Function AugmentedReality.ARDependencyHandler.RequestARSessionPermission
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UARSessionConfig*            SessionConfig                                                    (ConstParm, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FLatentActionInfo           LatentInfo                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class EARServicePermissionRequestResultOutPermissionResult                                              (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARSessionConfig*            SessionConfig                                                    (Edit, ConstParm, Net, EditFixedSize, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FLatentActionInfo           LatentInfo                                                       (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARServicePermissionRequestResultOutPermissionResult                                              (BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class EARServicePermissionRequestResult UARDependencyHandler::RequestARSessionPermission(const struct FLatentActionInfo& LatentInfo)
+struct FLatentActionInfo UARDependencyHandler::RequestARSessionPermission(class UARSessionConfig* SessionConfig, enum class EARServicePermissionRequestResult OutPermissionResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3804,7 +3807,8 @@ enum class EARServicePermissionRequestResult UARDependencyHandler::RequestARSess
 
 	Params::UARDependencyHandler_RequestARSessionPermission_Params Parms{};
 
-	Parms.LatentInfo = LatentInfo;
+	Parms.SessionConfig = SessionConfig;
+	Parms.OutPermissionResult = OutPermissionResult;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3822,11 +3826,11 @@ enum class EARServicePermissionRequestResult UARDependencyHandler::RequestARSess
 // Function AugmentedReality.ARDependencyHandler.InstallARService
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FLatentActionInfo           LatentInfo                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class EARServiceInstallRequestResultOutInstallResult                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLatentActionInfo           LatentInfo                                                       (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARServiceInstallRequestResultOutInstallResult                                                 (Edit, ConstParm, ExportObject, Net, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class EARServiceInstallRequestResult UARDependencyHandler::InstallARService(const struct FLatentActionInfo& LatentInfo)
+struct FLatentActionInfo UARDependencyHandler::InstallARService(enum class EARServiceInstallRequestResult OutInstallResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3835,7 +3839,7 @@ enum class EARServiceInstallRequestResult UARDependencyHandler::InstallARService
 
 	Params::UARDependencyHandler_InstallARService_Params Parms{};
 
-	Parms.LatentInfo = LatentInfo;
+	Parms.OutInstallResult = OutInstallResult;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3853,9 +3857,9 @@ enum class EARServiceInstallRequestResult UARDependencyHandler::InstallARService
 // Function AugmentedReality.ARDependencyHandler.GetARDependencyHandler
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UARDependencyHandler*        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARDependencyHandler*        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARDependencyHandler::GetARDependencyHandler(class UARDependencyHandler** ReturnValue)
+class UARDependencyHandler* UARDependencyHandler::GetARDependencyHandler()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3873,8 +3877,7 @@ void UARDependencyHandler::GetARDependencyHandler(class UARDependencyHandler** R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3882,11 +3885,11 @@ void UARDependencyHandler::GetARDependencyHandler(class UARDependencyHandler** R
 // Function AugmentedReality.ARDependencyHandler.CheckARServiceAvailability
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FLatentActionInfo           LatentInfo                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class EARServiceAvailability  OutAvailability                                                  (Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLatentActionInfo           LatentInfo                                                       (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARServiceAvailability  OutAvailability                                                  (ConstParm, Net, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class EARServiceAvailability UARDependencyHandler::CheckARServiceAvailability(const struct FLatentActionInfo& LatentInfo)
+struct FLatentActionInfo UARDependencyHandler::CheckARServiceAvailability(enum class EARServiceAvailability OutAvailability)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3895,7 +3898,7 @@ enum class EARServiceAvailability UARDependencyHandler::CheckARServiceAvailabili
 
 	Params::UARDependencyHandler_CheckARServiceAvailability_Params Parms{};
 
-	Parms.LatentInfo = LatentInfo;
+	Parms.OutAvailability = OutAvailability;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3941,9 +3944,9 @@ class UARGeoTrackingSupport* UARGeoTrackingSupport::GetDefaultObj()
 // Function AugmentedReality.ARGeoTrackingSupport.GetGeoTrackingSupport
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UARGeoTrackingSupport*       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARGeoTrackingSupport*       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARGeoTrackingSupport::GetGeoTrackingSupport(class UARGeoTrackingSupport** ReturnValue)
+class UARGeoTrackingSupport* UARGeoTrackingSupport::GetGeoTrackingSupport()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3961,8 +3964,7 @@ void UARGeoTrackingSupport::GetGeoTrackingSupport(class UARGeoTrackingSupport** 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3970,9 +3972,9 @@ void UARGeoTrackingSupport::GetGeoTrackingSupport(class UARGeoTrackingSupport** 
 // Function AugmentedReality.ARGeoTrackingSupport.GetGeoTrackingStateReason
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARGeoTrackingStateReasonReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARGeoTrackingStateReasonReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARGeoTrackingSupport::GetGeoTrackingStateReason(enum class EARGeoTrackingStateReason* ReturnValue)
+enum class EARGeoTrackingStateReason UARGeoTrackingSupport::GetGeoTrackingStateReason()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3990,8 +3992,7 @@ void UARGeoTrackingSupport::GetGeoTrackingStateReason(enum class EARGeoTrackingS
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3999,9 +4000,9 @@ void UARGeoTrackingSupport::GetGeoTrackingStateReason(enum class EARGeoTrackingS
 // Function AugmentedReality.ARGeoTrackingSupport.GetGeoTrackingState
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARGeoTrackingState     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARGeoTrackingState     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARGeoTrackingSupport::GetGeoTrackingState(enum class EARGeoTrackingState* ReturnValue)
+enum class EARGeoTrackingState UARGeoTrackingSupport::GetGeoTrackingState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4019,8 +4020,7 @@ void UARGeoTrackingSupport::GetGeoTrackingState(enum class EARGeoTrackingState* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4028,9 +4028,9 @@ void UARGeoTrackingSupport::GetGeoTrackingState(enum class EARGeoTrackingState* 
 // Function AugmentedReality.ARGeoTrackingSupport.GetGeoTrackingAccuracy
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARGeoTrackingAccuracy  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARGeoTrackingAccuracy  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARGeoTrackingSupport::GetGeoTrackingAccuracy(enum class EARGeoTrackingAccuracy* ReturnValue)
+enum class EARGeoTrackingAccuracy UARGeoTrackingSupport::GetGeoTrackingAccuracy()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4048,8 +4048,7 @@ void UARGeoTrackingSupport::GetGeoTrackingAccuracy(enum class EARGeoTrackingAccu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4057,13 +4056,13 @@ void UARGeoTrackingSupport::GetGeoTrackingAccuracy(enum class EARGeoTrackingAccu
 // Function AugmentedReality.ARGeoTrackingSupport.AddGeoAnchorAtLocationWithAltitude
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Longitude                                                        (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, GlobalConfig, InstancedReference)
-// float                              Latitude                                                         (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              AltitudeMeters                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-// class FString                      OptionalAnchorName                                               (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              Longitude                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, InstancedReference)
+// float                              Latitude                                                         (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// float                              AltitudeMeters                                                   (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      OptionalAnchorName                                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UARGeoTrackingSupport::AddGeoAnchorAtLocationWithAltitude(float Latitude, float AltitudeMeters, bool* ReturnValue)
+bool UARGeoTrackingSupport::AddGeoAnchorAtLocationWithAltitude(const class FString& OptionalAnchorName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4072,8 +4071,7 @@ class FString UARGeoTrackingSupport::AddGeoAnchorAtLocationWithAltitude(float La
 
 	Params::UARGeoTrackingSupport_AddGeoAnchorAtLocationWithAltitude_Params Parms{};
 
-	Parms.Latitude = Latitude;
-	Parms.AltitudeMeters = AltitudeMeters;
+	Parms.OptionalAnchorName = OptionalAnchorName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4082,9 +4080,6 @@ class FString UARGeoTrackingSupport::AddGeoAnchorAtLocationWithAltitude(float La
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -4094,12 +4089,12 @@ class FString UARGeoTrackingSupport::AddGeoAnchorAtLocationWithAltitude(float La
 // Function AugmentedReality.ARGeoTrackingSupport.AddGeoAnchorAtLocation
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Longitude                                                        (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, GlobalConfig, InstancedReference)
-// float                              Latitude                                                         (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      OptionalAnchorName                                               (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              Longitude                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, InstancedReference)
+// float                              Latitude                                                         (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      OptionalAnchorName                                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UARGeoTrackingSupport::AddGeoAnchorAtLocation(float Latitude, bool* ReturnValue)
+bool UARGeoTrackingSupport::AddGeoAnchorAtLocation(const class FString& OptionalAnchorName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4108,7 +4103,7 @@ class FString UARGeoTrackingSupport::AddGeoAnchorAtLocation(float Latitude, bool
 
 	Params::UARGeoTrackingSupport_AddGeoAnchorAtLocation_Params Parms{};
 
-	Parms.Latitude = Latitude;
+	Parms.OptionalAnchorName = OptionalAnchorName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4117,9 +4112,6 @@ class FString UARGeoTrackingSupport::AddGeoAnchorAtLocation(float Latitude, bool
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -4157,10 +4149,10 @@ class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy* UCheckGeoTrackingAva
 // DelegateFunction AugmentedReality.CheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy.GeoTrackingAvailabilityDelegate__DelegateSignature
 // (MulticastDelegate, Public, Delegate)
 // Parameters:
-// bool                               bIsAvailable                                                     (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bIsAvailable                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 // class FString                      Error                                                            (ExportObject, EditFixedSize, Parm, ReturnParm)
 
-class FString UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy::GeoTrackingAvailabilityDelegate__DelegateSignature(bool bIsAvailable)
+class FString UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy::GeoTrackingAvailabilityDelegate__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4169,7 +4161,6 @@ class FString UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy::GeoTrackingA
 
 	Params::UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy_GeoTrackingAvailabilityDelegate__DelegateSignature_Params Parms{};
 
-	Parms.bIsAvailable = bIsAvailable;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -4181,12 +4172,12 @@ class FString UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy::GeoTrackingA
 // Function AugmentedReality.CheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy.CheckGeoTrackingAvailabilityAtLocation
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              Longitude                                                        (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, GlobalConfig, InstancedReference)
-// float                              Latitude                                                         (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              Longitude                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, InstancedReference)
+// float                              Latitude                                                         (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy::CheckGeoTrackingAvailabilityAtLocation(float Latitude, class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy** ReturnValue)
+class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy* UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy::CheckGeoTrackingAvailabilityAtLocation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4195,7 +4186,6 @@ float UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy::CheckGeoTrackingAvai
 
 	Params::UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy_CheckGeoTrackingAvailabilityAtLocation_Params Parms{};
 
-	Parms.Latitude = Latitude;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4205,9 +4195,6 @@ float UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy::CheckGeoTrackingAvai
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -4216,10 +4203,10 @@ float UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy::CheckGeoTrackingAvai
 // Function AugmentedReality.CheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy.CheckGeoTrackingAvailability
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy::CheckGeoTrackingAvailability(class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy** ReturnValue)
+class UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy* UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy::CheckGeoTrackingAvailability()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4236,9 +4223,6 @@ class UObject* UCheckGeoTrackingAvailabilityAsyncTaskBlueprintProxy::CheckGeoTra
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -4276,12 +4260,12 @@ class UGetGeoLocationAsyncTaskBlueprintProxy* UGetGeoLocationAsyncTaskBlueprintP
 // DelegateFunction AugmentedReality.GetGeoLocationAsyncTaskBlueprintProxy.GetGeoLocationDelegate__DelegateSignature
 // (MulticastDelegate, Public, Delegate)
 // Parameters:
-// float                              Longitude                                                        (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, GlobalConfig, InstancedReference)
-// float                              Latitude                                                         (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              Altitude                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Longitude                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, InstancedReference)
+// float                              Latitude                                                         (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// float                              Altitude                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 // class FString                      Error                                                            (ExportObject, EditFixedSize, Parm, ReturnParm)
 
-class FString UGetGeoLocationAsyncTaskBlueprintProxy::GetGeoLocationDelegate__DelegateSignature(float Latitude, float* Altitude)
+class FString UGetGeoLocationAsyncTaskBlueprintProxy::GetGeoLocationDelegate__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4290,12 +4274,8 @@ class FString UGetGeoLocationAsyncTaskBlueprintProxy::GetGeoLocationDelegate__De
 
 	Params::UGetGeoLocationAsyncTaskBlueprintProxy_GetGeoLocationDelegate__DelegateSignature_Params Parms{};
 
-	Parms.Latitude = Latitude;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (Altitude != nullptr)
-		*Altitude = Parms.Altitude;
 
 	return Parms.ReturnValue;
 
@@ -4305,11 +4285,11 @@ class FString UGetGeoLocationAsyncTaskBlueprintProxy::GetGeoLocationDelegate__De
 // Function AugmentedReality.GetGeoLocationAsyncTaskBlueprintProxy.GetGeoLocationAtWorldPosition
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     WorldPosition                                                    (Edit, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, InstancedReference)
-// class UGetGeoLocationAsyncTaskBlueprintProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     WorldPosition                                                    (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig)
+// class UGetGeoLocationAsyncTaskBlueprintProxy*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UGetGeoLocationAsyncTaskBlueprintProxy::GetGeoLocationAtWorldPosition(const struct FVector& WorldPosition, class UGetGeoLocationAsyncTaskBlueprintProxy** ReturnValue)
+class UGetGeoLocationAsyncTaskBlueprintProxy* UGetGeoLocationAsyncTaskBlueprintProxy::GetGeoLocationAtWorldPosition()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4318,7 +4298,6 @@ class UObject* UGetGeoLocationAsyncTaskBlueprintProxy::GetGeoLocationAtWorldPosi
 
 	Params::UGetGeoLocationAsyncTaskBlueprintProxy_GetGeoLocationAtWorldPosition_Params Parms{};
 
-	Parms.WorldPosition = WorldPosition;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4327,9 +4306,6 @@ class UObject* UGetGeoLocationAsyncTaskBlueprintProxy::GetGeoLocationAtWorldPosi
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -4367,10 +4343,10 @@ class UARLifeCycleComponent* UARLifeCycleComponent::GetDefaultObj()
 // Function AugmentedReality.ARLifeCycleComponent.ServerSpawnARActor
 // (Final, Net, NetReliable, Native, Event, Private, NetServer, HasDefaults, NetValidate)
 // Parameters:
-// class UClass*                      ComponentClass                                                   (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FGuid                       NativeID                                                         (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      ComponentClass                                                   (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FGuid                       NativeID                                                         (Edit, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-void UARLifeCycleComponent::ServerSpawnARActor(class UClass* ComponentClass, const struct FGuid& NativeID)
+struct FGuid UARLifeCycleComponent::ServerSpawnARActor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4379,8 +4355,6 @@ void UARLifeCycleComponent::ServerSpawnARActor(class UClass* ComponentClass, con
 
 	Params::UARLifeCycleComponent_ServerSpawnARActor_Params Parms{};
 
-	Parms.ComponentClass = ComponentClass;
-	Parms.NativeID = NativeID;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4389,6 +4363,8 @@ void UARLifeCycleComponent::ServerSpawnARActor(class UClass* ComponentClass, con
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -4448,11 +4424,11 @@ void UARLifeCycleComponent::InstanceARActorToBeDestroyedDelegate__DelegateSignat
 // DelegateFunction AugmentedReality.ARLifeCycleComponent.InstanceARActorSpawnedDelegate__DelegateSignature
 // (MulticastDelegate, Public, Delegate, HasDefaults)
 // Parameters:
-// class UClass*                      ComponentClass                                                   (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FGuid                       NativeID                                                         (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// class AARActor*                    SpawnedActor                                                     (ConstParm, BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      ComponentClass                                                   (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FGuid                       NativeID                                                         (Edit, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class AARActor*                    SpawnedActor                                                     (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-void UARLifeCycleComponent::InstanceARActorSpawnedDelegate__DelegateSignature(class UClass* ComponentClass, const struct FGuid& NativeID, class AARActor* SpawnedActor)
+class AARActor* UARLifeCycleComponent::InstanceARActorSpawnedDelegate__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4461,11 +4437,10 @@ void UARLifeCycleComponent::InstanceARActorSpawnedDelegate__DelegateSignature(cl
 
 	Params::UARLifeCycleComponent_InstanceARActorSpawnedDelegate__DelegateSignature_Params Parms{};
 
-	Parms.ComponentClass = ComponentClass;
-	Parms.NativeID = NativeID;
-	Parms.SpawnedActor = SpawnedActor;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -4529,9 +4504,9 @@ class UARBasicLightEstimate* UARBasicLightEstimate::GetDefaultObj()
 // Function AugmentedReality.ARBasicLightEstimate.GetAmbientIntensityLumens
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBasicLightEstimate::GetAmbientIntensityLumens(float* ReturnValue)
+float UARBasicLightEstimate::GetAmbientIntensityLumens()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4549,8 +4524,7 @@ void UARBasicLightEstimate::GetAmbientIntensityLumens(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4558,9 +4532,9 @@ void UARBasicLightEstimate::GetAmbientIntensityLumens(float* ReturnValue)
 // Function AugmentedReality.ARBasicLightEstimate.GetAmbientColorTemperatureKelvin
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBasicLightEstimate::GetAmbientColorTemperatureKelvin(float* ReturnValue)
+float UARBasicLightEstimate::GetAmbientColorTemperatureKelvin()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4578,8 +4552,7 @@ void UARBasicLightEstimate::GetAmbientColorTemperatureKelvin(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4587,9 +4560,9 @@ void UARBasicLightEstimate::GetAmbientColorTemperatureKelvin(float* ReturnValue)
 // Function AugmentedReality.ARBasicLightEstimate.GetAmbientColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARBasicLightEstimate::GetAmbientColor(struct FLinearColor* ReturnValue)
+struct FLinearColor UARBasicLightEstimate::GetAmbientColor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4607,8 +4580,7 @@ void UARBasicLightEstimate::GetAmbientColor(struct FLinearColor* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -4672,9 +4644,9 @@ class UARPin* UARPin::GetDefaultObj()
 // Function AugmentedReality.ARPin.GetTrackingState
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARTrackingState        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARTrackingState        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARPin::GetTrackingState(enum class EARTrackingState* ReturnValue)
+enum class EARTrackingState UARPin::GetTrackingState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4692,8 +4664,7 @@ void UARPin::GetTrackingState(enum class EARTrackingState* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4701,9 +4672,9 @@ void UARPin::GetTrackingState(enum class EARTrackingState* ReturnValue)
 // Function AugmentedReality.ARPin.GetTrackedGeometry
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UARTrackedGeometry*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARTrackedGeometry*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARPin::GetTrackedGeometry(class UARTrackedGeometry** ReturnValue)
+class UARTrackedGeometry* UARPin::GetTrackedGeometry()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4721,8 +4692,7 @@ void UARPin::GetTrackedGeometry(class UARTrackedGeometry** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4730,9 +4700,9 @@ void UARPin::GetTrackedGeometry(class UARTrackedGeometry** ReturnValue)
 // Function AugmentedReality.ARPin.GetPinnedComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class USceneComponent*             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USceneComponent*             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARPin::GetPinnedComponent(class USceneComponent** ReturnValue)
+class USceneComponent* UARPin::GetPinnedComponent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4750,8 +4720,7 @@ void UARPin::GetPinnedComponent(class USceneComponent** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4759,9 +4728,9 @@ void UARPin::GetPinnedComponent(class USceneComponent** ReturnValue)
 // Function AugmentedReality.ARPin.GetLocalToWorldTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARPin::GetLocalToWorldTransform(struct FTransform* ReturnValue)
+struct FTransform UARPin::GetLocalToWorldTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4779,8 +4748,7 @@ void UARPin::GetLocalToWorldTransform(struct FTransform* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -4788,9 +4756,9 @@ void UARPin::GetLocalToWorldTransform(struct FTransform* ReturnValue)
 // Function AugmentedReality.ARPin.GetLocalToTrackingTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARPin::GetLocalToTrackingTransform(struct FTransform* ReturnValue)
+struct FTransform UARPin::GetLocalToTrackingTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4808,8 +4776,7 @@ void UARPin::GetLocalToTrackingTransform(struct FTransform* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -4817,9 +4784,9 @@ void UARPin::GetLocalToTrackingTransform(struct FTransform* ReturnValue)
 // Function AugmentedReality.ARPin.GetDebugName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARPin::GetDebugName(class FName* ReturnValue)
+class FName UARPin::GetDebugName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4837,8 +4804,7 @@ void UARPin::GetDebugName(class FName* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4849,9 +4815,9 @@ void UARPin::GetDebugName(class FName* ReturnValue)
 // class UWorld*                      World                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
 // struct FLinearColor                Color                                                            (Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
 // float                              Scale                                                            (Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
-// float                              PersistForSeconds                                                (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              PersistForSeconds                                                (BlueprintVisible, EditFixedSize, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-float UARPin::DebugDraw(struct FLinearColor* Color, float Scale)
+class UWorld* UARPin::DebugDraw(struct FLinearColor* Color, float Scale, float PersistForSeconds)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4861,6 +4827,7 @@ float UARPin::DebugDraw(struct FLinearColor* Color, float Scale)
 	Params::UARPin_DebugDraw_Params Parms{};
 
 	Parms.Scale = Scale;
+	Parms.PersistForSeconds = PersistForSeconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4909,9 +4876,9 @@ class UARSessionConfig* UARSessionConfig::GetDefaultObj()
 // Function AugmentedReality.ARSessionConfig.ShouldResetTrackedObjects
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::ShouldResetTrackedObjects(bool* ReturnValue)
+bool UARSessionConfig::ShouldResetTrackedObjects()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4929,8 +4896,7 @@ void UARSessionConfig::ShouldResetTrackedObjects(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4938,9 +4904,9 @@ void UARSessionConfig::ShouldResetTrackedObjects(bool* ReturnValue)
 // Function AugmentedReality.ARSessionConfig.ShouldResetCameraTracking
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::ShouldResetCameraTracking(bool* ReturnValue)
+bool UARSessionConfig::ShouldResetCameraTracking()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4958,8 +4924,7 @@ void UARSessionConfig::ShouldResetCameraTracking(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4967,9 +4932,9 @@ void UARSessionConfig::ShouldResetCameraTracking(bool* ReturnValue)
 // Function AugmentedReality.ARSessionConfig.ShouldRenderCameraOverlay
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::ShouldRenderCameraOverlay(bool* ReturnValue)
+bool UARSessionConfig::ShouldRenderCameraOverlay()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4987,8 +4952,7 @@ void UARSessionConfig::ShouldRenderCameraOverlay(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4996,9 +4960,9 @@ void UARSessionConfig::ShouldRenderCameraOverlay(bool* ReturnValue)
 // Function AugmentedReality.ARSessionConfig.ShouldEnableCameraTracking
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::ShouldEnableCameraTracking(bool* ReturnValue)
+bool UARSessionConfig::ShouldEnableCameraTracking()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5016,8 +4980,7 @@ void UARSessionConfig::ShouldEnableCameraTracking(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5025,9 +4988,9 @@ void UARSessionConfig::ShouldEnableCameraTracking(bool* ReturnValue)
 // Function AugmentedReality.ARSessionConfig.ShouldEnableAutoFocus
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::ShouldEnableAutoFocus(bool* ReturnValue)
+bool UARSessionConfig::ShouldEnableAutoFocus()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5045,8 +5008,7 @@ void UARSessionConfig::ShouldEnableAutoFocus(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5054,7 +5016,7 @@ void UARSessionConfig::ShouldEnableAutoFocus(bool* ReturnValue)
 // Function AugmentedReality.ARSessionConfig.SetWorldMapData
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<uint8>                      WorldMapData                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<uint8>                      WorldMapData                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UARSessionConfig::SetWorldMapData(const TArray<uint8>& WorldMapData)
 {
@@ -5081,7 +5043,7 @@ void UARSessionConfig::SetWorldMapData(const TArray<uint8>& WorldMapData)
 // Function AugmentedReality.ARSessionConfig.SetSessionTrackingFeatureToEnable
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EARSessionTrackingFeatureInSessionTrackingFeature                                         (Edit, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EARSessionTrackingFeatureInSessionTrackingFeature                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UARSessionConfig::SetSessionTrackingFeatureToEnable(enum class EARSessionTrackingFeature InSessionTrackingFeature)
 {
@@ -5108,7 +5070,7 @@ void UARSessionConfig::SetSessionTrackingFeatureToEnable(enum class EARSessionTr
 // Function AugmentedReality.ARSessionConfig.SetSceneReconstructionMethod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EARSceneReconstruction  InSceneReconstructionMethod                                      (ConstParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EARSceneReconstruction  InSceneReconstructionMethod                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UARSessionConfig::SetSceneReconstructionMethod(enum class EARSceneReconstruction InSceneReconstructionMethod)
 {
@@ -5135,9 +5097,9 @@ void UARSessionConfig::SetSceneReconstructionMethod(enum class EARSceneReconstru
 // Function AugmentedReality.ARSessionConfig.SetResetTrackedObjects
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bNewValue                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bNewValue                                                        (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UARSessionConfig::SetResetTrackedObjects()
+void UARSessionConfig::SetResetTrackedObjects(bool bNewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5146,6 +5108,7 @@ bool UARSessionConfig::SetResetTrackedObjects()
 
 	Params::UARSessionConfig_SetResetTrackedObjects_Params Parms{};
 
+	Parms.bNewValue = bNewValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5155,17 +5118,15 @@ bool UARSessionConfig::SetResetTrackedObjects()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AugmentedReality.ARSessionConfig.SetResetCameraTracking
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bNewValue                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bNewValue                                                        (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UARSessionConfig::SetResetCameraTracking()
+void UARSessionConfig::SetResetCameraTracking(bool bNewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5174,6 +5135,7 @@ bool UARSessionConfig::SetResetCameraTracking()
 
 	Params::UARSessionConfig_SetResetCameraTracking_Params Parms{};
 
+	Parms.bNewValue = bNewValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5183,17 +5145,15 @@ bool UARSessionConfig::SetResetCameraTracking()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AugmentedReality.ARSessionConfig.SetFaceTrackingUpdate
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EARFaceTrackingUpdate   InUpdate                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EARFaceTrackingUpdate   InUpdate                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class EARFaceTrackingUpdate UARSessionConfig::SetFaceTrackingUpdate()
+void UARSessionConfig::SetFaceTrackingUpdate(enum class EARFaceTrackingUpdate InUpdate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5202,6 +5162,7 @@ enum class EARFaceTrackingUpdate UARSessionConfig::SetFaceTrackingUpdate()
 
 	Params::UARSessionConfig_SetFaceTrackingUpdate_Params Parms{};
 
+	Parms.InUpdate = InUpdate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5211,17 +5172,15 @@ enum class EARFaceTrackingUpdate UARSessionConfig::SetFaceTrackingUpdate()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AugmentedReality.ARSessionConfig.SetFaceTrackingDirection
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EARFaceTrackingDirectionInDirection                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// enum class EARFaceTrackingDirectionInDirection                                                      (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-void UARSessionConfig::SetFaceTrackingDirection(enum class EARFaceTrackingDirection* InDirection)
+enum class EARFaceTrackingDirection UARSessionConfig::SetFaceTrackingDirection()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5239,8 +5198,7 @@ void UARSessionConfig::SetFaceTrackingDirection(enum class EARFaceTrackingDirect
 
 	Func->FunctionFlags = Flgs;
 
-	if (InDirection != nullptr)
-		*InDirection = Parms.InDirection;
+	return Parms.ReturnValue;
 
 }
 
@@ -5248,9 +5206,9 @@ void UARSessionConfig::SetFaceTrackingDirection(enum class EARFaceTrackingDirect
 // Function AugmentedReality.ARSessionConfig.SetEnableAutoFocus
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bNewValue                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bNewValue                                                        (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UARSessionConfig::SetEnableAutoFocus()
+void UARSessionConfig::SetEnableAutoFocus(bool bNewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5259,6 +5217,7 @@ bool UARSessionConfig::SetEnableAutoFocus()
 
 	Params::UARSessionConfig_SetEnableAutoFocus_Params Parms{};
 
+	Parms.bNewValue = bNewValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5268,17 +5227,15 @@ bool UARSessionConfig::SetEnableAutoFocus()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AugmentedReality.ARSessionConfig.SetDesiredVideoFormat
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FARVideoFormat              NewFormat                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARVideoFormat              NewFormat                                                        (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FARVideoFormat UARSessionConfig::SetDesiredVideoFormat()
+void UARSessionConfig::SetDesiredVideoFormat(const struct FARVideoFormat& NewFormat)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5287,6 +5244,7 @@ struct FARVideoFormat UARSessionConfig::SetDesiredVideoFormat()
 
 	Params::UARSessionConfig_SetDesiredVideoFormat_Params Parms{};
 
+	Parms.NewFormat = NewFormat;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5296,17 +5254,15 @@ struct FARVideoFormat UARSessionConfig::SetDesiredVideoFormat()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AugmentedReality.ARSessionConfig.SetCandidateObjectList
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class UARCandidateObject*>  InCandidateObjects                                               (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class UARCandidateObject*>  InCandidateObjects                                               (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-TArray<class UARCandidateObject*> UARSessionConfig::SetCandidateObjectList()
+void UARSessionConfig::SetCandidateObjectList(const TArray<class UARCandidateObject*>& InCandidateObjects)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5315,6 +5271,7 @@ TArray<class UARCandidateObject*> UARSessionConfig::SetCandidateObjectList()
 
 	Params::UARSessionConfig_SetCandidateObjectList_Params Parms{};
 
+	Parms.InCandidateObjects = InCandidateObjects;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5324,17 +5281,15 @@ TArray<class UARCandidateObject*> UARSessionConfig::SetCandidateObjectList()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AugmentedReality.ARSessionConfig.GetWorldMapData
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<uint8>                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<uint8>                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetWorldMapData(TArray<uint8>* ReturnValue)
+TArray<uint8> UARSessionConfig::GetWorldMapData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5352,8 +5307,7 @@ void UARSessionConfig::GetWorldMapData(TArray<uint8>* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -5361,9 +5315,9 @@ void UARSessionConfig::GetWorldMapData(TArray<uint8>* ReturnValue)
 // Function AugmentedReality.ARSessionConfig.GetWorldAlignment
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARWorldAlignment       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARWorldAlignment       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetWorldAlignment(enum class EARWorldAlignment* ReturnValue)
+enum class EARWorldAlignment UARSessionConfig::GetWorldAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5381,8 +5335,7 @@ void UARSessionConfig::GetWorldAlignment(enum class EARWorldAlignment* ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5390,9 +5343,9 @@ void UARSessionConfig::GetWorldAlignment(enum class EARWorldAlignment* ReturnVal
 // Function AugmentedReality.ARSessionConfig.GetSessionType
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARSessionType          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARSessionType          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetSessionType(enum class EARSessionType* ReturnValue)
+enum class EARSessionType UARSessionConfig::GetSessionType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5410,8 +5363,7 @@ void UARSessionConfig::GetSessionType(enum class EARSessionType* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5419,9 +5371,9 @@ void UARSessionConfig::GetSessionType(enum class EARSessionType* ReturnValue)
 // Function AugmentedReality.ARSessionConfig.GetSceneReconstructionMethod
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARSceneReconstruction  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARSceneReconstruction  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetSceneReconstructionMethod(enum class EARSceneReconstruction* ReturnValue)
+enum class EARSceneReconstruction UARSessionConfig::GetSceneReconstructionMethod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5439,8 +5391,7 @@ void UARSessionConfig::GetSceneReconstructionMethod(enum class EARSceneReconstru
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5448,9 +5399,9 @@ void UARSessionConfig::GetSceneReconstructionMethod(enum class EARSceneReconstru
 // Function AugmentedReality.ARSessionConfig.GetPlaneDetectionMode
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARPlaneDetectionMode   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARPlaneDetectionMode   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetPlaneDetectionMode(enum class EARPlaneDetectionMode* ReturnValue)
+enum class EARPlaneDetectionMode UARSessionConfig::GetPlaneDetectionMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5468,8 +5419,7 @@ void UARSessionConfig::GetPlaneDetectionMode(enum class EARPlaneDetectionMode* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5477,9 +5427,9 @@ void UARSessionConfig::GetPlaneDetectionMode(enum class EARPlaneDetectionMode* R
 // Function AugmentedReality.ARSessionConfig.GetMaxNumSimultaneousImagesTracked
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetMaxNumSimultaneousImagesTracked(int32* ReturnValue)
+int32 UARSessionConfig::GetMaxNumSimultaneousImagesTracked()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5497,8 +5447,7 @@ void UARSessionConfig::GetMaxNumSimultaneousImagesTracked(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5506,9 +5455,9 @@ void UARSessionConfig::GetMaxNumSimultaneousImagesTracked(int32* ReturnValue)
 // Function AugmentedReality.ARSessionConfig.GetLightEstimationMode
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARLightEstimationMode  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARLightEstimationMode  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetLightEstimationMode(enum class EARLightEstimationMode* ReturnValue)
+enum class EARLightEstimationMode UARSessionConfig::GetLightEstimationMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5526,8 +5475,7 @@ void UARSessionConfig::GetLightEstimationMode(enum class EARLightEstimationMode*
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5535,9 +5483,9 @@ void UARSessionConfig::GetLightEstimationMode(enum class EARLightEstimationMode*
 // Function AugmentedReality.ARSessionConfig.GetFrameSyncMode
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARFrameSyncMode        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARFrameSyncMode        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetFrameSyncMode(enum class EARFrameSyncMode* ReturnValue)
+enum class EARFrameSyncMode UARSessionConfig::GetFrameSyncMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5555,8 +5503,7 @@ void UARSessionConfig::GetFrameSyncMode(enum class EARFrameSyncMode* ReturnValue
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5564,9 +5511,9 @@ void UARSessionConfig::GetFrameSyncMode(enum class EARFrameSyncMode* ReturnValue
 // Function AugmentedReality.ARSessionConfig.GetFaceTrackingUpdate
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARFaceTrackingUpdate   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARFaceTrackingUpdate   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetFaceTrackingUpdate(enum class EARFaceTrackingUpdate* ReturnValue)
+enum class EARFaceTrackingUpdate UARSessionConfig::GetFaceTrackingUpdate()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5584,8 +5531,7 @@ void UARSessionConfig::GetFaceTrackingUpdate(enum class EARFaceTrackingUpdate* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5593,9 +5539,9 @@ void UARSessionConfig::GetFaceTrackingUpdate(enum class EARFaceTrackingUpdate* R
 // Function AugmentedReality.ARSessionConfig.GetFaceTrackingDirection
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARFaceTrackingDirectionReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARFaceTrackingDirectionReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetFaceTrackingDirection(enum class EARFaceTrackingDirection* ReturnValue)
+enum class EARFaceTrackingDirection UARSessionConfig::GetFaceTrackingDirection()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5613,8 +5559,7 @@ void UARSessionConfig::GetFaceTrackingDirection(enum class EARFaceTrackingDirect
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5622,9 +5567,9 @@ void UARSessionConfig::GetFaceTrackingDirection(enum class EARFaceTrackingDirect
 // Function AugmentedReality.ARSessionConfig.GetEnvironmentCaptureProbeType
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EAREnvironmentCaptureProbeTypeReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EAREnvironmentCaptureProbeTypeReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetEnvironmentCaptureProbeType(enum class EAREnvironmentCaptureProbeType* ReturnValue)
+enum class EAREnvironmentCaptureProbeType UARSessionConfig::GetEnvironmentCaptureProbeType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5642,8 +5587,7 @@ void UARSessionConfig::GetEnvironmentCaptureProbeType(enum class EAREnvironmentC
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5651,9 +5595,9 @@ void UARSessionConfig::GetEnvironmentCaptureProbeType(enum class EAREnvironmentC
 // Function AugmentedReality.ARSessionConfig.GetEnabledSessionTrackingFeature
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARSessionTrackingFeatureReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARSessionTrackingFeatureReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetEnabledSessionTrackingFeature(enum class EARSessionTrackingFeature* ReturnValue)
+enum class EARSessionTrackingFeature UARSessionConfig::GetEnabledSessionTrackingFeature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5671,8 +5615,7 @@ void UARSessionConfig::GetEnabledSessionTrackingFeature(enum class EARSessionTra
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5680,9 +5623,9 @@ void UARSessionConfig::GetEnabledSessionTrackingFeature(enum class EARSessionTra
 // Function AugmentedReality.ARSessionConfig.GetDesiredVideoFormat
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FARVideoFormat              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARVideoFormat              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetDesiredVideoFormat(struct FARVideoFormat* ReturnValue)
+struct FARVideoFormat UARSessionConfig::GetDesiredVideoFormat()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5700,8 +5643,7 @@ void UARSessionConfig::GetDesiredVideoFormat(struct FARVideoFormat* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -5709,9 +5651,9 @@ void UARSessionConfig::GetDesiredVideoFormat(struct FARVideoFormat* ReturnValue)
 // Function AugmentedReality.ARSessionConfig.GetCandidateObjectList
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UARCandidateObject*>  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UARCandidateObject*>  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetCandidateObjectList(TArray<class UARCandidateObject*>* ReturnValue)
+TArray<class UARCandidateObject*> UARSessionConfig::GetCandidateObjectList()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5729,8 +5671,7 @@ void UARSessionConfig::GetCandidateObjectList(TArray<class UARCandidateObject*>*
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -5738,9 +5679,9 @@ void UARSessionConfig::GetCandidateObjectList(TArray<class UARCandidateObject*>*
 // Function AugmentedReality.ARSessionConfig.GetCandidateImageList
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UARCandidateImage*>   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UARCandidateImage*>   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARSessionConfig::GetCandidateImageList(TArray<class UARCandidateImage*>* ReturnValue)
+TArray<class UARCandidateImage*> UARSessionConfig::GetCandidateImageList()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5758,8 +5699,7 @@ void UARSessionConfig::GetCandidateImageList(TArray<class UARCandidateImage*>* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -5767,9 +5707,9 @@ void UARSessionConfig::GetCandidateImageList(TArray<class UARCandidateImage*>* R
 // Function AugmentedReality.ARSessionConfig.AddCandidateObject
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UARCandidateObject*          CandidateObject                                                  (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UARCandidateObject*          CandidateObject                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UARCandidateObject* UARSessionConfig::AddCandidateObject()
+void UARSessionConfig::AddCandidateObject(class UARCandidateObject* CandidateObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5778,6 +5718,7 @@ class UARCandidateObject* UARSessionConfig::AddCandidateObject()
 
 	Params::UARSessionConfig_AddCandidateObject_Params Parms{};
 
+	Parms.CandidateObject = CandidateObject;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5787,17 +5728,15 @@ class UARCandidateObject* UARSessionConfig::AddCandidateObject()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AugmentedReality.ARSessionConfig.AddCandidateImage
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UARCandidateImage*           NewCandidateImage                                                (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UARCandidateImage*           NewCandidateImage                                                (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UARCandidateImage* UARSessionConfig::AddCandidateImage()
+void UARSessionConfig::AddCandidateImage(class UARCandidateImage* NewCandidateImage)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5806,6 +5745,7 @@ class UARCandidateImage* UARSessionConfig::AddCandidateImage()
 
 	Params::UARSessionConfig_AddCandidateImage_Params Parms{};
 
+	Parms.NewCandidateImage = NewCandidateImage;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5814,8 +5754,6 @@ class UARCandidateImage* UARSessionConfig::AddCandidateImage()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -5851,9 +5789,9 @@ class AARSharedWorldGameMode* AARSharedWorldGameMode::GetDefaultObj()
 // Function AugmentedReality.ARSharedWorldGameMode.SetPreviewImageData
 // (Final, BlueprintAuthorityOnly, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<uint8>                      ImageData                                                        (EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<uint8>                      ImageData                                                        (Edit, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void AARSharedWorldGameMode::SetPreviewImageData(const TArray<uint8>& ImageData)
+TArray<uint8> AARSharedWorldGameMode::SetPreviewImageData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5862,7 +5800,6 @@ void AARSharedWorldGameMode::SetPreviewImageData(const TArray<uint8>& ImageData)
 
 	Params::AARSharedWorldGameMode_SetPreviewImageData_Params Parms{};
 
-	Parms.ImageData = ImageData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5871,6 +5808,8 @@ void AARSharedWorldGameMode::SetPreviewImageData(const TArray<uint8>& ImageData)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -5902,9 +5841,9 @@ void AARSharedWorldGameMode::SetARWorldSharingIsReady()
 // Function AugmentedReality.ARSharedWorldGameMode.SetARSharedWorldData
 // (Final, BlueprintAuthorityOnly, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<uint8>                      ARWorldData                                                      (Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<uint8>                      ARWorldData                                                      (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void AARSharedWorldGameMode::SetARSharedWorldData(const TArray<uint8>& ARWorldData)
+TArray<uint8> AARSharedWorldGameMode::SetARSharedWorldData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5913,7 +5852,6 @@ void AARSharedWorldGameMode::SetARSharedWorldData(const TArray<uint8>& ARWorldDa
 
 	Params::AARSharedWorldGameMode_SetARSharedWorldData_Params Parms{};
 
-	Parms.ARWorldData = ARWorldData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5923,15 +5861,17 @@ void AARSharedWorldGameMode::SetARSharedWorldData(const TArray<uint8>& ARWorldDa
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AugmentedReality.ARSharedWorldGameMode.GetARSharedWorldGameState
 // (Final, BlueprintAuthorityOnly, Native, Public, BlueprintCallable)
 // Parameters:
-// class AARSharedWorldGameState*     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AARSharedWorldGameState*     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void AARSharedWorldGameMode::GetARSharedWorldGameState(class AARSharedWorldGameState** ReturnValue)
+class AARSharedWorldGameState* AARSharedWorldGameMode::GetARSharedWorldGameState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5949,8 +5889,7 @@ void AARSharedWorldGameMode::GetARSharedWorldGameState(class AARSharedWorldGameS
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6057,9 +5996,9 @@ void AARSharedWorldPlayerController::ServerMarkReadyForReceiving()
 // (Net, NetReliable, Native, Event, Public, NetClient, NetValidate)
 // Parameters:
 // int32                              Offset                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
-// TArray<uint8>                      Buffer                                                           (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<uint8>                      Buffer                                                           (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 AARSharedWorldPlayerController::ClientUpdatePreviewImageData(TArray<uint8>* Buffer)
+TArray<uint8> AARSharedWorldPlayerController::ClientUpdatePreviewImageData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6077,9 +6016,6 @@ int32 AARSharedWorldPlayerController::ClientUpdatePreviewImageData(TArray<uint8>
 
 	Func->FunctionFlags = Flgs;
 
-	if (Buffer != nullptr)
-		*Buffer = std::move(Parms.Buffer);
-
 	return Parms.ReturnValue;
 
 }
@@ -6089,9 +6025,9 @@ int32 AARSharedWorldPlayerController::ClientUpdatePreviewImageData(TArray<uint8>
 // (Net, NetReliable, Native, Event, Public, NetClient, NetValidate)
 // Parameters:
 // int32                              Offset                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
-// TArray<uint8>                      Buffer                                                           (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<uint8>                      Buffer                                                           (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 AARSharedWorldPlayerController::ClientUpdateARWorldData(TArray<uint8>* Buffer)
+TArray<uint8> AARSharedWorldPlayerController::ClientUpdateARWorldData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6109,9 +6045,6 @@ int32 AARSharedWorldPlayerController::ClientUpdateARWorldData(TArray<uint8>* Buf
 
 	Func->FunctionFlags = Flgs;
 
-	if (Buffer != nullptr)
-		*Buffer = std::move(Parms.Buffer);
-
 	return Parms.ReturnValue;
 
 }
@@ -6120,10 +6053,10 @@ int32 AARSharedWorldPlayerController::ClientUpdateARWorldData(TArray<uint8>* Buf
 // Function AugmentedReality.ARSharedWorldPlayerController.ClientInitSharedWorld
 // (Net, NetReliable, Native, Event, Public, NetClient, NetValidate)
 // Parameters:
-// int32                              PreviewImageSize                                                 (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              ARWorldDataSize                                                  (Edit, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              PreviewImageSize                                                 (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ARWorldDataSize                                                  (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void AARSharedWorldPlayerController::ClientInitSharedWorld(int32 PreviewImageSize, int32 ARWorldDataSize)
+int32 AARSharedWorldPlayerController::ClientInitSharedWorld()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6132,8 +6065,6 @@ void AARSharedWorldPlayerController::ClientInitSharedWorld(int32 PreviewImageSiz
 
 	Params::AARSharedWorldPlayerController_ClientInitSharedWorld_Params Parms{};
 
-	Parms.PreviewImageSize = PreviewImageSize;
-	Parms.ARWorldDataSize = ARWorldDataSize;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6142,6 +6073,8 @@ void AARSharedWorldPlayerController::ClientInitSharedWorld(int32 PreviewImageSiz
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -6177,9 +6110,9 @@ class AARSkyLight* AARSkyLight::GetDefaultObj()
 // Function AugmentedReality.ARSkyLight.SetEnvironmentCaptureProbe
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UAREnvironmentCaptureProbe*  InCaptureProbe                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UAREnvironmentCaptureProbe*  InCaptureProbe                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void AARSkyLight::SetEnvironmentCaptureProbe(class UAREnvironmentCaptureProbe* InCaptureProbe)
+class UAREnvironmentCaptureProbe* AARSkyLight::SetEnvironmentCaptureProbe()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6188,7 +6121,6 @@ void AARSkyLight::SetEnvironmentCaptureProbe(class UAREnvironmentCaptureProbe* I
 
 	Params::AARSkyLight_SetEnvironmentCaptureProbe_Params Parms{};
 
-	Parms.InCaptureProbe = InCaptureProbe;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6197,6 +6129,8 @@ void AARSkyLight::SetEnvironmentCaptureProbe(class UAREnvironmentCaptureProbe* I
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -6372,9 +6306,9 @@ class UARTrackedGeometry* UARTrackedGeometry::GetDefaultObj()
 // Function AugmentedReality.ARTrackedGeometry.IsTracked
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedGeometry::IsTracked(bool* ReturnValue)
+bool UARTrackedGeometry::IsTracked()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6392,8 +6326,7 @@ void UARTrackedGeometry::IsTracked(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6401,10 +6334,10 @@ void UARTrackedGeometry::IsTracked(bool* ReturnValue)
 // Function AugmentedReality.ARTrackedGeometry.HasSpatialMeshUsageFlag
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARSpatialMeshUsageFlagsInFlag                                                           (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARSpatialMeshUsageFlagsInFlag                                                           (Edit, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedGeometry::HasSpatialMeshUsageFlag(enum class EARSpatialMeshUsageFlags InFlag, bool* ReturnValue)
+bool UARTrackedGeometry::HasSpatialMeshUsageFlag()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6413,7 +6346,6 @@ void UARTrackedGeometry::HasSpatialMeshUsageFlag(enum class EARSpatialMeshUsageF
 
 	Params::UARTrackedGeometry_HasSpatialMeshUsageFlag_Params Parms{};
 
-	Parms.InFlag = InFlag;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6423,8 +6355,7 @@ void UARTrackedGeometry::HasSpatialMeshUsageFlag(enum class EARSpatialMeshUsageF
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6432,9 +6363,9 @@ void UARTrackedGeometry::HasSpatialMeshUsageFlag(enum class EARSpatialMeshUsageF
 // Function AugmentedReality.ARTrackedGeometry.GetUnderlyingMesh
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMRMeshComponent*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMRMeshComponent*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedGeometry::GetUnderlyingMesh(class UMRMeshComponent** ReturnValue)
+class UMRMeshComponent* UARTrackedGeometry::GetUnderlyingMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6452,8 +6383,7 @@ void UARTrackedGeometry::GetUnderlyingMesh(class UMRMeshComponent** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6461,9 +6391,9 @@ void UARTrackedGeometry::GetUnderlyingMesh(class UMRMeshComponent** ReturnValue)
 // Function AugmentedReality.ARTrackedGeometry.GetTrackingState
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARTrackingState        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARTrackingState        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedGeometry::GetTrackingState(enum class EARTrackingState* ReturnValue)
+enum class EARTrackingState UARTrackedGeometry::GetTrackingState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6481,8 +6411,7 @@ void UARTrackedGeometry::GetTrackingState(enum class EARTrackingState* ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6490,9 +6419,9 @@ void UARTrackedGeometry::GetTrackingState(enum class EARTrackingState* ReturnVal
 // Function AugmentedReality.ARTrackedGeometry.GetObjectClassification
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARObjectClassification ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARObjectClassification ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedGeometry::GetObjectClassification(enum class EARObjectClassification* ReturnValue)
+enum class EARObjectClassification UARTrackedGeometry::GetObjectClassification()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6510,8 +6439,7 @@ void UARTrackedGeometry::GetObjectClassification(enum class EARObjectClassificat
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6519,9 +6447,9 @@ void UARTrackedGeometry::GetObjectClassification(enum class EARObjectClassificat
 // Function AugmentedReality.ARTrackedGeometry.GetName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedGeometry::GetName(class FString* ReturnValue)
+class FString UARTrackedGeometry::GetName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6539,8 +6467,7 @@ void UARTrackedGeometry::GetName(class FString* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6548,9 +6475,9 @@ void UARTrackedGeometry::GetName(class FString* ReturnValue)
 // Function AugmentedReality.ARTrackedGeometry.GetLocalToWorldTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedGeometry::GetLocalToWorldTransform(struct FTransform* ReturnValue)
+struct FTransform UARTrackedGeometry::GetLocalToWorldTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6568,8 +6495,7 @@ void UARTrackedGeometry::GetLocalToWorldTransform(struct FTransform* ReturnValue
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6577,9 +6503,9 @@ void UARTrackedGeometry::GetLocalToWorldTransform(struct FTransform* ReturnValue
 // Function AugmentedReality.ARTrackedGeometry.GetLocalToTrackingTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedGeometry::GetLocalToTrackingTransform(struct FTransform* ReturnValue)
+struct FTransform UARTrackedGeometry::GetLocalToTrackingTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6597,8 +6523,7 @@ void UARTrackedGeometry::GetLocalToTrackingTransform(struct FTransform* ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6606,9 +6531,9 @@ void UARTrackedGeometry::GetLocalToTrackingTransform(struct FTransform* ReturnVa
 // Function AugmentedReality.ARTrackedGeometry.GetLastUpdateTimestamp
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedGeometry::GetLastUpdateTimestamp(float* ReturnValue)
+float UARTrackedGeometry::GetLastUpdateTimestamp()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6626,8 +6551,7 @@ void UARTrackedGeometry::GetLastUpdateTimestamp(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6635,9 +6559,9 @@ void UARTrackedGeometry::GetLastUpdateTimestamp(float* ReturnValue)
 // Function AugmentedReality.ARTrackedGeometry.GetLastUpdateFrameNumber
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedGeometry::GetLastUpdateFrameNumber(int32* ReturnValue)
+int32 UARTrackedGeometry::GetLastUpdateFrameNumber()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6655,8 +6579,7 @@ void UARTrackedGeometry::GetLastUpdateFrameNumber(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6664,9 +6587,9 @@ void UARTrackedGeometry::GetLastUpdateFrameNumber(int32* ReturnValue)
 // Function AugmentedReality.ARTrackedGeometry.GetDebugName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedGeometry::GetDebugName(class FName* ReturnValue)
+class FName UARTrackedGeometry::GetDebugName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6684,8 +6607,7 @@ void UARTrackedGeometry::GetDebugName(class FName* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6721,9 +6643,9 @@ class UARPlaneGeometry* UARPlaneGeometry::GetDefaultObj()
 // Function AugmentedReality.ARPlaneGeometry.GetSubsumedBy
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UARPlaneGeometry*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARPlaneGeometry*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARPlaneGeometry::GetSubsumedBy(class UARPlaneGeometry** ReturnValue)
+class UARPlaneGeometry* UARPlaneGeometry::GetSubsumedBy()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6741,8 +6663,7 @@ void UARPlaneGeometry::GetSubsumedBy(class UARPlaneGeometry** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6750,9 +6671,9 @@ void UARPlaneGeometry::GetSubsumedBy(class UARPlaneGeometry** ReturnValue)
 // Function AugmentedReality.ARPlaneGeometry.GetOrientation
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARPlaneOrientation     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARPlaneOrientation     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARPlaneGeometry::GetOrientation(enum class EARPlaneOrientation* ReturnValue)
+enum class EARPlaneOrientation UARPlaneGeometry::GetOrientation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6770,8 +6691,7 @@ void UARPlaneGeometry::GetOrientation(enum class EARPlaneOrientation* ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6779,9 +6699,9 @@ void UARPlaneGeometry::GetOrientation(enum class EARPlaneOrientation* ReturnValu
 // Function AugmentedReality.ARPlaneGeometry.GetExtent
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARPlaneGeometry::GetExtent(struct FVector* ReturnValue)
+struct FVector UARPlaneGeometry::GetExtent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6799,8 +6719,7 @@ void UARPlaneGeometry::GetExtent(struct FVector* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6808,9 +6727,9 @@ void UARPlaneGeometry::GetExtent(struct FVector* ReturnValue)
 // Function AugmentedReality.ARPlaneGeometry.GetCenter
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARPlaneGeometry::GetCenter(struct FVector* ReturnValue)
+struct FVector UARPlaneGeometry::GetCenter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6828,8 +6747,7 @@ void UARPlaneGeometry::GetCenter(struct FVector* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6837,9 +6755,9 @@ void UARPlaneGeometry::GetCenter(struct FVector* ReturnValue)
 // Function AugmentedReality.ARPlaneGeometry.GetBoundaryPolygonInLocalSpace
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FVector>             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector>             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARPlaneGeometry::GetBoundaryPolygonInLocalSpace(TArray<struct FVector>* ReturnValue)
+TArray<struct FVector> UARPlaneGeometry::GetBoundaryPolygonInLocalSpace()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6857,8 +6775,7 @@ void UARPlaneGeometry::GetBoundaryPolygonInLocalSpace(TArray<struct FVector>* Re
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6922,9 +6839,9 @@ class UARTrackedImage* UARTrackedImage::GetDefaultObj()
 // Function AugmentedReality.ARTrackedImage.GetEstimateSize
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedImage::GetEstimateSize(struct FVector2D* ReturnValue)
+struct FVector2D UARTrackedImage::GetEstimateSize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6942,8 +6859,7 @@ void UARTrackedImage::GetEstimateSize(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6951,9 +6867,9 @@ void UARTrackedImage::GetEstimateSize(struct FVector2D* ReturnValue)
 // Function AugmentedReality.ARTrackedImage.GetDetectedImage
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UARCandidateImage*           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARCandidateImage*           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedImage::GetDetectedImage(class UARCandidateImage** ReturnValue)
+class UARCandidateImage* UARTrackedImage::GetDetectedImage()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6971,8 +6887,7 @@ void UARTrackedImage::GetDetectedImage(class UARCandidateImage** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7036,10 +6951,10 @@ class UARFaceGeometry* UARFaceGeometry::GetDefaultObj()
 // Function AugmentedReality.ARFaceGeometry.GetWorldSpaceEyeTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EAREye                  Eye                                                              (Edit, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EAREye                  Eye                                                              (ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARFaceGeometry::GetWorldSpaceEyeTransform(enum class EAREye* Eye, struct FTransform* ReturnValue)
+struct FTransform UARFaceGeometry::GetWorldSpaceEyeTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7057,11 +6972,7 @@ void UARFaceGeometry::GetWorldSpaceEyeTransform(enum class EAREye* Eye, struct F
 
 	Func->FunctionFlags = Flgs;
 
-	if (Eye != nullptr)
-		*Eye = Parms.Eye;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -7069,10 +6980,10 @@ void UARFaceGeometry::GetWorldSpaceEyeTransform(enum class EAREye* Eye, struct F
 // Function AugmentedReality.ARFaceGeometry.GetLocalSpaceEyeTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EAREye                  Eye                                                              (Edit, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EAREye                  Eye                                                              (ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARFaceGeometry::GetLocalSpaceEyeTransform(enum class EAREye* Eye, struct FTransform* ReturnValue)
+struct FTransform UARFaceGeometry::GetLocalSpaceEyeTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7090,11 +7001,7 @@ void UARFaceGeometry::GetLocalSpaceEyeTransform(enum class EAREye* Eye, struct F
 
 	Func->FunctionFlags = Flgs;
 
-	if (Eye != nullptr)
-		*Eye = Parms.Eye;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -7102,10 +7009,10 @@ void UARFaceGeometry::GetLocalSpaceEyeTransform(enum class EAREye* Eye, struct F
 // Function AugmentedReality.ARFaceGeometry.GetBlendShapeValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARFaceBlendShape       BlendShape                                                       (Edit, ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARFaceBlendShape       BlendShape                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARFaceGeometry::GetBlendShapeValue(enum class EARFaceBlendShape* BlendShape, float* ReturnValue)
+float UARFaceGeometry::GetBlendShapeValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7123,11 +7030,7 @@ void UARFaceGeometry::GetBlendShapeValue(enum class EARFaceBlendShape* BlendShap
 
 	Func->FunctionFlags = Flgs;
 
-	if (BlendShape != nullptr)
-		*BlendShape = Parms.BlendShape;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7135,9 +7038,9 @@ void UARFaceGeometry::GetBlendShapeValue(enum class EARFaceBlendShape* BlendShap
 // Function AugmentedReality.ARFaceGeometry.GetBlendShapes
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TMap<enum class EARFaceBlendShape, float>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TMap<enum class EARFaceBlendShape, float>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARFaceGeometry::GetBlendShapes(TMap<enum class EARFaceBlendShape, float>* ReturnValue)
+TMap<enum class EARFaceBlendShape, float> UARFaceGeometry::GetBlendShapes()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7155,8 +7058,7 @@ void UARFaceGeometry::GetBlendShapes(TMap<enum class EARFaceBlendShape, float>* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7192,9 +7094,9 @@ class UAREnvironmentCaptureProbe* UAREnvironmentCaptureProbe::GetDefaultObj()
 // Function AugmentedReality.AREnvironmentCaptureProbe.GetExtent
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAREnvironmentCaptureProbe::GetExtent(struct FVector* ReturnValue)
+struct FVector UAREnvironmentCaptureProbe::GetExtent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7212,8 +7114,7 @@ void UAREnvironmentCaptureProbe::GetExtent(struct FVector* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -7221,9 +7122,9 @@ void UAREnvironmentCaptureProbe::GetExtent(struct FVector* ReturnValue)
 // Function AugmentedReality.AREnvironmentCaptureProbe.GetEnvironmentCaptureTexture
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UAREnvironmentCaptureProbeTexture*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAREnvironmentCaptureProbeTexture*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAREnvironmentCaptureProbe::GetEnvironmentCaptureTexture(class UAREnvironmentCaptureProbeTexture** ReturnValue)
+class UAREnvironmentCaptureProbeTexture* UAREnvironmentCaptureProbe::GetEnvironmentCaptureTexture()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7241,8 +7142,7 @@ void UAREnvironmentCaptureProbe::GetEnvironmentCaptureTexture(class UAREnvironme
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7278,9 +7178,9 @@ class UARTrackedObject* UARTrackedObject::GetDefaultObj()
 // Function AugmentedReality.ARTrackedObject.GetDetectedObject
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UARCandidateObject*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UARCandidateObject*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedObject::GetDetectedObject(class UARCandidateObject** ReturnValue)
+class UARCandidateObject* UARTrackedObject::GetDetectedObject()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7298,8 +7198,7 @@ void UARTrackedObject::GetDetectedObject(class UARCandidateObject** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7335,9 +7234,9 @@ class UARTrackedPose* UARTrackedPose::GetDefaultObj()
 // Function AugmentedReality.ARTrackedPose.GetTrackedPoseData
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FARPose3D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FARPose3D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARTrackedPose::GetTrackedPoseData(struct FARPose3D* ReturnValue)
+struct FARPose3D UARTrackedPose::GetTrackedPoseData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7355,8 +7254,7 @@ void UARTrackedPose::GetTrackedPoseData(struct FARPose3D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -7392,13 +7290,13 @@ class UARMeshGeometry* UARMeshGeometry::GetDefaultObj()
 // Function AugmentedReality.ARMeshGeometry.GetObjectClassificationAtLocation
 // (Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     InWorldLocation                                                  (Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EARObjectClassification OutClassification                                                (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     OutClassificationLocation                                        (Edit, Net, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              MaxLocationDiff                                                  (ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     InWorldLocation                                                  (ConstParm, BlueprintReadOnly, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EARObjectClassification OutClassification                                                (ExportObject, OutParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     OutClassificationLocation                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              MaxLocationDiff                                                  (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UARMeshGeometry::GetObjectClassificationAtLocation(bool* ReturnValue)
+bool UARMeshGeometry::GetObjectClassificationAtLocation(struct FVector* InWorldLocation, enum class EARObjectClassification* OutClassification, const struct FVector& OutClassificationLocation, float MaxLocationDiff)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7407,6 +7305,8 @@ float UARMeshGeometry::GetObjectClassificationAtLocation(bool* ReturnValue)
 
 	Params::UARMeshGeometry_GetObjectClassificationAtLocation_Params Parms{};
 
+	Parms.OutClassificationLocation = OutClassificationLocation;
+	Parms.MaxLocationDiff = MaxLocationDiff;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7416,8 +7316,11 @@ float UARMeshGeometry::GetObjectClassificationAtLocation(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InWorldLocation != nullptr)
+		*InWorldLocation = std::move(Parms.InWorldLocation);
+
+	if (OutClassification != nullptr)
+		*OutClassification = Parms.OutClassification;
 
 	return Parms.ReturnValue;
 
@@ -7455,9 +7358,9 @@ class UARGeoAnchor* UARGeoAnchor::GetDefaultObj()
 // Function AugmentedReality.ARGeoAnchor.GetLongitude
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARGeoAnchor::GetLongitude(float* ReturnValue)
+float UARGeoAnchor::GetLongitude()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7475,8 +7378,7 @@ void UARGeoAnchor::GetLongitude(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7484,9 +7386,9 @@ void UARGeoAnchor::GetLongitude(float* ReturnValue)
 // Function AugmentedReality.ARGeoAnchor.GetLatitude
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARGeoAnchor::GetLatitude(float* ReturnValue)
+float UARGeoAnchor::GetLatitude()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7504,8 +7406,7 @@ void UARGeoAnchor::GetLatitude(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7513,9 +7414,9 @@ void UARGeoAnchor::GetLatitude(float* ReturnValue)
 // Function AugmentedReality.ARGeoAnchor.GetAltitudeSource
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARAltitudeSource       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARAltitudeSource       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARGeoAnchor::GetAltitudeSource(enum class EARAltitudeSource* ReturnValue)
+enum class EARAltitudeSource UARGeoAnchor::GetAltitudeSource()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7533,8 +7434,7 @@ void UARGeoAnchor::GetAltitudeSource(enum class EARAltitudeSource* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7542,9 +7442,9 @@ void UARGeoAnchor::GetAltitudeSource(enum class EARAltitudeSource* ReturnValue)
 // Function AugmentedReality.ARGeoAnchor.GetAltitudeMeters
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARGeoAnchor::GetAltitudeMeters(float* ReturnValue)
+float UARGeoAnchor::GetAltitudeMeters()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7562,8 +7462,7 @@ void UARGeoAnchor::GetAltitudeMeters(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7655,9 +7554,9 @@ class UARCandidateImage* UARCandidateImage::GetDefaultObj()
 // Function AugmentedReality.ARCandidateImage.GetPhysicalWidth
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARCandidateImage::GetPhysicalWidth(float* ReturnValue)
+float UARCandidateImage::GetPhysicalWidth()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7675,8 +7574,7 @@ void UARCandidateImage::GetPhysicalWidth(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7684,9 +7582,9 @@ void UARCandidateImage::GetPhysicalWidth(float* ReturnValue)
 // Function AugmentedReality.ARCandidateImage.GetPhysicalHeight
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARCandidateImage::GetPhysicalHeight(float* ReturnValue)
+float UARCandidateImage::GetPhysicalHeight()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7704,8 +7602,7 @@ void UARCandidateImage::GetPhysicalHeight(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7713,9 +7610,9 @@ void UARCandidateImage::GetPhysicalHeight(float* ReturnValue)
 // Function AugmentedReality.ARCandidateImage.GetOrientation
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EARCandidateImageOrientationReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EARCandidateImageOrientationReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARCandidateImage::GetOrientation(enum class EARCandidateImageOrientation* ReturnValue)
+enum class EARCandidateImageOrientation UARCandidateImage::GetOrientation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7733,8 +7630,7 @@ void UARCandidateImage::GetOrientation(enum class EARCandidateImageOrientation* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7742,9 +7638,9 @@ void UARCandidateImage::GetOrientation(enum class EARCandidateImageOrientation* 
 // Function AugmentedReality.ARCandidateImage.GetFriendlyName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARCandidateImage::GetFriendlyName(class FString* ReturnValue)
+class FString UARCandidateImage::GetFriendlyName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7762,8 +7658,7 @@ void UARCandidateImage::GetFriendlyName(class FString* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -7771,9 +7666,9 @@ void UARCandidateImage::GetFriendlyName(class FString* ReturnValue)
 // Function AugmentedReality.ARCandidateImage.GetCandidateTexture
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UTexture2D*                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTexture2D*                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARCandidateImage::GetCandidateTexture(class UTexture2D** ReturnValue)
+class UTexture2D* UARCandidateImage::GetCandidateTexture()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7791,8 +7686,7 @@ void UARCandidateImage::GetCandidateTexture(class UTexture2D** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7828,9 +7722,9 @@ class UARCandidateObject* UARCandidateObject::GetDefaultObj()
 // Function AugmentedReality.ARCandidateObject.SetFriendlyName
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      NewName                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      NewName                                                          (Edit, ExportObject, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UARCandidateObject::SetFriendlyName(const class FString& NewName)
+class FString UARCandidateObject::SetFriendlyName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7839,7 +7733,6 @@ void UARCandidateObject::SetFriendlyName(const class FString& NewName)
 
 	Params::UARCandidateObject_SetFriendlyName_Params Parms{};
 
-	Parms.NewName = NewName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7849,13 +7742,15 @@ void UARCandidateObject::SetFriendlyName(const class FString& NewName)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AugmentedReality.ARCandidateObject.SetCandidateObjectData
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<uint8>                      InCandidateObject                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<uint8>                      InCandidateObject                                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 TArray<uint8> UARCandidateObject::SetCandidateObjectData()
 {
@@ -7883,7 +7778,7 @@ TArray<uint8> UARCandidateObject::SetCandidateObjectData()
 // Function AugmentedReality.ARCandidateObject.SetBoundingBox
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FBox                        InBoundingBox                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FBox                        InBoundingBox                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FBox UARCandidateObject::SetBoundingBox()
 {
@@ -7911,9 +7806,9 @@ struct FBox UARCandidateObject::SetBoundingBox()
 // Function AugmentedReality.ARCandidateObject.GetFriendlyName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARCandidateObject::GetFriendlyName(class FString* ReturnValue)
+class FString UARCandidateObject::GetFriendlyName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7931,8 +7826,7 @@ void UARCandidateObject::GetFriendlyName(class FString* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -7940,9 +7834,9 @@ void UARCandidateObject::GetFriendlyName(class FString* ReturnValue)
 // Function AugmentedReality.ARCandidateObject.GetCandidateObjectData
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<uint8>                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<uint8>                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARCandidateObject::GetCandidateObjectData(TArray<uint8>* ReturnValue)
+TArray<uint8> UARCandidateObject::GetCandidateObjectData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7960,8 +7854,7 @@ void UARCandidateObject::GetCandidateObjectData(TArray<uint8>* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -7969,9 +7862,9 @@ void UARCandidateObject::GetCandidateObjectData(TArray<uint8>* ReturnValue)
 // Function AugmentedReality.ARCandidateObject.GetBoundingBox
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FBox                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBox                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UARCandidateObject::GetBoundingBox(struct FBox* ReturnValue)
+struct FBox UARCandidateObject::GetBoundingBox()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7989,8 +7882,7 @@ void UARCandidateObject::GetBoundingBox(struct FBox* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 

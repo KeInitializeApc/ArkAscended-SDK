@@ -224,7 +224,7 @@ public:
 class UOptimusAnimAttributeDataInterface : public UOptimusComputeDataInterface
 {
 public:
-	struct FOptimusAnimAttributeArray            AttributeArray;                                    // 0x28(0x10)(BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	struct FOptimusAnimAttributeArray            AttributeArray;                                    // 0x28(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusAnimAttributeDataInterface* GetDefaultObj();
@@ -237,7 +237,7 @@ class UOptimusAnimAttributeDataProvider : public UComputeDataProvider
 {
 public:
 	class USkeletalMeshComponent*                SkeletalMesh;                                      // 0x28(0x8)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig)
-	uint8                                        Pad_511[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_700[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusAnimAttributeDataProvider* GetDefaultObj();
@@ -260,7 +260,7 @@ public:
 class UOptimusClothDataProvider : public UComputeDataProvider
 {
 public:
-	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(Edit, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusClothDataProvider* GetDefaultObj();
@@ -283,8 +283,8 @@ public:
 class UOptimusConnectivityDataProvider : public UComputeDataProvider
 {
 public:
-	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_514[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(Edit, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_709[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusConnectivityDataProvider* GetDefaultObj();
@@ -296,8 +296,8 @@ public:
 class UOptimusDebugDrawDataInterface : public UOptimusComputeDataInterface
 {
 public:
-	struct FOptimusDebugDrawParameters           DebugDrawParameters;                               // 0x28(0x14)(Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_519[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	struct FOptimusDebugDrawParameters           DebugDrawParameters;                               // 0x28(0x14)(ExportObject, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_70A[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusDebugDrawDataInterface* GetDefaultObj();
@@ -310,8 +310,8 @@ class UOptimusDebugDrawDataProvider : public UComputeDataProvider
 {
 public:
 	class UPrimitiveComponent*                   PrimitiveComponent;                                // 0x28(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	struct FOptimusDebugDrawParameters           DebugDrawParameters;                               // 0x30(0x14)(Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_51C[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	struct FOptimusDebugDrawParameters           DebugDrawParameters;                               // 0x30(0x14)(ExportObject, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_70C[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusDebugDrawDataProvider* GetDefaultObj();
@@ -334,7 +334,7 @@ public:
 class UOptimusDuplicateVerticesDataProvider : public UComputeDataProvider
 {
 public:
-	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(Edit, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusDuplicateVerticesDataProvider* GetDefaultObj();
@@ -347,8 +347,8 @@ class UOptimusGraphDataInterface : public UComputeDataInterface
 {
 public:
 	TArray<struct FOptimusGraphVariableDescription> Variables;                                         // 0x28(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	int32                                        ParameterBufferSize;                               // 0x38(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_51F[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	int32                                        ParameterBufferSize;                               // 0x38(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_715[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusGraphDataInterface* GetDefaultObj();
@@ -361,9 +361,9 @@ class UOptimusGraphDataProvider : public UComputeDataProvider
 {
 public:
 	class UMeshComponent*                        MeshComponent;                                     // 0x28(0x8)(BlueprintVisible, Parm, Transient, Config, DisableEditOnInstance, EditConst)
-	class UOptimusDeformerInstance*              DeformerInstance;                                  // 0x30(0x8)(Edit, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	class UOptimusDeformerInstance*              DeformerInstance;                                  // 0x30(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
 	TArray<struct FOptimusGraphVariableDescription> Variables;                                         // 0x38(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	uint8                                        Pad_521[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_717[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusGraphDataProvider* GetDefaultObj();
@@ -386,8 +386,8 @@ public:
 class UOptimusHalfEdgeDataProvider : public UComputeDataProvider
 {
 public:
-	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_528[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(Edit, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_71A[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusHalfEdgeDataProvider* GetDefaultObj();
@@ -410,7 +410,7 @@ public:
 class UOptimusMorphTargetDataProvider : public UComputeDataProvider
 {
 public:
-	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(Edit, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusMorphTargetDataProvider* GetDefaultObj();
@@ -422,9 +422,9 @@ public:
 class UOptimusRawBufferDataInterface : public UOptimusComputeDataInterface
 {
 public:
-	struct FShaderValueTypeHandle                ValueType;                                         // 0x28(0x8)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FOptimusDataDomain                    DataDomain;                                        // 0x30(0x40)(ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TWeakObjectPtr<class UOptimusComponentSourceBinding> ComponentSourceBinding;                            // 0x70(0x8)(ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	struct FShaderValueTypeHandle                ValueType;                                         // 0x28(0x8)(Edit, ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FOptimusDataDomain                    DataDomain;                                        // 0x30(0x40)(Edit, ExportObject, Net, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	TWeakObjectPtr<class UOptimusComponentSourceBinding> ComponentSourceBinding;                            // 0x70(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusRawBufferDataInterface* GetDefaultObj();
@@ -447,7 +447,7 @@ public:
 class UOptimusPersistentBufferDataInterface : public UOptimusRawBufferDataInterface
 {
 public:
-	class FName                                  ResourceName;                                      // 0x78(0x8)(ConstParm, ExportObject, Net, OutParm, ZeroConstructor, Config, EditConst, SubobjectReference)
+	class FName                                  ResourceName;                                      // 0x78(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusPersistentBufferDataInterface* GetDefaultObj();
@@ -459,11 +459,11 @@ public:
 class UOptimusRawBufferDataProvider : public UComputeDataProvider
 {
 public:
-	TWeakObjectPtr<class UActorComponent>        Component;                                         // 0x28(0x8)(Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	TWeakObjectPtr<class UOptimusComponentSource> ComponentSource;                                   // 0x30(0x8)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	struct FOptimusDataDomain                    DataDomain;                                        // 0x38(0x40)(ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	int32                                        ElementStride;                                     // 0x78(0x4)(BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	int32                                        RawStride;                                         // 0x7C(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	TWeakObjectPtr<class UActorComponent>        Component;                                         // 0x28(0x8)(Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TWeakObjectPtr<class UOptimusComponentSource> ComponentSource;                                   // 0x30(0x8)(Edit, Net, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	struct FOptimusDataDomain                    DataDomain;                                        // 0x38(0x40)(Edit, ExportObject, Net, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	int32                                        ElementStride;                                     // 0x78(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	int32                                        RawStride;                                         // 0x7C(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusRawBufferDataProvider* GetDefaultObj();
@@ -486,7 +486,7 @@ public:
 class UOptimusPersistentBufferDataProvider : public UOptimusRawBufferDataProvider
 {
 public:
-	uint8                                        Pad_549[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_73B[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusPersistentBufferDataProvider* GetDefaultObj();
@@ -532,7 +532,7 @@ public:
 class UOptimusSkeletonDataProvider : public UComputeDataProvider
 {
 public:
-	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(Edit, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusSkeletonDataProvider* GetDefaultObj();
@@ -555,7 +555,7 @@ public:
 class UOptimusSkinnedMeshDataProvider : public UComputeDataProvider
 {
 public:
-	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(Edit, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusSkinnedMeshDataProvider* GetDefaultObj();
@@ -567,8 +567,8 @@ public:
 class UOptimusSkinnedMeshExecDataInterface : public UOptimusComputeDataInterface
 {
 public:
-	enum class EOptimusSkinnedMeshExecDomain     Domain;                                            // 0x28(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_557[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	enum class EOptimusSkinnedMeshExecDomain     Domain;                                            // 0x28(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_74A[0x7];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusSkinnedMeshExecDataInterface* GetDefaultObj();
@@ -580,9 +580,9 @@ public:
 class UOptimusSkinnedMeshExecDataProvider : public UComputeDataProvider
 {
 public:
-	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	enum class EOptimusSkinnedMeshExecDomain     Domain;                                            // 0x30(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_559[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(Edit, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	enum class EOptimusSkinnedMeshExecDomain     Domain;                                            // 0x30(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7A6[0x7];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusSkinnedMeshExecDataProvider* GetDefaultObj();
@@ -605,8 +605,8 @@ public:
 class UOptimusSkinnedMeshWriteDataProvider : public UComputeDataProvider
 {
 public:
-	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_55C[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	class USkinnedMeshComponent*                 SkinnedMesh;                                       // 0x28(0x8)(Edit, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7A8[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusSkinnedMeshWriteDataProvider* GetDefaultObj();
@@ -618,22 +618,22 @@ public:
 class UOptimusNode : public UObject
 {
 public:
-	uint8                                        Pad_569[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_7B1[0x8];                                      // Fixing Size After Last Property  > TateDumper <
 	class FText                                  DisplayName;                                       // 0x30(0x18)(BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient)
-	struct FVector2D                             GraphPosition;                                     // 0x48(0x10)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	TArray<class UOptimusNodePin*>               Pins;                                              // 0x58(0x10)(BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	TSet<class FName>                            ExpandedPins;                                      // 0x68(0x50)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	enum class EOptimusDiagnosticLevel           DiagnosticLevel;                                   // 0xB8(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_56A[0x57];                                     // Fixing Size Of Struct > TateDumper <
+	struct FVector2D                             GraphPosition;                                     // 0x48(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	TArray<class UOptimusNodePin*>               Pins;                                              // 0x58(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	TSet<class FName>                            ExpandedPins;                                      // 0x68(0x50)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	enum class EOptimusDiagnosticLevel           DiagnosticLevel;                                   // 0xB8(0x1)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7B2[0x57];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusNode* GetDefaultObj();
 
-	struct FVector2D SetGraphPosition(bool* ReturnValue);
-	void GetNodeName(class FName* ReturnValue);
-	void GetNodeCategory(class FName* ReturnValue);
-	void GetGraphPosition(struct FVector2D* ReturnValue);
-	void GetDisplayName(class FText* ReturnValue);
+	bool SetGraphPosition();
+	class FName GetNodeName();
+	class FName GetNodeCategory();
+	struct FVector2D GetGraphPosition();
+	class FText GetDisplayName();
 };
 
 // 0x18 (0x128 - 0x110)
@@ -641,9 +641,9 @@ public:
 class UOptimusNode_DataInterface : public UOptimusNode
 {
 public:
-	uint8                                        Pad_56B[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class UClass*                                DataInterfaceClass;                                // 0x118(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	class UOptimusComputeDataInterface*          DataInterfaceData;                                 // 0x120(0x8)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7B3[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class UClass*                                DataInterfaceClass;                                // 0x118(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	class UOptimusComputeDataInterface*          DataInterfaceData;                                 // 0x120(0x8)(ConstParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusNode_DataInterface* GetDefaultObj();
@@ -666,7 +666,7 @@ public:
 class UOptimusNode_ComponentSource : public UOptimusNode
 {
 public:
-	uint8                                        Pad_56E[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_7B4[0x8];                                      // Fixing Size After Last Property  > TateDumper <
 	class UOptimusComponentSourceBinding*        Binding;                                           // 0x118(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 
 	static class UClass* StaticClass();
@@ -679,7 +679,7 @@ public:
 class UOptimusNode_ComputeKernelBase : public UOptimusNode
 {
 public:
-	uint8                                        Pad_570[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7B5[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusNode_ComputeKernelBase* GetDefaultObj();
@@ -692,14 +692,14 @@ class UOptimusNode_ComputeKernelFunctionGeneratorClass : public UClass
 {
 public:
 	class FName                                  Category;                                          // 0x220(0x8)(ConstParm, BlueprintReadOnly, OutParm, Transient)
-	class FName                                  KernelName;                                        // 0x228(0x8)(Edit, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	struct FOptimusExecutionDomain               ExecutionDomain;                                   // 0x230(0x8)(ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	struct FIntVector                            GroupSize;                                         // 0x238(0xC)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_578[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FOptimusParameterBinding>      InputBindings;                                     // 0x248(0x10)(BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FOptimusParameterBinding>      OutputBindings;                                    // 0x258(0x10)(ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	class FString                                ShaderSource;                                      // 0x268(0x10)(Edit, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_579[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	class FName                                  KernelName;                                        // 0x228(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	struct FOptimusExecutionDomain               ExecutionDomain;                                   // 0x230(0x8)(Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	struct FIntVector                            GroupSize;                                         // 0x238(0xC)(Edit, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7B6[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FOptimusParameterBinding>      InputBindings;                                     // 0x248(0x10)(Edit, BlueprintVisible, Net, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	TArray<struct FOptimusParameterBinding>      OutputBindings;                                    // 0x258(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	class FString                                ShaderSource;                                      // 0x268(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7B7[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusNode_ComputeKernelFunctionGeneratorClass* GetDefaultObj();
@@ -722,7 +722,7 @@ public:
 class UOptimusNode_ConstantValueGeneratorClass : public UClass
 {
 public:
-	struct FOptimusDataTypeRef                   DataType;                                          // 0x220(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FOptimusDataTypeRef                   DataType;                                          // 0x220(0x10)(BlueprintReadOnly, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusNode_ConstantValueGeneratorClass* GetDefaultObj();
@@ -734,7 +734,7 @@ public:
 class UOptimusNode_ConstantValue : public UOptimusNode
 {
 public:
-	uint8                                        Pad_586[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7B8[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusNode_ConstantValue* GetDefaultObj();
@@ -746,20 +746,20 @@ public:
 class UOptimusNode_CustomComputeKernel : public UOptimusNode_ComputeKernelBase
 {
 public:
-	uint8                                        Pad_58A[0x20];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_7BA[0x20];                                     // Fixing Size After Last Property  > TateDumper <
 	class FName                                  Category;                                          // 0x138(0x8)(ConstParm, BlueprintReadOnly, OutParm, Transient)
-	struct FOptimusValidatedName                 KernelName;                                        // 0x140(0x8)(Edit, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	struct FOptimusExecutionDomain               ExecutionDomain;                                   // 0x148(0x8)(ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	struct FIntVector                            GroupSize;                                         // 0x150(0xC)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_592[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FOptimus_ShaderBinding>        Parameters;                                        // 0x160(0x10)(ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FOptimusParameterBinding>      InputBindings;                                     // 0x170(0x10)(BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FOptimusParameterBinding>      OutputBindings;                                    // 0x180(0x10)(ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	struct FOptimusValidatedName                 KernelName;                                        // 0x140(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	struct FOptimusExecutionDomain               ExecutionDomain;                                   // 0x148(0x8)(Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	struct FIntVector                            GroupSize;                                         // 0x150(0xC)(Edit, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7BB[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FOptimus_ShaderBinding>        Parameters;                                        // 0x160(0x10)(BlueprintVisible, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FOptimusParameterBinding>      InputBindings;                                     // 0x170(0x10)(Edit, BlueprintVisible, Net, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	TArray<struct FOptimusParameterBinding>      OutputBindings;                                    // 0x180(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 	struct FOptimusParameterBindingArray         InputBindingArray;                                 // 0x190(0x10)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config)
 	struct FOptimusParameterBindingArray         OutputBindingArray;                                // 0x1A0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config)
 	TArray<struct FOptimusSecondaryInputBindingsGroup> SecondaryInputBindingGroups;                       // 0x1B0(0x10)(Edit, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	TArray<class UComputeSource*>                AdditionalSources;                                 // 0x1C0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FOptimusShaderText                    ShaderSource;                                      // 0x1D0(0x20)(Edit, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	TArray<class UComputeSource*>                AdditionalSources;                                 // 0x1C0(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FOptimusShaderText                    ShaderSource;                                      // 0x1D0(0x20)(ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusNode_CustomComputeKernel* GetDefaultObj();
@@ -771,8 +771,8 @@ public:
 class UOptimusNode_FunctionReference : public UOptimusNode
 {
 public:
-	uint8                                        Pad_59D[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class UOptimusFunctionNodeGraph*             FunctionGraph;                                     // 0x118(0x8)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7BD[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class UOptimusFunctionNodeGraph*             FunctionGraph;                                     // 0x118(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusNode_FunctionReference* GetDefaultObj();
@@ -784,11 +784,11 @@ public:
 class UOptimusNode_ResourceAccessorBase : public UOptimusNode
 {
 public:
-	uint8                                        Pad_5A6[0x10];                                     // Fixing Size After Last Property  > TateDumper <
-	TWeakObjectPtr<class UOptimusResourceDescription> ResourceDesc;                                      // 0x120(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	enum class EOptimusBufferWriteType           WriteType;                                         // 0x128(0x1)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_5AB[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FOptimusNode_ResourceAccessorBase_DuplicationInfo DuplicationInfo;                                   // 0x130(0x58)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7BE[0x10];                                     // Fixing Size After Last Property  > TateDumper <
+	TWeakObjectPtr<class UOptimusResourceDescription> ResourceDesc;                                      // 0x120(0x8)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	enum class EOptimusBufferWriteType           WriteType;                                         // 0x128(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7BF[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FOptimusNode_ResourceAccessorBase_DuplicationInfo DuplicationInfo;                                   // 0x130(0x58)(BlueprintVisible, EditFixedSize, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusNode_ResourceAccessorBase* GetDefaultObj();
@@ -811,9 +811,9 @@ public:
 class UOptimusNode_GetVariable : public UOptimusNode
 {
 public:
-	uint8                                        Pad_5B0[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	TWeakObjectPtr<class UOptimusVariableDescription> VariableDesc;                                      // 0x118(0x8)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	struct FOptimusNode_GetVariable_DuplicationInfo DuplicationInfo;                                   // 0x120(0x28)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7C0[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	TWeakObjectPtr<class UOptimusVariableDescription> VariableDesc;                                      // 0x118(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	struct FOptimusNode_GetVariable_DuplicationInfo DuplicationInfo;                                   // 0x120(0x28)(BlueprintVisible, EditFixedSize, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusNode_GetVariable* GetDefaultObj();
@@ -825,10 +825,10 @@ public:
 class UOptimusNode_GraphTerminal : public UOptimusNode
 {
 public:
-	uint8                                        Pad_5B5[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	enum class EOptimusTerminalType              TerminalType;                                      // 0x118(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	TWeakObjectPtr<class UOptimusNodeSubGraph>   OwningGraph;                                       // 0x11C(0x8)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_5B6[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7C1[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	enum class EOptimusTerminalType              TerminalType;                                      // 0x118(0x4)(ExportObject, Net, EditFixedSize, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	TWeakObjectPtr<class UOptimusNodeSubGraph>   OwningGraph;                                       // 0x11C(0x8)(Edit, Net, EditFixedSize, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7C2[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusNode_GraphTerminal* GetDefaultObj();
@@ -862,8 +862,8 @@ public:
 class UOptimusNode_SubGraphReference : public UOptimusNode
 {
 public:
-	uint8                                        Pad_5BD[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class UOptimusNodeSubGraph*                  SubGraph;                                          // 0x118(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7C5[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class UOptimusNodeSubGraph*                  SubGraph;                                          // 0x118(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusNode_SubGraphReference* GetDefaultObj();
@@ -875,8 +875,8 @@ public:
 class UOptimusActionStack : public UObject
 {
 public:
-	int32                                        TransactedActionIndex;                             // 0x28(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_5BF[0xB4];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        TransactedActionIndex;                             // 0x28(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7C7[0xB4];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusActionStack* GetDefaultObj();
@@ -888,11 +888,11 @@ public:
 class UOptimusComponentSourceBinding : public UObject
 {
 public:
-	class FName                                  BindingName;                                       // 0x28(0x8)(ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class UClass*                                ComponentType;                                     // 0x30(0x8)(ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<class FName>                          ComponentTags;                                     // 0x38(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bIsPrimaryBinding;                                 // 0x48(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_5C1[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class FName                                  BindingName;                                       // 0x28(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class UClass*                                ComponentType;                                     // 0x30(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class FName>                          ComponentTags;                                     // 0x38(0x10)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bIsPrimaryBinding;                                 // 0x48(0x1)(Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7CA[0x7];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusComponentSourceBinding* GetDefaultObj();
@@ -904,7 +904,7 @@ public:
 class UOptimusComputeGraph : public UComputeGraph
 {
 public:
-	TArray<TWeakObjectPtr<class UOptimusNode>>   KernelToNode;                                      // 0x90(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	TArray<TWeakObjectPtr<class UOptimusNode>>   KernelToNode;                                      // 0x90(0x10)(ConstParm, ExportObject, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusComputeGraph* GetDefaultObj();
@@ -916,7 +916,7 @@ public:
 class UOptimusComponentSourceBindingContainer : public UObject
 {
 public:
-	TArray<class UOptimusComponentSourceBinding*> Bindings;                                          // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class UOptimusComponentSourceBinding*> Bindings;                                          // 0x28(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusComponentSourceBindingContainer* GetDefaultObj();
@@ -928,7 +928,7 @@ public:
 class UOptimusVariableContainer : public UObject
 {
 public:
-	TArray<class UOptimusVariableDescription*>   Descriptions;                                      // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class UOptimusVariableDescription*>   Descriptions;                                      // 0x28(0x10)(ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusVariableContainer* GetDefaultObj();
@@ -940,7 +940,7 @@ public:
 class UOptimusResourceContainer : public UObject
 {
 public:
-	TArray<class UOptimusResourceDescription*>   Descriptions;                                      // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class UOptimusResourceDescription*>   Descriptions;                                      // 0x28(0x10)(ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusResourceContainer* GetDefaultObj();
@@ -952,22 +952,22 @@ public:
 class UOptimusDeformer : public UMeshDeformer
 {
 public:
-	uint8                                        Pad_5D7[0x20];                                     // Fixing Size After Last Property  > TateDumper <
-	class USkeletalMesh*                         Mesh;                                              // 0x48(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FOptimusComputeGraphInfo>      ComputeGraphs;                                     // 0x50(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	class UOptimusActionStack*                   ActionStack;                                       // 0x60(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	TArray<class UOptimusNodeGraph*>             Graphs;                                            // 0x68(0x10)(ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	class UOptimusComponentSourceBindingContainer* Bindings;                                          // 0x78(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7E1[0x20];                                     // Fixing Size After Last Property  > TateDumper <
+	class USkeletalMesh*                         Mesh;                                              // 0x48(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FOptimusComputeGraphInfo>      ComputeGraphs;                                     // 0x50(0x10)(ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	class UOptimusActionStack*                   ActionStack;                                       // 0x60(0x8)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	TArray<class UOptimusNodeGraph*>             Graphs;                                            // 0x68(0x10)(BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UOptimusComponentSourceBindingContainer* Bindings;                                          // 0x78(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 	class UOptimusVariableContainer*             Variables;                                         // 0x80(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
 	class UOptimusResourceContainer*             Resources;                                         // 0x88(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	uint8                                        Pad_5DA[0x90];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7ED[0x90];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusDeformer* GetDefaultObj();
 
-	void GetVariables(TArray<class UOptimusVariableDescription*>* ReturnValue);
-	void GetResources(TArray<class UOptimusResourceDescription*>* ReturnValue);
-	void GetComponentBindings(TArray<class UOptimusComponentSourceBinding*>* ReturnValue);
+	TArray<class UOptimusVariableDescription*> GetVariables();
+	TArray<class UOptimusResourceDescription*> GetResources();
+	TArray<class UOptimusComponentSourceBinding*> GetComponentBindings();
 };
 
 // 0x18 (0x40 - 0x28)
@@ -975,8 +975,8 @@ public:
 class UOptimusDeformerInstanceSettings : public UMeshDeformerInstanceSettings
 {
 public:
-	TWeakObjectPtr<class UOptimusDeformer>       Deformer;                                          // 0x28(0x8)(Edit, ConstParm, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FOptimusDeformerInstanceComponentBinding> Bindings;                                          // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TWeakObjectPtr<class UOptimusDeformer>       Deformer;                                          // 0x28(0x8)(Net, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	TArray<struct FOptimusDeformerInstanceComponentBinding> Bindings;                                          // 0x30(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusDeformerInstanceSettings* GetDefaultObj();
@@ -989,22 +989,22 @@ class UOptimusDeformerInstance : public UMeshDeformerInstance
 {
 public:
 	TWeakObjectPtr<class UMeshComponent>         MeshComponent;                                     // 0x28(0x8)(BlueprintVisible, Parm, Transient, Config, DisableEditOnInstance, EditConst)
-	TWeakObjectPtr<class UOptimusDeformerInstanceSettings> InstanceSettings;                                  // 0x30(0x8)(ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FOptimusDeformerInstanceExecInfo> ComputeGraphExecInfos;                             // 0x38(0x10)(ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	TWeakObjectPtr<class UOptimusDeformerInstanceSettings> InstanceSettings;                                  // 0x30(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	TArray<struct FOptimusDeformerInstanceExecInfo> ComputeGraphExecInfos;                             // 0x38(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 	class UOptimusVariableContainer*             Variables;                                         // 0x48(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	uint8                                        Pad_60E[0x90];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_820[0x90];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusDeformerInstance* GetDefaultObj();
 
-	struct FVector SetVectorVariable(bool* ReturnValue);
-	struct FVector4 SetVector4Variable(bool* ReturnValue);
-	struct FTransform SetTransformVariable(bool* ReturnValue);
-	int32 SetIntVariable(bool* ReturnValue);
-	double SetFloatVariable(bool* ReturnValue);
-	bool SetBoolVariable(bool* ReturnValue);
-	void GetVariables(TArray<class UOptimusVariableDescription*>* ReturnValue);
-	class FName EnqueueTriggerGraph(bool* ReturnValue);
+	bool SetVectorVariable();
+	bool SetVector4Variable();
+	bool SetTransformVariable();
+	bool SetIntVariable();
+	bool SetFloatVariable();
+	bool SetBoolVariable();
+	TArray<class UOptimusVariableDescription*> GetVariables();
+	bool EnqueueTriggerGraph(class FName InTriggerGraphName);
 };
 
 // 0x58 (0x80 - 0x28)
@@ -1012,48 +1012,48 @@ public:
 class UOptimusNodeGraph : public UObject
 {
 public:
-	uint8                                        Pad_6EC[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	enum class EOptimusNodeGraphType             GraphType;                                         // 0x30(0x4)(Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_6ED[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class UOptimusNode*>                  Nodes;                                             // 0x38(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	TArray<class UOptimusNodeLink*>              Links;                                             // 0x48(0x10)(Edit, ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-	TArray<class UOptimusNodeGraph*>             Subgraphs;                                         // 0x58(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_6F0[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_8D8[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	enum class EOptimusNodeGraphType             GraphType;                                         // 0x30(0x4)(Edit, Net, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_8D9[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<class UOptimusNode*>                  Nodes;                                             // 0x38(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class UOptimusNodeLink*>              Links;                                             // 0x48(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	TArray<class UOptimusNodeGraph*>             Subgraphs;                                         // 0x58(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_8DE[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOptimusNodeGraph* GetDefaultObj();
 
-	class FString RenameGraph(bool* ReturnValue);
-	TArray<class UOptimusNode*> RemoveNodes(bool* ReturnValue);
-	class UOptimusNode* RemoveNode(bool* ReturnValue);
-	class UOptimusNodePin* RemoveLink(bool* ReturnValue);
-	class UOptimusNodePin* RemoveAllLinks(bool* ReturnValue);
-	int32 MoveGraph(bool* ReturnValue);
-	class UOptimusNode* IsSubGraphReference(bool* ReturnValue);
-	class UOptimusNode* IsKernelFunction(bool* ReturnValue);
-	class UOptimusNode* IsFunctionReference(bool* ReturnValue);
-	void IsFunctionGraph(bool* ReturnValue);
-	void IsExecutionGraph(bool* ReturnValue);
-	class UOptimusNode* IsCustomKernel(bool* ReturnValue);
-	void GetGraphType(enum class EOptimusNodeGraphType* ReturnValue);
-	void GetGraphs(TArray<class UOptimusNodeGraph*>* ReturnValue);
-	void GetGraphIndex(int32* ReturnValue);
-	class UOptimusNode* ExpandCollapsedNodes(TArray<class UOptimusNode*>* ReturnValue);
-	struct FVector2D DuplicateNodes(bool* ReturnValue);
-	struct FVector2D DuplicateNode(class UOptimusNode** ReturnValue);
-	class UOptimusNode* ConvertFunctionToCustomKernel(class UOptimusNode** ReturnValue);
-	class UOptimusNode* ConvertCustomKernelToFunction(class UOptimusNode** ReturnValue);
-	TArray<class UOptimusNode*> CollapseNodesToSubGraph(class UOptimusNode** ReturnValue);
-	TArray<class UOptimusNode*> CollapseNodesToFunction(class UOptimusNode** ReturnValue);
-	struct FVector2D AddVariableGetNode(class UOptimusNode** ReturnValue);
-	struct FVector2D AddValueNode(class UOptimusNode** ReturnValue);
-	struct FVector2D AddResourceSetNode(class UOptimusNode** ReturnValue);
-	struct FVector2D AddResourceNode(class UOptimusNode** ReturnValue);
-	struct FVector2D AddResourceGetNode(class UOptimusNode** ReturnValue);
-	struct FVector2D AddNode(class UOptimusNode** ReturnValue);
-	class UOptimusNodePin* AddLink(bool* ReturnValue);
-	struct FVector2D AddDataInterfaceNode(class UOptimusNode** ReturnValue);
-	struct FVector2D AddComponentBindingGetNode(class UOptimusNode** ReturnValue);
+	bool RenameGraph(class UOptimusNodeGraph** InGraph, class FString* InNewName);
+	bool RemoveNodes(TArray<class UOptimusNode*>* InNodes);
+	bool RemoveNode(class UOptimusNode** InNode);
+	bool RemoveLink(class UOptimusNodePin* InNodeOutputPin, class UOptimusNodePin* InNodeInputPin);
+	bool RemoveAllLinks(class UOptimusNodePin** InNodePin);
+	bool MoveGraph(class UOptimusNodeGraph** InGraph, int32* InInsertBefore);
+	bool IsSubGraphReference(class UOptimusNode** InNode);
+	bool IsKernelFunction(class UOptimusNode** InNode);
+	bool IsFunctionReference(class UOptimusNode** InNode);
+	bool IsFunctionGraph();
+	bool IsExecutionGraph();
+	bool IsCustomKernel(class UOptimusNode** InNode);
+	enum class EOptimusNodeGraphType GetGraphType();
+	TArray<class UOptimusNodeGraph*> GetGraphs();
+	int32 GetGraphIndex();
+	TArray<class UOptimusNode*> ExpandCollapsedNodes(class UOptimusNode** InFunctionNode);
+	bool DuplicateNodes(TArray<class UOptimusNode*>* InNodes);
+	class UOptimusNode* DuplicateNode(class UOptimusNode** InNode);
+	class UOptimusNode* ConvertFunctionToCustomKernel(class UOptimusNode** InKernelFunction);
+	class UOptimusNode* ConvertCustomKernelToFunction(class UOptimusNode** InCustomKernel);
+	class UOptimusNode* CollapseNodesToSubGraph(TArray<class UOptimusNode*>* InNodes);
+	class UOptimusNode* CollapseNodesToFunction(TArray<class UOptimusNode*>* InNodes);
+	class UOptimusNode* AddVariableGetNode(class UOptimusVariableDescription** InVariableDesc);
+	class UOptimusNode* AddValueNode(const struct FOptimusDataTypeRef& InDataTypeRef);
+	class UOptimusNode* AddResourceSetNode(class UOptimusResourceDescription* InResourceDesc);
+	class UOptimusNode* AddResourceNode(class UOptimusResourceDescription* InResourceDesc);
+	class UOptimusNode* AddResourceGetNode(class UOptimusResourceDescription* InResourceDesc);
+	class UOptimusNode* AddNode(class UClass* InNodeClass);
+	bool AddLink(class UOptimusNodePin* InNodeOutputPin, class UOptimusNodePin* InNodeInputPin);
+	class UOptimusNode* AddDataInterfaceNode(class UClass* InDataInterfaceClass);
+	class UOptimusNode* AddComponentBindingGetNode(class UOptimusComponentSourceBinding* InComponentBinding);
 };
 
 // 0x30 (0xB0 - 0x80)
@@ -1061,10 +1061,10 @@ public:
 class UOptimusNodeSubGraph : public UOptimusNodeGraph
 {
 public:
-	TArray<struct FOptimusParameterBinding>      InputBindings;                                     // 0x80(0x10)(BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FOptimusParameterBinding>      OutputBindings;                                    // 0x90(0x10)(ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	TWeakObjectPtr<class UOptimusNode_GraphTerminal> EntryNode;                                         // 0xA0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	TWeakObjectPtr<class UOptimusNode_GraphTerminal> ReturnNode;                                        // 0xA8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	TArray<struct FOptimusParameterBinding>      InputBindings;                                     // 0x80(0x10)(Edit, BlueprintVisible, Net, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	TArray<struct FOptimusParameterBinding>      OutputBindings;                                    // 0x90(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	TWeakObjectPtr<class UOptimusNode_GraphTerminal> EntryNode;                                         // 0xA0(0x8)(ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	TWeakObjectPtr<class UOptimusNode_GraphTerminal> ReturnNode;                                        // 0xA8(0x8)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusNodeSubGraph* GetDefaultObj();
@@ -1088,8 +1088,8 @@ public:
 class UOptimusNodeLink : public UObject
 {
 public:
-	class UOptimusNodePin*                       NodeOutputPin;                                     // 0x28(0x8)(ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	class UOptimusNodePin*                       NodeInputPin;                                      // 0x30(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	class UOptimusNodePin*                       NodeOutputPin;                                     // 0x28(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	class UOptimusNodePin*                       NodeInputPin;                                      // 0x30(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusNodeLink* GetDefaultObj();
@@ -1101,13 +1101,13 @@ public:
 class UOptimusNodePin : public UObject
 {
 public:
-	bool                                         bIsGroupingPin;                                    // 0x28(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	enum class EOptimusNodePinDirection          Direction;                                         // 0x29(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	enum class EOptimusNodePinStorageType        StorageType;                                       // 0x2A(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_727[0x5];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FOptimusDataDomain                    DataDomain;                                        // 0x30(0x40)(ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	struct FOptimusDataTypeRef                   DataType;                                          // 0x70(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TArray<class UOptimusNodePin*>               SubPins;                                           // 0x80(0x10)(ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bIsGroupingPin;                                    // 0x28(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	enum class EOptimusNodePinDirection          Direction;                                         // 0x29(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+	enum class EOptimusNodePinStorageType        StorageType;                                       // 0x2A(0x1)(BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_8FE[0x5];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FOptimusDataDomain                    DataDomain;                                        // 0x30(0x40)(Edit, ExportObject, Net, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	struct FOptimusDataTypeRef                   DataType;                                          // 0x70(0x10)(BlueprintReadOnly, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	TArray<class UOptimusNodePin*>               SubPins;                                           // 0x80(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusNodePin* GetDefaultObj();
@@ -1119,11 +1119,11 @@ public:
 class UOptimusResourceDescription : public UObject
 {
 public:
-	class FName                                  ResourceName;                                      // 0x28(0x8)(ConstParm, ExportObject, Net, OutParm, ZeroConstructor, Config, EditConst, SubobjectReference)
-	struct FOptimusDataTypeRef                   DataType;                                          // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TWeakObjectPtr<class UOptimusComponentSourceBinding> ComponentBinding;                                  // 0x40(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	struct FOptimusDataDomain                    DataDomain;                                        // 0x48(0x40)(ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	class UOptimusPersistentBufferDataInterface* DataInterface;                                     // 0x88(0x8)(Edit, EditFixedSize, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	class FName                                  ResourceName;                                      // 0x28(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+	struct FOptimusDataTypeRef                   DataType;                                          // 0x30(0x10)(BlueprintReadOnly, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	TWeakObjectPtr<class UOptimusComponentSourceBinding> ComponentBinding;                                  // 0x40(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+	struct FOptimusDataDomain                    DataDomain;                                        // 0x48(0x40)(Edit, ExportObject, Net, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	class UOptimusPersistentBufferDataInterface* DataInterface;                                     // 0x88(0x8)(Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusResourceDescription* GetDefaultObj();
@@ -1135,8 +1135,8 @@ public:
 class UOptimusSource : public UComputeSource
 {
 public:
-	uint8                                        Pad_73A[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class FString                                SourceText;                                        // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_907[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class FString                                SourceText;                                        // 0x40(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusSource* GetDefaultObj();
@@ -1148,7 +1148,7 @@ public:
 class UOptimusValueContainerGeneratorClass : public UClass
 {
 public:
-	struct FOptimusDataTypeRef                   DataType;                                          // 0x220(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FOptimusDataTypeRef                   DataType;                                          // 0x220(0x10)(BlueprintReadOnly, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusValueContainerGeneratorClass* GetDefaultObj();
@@ -1172,10 +1172,10 @@ class UOptimusVariableDescription : public UObject
 {
 public:
 	struct FGuid                                 Guid;                                              // 0x28(0x10)(Edit, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-	class FName                                  VariableName;                                      // 0x38(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	struct FOptimusDataTypeRef                   DataType;                                          // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	class UOptimusValueContainer*                DefaultValue;                                      // 0x50(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<uint8>                                ValueData;                                         // 0x58(0x10)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	class FName                                  VariableName;                                      // 0x38(0x8)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
+	struct FOptimusDataTypeRef                   DataType;                                          // 0x40(0x10)(BlueprintReadOnly, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	class UOptimusValueContainer*                DefaultValue;                                      // 0x50(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint8>                                ValueData;                                         // 0x58(0x10)(ConstParm, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOptimusVariableDescription* GetDefaultObj();

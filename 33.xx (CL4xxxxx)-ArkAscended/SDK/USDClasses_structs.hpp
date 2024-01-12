@@ -42,7 +42,7 @@ enum class EUsdUpAxis : uint8
 struct FUsdPrimPathList
 {
 public:
-	TArray<class FString>                        PrimPaths;                                         // 0x0(0x10)(ExportObject, Net, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	TArray<class FString>                        PrimPaths;                                         // 0x0(0x10)(BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -50,9 +50,9 @@ public:
 struct FUsdStageOptions
 {
 public:
-	float                                        MetersPerUnit;                                     // 0x0(0x4)(ConstParm, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	enum class EUsdUpAxis                        UpAxis;                                            // 0x4(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A3B[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        MetersPerUnit;                                     // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EUsdUpAxis                        UpAxis;                                            // 0x4(0x1)(ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_D9E[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x70 (0x70 - 0x0)
@@ -61,12 +61,12 @@ struct FUsdUnrealAssetInfo
 {
 public:
 	class FString                                Name;                                              // 0x0(0x10)(ConstParm, Net, OutParm)
-	class FString                                Identifier;                                        // 0x10(0x10)(ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                Identifier;                                        // 0x10(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	class FString                                Version;                                           // 0x20(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnInstance)
-	class FString                                UnrealContentPath;                                 // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	class FString                                UnrealAssetType;                                   // 0x40(0x10)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	class FString                                UnrealExportTime;                                  // 0x50(0x10)(Edit, BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	class FString                                UnrealEngineVersion;                               // 0x60(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	class FString                                UnrealContentPath;                                 // 0x30(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                UnrealAssetType;                                   // 0x40(0x10)(ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                UnrealExportTime;                                  // 0x50(0x10)(Edit, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                UnrealEngineVersion;                               // 0x60(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

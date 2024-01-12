@@ -14,13 +14,13 @@ namespace SDK
 class ACamelsaurus_Character_Base_BP_C : public ADino_Character_BP_C
 {
 public:
-	double                                       WaterAmount;                                       // 0x3488(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
-	double                                       MaxWaterAmount;                                    // 0x3490(0x8)(Edit, ConstParm, BlueprintVisible, Net, GlobalConfig, InstancedReference, SubobjectReference)
+	double                                       WaterAmount;                                       // 0x3488(0x8)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+	double                                       MaxWaterAmount;                                    // 0x3490(0x8)(OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ACamelsaurus_Character_Base_BP_C* GetDefaultObj();
 
-	double AddWater(double* CallFunc_FClamp_ReturnValue);
+	double AddWater(double* Amount, double CallFunc_Add_DoubleDouble_ReturnValue, double* CallFunc_FClamp_ReturnValue);
 };
 
 }

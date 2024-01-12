@@ -129,9 +129,9 @@ class UMaterialInterface* UBaseDynamicMeshComponent::SetSecondaryRenderMaterial(
 // Function GeometryFramework.BaseDynamicMeshComponent.SetSecondaryBuffersVisibility
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bSetVisible                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetVisible                                                      (ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UBaseDynamicMeshComponent::SetSecondaryBuffersVisibility()
+void UBaseDynamicMeshComponent::SetSecondaryBuffersVisibility(bool bSetVisible)
 {
 	static class UFunction* Func = nullptr;
 
@@ -140,6 +140,7 @@ bool UBaseDynamicMeshComponent::SetSecondaryBuffersVisibility()
 
 	Params::UBaseDynamicMeshComponent_SetSecondaryBuffersVisibility_Params Parms{};
 
+	Parms.bSetVisible = bSetVisible;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -148,8 +149,6 @@ bool UBaseDynamicMeshComponent::SetSecondaryBuffersVisibility()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -185,9 +184,9 @@ class UMaterialInterface* UBaseDynamicMeshComponent::SetOverrideRenderMaterial()
 // Function GeometryFramework.BaseDynamicMeshComponent.SetEnableWireframeRenderPass
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bEnable                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// bool                               bEnable                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
-bool UBaseDynamicMeshComponent::SetEnableWireframeRenderPass()
+void UBaseDynamicMeshComponent::SetEnableWireframeRenderPass(bool* bEnable)
 {
 	static class UFunction* Func = nullptr;
 
@@ -205,7 +204,8 @@ bool UBaseDynamicMeshComponent::SetEnableWireframeRenderPass()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bEnable != nullptr)
+		*bEnable = Parms.bEnable;
 
 }
 
@@ -213,9 +213,9 @@ bool UBaseDynamicMeshComponent::SetEnableWireframeRenderPass()
 // Function GeometryFramework.BaseDynamicMeshComponent.SetEnableRaytracing
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bSetEnabled                                                      (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetEnabled                                                      (Edit, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UBaseDynamicMeshComponent::SetEnableRaytracing()
+void UBaseDynamicMeshComponent::SetEnableRaytracing(bool bSetEnabled)
 {
 	static class UFunction* Func = nullptr;
 
@@ -224,6 +224,7 @@ bool UBaseDynamicMeshComponent::SetEnableRaytracing()
 
 	Params::UBaseDynamicMeshComponent_SetEnableRaytracing_Params Parms{};
 
+	Parms.bSetEnabled = bSetEnabled;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -233,17 +234,15 @@ bool UBaseDynamicMeshComponent::SetEnableRaytracing()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function GeometryFramework.BaseDynamicMeshComponent.SetEnableFlatShading
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bEnable                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// bool                               bEnable                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
-bool UBaseDynamicMeshComponent::SetEnableFlatShading()
+void UBaseDynamicMeshComponent::SetEnableFlatShading(bool* bEnable)
 {
 	static class UFunction* Func = nullptr;
 
@@ -261,7 +260,8 @@ bool UBaseDynamicMeshComponent::SetEnableFlatShading()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bEnable != nullptr)
+		*bEnable = Parms.bEnable;
 
 }
 
@@ -269,9 +269,9 @@ bool UBaseDynamicMeshComponent::SetEnableFlatShading()
 // Function GeometryFramework.BaseDynamicMeshComponent.SetConstantOverrideColor
 // (Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FColor                      NewColor                                                         (BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FColor                      NewColor                                                         (ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FColor UBaseDynamicMeshComponent::SetConstantOverrideColor()
+void UBaseDynamicMeshComponent::SetConstantOverrideColor(struct FColor* NewColor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -289,7 +289,8 @@ struct FColor UBaseDynamicMeshComponent::SetConstantOverrideColor()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewColor != nullptr)
+		*NewColor = std::move(Parms.NewColor);
 
 }
 
@@ -297,9 +298,9 @@ struct FColor UBaseDynamicMeshComponent::SetConstantOverrideColor()
 // Function GeometryFramework.BaseDynamicMeshComponent.SetColorOverrideMode
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EDynamicMeshComponentColorOverrideModeNewMode                                                          (BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EDynamicMeshComponentColorOverrideModeNewMode                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-enum class EDynamicMeshComponentColorOverrideMode UBaseDynamicMeshComponent::SetColorOverrideMode()
+void UBaseDynamicMeshComponent::SetColorOverrideMode(enum class EDynamicMeshComponentColorOverrideMode NewMode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -308,6 +309,7 @@ enum class EDynamicMeshComponentColorOverrideMode UBaseDynamicMeshComponent::Set
 
 	Params::UBaseDynamicMeshComponent_SetColorOverrideMode_Params Parms{};
 
+	Parms.NewMode = NewMode;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -317,8 +319,6 @@ enum class EDynamicMeshComponentColorOverrideMode UBaseDynamicMeshComponent::Set
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -326,9 +326,9 @@ enum class EDynamicMeshComponentColorOverrideMode UBaseDynamicMeshComponent::Set
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // int32                              K                                                                (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBaseDynamicMeshComponent::HasOverrideRenderMaterial(int32 K, bool* ReturnValue)
+bool UBaseDynamicMeshComponent::HasOverrideRenderMaterial(int32 K)
 {
 	static class UFunction* Func = nullptr;
 
@@ -347,8 +347,7 @@ void UBaseDynamicMeshComponent::HasOverrideRenderMaterial(int32 K, bool* ReturnV
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -356,9 +355,9 @@ void UBaseDynamicMeshComponent::HasOverrideRenderMaterial(int32 K, bool* ReturnV
 // Function GeometryFramework.BaseDynamicMeshComponent.GetViewModeOverridesEnabled
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBaseDynamicMeshComponent::GetViewModeOverridesEnabled(bool* ReturnValue)
+bool UBaseDynamicMeshComponent::GetViewModeOverridesEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -376,8 +375,7 @@ void UBaseDynamicMeshComponent::GetViewModeOverridesEnabled(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -385,9 +383,9 @@ void UBaseDynamicMeshComponent::GetViewModeOverridesEnabled(bool* ReturnValue)
 // Function GeometryFramework.BaseDynamicMeshComponent.GetShadowsEnabled
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBaseDynamicMeshComponent::GetShadowsEnabled(bool* ReturnValue)
+bool UBaseDynamicMeshComponent::GetShadowsEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -405,8 +403,7 @@ void UBaseDynamicMeshComponent::GetShadowsEnabled(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -414,9 +411,9 @@ void UBaseDynamicMeshComponent::GetShadowsEnabled(bool* ReturnValue)
 // Function GeometryFramework.BaseDynamicMeshComponent.GetSecondaryRenderMaterial
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMaterialInterface*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMaterialInterface*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBaseDynamicMeshComponent::GetSecondaryRenderMaterial(class UMaterialInterface** ReturnValue)
+class UMaterialInterface* UBaseDynamicMeshComponent::GetSecondaryRenderMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -434,8 +431,7 @@ void UBaseDynamicMeshComponent::GetSecondaryRenderMaterial(class UMaterialInterf
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -443,9 +439,9 @@ void UBaseDynamicMeshComponent::GetSecondaryRenderMaterial(class UMaterialInterf
 // Function GeometryFramework.BaseDynamicMeshComponent.GetSecondaryBuffersVisibility
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBaseDynamicMeshComponent::GetSecondaryBuffersVisibility(bool* ReturnValue)
+bool UBaseDynamicMeshComponent::GetSecondaryBuffersVisibility()
 {
 	static class UFunction* Func = nullptr;
 
@@ -463,8 +459,7 @@ void UBaseDynamicMeshComponent::GetSecondaryBuffersVisibility(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -472,10 +467,10 @@ void UBaseDynamicMeshComponent::GetSecondaryBuffersVisibility(bool* ReturnValue)
 // Function GeometryFramework.BaseDynamicMeshComponent.GetOverrideRenderMaterial
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              MaterialIndex                                                    (ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UMaterialInterface*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              MaterialIndex                                                    (BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UMaterialInterface*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBaseDynamicMeshComponent::GetOverrideRenderMaterial(int32 MaterialIndex, class UMaterialInterface** ReturnValue)
+class UMaterialInterface* UBaseDynamicMeshComponent::GetOverrideRenderMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -484,7 +479,6 @@ void UBaseDynamicMeshComponent::GetOverrideRenderMaterial(int32 MaterialIndex, c
 
 	Params::UBaseDynamicMeshComponent_GetOverrideRenderMaterial_Params Parms{};
 
-	Parms.MaterialIndex = MaterialIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -494,8 +488,7 @@ void UBaseDynamicMeshComponent::GetOverrideRenderMaterial(int32 MaterialIndex, c
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -503,9 +496,9 @@ void UBaseDynamicMeshComponent::GetOverrideRenderMaterial(int32 MaterialIndex, c
 // Function GeometryFramework.BaseDynamicMeshComponent.GetFlatShadingEnabled
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBaseDynamicMeshComponent::GetFlatShadingEnabled(bool* ReturnValue)
+bool UBaseDynamicMeshComponent::GetFlatShadingEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -523,8 +516,7 @@ void UBaseDynamicMeshComponent::GetFlatShadingEnabled(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -532,9 +524,9 @@ void UBaseDynamicMeshComponent::GetFlatShadingEnabled(bool* ReturnValue)
 // Function GeometryFramework.BaseDynamicMeshComponent.GetEnableWireframeRenderPass
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBaseDynamicMeshComponent::GetEnableWireframeRenderPass(bool* ReturnValue)
+bool UBaseDynamicMeshComponent::GetEnableWireframeRenderPass()
 {
 	static class UFunction* Func = nullptr;
 
@@ -552,8 +544,7 @@ void UBaseDynamicMeshComponent::GetEnableWireframeRenderPass(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -561,9 +552,9 @@ void UBaseDynamicMeshComponent::GetEnableWireframeRenderPass(bool* ReturnValue)
 // Function GeometryFramework.BaseDynamicMeshComponent.GetEnableRaytracing
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBaseDynamicMeshComponent::GetEnableRaytracing(bool* ReturnValue)
+bool UBaseDynamicMeshComponent::GetEnableRaytracing()
 {
 	static class UFunction* Func = nullptr;
 
@@ -581,8 +572,7 @@ void UBaseDynamicMeshComponent::GetEnableRaytracing(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -590,9 +580,9 @@ void UBaseDynamicMeshComponent::GetEnableRaytracing(bool* ReturnValue)
 // Function GeometryFramework.BaseDynamicMeshComponent.GetDynamicMesh
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class UDynamicMesh*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDynamicMesh*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBaseDynamicMeshComponent::GetDynamicMesh(class UDynamicMesh** ReturnValue)
+class UDynamicMesh* UBaseDynamicMeshComponent::GetDynamicMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -610,8 +600,7 @@ void UBaseDynamicMeshComponent::GetDynamicMesh(class UDynamicMesh** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -619,9 +608,9 @@ void UBaseDynamicMeshComponent::GetDynamicMesh(class UDynamicMesh** ReturnValue)
 // Function GeometryFramework.BaseDynamicMeshComponent.GetConstantOverrideColor
 // (Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FColor                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FColor                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBaseDynamicMeshComponent::GetConstantOverrideColor(struct FColor* ReturnValue)
+struct FColor UBaseDynamicMeshComponent::GetConstantOverrideColor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -639,8 +628,7 @@ void UBaseDynamicMeshComponent::GetConstantOverrideColor(struct FColor* ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -648,9 +636,9 @@ void UBaseDynamicMeshComponent::GetConstantOverrideColor(struct FColor* ReturnVa
 // Function GeometryFramework.BaseDynamicMeshComponent.GetColorOverrideMode
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EDynamicMeshComponentColorOverrideModeReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EDynamicMeshComponentColorOverrideModeReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBaseDynamicMeshComponent::GetColorOverrideMode(enum class EDynamicMeshComponentColorOverrideMode* ReturnValue)
+enum class EDynamicMeshComponentColorOverrideMode UBaseDynamicMeshComponent::GetColorOverrideMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -668,8 +656,7 @@ void UBaseDynamicMeshComponent::GetColorOverrideMode(enum class EDynamicMeshComp
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -837,11 +824,11 @@ class UDynamicMeshComponent* UDynamicMeshComponent::GetDefaultObj()
 // Function GeometryFramework.DynamicMeshComponent.ValidateMaterialSlots
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bCreateIfMissing                                                 (ConstParm, BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bDeleteExtraSlots                                                (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bCreateIfMissing                                                 (Edit, ExportObject, BlueprintReadOnly, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bDeleteExtraSlots                                                (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDynamicMeshComponent::ValidateMaterialSlots(bool bCreateIfMissing, bool* bDeleteExtraSlots, bool* ReturnValue)
+bool UDynamicMeshComponent::ValidateMaterialSlots()
 {
 	static class UFunction* Func = nullptr;
 
@@ -850,7 +837,6 @@ void UDynamicMeshComponent::ValidateMaterialSlots(bool bCreateIfMissing, bool* b
 
 	Params::UDynamicMeshComponent_ValidateMaterialSlots_Params Parms{};
 
-	Parms.bCreateIfMissing = bCreateIfMissing;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -860,11 +846,7 @@ void UDynamicMeshComponent::ValidateMaterialSlots(bool bCreateIfMissing, bool* b
 
 	Func->FunctionFlags = Flgs;
 
-	if (bDeleteExtraSlots != nullptr)
-		*bDeleteExtraSlots = Parms.bDeleteExtraSlots;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -872,9 +854,9 @@ void UDynamicMeshComponent::ValidateMaterialSlots(bool bCreateIfMissing, bool* b
 // Function GeometryFramework.DynamicMeshComponent.UpdateCollision
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bOnlyIfPending                                                   (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bOnlyIfPending                                                   (Edit, ExportObject, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UDynamicMeshComponent::UpdateCollision(bool* bOnlyIfPending)
+bool UDynamicMeshComponent::UpdateCollision()
 {
 	static class UFunction* Func = nullptr;
 
@@ -892,8 +874,7 @@ void UDynamicMeshComponent::UpdateCollision(bool* bOnlyIfPending)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bOnlyIfPending != nullptr)
-		*bOnlyIfPending = Parms.bOnlyIfPending;
+	return Parms.ReturnValue;
 
 }
 
@@ -901,9 +882,9 @@ void UDynamicMeshComponent::UpdateCollision(bool* bOnlyIfPending)
 // Function GeometryFramework.DynamicMeshComponent.SetTangentsType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EDynamicMeshComponentTangentsModeNewTangentsType                                                  (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EDynamicMeshComponentTangentsModeNewTangentsType                                                  (EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UDynamicMeshComponent::SetTangentsType(enum class EDynamicMeshComponentTangentsMode* NewTangentsType)
+enum class EDynamicMeshComponentTangentsMode UDynamicMeshComponent::SetTangentsType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -921,8 +902,7 @@ void UDynamicMeshComponent::SetTangentsType(enum class EDynamicMeshComponentTang
 
 	Func->FunctionFlags = Flgs;
 
-	if (NewTangentsType != nullptr)
-		*NewTangentsType = Parms.NewTangentsType;
+	return Parms.ReturnValue;
 
 }
 
@@ -930,9 +910,9 @@ void UDynamicMeshComponent::SetTangentsType(enum class EDynamicMeshComponentTang
 // Function GeometryFramework.DynamicMeshComponent.SetDynamicMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UDynamicMesh*                NewMesh                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UDynamicMesh*                NewMesh                                                          (Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class UDynamicMesh* UDynamicMeshComponent::SetDynamicMesh()
+void UDynamicMeshComponent::SetDynamicMesh(class UDynamicMesh** NewMesh)
 {
 	static class UFunction* Func = nullptr;
 
@@ -950,7 +930,8 @@ class UDynamicMesh* UDynamicMeshComponent::SetDynamicMesh()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewMesh != nullptr)
+		*NewMesh = Parms.NewMesh;
 
 }
 
@@ -959,9 +940,9 @@ class UDynamicMesh* UDynamicMeshComponent::SetDynamicMesh()
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // bool                               bEnabled                                                         (Edit, BlueprintVisible, ExportObject, Net, OutParm, Transient, EditConst, GlobalConfig)
-// bool                               bImmediateUpdate                                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bImmediateUpdate                                                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UDynamicMeshComponent::SetDeferredCollisionUpdatesEnabled(bool* bEnabled, bool* bImmediateUpdate)
+bool UDynamicMeshComponent::SetDeferredCollisionUpdatesEnabled(bool* bEnabled)
 {
 	static class UFunction* Func = nullptr;
 
@@ -982,8 +963,7 @@ void UDynamicMeshComponent::SetDeferredCollisionUpdatesEnabled(bool* bEnabled, b
 	if (bEnabled != nullptr)
 		*bEnabled = Parms.bEnabled;
 
-	if (bImmediateUpdate != nullptr)
-		*bImmediateUpdate = Parms.bImmediateUpdate;
+	return Parms.ReturnValue;
 
 }
 
@@ -992,9 +972,9 @@ void UDynamicMeshComponent::SetDeferredCollisionUpdatesEnabled(bool* bEnabled, b
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // bool                               bEnabled                                                         (Edit, BlueprintVisible, ExportObject, Net, OutParm, Transient, EditConst, GlobalConfig)
-// bool                               bImmediateUpdate                                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bImmediateUpdate                                                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UDynamicMeshComponent::SetComplexAsSimpleCollisionEnabled(bool* bEnabled, bool* bImmediateUpdate)
+bool UDynamicMeshComponent::SetComplexAsSimpleCollisionEnabled(bool* bEnabled)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1015,8 +995,7 @@ void UDynamicMeshComponent::SetComplexAsSimpleCollisionEnabled(bool* bEnabled, b
 	if (bEnabled != nullptr)
 		*bEnabled = Parms.bEnabled;
 
-	if (bImmediateUpdate != nullptr)
-		*bImmediateUpdate = Parms.bImmediateUpdate;
+	return Parms.ReturnValue;
 
 }
 
@@ -1024,9 +1003,9 @@ void UDynamicMeshComponent::SetComplexAsSimpleCollisionEnabled(bool* bEnabled, b
 // Function GeometryFramework.DynamicMeshComponent.GetTangentsType
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EDynamicMeshComponentTangentsModeReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EDynamicMeshComponentTangentsModeReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDynamicMeshComponent::GetTangentsType(enum class EDynamicMeshComponentTangentsMode* ReturnValue)
+enum class EDynamicMeshComponentTangentsMode UDynamicMeshComponent::GetTangentsType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1044,8 +1023,7 @@ void UDynamicMeshComponent::GetTangentsType(enum class EDynamicMeshComponentTang
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1077,9 +1055,9 @@ void UDynamicMeshComponent::EnableComplexAsSimpleCollision()
 // Function GeometryFramework.DynamicMeshComponent.ConfigureMaterialSet
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class UMaterialInterface*>  NewMaterialSet                                                   (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class UMaterialInterface*>  NewMaterialSet                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UDynamicMeshComponent::ConfigureMaterialSet(TArray<class UMaterialInterface*>* NewMaterialSet)
+TArray<class UMaterialInterface*> UDynamicMeshComponent::ConfigureMaterialSet()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1097,8 +1075,7 @@ void UDynamicMeshComponent::ConfigureMaterialSet(TArray<class UMaterialInterface
 
 	Func->FunctionFlags = Flgs;
 
-	if (NewMaterialSet != nullptr)
-		*NewMaterialSet = std::move(Parms.NewMaterialSet);
+	return Parms.ReturnValue;
 
 }
 
@@ -1134,10 +1111,10 @@ class ADynamicMeshActor* ADynamicMeshActor::GetDefaultObj()
 // Function GeometryFramework.DynamicMeshActor.ReleaseComputeMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UDynamicMesh*                Mesh                                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDynamicMesh*                Mesh                                                             (BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ADynamicMeshActor::ReleaseComputeMesh(class UDynamicMesh* Mesh, bool* ReturnValue)
+bool ADynamicMeshActor::ReleaseComputeMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1146,7 +1123,6 @@ void ADynamicMeshActor::ReleaseComputeMesh(class UDynamicMesh* Mesh, bool* Retur
 
 	Params::ADynamicMeshActor_ReleaseComputeMesh_Params Parms{};
 
-	Parms.Mesh = Mesh;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1156,8 +1132,7 @@ void ADynamicMeshActor::ReleaseComputeMesh(class UDynamicMesh* Mesh, bool* Retur
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1189,9 +1164,9 @@ void ADynamicMeshActor::ReleaseAllComputeMeshes()
 // Function GeometryFramework.DynamicMeshActor.GetDynamicMeshComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UDynamicMeshComponent*       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDynamicMeshComponent*       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ADynamicMeshActor::GetDynamicMeshComponent(class UDynamicMeshComponent** ReturnValue)
+class UDynamicMeshComponent* ADynamicMeshActor::GetDynamicMeshComponent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1209,8 +1184,7 @@ void ADynamicMeshActor::GetDynamicMeshComponent(class UDynamicMeshComponent** Re
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1218,9 +1192,9 @@ void ADynamicMeshActor::GetDynamicMeshComponent(class UDynamicMeshComponent** Re
 // Function GeometryFramework.DynamicMeshActor.GetComputeMeshPool
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UDynamicMeshPool*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDynamicMeshPool*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ADynamicMeshActor::GetComputeMeshPool(class UDynamicMeshPool** ReturnValue)
+class UDynamicMeshPool* ADynamicMeshActor::GetComputeMeshPool()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1238,8 +1212,7 @@ void ADynamicMeshActor::GetComputeMeshPool(class UDynamicMeshPool** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1271,9 +1244,9 @@ void ADynamicMeshActor::FreeAllComputeMeshes()
 // Function GeometryFramework.DynamicMeshActor.AllocateComputeMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UDynamicMesh*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDynamicMesh*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ADynamicMeshActor::AllocateComputeMesh(class UDynamicMesh** ReturnValue)
+class UDynamicMesh* ADynamicMeshActor::AllocateComputeMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1291,8 +1264,7 @@ void ADynamicMeshActor::AllocateComputeMesh(class UDynamicMesh** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1356,9 +1328,9 @@ class UDynamicMesh* UDynamicMesh::GetDefaultObj()
 // Function GeometryFramework.DynamicMesh.ResetToCube
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UDynamicMesh*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDynamicMesh*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDynamicMesh::ResetToCube(class UDynamicMesh** ReturnValue)
+class UDynamicMesh* UDynamicMesh::ResetToCube()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1376,8 +1348,7 @@ void UDynamicMesh::ResetToCube(class UDynamicMesh** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1385,9 +1356,9 @@ void UDynamicMesh::ResetToCube(class UDynamicMesh** ReturnValue)
 // Function GeometryFramework.DynamicMesh.Reset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UDynamicMesh*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDynamicMesh*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDynamicMesh::Reset(class UDynamicMesh** ReturnValue)
+class UDynamicMesh* UDynamicMesh::Reset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1405,8 +1376,7 @@ void UDynamicMesh::Reset(class UDynamicMesh** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1414,9 +1384,9 @@ void UDynamicMesh::Reset(class UDynamicMesh** ReturnValue)
 // Function GeometryFramework.DynamicMesh.IsEmpty
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDynamicMesh::IsEmpty(bool* ReturnValue)
+bool UDynamicMesh::IsEmpty()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1434,8 +1404,7 @@ void UDynamicMesh::IsEmpty(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1443,9 +1412,9 @@ void UDynamicMesh::IsEmpty(bool* ReturnValue)
 // Function GeometryFramework.DynamicMesh.GetTriangleCount
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDynamicMesh::GetTriangleCount(int32* ReturnValue)
+int32 UDynamicMesh::GetTriangleCount()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1463,8 +1432,7 @@ void UDynamicMesh::GetTriangleCount(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1500,9 +1468,9 @@ class UDynamicMeshPool* UDynamicMeshPool::GetDefaultObj()
 // Function GeometryFramework.DynamicMeshPool.ReturnMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UDynamicMesh*                Mesh                                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UDynamicMesh*                Mesh                                                             (BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UDynamicMeshPool::ReturnMesh(class UDynamicMesh* Mesh)
+class UDynamicMesh* UDynamicMeshPool::ReturnMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1511,7 +1479,6 @@ void UDynamicMeshPool::ReturnMesh(class UDynamicMesh* Mesh)
 
 	Params::UDynamicMeshPool_ReturnMesh_Params Parms{};
 
-	Parms.Mesh = Mesh;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1520,6 +1487,8 @@ void UDynamicMeshPool::ReturnMesh(class UDynamicMesh* Mesh)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -1551,9 +1520,9 @@ void UDynamicMeshPool::ReturnAllMeshes()
 // Function GeometryFramework.DynamicMeshPool.RequestMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UDynamicMesh*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDynamicMesh*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDynamicMeshPool::RequestMesh(class UDynamicMesh** ReturnValue)
+class UDynamicMesh* UDynamicMeshPool::RequestMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1571,8 +1540,7 @@ void UDynamicMeshPool::RequestMesh(class UDynamicMesh** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 

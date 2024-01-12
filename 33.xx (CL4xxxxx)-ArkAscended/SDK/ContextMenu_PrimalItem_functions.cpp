@@ -43,10 +43,10 @@ class UContextMenu_PrimalItem_C* UContextMenu_PrimalItem_C::GetDefaultObj()
 // Function ContextMenu_PrimalItem.ContextMenu_PrimalItem_C.Tick
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              InDeltaTime                                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InDeltaTime                                                      (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
-float UContextMenu_PrimalItem_C::Tick(const struct FGeometry& MyGeometry)
+float UContextMenu_PrimalItem_C::Tick(struct FGeometry* MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,9 +55,11 @@ float UContextMenu_PrimalItem_C::Tick(const struct FGeometry& MyGeometry)
 
 	Params::UContextMenu_PrimalItem_C_Tick_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -67,11 +69,11 @@ float UContextMenu_PrimalItem_C::Tick(const struct FGeometry& MyGeometry)
 // Function ContextMenu_PrimalItem.ContextMenu_PrimalItem_C.ExecuteUbergraph_ContextMenu_PrimalItem
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, BlueprintVisible, Net, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FGeometry                   K2Node_Event_MyGeometry                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              K2Node_Event_InDeltaTime                                         (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   K2Node_Event_MyGeometry                                          (Edit, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              K2Node_Event_InDeltaTime                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
 
-float UContextMenu_PrimalItem_C::ExecuteUbergraph_ContextMenu_PrimalItem(int32 EntryPoint)
+int32 UContextMenu_PrimalItem_C::ExecuteUbergraph_ContextMenu_PrimalItem(struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -80,9 +82,14 @@ float UContextMenu_PrimalItem_C::ExecuteUbergraph_ContextMenu_PrimalItem(int32 E
 
 	Params::UContextMenu_PrimalItem_C_ExecuteUbergraph_ContextMenu_PrimalItem_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (K2Node_Event_MyGeometry != nullptr)
+		*K2Node_Event_MyGeometry = std::move(Parms.K2Node_Event_MyGeometry);
+
+	if (K2Node_Event_InDeltaTime != nullptr)
+		*K2Node_Event_InDeltaTime = Parms.K2Node_Event_InDeltaTime;
 
 	return Parms.ReturnValue;
 

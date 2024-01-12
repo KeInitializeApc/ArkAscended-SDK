@@ -43,9 +43,9 @@ class URadialSlider* URadialSlider::GetDefaultObj()
 // Function AdvancedWidgets.RadialSlider.SetValueTags
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<float>                      InValueTags                                                      (Edit, ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<float>                      InValueTags                                                      (ConstParm, BlueprintVisible, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void URadialSlider::SetValueTags(TArray<float>* InValueTags)
+TArray<float> URadialSlider::SetValueTags()
 {
 	static class UFunction* Func = nullptr;
 
@@ -63,8 +63,7 @@ void URadialSlider::SetValueTags(TArray<float>* InValueTags)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InValueTags != nullptr)
-		*InValueTags = std::move(Parms.InValueTags);
+	return Parms.ReturnValue;
 
 }
 
@@ -72,7 +71,7 @@ void URadialSlider::SetValueTags(TArray<float>* InValueTags)
 // Function AdvancedWidgets.RadialSlider.SetValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float URadialSlider::SetValue()
 {
@@ -100,7 +99,7 @@ float URadialSlider::SetValue()
 // Function AdvancedWidgets.RadialSlider.SetUseVerticalDrag
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InUseVerticalDrag                                                (Edit, Net, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               InUseVerticalDrag                                                (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 void URadialSlider::SetUseVerticalDrag(bool* InUseVerticalDrag)
 {
@@ -129,7 +128,7 @@ void URadialSlider::SetUseVerticalDrag(bool* InUseVerticalDrag)
 // Function AdvancedWidgets.RadialSlider.SetStepSize
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float URadialSlider::SetStepSize()
 {
@@ -157,7 +156,7 @@ float URadialSlider::SetStepSize()
 // Function AdvancedWidgets.RadialSlider.SetSliderRange
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FRuntimeFloatCurve          InSliderRange                                                    (Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FRuntimeFloatCurve          InSliderRange                                                    (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 void URadialSlider::SetSliderRange(struct FRuntimeFloatCurve* InSliderRange)
 {
@@ -186,7 +185,7 @@ void URadialSlider::SetSliderRange(struct FRuntimeFloatCurve* InSliderRange)
 // Function AdvancedWidgets.RadialSlider.SetSliderProgressColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FLinearColor URadialSlider::SetSliderProgressColor()
 {
@@ -214,7 +213,7 @@ struct FLinearColor URadialSlider::SetSliderProgressColor()
 // Function AdvancedWidgets.RadialSlider.SetSliderHandleStartAngle
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float URadialSlider::SetSliderHandleStartAngle()
 {
@@ -242,7 +241,7 @@ float URadialSlider::SetSliderHandleStartAngle()
 // Function AdvancedWidgets.RadialSlider.SetSliderHandleEndAngle
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float URadialSlider::SetSliderHandleEndAngle()
 {
@@ -270,7 +269,7 @@ float URadialSlider::SetSliderHandleEndAngle()
 // Function AdvancedWidgets.RadialSlider.SetSliderHandleColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FLinearColor URadialSlider::SetSliderHandleColor()
 {
@@ -298,7 +297,7 @@ struct FLinearColor URadialSlider::SetSliderHandleColor()
 // Function AdvancedWidgets.RadialSlider.SetSliderBarColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FLinearColor URadialSlider::SetSliderBarColor()
 {
@@ -326,7 +325,7 @@ struct FLinearColor URadialSlider::SetSliderBarColor()
 // Function AdvancedWidgets.RadialSlider.SetShowSliderHandle
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InShowSliderHandle                                               (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               InShowSliderHandle                                               (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 void URadialSlider::SetShowSliderHandle(bool* InShowSliderHandle)
 {
@@ -355,7 +354,7 @@ void URadialSlider::SetShowSliderHandle(bool* InShowSliderHandle)
 // Function AdvancedWidgets.RadialSlider.SetShowSliderHand
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InShowSliderHand                                                 (ConstParm, BlueprintVisible, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               InShowSliderHand                                                 (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 void URadialSlider::SetShowSliderHand(bool* InShowSliderHand)
 {
@@ -384,7 +383,7 @@ void URadialSlider::SetShowSliderHand(bool* InShowSliderHand)
 // Function AdvancedWidgets.RadialSlider.SetLocked
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// bool                               InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 bool URadialSlider::SetLocked()
 {
@@ -412,7 +411,7 @@ bool URadialSlider::SetLocked()
 // Function AdvancedWidgets.RadialSlider.SetHandStartEndRatio
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// struct FVector2D                   InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FVector2D URadialSlider::SetHandStartEndRatio()
 {
@@ -440,7 +439,7 @@ struct FVector2D URadialSlider::SetHandStartEndRatio()
 // Function AdvancedWidgets.RadialSlider.SetCustomDefaultValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float URadialSlider::SetCustomDefaultValue()
 {
@@ -468,7 +467,7 @@ float URadialSlider::SetCustomDefaultValue()
 // Function AdvancedWidgets.RadialSlider.SetCenterBackgroundColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FLinearColor URadialSlider::SetCenterBackgroundColor()
 {
@@ -496,7 +495,7 @@ struct FLinearColor URadialSlider::SetCenterBackgroundColor()
 // Function AdvancedWidgets.RadialSlider.SetAngularOffset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float URadialSlider::SetAngularOffset()
 {
@@ -524,9 +523,9 @@ float URadialSlider::SetAngularOffset()
 // Function AdvancedWidgets.RadialSlider.GetValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void URadialSlider::GetValue(float* ReturnValue)
+float URadialSlider::GetValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -544,8 +543,7 @@ void URadialSlider::GetValue(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -553,9 +551,9 @@ void URadialSlider::GetValue(float* ReturnValue)
 // Function AdvancedWidgets.RadialSlider.GetNormalizedSliderHandlePosition
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void URadialSlider::GetNormalizedSliderHandlePosition(float* ReturnValue)
+float URadialSlider::GetNormalizedSliderHandlePosition()
 {
 	static class UFunction* Func = nullptr;
 
@@ -573,8 +571,7 @@ void URadialSlider::GetNormalizedSliderHandlePosition(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -582,9 +579,9 @@ void URadialSlider::GetNormalizedSliderHandlePosition(float* ReturnValue)
 // Function AdvancedWidgets.RadialSlider.GetCustomDefaultValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void URadialSlider::GetCustomDefaultValue(float* ReturnValue)
+float URadialSlider::GetCustomDefaultValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -602,8 +599,7 @@ void URadialSlider::GetCustomDefaultValue(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 

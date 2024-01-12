@@ -43,9 +43,9 @@ class UUI_ThemeCustomizer_C* UUI_ThemeCustomizer_C::GetDefaultObj()
 // Function UI_ThemeCustomizer.UI_ThemeCustomizer_C.UpdateColorPickerEnabled
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-bool UUI_ThemeCustomizer_C::UpdateColorPickerEnabled()
+void UUI_ThemeCustomizer_C::UpdateColorPickerEnabled(bool* CallFunc_IsValid_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,7 +57,8 @@ bool UUI_ThemeCustomizer_C::UpdateColorPickerEnabled()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 }
 
@@ -65,13 +66,13 @@ bool UUI_ThemeCustomizer_C::UpdateColorPickerEnabled()
 // Function UI_ThemeCustomizer.UI_ThemeCustomizer_C.RestoreToDefaults
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// struct FCFCoreThemeRowData         CallFunc_GetDataTableRowFromName_OutRow                          (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_GetDataTableRowFromName_ReturnValue                     (Edit, ExportObject, Net, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_DoesDataTableRowExist_ReturnValue                       (Edit, ConstParm, ExportObject, ZeroConstructor, InstancedReference, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// struct FCFCoreThemeRowData         CallFunc_GetDataTableRowFromName_OutRow                          (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// bool                               CallFunc_GetDataTableRowFromName_ReturnValue                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// bool                               CallFunc_DoesDataTableRowExist_ReturnValue                       (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-bool UUI_ThemeCustomizer_C::RestoreToDefaults(bool CallFunc_DoesDataTableRowExist_ReturnValue)
+bool UUI_ThemeCustomizer_C::RestoreToDefaults(bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, struct FCFCoreThemeRowData* CallFunc_GetDataTableRowFromName_OutRow, bool* CallFunc_GetDataTableRowFromName_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -80,9 +81,20 @@ bool UUI_ThemeCustomizer_C::RestoreToDefaults(bool CallFunc_DoesDataTableRowExis
 
 	Params::UUI_ThemeCustomizer_C_RestoreToDefaults_Params Parms{};
 
-	Parms.CallFunc_DoesDataTableRowExist_ReturnValue = CallFunc_DoesDataTableRowExist_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+
+	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
+		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+
+	if (CallFunc_GetDataTableRowFromName_OutRow != nullptr)
+		*CallFunc_GetDataTableRowFromName_OutRow = std::move(Parms.CallFunc_GetDataTableRowFromName_OutRow);
+
+	if (CallFunc_GetDataTableRowFromName_ReturnValue != nullptr)
+		*CallFunc_GetDataTableRowFromName_ReturnValue = Parms.CallFunc_GetDataTableRowFromName_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -92,10 +104,10 @@ bool UUI_ThemeCustomizer_C::RestoreToDefaults(bool CallFunc_DoesDataTableRowExis
 // Function UI_ThemeCustomizer.UI_ThemeCustomizer_C.SaveToHistory
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// struct FCFCoreThemeRowData         CallFunc_Array_Get_Item                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// struct FCFCoreThemeRowData         CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-struct FCFCoreThemeRowData UUI_ThemeCustomizer_C::SaveToHistory()
+void UUI_ThemeCustomizer_C::SaveToHistory(bool* CallFunc_IsValid_ReturnValue, struct FCFCoreThemeRowData* CallFunc_Array_Get_Item)
 {
 	static class UFunction* Func = nullptr;
 
@@ -107,7 +119,11 @@ struct FCFCoreThemeRowData UUI_ThemeCustomizer_C::SaveToHistory()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+
+	if (CallFunc_Array_Get_Item != nullptr)
+		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
 
 }
 
@@ -115,14 +131,14 @@ struct FCFCoreThemeRowData UUI_ThemeCustomizer_C::SaveToHistory()
 // Function UI_ThemeCustomizer.UI_ThemeCustomizer_C.ForwardHistoryAStep
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              Temp_int_Variable                                                (ExportObject, Net, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// struct FCFCoreThemeRowData         CallFunc_Array_Get_Item                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              CallFunc_Array_LastIndex_ReturnValue                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              Temp_int_Variable                                                (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// struct FCFCoreThemeRowData         CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              CallFunc_Array_LastIndex_ReturnValue                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-bool UUI_ThemeCustomizer_C::ForwardHistoryAStep(int32* CallFunc_Add_IntInt_ReturnValue)
+bool UUI_ThemeCustomizer_C::ForwardHistoryAStep(int32* Temp_int_Variable, bool* CallFunc_IsValid_ReturnValue, struct FCFCoreThemeRowData* CallFunc_Array_Get_Item, int32 CallFunc_Add_IntInt_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -131,11 +147,18 @@ bool UUI_ThemeCustomizer_C::ForwardHistoryAStep(int32* CallFunc_Add_IntInt_Retur
 
 	Params::UUI_ThemeCustomizer_C_ForwardHistoryAStep_Params Parms{};
 
+	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_Add_IntInt_ReturnValue != nullptr)
-		*CallFunc_Add_IntInt_ReturnValue = Parms.CallFunc_Add_IntInt_ReturnValue;
+	if (Temp_int_Variable != nullptr)
+		*Temp_int_Variable = Parms.Temp_int_Variable;
+
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+
+	if (CallFunc_Array_Get_Item != nullptr)
+		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
 
 	return Parms.ReturnValue;
 
@@ -145,15 +168,15 @@ bool UUI_ThemeCustomizer_C::ForwardHistoryAStep(int32* CallFunc_Add_IntInt_Retur
 // Function UI_ThemeCustomizer.UI_ThemeCustomizer_C.RevertBackAStepInHistory
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              Temp_int_Variable                                                (ExportObject, Net, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_Greater_IntInt_ReturnValue                              (ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Subtract_IntInt_ReturnValue                             (Edit, ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FCFCoreThemeRowData         CallFunc_Array_Get_Item                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Greater_IntInt_ReturnValue_1                            (ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              Temp_int_Variable                                                (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_Greater_IntInt_ReturnValue                              (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Subtract_IntInt_ReturnValue                             (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FCFCoreThemeRowData         CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Greater_IntInt_ReturnValue_1                            (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
 
-bool UUI_ThemeCustomizer_C::RevertBackAStepInHistory(int32* CallFunc_Subtract_IntInt_ReturnValue)
+bool UUI_ThemeCustomizer_C::RevertBackAStepInHistory(int32* Temp_int_Variable, bool* CallFunc_IsValid_ReturnValue, struct FCFCoreThemeRowData* CallFunc_Array_Get_Item, int32* CallFunc_Array_Length_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -165,8 +188,17 @@ bool UUI_ThemeCustomizer_C::RevertBackAStepInHistory(int32* CallFunc_Subtract_In
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_Subtract_IntInt_ReturnValue != nullptr)
-		*CallFunc_Subtract_IntInt_ReturnValue = Parms.CallFunc_Subtract_IntInt_ReturnValue;
+	if (Temp_int_Variable != nullptr)
+		*Temp_int_Variable = Parms.Temp_int_Variable;
+
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+
+	if (CallFunc_Array_Get_Item != nullptr)
+		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
+
+	if (CallFunc_Array_Length_ReturnValue != nullptr)
+		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -176,20 +208,20 @@ bool UUI_ThemeCustomizer_C::RevertBackAStepInHistory(int32* CallFunc_Subtract_In
 // Function UI_ThemeCustomizer.UI_ThemeCustomizer_C.OnKeyDown
 // (BlueprintCosmetic, Event, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FKeyEvent                   InKeyEvent                                                       (ConstParm, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FInputEvent                 CallFunc_GetInputEventFromKeyEvent_ReturnValue                   (Edit, OutParm, Config, InstancedReference, SubobjectReference)
-// struct FKey                        CallFunc_GetKey_ReturnValue                                      (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_InputEvent_IsLeftControlDown_ReturnValue                (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, Config, InstancedReference, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_1                         (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_InputEvent_IsLeftControlDown_ReturnValue_1              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, Config, InstancedReference, SubobjectReference, Interp)
-// bool                               CallFunc_BooleanAND_ReturnValue                                  (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue_1                                (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// struct FEventReply                 CallFunc_Handled_ReturnValue                                     (BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FKeyEvent                   InKeyEvent                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputEvent                 CallFunc_GetInputEventFromKeyEvent_ReturnValue                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// struct FKey                        CallFunc_GetKey_ReturnValue                                      (Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_InputEvent_IsLeftControlDown_ReturnValue                (ConstParm, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_1                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_InputEvent_IsLeftControlDown_ReturnValue_1              (ConstParm, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference, Interp)
+// bool                               CallFunc_BooleanAND_ReturnValue                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue_1                                (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// struct FEventReply                 CallFunc_Handled_ReturnValue                                     (Edit, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-struct FEventReply UUI_ThemeCustomizer_C::OnKeyDown(const struct FGeometry& MyGeometry, const struct FKeyEvent& InKeyEvent, struct FEventReply* ReturnValue, struct FInputEvent* CallFunc_GetInputEventFromKeyEvent_ReturnValue, bool* CallFunc_InputEvent_IsLeftControlDown_ReturnValue, bool* CallFunc_InputEvent_IsLeftControlDown_ReturnValue_1, bool* CallFunc_BooleanAND_ReturnValue, bool* CallFunc_BooleanAND_ReturnValue_1)
+bool UUI_ThemeCustomizer_C::OnKeyDown(struct FGeometry* MyGeometry, const struct FInputEvent& CallFunc_GetInputEventFromKeyEvent_ReturnValue, bool CallFunc_InputEvent_IsLeftControlDown_ReturnValue, bool CallFunc_InputEvent_IsLeftControlDown_ReturnValue_1, bool CallFunc_BooleanAND_ReturnValue, bool CallFunc_BooleanAND_ReturnValue_1, struct FEventReply* CallFunc_Handled_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -198,28 +230,19 @@ struct FEventReply UUI_ThemeCustomizer_C::OnKeyDown(const struct FGeometry& MyGe
 
 	Params::UUI_ThemeCustomizer_C_OnKeyDown_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
-	Parms.InKeyEvent = InKeyEvent;
+	Parms.CallFunc_GetInputEventFromKeyEvent_ReturnValue = CallFunc_GetInputEventFromKeyEvent_ReturnValue;
+	Parms.CallFunc_InputEvent_IsLeftControlDown_ReturnValue = CallFunc_InputEvent_IsLeftControlDown_ReturnValue;
+	Parms.CallFunc_InputEvent_IsLeftControlDown_ReturnValue_1 = CallFunc_InputEvent_IsLeftControlDown_ReturnValue_1;
+	Parms.CallFunc_BooleanAND_ReturnValue = CallFunc_BooleanAND_ReturnValue;
+	Parms.CallFunc_BooleanAND_ReturnValue_1 = CallFunc_BooleanAND_ReturnValue_1;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
-	if (CallFunc_GetInputEventFromKeyEvent_ReturnValue != nullptr)
-		*CallFunc_GetInputEventFromKeyEvent_ReturnValue = std::move(Parms.CallFunc_GetInputEventFromKeyEvent_ReturnValue);
-
-	if (CallFunc_InputEvent_IsLeftControlDown_ReturnValue != nullptr)
-		*CallFunc_InputEvent_IsLeftControlDown_ReturnValue = Parms.CallFunc_InputEvent_IsLeftControlDown_ReturnValue;
-
-	if (CallFunc_InputEvent_IsLeftControlDown_ReturnValue_1 != nullptr)
-		*CallFunc_InputEvent_IsLeftControlDown_ReturnValue_1 = Parms.CallFunc_InputEvent_IsLeftControlDown_ReturnValue_1;
-
-	if (CallFunc_BooleanAND_ReturnValue != nullptr)
-		*CallFunc_BooleanAND_ReturnValue = Parms.CallFunc_BooleanAND_ReturnValue;
-
-	if (CallFunc_BooleanAND_ReturnValue_1 != nullptr)
-		*CallFunc_BooleanAND_ReturnValue_1 = Parms.CallFunc_BooleanAND_ReturnValue_1;
+	if (CallFunc_Handled_ReturnValue != nullptr)
+		*CallFunc_Handled_ReturnValue = std::move(Parms.CallFunc_Handled_ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -229,10 +252,10 @@ struct FEventReply UUI_ThemeCustomizer_C::OnKeyDown(const struct FGeometry& MyGe
 // Function UI_ThemeCustomizer.UI_ThemeCustomizer_C.ResetHistory
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// struct FCFCoreThemeRowData         CallFunc_Array_Get_Item                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// struct FCFCoreThemeRowData         CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-struct FCFCoreThemeRowData UUI_ThemeCustomizer_C::ResetHistory()
+void UUI_ThemeCustomizer_C::ResetHistory(bool* CallFunc_IsValid_ReturnValue, struct FCFCoreThemeRowData* CallFunc_Array_Get_Item)
 {
 	static class UFunction* Func = nullptr;
 
@@ -244,7 +267,11 @@ struct FCFCoreThemeRowData UUI_ThemeCustomizer_C::ResetHistory()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+
+	if (CallFunc_Array_Get_Item != nullptr)
+		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
 
 }
 
@@ -252,15 +279,15 @@ struct FCFCoreThemeRowData UUI_ThemeCustomizer_C::ResetHistory()
 // Function UI_ThemeCustomizer.UI_ThemeCustomizer_C.AddToHistory
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              Temp_int_Variable                                                (ExportObject, Net, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              CallFunc_Int32_AddOne_ReturnValue                                (BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              CallFunc_Int32_AddOne_ReturnValue_1                              (BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// int32                              Temp_int_Variable                                                (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              CallFunc_Int32_AddOne_ReturnValue                                (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, EditConst, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              CallFunc_Int32_AddOne_ReturnValue_1                              (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
 
-int32 UUI_ThemeCustomizer_C::AddToHistory(bool CallFunc_Array_IsValidIndex_ReturnValue, int32* CallFunc_Add_IntInt_ReturnValue)
+void UUI_ThemeCustomizer_C::AddToHistory(int32* Temp_int_Variable, bool* CallFunc_IsValid_ReturnValue, int32* CallFunc_Int32_AddOne_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, bool CallFunc_Array_IsValidIndex_ReturnValue, int32 CallFunc_Add_IntInt_ReturnValue, int32* CallFunc_Int32_AddOne_ReturnValue_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -270,13 +297,24 @@ int32 UUI_ThemeCustomizer_C::AddToHistory(bool CallFunc_Array_IsValidIndex_Retur
 	Params::UUI_ThemeCustomizer_C_AddToHistory_Params Parms{};
 
 	Parms.CallFunc_Array_IsValidIndex_ReturnValue = CallFunc_Array_IsValidIndex_ReturnValue;
+	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_Add_IntInt_ReturnValue != nullptr)
-		*CallFunc_Add_IntInt_ReturnValue = Parms.CallFunc_Add_IntInt_ReturnValue;
+	if (Temp_int_Variable != nullptr)
+		*Temp_int_Variable = Parms.Temp_int_Variable;
 
-	return Parms.ReturnValue;
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+
+	if (CallFunc_Int32_AddOne_ReturnValue != nullptr)
+		*CallFunc_Int32_AddOne_ReturnValue = Parms.CallFunc_Int32_AddOne_ReturnValue;
+
+	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
+		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+
+	if (CallFunc_Int32_AddOne_ReturnValue_1 != nullptr)
+		*CallFunc_Int32_AddOne_ReturnValue_1 = Parms.CallFunc_Int32_AddOne_ReturnValue_1;
 
 }
 
@@ -284,10 +322,10 @@ int32 UUI_ThemeCustomizer_C::AddToHistory(bool CallFunc_Array_IsValidIndex_Retur
 // Function UI_ThemeCustomizer.UI_ThemeCustomizer_C.CheckIfHistoryDirty
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_NotEqual_IntInt_ReturnValue                             (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_NotEqual_IntInt_ReturnValue                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
 
-bool UUI_ThemeCustomizer_C::CheckIfHistoryDirty(bool CallFunc_NotEqual_IntInt_ReturnValue)
+bool UUI_ThemeCustomizer_C::CheckIfHistoryDirty(bool* CallFunc_IsValid_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -296,9 +334,11 @@ bool UUI_ThemeCustomizer_C::CheckIfHistoryDirty(bool CallFunc_NotEqual_IntInt_Re
 
 	Params::UUI_ThemeCustomizer_C_CheckIfHistoryDirty_Params Parms{};
 
-	Parms.CallFunc_NotEqual_IntInt_ReturnValue = CallFunc_NotEqual_IntInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -308,9 +348,9 @@ bool UUI_ThemeCustomizer_C::CheckIfHistoryDirty(bool CallFunc_NotEqual_IntInt_Re
 // Function UI_ThemeCustomizer.UI_ThemeCustomizer_C.UpdateSliderActivated
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-bool UUI_ThemeCustomizer_C::UpdateSliderActivated()
+void UUI_ThemeCustomizer_C::UpdateSliderActivated(bool* CallFunc_IsValid_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -322,7 +362,8 @@ bool UUI_ThemeCustomizer_C::UpdateSliderActivated()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 }
 
@@ -330,11 +371,11 @@ bool UUI_ThemeCustomizer_C::UpdateSliderActivated()
 // Function UI_ThemeCustomizer.UI_ThemeCustomizer_C.GetThemeSaveDirectory
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FString                      CallFunc_GetProjectDirectory_ReturnValue                         (Edit, ExportObject, BlueprintReadOnly, OutParm, Config, InstancedReference, SubobjectReference)
-// class FString                      CallFunc_Concat_StrStr_ReturnValue                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      CallFunc_GetProjectDirectory_ReturnValue                         (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// class FString                      CallFunc_Concat_StrStr_ReturnValue                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-void UUI_ThemeCustomizer_C::GetThemeSaveDirectory(class FString* ReturnValue, class FString* CallFunc_GetProjectDirectory_ReturnValue, class FString* CallFunc_Concat_StrStr_ReturnValue)
+class FString UUI_ThemeCustomizer_C::GetThemeSaveDirectory(const class FString& CallFunc_GetProjectDirectory_ReturnValue, const class FString& CallFunc_Concat_StrStr_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -343,17 +384,12 @@ void UUI_ThemeCustomizer_C::GetThemeSaveDirectory(class FString* ReturnValue, cl
 
 	Params::UUI_ThemeCustomizer_C_GetThemeSaveDirectory_Params Parms{};
 
+	Parms.CallFunc_GetProjectDirectory_ReturnValue = CallFunc_GetProjectDirectory_ReturnValue;
+	Parms.CallFunc_Concat_StrStr_ReturnValue = CallFunc_Concat_StrStr_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
-	if (CallFunc_GetProjectDirectory_ReturnValue != nullptr)
-		*CallFunc_GetProjectDirectory_ReturnValue = std::move(Parms.CallFunc_GetProjectDirectory_ReturnValue);
-
-	if (CallFunc_Concat_StrStr_ReturnValue != nullptr)
-		*CallFunc_Concat_StrStr_ReturnValue = std::move(Parms.CallFunc_Concat_StrStr_ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -397,10 +433,10 @@ void UUI_ThemeCustomizer_C::BndEvt__UI_ThemeCustomizer_Button_Revert_K2Node_Comp
 // Function UI_ThemeCustomizer.UI_ThemeCustomizer_C.Tick
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              InDeltaTime                                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InDeltaTime                                                      (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
-float UUI_ThemeCustomizer_C::Tick(const struct FGeometry& MyGeometry)
+float UUI_ThemeCustomizer_C::Tick(struct FGeometry* MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -409,9 +445,11 @@ float UUI_ThemeCustomizer_C::Tick(const struct FGeometry& MyGeometry)
 
 	Params::UUI_ThemeCustomizer_C_Tick_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -534,19 +572,19 @@ void UUI_ThemeCustomizer_C::Construct()
 // Function UI_ThemeCustomizer.UI_ThemeCustomizer_C.ExecuteUbergraph_UI_ThemeCustomizer
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, BlueprintVisible, Net, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FLinearColor                CallFunc_GetColor_Color                                          (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_2                           (ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_IsValid_ReturnValue_2                                   (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
-// struct FGeometry                   K2Node_Event_MyGeometry                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              K2Node_Event_InDeltaTime                                         (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FLinearColor                K2Node_CustomEvent_Color                                         (ExportObject, EditFixedSize, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FLinearColor                CallFunc_GetColor_Color                                          (Edit, ExportObject, Net, OutParm, Transient, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_2                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue_2                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
+// struct FGeometry                   K2Node_Event_MyGeometry                                          (Edit, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              K2Node_Event_InDeltaTime                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FLinearColor                K2Node_CustomEvent_Color                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UUI_ThemeCustomizer_C::ExecuteUbergraph_UI_ThemeCustomizer(int32 EntryPoint, struct FLinearColor* CallFunc_GetColor_Color, const struct FLinearColor& K2Node_CustomEvent_Color)
+struct FLinearColor UUI_ThemeCustomizer_C::ExecuteUbergraph_UI_ThemeCustomizer(bool* CallFunc_IsValid_ReturnValue, struct FLinearColor* CallFunc_GetColor_Color, bool* CallFunc_IsValid_ReturnValue_1, bool* CallFunc_IsValid_ReturnValue_2, struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -555,13 +593,26 @@ float UUI_ThemeCustomizer_C::ExecuteUbergraph_UI_ThemeCustomizer(int32 EntryPoin
 
 	Params::UUI_ThemeCustomizer_C_ExecuteUbergraph_UI_ThemeCustomizer_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
-	Parms.K2Node_CustomEvent_Color = K2Node_CustomEvent_Color;
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+
 	if (CallFunc_GetColor_Color != nullptr)
 		*CallFunc_GetColor_Color = std::move(Parms.CallFunc_GetColor_Color);
+
+	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
+		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+
+	if (CallFunc_IsValid_ReturnValue_2 != nullptr)
+		*CallFunc_IsValid_ReturnValue_2 = Parms.CallFunc_IsValid_ReturnValue_2;
+
+	if (K2Node_Event_MyGeometry != nullptr)
+		*K2Node_Event_MyGeometry = std::move(Parms.K2Node_Event_MyGeometry);
+
+	if (K2Node_Event_InDeltaTime != nullptr)
+		*K2Node_Event_InDeltaTime = Parms.K2Node_Event_InDeltaTime;
 
 	return Parms.ReturnValue;
 

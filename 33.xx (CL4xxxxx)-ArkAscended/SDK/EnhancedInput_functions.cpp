@@ -99,10 +99,10 @@ class UEnhancedInputComponent* UEnhancedInputComponent::GetDefaultObj()
 // Function EnhancedInput.EnhancedInputComponent.GetBoundActionValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UInputAction*                Action                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FInputActionValue           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UInputAction*                Action                                                           (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FInputActionValue           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEnhancedInputComponent::GetBoundActionValue(class UInputAction** Action, struct FInputActionValue* ReturnValue)
+struct FInputActionValue UEnhancedInputComponent::GetBoundActionValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -120,11 +120,7 @@ void UEnhancedInputComponent::GetBoundActionValue(class UInputAction** Action, s
 
 	Func->FunctionFlags = Flgs;
 
-	if (Action != nullptr)
-		*Action = Parms.Action;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -188,10 +184,10 @@ class UEnhancedInputLibrary* UEnhancedInputLibrary::GetDefaultObj()
 // Function EnhancedInput.EnhancedInputLibrary.RequestRebuildControlMappingsUsingContext
 // (Final, BlueprintCosmetic, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UInputMappingContext*        Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bForceImmediately                                                (Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UInputMappingContext*        Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bForceImmediately                                                (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void UEnhancedInputLibrary::RequestRebuildControlMappingsUsingContext(class UInputMappingContext* Context, bool* bForceImmediately)
+bool UEnhancedInputLibrary::RequestRebuildControlMappingsUsingContext()
 {
 	static class UFunction* Func = nullptr;
 
@@ -200,7 +196,6 @@ void UEnhancedInputLibrary::RequestRebuildControlMappingsUsingContext(class UInp
 
 	Params::UEnhancedInputLibrary_RequestRebuildControlMappingsUsingContext_Params Parms{};
 
-	Parms.Context = Context;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -210,8 +205,7 @@ void UEnhancedInputLibrary::RequestRebuildControlMappingsUsingContext(class UInp
 
 	Func->FunctionFlags = Flgs;
 
-	if (bForceImmediately != nullptr)
-		*bForceImmediately = Parms.bForceImmediately;
+	return Parms.ReturnValue;
 
 }
 
@@ -222,10 +216,10 @@ void UEnhancedInputLibrary::RequestRebuildControlMappingsUsingContext(class UInp
 // double                             X                                                                (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config)
 // double                             Y                                                                (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config)
 // double                             Z                                                                (Edit, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config)
-// enum class EInputActionValueType   ValueType                                                        (Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FInputActionValue           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EInputActionValueType   ValueType                                                        (Edit, ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FInputActionValue           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EInputActionValueType UEnhancedInputLibrary::MakeInputActionValueOfType(double X, double Y, double Z, struct FInputActionValue* ReturnValue)
+struct FInputActionValue UEnhancedInputLibrary::MakeInputActionValueOfType(double X, double Y, double Z, enum class EInputActionValueType* ValueType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -246,8 +240,8 @@ enum class EInputActionValueType UEnhancedInputLibrary::MakeInputActionValueOfTy
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (ValueType != nullptr)
+		*ValueType = Parms.ValueType;
 
 	return Parms.ReturnValue;
 
@@ -260,10 +254,10 @@ enum class EInputActionValueType UEnhancedInputLibrary::MakeInputActionValueOfTy
 // double                             X                                                                (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config)
 // double                             Y                                                                (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config)
 // double                             Z                                                                (Edit, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config)
-// struct FInputActionValue           MatchValueType                                                   (Edit, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FInputActionValue           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputActionValue           MatchValueType                                                   (ConstParm, ExportObject, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FInputActionValue           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FInputActionValue UEnhancedInputLibrary::MakeInputActionValue(double X, double Y, double Z, struct FInputActionValue* ReturnValue)
+struct FInputActionValue UEnhancedInputLibrary::MakeInputActionValue(double X, double Y, double Z, const struct FInputActionValue& MatchValueType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -275,6 +269,7 @@ struct FInputActionValue UEnhancedInputLibrary::MakeInputActionValue(double X, d
 	Parms.X = X;
 	Parms.Y = Y;
 	Parms.Z = Z;
+	Parms.MatchValueType = MatchValueType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -283,9 +278,6 @@ struct FInputActionValue UEnhancedInputLibrary::MakeInputActionValue(double X, d
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -295,10 +287,10 @@ struct FInputActionValue UEnhancedInputLibrary::MakeInputActionValue(double X, d
 // Function EnhancedInput.EnhancedInputLibrary.IsActionKeyMappingPlayerMappable
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEnhancedActionKeyMapping   ActionKeyMapping                                                 (BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEnhancedActionKeyMapping   ActionKeyMapping                                                 (Edit, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FEnhancedActionKeyMapping UEnhancedInputLibrary::IsActionKeyMappingPlayerMappable(bool* ReturnValue)
+bool UEnhancedInputLibrary::IsActionKeyMappingPlayerMappable(const struct FEnhancedActionKeyMapping& ActionKeyMapping)
 {
 	static class UFunction* Func = nullptr;
 
@@ -307,6 +299,7 @@ struct FEnhancedActionKeyMapping UEnhancedInputLibrary::IsActionKeyMappingPlayer
 
 	Params::UEnhancedInputLibrary_IsActionKeyMappingPlayerMappable_Params Parms{};
 
+	Parms.ActionKeyMapping = ActionKeyMapping;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -316,9 +309,6 @@ struct FEnhancedActionKeyMapping UEnhancedInputLibrary::IsActionKeyMappingPlayer
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -327,9 +317,9 @@ struct FEnhancedActionKeyMapping UEnhancedInputLibrary::IsActionKeyMappingPlayer
 // Function EnhancedInput.EnhancedInputLibrary.GetThirdPlayerMappableKeySlot
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FPlayerMappableKeySlot      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPlayerMappableKeySlot      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEnhancedInputLibrary::GetThirdPlayerMappableKeySlot(struct FPlayerMappableKeySlot* ReturnValue)
+struct FPlayerMappableKeySlot UEnhancedInputLibrary::GetThirdPlayerMappableKeySlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -347,8 +337,7 @@ void UEnhancedInputLibrary::GetThirdPlayerMappableKeySlot(struct FPlayerMappable
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -356,9 +345,9 @@ void UEnhancedInputLibrary::GetThirdPlayerMappableKeySlot(struct FPlayerMappable
 // Function EnhancedInput.EnhancedInputLibrary.GetSecondPlayerMappableKeySlot
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FPlayerMappableKeySlot      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPlayerMappableKeySlot      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEnhancedInputLibrary::GetSecondPlayerMappableKeySlot(struct FPlayerMappableKeySlot* ReturnValue)
+struct FPlayerMappableKeySlot UEnhancedInputLibrary::GetSecondPlayerMappableKeySlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -376,8 +365,7 @@ void UEnhancedInputLibrary::GetSecondPlayerMappableKeySlot(struct FPlayerMappabl
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -385,10 +373,10 @@ void UEnhancedInputLibrary::GetSecondPlayerMappableKeySlot(struct FPlayerMappabl
 // Function EnhancedInput.EnhancedInputLibrary.GetPlayerMappableKeySettings
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEnhancedActionKeyMapping   ActionKeyMapping                                                 (BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// class UPlayerMappableKeySettings*  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEnhancedActionKeyMapping   ActionKeyMapping                                                 (Edit, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
+// class UPlayerMappableKeySettings*  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FEnhancedActionKeyMapping UEnhancedInputLibrary::GetPlayerMappableKeySettings(class UPlayerMappableKeySettings** ReturnValue)
+class UPlayerMappableKeySettings* UEnhancedInputLibrary::GetPlayerMappableKeySettings(const struct FEnhancedActionKeyMapping& ActionKeyMapping)
 {
 	static class UFunction* Func = nullptr;
 
@@ -397,6 +385,7 @@ struct FEnhancedActionKeyMapping UEnhancedInputLibrary::GetPlayerMappableKeySett
 
 	Params::UEnhancedInputLibrary_GetPlayerMappableKeySettings_Params Parms{};
 
+	Parms.ActionKeyMapping = ActionKeyMapping;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -405,9 +394,6 @@ struct FEnhancedActionKeyMapping UEnhancedInputLibrary::GetPlayerMappableKeySett
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -417,10 +403,10 @@ struct FEnhancedActionKeyMapping UEnhancedInputLibrary::GetPlayerMappableKeySett
 // Function EnhancedInput.EnhancedInputLibrary.GetMappingName
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEnhancedActionKeyMapping   ActionKeyMapping                                                 (BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEnhancedActionKeyMapping   ActionKeyMapping                                                 (Edit, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FEnhancedActionKeyMapping UEnhancedInputLibrary::GetMappingName(class FName* ReturnValue)
+class FName UEnhancedInputLibrary::GetMappingName(const struct FEnhancedActionKeyMapping& ActionKeyMapping)
 {
 	static class UFunction* Func = nullptr;
 
@@ -429,6 +415,7 @@ struct FEnhancedActionKeyMapping UEnhancedInputLibrary::GetMappingName(class FNa
 
 	Params::UEnhancedInputLibrary_GetMappingName_Params Parms{};
 
+	Parms.ActionKeyMapping = ActionKeyMapping;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -438,9 +425,6 @@ struct FEnhancedActionKeyMapping UEnhancedInputLibrary::GetMappingName(class FNa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -449,9 +433,9 @@ struct FEnhancedActionKeyMapping UEnhancedInputLibrary::GetMappingName(class FNa
 // Function EnhancedInput.EnhancedInputLibrary.GetFourthPlayerMappableKeySlot
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FPlayerMappableKeySlot      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPlayerMappableKeySlot      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEnhancedInputLibrary::GetFourthPlayerMappableKeySlot(struct FPlayerMappableKeySlot* ReturnValue)
+struct FPlayerMappableKeySlot UEnhancedInputLibrary::GetFourthPlayerMappableKeySlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -469,8 +453,7 @@ void UEnhancedInputLibrary::GetFourthPlayerMappableKeySlot(struct FPlayerMappabl
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -478,9 +461,9 @@ void UEnhancedInputLibrary::GetFourthPlayerMappableKeySlot(struct FPlayerMappabl
 // Function EnhancedInput.EnhancedInputLibrary.GetFirstPlayerMappableKeySlot
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FPlayerMappableKeySlot      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPlayerMappableKeySlot      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEnhancedInputLibrary::GetFirstPlayerMappableKeySlot(struct FPlayerMappableKeySlot* ReturnValue)
+struct FPlayerMappableKeySlot UEnhancedInputLibrary::GetFirstPlayerMappableKeySlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -498,8 +481,7 @@ void UEnhancedInputLibrary::GetFirstPlayerMappableKeySlot(struct FPlayerMappable
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -508,10 +490,10 @@ void UEnhancedInputLibrary::GetFirstPlayerMappableKeySlot(struct FPlayerMappable
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// class UInputAction*                Action                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FInputActionValue           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UInputAction*                Action                                                           (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FInputActionValue           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEnhancedInputLibrary::GetBoundActionValue(class AActor** Actor, class UInputAction** Action, struct FInputActionValue* ReturnValue)
+struct FInputActionValue UEnhancedInputLibrary::GetBoundActionValue(class AActor** Actor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -532,11 +514,7 @@ void UEnhancedInputLibrary::GetBoundActionValue(class AActor** Actor, class UInp
 	if (Actor != nullptr)
 		*Actor = Parms.Actor;
 
-	if (Action != nullptr)
-		*Action = Parms.Action;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -544,10 +522,10 @@ void UEnhancedInputLibrary::GetBoundActionValue(class AActor** Actor, class UInp
 // Function EnhancedInput.EnhancedInputLibrary.Conv_InputActionValueToString
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FInputActionValue           ActionValue                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputActionValue           ActionValue                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToString(class FString* ReturnValue)
+class FString UEnhancedInputLibrary::Conv_InputActionValueToString(struct FInputActionValue* ActionValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -565,8 +543,8 @@ struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToString(cl
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (ActionValue != nullptr)
+		*ActionValue = std::move(Parms.ActionValue);
 
 	return Parms.ReturnValue;
 
@@ -576,10 +554,10 @@ struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToString(cl
 // Function EnhancedInput.EnhancedInputLibrary.Conv_InputActionValueToBool
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FInputActionValue           InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputActionValue           InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToBool(bool* ReturnValue)
+bool UEnhancedInputLibrary::Conv_InputActionValueToBool()
 {
 	static class UFunction* Func = nullptr;
 
@@ -597,9 +575,6 @@ struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToBool(bool
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -608,10 +583,10 @@ struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToBool(bool
 // Function EnhancedInput.EnhancedInputLibrary.Conv_InputActionValueToAxis3D
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FInputActionValue           ActionValue                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputActionValue           ActionValue                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToAxis3D(struct FVector* ReturnValue)
+struct FVector UEnhancedInputLibrary::Conv_InputActionValueToAxis3D(struct FInputActionValue* ActionValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -629,8 +604,8 @@ struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToAxis3D(st
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (ActionValue != nullptr)
+		*ActionValue = std::move(Parms.ActionValue);
 
 	return Parms.ReturnValue;
 
@@ -640,10 +615,10 @@ struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToAxis3D(st
 // Function EnhancedInput.EnhancedInputLibrary.Conv_InputActionValueToAxis2D
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FInputActionValue           InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputActionValue           InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToAxis2D(struct FVector2D* ReturnValue)
+struct FVector2D UEnhancedInputLibrary::Conv_InputActionValueToAxis2D()
 {
 	static class UFunction* Func = nullptr;
 
@@ -661,9 +636,6 @@ struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToAxis2D(st
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -672,10 +644,10 @@ struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToAxis2D(st
 // Function EnhancedInput.EnhancedInputLibrary.Conv_InputActionValueToAxis1D
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FInputActionValue           InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// double                             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputActionValue           InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// double                             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToAxis1D(double* ReturnValue)
+double UEnhancedInputLibrary::Conv_InputActionValueToAxis1D()
 {
 	static class UFunction* Func = nullptr;
 
@@ -693,9 +665,6 @@ struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToAxis1D(do
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -704,13 +673,13 @@ struct FInputActionValue UEnhancedInputLibrary::Conv_InputActionValueToAxis1D(do
 // Function EnhancedInput.EnhancedInputLibrary.BreakInputActionValue
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FInputActionValue           InActionValue                                                    (BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FInputActionValue           InActionValue                                                    (Edit, ExportObject, BlueprintReadOnly, Net, Parm, Config, EditConst, InstancedReference, SubobjectReference)
 // double                             X                                                                (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config)
 // double                             Y                                                                (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config)
 // double                             Z                                                                (Edit, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config)
 // enum class EInputActionValueType   Type                                                             (Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
 
-enum class EInputActionValueType UEnhancedInputLibrary::BreakInputActionValue(double X, double Y, double Z)
+enum class EInputActionValueType UEnhancedInputLibrary::BreakInputActionValue(const struct FInputActionValue& InActionValue, double X, double Y, double Z)
 {
 	static class UFunction* Func = nullptr;
 
@@ -719,6 +688,7 @@ enum class EInputActionValueType UEnhancedInputLibrary::BreakInputActionValue(do
 
 	Params::UEnhancedInputLibrary_BreakInputActionValue_Params Parms{};
 
+	Parms.InActionValue = InActionValue;
 	Parms.X = X;
 	Parms.Y = Y;
 	Parms.Z = Z;
@@ -767,10 +737,10 @@ class UEnhancedInputPlatformData* UEnhancedInputPlatformData::GetDefaultObj()
 // Function EnhancedInput.EnhancedInputPlatformData.GetContextRedirect
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UInputMappingContext*        InContext                                                        (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UInputMappingContext*        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UInputMappingContext*        InContext                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UInputMappingContext*        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEnhancedInputPlatformData::GetContextRedirect(class UInputMappingContext* InContext, class UInputMappingContext** ReturnValue)
+class UInputMappingContext* UEnhancedInputPlatformData::GetContextRedirect()
 {
 	static class UFunction* Func = nullptr;
 
@@ -779,7 +749,6 @@ void UEnhancedInputPlatformData::GetContextRedirect(class UInputMappingContext* 
 
 	Params::UEnhancedInputPlatformData_GetContextRedirect_Params Parms{};
 
-	Parms.InContext = InContext;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -789,8 +758,7 @@ void UEnhancedInputPlatformData::GetContextRedirect(class UInputMappingContext* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -854,10 +822,10 @@ class IEnhancedInputSubsystemInterface* IEnhancedInputSubsystemInterface::GetDef
 // Function EnhancedInput.EnhancedInputSubsystemInterface.RequestRebuildControlMappings
 // (BlueprintCosmetic, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FModifyContextOptions       Options                                                          (BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// enum class EInputMappingRebuildTypeRebuildType                                                      (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FModifyContextOptions       Options                                                          (ConstParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EInputMappingRebuildTypeRebuildType                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
 
-enum class EInputMappingRebuildType IEnhancedInputSubsystemInterface::RequestRebuildControlMappings(struct FModifyContextOptions* Options)
+struct FModifyContextOptions IEnhancedInputSubsystemInterface::RequestRebuildControlMappings(enum class EInputMappingRebuildType* RebuildType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -875,8 +843,8 @@ enum class EInputMappingRebuildType IEnhancedInputSubsystemInterface::RequestReb
 
 	Func->FunctionFlags = Flgs;
 
-	if (Options != nullptr)
-		*Options = std::move(Parms.Options);
+	if (RebuildType != nullptr)
+		*RebuildType = Parms.RebuildType;
 
 	return Parms.ReturnValue;
 
@@ -886,10 +854,10 @@ enum class EInputMappingRebuildType IEnhancedInputSubsystemInterface::RequestReb
 // Function EnhancedInput.EnhancedInputSubsystemInterface.RemovePlayerMappableConfig
 // (BlueprintCosmetic, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UPlayerMappableInputConfig*  Config                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FModifyContextOptions       Options                                                          (BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UPlayerMappableInputConfig*  Config                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FModifyContextOptions       Options                                                          (ConstParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class UPlayerMappableInputConfig* IEnhancedInputSubsystemInterface::RemovePlayerMappableConfig(struct FModifyContextOptions* Options)
+struct FModifyContextOptions IEnhancedInputSubsystemInterface::RemovePlayerMappableConfig(class UPlayerMappableInputConfig** Config)
 {
 	static class UFunction* Func = nullptr;
 
@@ -907,8 +875,8 @@ class UPlayerMappableInputConfig* IEnhancedInputSubsystemInterface::RemovePlayer
 
 	Func->FunctionFlags = Flgs;
 
-	if (Options != nullptr)
-		*Options = std::move(Parms.Options);
+	if (Config != nullptr)
+		*Config = Parms.Config;
 
 	return Parms.ReturnValue;
 
@@ -918,10 +886,10 @@ class UPlayerMappableInputConfig* IEnhancedInputSubsystemInterface::RemovePlayer
 // Function EnhancedInput.EnhancedInputSubsystemInterface.RemoveMappingContext
 // (BlueprintCosmetic, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UInputMappingContext*        MappingContext                                                   (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FModifyContextOptions       Options                                                          (BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UInputMappingContext*        MappingContext                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FModifyContextOptions       Options                                                          (ConstParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class UInputMappingContext* IEnhancedInputSubsystemInterface::RemoveMappingContext(struct FModifyContextOptions* Options)
+struct FModifyContextOptions IEnhancedInputSubsystemInterface::RemoveMappingContext(class UInputMappingContext** MappingContext)
 {
 	static class UFunction* Func = nullptr;
 
@@ -939,8 +907,8 @@ class UInputMappingContext* IEnhancedInputSubsystemInterface::RemoveMappingConte
 
 	Func->FunctionFlags = Flgs;
 
-	if (Options != nullptr)
-		*Options = std::move(Parms.Options);
+	if (MappingContext != nullptr)
+		*MappingContext = Parms.MappingContext;
 
 	return Parms.ReturnValue;
 
@@ -950,11 +918,11 @@ class UInputMappingContext* IEnhancedInputSubsystemInterface::RemoveMappingConte
 // Function EnhancedInput.EnhancedInputSubsystemInterface.RemoveAllPlayerMappedKeysForMapping
 // (BlueprintCosmetic, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        MappingName                                                      (ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FModifyContextOptions       Options                                                          (BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        MappingName                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FModifyContextOptions       Options                                                          (ConstParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName IEnhancedInputSubsystemInterface::RemoveAllPlayerMappedKeysForMapping(struct FModifyContextOptions* Options, int32* ReturnValue)
+int32 IEnhancedInputSubsystemInterface::RemoveAllPlayerMappedKeysForMapping(class FName* MappingName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -972,11 +940,8 @@ class FName IEnhancedInputSubsystemInterface::RemoveAllPlayerMappedKeysForMappin
 
 	Func->FunctionFlags = Flgs;
 
-	if (Options != nullptr)
-		*Options = std::move(Parms.Options);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (MappingName != nullptr)
+		*MappingName = Parms.MappingName;
 
 	return Parms.ReturnValue;
 
@@ -986,9 +951,9 @@ class FName IEnhancedInputSubsystemInterface::RemoveAllPlayerMappedKeysForMappin
 // Function EnhancedInput.EnhancedInputSubsystemInterface.RemoveAllPlayerMappedKeys
 // (BlueprintCosmetic, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FModifyContextOptions       Options                                                          (BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FModifyContextOptions       Options                                                          (ConstParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void IEnhancedInputSubsystemInterface::RemoveAllPlayerMappedKeys(struct FModifyContextOptions* Options)
+struct FModifyContextOptions IEnhancedInputSubsystemInterface::RemoveAllPlayerMappedKeys()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1006,8 +971,7 @@ void IEnhancedInputSubsystemInterface::RemoveAllPlayerMappedKeys(struct FModifyC
 
 	Func->FunctionFlags = Flgs;
 
-	if (Options != nullptr)
-		*Options = std::move(Parms.Options);
+	return Parms.ReturnValue;
 
 }
 
@@ -1015,15 +979,15 @@ void IEnhancedInputSubsystemInterface::RemoveAllPlayerMappedKeys(struct FModifyC
 // Function EnhancedInput.EnhancedInputSubsystemInterface.QueryMapKeyInContextSet
 // (BlueprintCosmetic, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class UInputMappingContext*>PrioritizedActiveContexts                                        (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// class UInputMappingContext*        InputContext                                                     (ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// class UInputAction*                Action                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<class UInputMappingContext*>PrioritizedActiveContexts                                        (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class UInputMappingContext*        InputContext                                                     (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class UInputAction*                Action                                                           (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 // struct FKey                        Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// TArray<struct FMappingQueryIssue>  OutIssues                                                        (BlueprintVisible, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class EMappingQueryIssue      BlockingIssues                                                   (BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class EMappingQueryResult     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FMappingQueryIssue>  OutIssues                                                        (Edit, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EMappingQueryIssue      BlockingIssues                                                   (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EMappingQueryResult     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EMappingQueryIssue IEnhancedInputSubsystemInterface::QueryMapKeyInContextSet(class UInputAction** Action, const struct FKey& Key, enum class EMappingQueryResult* ReturnValue)
+enum class EMappingQueryResult IEnhancedInputSubsystemInterface::QueryMapKeyInContextSet(TArray<class UInputMappingContext*>* PrioritizedActiveContexts, class UInputMappingContext** InputContext, const struct FKey& Key, TArray<struct FMappingQueryIssue>* OutIssues, enum class EMappingQueryIssue* BlockingIssues)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1042,11 +1006,17 @@ enum class EMappingQueryIssue IEnhancedInputSubsystemInterface::QueryMapKeyInCon
 
 	Func->FunctionFlags = Flgs;
 
-	if (Action != nullptr)
-		*Action = Parms.Action;
+	if (PrioritizedActiveContexts != nullptr)
+		*PrioritizedActiveContexts = std::move(Parms.PrioritizedActiveContexts);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InputContext != nullptr)
+		*InputContext = Parms.InputContext;
+
+	if (OutIssues != nullptr)
+		*OutIssues = std::move(Parms.OutIssues);
+
+	if (BlockingIssues != nullptr)
+		*BlockingIssues = Parms.BlockingIssues;
 
 	return Parms.ReturnValue;
 
@@ -1056,14 +1026,14 @@ enum class EMappingQueryIssue IEnhancedInputSubsystemInterface::QueryMapKeyInCon
 // Function EnhancedInput.EnhancedInputSubsystemInterface.QueryMapKeyInActiveContextSet
 // (BlueprintCosmetic, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UInputMappingContext*        InputContext                                                     (ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// class UInputAction*                Action                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UInputMappingContext*        InputContext                                                     (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class UInputAction*                Action                                                           (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 // struct FKey                        Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// TArray<struct FMappingQueryIssue>  OutIssues                                                        (BlueprintVisible, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class EMappingQueryIssue      BlockingIssues                                                   (BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class EMappingQueryResult     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FMappingQueryIssue>  OutIssues                                                        (Edit, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EMappingQueryIssue      BlockingIssues                                                   (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EMappingQueryResult     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EMappingQueryIssue IEnhancedInputSubsystemInterface::QueryMapKeyInActiveContextSet(class UInputAction** Action, const struct FKey& Key, enum class EMappingQueryResult* ReturnValue)
+enum class EMappingQueryResult IEnhancedInputSubsystemInterface::QueryMapKeyInActiveContextSet(class UInputMappingContext** InputContext, const struct FKey& Key, TArray<struct FMappingQueryIssue>* OutIssues, enum class EMappingQueryIssue* BlockingIssues)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1082,11 +1052,14 @@ enum class EMappingQueryIssue IEnhancedInputSubsystemInterface::QueryMapKeyInAct
 
 	Func->FunctionFlags = Flgs;
 
-	if (Action != nullptr)
-		*Action = Parms.Action;
+	if (InputContext != nullptr)
+		*InputContext = Parms.InputContext;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (OutIssues != nullptr)
+		*OutIssues = std::move(Parms.OutIssues);
+
+	if (BlockingIssues != nullptr)
+		*BlockingIssues = Parms.BlockingIssues;
 
 	return Parms.ReturnValue;
 
@@ -1096,10 +1069,10 @@ enum class EMappingQueryIssue IEnhancedInputSubsystemInterface::QueryMapKeyInAct
 // Function EnhancedInput.EnhancedInputSubsystemInterface.QueryKeysMappedToAction
 // (BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UInputAction*                Action                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FKey>                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UInputAction*                Action                                                           (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// TArray<struct FKey>                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void IEnhancedInputSubsystemInterface::QueryKeysMappedToAction(class UInputAction** Action, TArray<struct FKey>* ReturnValue)
+TArray<struct FKey> IEnhancedInputSubsystemInterface::QueryKeysMappedToAction()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1117,11 +1090,7 @@ void IEnhancedInputSubsystemInterface::QueryKeysMappedToAction(class UInputActio
 
 	Func->FunctionFlags = Flgs;
 
-	if (Action != nullptr)
-		*Action = Parms.Action;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1129,12 +1098,12 @@ void IEnhancedInputSubsystemInterface::QueryKeysMappedToAction(class UInputActio
 // Function EnhancedInput.EnhancedInputSubsystemInterface.K2_RemovePlayerMappedKeyInSlot
 // (BlueprintCosmetic, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        MappingName                                                      (ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FPlayerMappableKeySlot      KeySlot                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FModifyContextOptions       Options                                                          (BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        MappingName                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FPlayerMappableKeySlot      KeySlot                                                          (BlueprintReadOnly, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FModifyContextOptions       Options                                                          (ConstParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPlayerMappableKeySlot IEnhancedInputSubsystemInterface::K2_RemovePlayerMappedKeyInSlot(struct FModifyContextOptions* Options, int32* ReturnValue)
+int32 IEnhancedInputSubsystemInterface::K2_RemovePlayerMappedKeyInSlot(class FName* MappingName, struct FPlayerMappableKeySlot* KeySlot)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1152,11 +1121,11 @@ struct FPlayerMappableKeySlot IEnhancedInputSubsystemInterface::K2_RemovePlayerM
 
 	Func->FunctionFlags = Flgs;
 
-	if (Options != nullptr)
-		*Options = std::move(Parms.Options);
+	if (MappingName != nullptr)
+		*MappingName = Parms.MappingName;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (KeySlot != nullptr)
+		*KeySlot = std::move(Parms.KeySlot);
 
 	return Parms.ReturnValue;
 
@@ -1166,11 +1135,11 @@ struct FPlayerMappableKeySlot IEnhancedInputSubsystemInterface::K2_RemovePlayerM
 // Function EnhancedInput.EnhancedInputSubsystemInterface.K2_GetPlayerMappedKeyInSlot
 // (BlueprintCosmetic, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        MappingName                                                      (ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FPlayerMappableKeySlot      KeySlot                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FKey                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        MappingName                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FPlayerMappableKeySlot      KeySlot                                                          (BlueprintReadOnly, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FKey                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPlayerMappableKeySlot IEnhancedInputSubsystemInterface::K2_GetPlayerMappedKeyInSlot(struct FKey* ReturnValue)
+struct FKey IEnhancedInputSubsystemInterface::K2_GetPlayerMappedKeyInSlot(class FName* MappingName, struct FPlayerMappableKeySlot* KeySlot)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1188,8 +1157,11 @@ struct FPlayerMappableKeySlot IEnhancedInputSubsystemInterface::K2_GetPlayerMapp
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MappingName != nullptr)
+		*MappingName = Parms.MappingName;
+
+	if (KeySlot != nullptr)
+		*KeySlot = std::move(Parms.KeySlot);
 
 	return Parms.ReturnValue;
 
@@ -1199,13 +1171,13 @@ struct FPlayerMappableKeySlot IEnhancedInputSubsystemInterface::K2_GetPlayerMapp
 // Function EnhancedInput.EnhancedInputSubsystemInterface.K2_AddPlayerMappedKeyInSlot
 // (BlueprintCosmetic, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        MappingName                                                      (ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FKey                        NewKey                                                           (Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FPlayerMappableKeySlot      KeySlot                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FModifyContextOptions       Options                                                          (BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        MappingName                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FKey                        NewKey                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FPlayerMappableKeySlot      KeySlot                                                          (BlueprintReadOnly, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FModifyContextOptions       Options                                                          (ConstParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPlayerMappableKeySlot IEnhancedInputSubsystemInterface::K2_AddPlayerMappedKeyInSlot(struct FModifyContextOptions* Options, int32* ReturnValue)
+int32 IEnhancedInputSubsystemInterface::K2_AddPlayerMappedKeyInSlot(class FName* MappingName, struct FKey* NewKey, struct FPlayerMappableKeySlot* KeySlot)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1223,11 +1195,14 @@ struct FPlayerMappableKeySlot IEnhancedInputSubsystemInterface::K2_AddPlayerMapp
 
 	Func->FunctionFlags = Flgs;
 
-	if (Options != nullptr)
-		*Options = std::move(Parms.Options);
+	if (MappingName != nullptr)
+		*MappingName = Parms.MappingName;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (NewKey != nullptr)
+		*NewKey = std::move(Parms.NewKey);
+
+	if (KeySlot != nullptr)
+		*KeySlot = std::move(Parms.KeySlot);
 
 	return Parms.ReturnValue;
 
@@ -1237,12 +1212,12 @@ struct FPlayerMappableKeySlot IEnhancedInputSubsystemInterface::K2_AddPlayerMapp
 // Function EnhancedInput.EnhancedInputSubsystemInterface.InjectInputVectorForAction
 // (Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UInputAction*                Action                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UInputAction*                Action                                                           (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 // struct FVector                     Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// TArray<class UInputModifier*>      Modifiers                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<class UInputTrigger*>       Triggers                                                         (Edit, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<class UInputModifier*>      Modifiers                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// TArray<class UInputTrigger*>       Triggers                                                         (ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void IEnhancedInputSubsystemInterface::InjectInputVectorForAction(class UInputAction** Action, const struct FVector& Value, TArray<class UInputModifier*>* Modifiers, TArray<class UInputTrigger*>* Triggers)
+TArray<class UInputTrigger*> IEnhancedInputSubsystemInterface::InjectInputVectorForAction(const struct FVector& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1261,14 +1236,7 @@ void IEnhancedInputSubsystemInterface::InjectInputVectorForAction(class UInputAc
 
 	Func->FunctionFlags = Flgs;
 
-	if (Action != nullptr)
-		*Action = Parms.Action;
-
-	if (Modifiers != nullptr)
-		*Modifiers = std::move(Parms.Modifiers);
-
-	if (Triggers != nullptr)
-		*Triggers = std::move(Parms.Triggers);
+	return Parms.ReturnValue;
 
 }
 
@@ -1276,12 +1244,12 @@ void IEnhancedInputSubsystemInterface::InjectInputVectorForAction(class UInputAc
 // Function EnhancedInput.EnhancedInputSubsystemInterface.InjectInputForAction
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UInputAction*                Action                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FInputActionValue           RawValue                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<class UInputModifier*>      Modifiers                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<class UInputTrigger*>       Triggers                                                         (Edit, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UInputAction*                Action                                                           (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FInputActionValue           RawValue                                                         (Edit, ConstParm, ExportObject, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// TArray<class UInputModifier*>      Modifiers                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// TArray<class UInputTrigger*>       Triggers                                                         (ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-struct FInputActionValue IEnhancedInputSubsystemInterface::InjectInputForAction(class UInputAction** Action, TArray<class UInputModifier*>* Modifiers, TArray<class UInputTrigger*>* Triggers)
+TArray<class UInputTrigger*> IEnhancedInputSubsystemInterface::InjectInputForAction(struct FInputActionValue* RawValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1299,14 +1267,8 @@ struct FInputActionValue IEnhancedInputSubsystemInterface::InjectInputForAction(
 
 	Func->FunctionFlags = Flgs;
 
-	if (Action != nullptr)
-		*Action = Parms.Action;
-
-	if (Modifiers != nullptr)
-		*Modifiers = std::move(Parms.Modifiers);
-
-	if (Triggers != nullptr)
-		*Triggers = std::move(Parms.Triggers);
+	if (RawValue != nullptr)
+		*RawValue = std::move(Parms.RawValue);
 
 	return Parms.ReturnValue;
 
@@ -1316,11 +1278,11 @@ struct FInputActionValue IEnhancedInputSubsystemInterface::InjectInputForAction(
 // Function EnhancedInput.EnhancedInputSubsystemInterface.HasMappingContext
 // (BlueprintCosmetic, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UInputMappingContext*        MappingContext                                                   (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              OutFoundPriority                                                 (Edit, BlueprintVisible, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UInputMappingContext*        MappingContext                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              OutFoundPriority                                                 (ConstParm, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 IEnhancedInputSubsystemInterface::HasMappingContext(bool* ReturnValue)
+bool IEnhancedInputSubsystemInterface::HasMappingContext(class UInputMappingContext** MappingContext, int32* OutFoundPriority)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1338,8 +1300,11 @@ int32 IEnhancedInputSubsystemInterface::HasMappingContext(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (MappingContext != nullptr)
+		*MappingContext = Parms.MappingContext;
+
+	if (OutFoundPriority != nullptr)
+		*OutFoundPriority = Parms.OutFoundPriority;
 
 	return Parms.ReturnValue;
 
@@ -1349,10 +1314,10 @@ int32 IEnhancedInputSubsystemInterface::HasMappingContext(bool* ReturnValue)
 // Function EnhancedInput.EnhancedInputSubsystemInterface.GetAllPlayerMappedKeys
 // (BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        MappingName                                                      (ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FKey>                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        MappingName                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FKey>                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName IEnhancedInputSubsystemInterface::GetAllPlayerMappedKeys(TArray<struct FKey>* ReturnValue)
+TArray<struct FKey> IEnhancedInputSubsystemInterface::GetAllPlayerMappedKeys(class FName* MappingName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1370,8 +1335,8 @@ class FName IEnhancedInputSubsystemInterface::GetAllPlayerMappedKeys(TArray<stru
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MappingName != nullptr)
+		*MappingName = Parms.MappingName;
 
 	return Parms.ReturnValue;
 
@@ -1381,9 +1346,9 @@ class FName IEnhancedInputSubsystemInterface::GetAllPlayerMappedKeys(TArray<stru
 // Function EnhancedInput.EnhancedInputSubsystemInterface.GetAllPlayerMappableActionKeyMappings
 // (BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FEnhancedActionKeyMapping>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FEnhancedActionKeyMapping>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void IEnhancedInputSubsystemInterface::GetAllPlayerMappableActionKeyMappings(TArray<struct FEnhancedActionKeyMapping>* ReturnValue)
+TArray<struct FEnhancedActionKeyMapping> IEnhancedInputSubsystemInterface::GetAllPlayerMappableActionKeyMappings()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1401,8 +1366,7 @@ void IEnhancedInputSubsystemInterface::GetAllPlayerMappableActionKeyMappings(TAr
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1434,10 +1398,10 @@ void IEnhancedInputSubsystemInterface::ClearAllMappings()
 // Function EnhancedInput.EnhancedInputSubsystemInterface.AddPlayerMappableConfig
 // (BlueprintCosmetic, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UPlayerMappableInputConfig*  Config                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FModifyContextOptions       Options                                                          (BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UPlayerMappableInputConfig*  Config                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FModifyContextOptions       Options                                                          (ConstParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class UPlayerMappableInputConfig* IEnhancedInputSubsystemInterface::AddPlayerMappableConfig(struct FModifyContextOptions* Options)
+struct FModifyContextOptions IEnhancedInputSubsystemInterface::AddPlayerMappableConfig(class UPlayerMappableInputConfig** Config)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1455,8 +1419,8 @@ class UPlayerMappableInputConfig* IEnhancedInputSubsystemInterface::AddPlayerMap
 
 	Func->FunctionFlags = Flgs;
 
-	if (Options != nullptr)
-		*Options = std::move(Parms.Options);
+	if (Config != nullptr)
+		*Config = Parms.Config;
 
 	return Parms.ReturnValue;
 
@@ -1466,11 +1430,11 @@ class UPlayerMappableInputConfig* IEnhancedInputSubsystemInterface::AddPlayerMap
 // Function EnhancedInput.EnhancedInputSubsystemInterface.AddMappingContext
 // (BlueprintCosmetic, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UInputMappingContext*        MappingContext                                                   (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              Priority                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// struct FModifyContextOptions       Options                                                          (BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UInputMappingContext*        MappingContext                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              Priority                                                         (Edit, ConstParm, Net, EditFixedSize, Parm, Transient, EditConst, SubobjectReference)
+// struct FModifyContextOptions       Options                                                          (ConstParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-int32 IEnhancedInputSubsystemInterface::AddMappingContext(struct FModifyContextOptions* Options)
+struct FModifyContextOptions IEnhancedInputSubsystemInterface::AddMappingContext(class UInputMappingContext** MappingContext, int32 Priority)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1479,6 +1443,7 @@ int32 IEnhancedInputSubsystemInterface::AddMappingContext(struct FModifyContextO
 
 	Params::IEnhancedInputSubsystemInterface_AddMappingContext_Params Parms{};
 
+	Parms.Priority = Priority;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1488,8 +1453,8 @@ int32 IEnhancedInputSubsystemInterface::AddMappingContext(struct FModifyContextO
 
 	Func->FunctionFlags = Flgs;
 
-	if (Options != nullptr)
-		*Options = std::move(Parms.Options);
+	if (MappingContext != nullptr)
+		*MappingContext = Parms.MappingContext;
 
 	return Parms.ReturnValue;
 
@@ -1556,9 +1521,9 @@ class UEnhancedInputWorldSubsystem* UEnhancedInputWorldSubsystem::GetDefaultObj(
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEnhancedInputWorldSubsystem::RemoveActorInputComponent(class AActor** Actor, bool* ReturnValue)
+bool UEnhancedInputWorldSubsystem::RemoveActorInputComponent(class AActor** Actor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1579,8 +1544,7 @@ void UEnhancedInputWorldSubsystem::RemoveActorInputComponent(class AActor** Acto
 	if (Actor != nullptr)
 		*Actor = Parms.Actor;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1729,10 +1693,10 @@ class UInputMappingContext* UInputMappingContext::GetDefaultObj()
 // Function EnhancedInput.InputMappingContext.UnmapKey
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UInputAction*                Action                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UInputAction*                Action                                                           (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 // struct FKey                        Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 
-void UInputMappingContext::UnmapKey(class UInputAction** Action, const struct FKey& Key)
+class UInputAction* UInputMappingContext::UnmapKey(const struct FKey& Key)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1751,8 +1715,7 @@ void UInputMappingContext::UnmapKey(class UInputAction** Action, const struct FK
 
 	Func->FunctionFlags = Flgs;
 
-	if (Action != nullptr)
-		*Action = Parms.Action;
+	return Parms.ReturnValue;
 
 }
 
@@ -1760,9 +1723,9 @@ void UInputMappingContext::UnmapKey(class UInputAction** Action, const struct FK
 // Function EnhancedInput.InputMappingContext.UnmapAllKeysFromAction
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UInputAction*                Action                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UInputAction*                Action                                                           (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void UInputMappingContext::UnmapAllKeysFromAction(class UInputAction** Action)
+class UInputAction* UInputMappingContext::UnmapAllKeysFromAction()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1780,8 +1743,7 @@ void UInputMappingContext::UnmapAllKeysFromAction(class UInputAction** Action)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Action != nullptr)
-		*Action = Parms.Action;
+	return Parms.ReturnValue;
 
 }
 
@@ -1813,9 +1775,9 @@ void UInputMappingContext::UnmapAll()
 // Function EnhancedInput.InputMappingContext.UnmapAction
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UInputAction*                Action                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UInputAction*                Action                                                           (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void UInputMappingContext::UnmapAction(class UInputAction** Action)
+class UInputAction* UInputMappingContext::UnmapAction()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1833,8 +1795,7 @@ void UInputMappingContext::UnmapAction(class UInputAction** Action)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Action != nullptr)
-		*Action = Parms.Action;
+	return Parms.ReturnValue;
 
 }
 
@@ -1842,11 +1803,11 @@ void UInputMappingContext::UnmapAction(class UInputAction** Action)
 // Function EnhancedInput.InputMappingContext.MapKey
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UInputAction*                Action                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FKey                        ToKey                                                            (ConstParm, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FEnhancedActionKeyMapping   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UInputAction*                Action                                                           (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FKey                        ToKey                                                            (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FEnhancedActionKeyMapping   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FKey UInputMappingContext::MapKey(class UInputAction** Action, struct FEnhancedActionKeyMapping* ReturnValue)
+struct FEnhancedActionKeyMapping UInputMappingContext::MapKey(const struct FKey& ToKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1855,6 +1816,7 @@ struct FKey UInputMappingContext::MapKey(class UInputAction** Action, struct FEn
 
 	Params::UInputMappingContext_MapKey_Params Parms{};
 
+	Parms.ToKey = ToKey;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1863,12 +1825,6 @@ struct FKey UInputMappingContext::MapKey(class UInputAction** Action, struct FEn
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Action != nullptr)
-		*Action = Parms.Action;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -1907,11 +1863,11 @@ class UInputModifier* UInputModifier::GetDefaultObj()
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
 // Parameters:
 // class UEnhancedPlayerInput*        PlayerInput                                                      (BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
-// struct FInputActionValue           CurrentValue                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FInputActionValue           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputActionValue           CurrentValue                                                     (Edit, ConstParm, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputActionValue           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UInputModifier::ModifyRaw(class UEnhancedPlayerInput* PlayerInput, struct FInputActionValue* ReturnValue)
+struct FInputActionValue UInputModifier::ModifyRaw(class UEnhancedPlayerInput* PlayerInput, struct FInputActionValue* CurrentValue, float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1930,8 +1886,11 @@ float UInputModifier::ModifyRaw(class UEnhancedPlayerInput* PlayerInput, struct 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (CurrentValue != nullptr)
+		*CurrentValue = std::move(Parms.CurrentValue);
+
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 	return Parms.ReturnValue;
 
@@ -1941,11 +1900,11 @@ float UInputModifier::ModifyRaw(class UEnhancedPlayerInput* PlayerInput, struct 
 // Function EnhancedInput.InputModifier.GetVisualizationColor
 // (Native, Event, Public, HasDefaults, BlueprintEvent, Const)
 // Parameters:
-// struct FInputActionValue           SampleValue                                                      (BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FInputActionValue           FinalValue                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, InstancedReference, SubobjectReference)
-// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputActionValue           SampleValue                                                      (ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FInputActionValue           FinalValue                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FInputActionValue UInputModifier::GetVisualizationColor(const struct FInputActionValue& FinalValue, struct FLinearColor* ReturnValue)
+struct FLinearColor UInputModifier::GetVisualizationColor(struct FInputActionValue* SampleValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1954,7 +1913,6 @@ struct FInputActionValue UInputModifier::GetVisualizationColor(const struct FInp
 
 	Params::UInputModifier_GetVisualizationColor_Params Parms{};
 
-	Parms.FinalValue = FinalValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1964,8 +1922,8 @@ struct FInputActionValue UInputModifier::GetVisualizationColor(const struct FInp
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (SampleValue != nullptr)
+		*SampleValue = std::move(Parms.SampleValue);
 
 	return Parms.ReturnValue;
 
@@ -2284,11 +2242,11 @@ class UInputTrigger* UInputTrigger::GetDefaultObj()
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // class UEnhancedPlayerInput*        PlayerInput                                                      (BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
-// struct FInputActionValue           ModifiedValue                                                    (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class ETriggerState           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputActionValue           ModifiedValue                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ETriggerState           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UInputTrigger::UpdateState(class UEnhancedPlayerInput* PlayerInput, enum class ETriggerState* ReturnValue)
+enum class ETriggerState UInputTrigger::UpdateState(class UEnhancedPlayerInput* PlayerInput, const struct FInputActionValue& ModifiedValue, float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2298,6 +2256,7 @@ float UInputTrigger::UpdateState(class UEnhancedPlayerInput* PlayerInput, enum c
 	Params::UInputTrigger_UpdateState_Params Parms{};
 
 	Parms.PlayerInput = PlayerInput;
+	Parms.ModifiedValue = ModifiedValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2307,8 +2266,8 @@ float UInputTrigger::UpdateState(class UEnhancedPlayerInput* PlayerInput, enum c
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 	return Parms.ReturnValue;
 
@@ -2318,10 +2277,10 @@ float UInputTrigger::UpdateState(class UEnhancedPlayerInput* PlayerInput, enum c
 // Function EnhancedInput.InputTrigger.IsActuated
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FInputActionValue           ForValue                                                         (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputActionValue           ForValue                                                         (ExportObject, Net, EditFixedSize, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FInputActionValue UInputTrigger::IsActuated(bool* ReturnValue)
+bool UInputTrigger::IsActuated(const struct FInputActionValue& ForValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2330,6 +2289,7 @@ struct FInputActionValue UInputTrigger::IsActuated(bool* ReturnValue)
 
 	Params::UInputTrigger_IsActuated_Params Parms{};
 
+	Parms.ForValue = ForValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2339,9 +2299,6 @@ struct FInputActionValue UInputTrigger::IsActuated(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -2350,9 +2307,9 @@ struct FInputActionValue UInputTrigger::IsActuated(bool* ReturnValue)
 // Function EnhancedInput.InputTrigger.GetTriggerType
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
 // Parameters:
-// enum class ETriggerType            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ETriggerType            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UInputTrigger::GetTriggerType(enum class ETriggerType* ReturnValue)
+enum class ETriggerType UInputTrigger::GetTriggerType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2370,8 +2327,7 @@ void UInputTrigger::GetTriggerType(enum class ETriggerType* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2739,9 +2695,9 @@ void UPlayerMappableInputConfig::ResetToDefault()
 // Function EnhancedInput.PlayerMappableInputConfig.IsDeprecated
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPlayerMappableInputConfig::IsDeprecated(bool* ReturnValue)
+bool UPlayerMappableInputConfig::IsDeprecated()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2759,8 +2715,7 @@ void UPlayerMappableInputConfig::IsDeprecated(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2768,9 +2723,9 @@ void UPlayerMappableInputConfig::IsDeprecated(bool* ReturnValue)
 // Function EnhancedInput.PlayerMappableInputConfig.GetPlayerMappableKeys
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FEnhancedActionKeyMapping>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FEnhancedActionKeyMapping>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPlayerMappableInputConfig::GetPlayerMappableKeys(TArray<struct FEnhancedActionKeyMapping>* ReturnValue)
+TArray<struct FEnhancedActionKeyMapping> UPlayerMappableInputConfig::GetPlayerMappableKeys()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2788,8 +2743,7 @@ void UPlayerMappableInputConfig::GetPlayerMappableKeys(TArray<struct FEnhancedAc
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2797,9 +2751,9 @@ void UPlayerMappableInputConfig::GetPlayerMappableKeys(TArray<struct FEnhancedAc
 // Function EnhancedInput.PlayerMappableInputConfig.GetMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPlayerMappableInputConfig::GetMetadata(class UObject** ReturnValue)
+class UObject* UPlayerMappableInputConfig::GetMetadata()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2817,8 +2771,7 @@ void UPlayerMappableInputConfig::GetMetadata(class UObject** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2826,9 +2779,9 @@ void UPlayerMappableInputConfig::GetMetadata(class UObject** ReturnValue)
 // Function EnhancedInput.PlayerMappableInputConfig.GetMappingContexts
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TMap<class UInputMappingContext*, int32>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TMap<class UInputMappingContext*, int32>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPlayerMappableInputConfig::GetMappingContexts(TMap<class UInputMappingContext*, int32>* ReturnValue)
+TMap<class UInputMappingContext*, int32> UPlayerMappableInputConfig::GetMappingContexts()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2846,8 +2799,7 @@ void UPlayerMappableInputConfig::GetMappingContexts(TMap<class UInputMappingCont
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2855,10 +2807,10 @@ void UPlayerMappableInputConfig::GetMappingContexts(TMap<class UInputMappingCont
 // Function EnhancedInput.PlayerMappableInputConfig.GetMappingByName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        MappingName                                                      (ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FEnhancedActionKeyMapping   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        MappingName                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FEnhancedActionKeyMapping   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPlayerMappableInputConfig::GetMappingByName(struct FEnhancedActionKeyMapping* ReturnValue)
+struct FEnhancedActionKeyMapping UPlayerMappableInputConfig::GetMappingByName(class FName* MappingName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2876,8 +2828,8 @@ class FName UPlayerMappableInputConfig::GetMappingByName(struct FEnhancedActionK
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MappingName != nullptr)
+		*MappingName = Parms.MappingName;
 
 	return Parms.ReturnValue;
 
@@ -2887,10 +2839,10 @@ class FName UPlayerMappableInputConfig::GetMappingByName(struct FEnhancedActionK
 // Function EnhancedInput.PlayerMappableInputConfig.GetKeysBoundToAction
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UInputAction*                InAction                                                         (ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FEnhancedActionKeyMapping>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UInputAction*                InAction                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FEnhancedActionKeyMapping>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UInputAction* UPlayerMappableInputConfig::GetKeysBoundToAction(TArray<struct FEnhancedActionKeyMapping>* ReturnValue)
+TArray<struct FEnhancedActionKeyMapping> UPlayerMappableInputConfig::GetKeysBoundToAction(class UInputAction* InAction)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2899,6 +2851,7 @@ class UInputAction* UPlayerMappableInputConfig::GetKeysBoundToAction(TArray<stru
 
 	Params::UPlayerMappableInputConfig_GetKeysBoundToAction_Params Parms{};
 
+	Parms.InAction = InAction;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2908,9 +2861,6 @@ class UInputAction* UPlayerMappableInputConfig::GetKeysBoundToAction(TArray<stru
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -2919,9 +2869,9 @@ class UInputAction* UPlayerMappableInputConfig::GetKeysBoundToAction(TArray<stru
 // Function EnhancedInput.PlayerMappableInputConfig.GetDisplayName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPlayerMappableInputConfig::GetDisplayName(class FText* ReturnValue)
+class FText UPlayerMappableInputConfig::GetDisplayName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2939,8 +2889,7 @@ void UPlayerMappableInputConfig::GetDisplayName(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2948,9 +2897,9 @@ void UPlayerMappableInputConfig::GetDisplayName(class FText* ReturnValue)
 // Function EnhancedInput.PlayerMappableInputConfig.GetConfigName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPlayerMappableInputConfig::GetConfigName(class FName* ReturnValue)
+class FName UPlayerMappableInputConfig::GetConfigName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2968,8 +2917,7 @@ void UPlayerMappableInputConfig::GetConfigName(class FName* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 

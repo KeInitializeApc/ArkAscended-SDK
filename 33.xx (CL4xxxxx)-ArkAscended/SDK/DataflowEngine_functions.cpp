@@ -44,10 +44,10 @@ class UDataflowBlueprintLibrary* UDataflowBlueprintLibrary::GetDefaultObj()
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UDataflow*                   Dataflow                                                         (BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
-// class FName                        TerminalNodeName                                                 (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UObject*                     ResultAsset                                                      (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        TerminalNodeName                                                 (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     ResultAsset                                                      (Edit, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UDataflow* UDataflowBlueprintLibrary::EvaluateTerminalNodeByName(class FName* TerminalNodeName, class UObject** ResultAsset)
+class UObject* UDataflowBlueprintLibrary::EvaluateTerminalNodeByName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -64,12 +64,6 @@ class UDataflow* UDataflowBlueprintLibrary::EvaluateTerminalNodeByName(class FNa
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (TerminalNodeName != nullptr)
-		*TerminalNodeName = Parms.TerminalNodeName;
-
-	if (ResultAsset != nullptr)
-		*ResultAsset = Parms.ResultAsset;
 
 	return Parms.ReturnValue;
 

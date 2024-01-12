@@ -44,11 +44,11 @@ class UTypedElementSelectionSetLibrary* UTypedElementSelectionSetLibrary::GetDef
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UTypedElementSelectionSet*   SelectionSet                                                     (EditFixedSize, ZeroConstructor, EditConst, GlobalConfig)
-// struct FScriptTypedElementListProxyElementList                                                      (ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTypedElementSelectionOptionsSelectionOptions                                                 (ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTypedElementSelectionOptionsSelectionOptions                                                 (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions UTypedElementSelectionSetLibrary::SetSelectionFromList(class UTypedElementSelectionSet* SelectionSet, bool* ReturnValue)
+bool UTypedElementSelectionSetLibrary::SetSelectionFromList(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ElementList)
 {
 	static class UFunction* Func = nullptr;
 
@@ -67,8 +67,8 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSetLibrary::SetSelect
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (ElementList != nullptr)
+		*ElementList = std::move(Parms.ElementList);
 
 	return Parms.ReturnValue;
 
@@ -79,11 +79,11 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSetLibrary::SetSelect
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UTypedElementSelectionSet*   SelectionSet                                                     (EditFixedSize, ZeroConstructor, EditConst, GlobalConfig)
-// struct FScriptTypedElementListProxyElementList                                                      (ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTypedElementSelectionOptionsSelectionOptions                                                 (ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTypedElementSelectionOptionsSelectionOptions                                                 (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions UTypedElementSelectionSetLibrary::SelectElementsFromList(class UTypedElementSelectionSet* SelectionSet, bool* ReturnValue)
+bool UTypedElementSelectionSetLibrary::SelectElementsFromList(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ElementList)
 {
 	static class UFunction* Func = nullptr;
 
@@ -102,8 +102,8 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSetLibrary::SelectEle
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (ElementList != nullptr)
+		*ElementList = std::move(Parms.ElementList);
 
 	return Parms.ReturnValue;
 
@@ -114,10 +114,10 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSetLibrary::SelectEle
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UTypedElementSelectionSet*   SelectionSet                                                     (EditFixedSize, ZeroConstructor, EditConst, GlobalConfig)
-// struct FTypedElementSelectionNormalizationOptionsNormalizationOptions                                             (Edit, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FScriptTypedElementListProxyReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTypedElementSelectionNormalizationOptionsNormalizationOptions                                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementListProxyReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionNormalizationOptions UTypedElementSelectionSetLibrary::GetNormalizedSelection(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ReturnValue)
+struct FScriptTypedElementListProxy UTypedElementSelectionSetLibrary::GetNormalizedSelection(class UTypedElementSelectionSet* SelectionSet)
 {
 	static class UFunction* Func = nullptr;
 
@@ -136,9 +136,6 @@ struct FTypedElementSelectionNormalizationOptions UTypedElementSelectionSetLibra
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -148,11 +145,11 @@ struct FTypedElementSelectionNormalizationOptions UTypedElementSelectionSetLibra
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UTypedElementSelectionSet*   SelectionSet                                                     (EditFixedSize, ZeroConstructor, EditConst, GlobalConfig)
-// struct FScriptTypedElementListProxyElementList                                                      (ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTypedElementSelectionNormalizationOptionsNormalizationOptions                                             (Edit, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FScriptTypedElementListProxyReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTypedElementSelectionNormalizationOptionsNormalizationOptions                                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementListProxyReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionNormalizationOptions UTypedElementSelectionSetLibrary::GetNormalizedElementList(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ReturnValue)
+struct FScriptTypedElementListProxy UTypedElementSelectionSetLibrary::GetNormalizedElementList(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ElementList)
 {
 	static class UFunction* Func = nullptr;
 
@@ -171,8 +168,8 @@ struct FTypedElementSelectionNormalizationOptions UTypedElementSelectionSetLibra
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (ElementList != nullptr)
+		*ElementList = std::move(Parms.ElementList);
 
 	return Parms.ReturnValue;
 
@@ -183,11 +180,11 @@ struct FTypedElementSelectionNormalizationOptions UTypedElementSelectionSetLibra
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UTypedElementSelectionSet*   SelectionSet                                                     (EditFixedSize, ZeroConstructor, EditConst, GlobalConfig)
-// struct FScriptTypedElementListProxyElementList                                                      (ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTypedElementSelectionOptionsSelectionOptions                                                 (ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTypedElementSelectionOptionsSelectionOptions                                                 (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions UTypedElementSelectionSetLibrary::DeselectElementsFromList(class UTypedElementSelectionSet* SelectionSet, bool* ReturnValue)
+bool UTypedElementSelectionSetLibrary::DeselectElementsFromList(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ElementList)
 {
 	static class UFunction* Func = nullptr;
 
@@ -206,8 +203,8 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSetLibrary::DeselectE
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (ElementList != nullptr)
+		*ElementList = std::move(Parms.ElementList);
 
 	return Parms.ReturnValue;
 
@@ -245,11 +242,11 @@ class UTypedElementSelectionSet* UTypedElementSelectionSet::GetDefaultObj()
 // Function TypedElementRuntime.TypedElementSelectionSet.SetSelection
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FScriptTypedElementHandle>InElementHandles                                                 (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTypedElementSelectionOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FScriptTypedElementHandle>InElementHandles                                                 (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FTypedElementSelectionOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions UTypedElementSelectionSet::SetSelection(bool* ReturnValue)
+bool UTypedElementSelectionSet::SetSelection(TArray<struct FScriptTypedElementHandle>* InElementHandles, struct FTypedElementSelectionOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -267,8 +264,11 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::SetSelection(boo
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InElementHandles != nullptr)
+		*InElementHandles = std::move(Parms.InElementHandles);
+
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -278,11 +278,11 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::SetSelection(boo
 // Function TypedElementRuntime.TypedElementSelectionSet.SelectElements
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FScriptTypedElementHandle>InElementHandles                                                 (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTypedElementSelectionOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FScriptTypedElementHandle>InElementHandles                                                 (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FTypedElementSelectionOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions UTypedElementSelectionSet::SelectElements(bool* ReturnValue)
+bool UTypedElementSelectionSet::SelectElements(TArray<struct FScriptTypedElementHandle>* InElementHandles, struct FTypedElementSelectionOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -300,8 +300,11 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::SelectElements(b
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InElementHandles != nullptr)
+		*InElementHandles = std::move(Parms.InElementHandles);
+
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -311,11 +314,11 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::SelectElements(b
 // Function TypedElementRuntime.TypedElementSelectionSet.SelectElement
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTypedElementSelectionOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FTypedElementSelectionOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions UTypedElementSelectionSet::SelectElement(bool* ReturnValue)
+bool UTypedElementSelectionSet::SelectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -324,6 +327,7 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::SelectElement(bo
 
 	Params::UTypedElementSelectionSet_SelectElement_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -333,8 +337,8 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::SelectElement(bo
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -344,9 +348,9 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::SelectElement(bo
 // Function TypedElementRuntime.TypedElementSelectionSet.RestoreSelectionState
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FTypedElementSelectionSetStateInSelectionState                                                 (ConstParm, Net, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FTypedElementSelectionSetStateInSelectionState                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-void UTypedElementSelectionSet::RestoreSelectionState(const struct FTypedElementSelectionSetState& InSelectionState)
+struct FTypedElementSelectionSetState UTypedElementSelectionSet::RestoreSelectionState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -355,7 +359,6 @@ void UTypedElementSelectionSet::RestoreSelectionState(const struct FTypedElement
 
 	Params::UTypedElementSelectionSet_RestoreSelectionState_Params Parms{};
 
-	Parms.InSelectionState = InSelectionState;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -364,6 +367,8 @@ void UTypedElementSelectionSet::RestoreSelectionState(const struct FTypedElement
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -413,10 +418,10 @@ void UTypedElementSelectionSet::OnChangeDynamic__DelegateSignature(class UTypedE
 // Function TypedElementRuntime.TypedElementSelectionSet.K2_GetSelectedElementHandles
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class UClass*                      InBaseInterfaceType                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FScriptTypedElementHandle>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InBaseInterfaceType                                              (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FScriptTypedElementHandle>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UTypedElementSelectionSet::K2_GetSelectedElementHandles(TArray<struct FScriptTypedElementHandle>* ReturnValue)
+TArray<struct FScriptTypedElementHandle> UTypedElementSelectionSet::K2_GetSelectedElementHandles(class UClass** InBaseInterfaceType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -434,8 +439,8 @@ class UClass* UTypedElementSelectionSet::K2_GetSelectedElementHandles(TArray<str
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (InBaseInterfaceType != nullptr)
+		*InBaseInterfaceType = Parms.InBaseInterfaceType;
 
 	return Parms.ReturnValue;
 
@@ -445,11 +450,11 @@ class UClass* UTypedElementSelectionSet::K2_GetSelectedElementHandles(TArray<str
 // Function TypedElementRuntime.TypedElementSelectionSet.IsElementSelected
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTypedElementIsSelectedOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FTypedElementIsSelectedOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementIsSelectedOptions UTypedElementSelectionSet::IsElementSelected(bool* ReturnValue)
+bool UTypedElementSelectionSet::IsElementSelected(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementIsSelectedOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -458,6 +463,7 @@ struct FTypedElementIsSelectedOptions UTypedElementSelectionSet::IsElementSelect
 
 	Params::UTypedElementSelectionSet_IsElementSelected_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -467,8 +473,8 @@ struct FTypedElementIsSelectedOptions UTypedElementSelectionSet::IsElementSelect
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -478,10 +484,10 @@ struct FTypedElementIsSelectedOptions UTypedElementSelectionSet::IsElementSelect
 // Function TypedElementRuntime.TypedElementSelectionSet.HasSelectedObjects
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class UClass*                      InRequiredClass                                                  (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InRequiredClass                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UTypedElementSelectionSet::HasSelectedObjects(bool* ReturnValue)
+bool UTypedElementSelectionSet::HasSelectedObjects(class UClass** InRequiredClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -499,8 +505,8 @@ class UClass* UTypedElementSelectionSet::HasSelectedObjects(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InRequiredClass != nullptr)
+		*InRequiredClass = Parms.InRequiredClass;
 
 	return Parms.ReturnValue;
 
@@ -510,10 +516,10 @@ class UClass* UTypedElementSelectionSet::HasSelectedObjects(bool* ReturnValue)
 // Function TypedElementRuntime.TypedElementSelectionSet.HasSelectedElements
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class UClass*                      InBaseInterfaceType                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InBaseInterfaceType                                              (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UTypedElementSelectionSet::HasSelectedElements(bool* ReturnValue)
+bool UTypedElementSelectionSet::HasSelectedElements(class UClass** InBaseInterfaceType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -531,8 +537,8 @@ class UClass* UTypedElementSelectionSet::HasSelectedElements(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InBaseInterfaceType != nullptr)
+		*InBaseInterfaceType = Parms.InBaseInterfaceType;
 
 	return Parms.ReturnValue;
 
@@ -542,10 +548,10 @@ class UClass* UTypedElementSelectionSet::HasSelectedElements(bool* ReturnValue)
 // Function TypedElementRuntime.TypedElementSelectionSet.GetTopSelectedObject
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UClass*                      InRequiredClass                                                  (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InRequiredClass                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UTypedElementSelectionSet::GetTopSelectedObject(class UObject** ReturnValue)
+class UObject* UTypedElementSelectionSet::GetTopSelectedObject(class UClass** InRequiredClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -563,8 +569,8 @@ class UClass* UTypedElementSelectionSet::GetTopSelectedObject(class UObject** Re
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InRequiredClass != nullptr)
+		*InRequiredClass = Parms.InRequiredClass;
 
 	return Parms.ReturnValue;
 
@@ -574,11 +580,11 @@ class UClass* UTypedElementSelectionSet::GetTopSelectedObject(class UObject** Re
 // Function TypedElementRuntime.TypedElementSelectionSet.GetSelectionElement
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// enum class ETypedElementSelectionMethodInSelectionMethod                                                (Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FScriptTypedElementHandle   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// enum class ETypedElementSelectionMethodInSelectionMethod                                                (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FScriptTypedElementHandle   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class ETypedElementSelectionMethod UTypedElementSelectionSet::GetSelectionElement(struct FScriptTypedElementHandle* ReturnValue)
+struct FScriptTypedElementHandle UTypedElementSelectionSet::GetSelectionElement(const struct FScriptTypedElementHandle& InElementHandle, enum class ETypedElementSelectionMethod* InSelectionMethod)
 {
 	static class UFunction* Func = nullptr;
 
@@ -587,6 +593,7 @@ enum class ETypedElementSelectionMethod UTypedElementSelectionSet::GetSelectionE
 
 	Params::UTypedElementSelectionSet_GetSelectionElement_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -596,8 +603,8 @@ enum class ETypedElementSelectionMethod UTypedElementSelectionSet::GetSelectionE
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (InSelectionMethod != nullptr)
+		*InSelectionMethod = Parms.InSelectionMethod;
 
 	return Parms.ReturnValue;
 
@@ -607,10 +614,10 @@ enum class ETypedElementSelectionMethod UTypedElementSelectionSet::GetSelectionE
 // Function TypedElementRuntime.TypedElementSelectionSet.GetSelectedObjects
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class UClass*                      InRequiredClass                                                  (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<class UObject*>             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InRequiredClass                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class UObject*>             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UTypedElementSelectionSet::GetSelectedObjects(TArray<class UObject*>* ReturnValue)
+TArray<class UObject*> UTypedElementSelectionSet::GetSelectedObjects(class UClass** InRequiredClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -628,8 +635,8 @@ class UClass* UTypedElementSelectionSet::GetSelectedObjects(TArray<class UObject
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (InRequiredClass != nullptr)
+		*InRequiredClass = Parms.InRequiredClass;
 
 	return Parms.ReturnValue;
 
@@ -639,9 +646,9 @@ class UClass* UTypedElementSelectionSet::GetSelectedObjects(TArray<class UObject
 // Function TypedElementRuntime.TypedElementSelectionSet.GetNumSelectedElements
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UTypedElementSelectionSet::GetNumSelectedElements(int32* ReturnValue)
+int32 UTypedElementSelectionSet::GetNumSelectedElements()
 {
 	static class UFunction* Func = nullptr;
 
@@ -659,8 +666,7 @@ void UTypedElementSelectionSet::GetNumSelectedElements(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -668,9 +674,9 @@ void UTypedElementSelectionSet::GetNumSelectedElements(int32* ReturnValue)
 // Function TypedElementRuntime.TypedElementSelectionSet.GetCurrentSelectionState
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FTypedElementSelectionSetStateReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTypedElementSelectionSetStateReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UTypedElementSelectionSet::GetCurrentSelectionState(struct FTypedElementSelectionSetState* ReturnValue)
+struct FTypedElementSelectionSetState UTypedElementSelectionSet::GetCurrentSelectionState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -688,8 +694,7 @@ void UTypedElementSelectionSet::GetCurrentSelectionState(struct FTypedElementSel
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -697,10 +702,10 @@ void UTypedElementSelectionSet::GetCurrentSelectionState(struct FTypedElementSel
 // Function TypedElementRuntime.TypedElementSelectionSet.GetBottomSelectedObject
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UClass*                      InRequiredClass                                                  (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InRequiredClass                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UTypedElementSelectionSet::GetBottomSelectedObject(class UObject** ReturnValue)
+class UObject* UTypedElementSelectionSet::GetBottomSelectedObject(class UClass** InRequiredClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -718,8 +723,8 @@ class UClass* UTypedElementSelectionSet::GetBottomSelectedObject(class UObject**
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InRequiredClass != nullptr)
+		*InRequiredClass = Parms.InRequiredClass;
 
 	return Parms.ReturnValue;
 
@@ -729,11 +734,11 @@ class UClass* UTypedElementSelectionSet::GetBottomSelectedObject(class UObject**
 // Function TypedElementRuntime.TypedElementSelectionSet.DeselectElements
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FScriptTypedElementHandle>InElementHandles                                                 (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTypedElementSelectionOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FScriptTypedElementHandle>InElementHandles                                                 (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FTypedElementSelectionOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions UTypedElementSelectionSet::DeselectElements(bool* ReturnValue)
+bool UTypedElementSelectionSet::DeselectElements(TArray<struct FScriptTypedElementHandle>* InElementHandles, struct FTypedElementSelectionOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -751,8 +756,11 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::DeselectElements
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InElementHandles != nullptr)
+		*InElementHandles = std::move(Parms.InElementHandles);
+
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -762,11 +770,11 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::DeselectElements
 // Function TypedElementRuntime.TypedElementSelectionSet.DeselectElement
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTypedElementSelectionOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FTypedElementSelectionOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions UTypedElementSelectionSet::DeselectElement(bool* ReturnValue)
+bool UTypedElementSelectionSet::DeselectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -775,6 +783,7 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::DeselectElement(
 
 	Params::UTypedElementSelectionSet_DeselectElement_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -784,8 +793,8 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::DeselectElement(
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -795,10 +804,10 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::DeselectElement(
 // Function TypedElementRuntime.TypedElementSelectionSet.CountSelectedObjects
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class UClass*                      InRequiredClass                                                  (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InRequiredClass                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UTypedElementSelectionSet::CountSelectedObjects(int32* ReturnValue)
+int32 UTypedElementSelectionSet::CountSelectedObjects(class UClass** InRequiredClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -816,8 +825,8 @@ class UClass* UTypedElementSelectionSet::CountSelectedObjects(int32* ReturnValue
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InRequiredClass != nullptr)
+		*InRequiredClass = Parms.InRequiredClass;
 
 	return Parms.ReturnValue;
 
@@ -827,10 +836,10 @@ class UClass* UTypedElementSelectionSet::CountSelectedObjects(int32* ReturnValue
 // Function TypedElementRuntime.TypedElementSelectionSet.CountSelectedElements
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class UClass*                      InBaseInterfaceType                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InBaseInterfaceType                                              (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UTypedElementSelectionSet::CountSelectedElements(int32* ReturnValue)
+int32 UTypedElementSelectionSet::CountSelectedElements(class UClass** InBaseInterfaceType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -848,8 +857,8 @@ class UClass* UTypedElementSelectionSet::CountSelectedElements(int32* ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InBaseInterfaceType != nullptr)
+		*InBaseInterfaceType = Parms.InBaseInterfaceType;
 
 	return Parms.ReturnValue;
 
@@ -859,10 +868,10 @@ class UClass* UTypedElementSelectionSet::CountSelectedElements(int32* ReturnValu
 // Function TypedElementRuntime.TypedElementSelectionSet.ClearSelection
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FTypedElementSelectionOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTypedElementSelectionOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions UTypedElementSelectionSet::ClearSelection(bool* ReturnValue)
+bool UTypedElementSelectionSet::ClearSelection(struct FTypedElementSelectionOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -880,8 +889,8 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::ClearSelection(b
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -891,11 +900,11 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::ClearSelection(b
 // Function TypedElementRuntime.TypedElementSelectionSet.CanSelectElement
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTypedElementSelectionOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FTypedElementSelectionOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions UTypedElementSelectionSet::CanSelectElement(bool* ReturnValue)
+bool UTypedElementSelectionSet::CanSelectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -904,6 +913,7 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::CanSelectElement
 
 	Params::UTypedElementSelectionSet_CanSelectElement_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -913,8 +923,8 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::CanSelectElement
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -924,11 +934,11 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::CanSelectElement
 // Function TypedElementRuntime.TypedElementSelectionSet.CanDeselectElement
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTypedElementSelectionOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FTypedElementSelectionOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions UTypedElementSelectionSet::CanDeselectElement(bool* ReturnValue)
+bool UTypedElementSelectionSet::CanDeselectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -937,6 +947,7 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::CanDeselectEleme
 
 	Params::UTypedElementSelectionSet_CanDeselectElement_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -946,8 +957,8 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::CanDeselectEleme
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -957,10 +968,10 @@ struct FTypedElementSelectionOptions UTypedElementSelectionSet::CanDeselectEleme
 // Function TypedElementRuntime.TypedElementSelectionSet.AllowSelectionModifiers
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FScriptTypedElementHandle UTypedElementSelectionSet::AllowSelectionModifiers(bool* ReturnValue)
+bool UTypedElementSelectionSet::AllowSelectionModifiers(const struct FScriptTypedElementHandle& InElementHandle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -969,6 +980,7 @@ struct FScriptTypedElementHandle UTypedElementSelectionSet::AllowSelectionModifi
 
 	Params::UTypedElementSelectionSet_AllowSelectionModifiers_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -977,9 +989,6 @@ struct FScriptTypedElementHandle UTypedElementSelectionSet::AllowSelectionModifi
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -1017,10 +1026,10 @@ class ITypedElementAssetDataInterface* ITypedElementAssetDataInterface::GetDefau
 // Function TypedElementRuntime.TypedElementAssetDataInterface.GetAssetData
 // (Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FAssetData                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FAssetData                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FScriptTypedElementHandle ITypedElementAssetDataInterface::GetAssetData(struct FAssetData* ReturnValue)
+struct FAssetData ITypedElementAssetDataInterface::GetAssetData(const struct FScriptTypedElementHandle& InElementHandle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1029,6 +1038,7 @@ struct FScriptTypedElementHandle ITypedElementAssetDataInterface::GetAssetData(s
 
 	Params::ITypedElementAssetDataInterface_GetAssetData_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1037,9 +1047,6 @@ struct FScriptTypedElementHandle ITypedElementAssetDataInterface::GetAssetData(s
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -1049,10 +1056,10 @@ struct FScriptTypedElementHandle ITypedElementAssetDataInterface::GetAssetData(s
 // Function TypedElementRuntime.TypedElementAssetDataInterface.GetAllReferencedAssetDatas
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FAssetData>          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FAssetData>          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FScriptTypedElementHandle ITypedElementAssetDataInterface::GetAllReferencedAssetDatas(TArray<struct FAssetData>* ReturnValue)
+TArray<struct FAssetData> ITypedElementAssetDataInterface::GetAllReferencedAssetDatas(const struct FScriptTypedElementHandle& InElementHandle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1061,6 +1068,7 @@ struct FScriptTypedElementHandle ITypedElementAssetDataInterface::GetAllReferenc
 
 	Params::ITypedElementAssetDataInterface_GetAllReferencedAssetDatas_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1069,9 +1077,6 @@ struct FScriptTypedElementHandle ITypedElementAssetDataInterface::GetAllReferenc
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -1109,11 +1114,11 @@ class ITypedElementHierarchyInterface* ITypedElementHierarchyInterface::GetDefau
 // Function TypedElementRuntime.TypedElementHierarchyInterface.GetParentElement
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowCreate                                                     (BlueprintVisible, ExportObject, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FScriptTypedElementHandle   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowCreate                                                     (Edit, ConstParm, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementHandle   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool ITypedElementHierarchyInterface::GetParentElement(struct FScriptTypedElementHandle* ReturnValue)
+struct FScriptTypedElementHandle ITypedElementHierarchyInterface::GetParentElement(const struct FScriptTypedElementHandle& InElementHandle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1122,6 +1127,7 @@ bool ITypedElementHierarchyInterface::GetParentElement(struct FScriptTypedElemen
 
 	Params::ITypedElementHierarchyInterface_GetParentElement_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1131,9 +1137,6 @@ bool ITypedElementHierarchyInterface::GetParentElement(struct FScriptTypedElemen
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -1142,11 +1145,11 @@ bool ITypedElementHierarchyInterface::GetParentElement(struct FScriptTypedElemen
 // Function TypedElementRuntime.TypedElementHierarchyInterface.GetChildElements
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FScriptTypedElementHandle>OutElementHandles                                                (Edit, ConstParm, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bAllowCreate                                                     (BlueprintVisible, ExportObject, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FScriptTypedElementHandle>OutElementHandles                                                (ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bAllowCreate                                                     (Edit, ConstParm, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool ITypedElementHierarchyInterface::GetChildElements()
+bool ITypedElementHierarchyInterface::GetChildElements(const struct FScriptTypedElementHandle& InElementHandle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1155,6 +1158,7 @@ bool ITypedElementHierarchyInterface::GetChildElements()
 
 	Params::ITypedElementHierarchyInterface_GetChildElements_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1200,10 +1204,10 @@ class ITypedElementObjectInterface* ITypedElementObjectInterface::GetDefaultObj(
 // Function TypedElementRuntime.TypedElementObjectInterface.GetObjectClass
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UClass*                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FScriptTypedElementHandle ITypedElementObjectInterface::GetObjectClass(class UClass** ReturnValue)
+class UClass* ITypedElementObjectInterface::GetObjectClass(const struct FScriptTypedElementHandle& InElementHandle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1212,6 +1216,7 @@ struct FScriptTypedElementHandle ITypedElementObjectInterface::GetObjectClass(cl
 
 	Params::ITypedElementObjectInterface_GetObjectClass_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1220,9 +1225,6 @@ struct FScriptTypedElementHandle ITypedElementObjectInterface::GetObjectClass(cl
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -1232,10 +1234,10 @@ struct FScriptTypedElementHandle ITypedElementObjectInterface::GetObjectClass(cl
 // Function TypedElementRuntime.TypedElementObjectInterface.GetObject
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FScriptTypedElementHandle ITypedElementObjectInterface::GetObject(class UObject** ReturnValue)
+class UObject* ITypedElementObjectInterface::GetObject(const struct FScriptTypedElementHandle& InElementHandle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1244,6 +1246,7 @@ struct FScriptTypedElementHandle ITypedElementObjectInterface::GetObject(class U
 
 	Params::ITypedElementObjectInterface_GetObject_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1252,9 +1255,6 @@ struct FScriptTypedElementHandle ITypedElementObjectInterface::GetObject(class U
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -1292,12 +1292,12 @@ class ITypedElementSelectionInterface* ITypedElementSelectionInterface::GetDefau
 // Function TypedElementRuntime.TypedElementSelectionInterface.SelectElement
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FScriptTypedElementListProxyInSelectionSet                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTypedElementSelectionOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FScriptTypedElementListProxyInSelectionSet                                                   (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTypedElementSelectionOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions ITypedElementSelectionInterface::SelectElement(bool* ReturnValue)
+bool ITypedElementSelectionInterface::SelectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1306,6 +1306,7 @@ struct FTypedElementSelectionOptions ITypedElementSelectionInterface::SelectElem
 
 	Params::ITypedElementSelectionInterface_SelectElement_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1315,8 +1316,8 @@ struct FTypedElementSelectionOptions ITypedElementSelectionInterface::SelectElem
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -1326,12 +1327,12 @@ struct FTypedElementSelectionOptions ITypedElementSelectionInterface::SelectElem
 // Function TypedElementRuntime.TypedElementSelectionInterface.IsElementSelected
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FScriptTypedElementListProxyInSelectionSet                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTypedElementIsSelectedOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FScriptTypedElementListProxyInSelectionSet                                                   (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTypedElementIsSelectedOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementIsSelectedOptions ITypedElementSelectionInterface::IsElementSelected(bool* ReturnValue)
+bool ITypedElementSelectionInterface::IsElementSelected(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementIsSelectedOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1340,6 +1341,7 @@ struct FTypedElementIsSelectedOptions ITypedElementSelectionInterface::IsElement
 
 	Params::ITypedElementSelectionInterface_IsElementSelected_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1349,8 +1351,8 @@ struct FTypedElementIsSelectedOptions ITypedElementSelectionInterface::IsElement
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -1360,12 +1362,12 @@ struct FTypedElementIsSelectedOptions ITypedElementSelectionInterface::IsElement
 // Function TypedElementRuntime.TypedElementSelectionInterface.GetSelectionElement
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FScriptTypedElementListProxyInCurrentSelection                                               (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class ETypedElementSelectionMethodInSelectionMethod                                                (Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FScriptTypedElementHandle   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FScriptTypedElementListProxyInCurrentSelection                                               (Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class ETypedElementSelectionMethodInSelectionMethod                                                (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FScriptTypedElementHandle   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class ETypedElementSelectionMethod ITypedElementSelectionInterface::GetSelectionElement(struct FScriptTypedElementHandle* ReturnValue)
+struct FScriptTypedElementHandle ITypedElementSelectionInterface::GetSelectionElement(const struct FScriptTypedElementHandle& InElementHandle, enum class ETypedElementSelectionMethod* InSelectionMethod)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1374,6 +1376,7 @@ enum class ETypedElementSelectionMethod ITypedElementSelectionInterface::GetSele
 
 	Params::ITypedElementSelectionInterface_GetSelectionElement_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1383,8 +1386,8 @@ enum class ETypedElementSelectionMethod ITypedElementSelectionInterface::GetSele
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (InSelectionMethod != nullptr)
+		*InSelectionMethod = Parms.InSelectionMethod;
 
 	return Parms.ReturnValue;
 
@@ -1394,12 +1397,12 @@ enum class ETypedElementSelectionMethod ITypedElementSelectionInterface::GetSele
 // Function TypedElementRuntime.TypedElementSelectionInterface.DeselectElement
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FScriptTypedElementListProxyInSelectionSet                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTypedElementSelectionOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FScriptTypedElementListProxyInSelectionSet                                                   (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTypedElementSelectionOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions ITypedElementSelectionInterface::DeselectElement(bool* ReturnValue)
+bool ITypedElementSelectionInterface::DeselectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1408,6 +1411,7 @@ struct FTypedElementSelectionOptions ITypedElementSelectionInterface::DeselectEl
 
 	Params::ITypedElementSelectionInterface_DeselectElement_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1417,8 +1421,8 @@ struct FTypedElementSelectionOptions ITypedElementSelectionInterface::DeselectEl
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -1428,11 +1432,11 @@ struct FTypedElementSelectionOptions ITypedElementSelectionInterface::DeselectEl
 // Function TypedElementRuntime.TypedElementSelectionInterface.CanSelectElement
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTypedElementSelectionOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FTypedElementSelectionOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions ITypedElementSelectionInterface::CanSelectElement(bool* ReturnValue)
+bool ITypedElementSelectionInterface::CanSelectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1441,6 +1445,7 @@ struct FTypedElementSelectionOptions ITypedElementSelectionInterface::CanSelectE
 
 	Params::ITypedElementSelectionInterface_CanSelectElement_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1450,8 +1455,8 @@ struct FTypedElementSelectionOptions ITypedElementSelectionInterface::CanSelectE
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -1461,11 +1466,11 @@ struct FTypedElementSelectionOptions ITypedElementSelectionInterface::CanSelectE
 // Function TypedElementRuntime.TypedElementSelectionInterface.CanDeselectElement
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTypedElementSelectionOptionsInSelectionOptions                                               (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FTypedElementSelectionOptionsInSelectionOptions                                               (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTypedElementSelectionOptions ITypedElementSelectionInterface::CanDeselectElement(bool* ReturnValue)
+bool ITypedElementSelectionInterface::CanDeselectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1474,6 +1479,7 @@ struct FTypedElementSelectionOptions ITypedElementSelectionInterface::CanDeselec
 
 	Params::ITypedElementSelectionInterface_CanDeselectElement_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1483,8 +1489,8 @@ struct FTypedElementSelectionOptions ITypedElementSelectionInterface::CanDeselec
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InSelectionOptions != nullptr)
+		*InSelectionOptions = std::move(Parms.InSelectionOptions);
 
 	return Parms.ReturnValue;
 
@@ -1494,11 +1500,11 @@ struct FTypedElementSelectionOptions ITypedElementSelectionInterface::CanDeselec
 // Function TypedElementRuntime.TypedElementSelectionInterface.AllowSelectionModifiers
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FScriptTypedElementListProxyInSelectionSet                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FScriptTypedElementListProxyInSelectionSet                                                   (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FScriptTypedElementListProxy ITypedElementSelectionInterface::AllowSelectionModifiers(bool* ReturnValue)
+bool ITypedElementSelectionInterface::AllowSelectionModifiers(const struct FScriptTypedElementHandle& InElementHandle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1507,6 +1513,7 @@ struct FScriptTypedElementListProxy ITypedElementSelectionInterface::AllowSelect
 
 	Params::ITypedElementSelectionInterface_AllowSelectionModifiers_Params Parms{};
 
+	Parms.InElementHandle = InElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1515,9 +1522,6 @@ struct FScriptTypedElementListProxy ITypedElementSelectionInterface::AllowSelect
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 

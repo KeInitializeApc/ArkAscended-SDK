@@ -14,13 +14,13 @@ namespace SDK
 class UContextMenu_PrimalItem_C : public UContextMenu_PrimalItem
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x3D8(0x8)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x3D8(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnInstance, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UContextMenu_PrimalItem_C* GetDefaultObj();
 
-	float Tick(const struct FGeometry& MyGeometry);
-	float ExecuteUbergraph_ContextMenu_PrimalItem(int32 EntryPoint);
+	float Tick(struct FGeometry* MyGeometry);
+	int32 ExecuteUbergraph_ContextMenu_PrimalItem(struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime);
 };
 
 }

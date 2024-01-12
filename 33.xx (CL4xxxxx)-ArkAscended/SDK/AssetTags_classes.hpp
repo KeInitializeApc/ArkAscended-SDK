@@ -18,13 +18,13 @@ public:
 	static class UClass* StaticClass();
 	static class UAssetTagsSubsystem* GetDefaultObj();
 
-	void K2_GetCollectionsContainingAsset(const struct FSoftObjectPath& AssetPath, TArray<class FName>* ReturnValue);
-	void GetCollectionsContainingAssetPtr(class UObject* AssetPtr, TArray<class FName>* ReturnValue);
-	struct FAssetData GetCollectionsContainingAssetData(TArray<class FName>* ReturnValue);
-	void GetCollectionsContainingAsset(class FName AssetPathName, TArray<class FName>* ReturnValue);
-	void GetCollections(TArray<class FName>* ReturnValue);
-	void GetAssetsInCollection(class FName* Name, TArray<struct FAssetData>* ReturnValue);
-	void CollectionExists(class FName* Name, bool* ReturnValue);
+	TArray<class FName> K2_GetCollectionsContainingAsset();
+	TArray<class FName> GetCollectionsContainingAssetPtr();
+	TArray<class FName> GetCollectionsContainingAssetData();
+	TArray<class FName> GetCollectionsContainingAsset();
+	TArray<class FName> GetCollections();
+	TArray<struct FAssetData> GetAssetsInCollection(class FName* Name);
+	bool CollectionExists(class FName* Name);
 };
 
 }

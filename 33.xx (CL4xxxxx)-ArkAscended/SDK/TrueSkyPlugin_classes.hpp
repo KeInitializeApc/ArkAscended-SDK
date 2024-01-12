@@ -25,44 +25,44 @@ public:
 class ATrueSkySequenceActor : public ATrueSkyActorParent
 {
 public:
-	TArray<class UTrueSkySequenceAsset*>         ActiveSequences;                                   // 0x4C8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<float>                                BlendWeights;                                      // 0x4D8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class UTexture2D*                            MoonTexture;                                       // 0x4E8(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	class UTexture2D*                            CosmicBackgroundTexture;                           // 0x4F0(0x8)(BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	class UTextureRenderTarget2D*                External_ScatterRT;                                // 0x4F8(0x8)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	class UTextureRenderTarget2D*                External_LossRT;                                   // 0x500(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class UTrueSkySequenceAsset*>         ActiveSequences;                                   // 0x4C8(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	TArray<float>                                BlendWeights;                                      // 0x4D8(0x10)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class UTexture2D*                            MoonTexture;                                       // 0x4E8(0x8)(Edit, ExportObject, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UTexture2D*                            CosmicBackgroundTexture;                           // 0x4F0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UTextureRenderTarget2D*                External_ScatterRT;                                // 0x4F8(0x8)(ConstParm, BlueprintReadOnly, Net, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UTextureRenderTarget2D*                External_LossRT;                                   // 0x500(0x8)(Edit, ExportObject, Net, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 	float                                        Brightness;                                        // 0x508(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnInstance)
-	float                                        MetresPerUnit;                                     // 0x50C(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	float                                        MinSimpleCloudShadowing;                           // 0x510(0x4)(ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	float                                        MaxSimpleCloudShadowing;                           // 0x514(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	float                                        MinSimpleCloudShadowingDistance;                   // 0x518(0x4)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	float                                        MaxSimpleCloudShadowingDistance;                   // 0x51C(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	float                                        SimpleCloudShadowSharpness;                        // 0x520(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2D8[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        MetresPerUnit;                                     // 0x50C(0x4)(Edit, Net, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        MinSimpleCloudShadowing;                           // 0x510(0x4)(BlueprintVisible, BlueprintReadOnly, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        MaxSimpleCloudShadowing;                           // 0x514(0x4)(Edit, ConstParm, BlueprintVisible, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        MinSimpleCloudShadowingDistance;                   // 0x518(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        MaxSimpleCloudShadowingDistance;                   // 0x51C(0x4)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        SimpleCloudShadowSharpness;                        // 0x520(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_40A[0x4];                                      // Fixing Size After Last Property  > TateDumper <
 	bool                                         Visible;                                           // 0x528(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, EditConst)
-	uint8                                        Pad_2D9[0xF];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_40B[0xF];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ATrueSkySequenceActor* GetDefaultObj();
 
 	void SetTime(float Value);
-	struct FVector SetPointLightSource(int32* ID, struct FLinearColor* LightColour, float* Intensity, float* MinRadius, float* MaxRadius);
+	float SetPointLightSource(int32* ID, float* Intensity, struct FVector* Pos);
 	void SetPointLight(class APointLight* Source);
-	void SetKeyframeInt(int32* KeyframeUid, class FString* Name, int32 Value);
-	void SetKeyframeFloat(int32* KeyframeUid, class FString* Name, float Value);
+	int32 SetKeyframeInt(class FString* Name, int32 Value);
+	int32 SetKeyframeFloat(class FString* Name, float Value);
 	void SetInt(class FString* Name, int32 Value);
 	void SetFloat(class FString* Name, float Value);
-	void GetSunRotation(struct FRotator* ReturnValue);
-	void GetSunColor(struct FLinearColor* ReturnValue);
-	void GetNextModifiableSkyKeyframe(int32* ReturnValue);
-	int32 GetNextModifiableCloudKeyframe(int32* ReturnValue);
-	void GetKeyframeInt(int32* KeyframeUid, class FString* Name, int32* ReturnValue);
-	void GetKeyframeFloat(int32* KeyframeUid, class FString* Name, float* ReturnValue);
-	void GetInt(class FString* Name, int32* ReturnValue);
-	void GetFloat(class FString* Name, float* ReturnValue);
+	struct FRotator GetSunRotation();
+	struct FLinearColor GetSunColor();
+	int32 GetNextModifiableSkyKeyframe();
+	int32 GetNextModifiableCloudKeyframe();
+	int32 GetKeyframeInt(class FString* Name);
+	float GetKeyframeFloat(class FString* Name);
+	int32 GetInt(class FString* Name);
+	float GetFloat(class FString* Name);
 	void ForceUpdate();
-	struct FVector CloudPointTest(float* ReturnValue);
-	struct FVector CloudLineTest(struct FVector* StartPos, float* ReturnValue);
+	float CloudPointTest(int32 QueryID, struct FVector* Pos);
+	float CloudLineTest(int32 QueryID, const struct FVector& StartPos, const struct FVector& EndPos);
 };
 
 // 0x10 (0x38 - 0x28)
@@ -70,7 +70,7 @@ public:
 class UTrueSkySequenceAsset : public UObject
 {
 public:
-	TArray<uint8>                                SequenceText;                                      // 0x28(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<uint8>                                SequenceText;                                      // 0x28(0x10)(BlueprintReadOnly, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UTrueSkySequenceAsset* GetDefaultObj();

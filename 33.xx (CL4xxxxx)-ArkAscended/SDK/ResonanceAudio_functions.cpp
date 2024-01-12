@@ -71,9 +71,9 @@ class UResonanceAudioBlueprintFunctionLibrary* UResonanceAudioBlueprintFunctionL
 // Function ResonanceAudio.ResonanceAudioBlueprintFunctionLibrary.SetGlobalReverbPreset
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UResonanceAudioReverbPluginPreset*InPreset                                                         (OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// class UResonanceAudioReverbPluginPreset*InPreset                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-class UResonanceAudioReverbPluginPreset* UResonanceAudioBlueprintFunctionLibrary::SetGlobalReverbPreset()
+void UResonanceAudioBlueprintFunctionLibrary::SetGlobalReverbPreset(class UResonanceAudioReverbPluginPreset** InPreset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -91,7 +91,8 @@ class UResonanceAudioReverbPluginPreset* UResonanceAudioBlueprintFunctionLibrary
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPreset != nullptr)
+		*InPreset = Parms.InPreset;
 
 }
 
@@ -99,9 +100,9 @@ class UResonanceAudioReverbPluginPreset* UResonanceAudioBlueprintFunctionLibrary
 // Function ResonanceAudio.ResonanceAudioBlueprintFunctionLibrary.GetGlobalReverbPreset
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UResonanceAudioReverbPluginPreset*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UResonanceAudioReverbPluginPreset*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UResonanceAudioBlueprintFunctionLibrary::GetGlobalReverbPreset(class UResonanceAudioReverbPluginPreset** ReturnValue)
+class UResonanceAudioReverbPluginPreset* UResonanceAudioBlueprintFunctionLibrary::GetGlobalReverbPreset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -119,8 +120,7 @@ void UResonanceAudioBlueprintFunctionLibrary::GetGlobalReverbPreset(class UReson
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -184,9 +184,9 @@ class UResonanceAudioReverbPluginPreset* UResonanceAudioReverbPluginPreset::GetD
 // Function ResonanceAudio.ResonanceAudioReverbPluginPreset.SetRoomRotation
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FQuat                       InRotation                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FQuat                       InRotation                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FQuat UResonanceAudioReverbPluginPreset::SetRoomRotation()
+void UResonanceAudioReverbPluginPreset::SetRoomRotation(struct FQuat* InRotation)
 {
 	static class UFunction* Func = nullptr;
 
@@ -204,7 +204,8 @@ struct FQuat UResonanceAudioReverbPluginPreset::SetRoomRotation()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InRotation != nullptr)
+		*InRotation = std::move(Parms.InRotation);
 
 }
 
@@ -212,7 +213,7 @@ struct FQuat UResonanceAudioReverbPluginPreset::SetRoomRotation()
 // Function ResonanceAudio.ResonanceAudioReverbPluginPreset.SetRoomPosition
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector                     InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FVector UResonanceAudioReverbPluginPreset::SetRoomPosition()
 {
@@ -240,9 +241,9 @@ struct FVector UResonanceAudioReverbPluginPreset::SetRoomPosition()
 // Function ResonanceAudio.ResonanceAudioReverbPluginPreset.SetRoomMaterials
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<enum class ERaMaterialName> InMaterials                                                      (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// TArray<enum class ERaMaterialName> InMaterials                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-TArray<enum class ERaMaterialName> UResonanceAudioReverbPluginPreset::SetRoomMaterials()
+void UResonanceAudioReverbPluginPreset::SetRoomMaterials(TArray<enum class ERaMaterialName>* InMaterials)
 {
 	static class UFunction* Func = nullptr;
 
@@ -260,7 +261,8 @@ TArray<enum class ERaMaterialName> UResonanceAudioReverbPluginPreset::SetRoomMat
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InMaterials != nullptr)
+		*InMaterials = std::move(Parms.InMaterials);
 
 }
 
@@ -268,9 +270,9 @@ TArray<enum class ERaMaterialName> UResonanceAudioReverbPluginPreset::SetRoomMat
 // Function ResonanceAudio.ResonanceAudioReverbPluginPreset.SetRoomDimensions
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     InDimensions                                                     (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     InDimensions                                                     (ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-struct FVector UResonanceAudioReverbPluginPreset::SetRoomDimensions()
+void UResonanceAudioReverbPluginPreset::SetRoomDimensions(struct FVector* InDimensions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -288,7 +290,8 @@ struct FVector UResonanceAudioReverbPluginPreset::SetRoomDimensions()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InDimensions != nullptr)
+		*InDimensions = std::move(Parms.InDimensions);
 
 }
 
@@ -296,9 +299,9 @@ struct FVector UResonanceAudioReverbPluginPreset::SetRoomDimensions()
 // Function ResonanceAudio.ResonanceAudioReverbPluginPreset.SetReverbTimeModifier
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InReverbTimeModifier                                             (ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InReverbTimeModifier                                             (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-float UResonanceAudioReverbPluginPreset::SetReverbTimeModifier()
+void UResonanceAudioReverbPluginPreset::SetReverbTimeModifier(float* InReverbTimeModifier)
 {
 	static class UFunction* Func = nullptr;
 
@@ -316,7 +319,8 @@ float UResonanceAudioReverbPluginPreset::SetReverbTimeModifier()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InReverbTimeModifier != nullptr)
+		*InReverbTimeModifier = Parms.InReverbTimeModifier;
 
 }
 
@@ -324,9 +328,9 @@ float UResonanceAudioReverbPluginPreset::SetReverbTimeModifier()
 // Function ResonanceAudio.ResonanceAudioReverbPluginPreset.SetReverbGain
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InReverbGain                                                     (Edit, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InReverbGain                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-float UResonanceAudioReverbPluginPreset::SetReverbGain()
+void UResonanceAudioReverbPluginPreset::SetReverbGain(float* InReverbGain)
 {
 	static class UFunction* Func = nullptr;
 
@@ -344,7 +348,8 @@ float UResonanceAudioReverbPluginPreset::SetReverbGain()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InReverbGain != nullptr)
+		*InReverbGain = Parms.InReverbGain;
 
 }
 
@@ -352,9 +357,9 @@ float UResonanceAudioReverbPluginPreset::SetReverbGain()
 // Function ResonanceAudio.ResonanceAudioReverbPluginPreset.SetReverbBrightness
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InReverbBrightness                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InReverbBrightness                                               (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-float UResonanceAudioReverbPluginPreset::SetReverbBrightness()
+void UResonanceAudioReverbPluginPreset::SetReverbBrightness(float* InReverbBrightness)
 {
 	static class UFunction* Func = nullptr;
 
@@ -372,7 +377,8 @@ float UResonanceAudioReverbPluginPreset::SetReverbBrightness()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InReverbBrightness != nullptr)
+		*InReverbBrightness = Parms.InReverbBrightness;
 
 }
 
@@ -380,9 +386,9 @@ float UResonanceAudioReverbPluginPreset::SetReverbBrightness()
 // Function ResonanceAudio.ResonanceAudioReverbPluginPreset.SetReflectionScalar
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InReflectionScalar                                               (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InReflectionScalar                                               (ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-float UResonanceAudioReverbPluginPreset::SetReflectionScalar()
+void UResonanceAudioReverbPluginPreset::SetReflectionScalar(float* InReflectionScalar)
 {
 	static class UFunction* Func = nullptr;
 
@@ -400,7 +406,8 @@ float UResonanceAudioReverbPluginPreset::SetReflectionScalar()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InReflectionScalar != nullptr)
+		*InReflectionScalar = Parms.InReflectionScalar;
 
 }
 
@@ -408,9 +415,9 @@ float UResonanceAudioReverbPluginPreset::SetReflectionScalar()
 // Function ResonanceAudio.ResonanceAudioReverbPluginPreset.SetEnableRoomEffects
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInEnableRoomEffects                                             (ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bInEnableRoomEffects                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-bool UResonanceAudioReverbPluginPreset::SetEnableRoomEffects()
+void UResonanceAudioReverbPluginPreset::SetEnableRoomEffects(bool bInEnableRoomEffects)
 {
 	static class UFunction* Func = nullptr;
 
@@ -419,6 +426,7 @@ bool UResonanceAudioReverbPluginPreset::SetEnableRoomEffects()
 
 	Params::UResonanceAudioReverbPluginPreset_SetEnableRoomEffects_Params Parms{};
 
+	Parms.bInEnableRoomEffects = bInEnableRoomEffects;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -427,8 +435,6 @@ bool UResonanceAudioReverbPluginPreset::SetEnableRoomEffects()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -492,9 +498,9 @@ class UResonanceAudioSpatializationSourceSettings* UResonanceAudioSpatialization
 // Function ResonanceAudio.ResonanceAudioSpatializationSourceSettings.SetSoundSourceSpread
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InSpread                                                         (ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InSpread                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-float UResonanceAudioSpatializationSourceSettings::SetSoundSourceSpread()
+void UResonanceAudioSpatializationSourceSettings::SetSoundSourceSpread(float* InSpread)
 {
 	static class UFunction* Func = nullptr;
 
@@ -512,7 +518,8 @@ float UResonanceAudioSpatializationSourceSettings::SetSoundSourceSpread()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InSpread != nullptr)
+		*InSpread = Parms.InSpread;
 
 }
 
@@ -520,10 +527,10 @@ float UResonanceAudioSpatializationSourceSettings::SetSoundSourceSpread()
 // Function ResonanceAudio.ResonanceAudioSpatializationSourceSettings.SetSoundSourceDirectivity
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InPattern                                                        (Edit, BlueprintVisible, Net, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              InSharpness                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InPattern                                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InSharpness                                                      (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-float UResonanceAudioSpatializationSourceSettings::SetSoundSourceDirectivity()
+void UResonanceAudioSpatializationSourceSettings::SetSoundSourceDirectivity(float InPattern, float* InSharpness)
 {
 	static class UFunction* Func = nullptr;
 
@@ -532,6 +539,7 @@ float UResonanceAudioSpatializationSourceSettings::SetSoundSourceDirectivity()
 
 	Params::UResonanceAudioSpatializationSourceSettings_SetSoundSourceDirectivity_Params Parms{};
 
+	Parms.InPattern = InPattern;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -541,7 +549,8 @@ float UResonanceAudioSpatializationSourceSettings::SetSoundSourceDirectivity()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InSharpness != nullptr)
+		*InSharpness = Parms.InSharpness;
 
 }
 

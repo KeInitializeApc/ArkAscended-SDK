@@ -18,7 +18,7 @@ namespace Params
 struct UAudioMeter_SetMeterValueColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct UAudioMeter_SetMeterScaleLabelColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -34,7 +34,7 @@ public:
 struct UAudioMeter_SetMeterScaleColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -42,7 +42,7 @@ public:
 struct UAudioMeter_SetMeterPeakColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -50,7 +50,7 @@ public:
 struct UAudioMeter_SetMeterClippingColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -58,7 +58,7 @@ public:
 struct UAudioMeter_SetMeterChannelInfo_Params
 {
 public:
-	TArray<struct FMeterChannelInfo>             InMeterChannelInfo;                                // 0x0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	TArray<struct FMeterChannelInfo>             InMeterChannelInfo;                                // 0x0(0x10)(Edit, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -66,7 +66,7 @@ public:
 struct UAudioMeter_SetMeterBackgroundColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -74,7 +74,7 @@ public:
 struct UAudioMeter_SetBackgroundColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -82,7 +82,7 @@ public:
 struct UAudioMeter_GetMeterChannelInfo__DelegateSignature_Params
 {
 public:
-	TArray<struct FMeterChannelInfo>             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FMeterChannelInfo>             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -90,7 +90,7 @@ public:
 struct UAudioMeter_GetMeterChannelInfo_Params
 {
 public:
-	TArray<struct FMeterChannelInfo>             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FMeterChannelInfo>             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -98,7 +98,7 @@ public:
 struct UAudioRadialSlider_SetWidgetLayout_Params
 {
 public:
-	enum class EAudioRadialSliderLayout          InLayout;                                          // 0x0(0x1)(Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	enum class EAudioRadialSliderLayout          InLayout;                                          // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -106,7 +106,7 @@ public:
 struct UAudioRadialSlider_SetValueTextReadOnly_Params
 {
 public:
-	bool                                         bIsReadOnly;                                       // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bIsReadOnly;                                       // 0x0(0x1)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -114,7 +114,7 @@ public:
 struct UAudioRadialSlider_SetUnitsTextReadOnly_Params
 {
 public:
-	bool                                         bIsReadOnly;                                       // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bIsReadOnly;                                       // 0x0(0x1)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -122,7 +122,7 @@ public:
 struct UAudioRadialSlider_SetUnitsText_Params
 {
 public:
-	class FText                                  Units;                                             // 0x0(0x18)(Edit, Net, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	class FText                                  Units;                                             // 0x0(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -130,7 +130,7 @@ public:
 struct UAudioRadialSlider_SetTextLabelBackgroundColor_Params
 {
 public:
-	struct FSlateColor                           InColor;                                           // 0x0(0x14)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FSlateColor                           InColor;                                           // 0x0(0x14)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -138,7 +138,7 @@ public:
 struct UAudioRadialSlider_SetSliderThickness_Params
 {
 public:
-	float                                        InThickness;                                       // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        InThickness;                                       // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -146,7 +146,7 @@ public:
 struct UAudioRadialSlider_SetSliderProgressColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -154,7 +154,7 @@ public:
 struct UAudioRadialSlider_SetSliderBarColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -162,7 +162,7 @@ public:
 struct UAudioRadialSlider_SetShowUnitsText_Params
 {
 public:
-	bool                                         bShowUnitsText;                                    // 0x0(0x1)(ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bShowUnitsText;                                    // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -170,7 +170,7 @@ public:
 struct UAudioRadialSlider_SetShowLabelOnlyOnHover_Params
 {
 public:
-	bool                                         bShowLabelOnlyOnHover;                             // 0x0(0x1)(ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bShowLabelOnlyOnHover;                             // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -178,7 +178,7 @@ public:
 struct UAudioRadialSlider_SetOutputRange_Params
 {
 public:
-	struct FVector2D                             InOutputRange;                                     // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	struct FVector2D                             InOutputRange;                                     // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -186,7 +186,7 @@ public:
 struct UAudioRadialSlider_SetHandStartEndRatio_Params
 {
 public:
-	struct FVector2D                             InHandStartEndRatio;                               // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	struct FVector2D                             InHandStartEndRatio;                               // 0x0(0x10)(ExportObject, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -194,7 +194,7 @@ public:
 struct UAudioRadialSlider_SetCenterBackgroundColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -202,8 +202,8 @@ public:
 struct UAudioRadialSlider_GetSliderValue_Params
 {
 public:
-	float                                        OutputValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        ReturnValue;                                       // 0x4(0x4)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        OutputValue;                                       // 0x0(0x4)(Edit, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x4(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -211,8 +211,8 @@ public:
 struct UAudioRadialSlider_GetOutputValue_Params
 {
 public:
-	float                                        InSliderValue;                                     // 0x0(0x4)(BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        ReturnValue;                                       // 0x4(0x4)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        InSliderValue;                                     // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x4(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -220,7 +220,7 @@ public:
 struct UAudioSliderBase_SetWidgetBackgroundColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -228,7 +228,7 @@ public:
 struct UAudioSliderBase_SetValueTextReadOnly_Params
 {
 public:
-	bool                                         bIsReadOnly;                                       // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bIsReadOnly;                                       // 0x0(0x1)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -236,7 +236,7 @@ public:
 struct UAudioSliderBase_SetUnitsTextReadOnly_Params
 {
 public:
-	bool                                         bIsReadOnly;                                       // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bIsReadOnly;                                       // 0x0(0x1)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -244,7 +244,7 @@ public:
 struct UAudioSliderBase_SetUnitsText_Params
 {
 public:
-	class FText                                  Units;                                             // 0x0(0x18)(Edit, Net, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	class FText                                  Units;                                             // 0x0(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -252,7 +252,7 @@ public:
 struct UAudioSliderBase_SetTextLabelBackgroundColor_Params
 {
 public:
-	struct FSlateColor                           InColor;                                           // 0x0(0x14)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FSlateColor                           InColor;                                           // 0x0(0x14)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -260,7 +260,7 @@ public:
 struct UAudioSliderBase_SetSliderThumbColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -268,7 +268,7 @@ public:
 struct UAudioSliderBase_SetSliderBarColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -276,7 +276,7 @@ public:
 struct UAudioSliderBase_SetSliderBackgroundColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -284,7 +284,7 @@ public:
 struct UAudioSliderBase_SetShowUnitsText_Params
 {
 public:
-	bool                                         bShowUnitsText;                                    // 0x0(0x1)(ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bShowUnitsText;                                    // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -292,7 +292,7 @@ public:
 struct UAudioSliderBase_SetShowLabelOnlyOnHover_Params
 {
 public:
-	bool                                         bShowLabelOnlyOnHover;                             // 0x0(0x1)(ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bShowLabelOnlyOnHover;                             // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -300,8 +300,8 @@ public:
 struct UAudioSliderBase_GetSliderValue_Params
 {
 public:
-	float                                        OutputValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        ReturnValue;                                       // 0x4(0x4)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        OutputValue;                                       // 0x0(0x4)(Edit, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x4(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -309,8 +309,8 @@ public:
 struct UAudioSliderBase_GetOutputValue_Params
 {
 public:
-	float                                        InSliderValue;                                     // 0x0(0x4)(BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        ReturnValue;                                       // 0x4(0x4)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        InSliderValue;                                     // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x4(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -318,8 +318,8 @@ public:
 struct UAudioSliderBase_GetLinValue_Params
 {
 public:
-	float                                        OutputValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        ReturnValue;                                       // 0x4(0x4)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        OutputValue;                                       // 0x0(0x4)(Edit, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x4(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 }

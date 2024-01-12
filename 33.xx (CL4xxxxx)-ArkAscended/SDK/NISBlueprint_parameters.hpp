@@ -18,7 +18,7 @@ namespace Params
 struct UNISLibrary_SetNISSharpness_Params
 {
 public:
-	float                                        Sharpness;                                         // 0x0(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        Sharpness;                                         // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct UNISLibrary_SetNISMode_Params
 {
 public:
-	enum class EUNISMode                         NISMode;                                           // 0x0(0x1)(BlueprintVisible, Net, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+	enum class EUNISMode                         NISMode;                                           // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -34,7 +34,7 @@ public:
 struct UNISLibrary_SetNISCustomScreenPercentage_Params
 {
 public:
-	float                                        CustomScreenPercentage;                            // 0x0(0x4)(Edit, ExportObject, Net, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        CustomScreenPercentage;                            // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -42,7 +42,7 @@ public:
 struct UNISLibrary_IsNISSupported_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x2 (0x2 - 0x0)
@@ -50,8 +50,8 @@ public:
 struct UNISLibrary_IsNISModeSupported_Params
 {
 public:
-	enum class EUNISMode                         NISMode;                                           // 0x0(0x1)(BlueprintVisible, Net, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x1(0x1)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EUNISMode                         NISMode;                                           // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x1(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -59,7 +59,7 @@ public:
 struct UNISLibrary_GetSupportedNISModes_Params
 {
 public:
-	TArray<enum class EUNISMode>                 ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<enum class EUNISMode>                 ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -67,8 +67,8 @@ public:
 struct UNISLibrary_GetNISScreenPercentageRange_Params
 {
 public:
-	float                                        MinScreenPercentage;                               // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        MaxScreenPercentage;                               // 0x4(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        MinScreenPercentage;                               // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	float                                        MaxScreenPercentage;                               // 0x4(0x4)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -76,9 +76,9 @@ public:
 struct UNISLibrary_GetNISRecommendedScreenPercentage_Params
 {
 public:
-	enum class EUNISMode                         NISMode;                                           // 0x0(0x1)(BlueprintVisible, Net, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1702[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        ReturnValue;                                       // 0x4(0x4)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EUNISMode                         NISMode;                                           // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_208E[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        ReturnValue;                                       // 0x4(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -86,7 +86,7 @@ public:
 struct UNISLibrary_GetDefaultNISMode_Params
 {
 public:
-	enum class EUNISMode                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EUNISMode                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 }

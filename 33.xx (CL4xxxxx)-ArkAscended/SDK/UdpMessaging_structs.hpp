@@ -29,7 +29,7 @@ enum class EUdpMessageFormat : uint8
 struct FUdpMockMessage
 {
 public:
-	TArray<uint8>                                Data;                                              // 0x0(0x10)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<uint8>                                Data;                                              // 0x0(0x10)(ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 }

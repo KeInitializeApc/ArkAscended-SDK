@@ -67,9 +67,9 @@ void UBindButtonSystem::StartBind()
 // Function cfcore_ui.BindButtonSystem.SetViewState
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EViewState              NewState                                                         (ExportObject, Net, EditFixedSize, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// enum class EViewState              NewState                                                         (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-void UBindButtonSystem::SetViewState(enum class EViewState* NewState)
+enum class EViewState UBindButtonSystem::SetViewState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -87,8 +87,7 @@ void UBindButtonSystem::SetViewState(enum class EViewState* NewState)
 
 	Func->FunctionFlags = Flgs;
 
-	if (NewState != nullptr)
-		*NewState = Parms.NewState;
+	return Parms.ReturnValue;
 
 }
 
@@ -232,9 +231,9 @@ class UCFCoreMathHelperFunctionLibrary* UCFCoreMathHelperFunctionLibrary::GetDef
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // int64                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// int64                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int64                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCFCoreMathHelperFunctionLibrary::Int64_SubOne(int64 Value, int64* ReturnValue)
+int64 UCFCoreMathHelperFunctionLibrary::Int64_SubOne(int64 Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -253,8 +252,7 @@ void UCFCoreMathHelperFunctionLibrary::Int64_SubOne(int64 Value, int64* ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -263,9 +261,9 @@ void UCFCoreMathHelperFunctionLibrary::Int64_SubOne(int64 Value, int64* ReturnVa
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // int64                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// int64                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int64                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCFCoreMathHelperFunctionLibrary::Int64_AddOne(int64 Value, int64* ReturnValue)
+int64 UCFCoreMathHelperFunctionLibrary::Int64_AddOne(int64 Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -284,8 +282,7 @@ void UCFCoreMathHelperFunctionLibrary::Int64_AddOne(int64 Value, int64* ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -294,9 +291,9 @@ void UCFCoreMathHelperFunctionLibrary::Int64_AddOne(int64 Value, int64* ReturnVa
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // int32                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCFCoreMathHelperFunctionLibrary::Int32_SubOne(int32 Value, int32* ReturnValue)
+int32 UCFCoreMathHelperFunctionLibrary::Int32_SubOne(int32 Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -315,8 +312,7 @@ void UCFCoreMathHelperFunctionLibrary::Int32_SubOne(int32 Value, int32* ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -325,9 +321,9 @@ void UCFCoreMathHelperFunctionLibrary::Int32_SubOne(int32 Value, int32* ReturnVa
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // int32                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCFCoreMathHelperFunctionLibrary::Int32_AddOne(int32 Value, int32* ReturnValue)
+int32 UCFCoreMathHelperFunctionLibrary::Int32_AddOne(int32 Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -346,8 +342,7 @@ void UCFCoreMathHelperFunctionLibrary::Int32_AddOne(int32 Value, int32* ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -412,9 +407,9 @@ class UCFCoreRichTextBlockImageDecorator* UCFCoreRichTextBlockImageDecorator::Ge
 // (Final, Native, Private)
 // Parameters:
 // class UTexture2DDynamic*           Image                                                            (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance)
-// class FString                      ImageUrl                                                         (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class FString                      ImageUrl                                                         (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-class FString UCFCoreRichTextBlockImageDecorator::SetImageToMap(class UTexture2DDynamic** Image)
+void UCFCoreRichTextBlockImageDecorator::SetImageToMap(class UTexture2DDynamic** Image, const class FString& ImageUrl)
 {
 	static class UFunction* Func = nullptr;
 
@@ -423,6 +418,7 @@ class FString UCFCoreRichTextBlockImageDecorator::SetImageToMap(class UTexture2D
 
 	Params::UCFCoreRichTextBlockImageDecorator_SetImageToMap_Params Parms{};
 
+	Parms.ImageUrl = ImageUrl;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -434,8 +430,6 @@ class FString UCFCoreRichTextBlockImageDecorator::SetImageToMap(class UTexture2D
 
 	if (Image != nullptr)
 		*Image = Parms.Image;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -471,11 +465,11 @@ class UCFCoreThemeSettings* UCFCoreThemeSettings::GetDefaultObj()
 // Function cfcore_ui.CFCoreThemeSettings.CommitThemeData
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UDataTable*                  ThemeDataTable                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// class FString                      ThemeName                                                        (Edit, ExportObject, Net, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FCFCoreThemeRowData         Data                                                             (Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDataTable*                  ThemeDataTable                                                   (BlueprintVisible, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FString                      ThemeName                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FCFCoreThemeRowData         Data                                                             (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FCFCoreThemeRowData UCFCoreThemeSettings::CommitThemeData()
+void UCFCoreThemeSettings::CommitThemeData(class UDataTable** ThemeDataTable, const class FString& ThemeName, const struct FCFCoreThemeRowData& Data)
 {
 	static class UFunction* Func = nullptr;
 
@@ -484,6 +478,8 @@ struct FCFCoreThemeRowData UCFCoreThemeSettings::CommitThemeData()
 
 	Params::UCFCoreThemeSettings_CommitThemeData_Params Parms{};
 
+	Parms.ThemeName = ThemeName;
+	Parms.Data = Data;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -493,7 +489,8 @@ struct FCFCoreThemeRowData UCFCoreThemeSettings::CommitThemeData()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ThemeDataTable != nullptr)
+		*ThemeDataTable = Parms.ThemeDataTable;
 
 }
 
@@ -529,12 +526,12 @@ class ICFCoreUIBaseModel* ICFCoreUIBaseModel::GetDefaultObj()
 // Function cfcore_ui.CFCoreUIBaseModel.OnEventReceived_LibraryProgress
 // (Native, Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class EGameModsEvent          Evt                                                              (BlueprintVisible, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FLibraryProgress            Progress                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// TArray<struct FInstallProgressMod> OutModsList                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EGameModsEvent          Evt                                                              (Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FLibraryProgress            Progress                                                         (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+// TArray<struct FInstallProgressMod> OutModsList                                                      (BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<struct FInstallProgressMod> ICFCoreUIBaseModel::OnEventReceived_LibraryProgress(bool* ReturnValue)
+bool ICFCoreUIBaseModel::OnEventReceived_LibraryProgress(enum class EGameModsEvent* Evt, struct FLibraryProgress* Progress, TArray<struct FInstallProgressMod>* OutModsList)
 {
 	static class UFunction* Func = nullptr;
 
@@ -552,8 +549,14 @@ TArray<struct FInstallProgressMod> ICFCoreUIBaseModel::OnEventReceived_LibraryPr
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Evt != nullptr)
+		*Evt = Parms.Evt;
+
+	if (Progress != nullptr)
+		*Progress = std::move(Parms.Progress);
+
+	if (OutModsList != nullptr)
+		*OutModsList = std::move(Parms.OutModsList);
 
 	return Parms.ReturnValue;
 
@@ -563,12 +566,12 @@ TArray<struct FInstallProgressMod> ICFCoreUIBaseModel::OnEventReceived_LibraryPr
 // Function cfcore_ui.CFCoreUIBaseModel.OnEventReceived_Installed
 // (Native, Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class EGameModsEvent          Evt                                                              (BlueprintVisible, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FInstalledMod>       InModsList                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FInstallProgressMod> OutModsList                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EGameModsEvent          Evt                                                              (Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FInstalledMod>       InModsList                                                       (Edit, ConstParm, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FInstallProgressMod> OutModsList                                                      (BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<struct FInstallProgressMod> ICFCoreUIBaseModel::OnEventReceived_Installed(bool* ReturnValue)
+bool ICFCoreUIBaseModel::OnEventReceived_Installed(enum class EGameModsEvent* Evt, TArray<struct FInstalledMod>* InModsList, TArray<struct FInstallProgressMod>* OutModsList)
 {
 	static class UFunction* Func = nullptr;
 
@@ -586,8 +589,14 @@ TArray<struct FInstallProgressMod> ICFCoreUIBaseModel::OnEventReceived_Installed
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Evt != nullptr)
+		*Evt = Parms.Evt;
+
+	if (InModsList != nullptr)
+		*InModsList = std::move(Parms.InModsList);
+
+	if (OutModsList != nullptr)
+		*OutModsList = std::move(Parms.OutModsList);
 
 	return Parms.ReturnValue;
 
@@ -597,12 +606,12 @@ TArray<struct FInstallProgressMod> ICFCoreUIBaseModel::OnEventReceived_Installed
 // Function cfcore_ui.CFCoreUIBaseModel.OnEventReceived
 // (Native, Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class EGameModsEvent          Evt                                                              (BlueprintVisible, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FCFCoreMod>          InModsList                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FInstallProgressMod> OutModsList                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EGameModsEvent          Evt                                                              (Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FCFCoreMod>          InModsList                                                       (Edit, ConstParm, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FInstallProgressMod> OutModsList                                                      (BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<struct FInstallProgressMod> ICFCoreUIBaseModel::OnEventReceived(bool* ReturnValue)
+bool ICFCoreUIBaseModel::OnEventReceived(enum class EGameModsEvent* Evt, TArray<struct FCFCoreMod>* InModsList, TArray<struct FInstallProgressMod>* OutModsList)
 {
 	static class UFunction* Func = nullptr;
 
@@ -620,8 +629,14 @@ TArray<struct FInstallProgressMod> ICFCoreUIBaseModel::OnEventReceived(bool* Ret
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Evt != nullptr)
+		*Evt = Parms.Evt;
+
+	if (InModsList != nullptr)
+		*InModsList = std::move(Parms.InModsList);
+
+	if (OutModsList != nullptr)
+		*OutModsList = std::move(Parms.OutModsList);
 
 	return Parms.ReturnValue;
 
@@ -659,12 +674,12 @@ class ICFCoreUIBaseView* ICFCoreUIBaseView::GetDefaultObj()
 // Function cfcore_ui.CFCoreUIBaseView.OnEventBroadcasted
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class EGameModsEvent          Evt                                                              (BlueprintVisible, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FInstallProgressMod> ModsList                                                         (Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FCFCoreApiResponsePaginationPagination                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EGameModsEvent          Evt                                                              (Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FInstallProgressMod> ModsList                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FCFCoreApiResponsePaginationPagination                                                       (EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<struct FInstallProgressMod> ICFCoreUIBaseView::OnEventBroadcasted(struct FCFCoreApiResponsePagination* Pagination, bool* ReturnValue)
+bool ICFCoreUIBaseView::OnEventBroadcasted(enum class EGameModsEvent* Evt, TArray<struct FInstallProgressMod>* ModsList)
 {
 	static class UFunction* Func = nullptr;
 
@@ -676,11 +691,11 @@ TArray<struct FInstallProgressMod> ICFCoreUIBaseView::OnEventBroadcasted(struct 
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Pagination != nullptr)
-		*Pagination = std::move(Parms.Pagination);
+	if (Evt != nullptr)
+		*Evt = Parms.Evt;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (ModsList != nullptr)
+		*ModsList = std::move(Parms.ModsList);
 
 	return Parms.ReturnValue;
 
@@ -746,9 +761,9 @@ class UCFCoreUISubsystem* UCFCoreUISubsystem::GetDefaultObj()
 // Function cfcore_ui.CFCoreUISubsystem.UpdateMod
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void UCFCoreUISubsystem::UpdateMod(const struct FCFCoreMod& Mod)
+struct FCFCoreMod UCFCoreUISubsystem::UpdateMod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -757,7 +772,6 @@ void UCFCoreUISubsystem::UpdateMod(const struct FCFCoreMod& Mod)
 
 	Params::UCFCoreUISubsystem_UpdateMod_Params Parms{};
 
-	Parms.Mod = Mod;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -767,6 +781,8 @@ void UCFCoreUISubsystem::UpdateMod(const struct FCFCoreMod& Mod)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
@@ -774,9 +790,9 @@ void UCFCoreUISubsystem::UpdateMod(const struct FCFCoreMod& Mod)
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UObject*                     View                                                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, EditConst)
-// TArray<enum class EGameModsEvent>  Evts                                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// TArray<enum class EGameModsEvent>  Evts                                                             (BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-TArray<enum class EGameModsEvent> UCFCoreUISubsystem::UnsubscribeViewFromEvents(class UObject* View)
+void UCFCoreUISubsystem::UnsubscribeViewFromEvents(class UObject* View, TArray<enum class EGameModsEvent>* Evts)
 {
 	static class UFunction* Func = nullptr;
 
@@ -795,7 +811,8 @@ TArray<enum class EGameModsEvent> UCFCoreUISubsystem::UnsubscribeViewFromEvents(
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Evts != nullptr)
+		*Evts = std::move(Parms.Evts);
 
 }
 
@@ -804,10 +821,10 @@ TArray<enum class EGameModsEvent> UCFCoreUISubsystem::UnsubscribeViewFromEvents(
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UObject*                     View                                                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, EditConst)
-// enum class EGameModsEvent          Evt                                                              (BlueprintVisible, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EGameModsEvent          Evt                                                              (Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EGameModsEvent UCFCoreUISubsystem::UnsubscribeViewFromEvent(class UObject* View, bool* ReturnValue)
+bool UCFCoreUISubsystem::UnsubscribeViewFromEvent(class UObject* View, enum class EGameModsEvent* Evt)
 {
 	static class UFunction* Func = nullptr;
 
@@ -826,8 +843,8 @@ enum class EGameModsEvent UCFCoreUISubsystem::UnsubscribeViewFromEvent(class UOb
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Evt != nullptr)
+		*Evt = Parms.Evt;
 
 	return Parms.ReturnValue;
 
@@ -837,10 +854,10 @@ enum class EGameModsEvent UCFCoreUISubsystem::UnsubscribeViewFromEvent(class UOb
 // Function cfcore_ui.CFCoreUISubsystem.UnregisterModelClass
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      ModelClass                                                       (ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      ModelClass                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UCFCoreUISubsystem::UnregisterModelClass(bool* ReturnValue)
+bool UCFCoreUISubsystem::UnregisterModelClass(class UClass** ModelClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -858,8 +875,8 @@ class UClass* UCFCoreUISubsystem::UnregisterModelClass(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (ModelClass != nullptr)
+		*ModelClass = Parms.ModelClass;
 
 	return Parms.ReturnValue;
 
@@ -869,9 +886,9 @@ class UClass* UCFCoreUISubsystem::UnregisterModelClass(bool* ReturnValue)
 // Function cfcore_ui.CFCoreUISubsystem.UninstallMod
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void UCFCoreUISubsystem::UninstallMod(const struct FCFCoreMod& Mod)
+struct FCFCoreMod UCFCoreUISubsystem::UninstallMod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -880,7 +897,6 @@ void UCFCoreUISubsystem::UninstallMod(const struct FCFCoreMod& Mod)
 
 	Params::UCFCoreUISubsystem_UninstallMod_Params Parms{};
 
-	Parms.Mod = Mod;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -890,6 +906,8 @@ void UCFCoreUISubsystem::UninstallMod(const struct FCFCoreMod& Mod)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
@@ -897,11 +915,11 @@ void UCFCoreUISubsystem::UninstallMod(const struct FCFCoreMod& Mod)
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UObject*                     View                                                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, EditConst)
-// TArray<enum class EGameModsEvent>  Evts                                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               InitializeView                                                   (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<enum class EGameModsEvent>  Evts                                                             (BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               InitializeView                                                   (ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UCFCoreUISubsystem::SubscribeViewToEvents(class UObject* View, bool* ReturnValue)
+bool UCFCoreUISubsystem::SubscribeViewToEvents(class UObject* View, TArray<enum class EGameModsEvent>* Evts, bool* InitializeView)
 {
 	static class UFunction* Func = nullptr;
 
@@ -920,8 +938,11 @@ bool UCFCoreUISubsystem::SubscribeViewToEvents(class UObject* View, bool* Return
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Evts != nullptr)
+		*Evts = std::move(Parms.Evts);
+
+	if (InitializeView != nullptr)
+		*InitializeView = Parms.InitializeView;
 
 	return Parms.ReturnValue;
 
@@ -932,11 +953,11 @@ bool UCFCoreUISubsystem::SubscribeViewToEvents(class UObject* View, bool* Return
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UObject*                     View                                                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, EditConst)
-// enum class EGameModsEvent          Evt                                                              (BlueprintVisible, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               InitializeView                                                   (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EGameModsEvent          Evt                                                              (Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               InitializeView                                                   (ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UCFCoreUISubsystem::SubscribeViewToEvent(class UObject* View, bool* ReturnValue)
+bool UCFCoreUISubsystem::SubscribeViewToEvent(class UObject* View, enum class EGameModsEvent* Evt, bool* InitializeView)
 {
 	static class UFunction* Func = nullptr;
 
@@ -955,8 +976,11 @@ bool UCFCoreUISubsystem::SubscribeViewToEvent(class UObject* View, bool* ReturnV
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Evt != nullptr)
+		*Evt = Parms.Evt;
+
+	if (InitializeView != nullptr)
+		*InitializeView = Parms.InitializeView;
 
 	return Parms.ReturnValue;
 
@@ -966,11 +990,11 @@ bool UCFCoreUISubsystem::SubscribeViewToEvent(class UObject* View, bool* ReturnV
 // Function cfcore_ui.CFCoreUISubsystem.SetMod
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// struct FInstalledMod               InInstalledMod                                                   (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FInstalledMod               OutInstalledMod                                                  (ConstParm, EditFixedSize, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FInstalledMod               InInstalledMod                                                   (Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FInstalledMod               OutInstalledMod                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-struct FInstalledMod UCFCoreUISubsystem::SetMod(const struct FCFCoreMod& Mod)
+struct FCFCoreMod UCFCoreUISubsystem::SetMod(struct FInstalledMod* InInstalledMod, struct FInstalledMod* OutInstalledMod)
 {
 	static class UFunction* Func = nullptr;
 
@@ -979,7 +1003,6 @@ struct FInstalledMod UCFCoreUISubsystem::SetMod(const struct FCFCoreMod& Mod)
 
 	Params::UCFCoreUISubsystem_SetMod_Params Parms{};
 
-	Parms.Mod = Mod;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -988,6 +1011,12 @@ struct FInstalledMod UCFCoreUISubsystem::SetMod(const struct FCFCoreMod& Mod)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InInstalledMod != nullptr)
+		*InInstalledMod = std::move(Parms.InInstalledMod);
+
+	if (OutInstalledMod != nullptr)
+		*OutInstalledMod = std::move(Parms.OutInstalledMod);
 
 	return Parms.ReturnValue;
 
@@ -998,9 +1027,9 @@ struct FInstalledMod UCFCoreUISubsystem::SetMod(const struct FCFCoreMod& Mod)
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // struct FCFCoreSearchModsFilter     Filter                                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config)
-// struct FCFCoreApiRequestPagination Pagination                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// struct FCFCoreApiRequestPagination Pagination                                                       (EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void UCFCoreUISubsystem::SearchMods(struct FCFCoreSearchModsFilter* Filter, struct FCFCoreApiRequestPagination* Pagination)
+struct FCFCoreApiRequestPagination UCFCoreUISubsystem::SearchMods(struct FCFCoreSearchModsFilter* Filter)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1021,8 +1050,7 @@ void UCFCoreUISubsystem::SearchMods(struct FCFCoreSearchModsFilter* Filter, stru
 	if (Filter != nullptr)
 		*Filter = std::move(Parms.Filter);
 
-	if (Pagination != nullptr)
-		*Pagination = std::move(Parms.Pagination);
+	return Parms.ReturnValue;
 
 }
 
@@ -1054,9 +1082,9 @@ void UCFCoreUISubsystem::ReleaseUIController()
 // Function cfcore_ui.CFCoreUISubsystem.RegisterPurchaseModsDelegate
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 PurchaseModsDelegate                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 PurchaseModsDelegate                                             (BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreUISubsystem::RegisterPurchaseModsDelegate()
+void UCFCoreUISubsystem::RegisterPurchaseModsDelegate(FDelegateProperty_* PurchaseModsDelegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1074,7 +1102,8 @@ FDelegateProperty_ UCFCoreUISubsystem::RegisterPurchaseModsDelegate()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PurchaseModsDelegate != nullptr)
+		*PurchaseModsDelegate = Parms.PurchaseModsDelegate;
 
 }
 
@@ -1082,9 +1111,9 @@ FDelegateProperty_ UCFCoreUISubsystem::RegisterPurchaseModsDelegate()
 // Function cfcore_ui.CFCoreUISubsystem.RegisterPurchaseModDelegate
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 PurchaseModDelegate                                              (BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 PurchaseModDelegate                                              (Edit, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreUISubsystem::RegisterPurchaseModDelegate()
+void UCFCoreUISubsystem::RegisterPurchaseModDelegate(FDelegateProperty_* PurchaseModDelegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1102,7 +1131,8 @@ FDelegateProperty_ UCFCoreUISubsystem::RegisterPurchaseModDelegate()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PurchaseModDelegate != nullptr)
+		*PurchaseModDelegate = Parms.PurchaseModDelegate;
 
 }
 
@@ -1110,10 +1140,10 @@ FDelegateProperty_ UCFCoreUISubsystem::RegisterPurchaseModDelegate()
 // Function cfcore_ui.CFCoreUISubsystem.RegisterModelClass
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      ModelClass                                                       (ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      ModelClass                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UCFCoreUISubsystem::RegisterModelClass(bool* ReturnValue)
+bool UCFCoreUISubsystem::RegisterModelClass(class UClass** ModelClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1131,8 +1161,8 @@ class UClass* UCFCoreUISubsystem::RegisterModelClass(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (ModelClass != nullptr)
+		*ModelClass = Parms.ModelClass;
 
 	return Parms.ReturnValue;
 
@@ -1142,9 +1172,9 @@ class UClass* UCFCoreUISubsystem::RegisterModelClass(bool* ReturnValue)
 // Function cfcore_ui.CFCoreUISubsystem.RegisterErrorDelegate
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 ErrorDelegate                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 ErrorDelegate                                                    (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreUISubsystem::RegisterErrorDelegate()
+void UCFCoreUISubsystem::RegisterErrorDelegate(FDelegateProperty_* ErrorDelegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1162,7 +1192,8 @@ FDelegateProperty_ UCFCoreUISubsystem::RegisterErrorDelegate()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ErrorDelegate != nullptr)
+		*ErrorDelegate = Parms.ErrorDelegate;
 
 }
 
@@ -1170,9 +1201,9 @@ FDelegateProperty_ UCFCoreUISubsystem::RegisterErrorDelegate()
 // Function cfcore_ui.CFCoreUISubsystem.PurchaseMods
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<int64>                      ModsId                                                           (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// TArray<int64>                      ModsId                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UCFCoreUISubsystem::PurchaseMods(const TArray<int64>& ModsId)
+TArray<int64> UCFCoreUISubsystem::PurchaseMods()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1181,7 +1212,6 @@ void UCFCoreUISubsystem::PurchaseMods(const TArray<int64>& ModsId)
 
 	Params::UCFCoreUISubsystem_PurchaseMods_Params Parms{};
 
-	Parms.ModsId = ModsId;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1191,15 +1221,17 @@ void UCFCoreUISubsystem::PurchaseMods(const TArray<int64>& ModsId)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function cfcore_ui.CFCoreUISubsystem.PurchaseMod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int64                              ModId                                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+// int64                              ModId                                                            (Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
-void UCFCoreUISubsystem::PurchaseMod(int64* ModId)
+int64 UCFCoreUISubsystem::PurchaseMod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1217,8 +1249,7 @@ void UCFCoreUISubsystem::PurchaseMod(int64* ModId)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ModId != nullptr)
-		*ModId = Parms.ModId;
+	return Parms.ReturnValue;
 
 }
 
@@ -1281,10 +1312,10 @@ struct FCFCoreError UCFCoreUISubsystem::OnSearchModsError()
 // Function cfcore_ui.CFCoreUISubsystem.OnSearchMods
 // (Final, Native, Private, HasOutParams)
 // Parameters:
-// TArray<struct FCFCoreMod>          Mods                                                             (Edit, ConstParm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// struct FCFCoreApiResponsePaginationPagination                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// TArray<struct FCFCoreMod>          Mods                                                             (Edit, ConstParm, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FCFCoreApiResponsePaginationPagination                                                       (EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void UCFCoreUISubsystem::OnSearchMods(TArray<struct FCFCoreMod>* Mods, struct FCFCoreApiResponsePagination* Pagination)
+struct FCFCoreApiResponsePagination UCFCoreUISubsystem::OnSearchMods()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1302,11 +1333,7 @@ void UCFCoreUISubsystem::OnSearchMods(TArray<struct FCFCoreMod>* Mods, struct FC
 
 	Func->FunctionFlags = Flgs;
 
-	if (Mods != nullptr)
-		*Mods = std::move(Parms.Mods);
-
-	if (Pagination != nullptr)
-		*Pagination = std::move(Parms.Pagination);
+	return Parms.ReturnValue;
 
 }
 
@@ -1342,9 +1369,9 @@ struct FCFCoreError UCFCoreUISubsystem::OnMyModsError()
 // Function cfcore_ui.CFCoreUISubsystem.OnMyMods
 // (Final, Native, Private, HasOutParams)
 // Parameters:
-// TArray<struct FCFCoreMod>          Mods                                                             (Edit, ConstParm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// TArray<struct FCFCoreMod>          Mods                                                             (Edit, ConstParm, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void UCFCoreUISubsystem::OnMyMods(TArray<struct FCFCoreMod>* Mods)
+TArray<struct FCFCoreMod> UCFCoreUISubsystem::OnMyMods()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1362,8 +1389,7 @@ void UCFCoreUISubsystem::OnMyMods(TArray<struct FCFCoreMod>* Mods)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Mods != nullptr)
-		*Mods = std::move(Parms.Mods);
+	return Parms.ReturnValue;
 
 }
 
@@ -1400,9 +1426,9 @@ struct FCFCoreError UCFCoreUISubsystem::OnModUninstallError()
 // (Final, Native, Private, HasOutParams)
 // Parameters:
 // struct FCFCoreError                Error                                                            (ExportObject, EditFixedSize, Parm, ReturnParm)
-// struct FCFCoreMod                  InstallingMod                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FCFCoreMod                  InstallingMod                                                    (Edit, ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-struct FCFCoreMod UCFCoreUISubsystem::OnModInstallError()
+struct FCFCoreError UCFCoreUISubsystem::OnModInstallError(struct FCFCoreMod* InstallingMod)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1420,6 +1446,9 @@ struct FCFCoreMod UCFCoreUISubsystem::OnModInstallError()
 
 	Func->FunctionFlags = Flgs;
 
+	if (InstallingMod != nullptr)
+		*InstallingMod = std::move(Parms.InstallingMod);
+
 	return Parms.ReturnValue;
 
 }
@@ -1428,9 +1457,9 @@ struct FCFCoreMod UCFCoreUISubsystem::OnModInstallError()
 // Function cfcore_ui.CFCoreUISubsystem.OnInstallProgress
 // (Final, Native, Private, HasOutParams)
 // Parameters:
-// struct FLibraryProgress            Progress                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// struct FLibraryProgress            Progress                                                         (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
 
-struct FLibraryProgress UCFCoreUISubsystem::OnInstallProgress()
+void UCFCoreUISubsystem::OnInstallProgress(struct FLibraryProgress* Progress)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1448,7 +1477,8 @@ struct FLibraryProgress UCFCoreUISubsystem::OnInstallProgress()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Progress != nullptr)
+		*Progress = std::move(Parms.Progress);
 
 }
 
@@ -1456,9 +1486,9 @@ struct FLibraryProgress UCFCoreUISubsystem::OnInstallProgress()
 // Function cfcore_ui.CFCoreUISubsystem.OnGetModsByIds
 // (Final, Native, Private, HasOutParams)
 // Parameters:
-// TArray<struct FCFCoreMod>          Mods                                                             (Edit, ConstParm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// TArray<struct FCFCoreMod>          Mods                                                             (Edit, ConstParm, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void UCFCoreUISubsystem::OnGetModsByIds(TArray<struct FCFCoreMod>* Mods)
+TArray<struct FCFCoreMod> UCFCoreUISubsystem::OnGetModsByIds()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1476,8 +1506,7 @@ void UCFCoreUISubsystem::OnGetModsByIds(TArray<struct FCFCoreMod>* Mods)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Mods != nullptr)
-		*Mods = std::move(Parms.Mods);
+	return Parms.ReturnValue;
 
 }
 
@@ -1513,9 +1542,9 @@ struct FCFCoreError UCFCoreUISubsystem::OnGetInstalledModsError()
 // Function cfcore_ui.CFCoreUISubsystem.OnGetInstalledMods
 // (Final, Native, Private, HasOutParams)
 // Parameters:
-// TArray<struct FInstalledMod>       InstalledMods                                                    (ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FInstalledMod>       InstalledMods                                                    (ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-TArray<struct FInstalledMod> UCFCoreUISubsystem::OnGetInstalledMods()
+void UCFCoreUISubsystem::OnGetInstalledMods(TArray<struct FInstalledMod>* InstalledMods)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1533,7 +1562,8 @@ TArray<struct FInstalledMod> UCFCoreUISubsystem::OnGetInstalledMods()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InstalledMods != nullptr)
+		*InstalledMods = std::move(Parms.InstalledMods);
 
 }
 
@@ -1541,9 +1571,9 @@ TArray<struct FInstalledMod> UCFCoreUISubsystem::OnGetInstalledMods()
 // Function cfcore_ui.CFCoreUISubsystem.OnFinishedUpdating
 // (Final, Native, Private, HasOutParams)
 // Parameters:
-// struct FInstalledMod               UpdatedMod                                                       (BlueprintReadOnly, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FInstalledMod               UpdatedMod                                                       (Edit, BlueprintVisible, Net, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-struct FInstalledMod UCFCoreUISubsystem::OnFinishedUpdating()
+void UCFCoreUISubsystem::OnFinishedUpdating(struct FInstalledMod* UpdatedMod)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1561,7 +1591,8 @@ struct FInstalledMod UCFCoreUISubsystem::OnFinishedUpdating()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (UpdatedMod != nullptr)
+		*UpdatedMod = std::move(Parms.UpdatedMod);
 
 }
 
@@ -1649,9 +1680,9 @@ struct FCFCoreError UCFCoreUISubsystem::OnCancelModInstallation()
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // int64                              ID                                                               (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// struct FInstallProgressMod         ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInstallProgressMod         ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCFCoreUISubsystem::MakeFInstallProgressModFromID(int64* ID, struct FInstallProgressMod* ReturnValue)
+struct FInstallProgressMod UCFCoreUISubsystem::MakeFInstallProgressModFromID(int64* ID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1672,8 +1703,7 @@ void UCFCoreUISubsystem::MakeFInstallProgressModFromID(int64* ID, struct FInstal
 	if (ID != nullptr)
 		*ID = Parms.ID;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1681,10 +1711,10 @@ void UCFCoreUISubsystem::MakeFInstallProgressModFromID(int64* ID, struct FInstal
 // Function cfcore_ui.CFCoreUISubsystem.MakeFInstallProgressMod
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// struct FInstallProgressMod         ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FInstallProgressMod         ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCFCoreUISubsystem::MakeFInstallProgressMod(const struct FCFCoreMod& Mod, struct FInstallProgressMod* ReturnValue)
+struct FInstallProgressMod UCFCoreUISubsystem::MakeFInstallProgressMod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1693,7 +1723,6 @@ void UCFCoreUISubsystem::MakeFInstallProgressMod(const struct FCFCoreMod& Mod, s
 
 	Params::UCFCoreUISubsystem_MakeFInstallProgressMod_Params Parms{};
 
-	Parms.Mod = Mod;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1703,8 +1732,7 @@ void UCFCoreUISubsystem::MakeFInstallProgressMod(const struct FCFCoreMod& Mod, s
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1712,9 +1740,9 @@ void UCFCoreUISubsystem::MakeFInstallProgressMod(const struct FCFCoreMod& Mod, s
 // Function cfcore_ui.CFCoreUISubsystem.IsAnyModInstalling
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCFCoreUISubsystem::IsAnyModInstalling(bool* ReturnValue)
+bool UCFCoreUISubsystem::IsAnyModInstalling()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1732,8 +1760,7 @@ void UCFCoreUISubsystem::IsAnyModInstalling(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1741,9 +1768,9 @@ void UCFCoreUISubsystem::IsAnyModInstalling(bool* ReturnValue)
 // Function cfcore_ui.CFCoreUISubsystem.InstallMod
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void UCFCoreUISubsystem::InstallMod(const struct FCFCoreMod& Mod)
+struct FCFCoreMod UCFCoreUISubsystem::InstallMod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1752,7 +1779,6 @@ void UCFCoreUISubsystem::InstallMod(const struct FCFCoreMod& Mod)
 
 	Params::UCFCoreUISubsystem_InstallMod_Params Parms{};
 
-	Parms.Mod = Mod;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1761,6 +1787,8 @@ void UCFCoreUISubsystem::InstallMod(const struct FCFCoreMod& Mod)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -1793,10 +1821,10 @@ void UCFCoreUISubsystem::InitializeUIController()
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UObject*                     View                                                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, EditConst)
-// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCFCoreUISubsystem::InitializeModView(class UObject* View, const struct FCFCoreMod& Mod, bool* ReturnValue)
+bool UCFCoreUISubsystem::InitializeModView(class UObject* View)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1806,7 +1834,6 @@ void UCFCoreUISubsystem::InitializeModView(class UObject* View, const struct FCF
 	Params::UCFCoreUISubsystem_InitializeModView_Params Parms{};
 
 	Parms.View = View;
-	Parms.Mod = Mod;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1816,8 +1843,7 @@ void UCFCoreUISubsystem::InitializeModView(class UObject* View, const struct FCF
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1849,11 +1875,11 @@ void UCFCoreUISubsystem::GetMyMods()
 // Function cfcore_ui.CFCoreUISubsystem.GetModById
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FInstallProgressMod         OutMod                                                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FInstallProgressMod         OutMod                                                           (Edit, Net, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 // int64                              ID                                                               (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FInstallProgressMod UCFCoreUISubsystem::GetModById(int64* ID, bool* ReturnValue)
+bool UCFCoreUISubsystem::GetModById(struct FInstallProgressMod* OutMod, int64* ID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1871,11 +1897,11 @@ struct FInstallProgressMod UCFCoreUISubsystem::GetModById(int64* ID, bool* Retur
 
 	Func->FunctionFlags = Flgs;
 
+	if (OutMod != nullptr)
+		*OutMod = std::move(Parms.OutMod);
+
 	if (ID != nullptr)
 		*ID = Parms.ID;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -1909,9 +1935,9 @@ void UCFCoreUISubsystem::GetInstalledMods()
 // Function cfcore_ui.CFCoreUISubsystem.CancelModInstallation
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void UCFCoreUISubsystem::CancelModInstallation(const struct FCFCoreMod& Mod)
+struct FCFCoreMod UCFCoreUISubsystem::CancelModInstallation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1920,7 +1946,6 @@ void UCFCoreUISubsystem::CancelModInstallation(const struct FCFCoreMod& Mod)
 
 	Params::UCFCoreUISubsystem_CancelModInstallation_Params Parms{};
 
-	Parms.Mod = Mod;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1930,15 +1955,17 @@ void UCFCoreUISubsystem::CancelModInstallation(const struct FCFCoreMod& Mod)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function cfcore_ui.CFCoreUISubsystem.ApiGetModsById
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<int64>                      ModIds                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// TArray<int64>                      ModIds                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
 
-void UCFCoreUISubsystem::ApiGetModsById(TArray<int64>* ModIds)
+TArray<int64> UCFCoreUISubsystem::ApiGetModsById()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1956,8 +1983,7 @@ void UCFCoreUISubsystem::ApiGetModsById(TArray<int64>* ModIds)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ModIds != nullptr)
-		*ModIds = std::move(Parms.ModIds);
+	return Parms.ReturnValue;
 
 }
 
@@ -1993,9 +2019,9 @@ class UCFCoreVirtualCursorFunctionLibrary* UCFCoreVirtualCursorFunctionLibrary::
 // Function cfcore_ui.CFCoreVirtualCursorFunctionLibrary.IsCursorOverInteractableWidget
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCFCoreVirtualCursorFunctionLibrary::IsCursorOverInteractableWidget(bool* ReturnValue)
+bool UCFCoreVirtualCursorFunctionLibrary::IsCursorOverInteractableWidget()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2013,8 +2039,7 @@ void UCFCoreVirtualCursorFunctionLibrary::IsCursorOverInteractableWidget(bool* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2022,9 +2047,9 @@ void UCFCoreVirtualCursorFunctionLibrary::IsCursorOverInteractableWidget(bool* R
 // Function cfcore_ui.CFCoreVirtualCursorFunctionLibrary.EnableVirtualCursor
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PC                                                               (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class APlayerController*           PC                                                               (ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-class APlayerController* UCFCoreVirtualCursorFunctionLibrary::EnableVirtualCursor()
+void UCFCoreVirtualCursorFunctionLibrary::EnableVirtualCursor(class APlayerController** PC)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2042,7 +2067,8 @@ class APlayerController* UCFCoreVirtualCursorFunctionLibrary::EnableVirtualCurso
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PC != nullptr)
+		*PC = Parms.PC;
 
 }
 
@@ -2050,9 +2076,9 @@ class APlayerController* UCFCoreVirtualCursorFunctionLibrary::EnableVirtualCurso
 // Function cfcore_ui.CFCoreVirtualCursorFunctionLibrary.DisableVirtualCursor
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PC                                                               (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class APlayerController*           PC                                                               (ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-class APlayerController* UCFCoreVirtualCursorFunctionLibrary::DisableVirtualCursor()
+void UCFCoreVirtualCursorFunctionLibrary::DisableVirtualCursor(class APlayerController** PC)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2070,7 +2096,8 @@ class APlayerController* UCFCoreVirtualCursorFunctionLibrary::DisableVirtualCurs
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PC != nullptr)
+		*PC = Parms.PC;
 
 }
 

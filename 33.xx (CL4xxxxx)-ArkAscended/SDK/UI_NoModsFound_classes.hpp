@@ -14,15 +14,15 @@ namespace SDK
 class UUI_NoModsFound_C : public UPrimalUserWidget
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x330(0x8)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
-	class UImage*                                IMG_NoModsBackground;                              // 0x338(0x8)(ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UVerticalBox*                          VerBox_NoInstalledMods;                            // 0x340(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x330(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+	class UImage*                                IMG_NoModsBackground;                              // 0x338(0x8)(Edit, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UVerticalBox*                          VerBox_NoInstalledMods;                            // 0x340(0x8)(BlueprintVisible, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UUI_NoModsFound_C* GetDefaultObj();
 
-	float Tick(const struct FGeometry& MyGeometry);
-	float ExecuteUbergraph_UI_NoModsFound(int32 EntryPoint);
+	float Tick(struct FGeometry* MyGeometry);
+	int32 ExecuteUbergraph_UI_NoModsFound(struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime);
 };
 
 }

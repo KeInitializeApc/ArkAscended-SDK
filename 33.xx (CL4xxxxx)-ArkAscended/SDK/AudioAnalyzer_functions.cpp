@@ -155,7 +155,7 @@ class UAudioAnalyzer* UAudioAnalyzer::GetDefaultObj()
 // Function AudioAnalyzer.AudioAnalyzer.StopAnalyzing
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 class UObject* UAudioAnalyzer::StopAnalyzing()
 {
@@ -183,10 +183,10 @@ class UObject* UAudioAnalyzer::StopAnalyzing()
 // Function AudioAnalyzer.AudioAnalyzer.StartAnalyzing
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UAudioBus*                   AudioBusToAnalyze                                                (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAudioBus*                   AudioBusToAnalyze                                                (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-class UAudioBus* UAudioAnalyzer::StartAnalyzing()
+class UObject* UAudioAnalyzer::StartAnalyzing(class UAudioBus** AudioBusToAnalyze)
 {
 	static class UFunction* Func = nullptr;
 
@@ -203,6 +203,9 @@ class UAudioBus* UAudioAnalyzer::StartAnalyzing()
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AudioBusToAnalyze != nullptr)
+		*AudioBusToAnalyze = Parms.AudioBusToAnalyze;
 
 	return Parms.ReturnValue;
 

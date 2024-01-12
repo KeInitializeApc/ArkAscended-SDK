@@ -14,14 +14,14 @@ namespace SDK
 class UIsInvalidNavigationPoint_TK_C : public UBTTask_BlueprintBase
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA8(0x8)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
-	struct FBlackboardKeySelector                NavigationTargetKey;                               // 0xB0(0x28)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA8(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+	struct FBlackboardKeySelector                NavigationTargetKey;                               // 0xB0(0x28)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UIsInvalidNavigationPoint_TK_C* GetDefaultObj();
 
-	class AActor* ReceiveExecute();
-	bool ExecuteUbergraph_IsInvalidNavigationPoint_TK(int32 EntryPoint, const struct FVector& CallFunc_GetBlackboardValueAsVector_ReturnValue, class AActor** K2Node_Event_OwnerActor);
+	void ReceiveExecute(class AActor** OwnerActor);
+	bool ExecuteUbergraph_IsInvalidNavigationPoint_TK(class AActor* K2Node_Event_OwnerActor);
 };
 
 }

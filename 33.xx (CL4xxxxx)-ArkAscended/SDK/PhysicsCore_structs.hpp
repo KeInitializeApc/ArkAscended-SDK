@@ -236,15 +236,15 @@ enum class ESoilType : uint8
 struct FBodyInstanceCore
 {
 public:
-	uint8                                        Pad_21B7[0x10];                                    // Fixing Size After Last Property  > TateDumper <
-	uint8                                        bSimulatePhysics : 1;                              // Mask: 0x1, PropSize: 0x10x10(0x1)(Edit, ConstParm, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bOverrideMass : 1;                                 // Mask: 0x2, PropSize: 0x10x10(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bEnableGravity : 1;                                // Mask: 0x4, PropSize: 0x10x10(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bAutoWeld : 1;                                     // Mask: 0x8, PropSize: 0x10x10(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bStartAwake : 1;                                   // Mask: 0x10, PropSize: 0x10x10(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bGenerateWakeEvents : 1;                           // Mask: 0x20, PropSize: 0x10x10(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bUpdateMassWhenScaleChanges : 1;                   // Mask: 0x40, PropSize: 0x10x10(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_21C1[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_29A4[0x10];                                    // Fixing Size After Last Property  > TateDumper <
+	uint8                                        bSimulatePhysics : 1;                              // Mask: 0x1, PropSize: 0x10x10(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bOverrideMass : 1;                                 // Mask: 0x2, PropSize: 0x10x10(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bEnableGravity : 1;                                // Mask: 0x4, PropSize: 0x10x10(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bAutoWeld : 1;                                     // Mask: 0x8, PropSize: 0x10x10(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bStartAwake : 1;                                   // Mask: 0x10, PropSize: 0x10x10(0x1)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bGenerateWakeEvents : 1;                           // Mask: 0x20, PropSize: 0x10x10(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bUpdateMassWhenScaleChanges : 1;                   // Mask: 0x40, PropSize: 0x10x10(0x1)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_29A7[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

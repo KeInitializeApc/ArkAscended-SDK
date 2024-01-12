@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class UBaseHumanAnimBP_Fists_C* GetDefaultObj();
 
-	double UpdateLayeringValues(bool* CallFunc_Not_PreBool_ReturnValue, bool* CallFunc_BooleanAND_ReturnValue, bool* CallFunc_BooleanOR_ReturnValue, double* K2Node_VariableSet_Layering_Spine_ImplicitCast, double* K2Node_VariableSet_Layering_R_Hand_ImplicitCast);
+	bool UpdateLayeringValues(bool CallFunc_BooleanAND_ReturnValue, double K2Node_VariableSet_Layering_L_Hand_ImplicitCast, double* K2Node_VariableSet_Layering_Spine_ImplicitCast, double* K2Node_VariableSet_Layering_L_Arm_ImplicitCast, double* K2Node_VariableSet_Layering_R_Hand_ImplicitCast, double* K2Node_VariableSet_Layering_R_Arm_ImplicitCast);
 };
 
 }

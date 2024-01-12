@@ -74,9 +74,9 @@ int32 UStaticMeshDescription::SetVertexInstanceUV()
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // struct FPolygonGroupID             PolygonGroupID                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// class FName                        SlotName                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FName                        SlotName                                                         (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-struct FPolygonGroupID UStaticMeshDescription::SetPolygonGroupMaterialSlotName(class FName* SlotName)
+class FName UStaticMeshDescription::SetPolygonGroupMaterialSlotName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -94,9 +94,6 @@ struct FPolygonGroupID UStaticMeshDescription::SetPolygonGroupMaterialSlotName(c
 
 	Func->FunctionFlags = Flgs;
 
-	if (SlotName != nullptr)
-		*SlotName = Parms.SlotName;
-
 	return Parms.ReturnValue;
 
 }
@@ -107,9 +104,9 @@ struct FPolygonGroupID UStaticMeshDescription::SetPolygonGroupMaterialSlotName(c
 // Parameters:
 // struct FVertexInstanceID           VertexInstanceID                                                 (Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
 // int32                              UVIndex                                                          (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UStaticMeshDescription::GetVertexInstanceUV(struct FVector2D* ReturnValue)
+struct FVector2D UStaticMeshDescription::GetVertexInstanceUV()
 {
 	static class UFunction* Func = nullptr;
 
@@ -127,9 +124,6 @@ int32 UStaticMeshDescription::GetVertexInstanceUV(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -139,16 +133,16 @@ int32 UStaticMeshDescription::GetVertexInstanceUV(struct FVector2D* ReturnValue)
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
 // struct FVector                     Center                                                           (Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// struct FVector                     HalfExtents                                                      (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FPolygonGroupID             PolygonGroup                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FPolygonID                  PolygonID_PlusX                                                  (ConstParm, BlueprintReadOnly, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FPolygonID                  PolygonID_MinusX                                                 (Edit, ExportObject, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FPolygonID                  PolygonID_PlusY                                                  (DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FPolygonID                  PolygonID_MinusY                                                 (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FPolygonID                  PolygonID_PlusZ                                                  (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FPolygonID                  PolygonID_MinusZ                                                 (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     HalfExtents                                                      (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FPolygonGroupID             PolygonGroup                                                     (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FPolygonID                  PolygonID_PlusX                                                  (ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FPolygonID                  PolygonID_MinusX                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FPolygonID                  PolygonID_PlusY                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FPolygonID                  PolygonID_MinusY                                                 (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FPolygonID                  PolygonID_PlusZ                                                  (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FPolygonID                  PolygonID_MinusZ                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FPolygonID UStaticMeshDescription::CreateCube(struct FVector* HalfExtents, const struct FPolygonGroupID& PolygonGroup, const struct FPolygonID& PolygonID_PlusX, const struct FPolygonID& PolygonID_MinusX, const struct FPolygonID& PolygonID_PlusY)
+struct FVector UStaticMeshDescription::CreateCube(const struct FPolygonGroupID& PolygonGroup, const struct FPolygonID& PolygonID_PlusX, const struct FPolygonID& PolygonID_MinusX, const struct FPolygonID& PolygonID_PlusY, const struct FPolygonID& PolygonID_MinusY, const struct FPolygonID& PolygonID_PlusZ, const struct FPolygonID& PolygonID_MinusZ)
 {
 	static class UFunction* Func = nullptr;
 
@@ -161,6 +155,9 @@ struct FPolygonID UStaticMeshDescription::CreateCube(struct FVector* HalfExtents
 	Parms.PolygonID_PlusX = PolygonID_PlusX;
 	Parms.PolygonID_MinusX = PolygonID_MinusX;
 	Parms.PolygonID_PlusY = PolygonID_PlusY;
+	Parms.PolygonID_MinusY = PolygonID_MinusY;
+	Parms.PolygonID_PlusZ = PolygonID_PlusZ;
+	Parms.PolygonID_MinusZ = PolygonID_MinusZ;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -169,9 +166,6 @@ struct FPolygonID UStaticMeshDescription::CreateCube(struct FVector* HalfExtents
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (HalfExtents != nullptr)
-		*HalfExtents = std::move(Parms.HalfExtents);
 
 	return Parms.ReturnValue;
 

@@ -43,12 +43,12 @@ class UAnimNotify_PlayPlayerFoley_C* UAnimNotify_PlayPlayerFoley_C::GetDefaultOb
 // Function AnimNotify_PlayPlayerFoley.AnimNotify_PlayPlayerFoley_C.SelectSound
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent, Const)
 // Parameters:
-// class UPDA_FoleyCollection_C*      FolleyColletion                                                  (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundBase*                  FoleySoundReferance                                              (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// enum class Enum_FoleyCollection    Temp_byte_Variable                                               (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class USoundBase*                  K2Node_Select_Default                                            (Edit, BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// class UPDA_FoleyCollection_C*      FolleyColletion                                                  (ConstParm, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundBase*                  FoleySoundReferance                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// enum class Enum_FoleyCollection    Temp_byte_Variable                                               (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// class USoundBase*                  K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
 
-class USoundBase* UAnimNotify_PlayPlayerFoley_C::SelectSound()
+void UAnimNotify_PlayPlayerFoley_C::SelectSound(class UPDA_FoleyCollection_C** FolleyColletion, class USoundBase** FoleySoundReferance, enum class Enum_FoleyCollection Temp_byte_Variable, class USoundBase** K2Node_Select_Default)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,10 +57,18 @@ class USoundBase* UAnimNotify_PlayPlayerFoley_C::SelectSound()
 
 	Params::UAnimNotify_PlayPlayerFoley_C_SelectSound_Params Parms{};
 
+	Parms.Temp_byte_Variable = Temp_byte_Variable;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (FolleyColletion != nullptr)
+		*FolleyColletion = Parms.FolleyColletion;
+
+	if (FoleySoundReferance != nullptr)
+		*FoleySoundReferance = Parms.FoleySoundReferance;
+
+	if (K2Node_Select_Default != nullptr)
+		*K2Node_Select_Default = Parms.K2Node_Select_Default;
 
 }
 
@@ -68,11 +76,11 @@ class USoundBase* UAnimNotify_PlayPlayerFoley_C::SelectSound()
 // Function AnimNotify_PlayPlayerFoley.AnimNotify_PlayPlayerFoley_C.GetNotifyName
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FString                      CallFunc_GetEnumeratorUserFriendlyName_ReturnValue               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
-// class FString                      CallFunc_Concat_StrStr_ReturnValue                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      CallFunc_GetEnumeratorUserFriendlyName_ReturnValue               (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+// class FString                      CallFunc_Concat_StrStr_ReturnValue                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-void UAnimNotify_PlayPlayerFoley_C::GetNotifyName(class FString* ReturnValue, class FString* CallFunc_GetEnumeratorUserFriendlyName_ReturnValue, class FString* CallFunc_Concat_StrStr_ReturnValue)
+class FString UAnimNotify_PlayPlayerFoley_C::GetNotifyName(const class FString& CallFunc_Concat_StrStr_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -81,17 +89,11 @@ void UAnimNotify_PlayPlayerFoley_C::GetNotifyName(class FString* ReturnValue, cl
 
 	Params::UAnimNotify_PlayPlayerFoley_C_GetNotifyName_Params Parms{};
 
+	Parms.CallFunc_Concat_StrStr_ReturnValue = CallFunc_Concat_StrStr_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
-	if (CallFunc_GetEnumeratorUserFriendlyName_ReturnValue != nullptr)
-		*CallFunc_GetEnumeratorUserFriendlyName_ReturnValue = std::move(Parms.CallFunc_GetEnumeratorUserFriendlyName_ReturnValue);
-
-	if (CallFunc_Concat_StrStr_ReturnValue != nullptr)
-		*CallFunc_Concat_StrStr_ReturnValue = std::move(Parms.CallFunc_Concat_StrStr_ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -99,25 +101,25 @@ void UAnimNotify_PlayPlayerFoley_C::GetNotifyName(class FString* ReturnValue, cl
 // Function AnimNotify_PlayPlayerFoley.AnimNotify_PlayPlayerFoley_C.Received_Notify
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent, Const)
 // Parameters:
-// class USkeletalMeshComponent*      MeshComp                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class USkeletalMeshComponent*      MeshComp                                                         (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // class UAnimSequenceBase*           Animation                                                        (Edit, Net, EditFixedSize, Config, EditConst)
-// struct FAnimNotifyEventReference   EventReference                                                   (BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class USoundBase*                  FoleySound                                                       (EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UPDA_FoleyCollection_C*      Default_Collection                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class AActor*                      CallFunc_GetOwner_ReturnValue                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class USoundBase*                  CallFunc_SelectSound_FoleySoundReferance                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerPawnTest_C*           K2Node_DynamicCast_AsPlayer_Pawn_Test                            (Edit, Net, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class UPrimalInventoryComponent*   CallFunc_GetComponentByClass_ReturnValue                         (BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UPrimalItem*                 CallFunc_GetEquippedItemOfType_ReturnValue                       (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UPrimalItemArmorGeneric_C*   K2Node_DynamicCast_AsPrimal_Item_Armor_Generic                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess_1                                    (Edit, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// class UAudioComponent*             CallFunc_SpawnSoundAttached_ReturnValue                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, EditConst, SubobjectReference)
-// class USoundBase*                  CallFunc_SelectSound_FoleySoundReferance_1                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// float                              CallFunc_SpawnSoundAttached_VolumeMultiplier_ImplicitCast        (BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FAnimNotifyEventReference   EventReference                                                   (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USoundBase*                  FoleySound                                                       (BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UPDA_FoleyCollection_C*      Default_Collection                                               (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class AActor*                      CallFunc_GetOwner_ReturnValue                                    (ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class USoundBase*                  CallFunc_SelectSound_FoleySoundReferance                         (Edit, ConstParm, BlueprintVisible, Net, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerPawnTest_C*           K2Node_DynamicCast_AsPlayer_Pawn_Test                            (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UPrimalInventoryComponent*   CallFunc_GetComponentByClass_ReturnValue                         (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UPrimalItem*                 CallFunc_GetEquippedItemOfType_ReturnValue                       (Edit, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UPrimalItemArmorGeneric_C*   K2Node_DynamicCast_AsPrimal_Item_Armor_Generic                   (Edit, ConstParm, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess_1                                    (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// class UAudioComponent*             CallFunc_SpawnSoundAttached_ReturnValue                          (Edit, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+// class USoundBase*                  CallFunc_SelectSound_FoleySoundReferance_1                       (Edit, ConstParm, BlueprintVisible, Net, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
+// float                              CallFunc_SpawnSoundAttached_VolumeMultiplier_ImplicitCast        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
-float UAnimNotify_PlayPlayerFoley_C::Received_Notify(class USkeletalMeshComponent* MeshComp, class UAnimSequenceBase* Animation, const struct FAnimNotifyEventReference& EventReference, bool* ReturnValue, class APlayerPawnTest_C* K2Node_DynamicCast_AsPlayer_Pawn_Test, class UAudioComponent** CallFunc_SpawnSoundAttached_ReturnValue)
+class UAudioComponent* UAnimNotify_PlayPlayerFoley_C::Received_Notify(class UAnimSequenceBase* Animation, class USoundBase** FoleySound, class UPDA_FoleyCollection_C** Default_Collection, class AActor** CallFunc_GetOwner_ReturnValue, class USoundBase** CallFunc_SelectSound_FoleySoundReferance, bool* K2Node_DynamicCast_bSuccess, class UPrimalInventoryComponent* CallFunc_GetComponentByClass_ReturnValue, class UPrimalItem** CallFunc_GetEquippedItemOfType_ReturnValue, class UPrimalItemArmorGeneric_C** K2Node_DynamicCast_AsPrimal_Item_Armor_Generic, bool* K2Node_DynamicCast_bSuccess_1, class USoundBase** CallFunc_SelectSound_FoleySoundReferance_1, float* CallFunc_SpawnSoundAttached_VolumeMultiplier_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -126,18 +128,40 @@ float UAnimNotify_PlayPlayerFoley_C::Received_Notify(class USkeletalMeshComponen
 
 	Params::UAnimNotify_PlayPlayerFoley_C_Received_Notify_Params Parms{};
 
-	Parms.MeshComp = MeshComp;
 	Parms.Animation = Animation;
-	Parms.EventReference = EventReference;
-	Parms.K2Node_DynamicCast_AsPlayer_Pawn_Test = K2Node_DynamicCast_AsPlayer_Pawn_Test;
+	Parms.CallFunc_GetComponentByClass_ReturnValue = CallFunc_GetComponentByClass_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (FoleySound != nullptr)
+		*FoleySound = Parms.FoleySound;
 
-	if (CallFunc_SpawnSoundAttached_ReturnValue != nullptr)
-		*CallFunc_SpawnSoundAttached_ReturnValue = Parms.CallFunc_SpawnSoundAttached_ReturnValue;
+	if (Default_Collection != nullptr)
+		*Default_Collection = Parms.Default_Collection;
+
+	if (CallFunc_GetOwner_ReturnValue != nullptr)
+		*CallFunc_GetOwner_ReturnValue = Parms.CallFunc_GetOwner_ReturnValue;
+
+	if (CallFunc_SelectSound_FoleySoundReferance != nullptr)
+		*CallFunc_SelectSound_FoleySoundReferance = Parms.CallFunc_SelectSound_FoleySoundReferance;
+
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+
+	if (CallFunc_GetEquippedItemOfType_ReturnValue != nullptr)
+		*CallFunc_GetEquippedItemOfType_ReturnValue = Parms.CallFunc_GetEquippedItemOfType_ReturnValue;
+
+	if (K2Node_DynamicCast_AsPrimal_Item_Armor_Generic != nullptr)
+		*K2Node_DynamicCast_AsPrimal_Item_Armor_Generic = Parms.K2Node_DynamicCast_AsPrimal_Item_Armor_Generic;
+
+	if (K2Node_DynamicCast_bSuccess_1 != nullptr)
+		*K2Node_DynamicCast_bSuccess_1 = Parms.K2Node_DynamicCast_bSuccess_1;
+
+	if (CallFunc_SelectSound_FoleySoundReferance_1 != nullptr)
+		*CallFunc_SelectSound_FoleySoundReferance_1 = Parms.CallFunc_SelectSound_FoleySoundReferance_1;
+
+	if (CallFunc_SpawnSoundAttached_VolumeMultiplier_ImplicitCast != nullptr)
+		*CallFunc_SpawnSoundAttached_VolumeMultiplier_ImplicitCast = Parms.CallFunc_SpawnSoundAttached_VolumeMultiplier_ImplicitCast;
 
 	return Parms.ReturnValue;
 

@@ -14,28 +14,28 @@ namespace SDK
 class UASAUI_MainMenu_GameModeSelect_C : public UPrimalUserWidget
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x330(0x8)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
-	class UWidgetAnimation*                      OpenAnim;                                          // 0x338(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UASAUIWidget_Button_Style1A_C*         BackButton;                                        // 0x340(0x8)(Edit, ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	class UASAUI_MainMenuWidget_Card_C*          Card1;                                             // 0x348(0x8)(Edit, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UASAUI_MainMenuWidget_Card_C*          Card2;                                             // 0x350(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UASAUI_MainMenuWidget_Card_C*          Card3;                                             // 0x358(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UASAUI_MainMenuWidget_Card_C*          Card4;                                             // 0x360(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UHorizontalBox*                        Cards_WrapBox;                                     // 0x368(0x8)(Edit, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnBackSelected;                                    // 0x370(0x10)(Edit, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnMultiplayerClicked;                              // 0x380(0x10)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnSOTFClicked;                                     // 0x390(0x10)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnCreateGameClicked;                               // 0x3A0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnModsClicked;                                     // 0x3B0(0x10)(Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FText                                  FalseTextSaveGame;                                 // 0x3C0(0x18)(Edit, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FText                                  TrueTextSaveGame;                                  // 0x3D8(0x18)(BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x330(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+	class UWidgetAnimation*                      OpenAnim;                                          // 0x338(0x8)(ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UASAUIWidget_Button_Style1A_C*         BackButton;                                        // 0x340(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+	class UASAUI_MainMenuWidget_Card_C*          Card1;                                             // 0x348(0x8)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UASAUI_MainMenuWidget_Card_C*          Card2;                                             // 0x350(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UASAUI_MainMenuWidget_Card_C*          Card3;                                             // 0x358(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UASAUI_MainMenuWidget_Card_C*          Card4;                                             // 0x360(0x8)(EditFixedSize, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UHorizontalBox*                        Cards_WrapBox;                                     // 0x368(0x8)(BlueprintVisible, EditFixedSize, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnBackSelected;                                    // 0x370(0x10)(Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnMultiplayerClicked;                              // 0x380(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnSOTFClicked;                                     // 0x390(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnCreateGameClicked;                               // 0x3A0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnModsClicked;                                     // 0x3B0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FText                                  FalseTextSaveGame;                                 // 0x3C0(0x18)(BlueprintVisible, Net, EditFixedSize, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FText                                  TrueTextSaveGame;                                  // 0x3D8(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UASAUI_MainMenu_GameModeSelect_C* GetDefaultObj();
 
-	class FText InitHasSave(bool* Save);
-	bool SelectionChanged(int32 Temp_int_Loop_Counter_Variable, int32* CallFunc_Add_IntInt_ReturnValue, int32 Temp_int_Array_Index_Variable, int32 Temp_int_Array_Index_Variable_1, int32 Temp_int_Loop_Counter_Variable_1, int32* CallFunc_Add_IntInt_ReturnValue_1, class UOverlay* K2Node_DynamicCast_AsOverlay, class UASAUI_MainMenuWidget_Card_C* K2Node_DynamicCast_AsASAUI_Main_Menu_Widget_Card);
-	bool StopAllCardAnims(int32 Temp_int_Array_Index_Variable, int32 Temp_int_Loop_Counter_Variable, int32* CallFunc_Add_IntInt_ReturnValue, int32 Temp_int_Array_Index_Variable_1, int32 Temp_int_Loop_Counter_Variable_1, int32* CallFunc_Add_IntInt_ReturnValue_1, class UOverlay* K2Node_DynamicCast_AsOverlay, class UASAUI_MainMenuWidget_Card_C* K2Node_DynamicCast_AsASAUI_Main_Menu_Widget_Card);
+	void InitHasSave(bool Save, bool Temp_bool_Variable, class FText* K2Node_Select_Default);
+	bool SelectionChanged(int32 CallFunc_Add_IntInt_ReturnValue, int32 CallFunc_Add_IntInt_ReturnValue_1, const TArray<class UWidget*>& CallFunc_GetAllChildren_ReturnValue, int32* CallFunc_Array_Length_ReturnValue, class UWidget** CallFunc_Array_Get_Item, class UOverlay** K2Node_DynamicCast_AsOverlay, bool* K2Node_DynamicCast_bSuccess, const TArray<class UWidget*>& CallFunc_GetAllChildren_ReturnValue_1, int32* CallFunc_Array_Length_ReturnValue_1, class UWidget** CallFunc_Array_Get_Item_1, class UASAUI_MainMenuWidget_Card_C** K2Node_DynamicCast_AsASAUI_Main_Menu_Widget_Card, bool* K2Node_DynamicCast_bSuccess_1);
+	bool StopAllCardAnims(int32 CallFunc_Add_IntInt_ReturnValue, int32 CallFunc_Add_IntInt_ReturnValue_1, const TArray<class UWidget*>& CallFunc_GetAllChildren_ReturnValue, int32* CallFunc_Array_Length_ReturnValue, class UWidget** CallFunc_Array_Get_Item, class UOverlay** K2Node_DynamicCast_AsOverlay, bool* K2Node_DynamicCast_bSuccess, const TArray<class UWidget*>& CallFunc_GetAllChildren_ReturnValue_1, int32* CallFunc_Array_Length_ReturnValue_1, class UWidget** CallFunc_Array_Get_Item_1, class UASAUI_MainMenuWidget_Card_C** K2Node_DynamicCast_AsASAUI_Main_Menu_Widget_Card, bool* K2Node_DynamicCast_bSuccess_1);
 	void PostInitialized();
 	void WidgetAddedToViewport();
 	void BndEvt__ASAUI_MainMenu_GameModeSelect_Card1_K2Node_ComponentBoundEvent_4_OnCardClicked__DelegateSignature();
@@ -45,7 +45,7 @@ public:
 	void BndEvt__ASAUI_MainMenu_GameModeSelect_BackButton_K2Node_ComponentBoundEvent_8_OnButtonClicked__DelegateSignature();
 	void Construct();
 	void RefreshAnim();
-	class UUMGSequencePlayer* ExecuteUbergraph_ASAUI_MainMenu_GameModeSelect(int32 EntryPoint, class APlayerController** CallFunc_GetOwningPlayer_ReturnValue, bool CallFunc_IsVirtualCursorEnabled_ReturnValue, bool* CallFunc_Not_PreBool_ReturnValue);
+	bool ExecuteUbergraph_ASAUI_MainMenu_GameModeSelect(bool* CallFunc_IsVirtualCursorEnabled_ReturnValue, bool* CallFunc_IsValid_ReturnValue);
 	void OnModsClicked__DelegateSignature();
 	void OnCreateGameClicked__DelegateSignature();
 	void OnSOTFClicked__DelegateSignature();

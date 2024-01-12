@@ -25,8 +25,8 @@ public:
 class UPropertyBag : public UScriptStruct
 {
 public:
-	TArray<struct FPropertyBagPropertyDesc>      PropertyDescs;                                     // 0xC0(0x10)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_495[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	TArray<struct FPropertyBagPropertyDesc>      PropertyDescs;                                     // 0xC0(0x10)(Edit, ConstParm, Net, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_66E[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UPropertyBag* GetDefaultObj();
@@ -44,12 +44,12 @@ public:
 
 	struct FInstancedStruct SetInstancedStructValue(int32 Value);
 	class UScriptStruct* Reset();
-	struct FInstancedStruct NotEqual_InstancedStruct(bool* ReturnValue);
-	void MakeInstancedStruct(int32 Value, struct FInstancedStruct* ReturnValue);
-	struct FInstancedStruct IsValid_InstancedStruct(bool* ReturnValue);
-	struct FInstancedStruct IsInstancedStructValid(enum class EStructUtilsResult* ReturnValue);
+	bool NotEqual_InstancedStruct();
+	struct FInstancedStruct MakeInstancedStruct(int32 Value);
+	bool IsValid_InstancedStruct();
+	enum class EStructUtilsResult IsInstancedStructValid();
 	struct FInstancedStruct GetInstancedStructValue(int32 Value);
-	struct FInstancedStruct EqualEqual_InstancedStruct(bool* ReturnValue);
+	bool EqualEqual_InstancedStruct();
 };
 
 }

@@ -44,9 +44,9 @@ class UHandKeypointConversion* UHandKeypointConversion::GetDefaultObj()
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // enum class EHandKeypoint           Input                                                            (Edit, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHandKeypointConversion::Conv_HandKeypointToInt32(enum class EHandKeypoint Input, int32* ReturnValue)
+int32 UHandKeypointConversion::Conv_HandKeypointToInt32(enum class EHandKeypoint Input)
 {
 	static class UFunction* Func = nullptr;
 
@@ -65,8 +65,7 @@ void UHandKeypointConversion::Conv_HandKeypointToInt32(enum class EHandKeypoint 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -102,7 +101,7 @@ class UHeadMountedDisplayFunctionLibrary* UHeadMountedDisplayFunctionLibrary::Ge
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.UpdateExternalTrackingHMDPosition
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTransform                  ExternalTrackingTransform                                        (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  ExternalTrackingTransform                                        (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FTransform UHeadMountedDisplayFunctionLibrary::UpdateExternalTrackingHMDPosition()
 {
@@ -130,10 +129,10 @@ struct FTransform UHeadMountedDisplayFunctionLibrary::UpdateExternalTrackingHMDP
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.SetXRTimedInputActionDelegate
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        ActionName                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// FDelegateProperty_                 InDelegate                                                       (Edit, ConstParm, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        ActionName                                                       (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 InDelegate                                                       (BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UHeadMountedDisplayFunctionLibrary::SetXRTimedInputActionDelegate()
+void UHeadMountedDisplayFunctionLibrary::SetXRTimedInputActionDelegate(class FName* ActionName, FDelegateProperty_ InDelegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -142,6 +141,7 @@ FDelegateProperty_ UHeadMountedDisplayFunctionLibrary::SetXRTimedInputActionDele
 
 	Params::UHeadMountedDisplayFunctionLibrary_SetXRTimedInputActionDelegate_Params Parms{};
 
+	Parms.InDelegate = InDelegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -151,7 +151,8 @@ FDelegateProperty_ UHeadMountedDisplayFunctionLibrary::SetXRTimedInputActionDele
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ActionName != nullptr)
+		*ActionName = Parms.ActionName;
 
 }
 
@@ -159,9 +160,9 @@ FDelegateProperty_ UHeadMountedDisplayFunctionLibrary::SetXRTimedInputActionDele
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.SetXRDisconnectDelegate
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 InDisconnectedDelegate                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 InDisconnectedDelegate                                           (ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UHeadMountedDisplayFunctionLibrary::SetXRDisconnectDelegate()
+void UHeadMountedDisplayFunctionLibrary::SetXRDisconnectDelegate(FDelegateProperty_ InDisconnectedDelegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -170,6 +171,7 @@ FDelegateProperty_ UHeadMountedDisplayFunctionLibrary::SetXRDisconnectDelegate()
 
 	Params::UHeadMountedDisplayFunctionLibrary_SetXRDisconnectDelegate_Params Parms{};
 
+	Parms.InDisconnectedDelegate = InDisconnectedDelegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -179,8 +181,6 @@ FDelegateProperty_ UHeadMountedDisplayFunctionLibrary::SetXRDisconnectDelegate()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -188,9 +188,9 @@ FDelegateProperty_ UHeadMountedDisplayFunctionLibrary::SetXRDisconnectDelegate()
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UObject*                     WorldContext                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, EditConst)
-// float                              NewScale                                                         (Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              NewScale                                                         (Edit, ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-float UHeadMountedDisplayFunctionLibrary::SetWorldToMetersScale(class UObject* WorldContext)
+void UHeadMountedDisplayFunctionLibrary::SetWorldToMetersScale(class UObject* WorldContext, float NewScale)
 {
 	static class UFunction* Func = nullptr;
 
@@ -200,6 +200,7 @@ float UHeadMountedDisplayFunctionLibrary::SetWorldToMetersScale(class UObject* W
 	Params::UHeadMountedDisplayFunctionLibrary_SetWorldToMetersScale_Params Parms{};
 
 	Parms.WorldContext = WorldContext;
+	Parms.NewScale = NewScale;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -209,17 +210,15 @@ float UHeadMountedDisplayFunctionLibrary::SetWorldToMetersScale(class UObject* W
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.SetTrackingOrigin
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// enum class EHMDTrackingOrigin      Origin                                                           (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EHMDTrackingOrigin      Origin                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EHMDTrackingOrigin UHeadMountedDisplayFunctionLibrary::SetTrackingOrigin()
+void UHeadMountedDisplayFunctionLibrary::SetTrackingOrigin(enum class EHMDTrackingOrigin* Origin)
 {
 	static class UFunction* Func = nullptr;
 
@@ -237,7 +236,8 @@ enum class EHMDTrackingOrigin UHeadMountedDisplayFunctionLibrary::SetTrackingOri
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Origin != nullptr)
+		*Origin = Parms.Origin;
 
 }
 
@@ -245,9 +245,9 @@ enum class EHMDTrackingOrigin UHeadMountedDisplayFunctionLibrary::SetTrackingOri
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.SetSpectatorScreenTexture
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UTexture*                    InTexture                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UTexture*                    InTexture                                                        (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-class UTexture* UHeadMountedDisplayFunctionLibrary::SetSpectatorScreenTexture()
+void UHeadMountedDisplayFunctionLibrary::SetSpectatorScreenTexture(class UTexture** InTexture)
 {
 	static class UFunction* Func = nullptr;
 
@@ -265,7 +265,8 @@ class UTexture* UHeadMountedDisplayFunctionLibrary::SetSpectatorScreenTexture()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InTexture != nullptr)
+		*InTexture = Parms.InTexture;
 
 }
 
@@ -273,15 +274,15 @@ class UTexture* UHeadMountedDisplayFunctionLibrary::SetSpectatorScreenTexture()
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.SetSpectatorScreenModeTexturePlusEyeLayout
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   EyeRectMin                                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector2D                   EyeRectMax                                                       (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector2D                   TextureRectMin                                                   (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector2D                   TextureRectMax                                                   (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bDrawEyeFirst                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bClearBlack                                                      (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bUseAlpha                                                        (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   EyeRectMin                                                       (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   EyeRectMax                                                       (BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   TextureRectMin                                                   (BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   TextureRectMax                                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bDrawEyeFirst                                                    (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bClearBlack                                                      (Edit, BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bUseAlpha                                                        (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UHeadMountedDisplayFunctionLibrary::SetSpectatorScreenModeTexturePlusEyeLayout()
+void UHeadMountedDisplayFunctionLibrary::SetSpectatorScreenModeTexturePlusEyeLayout(const struct FVector2D& EyeRectMin, const struct FVector2D& EyeRectMax, const struct FVector2D& TextureRectMin, const struct FVector2D& TextureRectMax, bool bDrawEyeFirst, bool bClearBlack, bool bUseAlpha)
 {
 	static class UFunction* Func = nullptr;
 
@@ -290,6 +291,13 @@ bool UHeadMountedDisplayFunctionLibrary::SetSpectatorScreenModeTexturePlusEyeLay
 
 	Params::UHeadMountedDisplayFunctionLibrary_SetSpectatorScreenModeTexturePlusEyeLayout_Params Parms{};
 
+	Parms.EyeRectMin = EyeRectMin;
+	Parms.EyeRectMax = EyeRectMax;
+	Parms.TextureRectMin = TextureRectMin;
+	Parms.TextureRectMax = TextureRectMax;
+	Parms.bDrawEyeFirst = bDrawEyeFirst;
+	Parms.bClearBlack = bClearBlack;
+	Parms.bUseAlpha = bUseAlpha;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -299,17 +307,15 @@ bool UHeadMountedDisplayFunctionLibrary::SetSpectatorScreenModeTexturePlusEyeLay
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.SetSpectatorScreenMode
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// enum class ESpectatorScreenMode    Mode                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ESpectatorScreenMode    Mode                                                             (Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class ESpectatorScreenMode UHeadMountedDisplayFunctionLibrary::SetSpectatorScreenMode()
+void UHeadMountedDisplayFunctionLibrary::SetSpectatorScreenMode(enum class ESpectatorScreenMode* Mode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -327,7 +333,8 @@ enum class ESpectatorScreenMode UHeadMountedDisplayFunctionLibrary::SetSpectator
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Mode != nullptr)
+		*Mode = Parms.Mode;
 
 }
 
@@ -335,10 +342,10 @@ enum class ESpectatorScreenMode UHeadMountedDisplayFunctionLibrary::SetSpectator
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.SetClippingPlanes
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// float                              Near                                                             (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              Far                                                              (ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              Near                                                             (BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              Far                                                              (Edit, Net, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-float UHeadMountedDisplayFunctionLibrary::SetClippingPlanes()
+void UHeadMountedDisplayFunctionLibrary::SetClippingPlanes(float Near, float Far)
 {
 	static class UFunction* Func = nullptr;
 
@@ -347,6 +354,8 @@ float UHeadMountedDisplayFunctionLibrary::SetClippingPlanes()
 
 	Params::UHeadMountedDisplayFunctionLibrary_SetClippingPlanes_Params Parms{};
 
+	Parms.Near = Near;
+	Parms.Far = Far;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -356,8 +365,6 @@ float UHeadMountedDisplayFunctionLibrary::SetClippingPlanes()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -365,9 +372,9 @@ float UHeadMountedDisplayFunctionLibrary::SetClippingPlanes()
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // float                              Yaw                                                              (BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config)
-// enum class EOrientPositionSelector Options                                                          (BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EOrientPositionSelector Options                                                          (ConstParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-float UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition(enum class EOrientPositionSelector* Options)
+enum class EOrientPositionSelector UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition()
 {
 	static class UFunction* Func = nullptr;
 
@@ -385,9 +392,6 @@ float UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition(enum class
 
 	Func->FunctionFlags = Flgs;
 
-	if (Options != nullptr)
-		*Options = Parms.Options;
-
 	return Parms.ReturnValue;
 
 }
@@ -396,9 +400,9 @@ float UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition(enum class
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.IsSpectatorScreenModeControllable
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::IsSpectatorScreenModeControllable(bool* ReturnValue)
+bool UHeadMountedDisplayFunctionLibrary::IsSpectatorScreenModeControllable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -416,8 +420,7 @@ void UHeadMountedDisplayFunctionLibrary::IsSpectatorScreenModeControllable(bool*
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -425,9 +428,9 @@ void UHeadMountedDisplayFunctionLibrary::IsSpectatorScreenModeControllable(bool*
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.IsInLowPersistenceMode
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::IsInLowPersistenceMode(bool* ReturnValue)
+bool UHeadMountedDisplayFunctionLibrary::IsInLowPersistenceMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -445,8 +448,7 @@ void UHeadMountedDisplayFunctionLibrary::IsInLowPersistenceMode(bool* ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -454,9 +456,9 @@ void UHeadMountedDisplayFunctionLibrary::IsInLowPersistenceMode(bool* ReturnValu
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.IsHeadMountedDisplayEnabled
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled(bool* ReturnValue)
+bool UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -474,8 +476,7 @@ void UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled(bool* Retur
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -483,9 +484,9 @@ void UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled(bool* Retur
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.IsHeadMountedDisplayConnected
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayConnected(bool* ReturnValue)
+bool UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayConnected()
 {
 	static class UFunction* Func = nullptr;
 
@@ -503,8 +504,7 @@ void UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayConnected(bool* Ret
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -513,9 +513,9 @@ void UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayConnected(bool* Ret
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // struct FXRDeviceId                 XRDeviceId                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::IsDeviceTracking(const struct FXRDeviceId& XRDeviceId, bool* ReturnValue)
+bool UHeadMountedDisplayFunctionLibrary::IsDeviceTracking(const struct FXRDeviceId& XRDeviceId)
 {
 	static class UFunction* Func = nullptr;
 
@@ -534,8 +534,7 @@ void UHeadMountedDisplayFunctionLibrary::IsDeviceTracking(const struct FXRDevice
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -543,9 +542,9 @@ void UHeadMountedDisplayFunctionLibrary::IsDeviceTracking(const struct FXRDevice
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.HasValidTrackingPosition
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::HasValidTrackingPosition(bool* ReturnValue)
+bool UHeadMountedDisplayFunctionLibrary::HasValidTrackingPosition()
 {
 	static class UFunction* Func = nullptr;
 
@@ -563,8 +562,7 @@ void UHeadMountedDisplayFunctionLibrary::HasValidTrackingPosition(bool* ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -572,9 +570,9 @@ void UHeadMountedDisplayFunctionLibrary::HasValidTrackingPosition(bool* ReturnVa
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetXRSystemFlags
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::GetXRSystemFlags(int32* ReturnValue)
+int32 UHeadMountedDisplayFunctionLibrary::GetXRSystemFlags()
 {
 	static class UFunction* Func = nullptr;
 
@@ -592,8 +590,7 @@ void UHeadMountedDisplayFunctionLibrary::GetXRSystemFlags(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -602,9 +599,9 @@ void UHeadMountedDisplayFunctionLibrary::GetXRSystemFlags(int32* ReturnValue)
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UObject*                     WorldContext                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, EditConst)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::GetWorldToMetersScale(class UObject* WorldContext, float* ReturnValue)
+float UHeadMountedDisplayFunctionLibrary::GetWorldToMetersScale(class UObject* WorldContext)
 {
 	static class UFunction* Func = nullptr;
 
@@ -623,8 +620,7 @@ void UHeadMountedDisplayFunctionLibrary::GetWorldToMetersScale(class UObject* Wo
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -632,10 +628,10 @@ void UHeadMountedDisplayFunctionLibrary::GetWorldToMetersScale(class UObject* Wo
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetVRFocusState
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               bUseFocus                                                        (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bHasFocus                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bUseFocus                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bHasFocus                                                        (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UHeadMountedDisplayFunctionLibrary::GetVRFocusState()
+void UHeadMountedDisplayFunctionLibrary::GetVRFocusState(bool bUseFocus, bool bHasFocus)
 {
 	static class UFunction* Func = nullptr;
 
@@ -644,6 +640,8 @@ bool UHeadMountedDisplayFunctionLibrary::GetVRFocusState()
 
 	Params::UHeadMountedDisplayFunctionLibrary_GetVRFocusState_Params Parms{};
 
+	Parms.bUseFocus = bUseFocus;
+	Parms.bHasFocus = bHasFocus;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -653,17 +651,15 @@ bool UHeadMountedDisplayFunctionLibrary::GetVRFocusState()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetVersionString
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::GetVersionString(class FString* ReturnValue)
+class FString UHeadMountedDisplayFunctionLibrary::GetVersionString()
 {
 	static class UFunction* Func = nullptr;
 
@@ -681,8 +677,7 @@ void UHeadMountedDisplayFunctionLibrary::GetVersionString(class FString* ReturnV
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -691,9 +686,9 @@ void UHeadMountedDisplayFunctionLibrary::GetVersionString(class FString* ReturnV
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UObject*                     WorldContext                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, EditConst)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::GetTrackingToWorldTransform(class UObject* WorldContext, struct FTransform* ReturnValue)
+struct FTransform UHeadMountedDisplayFunctionLibrary::GetTrackingToWorldTransform(class UObject* WorldContext)
 {
 	static class UFunction* Func = nullptr;
 
@@ -712,8 +707,7 @@ void UHeadMountedDisplayFunctionLibrary::GetTrackingToWorldTransform(class UObje
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -721,19 +715,19 @@ void UHeadMountedDisplayFunctionLibrary::GetTrackingToWorldTransform(class UObje
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetTrackingSensorParameters
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FVector                     Origin                                                           (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     Origin                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FRotator                    Rotation                                                         (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// float                              LeftFOV                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              RightFOV                                                         (ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              TopFOV                                                           (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              BottomFOV                                                        (ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              Distance                                                         (Edit, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              NearPlane                                                        (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              FarPlane                                                         (BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              LeftFOV                                                          (BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              RightFOV                                                         (Edit, ConstParm, ExportObject, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              TopFOV                                                           (Edit, ConstParm, BlueprintVisible, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              BottomFOV                                                        (Edit, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              Distance                                                         (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              NearPlane                                                        (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              FarPlane                                                         (Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 // bool                               IsActive                                                         (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 
-int32 UHeadMountedDisplayFunctionLibrary::GetTrackingSensorParameters(struct FRotator* Rotation, float Distance, bool* IsActive)
+int32 UHeadMountedDisplayFunctionLibrary::GetTrackingSensorParameters(struct FVector* Origin, struct FRotator* Rotation, float LeftFOV, float RightFOV, float TopFOV, float BottomFOV, bool* IsActive)
 {
 	static class UFunction* Func = nullptr;
 
@@ -742,7 +736,10 @@ int32 UHeadMountedDisplayFunctionLibrary::GetTrackingSensorParameters(struct FRo
 
 	Params::UHeadMountedDisplayFunctionLibrary_GetTrackingSensorParameters_Params Parms{};
 
-	Parms.Distance = Distance;
+	Parms.LeftFOV = LeftFOV;
+	Parms.RightFOV = RightFOV;
+	Parms.TopFOV = TopFOV;
+	Parms.BottomFOV = BottomFOV;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -751,6 +748,9 @@ int32 UHeadMountedDisplayFunctionLibrary::GetTrackingSensorParameters(struct FRo
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Origin != nullptr)
+		*Origin = std::move(Parms.Origin);
 
 	if (Rotation != nullptr)
 		*Rotation = std::move(Parms.Rotation);
@@ -766,11 +766,11 @@ int32 UHeadMountedDisplayFunctionLibrary::GetTrackingSensorParameters(struct FRo
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetTrackingOriginTransform
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// enum class EHMDTrackingOrigin      Origin                                                           (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FTransform                  OutTransform                                                     (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EHMDTrackingOrigin      Origin                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  OutTransform                                                     (Edit, ConstParm, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTransform UHeadMountedDisplayFunctionLibrary::GetTrackingOriginTransform(bool* ReturnValue)
+bool UHeadMountedDisplayFunctionLibrary::GetTrackingOriginTransform(enum class EHMDTrackingOrigin* Origin, struct FTransform* OutTransform)
 {
 	static class UFunction* Func = nullptr;
 
@@ -788,8 +788,11 @@ struct FTransform UHeadMountedDisplayFunctionLibrary::GetTrackingOriginTransform
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Origin != nullptr)
+		*Origin = Parms.Origin;
+
+	if (OutTransform != nullptr)
+		*OutTransform = std::move(Parms.OutTransform);
 
 	return Parms.ReturnValue;
 
@@ -799,9 +802,9 @@ struct FTransform UHeadMountedDisplayFunctionLibrary::GetTrackingOriginTransform
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetTrackingOrigin
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EHMDTrackingOrigin      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EHMDTrackingOrigin      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::GetTrackingOrigin(enum class EHMDTrackingOrigin* ReturnValue)
+enum class EHMDTrackingOrigin UHeadMountedDisplayFunctionLibrary::GetTrackingOrigin()
 {
 	static class UFunction* Func = nullptr;
 
@@ -819,8 +822,7 @@ void UHeadMountedDisplayFunctionLibrary::GetTrackingOrigin(enum class EHMDTracki
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -828,15 +830,15 @@ void UHeadMountedDisplayFunctionLibrary::GetTrackingOrigin(enum class EHMDTracki
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetPositionalTrackingCameraParameters
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FVector                     CameraOrigin                                                     (Edit, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FRotator                    CameraRotation                                                   (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              HFOV                                                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              VFOV                                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              CameraDistance                                                   (ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              NearPlane                                                        (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              FarPlane                                                         (BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     CameraOrigin                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FRotator                    CameraRotation                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              HFOV                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              VFOV                                                             (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              CameraDistance                                                   (Edit, ConstParm, ExportObject, Net, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              NearPlane                                                        (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              FarPlane                                                         (Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-float UHeadMountedDisplayFunctionLibrary::GetPositionalTrackingCameraParameters()
+float UHeadMountedDisplayFunctionLibrary::GetPositionalTrackingCameraParameters(const struct FRotator& CameraRotation, float* CameraDistance)
 {
 	static class UFunction* Func = nullptr;
 
@@ -845,6 +847,7 @@ float UHeadMountedDisplayFunctionLibrary::GetPositionalTrackingCameraParameters(
 
 	Params::UHeadMountedDisplayFunctionLibrary_GetPositionalTrackingCameraParameters_Params Parms{};
 
+	Parms.CameraRotation = CameraRotation;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -854,6 +857,9 @@ float UHeadMountedDisplayFunctionLibrary::GetPositionalTrackingCameraParameters(
 
 	Func->FunctionFlags = Flgs;
 
+	if (CameraDistance != nullptr)
+		*CameraDistance = Parms.CameraDistance;
+
 	return Parms.ReturnValue;
 
 }
@@ -862,11 +868,11 @@ float UHeadMountedDisplayFunctionLibrary::GetPositionalTrackingCameraParameters(
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetPlayAreaRect
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTransform                  OutTransform                                                     (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FVector2D                   OutRect                                                          (Edit, ConstParm, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  OutTransform                                                     (Edit, ConstParm, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// struct FVector2D                   OutRect                                                          (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UHeadMountedDisplayFunctionLibrary::GetPlayAreaRect(bool* ReturnValue)
+bool UHeadMountedDisplayFunctionLibrary::GetPlayAreaRect(struct FTransform* OutTransform)
 {
 	static class UFunction* Func = nullptr;
 
@@ -884,8 +890,8 @@ struct FVector2D UHeadMountedDisplayFunctionLibrary::GetPlayAreaRect(bool* Retur
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (OutTransform != nullptr)
+		*OutTransform = std::move(Parms.OutTransform);
 
 	return Parms.ReturnValue;
 
@@ -895,10 +901,10 @@ struct FVector2D UHeadMountedDisplayFunctionLibrary::GetPlayAreaRect(bool* Retur
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetPlayAreaBounds
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// enum class EHMDTrackingOrigin      Origin                                                           (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EHMDTrackingOrigin      Origin                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EHMDTrackingOrigin UHeadMountedDisplayFunctionLibrary::GetPlayAreaBounds(struct FVector2D* ReturnValue)
+struct FVector2D UHeadMountedDisplayFunctionLibrary::GetPlayAreaBounds(enum class EHMDTrackingOrigin* Origin)
 {
 	static class UFunction* Func = nullptr;
 
@@ -916,8 +922,8 @@ enum class EHMDTrackingOrigin UHeadMountedDisplayFunctionLibrary::GetPlayAreaBou
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (Origin != nullptr)
+		*Origin = Parms.Origin;
 
 	return Parms.ReturnValue;
 
@@ -927,9 +933,9 @@ enum class EHMDTrackingOrigin UHeadMountedDisplayFunctionLibrary::GetPlayAreaBou
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetPixelDensity
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::GetPixelDensity(float* ReturnValue)
+float UHeadMountedDisplayFunctionLibrary::GetPixelDensity()
 {
 	static class UFunction* Func = nullptr;
 
@@ -947,8 +953,7 @@ void UHeadMountedDisplayFunctionLibrary::GetPixelDensity(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -956,8 +961,8 @@ void UHeadMountedDisplayFunctionLibrary::GetPixelDensity(float* ReturnValue)
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetOrientationAndPosition
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FRotator                    DeviceRotation                                                   (Edit, ConstParm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     DevicePosition                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FRotator                    DeviceRotation                                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     DevicePosition                                                   (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FVector UHeadMountedDisplayFunctionLibrary::GetOrientationAndPosition()
 {
@@ -985,9 +990,9 @@ struct FVector UHeadMountedDisplayFunctionLibrary::GetOrientationAndPosition()
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetNumOfTrackingSensors
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::GetNumOfTrackingSensors(int32* ReturnValue)
+int32 UHeadMountedDisplayFunctionLibrary::GetNumOfTrackingSensors()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1005,8 +1010,7 @@ void UHeadMountedDisplayFunctionLibrary::GetNumOfTrackingSensors(int32* ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1015,10 +1019,10 @@ void UHeadMountedDisplayFunctionLibrary::GetNumOfTrackingSensors(int32* ReturnVa
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UObject*                     WorldContext                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, EditConst)
-// enum class EControllerHand         Hand                                                             (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FXRMotionControllerData     MotionControllerData                                             (BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EControllerHand         Hand                                                             (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FXRMotionControllerData     MotionControllerData                                             (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FXRMotionControllerData UHeadMountedDisplayFunctionLibrary::GetMotionControllerData(class UObject* WorldContext, enum class EControllerHand Hand)
+struct FXRMotionControllerData UHeadMountedDisplayFunctionLibrary::GetMotionControllerData(class UObject* WorldContext)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1028,7 +1032,6 @@ struct FXRMotionControllerData UHeadMountedDisplayFunctionLibrary::GetMotionCont
 	Params::UHeadMountedDisplayFunctionLibrary_GetMotionControllerData_Params Parms{};
 
 	Parms.WorldContext = WorldContext;
-	Parms.Hand = Hand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1046,9 +1049,9 @@ struct FXRMotionControllerData UHeadMountedDisplayFunctionLibrary::GetMotionCont
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetHMDWornState
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EHMDWornState           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EHMDWornState           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::GetHMDWornState(enum class EHMDWornState* ReturnValue)
+enum class EHMDWornState UHeadMountedDisplayFunctionLibrary::GetHMDWornState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1066,8 +1069,7 @@ void UHeadMountedDisplayFunctionLibrary::GetHMDWornState(enum class EHMDWornStat
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1075,9 +1077,9 @@ void UHeadMountedDisplayFunctionLibrary::GetHMDWornState(enum class EHMDWornStat
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetHMDDeviceName
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHeadMountedDisplayFunctionLibrary::GetHMDDeviceName(class FName* ReturnValue)
+class FName UHeadMountedDisplayFunctionLibrary::GetHMDDeviceName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1095,8 +1097,7 @@ void UHeadMountedDisplayFunctionLibrary::GetHMDDeviceName(class FName* ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1105,7 +1106,7 @@ void UHeadMountedDisplayFunctionLibrary::GetHMDDeviceName(class FName* ReturnVal
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UObject*                     WorldContext                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, EditConst)
-// struct FXRHMDData                  HMDData                                                          (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FXRHMDData                  HMDData                                                          (BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FXRHMDData UHeadMountedDisplayFunctionLibrary::GetHMDData(class UObject* WorldContext)
 {
@@ -1136,12 +1137,12 @@ struct FXRHMDData UHeadMountedDisplayFunctionLibrary::GetHMDData(class UObject* 
 // Parameters:
 // class UObject*                     WorldContext                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, EditConst)
 // struct FXRDeviceId                 XRDeviceId                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// bool                               bIsTracked                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FRotator                    Orientation                                                      (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference)
-// bool                               bHasPositionalTracking                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bIsTracked                                                       (ExportObject, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FRotator                    Orientation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig)
+// bool                               bHasPositionalTracking                                           (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 // struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
 
-bool UHeadMountedDisplayFunctionLibrary::GetDeviceWorldPose(class UObject* WorldContext, const struct FXRDeviceId& XRDeviceId, bool* bIsTracked, struct FRotator* Orientation, const struct FVector& Position)
+bool UHeadMountedDisplayFunctionLibrary::GetDeviceWorldPose(class UObject* WorldContext, const struct FXRDeviceId& XRDeviceId, const struct FRotator& Orientation, const struct FVector& Position)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1152,6 +1153,7 @@ bool UHeadMountedDisplayFunctionLibrary::GetDeviceWorldPose(class UObject* World
 
 	Parms.WorldContext = WorldContext;
 	Parms.XRDeviceId = XRDeviceId;
+	Parms.Orientation = Orientation;
 	Parms.Position = Position;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1161,12 +1163,6 @@ bool UHeadMountedDisplayFunctionLibrary::GetDeviceWorldPose(class UObject* World
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (bIsTracked != nullptr)
-		*bIsTracked = Parms.bIsTracked;
-
-	if (Orientation != nullptr)
-		*Orientation = std::move(Parms.Orientation);
 
 	return Parms.ReturnValue;
 
@@ -1177,12 +1173,12 @@ bool UHeadMountedDisplayFunctionLibrary::GetDeviceWorldPose(class UObject* World
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
 // struct FXRDeviceId                 XRDeviceId                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// bool                               bIsTracked                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FRotator                    Orientation                                                      (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference)
-// bool                               bHasPositionalTracking                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bIsTracked                                                       (ExportObject, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FRotator                    Orientation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig)
+// bool                               bHasPositionalTracking                                           (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 // struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
 
-bool UHeadMountedDisplayFunctionLibrary::GetDevicePose(const struct FXRDeviceId& XRDeviceId, bool* bIsTracked, struct FRotator* Orientation, const struct FVector& Position)
+bool UHeadMountedDisplayFunctionLibrary::GetDevicePose(const struct FXRDeviceId& XRDeviceId, const struct FRotator& Orientation, const struct FVector& Position)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1192,6 +1188,7 @@ bool UHeadMountedDisplayFunctionLibrary::GetDevicePose(const struct FXRDeviceId&
 	Params::UHeadMountedDisplayFunctionLibrary_GetDevicePose_Params Parms{};
 
 	Parms.XRDeviceId = XRDeviceId;
+	Parms.Orientation = Orientation;
 	Parms.Position = Position;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1202,12 +1199,6 @@ bool UHeadMountedDisplayFunctionLibrary::GetDevicePose(const struct FXRDeviceId&
 
 	Func->FunctionFlags = Flgs;
 
-	if (bIsTracked != nullptr)
-		*bIsTracked = Parms.bIsTracked;
-
-	if (Orientation != nullptr)
-		*Orientation = std::move(Parms.Orientation);
-
 	return Parms.ReturnValue;
 
 }
@@ -1216,11 +1207,11 @@ bool UHeadMountedDisplayFunctionLibrary::GetDevicePose(const struct FXRDeviceId&
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.GetCurrentInteractionProfile
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// enum class EControllerHand         Hand                                                             (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class FString                      InteractionProfile                                               (ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EControllerHand         Hand                                                             (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class FString                      InteractionProfile                                               (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UHeadMountedDisplayFunctionLibrary::GetCurrentInteractionProfile(enum class EControllerHand Hand, bool* ReturnValue)
+bool UHeadMountedDisplayFunctionLibrary::GetCurrentInteractionProfile()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1229,7 +1220,6 @@ class FString UHeadMountedDisplayFunctionLibrary::GetCurrentInteractionProfile(e
 
 	Params::UHeadMountedDisplayFunctionLibrary_GetCurrentInteractionProfile_Params Parms{};
 
-	Parms.Hand = Hand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1238,9 +1228,6 @@ class FString UHeadMountedDisplayFunctionLibrary::GetCurrentInteractionProfile(e
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -1251,21 +1238,21 @@ class FString UHeadMountedDisplayFunctionLibrary::GetCurrentInteractionProfile(e
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UObject*                     WorldContext                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, EditConst)
-// int32                              ControllerIndex                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FName                        MotionSource                                                     (Edit, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTimespan                   Time                                                             (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// bool                               bTimeWasUsed                                                     (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FRotator                    Orientation                                                      (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference)
+// int32                              ControllerIndex                                                  (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        MotionSource                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTimespan                   Time                                                             (Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// bool                               bTimeWasUsed                                                     (Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FRotator                    Orientation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig)
 // struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
-// bool                               bProvidedLinearVelocity                                          (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     LinearVelocity                                                   (ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bProvidedAngularVelocity                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     AngularVelocityRadPerSec                                         (Edit, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bProvidedLinearAcceleration                                      (ConstParm, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     LinearAcceleration                                               (ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bProvidedLinearVelocity                                          (BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     LinearVelocity                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bProvidedAngularVelocity                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     AngularVelocityRadPerSec                                         (ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bProvidedLinearAcceleration                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     LinearAcceleration                                               (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector UHeadMountedDisplayFunctionLibrary::GetControllerTransformForTime(class UObject* WorldContext, struct FRotator* Orientation, const struct FVector& Position, bool* ReturnValue)
+bool UHeadMountedDisplayFunctionLibrary::GetControllerTransformForTime(class UObject* WorldContext, const struct FTimespan& Time, const struct FRotator& Orientation, const struct FVector& Position, struct FVector* LinearVelocity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1275,6 +1262,8 @@ struct FVector UHeadMountedDisplayFunctionLibrary::GetControllerTransformForTime
 	Params::UHeadMountedDisplayFunctionLibrary_GetControllerTransformForTime_Params Parms{};
 
 	Parms.WorldContext = WorldContext;
+	Parms.Time = Time;
+	Parms.Orientation = Orientation;
 	Parms.Position = Position;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1285,11 +1274,8 @@ struct FVector UHeadMountedDisplayFunctionLibrary::GetControllerTransformForTime
 
 	Func->FunctionFlags = Flgs;
 
-	if (Orientation != nullptr)
-		*Orientation = std::move(Parms.Orientation);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (LinearVelocity != nullptr)
+		*LinearVelocity = std::move(Parms.LinearVelocity);
 
 	return Parms.ReturnValue;
 
@@ -1299,11 +1285,11 @@ struct FVector UHeadMountedDisplayFunctionLibrary::GetControllerTransformForTime
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.EnumerateTrackedDevices
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FName                        SystemId                                                         (Edit, ConstParm, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        SystemId                                                         (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 // enum class EXRTrackedDeviceType    DeviceType                                                       (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// TArray<struct FXRDeviceId>         ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FXRDeviceId>         ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EXRTrackedDeviceType UHeadMountedDisplayFunctionLibrary::EnumerateTrackedDevices(TArray<struct FXRDeviceId>* ReturnValue)
+TArray<struct FXRDeviceId> UHeadMountedDisplayFunctionLibrary::EnumerateTrackedDevices()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1321,9 +1307,6 @@ enum class EXRTrackedDeviceType UHeadMountedDisplayFunctionLibrary::EnumerateTra
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -1332,9 +1315,9 @@ enum class EXRTrackedDeviceType UHeadMountedDisplayFunctionLibrary::EnumerateTra
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.EnableLowPersistenceMode
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               bEnable                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// bool                               bEnable                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
-bool UHeadMountedDisplayFunctionLibrary::EnableLowPersistenceMode()
+void UHeadMountedDisplayFunctionLibrary::EnableLowPersistenceMode(bool* bEnable)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1352,7 +1335,8 @@ bool UHeadMountedDisplayFunctionLibrary::EnableLowPersistenceMode()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bEnable != nullptr)
+		*bEnable = Parms.bEnable;
 
 }
 
@@ -1360,10 +1344,10 @@ bool UHeadMountedDisplayFunctionLibrary::EnableLowPersistenceMode()
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.EnableHMD
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               bEnable                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bEnable                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UHeadMountedDisplayFunctionLibrary::EnableHMD(bool* ReturnValue)
+bool UHeadMountedDisplayFunctionLibrary::EnableHMD(bool* bEnable)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1381,8 +1365,8 @@ bool UHeadMountedDisplayFunctionLibrary::EnableHMD(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (bEnable != nullptr)
+		*bEnable = Parms.bEnable;
 
 	return Parms.ReturnValue;
 
@@ -1416,11 +1400,11 @@ void UHeadMountedDisplayFunctionLibrary::DisconnectRemoteXRDevice()
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.ConnectRemoteXRDevice
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      IpAddress                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              BitRate                                                          (ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EXRDeviceConnectionResultReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      IpAddress                                                        (BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// int32                              BitRate                                                          (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EXRDeviceConnectionResultReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UHeadMountedDisplayFunctionLibrary::ConnectRemoteXRDevice(enum class EXRDeviceConnectionResult* ReturnValue)
+enum class EXRDeviceConnectionResult UHeadMountedDisplayFunctionLibrary::ConnectRemoteXRDevice(class FString* IpAddress)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1438,8 +1422,8 @@ int32 UHeadMountedDisplayFunctionLibrary::ConnectRemoteXRDevice(enum class EXRDe
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (IpAddress != nullptr)
+		*IpAddress = std::move(Parms.IpAddress);
 
 	return Parms.ReturnValue;
 
@@ -1449,10 +1433,10 @@ int32 UHeadMountedDisplayFunctionLibrary::ConnectRemoteXRDevice(enum class EXRDe
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.ConfigureGestures
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FXRGestureConfig            GestureConfig                                                    (ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FXRGestureConfig            GestureConfig                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FXRGestureConfig UHeadMountedDisplayFunctionLibrary::ConfigureGestures(bool* ReturnValue)
+bool UHeadMountedDisplayFunctionLibrary::ConfigureGestures()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1470,9 +1454,6 @@ struct FXRGestureConfig UHeadMountedDisplayFunctionLibrary::ConfigureGestures(bo
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -1481,7 +1462,7 @@ struct FXRGestureConfig UHeadMountedDisplayFunctionLibrary::ConfigureGestures(bo
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.ClearXRTimedInputActionDelegate
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        ActionPath                                                       (Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        ActionPath                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 class FName UHeadMountedDisplayFunctionLibrary::ClearXRTimedInputActionDelegate()
 {
@@ -1509,7 +1490,7 @@ class FName UHeadMountedDisplayFunctionLibrary::ClearXRTimedInputActionDelegate(
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.CalibrateExternalTrackingToHMD
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTransform                  ExternalTrackingTransform                                        (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  ExternalTrackingTransform                                        (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FTransform UHeadMountedDisplayFunctionLibrary::CalibrateExternalTrackingToHMD()
 {
@@ -1537,14 +1518,14 @@ struct FTransform UHeadMountedDisplayFunctionLibrary::CalibrateExternalTrackingT
 // Function HeadMountedDisplay.HeadMountedDisplayFunctionLibrary.BreakKey
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FKey                        InKey                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      InteractionProfile                                               (ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EControllerHand         Hand                                                             (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class FName                        MotionSource                                                     (Edit, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class FString                      Indentifier                                                      (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class FString                      Component                                                        (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FKey                        InKey                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      InteractionProfile                                               (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EControllerHand         Hand                                                             (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class FName                        MotionSource                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      Indentifier                                                      (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      Component                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UHeadMountedDisplayFunctionLibrary::BreakKey(enum class EControllerHand Hand, class FString* Component)
+class FString UHeadMountedDisplayFunctionLibrary::BreakKey(struct FKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1553,7 +1534,6 @@ class FString UHeadMountedDisplayFunctionLibrary::BreakKey(enum class EControlle
 
 	Params::UHeadMountedDisplayFunctionLibrary_BreakKey_Params Parms{};
 
-	Parms.Hand = Hand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1563,8 +1543,8 @@ class FString UHeadMountedDisplayFunctionLibrary::BreakKey(enum class EControlle
 
 	Func->FunctionFlags = Flgs;
 
-	if (Component != nullptr)
-		*Component = std::move(Parms.Component);
+	if (InKey != nullptr)
+		*InKey = std::move(Parms.InKey);
 
 	return Parms.ReturnValue;
 
@@ -1602,9 +1582,9 @@ class UMotionControllerComponent* UMotionControllerComponent::GetDefaultObj()
 // Function HeadMountedDisplay.MotionControllerComponent.SetTrackingSource
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EControllerHand         NewSource                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EControllerHand         NewSource                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class EControllerHand UMotionControllerComponent::SetTrackingSource()
+void UMotionControllerComponent::SetTrackingSource(enum class EControllerHand NewSource)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1613,6 +1593,7 @@ enum class EControllerHand UMotionControllerComponent::SetTrackingSource()
 
 	Params::UMotionControllerComponent_SetTrackingSource_Params Parms{};
 
+	Parms.NewSource = NewSource;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1622,17 +1603,15 @@ enum class EControllerHand UMotionControllerComponent::SetTrackingSource()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HeadMountedDisplay.MotionControllerComponent.SetTrackingMotionSource
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        NewSource                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        NewSource                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class FName UMotionControllerComponent::SetTrackingMotionSource()
+void UMotionControllerComponent::SetTrackingMotionSource(class FName NewSource)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1641,6 +1620,7 @@ class FName UMotionControllerComponent::SetTrackingMotionSource()
 
 	Params::UMotionControllerComponent_SetTrackingMotionSource_Params Parms{};
 
+	Parms.NewSource = NewSource;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1650,17 +1630,15 @@ class FName UMotionControllerComponent::SetTrackingMotionSource()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HeadMountedDisplay.MotionControllerComponent.SetShowDeviceModel
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bShowControllerModel                                             (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bShowControllerModel                                             (Edit, ConstParm, ExportObject, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UMotionControllerComponent::SetShowDeviceModel()
+void UMotionControllerComponent::SetShowDeviceModel(bool bShowControllerModel)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1669,6 +1647,7 @@ bool UMotionControllerComponent::SetShowDeviceModel()
 
 	Params::UMotionControllerComponent_SetShowDeviceModel_Params Parms{};
 
+	Parms.bShowControllerModel = bShowControllerModel;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1678,17 +1657,15 @@ bool UMotionControllerComponent::SetShowDeviceModel()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HeadMountedDisplay.MotionControllerComponent.SetDisplayModelSource
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        NewDisplayModelSource                                            (ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        NewDisplayModelSource                                            (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class FName UMotionControllerComponent::SetDisplayModelSource()
+void UMotionControllerComponent::SetDisplayModelSource(class FName NewDisplayModelSource)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1697,6 +1674,7 @@ class FName UMotionControllerComponent::SetDisplayModelSource()
 
 	Params::UMotionControllerComponent_SetDisplayModelSource_Params Parms{};
 
+	Parms.NewDisplayModelSource = NewDisplayModelSource;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1706,17 +1684,15 @@ class FName UMotionControllerComponent::SetDisplayModelSource()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HeadMountedDisplay.MotionControllerComponent.SetCustomDisplayMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UStaticMesh*                 NewDisplayMesh                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UStaticMesh*                 NewDisplayMesh                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UStaticMesh* UMotionControllerComponent::SetCustomDisplayMesh()
+void UMotionControllerComponent::SetCustomDisplayMesh(class UStaticMesh* NewDisplayMesh)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1725,6 +1701,7 @@ class UStaticMesh* UMotionControllerComponent::SetCustomDisplayMesh()
 
 	Params::UMotionControllerComponent_SetCustomDisplayMesh_Params Parms{};
 
+	Parms.NewDisplayMesh = NewDisplayMesh;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1734,17 +1711,15 @@ class UStaticMesh* UMotionControllerComponent::SetCustomDisplayMesh()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HeadMountedDisplay.MotionControllerComponent.SetAssociatedPlayerIndex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NewPlayer                                                        (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              NewPlayer                                                        (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-int32 UMotionControllerComponent::SetAssociatedPlayerIndex()
+void UMotionControllerComponent::SetAssociatedPlayerIndex(int32* NewPlayer)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1762,7 +1737,8 @@ int32 UMotionControllerComponent::SetAssociatedPlayerIndex()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewPlayer != nullptr)
+		*NewPlayer = Parms.NewPlayer;
 
 }
 
@@ -1788,9 +1764,9 @@ void UMotionControllerComponent::OnMotionControllerUpdated()
 // Function HeadMountedDisplay.MotionControllerComponent.IsTracked
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMotionControllerComponent::IsTracked(bool* ReturnValue)
+bool UMotionControllerComponent::IsTracked()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1808,8 +1784,7 @@ void UMotionControllerComponent::IsTracked(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1817,9 +1792,9 @@ void UMotionControllerComponent::IsTracked(bool* ReturnValue)
 // Function HeadMountedDisplay.MotionControllerComponent.GetTrackingSource
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EControllerHand         ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EControllerHand         ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMotionControllerComponent::GetTrackingSource(enum class EControllerHand* ReturnValue)
+enum class EControllerHand UMotionControllerComponent::GetTrackingSource()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1837,8 +1812,7 @@ void UMotionControllerComponent::GetTrackingSource(enum class EControllerHand* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1846,11 +1820,11 @@ void UMotionControllerComponent::GetTrackingSource(enum class EControllerHand* R
 // Function HeadMountedDisplay.MotionControllerComponent.GetParameterValue
 // (Final, Native, Protected, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bValueFound                                                      (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bValueFound                                                      (ConstParm, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMotionControllerComponent::GetParameterValue(class FName InName, float* ReturnValue)
+float UMotionControllerComponent::GetParameterValue(bool bValueFound)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1859,7 +1833,7 @@ bool UMotionControllerComponent::GetParameterValue(class FName InName, float* Re
 
 	Params::UMotionControllerComponent_GetParameterValue_Params Parms{};
 
-	Parms.InName = InName;
+	Parms.bValueFound = bValueFound;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1868,9 +1842,6 @@ bool UMotionControllerComponent::GetParameterValue(class FName InName, float* Re
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -1880,11 +1851,11 @@ bool UMotionControllerComponent::GetParameterValue(class FName InName, float* Re
 // Function HeadMountedDisplay.MotionControllerComponent.GetHandJointPosition
 // (Final, Native, Protected, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// int32                              JointIndex                                                       (ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bValueFound                                                      (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              JointIndex                                                       (Edit, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bValueFound                                                      (ConstParm, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMotionControllerComponent::GetHandJointPosition(struct FVector* ReturnValue)
+struct FVector UMotionControllerComponent::GetHandJointPosition(int32 JointIndex, bool bValueFound)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1893,6 +1864,8 @@ bool UMotionControllerComponent::GetHandJointPosition(struct FVector* ReturnValu
 
 	Params::UMotionControllerComponent_GetHandJointPosition_Params Parms{};
 
+	Parms.JointIndex = JointIndex;
+	Parms.bValueFound = bValueFound;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1901,9 +1874,6 @@ bool UMotionControllerComponent::GetHandJointPosition(struct FVector* ReturnValu
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -1969,11 +1939,11 @@ bool UMotionTrackedDeviceFunctionLibrary::SetIsControllerMotionTrackingEnabledBy
 // Function HeadMountedDisplay.MotionTrackedDeviceFunctionLibrary.IsMotionTrackingEnabledForSource
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              PlayerIndex                                                      (ExportObject, BlueprintReadOnly, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              PlayerIndex                                                      (BlueprintVisible, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // class FName                        SourceName                                                       (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UMotionTrackedDeviceFunctionLibrary::IsMotionTrackingEnabledForSource(int32* PlayerIndex, bool* ReturnValue)
+bool UMotionTrackedDeviceFunctionLibrary::IsMotionTrackingEnabledForSource()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1991,12 +1961,6 @@ class FName UMotionTrackedDeviceFunctionLibrary::IsMotionTrackingEnabledForSourc
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerIndex != nullptr)
-		*PlayerIndex = Parms.PlayerIndex;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -2005,11 +1969,11 @@ class FName UMotionTrackedDeviceFunctionLibrary::IsMotionTrackingEnabledForSourc
 // Function HeadMountedDisplay.MotionTrackedDeviceFunctionLibrary.IsMotionTrackingEnabledForDevice
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              PlayerIndex                                                      (ExportObject, BlueprintReadOnly, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class EControllerHand         Hand                                                             (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              PlayerIndex                                                      (BlueprintVisible, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EControllerHand         Hand                                                             (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMotionTrackedDeviceFunctionLibrary::IsMotionTrackingEnabledForDevice(int32* PlayerIndex, enum class EControllerHand Hand, bool* ReturnValue)
+bool UMotionTrackedDeviceFunctionLibrary::IsMotionTrackingEnabledForDevice()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2018,7 +1982,6 @@ void UMotionTrackedDeviceFunctionLibrary::IsMotionTrackingEnabledForDevice(int32
 
 	Params::UMotionTrackedDeviceFunctionLibrary_IsMotionTrackingEnabledForDevice_Params Parms{};
 
-	Parms.Hand = Hand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2028,11 +1991,7 @@ void UMotionTrackedDeviceFunctionLibrary::IsMotionTrackingEnabledForDevice(int32
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerIndex != nullptr)
-		*PlayerIndex = Parms.PlayerIndex;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2041,9 +2000,9 @@ void UMotionTrackedDeviceFunctionLibrary::IsMotionTrackingEnabledForDevice(int32
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UMotionControllerComponent*  MotionControllerComponent                                        (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMotionTrackedDeviceFunctionLibrary::IsMotionTrackingEnabledForComponent(class UMotionControllerComponent** MotionControllerComponent, bool* ReturnValue)
+bool UMotionTrackedDeviceFunctionLibrary::IsMotionTrackingEnabledForComponent(class UMotionControllerComponent** MotionControllerComponent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2064,8 +2023,7 @@ void UMotionTrackedDeviceFunctionLibrary::IsMotionTrackingEnabledForComponent(cl
 	if (MotionControllerComponent != nullptr)
 		*MotionControllerComponent = Parms.MotionControllerComponent;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2073,9 +2031,9 @@ void UMotionTrackedDeviceFunctionLibrary::IsMotionTrackingEnabledForComponent(cl
 // Function HeadMountedDisplay.MotionTrackedDeviceFunctionLibrary.IsMotionTrackedDeviceCountManagementNecessary
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMotionTrackedDeviceFunctionLibrary::IsMotionTrackedDeviceCountManagementNecessary(bool* ReturnValue)
+bool UMotionTrackedDeviceFunctionLibrary::IsMotionTrackedDeviceCountManagementNecessary()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2093,8 +2051,7 @@ void UMotionTrackedDeviceFunctionLibrary::IsMotionTrackedDeviceCountManagementNe
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2102,11 +2059,11 @@ void UMotionTrackedDeviceFunctionLibrary::IsMotionTrackedDeviceCountManagementNe
 // Function HeadMountedDisplay.MotionTrackedDeviceFunctionLibrary.IsMotionSourceTracking
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              PlayerIndex                                                      (ExportObject, BlueprintReadOnly, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              PlayerIndex                                                      (BlueprintVisible, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // class FName                        SourceName                                                       (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UMotionTrackedDeviceFunctionLibrary::IsMotionSourceTracking(int32* PlayerIndex, bool* ReturnValue)
+bool UMotionTrackedDeviceFunctionLibrary::IsMotionSourceTracking()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2124,12 +2081,6 @@ class FName UMotionTrackedDeviceFunctionLibrary::IsMotionSourceTracking(int32* P
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerIndex != nullptr)
-		*PlayerIndex = Parms.PlayerIndex;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -2138,9 +2089,9 @@ class FName UMotionTrackedDeviceFunctionLibrary::IsMotionSourceTracking(int32* P
 // Function HeadMountedDisplay.MotionTrackedDeviceFunctionLibrary.GetMotionTrackingEnabledControllerCount
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMotionTrackedDeviceFunctionLibrary::GetMotionTrackingEnabledControllerCount(int32* ReturnValue)
+int32 UMotionTrackedDeviceFunctionLibrary::GetMotionTrackingEnabledControllerCount()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2158,8 +2109,7 @@ void UMotionTrackedDeviceFunctionLibrary::GetMotionTrackingEnabledControllerCoun
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2167,9 +2117,9 @@ void UMotionTrackedDeviceFunctionLibrary::GetMotionTrackingEnabledControllerCoun
 // Function HeadMountedDisplay.MotionTrackedDeviceFunctionLibrary.GetMaximumMotionTrackedControllerCount
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMotionTrackedDeviceFunctionLibrary::GetMaximumMotionTrackedControllerCount(int32* ReturnValue)
+int32 UMotionTrackedDeviceFunctionLibrary::GetMaximumMotionTrackedControllerCount()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2187,8 +2137,7 @@ void UMotionTrackedDeviceFunctionLibrary::GetMaximumMotionTrackedControllerCount
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2196,9 +2145,9 @@ void UMotionTrackedDeviceFunctionLibrary::GetMaximumMotionTrackedControllerCount
 // Function HeadMountedDisplay.MotionTrackedDeviceFunctionLibrary.GetActiveTrackingSystemName
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMotionTrackedDeviceFunctionLibrary::GetActiveTrackingSystemName(class FName* ReturnValue)
+class FName UMotionTrackedDeviceFunctionLibrary::GetActiveTrackingSystemName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2216,8 +2165,7 @@ void UMotionTrackedDeviceFunctionLibrary::GetActiveTrackingSystemName(class FNam
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2225,9 +2173,9 @@ void UMotionTrackedDeviceFunctionLibrary::GetActiveTrackingSystemName(class FNam
 // Function HeadMountedDisplay.MotionTrackedDeviceFunctionLibrary.EnumerateMotionSources
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMotionTrackedDeviceFunctionLibrary::EnumerateMotionSources(TArray<class FName>* ReturnValue)
+TArray<class FName> UMotionTrackedDeviceFunctionLibrary::EnumerateMotionSources()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2245,8 +2193,7 @@ void UMotionTrackedDeviceFunctionLibrary::EnumerateMotionSources(TArray<class FN
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2254,11 +2201,11 @@ void UMotionTrackedDeviceFunctionLibrary::EnumerateMotionSources(TArray<class FN
 // Function HeadMountedDisplay.MotionTrackedDeviceFunctionLibrary.EnableMotionTrackingOfSource
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              PlayerIndex                                                      (ExportObject, BlueprintReadOnly, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              PlayerIndex                                                      (BlueprintVisible, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // class FName                        SourceName                                                       (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UMotionTrackedDeviceFunctionLibrary::EnableMotionTrackingOfSource(int32* PlayerIndex, bool* ReturnValue)
+bool UMotionTrackedDeviceFunctionLibrary::EnableMotionTrackingOfSource()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2276,12 +2223,6 @@ class FName UMotionTrackedDeviceFunctionLibrary::EnableMotionTrackingOfSource(in
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerIndex != nullptr)
-		*PlayerIndex = Parms.PlayerIndex;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -2290,11 +2231,11 @@ class FName UMotionTrackedDeviceFunctionLibrary::EnableMotionTrackingOfSource(in
 // Function HeadMountedDisplay.MotionTrackedDeviceFunctionLibrary.EnableMotionTrackingOfDevice
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              PlayerIndex                                                      (ExportObject, BlueprintReadOnly, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class EControllerHand         Hand                                                             (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              PlayerIndex                                                      (BlueprintVisible, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EControllerHand         Hand                                                             (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMotionTrackedDeviceFunctionLibrary::EnableMotionTrackingOfDevice(int32* PlayerIndex, enum class EControllerHand Hand, bool* ReturnValue)
+bool UMotionTrackedDeviceFunctionLibrary::EnableMotionTrackingOfDevice()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2303,7 +2244,6 @@ void UMotionTrackedDeviceFunctionLibrary::EnableMotionTrackingOfDevice(int32* Pl
 
 	Params::UMotionTrackedDeviceFunctionLibrary_EnableMotionTrackingOfDevice_Params Parms{};
 
-	Parms.Hand = Hand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2313,11 +2253,7 @@ void UMotionTrackedDeviceFunctionLibrary::EnableMotionTrackingOfDevice(int32* Pl
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerIndex != nullptr)
-		*PlayerIndex = Parms.PlayerIndex;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2326,9 +2262,9 @@ void UMotionTrackedDeviceFunctionLibrary::EnableMotionTrackingOfDevice(int32* Pl
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UMotionControllerComponent*  MotionControllerComponent                                        (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMotionTrackedDeviceFunctionLibrary::EnableMotionTrackingForComponent(class UMotionControllerComponent** MotionControllerComponent, bool* ReturnValue)
+bool UMotionTrackedDeviceFunctionLibrary::EnableMotionTrackingForComponent(class UMotionControllerComponent** MotionControllerComponent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2349,8 +2285,7 @@ void UMotionTrackedDeviceFunctionLibrary::EnableMotionTrackingForComponent(class
 	if (MotionControllerComponent != nullptr)
 		*MotionControllerComponent = Parms.MotionControllerComponent;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2358,10 +2293,10 @@ void UMotionTrackedDeviceFunctionLibrary::EnableMotionTrackingForComponent(class
 // Function HeadMountedDisplay.MotionTrackedDeviceFunctionLibrary.DisableMotionTrackingOfSource
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              PlayerIndex                                                      (ExportObject, BlueprintReadOnly, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              PlayerIndex                                                      (BlueprintVisible, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // class FName                        SourceName                                                       (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 
-class FName UMotionTrackedDeviceFunctionLibrary::DisableMotionTrackingOfSource(int32* PlayerIndex)
+class FName UMotionTrackedDeviceFunctionLibrary::DisableMotionTrackingOfSource()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2379,9 +2314,6 @@ class FName UMotionTrackedDeviceFunctionLibrary::DisableMotionTrackingOfSource(i
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerIndex != nullptr)
-		*PlayerIndex = Parms.PlayerIndex;
-
 	return Parms.ReturnValue;
 
 }
@@ -2390,10 +2322,10 @@ class FName UMotionTrackedDeviceFunctionLibrary::DisableMotionTrackingOfSource(i
 // Function HeadMountedDisplay.MotionTrackedDeviceFunctionLibrary.DisableMotionTrackingOfDevice
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              PlayerIndex                                                      (ExportObject, BlueprintReadOnly, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class EControllerHand         Hand                                                             (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              PlayerIndex                                                      (BlueprintVisible, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EControllerHand         Hand                                                             (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UMotionTrackedDeviceFunctionLibrary::DisableMotionTrackingOfDevice(int32* PlayerIndex, enum class EControllerHand Hand)
+enum class EControllerHand UMotionTrackedDeviceFunctionLibrary::DisableMotionTrackingOfDevice()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2402,7 +2334,6 @@ void UMotionTrackedDeviceFunctionLibrary::DisableMotionTrackingOfDevice(int32* P
 
 	Params::UMotionTrackedDeviceFunctionLibrary_DisableMotionTrackingOfDevice_Params Parms{};
 
-	Parms.Hand = Hand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2412,8 +2343,7 @@ void UMotionTrackedDeviceFunctionLibrary::DisableMotionTrackingOfDevice(int32* P
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerIndex != nullptr)
-		*PlayerIndex = Parms.PlayerIndex;
+	return Parms.ReturnValue;
 
 }
 
@@ -2421,9 +2351,9 @@ void UMotionTrackedDeviceFunctionLibrary::DisableMotionTrackingOfDevice(int32* P
 // Function HeadMountedDisplay.MotionTrackedDeviceFunctionLibrary.DisableMotionTrackingOfControllersForPlayer
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              PlayerIndex                                                      (ExportObject, BlueprintReadOnly, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              PlayerIndex                                                      (BlueprintVisible, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UMotionTrackedDeviceFunctionLibrary::DisableMotionTrackingOfControllersForPlayer(int32* PlayerIndex)
+int32 UMotionTrackedDeviceFunctionLibrary::DisableMotionTrackingOfControllersForPlayer()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2441,8 +2371,7 @@ void UMotionTrackedDeviceFunctionLibrary::DisableMotionTrackingOfControllersForP
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerIndex != nullptr)
-		*PlayerIndex = Parms.PlayerIndex;
+	return Parms.ReturnValue;
 
 }
 
@@ -2561,13 +2490,13 @@ class UXRAssetFunctionLibrary* UXRAssetFunctionLibrary::GetDefaultObj()
 // Parameters:
 // class AActor*                      Target                                                           (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
 // class FName                        SystemName                                                       (ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig)
-// class FName                        DeviceName                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bManualAttachment                                                (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FTransform                  RelativeTransform                                                (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+// class FName                        DeviceName                                                       (EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bManualAttachment                                                (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// struct FTransform                  RelativeTransform                                                (BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
 // struct FXRDeviceId                 XRDeviceId                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// class UPrimitiveComponent*         ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPrimitiveComponent*         ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UXRAssetFunctionLibrary::AddNamedDeviceVisualizationComponentBlocking(class AActor* Target, class FName SystemName, bool bManualAttachment, struct FTransform* RelativeTransform, const struct FXRDeviceId& XRDeviceId, class UPrimitiveComponent** ReturnValue)
+class UPrimitiveComponent* UXRAssetFunctionLibrary::AddNamedDeviceVisualizationComponentBlocking(class AActor* Target, class FName SystemName, class FName DeviceName, const struct FXRDeviceId& XRDeviceId)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2578,7 +2507,7 @@ class FName UXRAssetFunctionLibrary::AddNamedDeviceVisualizationComponentBlockin
 
 	Parms.Target = Target;
 	Parms.SystemName = SystemName;
-	Parms.bManualAttachment = bManualAttachment;
+	Parms.DeviceName = DeviceName;
 	Parms.XRDeviceId = XRDeviceId;
 
 	auto Flgs = Func->FunctionFlags;
@@ -2588,12 +2517,6 @@ class FName UXRAssetFunctionLibrary::AddNamedDeviceVisualizationComponentBlockin
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (RelativeTransform != nullptr)
-		*RelativeTransform = std::move(Parms.RelativeTransform);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -2605,11 +2528,11 @@ class FName UXRAssetFunctionLibrary::AddNamedDeviceVisualizationComponentBlockin
 // Parameters:
 // class AActor*                      Target                                                           (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
 // struct FXRDeviceId                 XRDeviceId                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// bool                               bManualAttachment                                                (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FTransform                  RelativeTransform                                                (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// class UPrimitiveComponent*         ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bManualAttachment                                                (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// struct FTransform                  RelativeTransform                                                (BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+// class UPrimitiveComponent*         ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UXRAssetFunctionLibrary::AddDeviceVisualizationComponentBlocking(class AActor* Target, const struct FXRDeviceId& XRDeviceId, bool bManualAttachment, struct FTransform* RelativeTransform, class UPrimitiveComponent** ReturnValue)
+class UPrimitiveComponent* UXRAssetFunctionLibrary::AddDeviceVisualizationComponentBlocking(class AActor* Target, const struct FXRDeviceId& XRDeviceId)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2620,7 +2543,6 @@ void UXRAssetFunctionLibrary::AddDeviceVisualizationComponentBlocking(class AAct
 
 	Parms.Target = Target;
 	Parms.XRDeviceId = XRDeviceId;
-	Parms.bManualAttachment = bManualAttachment;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2630,11 +2552,7 @@ void UXRAssetFunctionLibrary::AddDeviceVisualizationComponentBlocking(class AAct
 
 	Func->FunctionFlags = Flgs;
 
-	if (RelativeTransform != nullptr)
-		*RelativeTransform = std::move(Parms.RelativeTransform);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2672,14 +2590,14 @@ class UAsyncTask_LoadXRDeviceVisComponent* UAsyncTask_LoadXRDeviceVisComponent::
 // Parameters:
 // class AActor*                      Target                                                           (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
 // class FName                        SystemName                                                       (ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig)
-// class FName                        DeviceName                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bManualAttachment                                                (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FTransform                  RelativeTransform                                                (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+// class FName                        DeviceName                                                       (EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bManualAttachment                                                (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// struct FTransform                  RelativeTransform                                                (BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
 // struct FXRDeviceId                 XRDeviceId                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// class UPrimitiveComponent*         NewComponent                                                     (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-// class UAsyncTask_LoadXRDeviceVisComponent*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPrimitiveComponent*         NewComponent                                                     (Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UAsyncTask_LoadXRDeviceVisComponent*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UAsyncTask_LoadXRDeviceVisComponent::AddNamedDeviceVisualizationComponentAsync(class AActor* Target, class FName SystemName, bool bManualAttachment, struct FTransform* RelativeTransform, const struct FXRDeviceId& XRDeviceId, class UPrimitiveComponent** NewComponent, class UAsyncTask_LoadXRDeviceVisComponent** ReturnValue)
+class UAsyncTask_LoadXRDeviceVisComponent* UAsyncTask_LoadXRDeviceVisComponent::AddNamedDeviceVisualizationComponentAsync(class AActor* Target, class FName SystemName, class FName DeviceName, const struct FXRDeviceId& XRDeviceId)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2690,7 +2608,7 @@ class FName UAsyncTask_LoadXRDeviceVisComponent::AddNamedDeviceVisualizationComp
 
 	Parms.Target = Target;
 	Parms.SystemName = SystemName;
-	Parms.bManualAttachment = bManualAttachment;
+	Parms.DeviceName = DeviceName;
 	Parms.XRDeviceId = XRDeviceId;
 
 	auto Flgs = Func->FunctionFlags;
@@ -2700,15 +2618,6 @@ class FName UAsyncTask_LoadXRDeviceVisComponent::AddNamedDeviceVisualizationComp
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (RelativeTransform != nullptr)
-		*RelativeTransform = std::move(Parms.RelativeTransform);
-
-	if (NewComponent != nullptr)
-		*NewComponent = Parms.NewComponent;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -2720,12 +2629,12 @@ class FName UAsyncTask_LoadXRDeviceVisComponent::AddNamedDeviceVisualizationComp
 // Parameters:
 // class AActor*                      Target                                                           (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
 // struct FXRDeviceId                 XRDeviceId                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// bool                               bManualAttachment                                                (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FTransform                  RelativeTransform                                                (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// class UPrimitiveComponent*         NewComponent                                                     (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-// class UAsyncTask_LoadXRDeviceVisComponent*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bManualAttachment                                                (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// struct FTransform                  RelativeTransform                                                (BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+// class UPrimitiveComponent*         NewComponent                                                     (Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UAsyncTask_LoadXRDeviceVisComponent*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAsyncTask_LoadXRDeviceVisComponent::AddDeviceVisualizationComponentAsync(class AActor* Target, const struct FXRDeviceId& XRDeviceId, bool bManualAttachment, struct FTransform* RelativeTransform, class UPrimitiveComponent** NewComponent, class UAsyncTask_LoadXRDeviceVisComponent** ReturnValue)
+class UAsyncTask_LoadXRDeviceVisComponent* UAsyncTask_LoadXRDeviceVisComponent::AddDeviceVisualizationComponentAsync(class AActor* Target, const struct FXRDeviceId& XRDeviceId)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2736,7 +2645,6 @@ void UAsyncTask_LoadXRDeviceVisComponent::AddDeviceVisualizationComponentAsync(c
 
 	Parms.Target = Target;
 	Parms.XRDeviceId = XRDeviceId;
-	Parms.bManualAttachment = bManualAttachment;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2746,14 +2654,7 @@ void UAsyncTask_LoadXRDeviceVisComponent::AddDeviceVisualizationComponentAsync(c
 
 	Func->FunctionFlags = Flgs;
 
-	if (RelativeTransform != nullptr)
-		*RelativeTransform = std::move(Parms.RelativeTransform);
-
-	if (NewComponent != nullptr)
-		*NewComponent = Parms.NewComponent;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2789,9 +2690,9 @@ class UXRDeviceVisualizationComponent* UXRDeviceVisualizationComponent::GetDefau
 // Function HeadMountedDisplay.XRDeviceVisualizationComponent.SetIsVisualizationActive
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bNewVisualizationState                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bNewVisualizationState                                           (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UXRDeviceVisualizationComponent::SetIsVisualizationActive()
+void UXRDeviceVisualizationComponent::SetIsVisualizationActive(bool* bNewVisualizationState)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2809,7 +2710,8 @@ bool UXRDeviceVisualizationComponent::SetIsVisualizationActive()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bNewVisualizationState != nullptr)
+		*bNewVisualizationState = Parms.bNewVisualizationState;
 
 }
 
@@ -2817,9 +2719,9 @@ bool UXRDeviceVisualizationComponent::SetIsVisualizationActive()
 // Function HeadMountedDisplay.XRDeviceVisualizationComponent.SetIsRenderingActive
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bRenderingIsActive                                               (BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bRenderingIsActive                                               (Edit, BlueprintVisible, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UXRDeviceVisualizationComponent::SetIsRenderingActive()
+void UXRDeviceVisualizationComponent::SetIsRenderingActive(bool* bRenderingIsActive)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2837,7 +2739,8 @@ bool UXRDeviceVisualizationComponent::SetIsRenderingActive()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bRenderingIsActive != nullptr)
+		*bRenderingIsActive = Parms.bRenderingIsActive;
 
 }
 
@@ -2845,9 +2748,9 @@ bool UXRDeviceVisualizationComponent::SetIsRenderingActive()
 // Function HeadMountedDisplay.XRDeviceVisualizationComponent.SetDisplayModelSource
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        NewDisplayModelSource                                            (ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        NewDisplayModelSource                                            (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class FName UXRDeviceVisualizationComponent::SetDisplayModelSource()
+void UXRDeviceVisualizationComponent::SetDisplayModelSource(class FName NewDisplayModelSource)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2856,6 +2759,7 @@ class FName UXRDeviceVisualizationComponent::SetDisplayModelSource()
 
 	Params::UXRDeviceVisualizationComponent_SetDisplayModelSource_Params Parms{};
 
+	Parms.NewDisplayModelSource = NewDisplayModelSource;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2865,17 +2769,15 @@ class FName UXRDeviceVisualizationComponent::SetDisplayModelSource()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HeadMountedDisplay.XRDeviceVisualizationComponent.SetCustomDisplayMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UStaticMesh*                 NewDisplayMesh                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UStaticMesh*                 NewDisplayMesh                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UStaticMesh* UXRDeviceVisualizationComponent::SetCustomDisplayMesh()
+void UXRDeviceVisualizationComponent::SetCustomDisplayMesh(class UStaticMesh* NewDisplayMesh)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2884,6 +2786,7 @@ class UStaticMesh* UXRDeviceVisualizationComponent::SetCustomDisplayMesh()
 
 	Params::UXRDeviceVisualizationComponent_SetCustomDisplayMesh_Params Parms{};
 
+	Parms.NewDisplayMesh = NewDisplayMesh;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2892,8 +2795,6 @@ class UStaticMesh* UXRDeviceVisualizationComponent::SetCustomDisplayMesh()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -2956,10 +2857,10 @@ void UXRLoadingScreenFunctionLibrary::ShowLoadingScreen()
 // class UTexture*                    Texture                                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
 // struct FVector2D                   Scale                                                            (Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
 // struct FVector                     Offset                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
-// bool                               bShowLoadingMovie                                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bShowOnSet                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bShowLoadingMovie                                                (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bShowOnSet                                                       (BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UXRLoadingScreenFunctionLibrary::SetLoadingScreen(const struct FVector2D& Scale)
+struct FVector UXRLoadingScreenFunctionLibrary::SetLoadingScreen(const struct FVector2D& Scale, bool* bShowLoadingMovie, bool* bShowOnSet)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2977,6 +2878,12 @@ bool UXRLoadingScreenFunctionLibrary::SetLoadingScreen(const struct FVector2D& S
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (bShowLoadingMovie != nullptr)
+		*bShowLoadingMovie = Parms.bShowLoadingMovie;
+
+	if (bShowOnSet != nullptr)
+		*bShowOnSet = Parms.bShowOnSet;
 
 	return Parms.ReturnValue;
 
@@ -3038,10 +2945,10 @@ void UXRLoadingScreenFunctionLibrary::ClearLoadingScreenSplashes()
 // struct FVector                     Translation                                                      (ConstParm, Parm, ZeroConstructor, Transient, Config)
 // struct FRotator                    Rotation                                                         (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
 // struct FVector2D                   Size                                                             (Edit, ExportObject, EditFixedSize, ReturnParm, Transient, Config)
-// struct FRotator                    DeltaRotation                                                    (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bClearBeforeAdd                                                  (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FRotator                    DeltaRotation                                                    (BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bClearBeforeAdd                                                  (Edit, ConstParm, BlueprintVisible, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UXRLoadingScreenFunctionLibrary::AddLoadingScreenSplash(const struct FVector& Translation, struct FRotator* Rotation)
+struct FVector2D UXRLoadingScreenFunctionLibrary::AddLoadingScreenSplash(const struct FVector& Translation, struct FRotator* Rotation, const struct FRotator& DeltaRotation, bool* bClearBeforeAdd)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3051,6 +2958,7 @@ bool UXRLoadingScreenFunctionLibrary::AddLoadingScreenSplash(const struct FVecto
 	Params::UXRLoadingScreenFunctionLibrary_AddLoadingScreenSplash_Params Parms{};
 
 	Parms.Translation = Translation;
+	Parms.DeltaRotation = DeltaRotation;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3062,6 +2970,9 @@ bool UXRLoadingScreenFunctionLibrary::AddLoadingScreenSplash(const struct FVecto
 
 	if (Rotation != nullptr)
 		*Rotation = std::move(Parms.Rotation);
+
+	if (bClearBeforeAdd != nullptr)
+		*bClearBeforeAdd = Parms.bClearBeforeAdd;
 
 	return Parms.ReturnValue;
 

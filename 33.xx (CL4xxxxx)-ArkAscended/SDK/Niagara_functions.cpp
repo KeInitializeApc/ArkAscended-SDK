@@ -99,11 +99,11 @@ class UNiagaraDataChannelReader* UNiagaraDataChannelReader::GetDefaultObj()
 // Function Niagara.NiagaraDataChannelReader.ReadVector4
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FVector4                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector4                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataChannelReader::ReadVector4(struct FVector4* ReturnValue)
+struct FVector4 UNiagaraDataChannelReader::ReadVector4(class FName* VarName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -121,8 +121,8 @@ int32 UNiagaraDataChannelReader::ReadVector4(struct FVector4* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
 
 	return Parms.ReturnValue;
 
@@ -132,11 +132,11 @@ int32 UNiagaraDataChannelReader::ReadVector4(struct FVector4* ReturnValue)
 // Function Niagara.NiagaraDataChannelReader.ReadVector2D
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataChannelReader::ReadVector2D(struct FVector2D* ReturnValue)
+struct FVector2D UNiagaraDataChannelReader::ReadVector2D(class FName* VarName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -154,8 +154,8 @@ int32 UNiagaraDataChannelReader::ReadVector2D(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
 
 	return Parms.ReturnValue;
 
@@ -165,11 +165,11 @@ int32 UNiagaraDataChannelReader::ReadVector2D(struct FVector2D* ReturnValue)
 // Function Niagara.NiagaraDataChannelReader.ReadVector
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataChannelReader::ReadVector(struct FVector* ReturnValue)
+struct FVector UNiagaraDataChannelReader::ReadVector(class FName* VarName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -187,8 +187,8 @@ int32 UNiagaraDataChannelReader::ReadVector(struct FVector* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
 
 	return Parms.ReturnValue;
 
@@ -198,11 +198,11 @@ int32 UNiagaraDataChannelReader::ReadVector(struct FVector* ReturnValue)
 // Function Niagara.NiagaraDataChannelReader.ReadQuat
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FQuat                       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FQuat                       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataChannelReader::ReadQuat(struct FQuat* ReturnValue)
+struct FQuat UNiagaraDataChannelReader::ReadQuat(class FName* VarName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -220,8 +220,8 @@ int32 UNiagaraDataChannelReader::ReadQuat(struct FQuat* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
 
 	return Parms.ReturnValue;
 
@@ -231,11 +231,11 @@ int32 UNiagaraDataChannelReader::ReadQuat(struct FQuat* ReturnValue)
 // Function Niagara.NiagaraDataChannelReader.ReadLinearColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataChannelReader::ReadLinearColor(struct FLinearColor* ReturnValue)
+struct FLinearColor UNiagaraDataChannelReader::ReadLinearColor(class FName* VarName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -253,8 +253,8 @@ int32 UNiagaraDataChannelReader::ReadLinearColor(struct FLinearColor* ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
 
 	return Parms.ReturnValue;
 
@@ -264,11 +264,11 @@ int32 UNiagaraDataChannelReader::ReadLinearColor(struct FLinearColor* ReturnValu
 // Function Niagara.NiagaraDataChannelReader.ReadInt
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataChannelReader::ReadInt(int32* ReturnValue)
+int32 UNiagaraDataChannelReader::ReadInt(class FName* VarName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -286,8 +286,8 @@ int32 UNiagaraDataChannelReader::ReadInt(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
 
 	return Parms.ReturnValue;
 
@@ -297,11 +297,11 @@ int32 UNiagaraDataChannelReader::ReadInt(int32* ReturnValue)
 // Function Niagara.NiagaraDataChannelReader.ReadFloat
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// double                             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// double                             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataChannelReader::ReadFloat(double* ReturnValue)
+double UNiagaraDataChannelReader::ReadFloat(class FName* VarName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -319,8 +319,8 @@ int32 UNiagaraDataChannelReader::ReadFloat(double* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
 
 	return Parms.ReturnValue;
 
@@ -330,11 +330,11 @@ int32 UNiagaraDataChannelReader::ReadFloat(double* ReturnValue)
 // Function Niagara.NiagaraDataChannelReader.ReadBool
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataChannelReader::ReadBool(bool* ReturnValue)
+bool UNiagaraDataChannelReader::ReadBool(class FName* VarName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -352,8 +352,8 @@ int32 UNiagaraDataChannelReader::ReadBool(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
 
 	return Parms.ReturnValue;
 
@@ -363,9 +363,9 @@ int32 UNiagaraDataChannelReader::ReadBool(bool* ReturnValue)
 // Function Niagara.NiagaraDataChannelReader.Num
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataChannelReader::Num(int32* ReturnValue)
+int32 UNiagaraDataChannelReader::Num()
 {
 	static class UFunction* Func = nullptr;
 
@@ -383,8 +383,7 @@ void UNiagaraDataChannelReader::Num(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -392,10 +391,10 @@ void UNiagaraDataChannelReader::Num(int32* ReturnValue)
 // Function Niagara.NiagaraDataChannelReader.InitAccess
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UActorComponent*             OwningComponent                                                  (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UActorComponent*             OwningComponent                                                  (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UActorComponent* UNiagaraDataChannelReader::InitAccess(bool* ReturnValue)
+bool UNiagaraDataChannelReader::InitAccess(class UActorComponent** OwningComponent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -413,8 +412,8 @@ class UActorComponent* UNiagaraDataChannelReader::InitAccess(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (OwningComponent != nullptr)
+		*OwningComponent = Parms.OwningComponent;
 
 	return Parms.ReturnValue;
 
@@ -452,11 +451,11 @@ class UNiagaraDataChannelWriter* UNiagaraDataChannelWriter::GetDefaultObj()
 // Function Niagara.NiagaraDataChannelWriter.WriteVector4
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FVector4                    InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FVector4                    InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FVector4 UNiagaraDataChannelWriter::WriteVector4()
+int32 UNiagaraDataChannelWriter::WriteVector4(class FName* VarName, struct FVector4* InData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -474,6 +473,12 @@ struct FVector4 UNiagaraDataChannelWriter::WriteVector4()
 
 	Func->FunctionFlags = Flgs;
 
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
+
+	if (InData != nullptr)
+		*InData = std::move(Parms.InData);
+
 	return Parms.ReturnValue;
 
 }
@@ -482,11 +487,11 @@ struct FVector4 UNiagaraDataChannelWriter::WriteVector4()
 // Function Niagara.NiagaraDataChannelWriter.WriteVector2D
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FVector2D                   InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FVector2D                   InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FVector2D UNiagaraDataChannelWriter::WriteVector2D()
+int32 UNiagaraDataChannelWriter::WriteVector2D(class FName* VarName, struct FVector2D* InData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -504,6 +509,12 @@ struct FVector2D UNiagaraDataChannelWriter::WriteVector2D()
 
 	Func->FunctionFlags = Flgs;
 
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
+
+	if (InData != nullptr)
+		*InData = std::move(Parms.InData);
+
 	return Parms.ReturnValue;
 
 }
@@ -512,11 +523,11 @@ struct FVector2D UNiagaraDataChannelWriter::WriteVector2D()
 // Function Niagara.NiagaraDataChannelWriter.WriteVector
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FVector                     InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FVector                     InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FVector UNiagaraDataChannelWriter::WriteVector()
+int32 UNiagaraDataChannelWriter::WriteVector(class FName* VarName, struct FVector* InData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -534,6 +545,12 @@ struct FVector UNiagaraDataChannelWriter::WriteVector()
 
 	Func->FunctionFlags = Flgs;
 
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
+
+	if (InData != nullptr)
+		*InData = std::move(Parms.InData);
+
 	return Parms.ReturnValue;
 
 }
@@ -542,11 +559,11 @@ struct FVector UNiagaraDataChannelWriter::WriteVector()
 // Function Niagara.NiagaraDataChannelWriter.WriteSpawnInfo
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FNiagaraSpawnInfo           InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FNiagaraSpawnInfo           InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FNiagaraSpawnInfo UNiagaraDataChannelWriter::WriteSpawnInfo()
+int32 UNiagaraDataChannelWriter::WriteSpawnInfo(class FName* VarName, struct FNiagaraSpawnInfo* InData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -564,6 +581,12 @@ struct FNiagaraSpawnInfo UNiagaraDataChannelWriter::WriteSpawnInfo()
 
 	Func->FunctionFlags = Flgs;
 
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
+
+	if (InData != nullptr)
+		*InData = std::move(Parms.InData);
+
 	return Parms.ReturnValue;
 
 }
@@ -572,11 +595,11 @@ struct FNiagaraSpawnInfo UNiagaraDataChannelWriter::WriteSpawnInfo()
 // Function Niagara.NiagaraDataChannelWriter.WriteQuat
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FQuat                       InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FQuat                       InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FQuat UNiagaraDataChannelWriter::WriteQuat()
+int32 UNiagaraDataChannelWriter::WriteQuat(class FName* VarName, struct FQuat* InData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -594,6 +617,12 @@ struct FQuat UNiagaraDataChannelWriter::WriteQuat()
 
 	Func->FunctionFlags = Flgs;
 
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
+
+	if (InData != nullptr)
+		*InData = std::move(Parms.InData);
+
 	return Parms.ReturnValue;
 
 }
@@ -602,11 +631,11 @@ struct FQuat UNiagaraDataChannelWriter::WriteQuat()
 // Function Niagara.NiagaraDataChannelWriter.WriteLinearColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FLinearColor                InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FLinearColor                InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FLinearColor UNiagaraDataChannelWriter::WriteLinearColor()
+int32 UNiagaraDataChannelWriter::WriteLinearColor(class FName* VarName, struct FLinearColor* InData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -624,6 +653,12 @@ struct FLinearColor UNiagaraDataChannelWriter::WriteLinearColor()
 
 	Func->FunctionFlags = Flgs;
 
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
+
+	if (InData != nullptr)
+		*InData = std::move(Parms.InData);
+
 	return Parms.ReturnValue;
 
 }
@@ -632,11 +667,11 @@ struct FLinearColor UNiagaraDataChannelWriter::WriteLinearColor()
 // Function Niagara.NiagaraDataChannelWriter.WriteInt
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// int32                              InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-int32 UNiagaraDataChannelWriter::WriteInt()
+int32 UNiagaraDataChannelWriter::WriteInt(class FName* VarName, int32* InData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -654,6 +689,12 @@ int32 UNiagaraDataChannelWriter::WriteInt()
 
 	Func->FunctionFlags = Flgs;
 
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
+
+	if (InData != nullptr)
+		*InData = Parms.InData;
+
 	return Parms.ReturnValue;
 
 }
@@ -662,11 +703,11 @@ int32 UNiagaraDataChannelWriter::WriteInt()
 // Function Niagara.NiagaraDataChannelWriter.WriteFloat
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// double                             InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// double                             InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-double UNiagaraDataChannelWriter::WriteFloat()
+int32 UNiagaraDataChannelWriter::WriteFloat(class FName* VarName, double* InData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -684,6 +725,12 @@ double UNiagaraDataChannelWriter::WriteFloat()
 
 	Func->FunctionFlags = Flgs;
 
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
+
+	if (InData != nullptr)
+		*InData = Parms.InData;
+
 	return Parms.ReturnValue;
 
 }
@@ -692,11 +739,11 @@ double UNiagaraDataChannelWriter::WriteFloat()
 // Function Niagara.NiagaraDataChannelWriter.WriteBool
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        VarName                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        VarName                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// bool                               InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-bool UNiagaraDataChannelWriter::WriteBool()
+int32 UNiagaraDataChannelWriter::WriteBool(class FName* VarName, bool* InData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -714,6 +761,12 @@ bool UNiagaraDataChannelWriter::WriteBool()
 
 	Func->FunctionFlags = Flgs;
 
+	if (VarName != nullptr)
+		*VarName = Parms.VarName;
+
+	if (InData != nullptr)
+		*InData = Parms.InData;
+
 	return Parms.ReturnValue;
 
 }
@@ -722,9 +775,9 @@ bool UNiagaraDataChannelWriter::WriteBool()
 // Function Niagara.NiagaraDataChannelWriter.Num
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataChannelWriter::Num(int32* ReturnValue)
+int32 UNiagaraDataChannelWriter::Num()
 {
 	static class UFunction* Func = nullptr;
 
@@ -742,8 +795,7 @@ void UNiagaraDataChannelWriter::Num(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -751,14 +803,14 @@ void UNiagaraDataChannelWriter::Num(int32* ReturnValue)
 // Function Niagara.NiagaraDataChannelWriter.InitWrite
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UActorComponent*             OwningComponent                                                  (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UActorComponent*             OwningComponent                                                  (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // int32                              Count                                                            (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, EditConst)
-// bool                               bVisibleToGame                                                   (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bVisibleToCPU                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bVisibleToGPU                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bVisibleToGame                                                   (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bVisibleToCPU                                                    (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bVisibleToGPU                                                    (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UNiagaraDataChannelWriter::InitWrite(int32* Count, bool* ReturnValue)
+bool UNiagaraDataChannelWriter::InitWrite(class UActorComponent** OwningComponent, int32* Count, bool* bVisibleToGame, bool* bVisibleToCPU, bool* bVisibleToGPU)
 {
 	static class UFunction* Func = nullptr;
 
@@ -776,11 +828,20 @@ bool UNiagaraDataChannelWriter::InitWrite(int32* Count, bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	if (OwningComponent != nullptr)
+		*OwningComponent = Parms.OwningComponent;
+
 	if (Count != nullptr)
 		*Count = Parms.Count;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (bVisibleToGame != nullptr)
+		*bVisibleToGame = Parms.bVisibleToGame;
+
+	if (bVisibleToCPU != nullptr)
+		*bVisibleToCPU = Parms.bVisibleToCPU;
+
+	if (bVisibleToGPU != nullptr)
+		*bVisibleToGPU = Parms.bVisibleToGPU;
 
 	return Parms.ReturnValue;
 
@@ -846,9 +907,9 @@ class UNiagaraDataChannelHandler* UNiagaraDataChannelHandler::GetDefaultObj()
 // Function Niagara.NiagaraDataChannelHandler.GetDataChannelWriter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UNiagaraDataChannelWriter*   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraDataChannelWriter*   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataChannelHandler::GetDataChannelWriter(class UNiagaraDataChannelWriter** ReturnValue)
+class UNiagaraDataChannelWriter* UNiagaraDataChannelHandler::GetDataChannelWriter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -866,8 +927,7 @@ void UNiagaraDataChannelHandler::GetDataChannelWriter(class UNiagaraDataChannelW
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -875,9 +935,9 @@ void UNiagaraDataChannelHandler::GetDataChannelWriter(class UNiagaraDataChannelW
 // Function Niagara.NiagaraDataChannelHandler.GetDataChannelReader
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UNiagaraDataChannelReader*   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraDataChannelReader*   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataChannelHandler::GetDataChannelReader(class UNiagaraDataChannelReader** ReturnValue)
+class UNiagaraDataChannelReader* UNiagaraDataChannelHandler::GetDataChannelReader()
 {
 	static class UFunction* Func = nullptr;
 
@@ -895,8 +955,7 @@ void UNiagaraDataChannelHandler::GetDataChannelReader(class UNiagaraDataChannelR
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1604,10 +1663,10 @@ class UNiagaraDataInterfaceStaticMesh* UNiagaraDataInterfaceStaticMesh::GetDefau
 // Function Niagara.NiagaraDataInterfaceStaticMesh.OnSourceEndPlay
 // (Final, Native, Protected)
 // Parameters:
-// class AActor*                      InSource                                                         (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class EEndPlayReason          Reason                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class AActor*                      InSource                                                         (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EEndPlayReason          Reason                                                           (Parm, OutParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-enum class EEndPlayReason UNiagaraDataInterfaceStaticMesh::OnSourceEndPlay()
+class AActor* UNiagaraDataInterfaceStaticMesh::OnSourceEndPlay(enum class EEndPlayReason* Reason)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1624,6 +1683,9 @@ enum class EEndPlayReason UNiagaraDataInterfaceStaticMesh::OnSourceEndPlay()
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Reason != nullptr)
+		*Reason = Parms.Reason;
 
 	return Parms.ReturnValue;
 
@@ -1662,11 +1724,11 @@ class UNiagaraDataInterfaceUObjectPropertyReader* UNiagaraDataInterfaceUObjectPr
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraComponent                                                 (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-// class FName                        UserParameterName                                                (ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        GraphName                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class FName                        RemapName                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        UserParameterName                                                (BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        GraphName                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        RemapName                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class UNiagaraComponent* UNiagaraDataInterfaceUObjectPropertyReader::SetUObjectReaderPropertyRemap(class FName UserParameterName, class FName GraphName, class FName RemapName)
+class FName UNiagaraDataInterfaceUObjectPropertyReader::SetUObjectReaderPropertyRemap()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1675,9 +1737,6 @@ class UNiagaraComponent* UNiagaraDataInterfaceUObjectPropertyReader::SetUObjectR
 
 	Params::UNiagaraDataInterfaceUObjectPropertyReader_SetUObjectReaderPropertyRemap_Params Parms{};
 
-	Parms.UserParameterName = UserParameterName;
-	Parms.GraphName = GraphName;
-	Parms.RemapName = RemapName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2003,9 +2062,9 @@ class ANiagaraActor* ANiagaraActor::GetDefaultObj()
 // Function Niagara.NiagaraActor.SetDestroyOnSystemFinish
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bShouldDestroyOnSystemFinish                                     (Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bShouldDestroyOnSystemFinish                                     (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void ANiagaraActor::SetDestroyOnSystemFinish(bool* bShouldDestroyOnSystemFinish)
+bool ANiagaraActor::SetDestroyOnSystemFinish()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2023,8 +2082,7 @@ void ANiagaraActor::SetDestroyOnSystemFinish(bool* bShouldDestroyOnSystemFinish)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bShouldDestroyOnSystemFinish != nullptr)
-		*bShouldDestroyOnSystemFinish = Parms.bShouldDestroyOnSystemFinish;
+	return Parms.ReturnValue;
 
 }
 
@@ -2032,9 +2090,9 @@ void ANiagaraActor::SetDestroyOnSystemFinish(bool* bShouldDestroyOnSystemFinish)
 // Function Niagara.NiagaraActor.OnNiagaraSystemFinished
 // (Final, Native, Private)
 // Parameters:
-// class UNiagaraComponent*           FinishedComponent                                                (Edit, ConstParm, Net, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UNiagaraComponent*           FinishedComponent                                                (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void ANiagaraActor::OnNiagaraSystemFinished(class UNiagaraComponent** FinishedComponent)
+class UNiagaraComponent* ANiagaraActor::OnNiagaraSystemFinished()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2052,8 +2110,7 @@ void ANiagaraActor::OnNiagaraSystemFinished(class UNiagaraComponent** FinishedCo
 
 	Func->FunctionFlags = Flgs;
 
-	if (FinishedComponent != nullptr)
-		*FinishedComponent = Parms.FinishedComponent;
+	return Parms.ReturnValue;
 
 }
 
@@ -2229,8 +2286,8 @@ class UNiagaraComponent* UNiagaraComponent::GetDefaultObj()
 // Function Niagara.NiagaraComponent.SetVariableVec4
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector4                    InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector4                    InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FVector4 UNiagaraComponent::SetVariableVec4()
 {
@@ -2258,8 +2315,8 @@ struct FVector4 UNiagaraComponent::SetVariableVec4()
 // Function Niagara.NiagaraComponent.SetVariableVec3
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector                     InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector                     InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FVector UNiagaraComponent::SetVariableVec3()
 {
@@ -2287,8 +2344,8 @@ struct FVector UNiagaraComponent::SetVariableVec3()
 // Function Niagara.NiagaraComponent.SetVariableVec2
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector2D                   InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector2D                   InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FVector2D UNiagaraComponent::SetVariableVec2()
 {
@@ -2316,7 +2373,7 @@ struct FVector2D UNiagaraComponent::SetVariableVec2()
 // Function Niagara.NiagaraComponent.SetVariableTextureRenderTarget
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 // class UTextureRenderTarget*        TextureRenderTarget                                              (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
 
 class UTextureRenderTarget* UNiagaraComponent::SetVariableTextureRenderTarget()
@@ -2345,7 +2402,7 @@ class UTextureRenderTarget* UNiagaraComponent::SetVariableTextureRenderTarget()
 // Function Niagara.NiagaraComponent.SetVariableTexture
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 // class UTexture*                    Texture                                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
 
 class UTexture* UNiagaraComponent::SetVariableTexture()
@@ -2374,8 +2431,8 @@ class UTexture* UNiagaraComponent::SetVariableTexture()
 // Function Niagara.NiagaraComponent.SetVariableStaticMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// class UStaticMesh*                 InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// class UStaticMesh*                 InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 class UStaticMesh* UNiagaraComponent::SetVariableStaticMesh()
 {
@@ -2403,8 +2460,8 @@ class UStaticMesh* UNiagaraComponent::SetVariableStaticMesh()
 // Function Niagara.NiagaraComponent.SetVariableQuat
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FQuat                       InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FQuat                       InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FQuat UNiagaraComponent::SetVariableQuat()
 {
@@ -2432,8 +2489,8 @@ struct FQuat UNiagaraComponent::SetVariableQuat()
 // Function Niagara.NiagaraComponent.SetVariablePosition
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector                     InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector                     InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FVector UNiagaraComponent::SetVariablePosition()
 {
@@ -2461,7 +2518,7 @@ struct FVector UNiagaraComponent::SetVariablePosition()
 // Function Niagara.NiagaraComponent.SetVariableObject
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 // class UObject*                     Object                                                           (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
 
 class FName UNiagaraComponent::SetVariableObject(class UObject** Object)
@@ -2493,8 +2550,8 @@ class FName UNiagaraComponent::SetVariableObject(class UObject** Object)
 // Function Niagara.NiagaraComponent.SetVariableMatrix
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FMatrix                     InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FMatrix                     InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FMatrix UNiagaraComponent::SetVariableMatrix()
 {
@@ -2522,7 +2579,7 @@ struct FMatrix UNiagaraComponent::SetVariableMatrix()
 // Function Niagara.NiagaraComponent.SetVariableMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 // class UMaterialInterface*          Object                                                           (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
 
 class FName UNiagaraComponent::SetVariableMaterial(class UMaterialInterface** Object)
@@ -2554,8 +2611,8 @@ class FName UNiagaraComponent::SetVariableMaterial(class UMaterialInterface** Ob
 // Function Niagara.NiagaraComponent.SetVariableLinearColor
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FLinearColor                InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FLinearColor UNiagaraComponent::SetVariableLinearColor()
 {
@@ -2583,8 +2640,8 @@ struct FLinearColor UNiagaraComponent::SetVariableLinearColor()
 // Function Niagara.NiagaraComponent.SetVariableInt
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// int32                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// int32                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 int32 UNiagaraComponent::SetVariableInt()
 {
@@ -2612,8 +2669,8 @@ int32 UNiagaraComponent::SetVariableInt()
 // Function Niagara.NiagaraComponent.SetVariableFloat
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float UNiagaraComponent::SetVariableFloat()
 {
@@ -2641,8 +2698,8 @@ float UNiagaraComponent::SetVariableFloat()
 // Function Niagara.NiagaraComponent.SetVariableBool
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// bool                               InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 bool UNiagaraComponent::SetVariableBool()
 {
@@ -2670,7 +2727,7 @@ bool UNiagaraComponent::SetVariableBool()
 // Function Niagara.NiagaraComponent.SetVariableActor
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
 
 class FName UNiagaraComponent::SetVariableActor(class AActor** Actor)
@@ -2702,9 +2759,9 @@ class FName UNiagaraComponent::SetVariableActor(class AActor** Actor)
 // Function Niagara.NiagaraComponent.SetTickBehavior
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ENiagaraTickBehavior    NewTickBehavior                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class ENiagaraTickBehavior    NewTickBehavior                                                  (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetTickBehavior(enum class ENiagaraTickBehavior* NewTickBehavior)
+enum class ENiagaraTickBehavior UNiagaraComponent::SetTickBehavior()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2722,8 +2779,7 @@ void UNiagaraComponent::SetTickBehavior(enum class ENiagaraTickBehavior* NewTick
 
 	Func->FunctionFlags = Flgs;
 
-	if (NewTickBehavior != nullptr)
-		*NewTickBehavior = Parms.NewTickBehavior;
+	return Parms.ReturnValue;
 
 }
 
@@ -2731,9 +2787,9 @@ void UNiagaraComponent::SetTickBehavior(enum class ENiagaraTickBehavior* NewTick
 // Function Niagara.NiagaraComponent.SetSystemFixedBounds
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FBox                        LocalBounds                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FBox                        LocalBounds                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-struct FBox UNiagaraComponent::SetSystemFixedBounds()
+void UNiagaraComponent::SetSystemFixedBounds(struct FBox* LocalBounds)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2751,7 +2807,8 @@ struct FBox UNiagaraComponent::SetSystemFixedBounds()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (LocalBounds != nullptr)
+		*LocalBounds = std::move(Parms.LocalBounds);
 
 }
 
@@ -2759,10 +2816,10 @@ struct FBox UNiagaraComponent::SetSystemFixedBounds()
 // Function Niagara.NiagaraComponent.SetSimCache
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UNiagaraSimCache*            SimCache                                                         (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bResetSystem                                                     (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UNiagaraSimCache*            SimCache                                                         (Edit, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bResetSystem                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class UNiagaraSimCache* UNiagaraComponent::SetSimCache(bool bResetSystem)
+bool UNiagaraComponent::SetSimCache(class UNiagaraSimCache* SimCache)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2771,7 +2828,7 @@ class UNiagaraSimCache* UNiagaraComponent::SetSimCache(bool bResetSystem)
 
 	Params::UNiagaraComponent_SetSimCache_Params Parms{};
 
-	Parms.bResetSystem = bResetSystem;
+	Parms.SimCache = SimCache;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2789,9 +2846,9 @@ class UNiagaraSimCache* UNiagaraComponent::SetSimCache(bool bResetSystem)
 // Function Niagara.NiagaraComponent.SetSeekDelta
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InSeekDelta                                                      (ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InSeekDelta                                                      (BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetSeekDelta(float* InSeekDelta)
+float UNiagaraComponent::SetSeekDelta()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2809,8 +2866,7 @@ void UNiagaraComponent::SetSeekDelta(float* InSeekDelta)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InSeekDelta != nullptr)
-		*InSeekDelta = Parms.InSeekDelta;
+	return Parms.ReturnValue;
 
 }
 
@@ -2818,9 +2874,9 @@ void UNiagaraComponent::SetSeekDelta(float* InSeekDelta)
 // Function Niagara.NiagaraComponent.SetRenderingEnabled
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInRenderingEnabled                                              (Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInRenderingEnabled                                              (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetRenderingEnabled(bool* bInRenderingEnabled)
+bool UNiagaraComponent::SetRenderingEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2838,8 +2894,7 @@ void UNiagaraComponent::SetRenderingEnabled(bool* bInRenderingEnabled)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bInRenderingEnabled != nullptr)
-		*bInRenderingEnabled = Parms.bInRenderingEnabled;
+	return Parms.ReturnValue;
 
 }
 
@@ -2847,9 +2902,9 @@ void UNiagaraComponent::SetRenderingEnabled(bool* bInRenderingEnabled)
 // Function Niagara.NiagaraComponent.SetRandomSeedOffset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NewRandomSeedOffset                                              (ConstParm, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              NewRandomSeedOffset                                              (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetRandomSeedOffset(int32* NewRandomSeedOffset)
+int32 UNiagaraComponent::SetRandomSeedOffset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2867,8 +2922,7 @@ void UNiagaraComponent::SetRandomSeedOffset(int32* NewRandomSeedOffset)
 
 	Func->FunctionFlags = Flgs;
 
-	if (NewRandomSeedOffset != nullptr)
-		*NewRandomSeedOffset = Parms.NewRandomSeedOffset;
+	return Parms.ReturnValue;
 
 }
 
@@ -2876,11 +2930,11 @@ void UNiagaraComponent::SetRandomSeedOffset(int32* NewRandomSeedOffset)
 // Function Niagara.NiagaraComponent.SetPreviewLODDistance
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bEnablePreviewLODDistance                                        (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              PreviewLODDistance                                               (ConstParm, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              PreviewMaxDistance                                               (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bEnablePreviewLODDistance                                        (Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              PreviewLODDistance                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              PreviewMaxDistance                                               (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetPreviewLODDistance(bool* bEnablePreviewLODDistance, float* PreviewLODDistance, float* PreviewMaxDistance)
+float UNiagaraComponent::SetPreviewLODDistance()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2898,14 +2952,7 @@ void UNiagaraComponent::SetPreviewLODDistance(bool* bEnablePreviewLODDistance, f
 
 	Func->FunctionFlags = Flgs;
 
-	if (bEnablePreviewLODDistance != nullptr)
-		*bEnablePreviewLODDistance = Parms.bEnablePreviewLODDistance;
-
-	if (PreviewLODDistance != nullptr)
-		*PreviewLODDistance = Parms.PreviewLODDistance;
-
-	if (PreviewMaxDistance != nullptr)
-		*PreviewMaxDistance = Parms.PreviewMaxDistance;
+	return Parms.ReturnValue;
 
 }
 
@@ -2913,9 +2960,9 @@ void UNiagaraComponent::SetPreviewLODDistance(bool* bEnablePreviewLODDistance, f
 // Function Niagara.NiagaraComponent.SetPaused
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInPaused                                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInPaused                                                        (ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetPaused(bool bInPaused)
+bool UNiagaraComponent::SetPaused()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2924,7 +2971,6 @@ void UNiagaraComponent::SetPaused(bool bInPaused)
 
 	Params::UNiagaraComponent_SetPaused_Params Parms{};
 
-	Parms.bInPaused = bInPaused;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2934,14 +2980,16 @@ void UNiagaraComponent::SetPaused(bool bInPaused)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Niagara.NiagaraComponent.SetNiagaraVariableVec4
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector4                    InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector4                    InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FVector4 UNiagaraComponent::SetNiagaraVariableVec4()
 {
@@ -2969,8 +3017,8 @@ struct FVector4 UNiagaraComponent::SetNiagaraVariableVec4()
 // Function Niagara.NiagaraComponent.SetNiagaraVariableVec3
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector                     InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector                     InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FVector UNiagaraComponent::SetNiagaraVariableVec3()
 {
@@ -2998,8 +3046,8 @@ struct FVector UNiagaraComponent::SetNiagaraVariableVec3()
 // Function Niagara.NiagaraComponent.SetNiagaraVariableVec2
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector2D                   InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector2D                   InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FVector2D UNiagaraComponent::SetNiagaraVariableVec2()
 {
@@ -3027,8 +3075,8 @@ struct FVector2D UNiagaraComponent::SetNiagaraVariableVec2()
 // Function Niagara.NiagaraComponent.SetNiagaraVariableQuat
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FQuat                       InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FQuat                       InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FQuat UNiagaraComponent::SetNiagaraVariableQuat()
 {
@@ -3056,8 +3104,8 @@ struct FQuat UNiagaraComponent::SetNiagaraVariableQuat()
 // Function Niagara.NiagaraComponent.SetNiagaraVariablePosition
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector                     InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector                     InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FVector UNiagaraComponent::SetNiagaraVariablePosition()
 {
@@ -3085,7 +3133,7 @@ struct FVector UNiagaraComponent::SetNiagaraVariablePosition()
 // Function Niagara.NiagaraComponent.SetNiagaraVariableObject
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 // class UObject*                     Object                                                           (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
 
 class FString UNiagaraComponent::SetNiagaraVariableObject(class UObject** Object)
@@ -3117,8 +3165,8 @@ class FString UNiagaraComponent::SetNiagaraVariableObject(class UObject** Object
 // Function Niagara.NiagaraComponent.SetNiagaraVariableMatrix
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FMatrix                     InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FMatrix                     InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FMatrix UNiagaraComponent::SetNiagaraVariableMatrix()
 {
@@ -3146,8 +3194,8 @@ struct FMatrix UNiagaraComponent::SetNiagaraVariableMatrix()
 // Function Niagara.NiagaraComponent.SetNiagaraVariableLinearColor
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FLinearColor                InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FLinearColor UNiagaraComponent::SetNiagaraVariableLinearColor()
 {
@@ -3175,8 +3223,8 @@ struct FLinearColor UNiagaraComponent::SetNiagaraVariableLinearColor()
 // Function Niagara.NiagaraComponent.SetNiagaraVariableInt
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// int32                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// int32                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 int32 UNiagaraComponent::SetNiagaraVariableInt()
 {
@@ -3204,8 +3252,8 @@ int32 UNiagaraComponent::SetNiagaraVariableInt()
 // Function Niagara.NiagaraComponent.SetNiagaraVariableFloat
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float UNiagaraComponent::SetNiagaraVariableFloat()
 {
@@ -3233,8 +3281,8 @@ float UNiagaraComponent::SetNiagaraVariableFloat()
 // Function Niagara.NiagaraComponent.SetNiagaraVariableBool
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// bool                               InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 bool UNiagaraComponent::SetNiagaraVariableBool()
 {
@@ -3262,7 +3310,7 @@ bool UNiagaraComponent::SetNiagaraVariableBool()
 // Function Niagara.NiagaraComponent.SetNiagaraVariableActor
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
 
 class FString UNiagaraComponent::SetNiagaraVariableActor(class AActor** Actor)
@@ -3294,9 +3342,9 @@ class FString UNiagaraComponent::SetNiagaraVariableActor(class AActor** Actor)
 // Function Niagara.NiagaraComponent.SetMaxSimTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMaxTime                                                        (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InMaxTime                                                        (Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetMaxSimTime(float InMaxTime)
+float UNiagaraComponent::SetMaxSimTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3305,7 +3353,6 @@ void UNiagaraComponent::SetMaxSimTime(float InMaxTime)
 
 	Params::UNiagaraComponent_SetMaxSimTime_Params Parms{};
 
-	Parms.InMaxTime = InMaxTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3315,15 +3362,17 @@ void UNiagaraComponent::SetMaxSimTime(float InMaxTime)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Niagara.NiagaraComponent.SetLockDesiredAgeDeltaTimeToSeekDelta
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bLock                                                            (Edit, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bLock                                                            (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetLockDesiredAgeDeltaTimeToSeekDelta(bool* bLock)
+bool UNiagaraComponent::SetLockDesiredAgeDeltaTimeToSeekDelta()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3341,8 +3390,7 @@ void UNiagaraComponent::SetLockDesiredAgeDeltaTimeToSeekDelta(bool* bLock)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bLock != nullptr)
-		*bLock = Parms.bLock;
+	return Parms.ReturnValue;
 
 }
 
@@ -3350,9 +3398,9 @@ void UNiagaraComponent::SetLockDesiredAgeDeltaTimeToSeekDelta(bool* bLock)
 // Function Niagara.NiagaraComponent.SetGpuComputeDebug
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bEnableDebug                                                     (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bEnableDebug                                                     (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetGpuComputeDebug(bool bEnableDebug)
+bool UNiagaraComponent::SetGpuComputeDebug()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3360,88 +3408,6 @@ void UNiagaraComponent::SetGpuComputeDebug(bool bEnableDebug)
 		Func = Class->GetFunction("NiagaraComponent", "SetGpuComputeDebug");
 
 	Params::UNiagaraComponent_SetGpuComputeDebug_Params Parms{};
-
-	Parms.bEnableDebug = bEnableDebug;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function Niagara.NiagaraComponent.SetForceSolo
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// bool                               bInForceSolo                                                     (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-
-void UNiagaraComponent::SetForceSolo(bool bInForceSolo)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("NiagaraComponent", "SetForceSolo");
-
-	Params::UNiagaraComponent_SetForceSolo_Params Parms{};
-
-	Parms.bInForceSolo = bInForceSolo;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function Niagara.NiagaraComponent.SetForceLocalPlayerEffect
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// bool                               bIsPlayerEffect                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-
-void UNiagaraComponent::SetForceLocalPlayerEffect(bool bIsPlayerEffect)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("NiagaraComponent", "SetForceLocalPlayerEffect");
-
-	Params::UNiagaraComponent_SetForceLocalPlayerEffect_Params Parms{};
-
-	Parms.bIsPlayerEffect = bIsPlayerEffect;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function Niagara.NiagaraComponent.SetEmitterFixedBounds
-// (Final, Native, Public, HasDefaults, BlueprintCallable)
-// Parameters:
-// class FName                        EmitterName                                                      (Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FBox                        LocalBounds                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-
-struct FBox UNiagaraComponent::SetEmitterFixedBounds()
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("NiagaraComponent", "SetEmitterFixedBounds");
-
-	Params::UNiagaraComponent_SetEmitterFixedBounds_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -3457,12 +3423,99 @@ struct FBox UNiagaraComponent::SetEmitterFixedBounds()
 }
 
 
+// Function Niagara.NiagaraComponent.SetForceSolo
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// bool                               bInForceSolo                                                     (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+
+bool UNiagaraComponent::SetForceSolo()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("NiagaraComponent", "SetForceSolo");
+
+	Params::UNiagaraComponent_SetForceSolo_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function Niagara.NiagaraComponent.SetForceLocalPlayerEffect
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// bool                               bIsPlayerEffect                                                  (Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+
+bool UNiagaraComponent::SetForceLocalPlayerEffect()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("NiagaraComponent", "SetForceLocalPlayerEffect");
+
+	Params::UNiagaraComponent_SetForceLocalPlayerEffect_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function Niagara.NiagaraComponent.SetEmitterFixedBounds
+// (Final, Native, Public, HasDefaults, BlueprintCallable)
+// Parameters:
+// class FName                        EmitterName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FBox                        LocalBounds                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+
+void UNiagaraComponent::SetEmitterFixedBounds(class FName EmitterName, struct FBox* LocalBounds)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("NiagaraComponent", "SetEmitterFixedBounds");
+
+	Params::UNiagaraComponent_SetEmitterFixedBounds_Params Parms{};
+
+	Parms.EmitterName = EmitterName;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	if (LocalBounds != nullptr)
+		*LocalBounds = std::move(Parms.LocalBounds);
+
+}
+
+
 // Function Niagara.NiagaraComponent.SetDesiredAge
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InDesiredAge                                                     (Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InDesiredAge                                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetDesiredAge(float InDesiredAge)
+float UNiagaraComponent::SetDesiredAge()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3471,7 +3524,6 @@ void UNiagaraComponent::SetDesiredAge(float InDesiredAge)
 
 	Params::UNiagaraComponent_SetDesiredAge_Params Parms{};
 
-	Parms.InDesiredAge = InDesiredAge;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3481,15 +3533,17 @@ void UNiagaraComponent::SetDesiredAge(float InDesiredAge)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Niagara.NiagaraComponent.SetCustomTimeDilation
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Dilation                                                         (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              Dilation                                                         (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetCustomTimeDilation(float Dilation)
+float UNiagaraComponent::SetCustomTimeDilation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3498,7 +3552,6 @@ void UNiagaraComponent::SetCustomTimeDilation(float Dilation)
 
 	Params::UNiagaraComponent_SetCustomTimeDilation_Params Parms{};
 
-	Parms.Dilation = Dilation;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3508,15 +3561,17 @@ void UNiagaraComponent::SetCustomTimeDilation(float Dilation)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Niagara.NiagaraComponent.SetCanRenderWhileSeeking
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInCanRenderWhileSeeking                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInCanRenderWhileSeeking                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetCanRenderWhileSeeking(bool bInCanRenderWhileSeeking)
+bool UNiagaraComponent::SetCanRenderWhileSeeking()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3525,7 +3580,6 @@ void UNiagaraComponent::SetCanRenderWhileSeeking(bool bInCanRenderWhileSeeking)
 
 	Params::UNiagaraComponent_SetCanRenderWhileSeeking_Params Parms{};
 
-	Parms.bInCanRenderWhileSeeking = bInCanRenderWhileSeeking;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3535,15 +3589,17 @@ void UNiagaraComponent::SetCanRenderWhileSeeking(bool bInCanRenderWhileSeeking)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Niagara.NiagaraComponent.SetAutoDestroy
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInAutoDestroy                                                   (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInAutoDestroy                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetAutoDestroy(bool bInAutoDestroy)
+bool UNiagaraComponent::SetAutoDestroy()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3552,7 +3608,6 @@ void UNiagaraComponent::SetAutoDestroy(bool bInAutoDestroy)
 
 	Params::UNiagaraComponent_SetAutoDestroy_Params Parms{};
 
-	Parms.bInAutoDestroy = bInAutoDestroy;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3562,16 +3617,18 @@ void UNiagaraComponent::SetAutoDestroy(bool bInAutoDestroy)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Niagara.NiagaraComponent.SetAsset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UNiagaraSystem*              InAsset                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bResetExistingOverrideParameters                                 (Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UNiagaraSystem*              InAsset                                                          (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bResetExistingOverrideParameters                                 (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetAsset(class UNiagaraSystem* InAsset, bool bResetExistingOverrideParameters)
+bool UNiagaraComponent::SetAsset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3580,8 +3637,6 @@ void UNiagaraComponent::SetAsset(class UNiagaraSystem* InAsset, bool bResetExist
 
 	Params::UNiagaraComponent_SetAsset_Params Parms{};
 
-	Parms.InAsset = InAsset;
-	Parms.bResetExistingOverrideParameters = bResetExistingOverrideParameters;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3591,15 +3646,17 @@ void UNiagaraComponent::SetAsset(class UNiagaraSystem* InAsset, bool bResetExist
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Niagara.NiagaraComponent.SetAllowScalability
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bAllow                                                           (Edit, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bAllow                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetAllowScalability(bool bAllow)
+bool UNiagaraComponent::SetAllowScalability()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3608,7 +3665,6 @@ void UNiagaraComponent::SetAllowScalability(bool bAllow)
 
 	Params::UNiagaraComponent_SetAllowScalability_Params Parms{};
 
-	Parms.bAllow = bAllow;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3618,15 +3674,17 @@ void UNiagaraComponent::SetAllowScalability(bool bAllow)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Niagara.NiagaraComponent.SetAgeUpdateMode
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ENiagaraAgeUpdateMode   InAgeUpdateMode                                                  (Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class ENiagaraAgeUpdateMode   InAgeUpdateMode                                                  (BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SetAgeUpdateMode(enum class ENiagaraAgeUpdateMode InAgeUpdateMode)
+enum class ENiagaraAgeUpdateMode UNiagaraComponent::SetAgeUpdateMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3635,7 +3693,6 @@ void UNiagaraComponent::SetAgeUpdateMode(enum class ENiagaraAgeUpdateMode InAgeU
 
 	Params::UNiagaraComponent_SetAgeUpdateMode_Params Parms{};
 
-	Parms.InAgeUpdateMode = InAgeUpdateMode;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3645,15 +3702,17 @@ void UNiagaraComponent::SetAgeUpdateMode(enum class ENiagaraAgeUpdateMode InAgeU
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Niagara.NiagaraComponent.SeekToDesiredAge
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InDesiredAge                                                     (Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InDesiredAge                                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::SeekToDesiredAge(float InDesiredAge)
+float UNiagaraComponent::SeekToDesiredAge()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3662,7 +3721,6 @@ void UNiagaraComponent::SeekToDesiredAge(float InDesiredAge)
 
 	Params::UNiagaraComponent_SeekToDesiredAge_Params Parms{};
 
-	Parms.InDesiredAge = InDesiredAge;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3671,6 +3729,8 @@ void UNiagaraComponent::SeekToDesiredAge(float InDesiredAge)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3726,9 +3786,9 @@ void UNiagaraComponent::ReinitializeSystem()
 // Function Niagara.NiagaraComponent.IsPaused
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::IsPaused(bool* ReturnValue)
+bool UNiagaraComponent::IsPaused()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3746,8 +3806,7 @@ void UNiagaraComponent::IsPaused(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3779,9 +3838,9 @@ void UNiagaraComponent::InitForPerformanceBaseline()
 // Function Niagara.NiagaraComponent.GetTickBehavior
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class ENiagaraTickBehavior    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ENiagaraTickBehavior    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetTickBehavior(enum class ENiagaraTickBehavior* ReturnValue)
+enum class ENiagaraTickBehavior UNiagaraComponent::GetTickBehavior()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3799,8 +3858,7 @@ void UNiagaraComponent::GetTickBehavior(enum class ENiagaraTickBehavior* ReturnV
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3808,9 +3866,9 @@ void UNiagaraComponent::GetTickBehavior(enum class ENiagaraTickBehavior* ReturnV
 // Function Niagara.NiagaraComponent.GetSystemFixedBounds
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FBox                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBox                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetSystemFixedBounds(struct FBox* ReturnValue)
+struct FBox UNiagaraComponent::GetSystemFixedBounds()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3828,8 +3886,7 @@ void UNiagaraComponent::GetSystemFixedBounds(struct FBox* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3837,9 +3894,9 @@ void UNiagaraComponent::GetSystemFixedBounds(struct FBox* ReturnValue)
 // Function Niagara.NiagaraComponent.GetSimCache
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UNiagaraSimCache*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraSimCache*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetSimCache(class UNiagaraSimCache** ReturnValue)
+class UNiagaraSimCache* UNiagaraComponent::GetSimCache()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3857,8 +3914,7 @@ void UNiagaraComponent::GetSimCache(class UNiagaraSimCache** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3866,9 +3922,9 @@ void UNiagaraComponent::GetSimCache(class UNiagaraSimCache** ReturnValue)
 // Function Niagara.NiagaraComponent.GetSeekDelta
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetSeekDelta(float* ReturnValue)
+float UNiagaraComponent::GetSeekDelta()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3886,8 +3942,7 @@ void UNiagaraComponent::GetSeekDelta(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3895,9 +3950,9 @@ void UNiagaraComponent::GetSeekDelta(float* ReturnValue)
 // Function Niagara.NiagaraComponent.GetRandomSeedOffset
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetRandomSeedOffset(int32* ReturnValue)
+int32 UNiagaraComponent::GetRandomSeedOffset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3915,8 +3970,7 @@ void UNiagaraComponent::GetRandomSeedOffset(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3924,9 +3978,9 @@ void UNiagaraComponent::GetRandomSeedOffset(int32* ReturnValue)
 // Function Niagara.NiagaraComponent.GetPreviewLODDistanceEnabled
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetPreviewLODDistanceEnabled(bool* ReturnValue)
+bool UNiagaraComponent::GetPreviewLODDistanceEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3944,8 +3998,7 @@ void UNiagaraComponent::GetPreviewLODDistanceEnabled(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3953,9 +4006,9 @@ void UNiagaraComponent::GetPreviewLODDistanceEnabled(bool* ReturnValue)
 // Function Niagara.NiagaraComponent.GetPreviewLODDistance
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetPreviewLODDistance(float* ReturnValue)
+float UNiagaraComponent::GetPreviewLODDistance()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3973,8 +4026,7 @@ void UNiagaraComponent::GetPreviewLODDistance(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3982,11 +4034,11 @@ void UNiagaraComponent::GetPreviewLODDistance(float* ReturnValue)
 // Function Niagara.NiagaraComponent.GetNiagaraParticleValueVec3_DebugOnly
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InEmitterName                                                    (ConstParm, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      InValueName                                                      (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<struct FVector>             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InEmitterName                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      InValueName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetNiagaraParticleValueVec3_DebugOnly(const class FString& InEmitterName, const class FString& InValueName, TArray<struct FVector>* ReturnValue)
+TArray<struct FVector> UNiagaraComponent::GetNiagaraParticleValueVec3_DebugOnly()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3995,8 +4047,6 @@ void UNiagaraComponent::GetNiagaraParticleValueVec3_DebugOnly(const class FStrin
 
 	Params::UNiagaraComponent_GetNiagaraParticleValueVec3_DebugOnly_Params Parms{};
 
-	Parms.InEmitterName = InEmitterName;
-	Parms.InValueName = InValueName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4006,8 +4056,7 @@ void UNiagaraComponent::GetNiagaraParticleValueVec3_DebugOnly(const class FStrin
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -4015,11 +4064,11 @@ void UNiagaraComponent::GetNiagaraParticleValueVec3_DebugOnly(const class FStrin
 // Function Niagara.NiagaraComponent.GetNiagaraParticleValues_DebugOnly
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InEmitterName                                                    (ConstParm, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      InValueName                                                      (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<float>                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InEmitterName                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      InValueName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<float>                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetNiagaraParticleValues_DebugOnly(const class FString& InEmitterName, const class FString& InValueName, TArray<float>* ReturnValue)
+TArray<float> UNiagaraComponent::GetNiagaraParticleValues_DebugOnly()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4028,8 +4077,6 @@ void UNiagaraComponent::GetNiagaraParticleValues_DebugOnly(const class FString& 
 
 	Params::UNiagaraComponent_GetNiagaraParticleValues_DebugOnly_Params Parms{};
 
-	Parms.InEmitterName = InEmitterName;
-	Parms.InValueName = InValueName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4039,8 +4086,7 @@ void UNiagaraComponent::GetNiagaraParticleValues_DebugOnly(const class FString& 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -4048,10 +4094,10 @@ void UNiagaraComponent::GetNiagaraParticleValues_DebugOnly(const class FString& 
 // Function Niagara.NiagaraComponent.GetNiagaraParticlePositions_DebugOnly
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InEmitterName                                                    (ConstParm, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<struct FVector>             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InEmitterName                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetNiagaraParticlePositions_DebugOnly(const class FString& InEmitterName, TArray<struct FVector>* ReturnValue)
+TArray<struct FVector> UNiagaraComponent::GetNiagaraParticlePositions_DebugOnly()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4060,7 +4106,6 @@ void UNiagaraComponent::GetNiagaraParticlePositions_DebugOnly(const class FStrin
 
 	Params::UNiagaraComponent_GetNiagaraParticlePositions_DebugOnly_Params Parms{};
 
-	Parms.InEmitterName = InEmitterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4070,8 +4115,7 @@ void UNiagaraComponent::GetNiagaraParticlePositions_DebugOnly(const class FStrin
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -4079,9 +4123,9 @@ void UNiagaraComponent::GetNiagaraParticlePositions_DebugOnly(const class FStrin
 // Function Niagara.NiagaraComponent.GetMaxSimTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetMaxSimTime(float* ReturnValue)
+float UNiagaraComponent::GetMaxSimTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4099,8 +4143,7 @@ void UNiagaraComponent::GetMaxSimTime(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4108,9 +4151,9 @@ void UNiagaraComponent::GetMaxSimTime(float* ReturnValue)
 // Function Niagara.NiagaraComponent.GetLockDesiredAgeDeltaTimeToSeekDelta
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetLockDesiredAgeDeltaTimeToSeekDelta(bool* ReturnValue)
+bool UNiagaraComponent::GetLockDesiredAgeDeltaTimeToSeekDelta()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4128,8 +4171,7 @@ void UNiagaraComponent::GetLockDesiredAgeDeltaTimeToSeekDelta(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4137,9 +4179,9 @@ void UNiagaraComponent::GetLockDesiredAgeDeltaTimeToSeekDelta(bool* ReturnValue)
 // Function Niagara.NiagaraComponent.GetForceSolo
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetForceSolo(bool* ReturnValue)
+bool UNiagaraComponent::GetForceSolo()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4157,8 +4199,7 @@ void UNiagaraComponent::GetForceSolo(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4166,9 +4207,9 @@ void UNiagaraComponent::GetForceSolo(bool* ReturnValue)
 // Function Niagara.NiagaraComponent.GetForceLocalPlayerEffect
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetForceLocalPlayerEffect(bool* ReturnValue)
+bool UNiagaraComponent::GetForceLocalPlayerEffect()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4186,8 +4227,7 @@ void UNiagaraComponent::GetForceLocalPlayerEffect(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4195,10 +4235,10 @@ void UNiagaraComponent::GetForceLocalPlayerEffect(bool* ReturnValue)
 // Function Niagara.NiagaraComponent.GetEmitterFixedBounds
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        EmitterName                                                      (Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FBox                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        EmitterName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FBox                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UNiagaraComponent::GetEmitterFixedBounds(struct FBox* ReturnValue)
+struct FBox UNiagaraComponent::GetEmitterFixedBounds(class FName EmitterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4207,6 +4247,7 @@ class FName UNiagaraComponent::GetEmitterFixedBounds(struct FBox* ReturnValue)
 
 	Params::UNiagaraComponent_GetEmitterFixedBounds_Params Parms{};
 
+	Parms.EmitterName = EmitterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4216,9 +4257,6 @@ class FName UNiagaraComponent::GetEmitterFixedBounds(struct FBox* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -4227,9 +4265,9 @@ class FName UNiagaraComponent::GetEmitterFixedBounds(struct FBox* ReturnValue)
 // Function Niagara.NiagaraComponent.GetDesiredAge
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetDesiredAge(float* ReturnValue)
+float UNiagaraComponent::GetDesiredAge()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4247,8 +4285,7 @@ void UNiagaraComponent::GetDesiredAge(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4257,9 +4294,9 @@ void UNiagaraComponent::GetDesiredAge(float* ReturnValue)
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// class UNiagaraDataInterface*       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraDataInterface*       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetDataInterface(class FString* Name, class UNiagaraDataInterface** ReturnValue)
+class UNiagaraDataInterface* UNiagaraComponent::GetDataInterface(class FString* Name)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4280,8 +4317,7 @@ void UNiagaraComponent::GetDataInterface(class FString* Name, class UNiagaraData
 	if (Name != nullptr)
 		*Name = std::move(Parms.Name);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4289,9 +4325,9 @@ void UNiagaraComponent::GetDataInterface(class FString* Name, class UNiagaraData
 // Function Niagara.NiagaraComponent.GetCustomTimeDilation
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetCustomTimeDilation(float* ReturnValue)
+float UNiagaraComponent::GetCustomTimeDilation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4309,8 +4345,7 @@ void UNiagaraComponent::GetCustomTimeDilation(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4318,9 +4353,9 @@ void UNiagaraComponent::GetCustomTimeDilation(float* ReturnValue)
 // Function Niagara.NiagaraComponent.GetAsset
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UNiagaraSystem*              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraSystem*              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetAsset(class UNiagaraSystem** ReturnValue)
+class UNiagaraSystem* UNiagaraComponent::GetAsset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4338,8 +4373,7 @@ void UNiagaraComponent::GetAsset(class UNiagaraSystem** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4347,9 +4381,9 @@ void UNiagaraComponent::GetAsset(class UNiagaraSystem** ReturnValue)
 // Function Niagara.NiagaraComponent.GetAllowScalability
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetAllowScalability(bool* ReturnValue)
+bool UNiagaraComponent::GetAllowScalability()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4367,8 +4401,7 @@ void UNiagaraComponent::GetAllowScalability(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4376,9 +4409,9 @@ void UNiagaraComponent::GetAllowScalability(bool* ReturnValue)
 // Function Niagara.NiagaraComponent.GetAgeUpdateMode
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class ENiagaraAgeUpdateMode   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ENiagaraAgeUpdateMode   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraComponent::GetAgeUpdateMode(enum class ENiagaraAgeUpdateMode* ReturnValue)
+enum class ENiagaraAgeUpdateMode UNiagaraComponent::GetAgeUpdateMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4396,8 +4429,7 @@ void UNiagaraComponent::GetAgeUpdateMode(enum class ENiagaraAgeUpdateMode* Retur
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4429,9 +4461,9 @@ void UNiagaraComponent::ClearSystemFixedBounds()
 // Function Niagara.NiagaraComponent.ClearSimCache
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bResetSystem                                                     (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bResetSystem                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::ClearSimCache(bool bResetSystem)
+bool UNiagaraComponent::ClearSimCache()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4439,33 +4471,6 @@ void UNiagaraComponent::ClearSimCache(bool bResetSystem)
 		Func = Class->GetFunction("NiagaraComponent", "ClearSimCache");
 
 	Params::UNiagaraComponent_ClearSimCache_Params Parms{};
-
-	Parms.bResetSystem = bResetSystem;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function Niagara.NiagaraComponent.ClearEmitterFixedBounds
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// class FName                        EmitterName                                                      (Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-
-class FName UNiagaraComponent::ClearEmitterFixedBounds()
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("NiagaraComponent", "ClearEmitterFixedBounds");
-
-	Params::UNiagaraComponent_ClearEmitterFixedBounds_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -4481,23 +4486,21 @@ class FName UNiagaraComponent::ClearEmitterFixedBounds()
 }
 
 
-// Function Niagara.NiagaraComponent.AdvanceSimulationByTime
+// Function Niagara.NiagaraComponent.ClearEmitterFixedBounds
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              SimulateTime                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              TickDeltaSeconds                                                 (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        EmitterName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UNiagaraComponent::AdvanceSimulationByTime(float SimulateTime, float TickDeltaSeconds)
+void UNiagaraComponent::ClearEmitterFixedBounds(class FName EmitterName)
 {
 	static class UFunction* Func = nullptr;
 
 	if (!Func)
-		Func = Class->GetFunction("NiagaraComponent", "AdvanceSimulationByTime");
+		Func = Class->GetFunction("NiagaraComponent", "ClearEmitterFixedBounds");
 
-	Params::UNiagaraComponent_AdvanceSimulationByTime_Params Parms{};
+	Params::UNiagaraComponent_ClearEmitterFixedBounds_Params Parms{};
 
-	Parms.SimulateTime = SimulateTime;
-	Parms.TickDeltaSeconds = TickDeltaSeconds;
+	Parms.EmitterName = EmitterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4510,23 +4513,21 @@ void UNiagaraComponent::AdvanceSimulationByTime(float SimulateTime, float TickDe
 }
 
 
-// Function Niagara.NiagaraComponent.AdvanceSimulation
+// Function Niagara.NiagaraComponent.AdvanceSimulationByTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              TickCount                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              TickDeltaSeconds                                                 (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              SimulateTime                                                     (ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              TickDeltaSeconds                                                 (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraComponent::AdvanceSimulation(int32 TickCount, float TickDeltaSeconds)
+float UNiagaraComponent::AdvanceSimulationByTime()
 {
 	static class UFunction* Func = nullptr;
 
 	if (!Func)
-		Func = Class->GetFunction("NiagaraComponent", "AdvanceSimulation");
+		Func = Class->GetFunction("NiagaraComponent", "AdvanceSimulationByTime");
 
-	Params::UNiagaraComponent_AdvanceSimulation_Params Parms{};
+	Params::UNiagaraComponent_AdvanceSimulationByTime_Params Parms{};
 
-	Parms.TickCount = TickCount;
-	Parms.TickDeltaSeconds = TickDeltaSeconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4535,6 +4536,37 @@ void UNiagaraComponent::AdvanceSimulation(int32 TickCount, float TickDeltaSecond
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function Niagara.NiagaraComponent.AdvanceSimulation
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// int32                              TickCount                                                        (ConstParm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              TickDeltaSeconds                                                 (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+
+float UNiagaraComponent::AdvanceSimulation()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("NiagaraComponent", "AdvanceSimulation");
+
+	Params::UNiagaraComponent_AdvanceSimulation_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -4682,11 +4714,11 @@ class UNiagaraDataChannelLibrary* UNiagaraDataChannelLibrary::GetDefaultObj()
 // Function Niagara.NiagaraDataChannelLibrary.GetNiagaraDataChannel
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // class FName                        Channel                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
-// class UNiagaraDataChannelHandler*  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraDataChannelHandler*  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UNiagaraDataChannelLibrary::GetNiagaraDataChannel(class UNiagaraDataChannelHandler** ReturnValue)
+class UNiagaraDataChannelHandler* UNiagaraDataChannelLibrary::GetNiagaraDataChannel()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4703,9 +4735,6 @@ class FName UNiagaraDataChannelLibrary::GetNiagaraDataChannel(class UNiagaraData
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -5024,12 +5053,12 @@ class UNiagaraDataInterfaceArrayFunctionLibrary* UNiagaraDataInterfaceArrayFunct
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // struct FVector                     Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// bool                               bSizeToFit                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSizeToFit                                                       (Edit, ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVectorValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, const struct FVector& Value)
+int32 UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVectorValue(class UNiagaraComponent* NiagaraSystem, const struct FVector& Value, bool* bSizeToFit)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5049,8 +5078,8 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVectorValue(class
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (bSizeToFit != nullptr)
+		*bSizeToFit = Parms.bSizeToFit;
 
 	return Parms.ReturnValue;
 
@@ -5061,12 +5090,12 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVectorValue(class
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // struct FVector4                    Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// bool                               bSizeToFit                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSizeToFit                                                       (Edit, ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector4Value(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, const struct FVector4& Value)
+int32 UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector4Value(class UNiagaraComponent* NiagaraSystem, const struct FVector4& Value, bool* bSizeToFit)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5086,8 +5115,8 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector4Value(clas
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (bSizeToFit != nullptr)
+		*bSizeToFit = Parms.bSizeToFit;
 
 	return Parms.ReturnValue;
 
@@ -5098,10 +5127,10 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector4Value(clas
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector4>            ArrayData                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector4>            ArrayData                                                        (Edit, BlueprintVisible, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<struct FVector4> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector4(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName)
+class FName UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector4(class UNiagaraComponent* NiagaraSystem, TArray<struct FVector4>* ArrayData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5120,8 +5149,8 @@ TArray<struct FVector4> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArr
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (ArrayData != nullptr)
+		*ArrayData = std::move(Parms.ArrayData);
 
 	return Parms.ReturnValue;
 
@@ -5132,12 +5161,12 @@ TArray<struct FVector4> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArr
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // struct FVector2D                   Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// bool                               bSizeToFit                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSizeToFit                                                       (Edit, ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector2DValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, const struct FVector2D& Value)
+int32 UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector2DValue(class UNiagaraComponent* NiagaraSystem, const struct FVector2D& Value, bool* bSizeToFit)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5157,8 +5186,8 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector2DValue(cla
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (bSizeToFit != nullptr)
+		*bSizeToFit = Parms.bSizeToFit;
 
 	return Parms.ReturnValue;
 
@@ -5169,10 +5198,10 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector2DValue(cla
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2D>           ArrayData                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2D>           ArrayData                                                        (Edit, BlueprintVisible, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<struct FVector2D> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector2D(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName)
+class FName UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector2D(class UNiagaraComponent* NiagaraSystem, TArray<struct FVector2D>* ArrayData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5191,8 +5220,8 @@ TArray<struct FVector2D> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraAr
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (ArrayData != nullptr)
+		*ArrayData = std::move(Parms.ArrayData);
 
 	return Parms.ReturnValue;
 
@@ -5203,10 +5232,10 @@ TArray<struct FVector2D> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraAr
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector>             ArrayData                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector>             ArrayData                                                        (Edit, BlueprintVisible, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<struct FVector> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName)
+class FName UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector(class UNiagaraComponent* NiagaraSystem, TArray<struct FVector>* ArrayData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5225,8 +5254,8 @@ TArray<struct FVector> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArra
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (ArrayData != nullptr)
+		*ArrayData = std::move(Parms.ArrayData);
 
 	return Parms.ReturnValue;
 
@@ -5237,12 +5266,12 @@ TArray<struct FVector> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArra
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // int32                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// bool                               bSizeToFit                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSizeToFit                                                       (Edit, ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayUInt8Value(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, int32 Value)
+int32 UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayUInt8Value(class UNiagaraComponent* NiagaraSystem, int32 Value, bool* bSizeToFit)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5262,8 +5291,8 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayUInt8Value(class 
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (bSizeToFit != nullptr)
+		*bSizeToFit = Parms.bSizeToFit;
 
 	return Parms.ReturnValue;
 
@@ -5274,10 +5303,10 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayUInt8Value(class 
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<int32>                      ArrayData                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<int32>                      ArrayData                                                        (Edit, BlueprintVisible, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<int32> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayUInt8(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName)
+class FName UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayUInt8(class UNiagaraComponent* NiagaraSystem, TArray<int32>* ArrayData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5296,8 +5325,8 @@ TArray<int32> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayUInt8(cl
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (ArrayData != nullptr)
+		*ArrayData = std::move(Parms.ArrayData);
 
 	return Parms.ReturnValue;
 
@@ -5308,12 +5337,12 @@ TArray<int32> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayUInt8(cl
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // struct FQuat                       Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// bool                               bSizeToFit                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSizeToFit                                                       (Edit, ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayQuatValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, const struct FQuat& Value)
+int32 UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayQuatValue(class UNiagaraComponent* NiagaraSystem, const struct FQuat& Value, bool* bSizeToFit)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5333,8 +5362,8 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayQuatValue(class U
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (bSizeToFit != nullptr)
+		*bSizeToFit = Parms.bSizeToFit;
 
 	return Parms.ReturnValue;
 
@@ -5345,10 +5374,10 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayQuatValue(class U
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FQuat>               ArrayData                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FQuat>               ArrayData                                                        (Edit, BlueprintVisible, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<struct FQuat> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayQuat(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName)
+class FName UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayQuat(class UNiagaraComponent* NiagaraSystem, TArray<struct FQuat>* ArrayData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5367,8 +5396,8 @@ TArray<struct FQuat> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayQ
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (ArrayData != nullptr)
+		*ArrayData = std::move(Parms.ArrayData);
 
 	return Parms.ReturnValue;
 
@@ -5379,12 +5408,12 @@ TArray<struct FQuat> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayQ
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // struct FVector                     Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// bool                               bSizeToFit                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSizeToFit                                                       (Edit, ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayPositionValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, const struct FVector& Value)
+int32 UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayPositionValue(class UNiagaraComponent* NiagaraSystem, const struct FVector& Value, bool* bSizeToFit)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5404,8 +5433,8 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayPositionValue(cla
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (bSizeToFit != nullptr)
+		*bSizeToFit = Parms.bSizeToFit;
 
 	return Parms.ReturnValue;
 
@@ -5416,10 +5445,10 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayPositionValue(cla
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector>             ArrayData                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector>             ArrayData                                                        (Edit, BlueprintVisible, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<struct FVector> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayPosition(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName)
+class FName UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayPosition(class UNiagaraComponent* NiagaraSystem, TArray<struct FVector>* ArrayData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5438,8 +5467,8 @@ TArray<struct FVector> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArra
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (ArrayData != nullptr)
+		*ArrayData = std::move(Parms.ArrayData);
 
 	return Parms.ReturnValue;
 
@@ -5450,12 +5479,12 @@ TArray<struct FVector> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArra
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // int32                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// bool                               bSizeToFit                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSizeToFit                                                       (Edit, ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayInt32Value(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, int32 Value)
+int32 UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayInt32Value(class UNiagaraComponent* NiagaraSystem, int32 Value, bool* bSizeToFit)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5475,8 +5504,8 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayInt32Value(class 
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (bSizeToFit != nullptr)
+		*bSizeToFit = Parms.bSizeToFit;
 
 	return Parms.ReturnValue;
 
@@ -5487,10 +5516,10 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayInt32Value(class 
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<int32>                      ArrayData                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<int32>                      ArrayData                                                        (Edit, BlueprintVisible, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<int32> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayInt32(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName)
+class FName UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayInt32(class UNiagaraComponent* NiagaraSystem, TArray<int32>* ArrayData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5509,8 +5538,8 @@ TArray<int32> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayInt32(cl
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (ArrayData != nullptr)
+		*ArrayData = std::move(Parms.ArrayData);
 
 	return Parms.ReturnValue;
 
@@ -5521,12 +5550,12 @@ TArray<int32> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayInt32(cl
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// bool                               bSizeToFit                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSizeToFit                                                       (Edit, ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayFloatValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, float Value)
+int32 UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayFloatValue(class UNiagaraComponent* NiagaraSystem, float Value, bool* bSizeToFit)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5546,8 +5575,8 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayFloatValue(class 
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (bSizeToFit != nullptr)
+		*bSizeToFit = Parms.bSizeToFit;
 
 	return Parms.ReturnValue;
 
@@ -5558,10 +5587,10 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayFloatValue(class 
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<float>                      ArrayData                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<float>                      ArrayData                                                        (Edit, BlueprintVisible, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<float> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayFloat(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName)
+class FName UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayFloat(class UNiagaraComponent* NiagaraSystem, TArray<float>* ArrayData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5580,8 +5609,8 @@ TArray<float> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayFloat(cl
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (ArrayData != nullptr)
+		*ArrayData = std::move(Parms.ArrayData);
 
 	return Parms.ReturnValue;
 
@@ -5592,12 +5621,12 @@ TArray<float> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayFloat(cl
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // struct FLinearColor                Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// bool                               bSizeToFit                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSizeToFit                                                       (Edit, ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayColorValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, const struct FLinearColor& Value)
+int32 UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayColorValue(class UNiagaraComponent* NiagaraSystem, const struct FLinearColor& Value, bool* bSizeToFit)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5617,8 +5646,8 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayColorValue(class 
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (bSizeToFit != nullptr)
+		*bSizeToFit = Parms.bSizeToFit;
 
 	return Parms.ReturnValue;
 
@@ -5629,10 +5658,10 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayColorValue(class 
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FLinearColor>        ArrayData                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FLinearColor>        ArrayData                                                        (Edit, BlueprintVisible, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<struct FLinearColor> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayColor(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName)
+class FName UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayColor(class UNiagaraComponent* NiagaraSystem, TArray<struct FLinearColor>* ArrayData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5651,8 +5680,8 @@ TArray<struct FLinearColor> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagar
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (ArrayData != nullptr)
+		*ArrayData = std::move(Parms.ArrayData);
 
 	return Parms.ReturnValue;
 
@@ -5663,12 +5692,12 @@ TArray<struct FLinearColor> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagar
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // bool                               Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// bool                               bSizeToFit                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSizeToFit                                                       (Edit, ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayBoolValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, bool Value)
+int32 UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayBoolValue(class UNiagaraComponent* NiagaraSystem, bool Value, bool* bSizeToFit)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5688,8 +5717,8 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayBoolValue(class U
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (bSizeToFit != nullptr)
+		*bSizeToFit = Parms.bSizeToFit;
 
 	return Parms.ReturnValue;
 
@@ -5700,10 +5729,10 @@ bool UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayBoolValue(class U
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<bool>                       ArrayData                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<bool>                       ArrayData                                                        (Edit, BlueprintVisible, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<bool> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayBool(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName)
+class FName UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayBool(class UNiagaraComponent* NiagaraSystem, TArray<bool>* ArrayData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5722,8 +5751,8 @@ TArray<bool> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayBool(clas
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (ArrayData != nullptr)
+		*ArrayData = std::move(Parms.ArrayData);
 
 	return Parms.ReturnValue;
 
@@ -5734,11 +5763,11 @@ TArray<bool> UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayBool(clas
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVectorValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, struct FVector* ReturnValue)
+struct FVector UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVectorValue(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5757,12 +5786,6 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVectorValue(clas
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -5772,11 +5795,11 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVectorValue(clas
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FVector4                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector4                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector4Value(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, struct FVector4* ReturnValue)
+struct FVector4 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector4Value(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5795,12 +5818,6 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector4Value(cla
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -5810,10 +5827,10 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector4Value(cla
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector4>            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector4>            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector4(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, TArray<struct FVector4>* ReturnValue)
+TArray<struct FVector4> UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector4(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5832,11 +5849,7 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector4(class UNi
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -5845,11 +5858,11 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector4(class UNi
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector2DValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, struct FVector2D* ReturnValue)
+struct FVector2D UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector2DValue(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5868,12 +5881,6 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector2DValue(cl
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -5883,10 +5890,10 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector2DValue(cl
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2D>           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2D>           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector2D(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, TArray<struct FVector2D>* ReturnValue)
+TArray<struct FVector2D> UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector2D(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5905,11 +5912,7 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector2D(class UN
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -5918,10 +5921,10 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector2D(class UN
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector>             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector>             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, TArray<struct FVector>* ReturnValue)
+TArray<struct FVector> UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5940,11 +5943,7 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector(class UNia
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -5953,11 +5952,11 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayVector(class UNia
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayUInt8Value(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, int32* ReturnValue)
+int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayUInt8Value(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5976,12 +5975,6 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayUInt8Value(class
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -5991,10 +5984,10 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayUInt8Value(class
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<int32>                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<int32>                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayUInt8(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, TArray<int32>* ReturnValue)
+TArray<int32> UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayUInt8(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6013,11 +6006,7 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayUInt8(class UNiag
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6026,11 +6015,11 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayUInt8(class UNiag
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FQuat                       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FQuat                       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayQuatValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, struct FQuat* ReturnValue)
+struct FQuat UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayQuatValue(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6049,12 +6038,6 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayQuatValue(class 
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -6064,10 +6047,10 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayQuatValue(class 
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FQuat>               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FQuat>               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayQuat(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, TArray<struct FQuat>* ReturnValue)
+TArray<struct FQuat> UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayQuat(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6086,11 +6069,7 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayQuat(class UNiaga
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6099,11 +6078,11 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayQuat(class UNiaga
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayPositionValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, struct FVector* ReturnValue)
+struct FVector UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayPositionValue(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6122,12 +6101,6 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayPositionValue(cl
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -6137,10 +6110,10 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayPositionValue(cl
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector>             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector>             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayPosition(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, TArray<struct FVector>* ReturnValue)
+TArray<struct FVector> UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayPosition(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6159,11 +6132,7 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayPosition(class UN
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6172,11 +6141,11 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayPosition(class UN
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayInt32Value(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, int32* ReturnValue)
+int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayInt32Value(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6195,12 +6164,6 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayInt32Value(class
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -6210,10 +6173,10 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayInt32Value(class
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<int32>                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<int32>                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayInt32(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, TArray<int32>* ReturnValue)
+TArray<int32> UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayInt32(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6232,11 +6195,7 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayInt32(class UNiag
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6245,11 +6204,11 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayInt32(class UNiag
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayFloatValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, float* ReturnValue)
+float UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayFloatValue(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6268,12 +6227,6 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayFloatValue(class
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -6283,10 +6236,10 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayFloatValue(class
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<float>                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<float>                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayFloat(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, TArray<float>* ReturnValue)
+TArray<float> UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayFloat(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6305,11 +6258,7 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayFloat(class UNiag
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6318,11 +6267,11 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayFloat(class UNiag
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayColorValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, struct FLinearColor* ReturnValue)
+struct FLinearColor UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayColorValue(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6341,12 +6290,6 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayColorValue(class
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -6356,10 +6299,10 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayColorValue(class
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FLinearColor>        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FLinearColor>        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayColor(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, TArray<struct FLinearColor>* ReturnValue)
+TArray<struct FLinearColor> UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayColor(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6378,11 +6321,7 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayColor(class UNiag
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6391,11 +6330,11 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayColor(class UNiag
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayBoolValue(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, bool* ReturnValue)
+bool UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayBoolValue(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6414,12 +6353,6 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayBoolValue(class 
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -6429,10 +6362,10 @@ int32 UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayBoolValue(class 
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<bool>                       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<bool>                       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayBool(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName, TArray<bool>* ReturnValue)
+TArray<bool> UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayBool(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6451,11 +6384,7 @@ void UNiagaraDataInterfaceArrayFunctionLibrary::GetNiagaraArrayBool(class UNiaga
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6939,11 +6868,11 @@ class INiagaraParticleCallbackHandler* INiagaraParticleCallbackHandler::GetDefau
 // Function Niagara.NiagaraParticleCallbackHandler.ReceiveParticleData
 // (Native, Event, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// TArray<struct FBasicParticleData>  Data                                                             (Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FBasicParticleData>  Data                                                             (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // class UNiagaraSystem*              NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// struct FVector                     SimulationPositionOffset                                         (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector                     SimulationPositionOffset                                         (Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FVector INiagaraParticleCallbackHandler::ReceiveParticleData(class UNiagaraSystem* NiagaraSystem)
+void INiagaraParticleCallbackHandler::ReceiveParticleData(const TArray<struct FBasicParticleData>& Data, class UNiagaraSystem* NiagaraSystem, const struct FVector& SimulationPositionOffset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6952,7 +6881,9 @@ struct FVector INiagaraParticleCallbackHandler::ReceiveParticleData(class UNiaga
 
 	Params::INiagaraParticleCallbackHandler_ReceiveParticleData_Params Parms{};
 
+	Parms.Data = Data;
 	Parms.NiagaraSystem = NiagaraSystem;
+	Parms.SimulationPositionOffset = SimulationPositionOffset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6961,8 +6892,6 @@ struct FVector INiagaraParticleCallbackHandler::ReceiveParticleData(class UNiaga
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -7054,11 +6983,11 @@ class UNiagaraDataInterfaceGrid2DCollection* UNiagaraDataInterfaceGrid2DCollecti
 // Function Niagara.NiagaraDataInterfaceGrid2DCollection.GetTextureSize
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UNiagaraComponent*           Component                                                        (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              SizeX                                                            (Edit, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference)
-// int32                              SizeY                                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class UNiagaraComponent*           Component                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              SizeX                                                            (BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference)
+// int32                              SizeY                                                            (Edit, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
 
-void UNiagaraDataInterfaceGrid2DCollection::GetTextureSize(class UNiagaraComponent** Component, int32* SizeX, int32* SizeY)
+class UNiagaraComponent* UNiagaraDataInterfaceGrid2DCollection::GetTextureSize(int32* SizeX, int32* SizeY)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7076,14 +7005,13 @@ void UNiagaraDataInterfaceGrid2DCollection::GetTextureSize(class UNiagaraCompone
 
 	Func->FunctionFlags = Flgs;
 
-	if (Component != nullptr)
-		*Component = Parms.Component;
-
 	if (SizeX != nullptr)
 		*SizeX = Parms.SizeX;
 
 	if (SizeY != nullptr)
 		*SizeY = Parms.SizeY;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -7091,11 +7019,11 @@ void UNiagaraDataInterfaceGrid2DCollection::GetTextureSize(class UNiagaraCompone
 // Function Niagara.NiagaraDataInterfaceGrid2DCollection.GetRawTextureSize
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UNiagaraComponent*           Component                                                        (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              SizeX                                                            (Edit, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference)
-// int32                              SizeY                                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class UNiagaraComponent*           Component                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              SizeX                                                            (BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference)
+// int32                              SizeY                                                            (Edit, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
 
-void UNiagaraDataInterfaceGrid2DCollection::GetRawTextureSize(class UNiagaraComponent** Component, int32* SizeX, int32* SizeY)
+class UNiagaraComponent* UNiagaraDataInterfaceGrid2DCollection::GetRawTextureSize(int32* SizeX, int32* SizeY)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7113,14 +7041,13 @@ void UNiagaraDataInterfaceGrid2DCollection::GetRawTextureSize(class UNiagaraComp
 
 	Func->FunctionFlags = Flgs;
 
-	if (Component != nullptr)
-		*Component = Parms.Component;
-
 	if (SizeX != nullptr)
 		*SizeX = Parms.SizeX;
 
 	if (SizeY != nullptr)
 		*SizeY = Parms.SizeY;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -7128,12 +7055,12 @@ void UNiagaraDataInterfaceGrid2DCollection::GetRawTextureSize(class UNiagaraComp
 // Function Niagara.NiagaraDataInterfaceGrid2DCollection.FillTexture2D
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class UNiagaraComponent*           Component                                                        (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UTextureRenderTarget2D*      Dest                                                             (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              AttributeIndex                                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraComponent*           Component                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTextureRenderTarget2D*      Dest                                                             (Edit, BlueprintVisible, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              AttributeIndex                                                   (ExportObject, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceGrid2DCollection::FillTexture2D(class UNiagaraComponent** Component, bool* ReturnValue)
+bool UNiagaraDataInterfaceGrid2DCollection::FillTexture2D(class UTextureRenderTarget2D** Dest, int32* AttributeIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7151,11 +7078,11 @@ int32 UNiagaraDataInterfaceGrid2DCollection::FillTexture2D(class UNiagaraCompone
 
 	Func->FunctionFlags = Flgs;
 
-	if (Component != nullptr)
-		*Component = Parms.Component;
+	if (Dest != nullptr)
+		*Dest = Parms.Dest;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeIndex != nullptr)
+		*AttributeIndex = Parms.AttributeIndex;
 
 	return Parms.ReturnValue;
 
@@ -7165,13 +7092,13 @@ int32 UNiagaraDataInterfaceGrid2DCollection::FillTexture2D(class UNiagaraCompone
 // Function Niagara.NiagaraDataInterfaceGrid2DCollection.FillRawTexture2D
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UNiagaraComponent*           Component                                                        (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UTextureRenderTarget2D*      Dest                                                             (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              TilesX                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              TilesY                                                           (Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraComponent*           Component                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTextureRenderTarget2D*      Dest                                                             (Edit, BlueprintVisible, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              TilesX                                                           (Edit, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              TilesY                                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceGrid2DCollection::FillRawTexture2D(class UNiagaraComponent** Component, bool* ReturnValue)
+bool UNiagaraDataInterfaceGrid2DCollection::FillRawTexture2D(class UTextureRenderTarget2D** Dest, int32* TilesX, int32 TilesY)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7180,6 +7107,7 @@ int32 UNiagaraDataInterfaceGrid2DCollection::FillRawTexture2D(class UNiagaraComp
 
 	Params::UNiagaraDataInterfaceGrid2DCollection_FillRawTexture2D_Params Parms{};
 
+	Parms.TilesY = TilesY;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7189,11 +7117,11 @@ int32 UNiagaraDataInterfaceGrid2DCollection::FillRawTexture2D(class UNiagaraComp
 
 	Func->FunctionFlags = Flgs;
 
-	if (Component != nullptr)
-		*Component = Parms.Component;
+	if (Dest != nullptr)
+		*Dest = Parms.Dest;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (TilesX != nullptr)
+		*TilesX = Parms.TilesX;
 
 	return Parms.ReturnValue;
 
@@ -7287,12 +7215,12 @@ class UNiagaraDataInterfaceGrid3DCollection* UNiagaraDataInterfaceGrid3DCollecti
 // Function Niagara.NiagaraDataInterfaceGrid3DCollection.GetTextureSize
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UNiagaraComponent*           Component                                                        (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              SizeX                                                            (Edit, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference)
-// int32                              SizeY                                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// int32                              SizeZ                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config)
+// class UNiagaraComponent*           Component                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              SizeX                                                            (BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference)
+// int32                              SizeY                                                            (Edit, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// int32                              SizeZ                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config)
 
-void UNiagaraDataInterfaceGrid3DCollection::GetTextureSize(class UNiagaraComponent** Component, int32* SizeX, int32* SizeY, int32 SizeZ)
+int32 UNiagaraDataInterfaceGrid3DCollection::GetTextureSize(int32* SizeX, int32* SizeY)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7301,7 +7229,6 @@ void UNiagaraDataInterfaceGrid3DCollection::GetTextureSize(class UNiagaraCompone
 
 	Params::UNiagaraDataInterfaceGrid3DCollection_GetTextureSize_Params Parms{};
 
-	Parms.SizeZ = SizeZ;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7311,14 +7238,13 @@ void UNiagaraDataInterfaceGrid3DCollection::GetTextureSize(class UNiagaraCompone
 
 	Func->FunctionFlags = Flgs;
 
-	if (Component != nullptr)
-		*Component = Parms.Component;
-
 	if (SizeX != nullptr)
 		*SizeX = Parms.SizeX;
 
 	if (SizeY != nullptr)
 		*SizeY = Parms.SizeY;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -7326,12 +7252,12 @@ void UNiagaraDataInterfaceGrid3DCollection::GetTextureSize(class UNiagaraCompone
 // Function Niagara.NiagaraDataInterfaceGrid3DCollection.GetRawTextureSize
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UNiagaraComponent*           Component                                                        (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              SizeX                                                            (Edit, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference)
-// int32                              SizeY                                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// int32                              SizeZ                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config)
+// class UNiagaraComponent*           Component                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              SizeX                                                            (BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference)
+// int32                              SizeY                                                            (Edit, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// int32                              SizeZ                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config)
 
-void UNiagaraDataInterfaceGrid3DCollection::GetRawTextureSize(class UNiagaraComponent** Component, int32* SizeX, int32* SizeY, int32 SizeZ)
+int32 UNiagaraDataInterfaceGrid3DCollection::GetRawTextureSize(int32* SizeX, int32* SizeY)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7340,7 +7266,6 @@ void UNiagaraDataInterfaceGrid3DCollection::GetRawTextureSize(class UNiagaraComp
 
 	Params::UNiagaraDataInterfaceGrid3DCollection_GetRawTextureSize_Params Parms{};
 
-	Parms.SizeZ = SizeZ;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7350,14 +7275,13 @@ void UNiagaraDataInterfaceGrid3DCollection::GetRawTextureSize(class UNiagaraComp
 
 	Func->FunctionFlags = Flgs;
 
-	if (Component != nullptr)
-		*Component = Parms.Component;
-
 	if (SizeX != nullptr)
 		*SizeX = Parms.SizeX;
 
 	if (SizeY != nullptr)
 		*SizeY = Parms.SizeY;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -7365,12 +7289,12 @@ void UNiagaraDataInterfaceGrid3DCollection::GetRawTextureSize(class UNiagaraComp
 // Function Niagara.NiagaraDataInterfaceGrid3DCollection.FillVolumeTexture
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class UNiagaraComponent*           Component                                                        (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UVolumeTexture*              Dest                                                             (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              AttributeIndex                                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraComponent*           Component                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UVolumeTexture*              Dest                                                             (Edit, BlueprintVisible, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              AttributeIndex                                                   (ExportObject, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceGrid3DCollection::FillVolumeTexture(class UNiagaraComponent** Component, bool* ReturnValue)
+bool UNiagaraDataInterfaceGrid3DCollection::FillVolumeTexture(class UVolumeTexture** Dest, int32* AttributeIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7388,11 +7312,11 @@ int32 UNiagaraDataInterfaceGrid3DCollection::FillVolumeTexture(class UNiagaraCom
 
 	Func->FunctionFlags = Flgs;
 
-	if (Component != nullptr)
-		*Component = Parms.Component;
+	if (Dest != nullptr)
+		*Dest = Parms.Dest;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeIndex != nullptr)
+		*AttributeIndex = Parms.AttributeIndex;
 
 	return Parms.ReturnValue;
 
@@ -7402,14 +7326,14 @@ int32 UNiagaraDataInterfaceGrid3DCollection::FillVolumeTexture(class UNiagaraCom
 // Function Niagara.NiagaraDataInterfaceGrid3DCollection.FillRawVolumeTexture
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UNiagaraComponent*           Component                                                        (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UVolumeTexture*              Dest                                                             (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              TilesX                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              TilesY                                                           (Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              TileZ                                                            (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraComponent*           Component                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UVolumeTexture*              Dest                                                             (Edit, BlueprintVisible, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              TilesX                                                           (Edit, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              TilesY                                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              TileZ                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraDataInterfaceGrid3DCollection::FillRawVolumeTexture(class UNiagaraComponent** Component, bool* ReturnValue)
+bool UNiagaraDataInterfaceGrid3DCollection::FillRawVolumeTexture(class UVolumeTexture** Dest, int32* TilesX, int32 TilesY, int32* TileZ)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7418,6 +7342,7 @@ int32 UNiagaraDataInterfaceGrid3DCollection::FillRawVolumeTexture(class UNiagara
 
 	Params::UNiagaraDataInterfaceGrid3DCollection_FillRawVolumeTexture_Params Parms{};
 
+	Parms.TilesY = TilesY;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7427,11 +7352,14 @@ int32 UNiagaraDataInterfaceGrid3DCollection::FillRawVolumeTexture(class UNiagara
 
 	Func->FunctionFlags = Flgs;
 
-	if (Component != nullptr)
-		*Component = Parms.Component;
+	if (Dest != nullptr)
+		*Dest = Parms.Dest;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (TilesX != nullptr)
+		*TilesX = Parms.TilesX;
+
+	if (TileZ != nullptr)
+		*TileZ = Parms.TileZ;
 
 	return Parms.ReturnValue;
 
@@ -7862,10 +7790,10 @@ class UNiagaraDIRigidMeshCollisionFunctionLibrary* UNiagaraDIRigidMeshCollisionF
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FName                        OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<class AActor*>              SourceActors                                                     (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class AActor*>              SourceActors                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<class AActor*> UNiagaraDIRigidMeshCollisionFunctionLibrary::SetSourceActors(class UNiagaraComponent* NiagaraSystem, class FName* OverrideName)
+class FName UNiagaraDIRigidMeshCollisionFunctionLibrary::SetSourceActors(class UNiagaraComponent* NiagaraSystem, TArray<class AActor*>* SourceActors)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7884,8 +7812,8 @@ TArray<class AActor*> UNiagaraDIRigidMeshCollisionFunctionLibrary::SetSourceActo
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = Parms.OverrideName;
+	if (SourceActors != nullptr)
+		*SourceActors = std::move(Parms.SourceActors);
 
 	return Parms.ReturnValue;
 
@@ -7923,10 +7851,10 @@ class UNiagaraDataInterfaceSkeletalMesh* UNiagaraDataInterfaceSkeletalMesh::GetD
 // Function Niagara.NiagaraDataInterfaceSkeletalMesh.OnSourceEndPlay
 // (Final, Native, Protected)
 // Parameters:
-// class AActor*                      InSource                                                         (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class EEndPlayReason          Reason                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class AActor*                      InSource                                                         (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EEndPlayReason          Reason                                                           (Parm, OutParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-enum class EEndPlayReason UNiagaraDataInterfaceSkeletalMesh::OnSourceEndPlay()
+class AActor* UNiagaraDataInterfaceSkeletalMesh::OnSourceEndPlay(enum class EEndPlayReason* Reason)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7943,6 +7871,9 @@ enum class EEndPlayReason UNiagaraDataInterfaceSkeletalMesh::OnSourceEndPlay()
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Reason != nullptr)
+		*Reason = Parms.Reason;
 
 	return Parms.ReturnValue;
 
@@ -8540,10 +8471,10 @@ class UNiagaraFunctionLibrary* UNiagaraFunctionLibrary::GetDefaultObj()
 // Function Niagara.NiagaraFunctionLibrary.SpawnSystemAttachedWithParams
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FFXSystemSpawnParameters    SpawnParams                                                      (Edit, ExportObject, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UNiagaraComponent*           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFXSystemSpawnParameters    SpawnParams                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UNiagaraComponent*           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraFunctionLibrary::SpawnSystemAttachedWithParams(struct FFXSystemSpawnParameters* SpawnParams, class UNiagaraComponent** ReturnValue)
+class UNiagaraComponent* UNiagaraFunctionLibrary::SpawnSystemAttachedWithParams()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8561,11 +8492,7 @@ void UNiagaraFunctionLibrary::SpawnSystemAttachedWithParams(struct FFXSystemSpaw
 
 	Func->FunctionFlags = Flgs;
 
-	if (SpawnParams != nullptr)
-		*SpawnParams = std::move(Parms.SpawnParams);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -8573,21 +8500,21 @@ void UNiagaraFunctionLibrary::SpawnSystemAttachedWithParams(struct FFXSystemSpaw
 // Function Niagara.NiagaraFunctionLibrary.SpawnSystemAttached
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UNiagaraSystem*              SystemTemplate                                                   (Edit, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class USceneComponent*             AttachToComponent                                                (BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        AttachPointName                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UNiagaraSystem*              SystemTemplate                                                   (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class USceneComponent*             AttachToComponent                                                (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class FName                        AttachPointName                                                  (Edit, ConstParm, Net, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
 // struct FRotator                    Rotation                                                         (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// enum class EAttachLocation         LocationType                                                     (BlueprintReadOnly, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bAutoDestroy                                                     (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bAutoActivate                                                    (Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class ENCPoolMethod           PoolingMethod                                                    (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bPreCullCheck                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bDontSpawnOutOfView                                              (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bAllowSpawnLoopingFX                                             (Edit, ConstParm, ExportObject, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UNiagaraComponent*           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EAttachLocation         LocationType                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bAutoDestroy                                                     (ConstParm, BlueprintReadOnly, EditFixedSize, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bAutoActivate                                                    (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ENCPoolMethod           PoolingMethod                                                    (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPreCullCheck                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bDontSpawnOutOfView                                              (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bAllowSpawnLoopingFX                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UNiagaraComponent*           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USceneComponent* UNiagaraFunctionLibrary::SpawnSystemAttached(class UNiagaraSystem** SystemTemplate, class FName* AttachPointName, struct FVector* Location, struct FRotator* Rotation, enum class EAttachLocation* LocationType, bool* bAutoDestroy, bool* bAutoActivate, enum class ENCPoolMethod PoolingMethod, bool bPreCullCheck, bool bDontSpawnOutOfView, bool bAllowSpawnLoopingFX, class UNiagaraComponent** ReturnValue)
+class UNiagaraComponent* UNiagaraFunctionLibrary::SpawnSystemAttached(class USceneComponent* AttachToComponent, struct FVector* Location, struct FRotator* Rotation, bool bAutoDestroy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8596,10 +8523,8 @@ class USceneComponent* UNiagaraFunctionLibrary::SpawnSystemAttached(class UNiaga
 
 	Params::UNiagaraFunctionLibrary_SpawnSystemAttached_Params Parms{};
 
-	Parms.PoolingMethod = PoolingMethod;
-	Parms.bPreCullCheck = bPreCullCheck;
-	Parms.bDontSpawnOutOfView = bDontSpawnOutOfView;
-	Parms.bAllowSpawnLoopingFX = bAllowSpawnLoopingFX;
+	Parms.AttachToComponent = AttachToComponent;
+	Parms.bAutoDestroy = bAutoDestroy;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8609,29 +8534,11 @@ class USceneComponent* UNiagaraFunctionLibrary::SpawnSystemAttached(class UNiaga
 
 	Func->FunctionFlags = Flgs;
 
-	if (SystemTemplate != nullptr)
-		*SystemTemplate = Parms.SystemTemplate;
-
-	if (AttachPointName != nullptr)
-		*AttachPointName = Parms.AttachPointName;
-
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
 
 	if (Rotation != nullptr)
 		*Rotation = std::move(Parms.Rotation);
-
-	if (LocationType != nullptr)
-		*LocationType = Parms.LocationType;
-
-	if (bAutoDestroy != nullptr)
-		*bAutoDestroy = Parms.bAutoDestroy;
-
-	if (bAutoActivate != nullptr)
-		*bAutoActivate = Parms.bAutoActivate;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -8641,10 +8548,10 @@ class USceneComponent* UNiagaraFunctionLibrary::SpawnSystemAttached(class UNiaga
 // Function Niagara.NiagaraFunctionLibrary.SpawnSystemAtLocationWithParams
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FFXSystemSpawnParameters    SpawnParams                                                      (Edit, ExportObject, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UNiagaraComponent*           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFXSystemSpawnParameters    SpawnParams                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UNiagaraComponent*           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraFunctionLibrary::SpawnSystemAtLocationWithParams(struct FFXSystemSpawnParameters* SpawnParams, class UNiagaraComponent** ReturnValue)
+class UNiagaraComponent* UNiagaraFunctionLibrary::SpawnSystemAtLocationWithParams()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8662,11 +8569,7 @@ void UNiagaraFunctionLibrary::SpawnSystemAtLocationWithParams(struct FFXSystemSp
 
 	Func->FunctionFlags = Flgs;
 
-	if (SpawnParams != nullptr)
-		*SpawnParams = std::move(Parms.SpawnParams);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -8674,21 +8577,21 @@ void UNiagaraFunctionLibrary::SpawnSystemAtLocationWithParams(struct FFXSystemSp
 // Function Niagara.NiagaraFunctionLibrary.SpawnSystemAtLocation
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UNiagaraSystem*              SystemTemplate                                                   (Edit, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraSystem*              SystemTemplate                                                   (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
 // struct FRotator                    Rotation                                                         (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
 // struct FVector                     Scale                                                            (Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
-// bool                               bAutoDestroy                                                     (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bAutoActivate                                                    (Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class ENCPoolMethod           PoolingMethod                                                    (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bPreCullCheck                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bDontSpawnOutOfView                                              (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              DontSpawnOutOfViewCheckRadius                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bAllowSpawnLoopingFX                                             (Edit, ConstParm, ExportObject, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UNiagaraComponent*           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bAutoDestroy                                                     (ConstParm, BlueprintReadOnly, EditFixedSize, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bAutoActivate                                                    (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ENCPoolMethod           PoolingMethod                                                    (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPreCullCheck                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bDontSpawnOutOfView                                              (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              DontSpawnOutOfViewCheckRadius                                    (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bAllowSpawnLoopingFX                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UNiagaraComponent*           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UNiagaraFunctionLibrary::SpawnSystemAtLocation(class UNiagaraSystem** SystemTemplate, struct FVector* Location, struct FRotator* Rotation, const struct FVector& Scale, bool* bAutoDestroy, bool* bAutoActivate, enum class ENCPoolMethod PoolingMethod, bool bPreCullCheck, bool bDontSpawnOutOfView, float DontSpawnOutOfViewCheckRadius, bool bAllowSpawnLoopingFX, class UNiagaraComponent** ReturnValue)
+class UNiagaraComponent* UNiagaraFunctionLibrary::SpawnSystemAtLocation(struct FVector* Location, struct FRotator* Rotation, const struct FVector& Scale, bool bAutoDestroy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8698,11 +8601,7 @@ class UObject* UNiagaraFunctionLibrary::SpawnSystemAtLocation(class UNiagaraSyst
 	Params::UNiagaraFunctionLibrary_SpawnSystemAtLocation_Params Parms{};
 
 	Parms.Scale = Scale;
-	Parms.PoolingMethod = PoolingMethod;
-	Parms.bPreCullCheck = bPreCullCheck;
-	Parms.bDontSpawnOutOfView = bDontSpawnOutOfView;
-	Parms.DontSpawnOutOfViewCheckRadius = DontSpawnOutOfViewCheckRadius;
-	Parms.bAllowSpawnLoopingFX = bAllowSpawnLoopingFX;
+	Parms.bAutoDestroy = bAutoDestroy;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8712,23 +8611,11 @@ class UObject* UNiagaraFunctionLibrary::SpawnSystemAtLocation(class UNiagaraSyst
 
 	Func->FunctionFlags = Flgs;
 
-	if (SystemTemplate != nullptr)
-		*SystemTemplate = Parms.SystemTemplate;
-
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
 
 	if (Rotation != nullptr)
 		*Rotation = std::move(Parms.Rotation);
-
-	if (bAutoDestroy != nullptr)
-		*bAutoDestroy = Parms.bAutoDestroy;
-
-	if (bAutoActivate != nullptr)
-		*bAutoActivate = Parms.bAutoActivate;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -8739,10 +8626,10 @@ class UObject* UNiagaraFunctionLibrary::SpawnSystemAtLocation(class UNiagaraSyst
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FString                      OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // class UVolumeTexture*              Texture                                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
 
-class UVolumeTexture* UNiagaraFunctionLibrary::SetVolumeTextureObject(class UNiagaraComponent* NiagaraSystem, class FString* OverrideName)
+class UVolumeTexture* UNiagaraFunctionLibrary::SetVolumeTextureObject(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8761,9 +8648,6 @@ class UVolumeTexture* UNiagaraFunctionLibrary::SetVolumeTextureObject(class UNia
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = std::move(Parms.OverrideName);
-
 	return Parms.ReturnValue;
 
 }
@@ -8773,10 +8657,10 @@ class UVolumeTexture* UNiagaraFunctionLibrary::SetVolumeTextureObject(class UNia
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FString                      OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // class UTexture*                    Texture                                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
 
-class UTexture* UNiagaraFunctionLibrary::SetTextureObject(class UNiagaraComponent* NiagaraSystem, class FString* OverrideName)
+class UTexture* UNiagaraFunctionLibrary::SetTextureObject(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8795,9 +8679,6 @@ class UTexture* UNiagaraFunctionLibrary::SetTextureObject(class UNiagaraComponen
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = std::move(Parms.OverrideName);
-
 	return Parms.ReturnValue;
 
 }
@@ -8807,10 +8688,10 @@ class UTexture* UNiagaraFunctionLibrary::SetTextureObject(class UNiagaraComponen
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FString                      OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // class UTexture2DArray*             Texture                                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
 
-class UTexture2DArray* UNiagaraFunctionLibrary::SetTexture2DArrayObject(class UNiagaraComponent* NiagaraSystem, class FString* OverrideName)
+class UTexture2DArray* UNiagaraFunctionLibrary::SetTexture2DArrayObject(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8829,9 +8710,6 @@ class UTexture2DArray* UNiagaraFunctionLibrary::SetTexture2DArrayObject(class UN
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = std::move(Parms.OverrideName);
-
 	return Parms.ReturnValue;
 
 }
@@ -8841,10 +8719,10 @@ class UTexture2DArray* UNiagaraFunctionLibrary::SetTexture2DArrayObject(class UN
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FString                      OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<class FName>                SamplingRegions                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class FName>                SamplingRegions                                                  (ExportObject, Net, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<class FName> UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceSamplingRegions(class UNiagaraComponent* NiagaraSystem, class FString* OverrideName)
+TArray<class FName> UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceSamplingRegions(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8863,9 +8741,6 @@ TArray<class FName> UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceSamplin
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = std::move(Parms.OverrideName);
-
 	return Parms.ReturnValue;
 
 }
@@ -8875,10 +8750,10 @@ TArray<class FName> UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceSamplin
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FString                      OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<class FName>                FilteredSockets                                                  (BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, EditConst, SubobjectReference)
+// class FString                      OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class FName>                FilteredSockets                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
 
-void UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceFilteredSockets(class UNiagaraComponent* NiagaraSystem, class FString* OverrideName, const TArray<class FName>& FilteredSockets)
+TArray<class FName> UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceFilteredSockets(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8888,7 +8763,6 @@ void UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceFilteredSockets(class 
 	Params::UNiagaraFunctionLibrary_SetSkeletalMeshDataInterfaceFilteredSockets_Params Parms{};
 
 	Parms.NiagaraSystem = NiagaraSystem;
-	Parms.FilteredSockets = FilteredSockets;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8898,8 +8772,7 @@ void UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceFilteredSockets(class 
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = std::move(Parms.OverrideName);
+	return Parms.ReturnValue;
 
 }
 
@@ -8908,10 +8781,10 @@ void UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceFilteredSockets(class 
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FString                      OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<class FName>                FilteredBones                                                    (EditFixedSize, Parm, Transient, Config, EditConst, SubobjectReference)
+// class FString                      OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class FName>                FilteredBones                                                    (BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
 
-void UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceFilteredBones(class UNiagaraComponent* NiagaraSystem, class FString* OverrideName, const TArray<class FName>& FilteredBones)
+TArray<class FName> UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceFilteredBones(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8921,7 +8794,6 @@ void UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceFilteredBones(class UN
 	Params::UNiagaraFunctionLibrary_SetSkeletalMeshDataInterfaceFilteredBones_Params Parms{};
 
 	Parms.NiagaraSystem = NiagaraSystem;
-	Parms.FilteredBones = FilteredBones;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8931,8 +8803,7 @@ void UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceFilteredBones(class UN
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = std::move(Parms.OverrideName);
+	return Parms.ReturnValue;
 
 }
 
@@ -8940,7 +8811,7 @@ void UNiagaraFunctionLibrary::SetSkeletalMeshDataInterfaceFilteredBones(class UN
 // Function Niagara.NiagaraFunctionLibrary.SetComponentNiagaraGPURayTracedCollisionGroup
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // class UPrimitiveComponent*         Primitive                                                        (Edit, ExportObject, Net, EditFixedSize, Parm, Config, EditConst)
 // int32                              CollisionGroup                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 
@@ -8971,7 +8842,7 @@ int32 UNiagaraFunctionLibrary::SetComponentNiagaraGPURayTracedCollisionGroup(cla
 // Function Niagara.NiagaraFunctionLibrary.SetActorNiagaraGPURayTracedCollisionGroup
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
 // int32                              CollisionGroup                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 
@@ -9004,7 +8875,7 @@ int32 UNiagaraFunctionLibrary::SetActorNiagaraGPURayTracedCollisionGroup(class A
 // Function Niagara.NiagaraFunctionLibrary.ReleaseNiagaraGPURayTracedCollisionGroup
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // int32                              CollisionGroup                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 
 int32 UNiagaraFunctionLibrary::ReleaseNiagaraGPURayTracedCollisionGroup()
@@ -9034,10 +8905,10 @@ int32 UNiagaraFunctionLibrary::ReleaseNiagaraGPURayTracedCollisionGroup()
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FString                      OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // class UStaticMeshComponent*        StaticMeshComponent                                              (Edit, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
 
-class UStaticMeshComponent* UNiagaraFunctionLibrary::OverrideSystemUserVariableStaticMeshComponent(class UNiagaraComponent* NiagaraSystem, class FString* OverrideName)
+class UStaticMeshComponent* UNiagaraFunctionLibrary::OverrideSystemUserVariableStaticMeshComponent(class UNiagaraComponent* NiagaraSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9056,9 +8927,6 @@ class UStaticMeshComponent* UNiagaraFunctionLibrary::OverrideSystemUserVariableS
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = std::move(Parms.OverrideName);
-
 	return Parms.ReturnValue;
 
 }
@@ -9068,10 +8936,10 @@ class UStaticMeshComponent* UNiagaraFunctionLibrary::OverrideSystemUserVariableS
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FString                      OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // class UStaticMesh*                 StaticMesh                                                       (ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig)
 
-void UNiagaraFunctionLibrary::OverrideSystemUserVariableStaticMesh(class UNiagaraComponent* NiagaraSystem, class FString* OverrideName, class UStaticMesh** StaticMesh)
+class FString UNiagaraFunctionLibrary::OverrideSystemUserVariableStaticMesh(class UNiagaraComponent* NiagaraSystem, class UStaticMesh** StaticMesh)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9090,11 +8958,10 @@ void UNiagaraFunctionLibrary::OverrideSystemUserVariableStaticMesh(class UNiagar
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = std::move(Parms.OverrideName);
-
 	if (StaticMesh != nullptr)
 		*StaticMesh = Parms.StaticMesh;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -9103,10 +8970,10 @@ void UNiagaraFunctionLibrary::OverrideSystemUserVariableStaticMesh(class UNiagar
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UNiagaraComponent*           NiagaraSystem                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst)
-// class FString                      OverrideName                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      OverrideName                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // class USkeletalMeshComponent*      SkeletalMeshComponent                                            (Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
 
-void UNiagaraFunctionLibrary::OverrideSystemUserVariableSkeletalMeshComponent(class UNiagaraComponent* NiagaraSystem, class FString* OverrideName, class USkeletalMeshComponent* SkeletalMeshComponent)
+class FString UNiagaraFunctionLibrary::OverrideSystemUserVariableSkeletalMeshComponent(class UNiagaraComponent* NiagaraSystem, class USkeletalMeshComponent* SkeletalMeshComponent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9126,8 +8993,7 @@ void UNiagaraFunctionLibrary::OverrideSystemUserVariableSkeletalMeshComponent(cl
 
 	Func->FunctionFlags = Flgs;
 
-	if (OverrideName != nullptr)
-		*OverrideName = std::move(Parms.OverrideName);
+	return Parms.ReturnValue;
 
 }
 
@@ -9135,11 +9001,11 @@ void UNiagaraFunctionLibrary::OverrideSystemUserVariableSkeletalMeshComponent(cl
 // Function Niagara.NiagaraFunctionLibrary.GetNiagaraParameterCollection
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // class UNiagaraParameterCollection* Collection                                                       (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-// class UNiagaraParameterCollectionInstance*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraParameterCollectionInstance*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UNiagaraParameterCollection* UNiagaraFunctionLibrary::GetNiagaraParameterCollection(class UNiagaraParameterCollectionInstance** ReturnValue)
+class UNiagaraParameterCollectionInstance* UNiagaraFunctionLibrary::GetNiagaraParameterCollection()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9157,9 +9023,6 @@ class UNiagaraParameterCollection* UNiagaraFunctionLibrary::GetNiagaraParameterC
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -9168,10 +9031,10 @@ class UNiagaraParameterCollection* UNiagaraFunctionLibrary::GetNiagaraParameterC
 // Function Niagara.NiagaraFunctionLibrary.AcquireNiagaraGPURayTracedCollisionGroup
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UNiagaraFunctionLibrary::AcquireNiagaraGPURayTracedCollisionGroup(int32* ReturnValue)
+int32 UNiagaraFunctionLibrary::AcquireNiagaraGPURayTracedCollisionGroup()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9188,9 +9051,6 @@ class UObject* UNiagaraFunctionLibrary::AcquireNiagaraGPURayTracedCollisionGroup
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -9312,8 +9172,8 @@ class UNiagaraParameterCollectionInstance* UNiagaraParameterCollectionInstance::
 // Function Niagara.NiagaraParameterCollectionInstance.SetVectorParameter
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector                     InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector                     InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FVector UNiagaraParameterCollectionInstance::SetVectorParameter()
 {
@@ -9341,8 +9201,8 @@ struct FVector UNiagaraParameterCollectionInstance::SetVectorParameter()
 // Function Niagara.NiagaraParameterCollectionInstance.SetVector4Parameter
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector4                    InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector4                    InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FVector4 UNiagaraParameterCollectionInstance::SetVector4Parameter()
 {
@@ -9370,8 +9230,8 @@ struct FVector4 UNiagaraParameterCollectionInstance::SetVector4Parameter()
 // Function Niagara.NiagaraParameterCollectionInstance.SetVector2DParameter
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector2D                   InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector2D                   InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FVector2D UNiagaraParameterCollectionInstance::SetVector2DParameter()
 {
@@ -9399,8 +9259,8 @@ struct FVector2D UNiagaraParameterCollectionInstance::SetVector2DParameter()
 // Function Niagara.NiagaraParameterCollectionInstance.SetQuatParameter
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FQuat                       InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FQuat                       InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FQuat UNiagaraParameterCollectionInstance::SetQuatParameter()
 {
@@ -9428,8 +9288,8 @@ struct FQuat UNiagaraParameterCollectionInstance::SetQuatParameter()
 // Function Niagara.NiagaraParameterCollectionInstance.SetIntParameter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// int32                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// int32                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 int32 UNiagaraParameterCollectionInstance::SetIntParameter()
 {
@@ -9457,8 +9317,8 @@ int32 UNiagaraParameterCollectionInstance::SetIntParameter()
 // Function Niagara.NiagaraParameterCollectionInstance.SetFloatParameter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float UNiagaraParameterCollectionInstance::SetFloatParameter()
 {
@@ -9486,8 +9346,8 @@ float UNiagaraParameterCollectionInstance::SetFloatParameter()
 // Function Niagara.NiagaraParameterCollectionInstance.SetColorParameter
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FLinearColor                InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FLinearColor UNiagaraParameterCollectionInstance::SetColorParameter()
 {
@@ -9515,8 +9375,8 @@ struct FLinearColor UNiagaraParameterCollectionInstance::SetColorParameter()
 // Function Niagara.NiagaraParameterCollectionInstance.SetBoolParameter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// bool                               InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 bool UNiagaraParameterCollectionInstance::SetBoolParameter()
 {
@@ -9544,10 +9404,10 @@ bool UNiagaraParameterCollectionInstance::SetBoolParameter()
 // Function Niagara.NiagaraParameterCollectionInstance.GetVectorParameter
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UNiagaraParameterCollectionInstance::GetVectorParameter(struct FVector* ReturnValue)
+struct FVector UNiagaraParameterCollectionInstance::GetVectorParameter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9565,9 +9425,6 @@ class FString UNiagaraParameterCollectionInstance::GetVectorParameter(struct FVe
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -9576,10 +9433,10 @@ class FString UNiagaraParameterCollectionInstance::GetVectorParameter(struct FVe
 // Function Niagara.NiagaraParameterCollectionInstance.GetVector4Parameter
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector4                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector4                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UNiagaraParameterCollectionInstance::GetVector4Parameter(struct FVector4* ReturnValue)
+struct FVector4 UNiagaraParameterCollectionInstance::GetVector4Parameter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9597,9 +9454,6 @@ class FString UNiagaraParameterCollectionInstance::GetVector4Parameter(struct FV
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -9608,10 +9462,10 @@ class FString UNiagaraParameterCollectionInstance::GetVector4Parameter(struct FV
 // Function Niagara.NiagaraParameterCollectionInstance.GetVector2DParameter
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UNiagaraParameterCollectionInstance::GetVector2DParameter(struct FVector2D* ReturnValue)
+struct FVector2D UNiagaraParameterCollectionInstance::GetVector2DParameter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9629,9 +9483,6 @@ class FString UNiagaraParameterCollectionInstance::GetVector2DParameter(struct F
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -9640,10 +9491,10 @@ class FString UNiagaraParameterCollectionInstance::GetVector2DParameter(struct F
 // Function Niagara.NiagaraParameterCollectionInstance.GetQuatParameter
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FQuat                       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FQuat                       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UNiagaraParameterCollectionInstance::GetQuatParameter(struct FQuat* ReturnValue)
+struct FQuat UNiagaraParameterCollectionInstance::GetQuatParameter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9661,9 +9512,6 @@ class FString UNiagaraParameterCollectionInstance::GetQuatParameter(struct FQuat
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -9672,10 +9520,10 @@ class FString UNiagaraParameterCollectionInstance::GetQuatParameter(struct FQuat
 // Function Niagara.NiagaraParameterCollectionInstance.GetIntParameter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UNiagaraParameterCollectionInstance::GetIntParameter(int32* ReturnValue)
+int32 UNiagaraParameterCollectionInstance::GetIntParameter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9693,9 +9541,6 @@ class FString UNiagaraParameterCollectionInstance::GetIntParameter(int32* Return
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -9704,10 +9549,10 @@ class FString UNiagaraParameterCollectionInstance::GetIntParameter(int32* Return
 // Function Niagara.NiagaraParameterCollectionInstance.GetFloatParameter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UNiagaraParameterCollectionInstance::GetFloatParameter(float* ReturnValue)
+float UNiagaraParameterCollectionInstance::GetFloatParameter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9725,9 +9570,6 @@ class FString UNiagaraParameterCollectionInstance::GetFloatParameter(float* Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -9736,10 +9578,10 @@ class FString UNiagaraParameterCollectionInstance::GetFloatParameter(float* Retu
 // Function Niagara.NiagaraParameterCollectionInstance.GetColorParameter
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UNiagaraParameterCollectionInstance::GetColorParameter(struct FLinearColor* ReturnValue)
+struct FLinearColor UNiagaraParameterCollectionInstance::GetColorParameter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9757,9 +9599,6 @@ class FString UNiagaraParameterCollectionInstance::GetColorParameter(struct FLin
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -9768,10 +9607,10 @@ class FString UNiagaraParameterCollectionInstance::GetColorParameter(struct FLin
 // Function Niagara.NiagaraParameterCollectionInstance.GetBoolParameter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UNiagaraParameterCollectionInstance::GetBoolParameter(bool* ReturnValue)
+bool UNiagaraParameterCollectionInstance::GetBoolParameter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9788,9 +9627,6 @@ class FString UNiagaraParameterCollectionInstance::GetBoolParameter(bool* Return
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -9856,9 +9692,9 @@ class UNiagaraBaselineController* UNiagaraBaselineController::GetDefaultObj()
 // Function Niagara.NiagaraBaselineController.OnTickTest
 // (Native, Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraBaselineController::OnTickTest(bool* ReturnValue)
+bool UNiagaraBaselineController::OnTickTest()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9876,8 +9712,7 @@ void UNiagaraBaselineController::OnTickTest(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -9885,9 +9720,9 @@ void UNiagaraBaselineController::OnTickTest(bool* ReturnValue)
 // Function Niagara.NiagaraBaselineController.OnOwnerTick
 // (Native, Event, Public, BlueprintEvent)
 // Parameters:
-// float                              DeltaTime                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UNiagaraBaselineController::OnOwnerTick()
+void UNiagaraBaselineController::OnOwnerTick(float* DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9905,7 +9740,8 @@ float UNiagaraBaselineController::OnOwnerTick()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (DeltaTime != nullptr)
+		*DeltaTime = Parms.DeltaTime;
 
 }
 
@@ -9913,9 +9749,9 @@ float UNiagaraBaselineController::OnOwnerTick()
 // Function Niagara.NiagaraBaselineController.OnEndTest
 // (Native, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FNiagaraPerfBaselineStats   Stats                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FNiagaraPerfBaselineStats   Stats                                                            (ConstParm, ExportObject, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraBaselineController::OnEndTest(struct FNiagaraPerfBaselineStats* Stats)
+void UNiagaraBaselineController::OnEndTest(const struct FNiagaraPerfBaselineStats& Stats)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9924,6 +9760,7 @@ void UNiagaraBaselineController::OnEndTest(struct FNiagaraPerfBaselineStats* Sta
 
 	Params::UNiagaraBaselineController_OnEndTest_Params Parms{};
 
+	Parms.Stats = Stats;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9932,9 +9769,6 @@ void UNiagaraBaselineController::OnEndTest(struct FNiagaraPerfBaselineStats* Sta
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Stats != nullptr)
-		*Stats = std::move(Parms.Stats);
 
 }
 
@@ -9966,9 +9800,9 @@ void UNiagaraBaselineController::OnBeginTest()
 // Function Niagara.NiagaraBaselineController.GetSystem
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UNiagaraSystem*              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraSystem*              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraBaselineController::GetSystem(class UNiagaraSystem** ReturnValue)
+class UNiagaraSystem* UNiagaraBaselineController::GetSystem()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9986,8 +9820,7 @@ void UNiagaraBaselineController::GetSystem(class UNiagaraSystem** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10107,9 +9940,9 @@ class ANiagaraPreviewBase* ANiagaraPreviewBase::GetDefaultObj()
 // Function Niagara.NiagaraPreviewBase.SetSystem
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UNiagaraSystem*              InSystem                                                         (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UNiagaraSystem*              InSystem                                                         (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void ANiagaraPreviewBase::SetSystem(class UNiagaraSystem** InSystem)
+void ANiagaraPreviewBase::SetSystem(class UNiagaraSystem* InSystem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10118,11 +9951,9 @@ void ANiagaraPreviewBase::SetSystem(class UNiagaraSystem** InSystem)
 
 	Params::ANiagaraPreviewBase_SetSystem_Params Parms{};
 
+	Parms.InSystem = InSystem;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (InSystem != nullptr)
-		*InSystem = Parms.InSystem;
 
 }
 
@@ -10130,10 +9961,10 @@ void ANiagaraPreviewBase::SetSystem(class UNiagaraSystem** InSystem)
 // Function Niagara.NiagaraPreviewBase.SetLabelText
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        InXAxisText                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FText                        InYAxisText                                                      (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FText                        InXAxisText                                                      (Edit, ConstParm, ExportObject, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FText                        InYAxisText                                                      (BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void ANiagaraPreviewBase::SetLabelText(class FText* InXAxisText, class FText* InYAxisText)
+void ANiagaraPreviewBase::SetLabelText(class FText InXAxisText, class FText InYAxisText)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10142,14 +9973,10 @@ void ANiagaraPreviewBase::SetLabelText(class FText* InXAxisText, class FText* In
 
 	Params::ANiagaraPreviewBase_SetLabelText_Params Parms{};
 
+	Parms.InXAxisText = InXAxisText;
+	Parms.InYAxisText = InYAxisText;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (InXAxisText != nullptr)
-		*InXAxisText = Parms.InXAxisText;
-
-	if (InYAxisText != nullptr)
-		*InYAxisText = Parms.InYAxisText;
 
 }
 
@@ -10185,9 +10012,9 @@ class UNiagaraPreviewAxis* UNiagaraPreviewAxis::GetDefaultObj()
 // Function Niagara.NiagaraPreviewAxis.Num
 // (Native, Event, Public, BlueprintEvent)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraPreviewAxis::Num(int32* ReturnValue)
+int32 UNiagaraPreviewAxis::Num()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10205,8 +10032,7 @@ void UNiagaraPreviewAxis::Num(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10214,12 +10040,12 @@ void UNiagaraPreviewAxis::Num(int32* ReturnValue)
 // Function Niagara.NiagaraPreviewAxis.ApplyToPreview
 // (Native, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// class UNiagaraComponent*           PreviewComponent                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              PreviewIndex                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bIsXAxis                                                         (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      OutLabelText                                                     (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UNiagaraComponent*           PreviewComponent                                                 (ConstParm, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              PreviewIndex                                                     (Edit, ConstParm, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bIsXAxis                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      OutLabelText                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UNiagaraPreviewAxis::ApplyToPreview(class UNiagaraComponent** PreviewComponent, int32* PreviewIndex, bool* bIsXAxis, class FString* OutLabelText)
+void UNiagaraPreviewAxis::ApplyToPreview(class UNiagaraComponent* PreviewComponent, int32 PreviewIndex, bool bIsXAxis, const class FString& OutLabelText)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10228,6 +10054,10 @@ void UNiagaraPreviewAxis::ApplyToPreview(class UNiagaraComponent** PreviewCompon
 
 	Params::UNiagaraPreviewAxis_ApplyToPreview_Params Parms{};
 
+	Parms.PreviewComponent = PreviewComponent;
+	Parms.PreviewIndex = PreviewIndex;
+	Parms.bIsXAxis = bIsXAxis;
+	Parms.OutLabelText = OutLabelText;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10236,18 +10066,6 @@ void UNiagaraPreviewAxis::ApplyToPreview(class UNiagaraComponent** PreviewCompon
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (PreviewComponent != nullptr)
-		*PreviewComponent = Parms.PreviewComponent;
-
-	if (PreviewIndex != nullptr)
-		*PreviewIndex = Parms.PreviewIndex;
-
-	if (bIsXAxis != nullptr)
-		*bIsXAxis = Parms.bIsXAxis;
-
-	if (OutLabelText != nullptr)
-		*OutLabelText = std::move(Parms.OutLabelText);
 
 }
 
@@ -10479,9 +10297,9 @@ class ANiagaraPreviewGrid* ANiagaraPreviewGrid::GetDefaultObj()
 // Function Niagara.NiagaraPreviewGrid.SetPaused
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bPaused                                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPaused                                                          (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void ANiagaraPreviewGrid::SetPaused(bool* bPaused)
+void ANiagaraPreviewGrid::SetPaused(bool bPaused)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10490,6 +10308,7 @@ void ANiagaraPreviewGrid::SetPaused(bool* bPaused)
 
 	Params::ANiagaraPreviewGrid_SetPaused_Params Parms{};
 
+	Parms.bPaused = bPaused;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10499,18 +10318,15 @@ void ANiagaraPreviewGrid::SetPaused(bool* bPaused)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bPaused != nullptr)
-		*bPaused = Parms.bPaused;
-
 }
 
 
 // Function Niagara.NiagaraPreviewGrid.GetPreviews
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class UNiagaraComponent*>   OutPreviews                                                      (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<class UNiagaraComponent*>   OutPreviews                                                      (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void ANiagaraPreviewGrid::GetPreviews(TArray<class UNiagaraComponent*>* OutPreviews)
+void ANiagaraPreviewGrid::GetPreviews(const TArray<class UNiagaraComponent*>& OutPreviews)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10519,6 +10335,7 @@ void ANiagaraPreviewGrid::GetPreviews(TArray<class UNiagaraComponent*>* OutPrevi
 
 	Params::ANiagaraPreviewGrid_GetPreviews_Params Parms{};
 
+	Parms.OutPreviews = OutPreviews;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10527,9 +10344,6 @@ void ANiagaraPreviewGrid::GetPreviews(TArray<class UNiagaraComponent*>* OutPrevi
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (OutPreviews != nullptr)
-		*OutPreviews = std::move(Parms.OutPreviews);
 
 }
 
@@ -10561,9 +10375,9 @@ void ANiagaraPreviewGrid::DeactivatePreviews()
 // Function Niagara.NiagaraPreviewGrid.ActivatePreviews
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bReset                                                           (ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bReset                                                           (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool ANiagaraPreviewGrid::ActivatePreviews()
+void ANiagaraPreviewGrid::ActivatePreviews(bool* bReset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10581,7 +10395,8 @@ bool ANiagaraPreviewGrid::ActivatePreviews()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bReset != nullptr)
+		*bReset = Parms.bReset;
 
 }
 
@@ -10725,12 +10540,12 @@ class UNiagaraSimCache* UNiagaraSimCache::GetDefaultObj()
 // Function Niagara.NiagaraSimCache.ReadVectorAttribute
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FVector>             OutValues                                                        (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// class FName                        EmitterName                                                      (Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FrameIndex                                                       (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             OutValues                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        EmitterName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              FrameIndex                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 UNiagaraSimCache::ReadVectorAttribute()
+void UNiagaraSimCache::ReadVectorAttribute(const TArray<struct FVector>& OutValues, class FName* AttributeName, class FName EmitterName, int32 FrameIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10739,6 +10554,9 @@ int32 UNiagaraSimCache::ReadVectorAttribute()
 
 	Params::UNiagaraSimCache_ReadVectorAttribute_Params Parms{};
 
+	Parms.OutValues = OutValues;
+	Parms.EmitterName = EmitterName;
+	Parms.FrameIndex = FrameIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10748,7 +10566,8 @@ int32 UNiagaraSimCache::ReadVectorAttribute()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -10756,12 +10575,12 @@ int32 UNiagaraSimCache::ReadVectorAttribute()
 // Function Niagara.NiagaraSimCache.ReadVector4Attribute
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FVector4>            OutValues                                                        (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// class FName                        EmitterName                                                      (Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FrameIndex                                                       (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FVector4>            OutValues                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        EmitterName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              FrameIndex                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 UNiagaraSimCache::ReadVector4Attribute()
+void UNiagaraSimCache::ReadVector4Attribute(const TArray<struct FVector4>& OutValues, class FName* AttributeName, class FName EmitterName, int32 FrameIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10770,6 +10589,9 @@ int32 UNiagaraSimCache::ReadVector4Attribute()
 
 	Params::UNiagaraSimCache_ReadVector4Attribute_Params Parms{};
 
+	Parms.OutValues = OutValues;
+	Parms.EmitterName = EmitterName;
+	Parms.FrameIndex = FrameIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10779,7 +10601,8 @@ int32 UNiagaraSimCache::ReadVector4Attribute()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -10787,12 +10610,12 @@ int32 UNiagaraSimCache::ReadVector4Attribute()
 // Function Niagara.NiagaraSimCache.ReadVector2Attribute
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FVector2D>           OutValues                                                        (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// class FName                        EmitterName                                                      (Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FrameIndex                                                       (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FVector2D>           OutValues                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        EmitterName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              FrameIndex                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 UNiagaraSimCache::ReadVector2Attribute()
+void UNiagaraSimCache::ReadVector2Attribute(const TArray<struct FVector2D>& OutValues, class FName* AttributeName, class FName EmitterName, int32 FrameIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10801,6 +10624,9 @@ int32 UNiagaraSimCache::ReadVector2Attribute()
 
 	Params::UNiagaraSimCache_ReadVector2Attribute_Params Parms{};
 
+	Parms.OutValues = OutValues;
+	Parms.EmitterName = EmitterName;
+	Parms.FrameIndex = FrameIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10810,7 +10636,8 @@ int32 UNiagaraSimCache::ReadVector2Attribute()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -10818,13 +10645,13 @@ int32 UNiagaraSimCache::ReadVector2Attribute()
 // Function Niagara.NiagaraSimCache.ReadQuatAttributeWithRebase
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FQuat>               OutValues                                                        (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FQuat>               OutValues                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // struct FQuat                       Quat                                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// class FName                        EmitterName                                                      (Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FrameIndex                                                       (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        EmitterName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              FrameIndex                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 UNiagaraSimCache::ReadQuatAttributeWithRebase(struct FQuat* Quat)
+void UNiagaraSimCache::ReadQuatAttributeWithRebase(const TArray<struct FQuat>& OutValues, struct FQuat* Quat, class FName* AttributeName, class FName EmitterName, int32 FrameIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10833,6 +10660,9 @@ int32 UNiagaraSimCache::ReadQuatAttributeWithRebase(struct FQuat* Quat)
 
 	Params::UNiagaraSimCache_ReadQuatAttributeWithRebase_Params Parms{};
 
+	Parms.OutValues = OutValues;
+	Parms.EmitterName = EmitterName;
+	Parms.FrameIndex = FrameIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10845,7 +10675,8 @@ int32 UNiagaraSimCache::ReadQuatAttributeWithRebase(struct FQuat* Quat)
 	if (Quat != nullptr)
 		*Quat = std::move(Parms.Quat);
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -10853,13 +10684,13 @@ int32 UNiagaraSimCache::ReadQuatAttributeWithRebase(struct FQuat* Quat)
 // Function Niagara.NiagaraSimCache.ReadQuatAttribute
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FQuat>               OutValues                                                        (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// class FName                        EmitterName                                                      (Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bLocalSpaceToWorld                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              FrameIndex                                                       (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FQuat>               OutValues                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        EmitterName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bLocalSpaceToWorld                                               (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              FrameIndex                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 UNiagaraSimCache::ReadQuatAttribute()
+void UNiagaraSimCache::ReadQuatAttribute(const TArray<struct FQuat>& OutValues, class FName* AttributeName, class FName EmitterName, bool bLocalSpaceToWorld, int32 FrameIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10868,6 +10699,10 @@ int32 UNiagaraSimCache::ReadQuatAttribute()
 
 	Params::UNiagaraSimCache_ReadQuatAttribute_Params Parms{};
 
+	Parms.OutValues = OutValues;
+	Parms.EmitterName = EmitterName;
+	Parms.bLocalSpaceToWorld = bLocalSpaceToWorld;
+	Parms.FrameIndex = FrameIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10877,7 +10712,8 @@ int32 UNiagaraSimCache::ReadQuatAttribute()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -10885,13 +10721,13 @@ int32 UNiagaraSimCache::ReadQuatAttribute()
 // Function Niagara.NiagaraSimCache.ReadPositionAttributeWithRebase
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FVector>             OutValues                                                        (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             OutValues                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // struct FTransform                  Transform                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// class FName                        EmitterName                                                      (Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FrameIndex                                                       (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        EmitterName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              FrameIndex                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 UNiagaraSimCache::ReadPositionAttributeWithRebase(struct FTransform* Transform)
+void UNiagaraSimCache::ReadPositionAttributeWithRebase(const TArray<struct FVector>& OutValues, struct FTransform* Transform, class FName* AttributeName, class FName EmitterName, int32 FrameIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10900,6 +10736,9 @@ int32 UNiagaraSimCache::ReadPositionAttributeWithRebase(struct FTransform* Trans
 
 	Params::UNiagaraSimCache_ReadPositionAttributeWithRebase_Params Parms{};
 
+	Parms.OutValues = OutValues;
+	Parms.EmitterName = EmitterName;
+	Parms.FrameIndex = FrameIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10912,7 +10751,8 @@ int32 UNiagaraSimCache::ReadPositionAttributeWithRebase(struct FTransform* Trans
 	if (Transform != nullptr)
 		*Transform = std::move(Parms.Transform);
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -10920,13 +10760,13 @@ int32 UNiagaraSimCache::ReadPositionAttributeWithRebase(struct FTransform* Trans
 // Function Niagara.NiagaraSimCache.ReadPositionAttribute
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FVector>             OutValues                                                        (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// class FName                        EmitterName                                                      (Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bLocalSpaceToWorld                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              FrameIndex                                                       (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             OutValues                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        EmitterName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bLocalSpaceToWorld                                               (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              FrameIndex                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 UNiagaraSimCache::ReadPositionAttribute()
+void UNiagaraSimCache::ReadPositionAttribute(const TArray<struct FVector>& OutValues, class FName* AttributeName, class FName EmitterName, bool bLocalSpaceToWorld, int32 FrameIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10935,6 +10775,10 @@ int32 UNiagaraSimCache::ReadPositionAttribute()
 
 	Params::UNiagaraSimCache_ReadPositionAttribute_Params Parms{};
 
+	Parms.OutValues = OutValues;
+	Parms.EmitterName = EmitterName;
+	Parms.bLocalSpaceToWorld = bLocalSpaceToWorld;
+	Parms.FrameIndex = FrameIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10944,7 +10788,8 @@ int32 UNiagaraSimCache::ReadPositionAttribute()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -10952,12 +10797,12 @@ int32 UNiagaraSimCache::ReadPositionAttribute()
 // Function Niagara.NiagaraSimCache.ReadIntAttribute
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<int32>                      OutValues                                                        (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// class FName                        EmitterName                                                      (Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FrameIndex                                                       (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<int32>                      OutValues                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        EmitterName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              FrameIndex                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 UNiagaraSimCache::ReadIntAttribute()
+void UNiagaraSimCache::ReadIntAttribute(const TArray<int32>& OutValues, class FName* AttributeName, class FName EmitterName, int32 FrameIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10966,6 +10811,9 @@ int32 UNiagaraSimCache::ReadIntAttribute()
 
 	Params::UNiagaraSimCache_ReadIntAttribute_Params Parms{};
 
+	Parms.OutValues = OutValues;
+	Parms.EmitterName = EmitterName;
+	Parms.FrameIndex = FrameIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10975,7 +10823,8 @@ int32 UNiagaraSimCache::ReadIntAttribute()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -10983,12 +10832,12 @@ int32 UNiagaraSimCache::ReadIntAttribute()
 // Function Niagara.NiagaraSimCache.ReadFloatAttribute
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<float>                      OutValues                                                        (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// class FName                        EmitterName                                                      (Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FrameIndex                                                       (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<float>                      OutValues                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        EmitterName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              FrameIndex                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 UNiagaraSimCache::ReadFloatAttribute()
+void UNiagaraSimCache::ReadFloatAttribute(const TArray<float>& OutValues, class FName* AttributeName, class FName EmitterName, int32 FrameIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10997,6 +10846,9 @@ int32 UNiagaraSimCache::ReadFloatAttribute()
 
 	Params::UNiagaraSimCache_ReadFloatAttribute_Params Parms{};
 
+	Parms.OutValues = OutValues;
+	Parms.EmitterName = EmitterName;
+	Parms.FrameIndex = FrameIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -11006,7 +10858,8 @@ int32 UNiagaraSimCache::ReadFloatAttribute()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -11014,12 +10867,12 @@ int32 UNiagaraSimCache::ReadFloatAttribute()
 // Function Niagara.NiagaraSimCache.ReadColorAttribute
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FLinearColor>        OutValues                                                        (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// class FName                        EmitterName                                                      (Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FrameIndex                                                       (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FLinearColor>        OutValues                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        EmitterName                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              FrameIndex                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 UNiagaraSimCache::ReadColorAttribute()
+void UNiagaraSimCache::ReadColorAttribute(const TArray<struct FLinearColor>& OutValues, class FName* AttributeName, class FName EmitterName, int32 FrameIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11028,6 +10881,9 @@ int32 UNiagaraSimCache::ReadColorAttribute()
 
 	Params::UNiagaraSimCache_ReadColorAttribute_Params Parms{};
 
+	Parms.OutValues = OutValues;
+	Parms.EmitterName = EmitterName;
+	Parms.FrameIndex = FrameIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -11037,7 +10893,8 @@ int32 UNiagaraSimCache::ReadColorAttribute()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -11045,9 +10902,9 @@ int32 UNiagaraSimCache::ReadColorAttribute()
 // Function Niagara.NiagaraSimCache.IsEmpty
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraSimCache::IsEmpty(bool* ReturnValue)
+bool UNiagaraSimCache::IsEmpty()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11065,8 +10922,7 @@ void UNiagaraSimCache::IsEmpty(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -11074,9 +10930,9 @@ void UNiagaraSimCache::IsEmpty(bool* ReturnValue)
 // Function Niagara.NiagaraSimCache.IsCacheValid
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraSimCache::IsCacheValid(bool* ReturnValue)
+bool UNiagaraSimCache::IsCacheValid()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11094,8 +10950,7 @@ void UNiagaraSimCache::IsCacheValid(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -11103,9 +10958,9 @@ void UNiagaraSimCache::IsCacheValid(bool* ReturnValue)
 // Function Niagara.NiagaraSimCache.GetStartSeconds
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraSimCache::GetStartSeconds(float* ReturnValue)
+float UNiagaraSimCache::GetStartSeconds()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11123,8 +10978,7 @@ void UNiagaraSimCache::GetStartSeconds(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -11132,9 +10986,9 @@ void UNiagaraSimCache::GetStartSeconds(float* ReturnValue)
 // Function Niagara.NiagaraSimCache.GetNumFrames
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraSimCache::GetNumFrames(int32* ReturnValue)
+int32 UNiagaraSimCache::GetNumFrames()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11152,8 +11006,7 @@ void UNiagaraSimCache::GetNumFrames(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -11161,9 +11014,9 @@ void UNiagaraSimCache::GetNumFrames(int32* ReturnValue)
 // Function Niagara.NiagaraSimCache.GetNumEmitters
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraSimCache::GetNumEmitters(int32* ReturnValue)
+int32 UNiagaraSimCache::GetNumEmitters()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11181,8 +11034,7 @@ void UNiagaraSimCache::GetNumEmitters(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -11190,9 +11042,9 @@ void UNiagaraSimCache::GetNumEmitters(int32* ReturnValue)
 // Function Niagara.NiagaraSimCache.GetEmitterNames
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraSimCache::GetEmitterNames(TArray<class FName>* ReturnValue)
+TArray<class FName> UNiagaraSimCache::GetEmitterNames()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11210,8 +11062,7 @@ void UNiagaraSimCache::GetEmitterNames(TArray<class FName>* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -11219,10 +11070,10 @@ void UNiagaraSimCache::GetEmitterNames(TArray<class FName>* ReturnValue)
 // Function Niagara.NiagaraSimCache.GetEmitterName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              EmitterIndex                                                     (Edit, ConstParm, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              EmitterIndex                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UNiagaraSimCache::GetEmitterName(class FName* ReturnValue)
+class FName UNiagaraSimCache::GetEmitterName(int32 EmitterIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11231,6 +11082,7 @@ int32 UNiagaraSimCache::GetEmitterName(class FName* ReturnValue)
 
 	Params::UNiagaraSimCache_GetEmitterName_Params Parms{};
 
+	Parms.EmitterIndex = EmitterIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -11240,9 +11092,6 @@ int32 UNiagaraSimCache::GetEmitterName(class FName* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -11251,9 +11100,9 @@ int32 UNiagaraSimCache::GetEmitterName(class FName* ReturnValue)
 // Function Niagara.NiagaraSimCache.GetAttributeCaptureMode
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class ENiagaraSimCacheAttributeCaptureModeReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ENiagaraSimCacheAttributeCaptureModeReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UNiagaraSimCache::GetAttributeCaptureMode(enum class ENiagaraSimCacheAttributeCaptureMode* ReturnValue)
+enum class ENiagaraSimCacheAttributeCaptureMode UNiagaraSimCache::GetAttributeCaptureMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11271,8 +11120,7 @@ void UNiagaraSimCache::GetAttributeCaptureMode(enum class ENiagaraSimCacheAttrib
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -11308,9 +11156,9 @@ class UAsyncNiagaraCaptureSimCache* UAsyncNiagaraCaptureSimCache::GetDefaultObj(
 // DelegateFunction Niagara.AsyncNiagaraCaptureSimCache.OnCaptureComplete__DelegateSignature
 // (MulticastDelegate, Public, Delegate)
 // Parameters:
-// bool                               bSuccess                                                         (ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bSuccess                                                         (ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAsyncNiagaraCaptureSimCache::OnCaptureComplete__DelegateSignature(bool* bSuccess)
+bool UAsyncNiagaraCaptureSimCache::OnCaptureComplete__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11322,8 +11170,7 @@ void UAsyncNiagaraCaptureSimCache::OnCaptureComplete__DelegateSignature(bool* bS
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (bSuccess != nullptr)
-		*bSuccess = Parms.bSuccess;
+	return Parms.ReturnValue;
 
 }
 
@@ -11331,16 +11178,16 @@ void UAsyncNiagaraCaptureSimCache::OnCaptureComplete__DelegateSignature(bool* bS
 // Function Niagara.AsyncNiagaraCaptureSimCache.CaptureNiagaraSimCacheUntilComplete
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UNiagaraSimCache*            SimCache                                                         (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FNiagaraSimCacheCreateParametersCreateParameters                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraSimCache*            SimCache                                                         (Edit, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FNiagaraSimCacheCreateParametersCreateParameters                                                 (ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 // class UNiagaraComponent*           NiagaraComponent                                                 (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-// class UNiagaraSimCache*            OutSimCache                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              CaptureRate                                                      (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bAdvanceSimulation                                               (BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              AdvanceDeltaTime                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UAsyncNiagaraCaptureSimCache*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraSimCache*            OutSimCache                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              CaptureRate                                                      (ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bAdvanceSimulation                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              AdvanceDeltaTime                                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAsyncNiagaraCaptureSimCache*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UNiagaraComponent* UAsyncNiagaraCaptureSimCache::CaptureNiagaraSimCacheUntilComplete(class UNiagaraSimCache** OutSimCache, int32* CaptureRate, bool* bAdvanceSimulation, float* AdvanceDeltaTime, class UAsyncNiagaraCaptureSimCache** ReturnValue)
+class UAsyncNiagaraCaptureSimCache* UAsyncNiagaraCaptureSimCache::CaptureNiagaraSimCacheUntilComplete(class UNiagaraSimCache* SimCache, const struct FNiagaraSimCacheCreateParameters& CreateParameters)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11349,6 +11196,8 @@ class UNiagaraComponent* UAsyncNiagaraCaptureSimCache::CaptureNiagaraSimCacheUnt
 
 	Params::UAsyncNiagaraCaptureSimCache_CaptureNiagaraSimCacheUntilComplete_Params Parms{};
 
+	Parms.SimCache = SimCache;
+	Parms.CreateParameters = CreateParameters;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -11357,21 +11206,6 @@ class UNiagaraComponent* UAsyncNiagaraCaptureSimCache::CaptureNiagaraSimCacheUnt
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (OutSimCache != nullptr)
-		*OutSimCache = Parms.OutSimCache;
-
-	if (CaptureRate != nullptr)
-		*CaptureRate = Parms.CaptureRate;
-
-	if (bAdvanceSimulation != nullptr)
-		*bAdvanceSimulation = Parms.bAdvanceSimulation;
-
-	if (AdvanceDeltaTime != nullptr)
-		*AdvanceDeltaTime = Parms.AdvanceDeltaTime;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -11381,17 +11215,17 @@ class UNiagaraComponent* UAsyncNiagaraCaptureSimCache::CaptureNiagaraSimCacheUnt
 // Function Niagara.AsyncNiagaraCaptureSimCache.CaptureNiagaraSimCacheMultiFrame
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UNiagaraSimCache*            SimCache                                                         (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FNiagaraSimCacheCreateParametersCreateParameters                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraSimCache*            SimCache                                                         (Edit, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FNiagaraSimCacheCreateParametersCreateParameters                                                 (ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 // class UNiagaraComponent*           NiagaraComponent                                                 (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-// class UNiagaraSimCache*            OutSimCache                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              NumFrames                                                        (Edit, BlueprintReadOnly, OutParm, DisableEditOnInstance, DuplicateTransient)
-// int32                              CaptureRate                                                      (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bAdvanceSimulation                                               (BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              AdvanceDeltaTime                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UAsyncNiagaraCaptureSimCache*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraSimCache*            OutSimCache                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              NumFrames                                                        (ConstParm, ExportObject, EditFixedSize, DisableEditOnInstance, DuplicateTransient)
+// int32                              CaptureRate                                                      (ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bAdvanceSimulation                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              AdvanceDeltaTime                                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAsyncNiagaraCaptureSimCache*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UNiagaraComponent* UAsyncNiagaraCaptureSimCache::CaptureNiagaraSimCacheMultiFrame(class UNiagaraSimCache** OutSimCache, int32* NumFrames, int32* CaptureRate, bool* bAdvanceSimulation, float* AdvanceDeltaTime, class UAsyncNiagaraCaptureSimCache** ReturnValue)
+class UAsyncNiagaraCaptureSimCache* UAsyncNiagaraCaptureSimCache::CaptureNiagaraSimCacheMultiFrame(class UNiagaraSimCache* SimCache, const struct FNiagaraSimCacheCreateParameters& CreateParameters, int32 NumFrames)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11400,6 +11234,9 @@ class UNiagaraComponent* UAsyncNiagaraCaptureSimCache::CaptureNiagaraSimCacheMul
 
 	Params::UAsyncNiagaraCaptureSimCache_CaptureNiagaraSimCacheMultiFrame_Params Parms{};
 
+	Parms.SimCache = SimCache;
+	Parms.CreateParameters = CreateParameters;
+	Parms.NumFrames = NumFrames;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -11408,24 +11245,6 @@ class UNiagaraComponent* UAsyncNiagaraCaptureSimCache::CaptureNiagaraSimCacheMul
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (OutSimCache != nullptr)
-		*OutSimCache = Parms.OutSimCache;
-
-	if (NumFrames != nullptr)
-		*NumFrames = Parms.NumFrames;
-
-	if (CaptureRate != nullptr)
-		*CaptureRate = Parms.CaptureRate;
-
-	if (bAdvanceSimulation != nullptr)
-		*bAdvanceSimulation = Parms.bAdvanceSimulation;
-
-	if (AdvanceDeltaTime != nullptr)
-		*AdvanceDeltaTime = Parms.AdvanceDeltaTime;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -11463,10 +11282,10 @@ class UNiagaraSimCacheFunctionLibrary* UNiagaraSimCacheFunctionLibrary::GetDefau
 // Function Niagara.NiagaraSimCacheFunctionLibrary.CreateNiagaraSimCache
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UNiagaraSimCache*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraSimCache*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UNiagaraSimCacheFunctionLibrary::CreateNiagaraSimCache(class UNiagaraSimCache** ReturnValue)
+class UNiagaraSimCache* UNiagaraSimCacheFunctionLibrary::CreateNiagaraSimCache()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11484,9 +11303,6 @@ class UObject* UNiagaraSimCacheFunctionLibrary::CreateNiagaraSimCache(class UNia
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -11495,15 +11311,15 @@ class UObject* UNiagaraSimCacheFunctionLibrary::CreateNiagaraSimCache(class UNia
 // Function Niagara.NiagaraSimCacheFunctionLibrary.CaptureNiagaraSimCacheImmediate
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UNiagaraSimCache*            SimCache                                                         (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FNiagaraSimCacheCreateParametersCreateParameters                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraSimCache*            SimCache                                                         (Edit, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FNiagaraSimCacheCreateParametersCreateParameters                                                 (ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 // class UNiagaraComponent*           NiagaraComponent                                                 (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-// class UNiagaraSimCache*            OutSimCache                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bAdvanceSimulation                                               (BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              AdvanceDeltaTime                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UNiagaraSimCache*            OutSimCache                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bAdvanceSimulation                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              AdvanceDeltaTime                                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UNiagaraComponent* UNiagaraSimCacheFunctionLibrary::CaptureNiagaraSimCacheImmediate(class UNiagaraSimCache** OutSimCache, bool* bAdvanceSimulation, float* AdvanceDeltaTime, bool* ReturnValue)
+bool UNiagaraSimCacheFunctionLibrary::CaptureNiagaraSimCacheImmediate(class UNiagaraSimCache* SimCache, const struct FNiagaraSimCacheCreateParameters& CreateParameters)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11512,6 +11328,8 @@ class UNiagaraComponent* UNiagaraSimCacheFunctionLibrary::CaptureNiagaraSimCache
 
 	Params::UNiagaraSimCacheFunctionLibrary_CaptureNiagaraSimCacheImmediate_Params Parms{};
 
+	Parms.SimCache = SimCache;
+	Parms.CreateParameters = CreateParameters;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -11520,18 +11338,6 @@ class UNiagaraComponent* UNiagaraSimCacheFunctionLibrary::CaptureNiagaraSimCache
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (OutSimCache != nullptr)
-		*OutSimCache = Parms.OutSimCache;
-
-	if (bAdvanceSimulation != nullptr)
-		*bAdvanceSimulation = Parms.bAdvanceSimulation;
-
-	if (AdvanceDeltaTime != nullptr)
-		*AdvanceDeltaTime = Parms.AdvanceDeltaTime;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 

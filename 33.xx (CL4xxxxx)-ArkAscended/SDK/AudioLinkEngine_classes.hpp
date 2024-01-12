@@ -19,9 +19,9 @@ public:
 	static class IAudioLinkBlueprintInterface* GetDefaultObj();
 
 	void StopLink();
-	class USoundBase* SetLinkSound();
-	float PlayLink();
-	void IsLinkPlaying(bool* ReturnValue);
+	void SetLinkSound(class USoundBase* NewSound);
+	void PlayLink(float StartTime);
+	bool IsLinkPlaying();
 };
 
 }

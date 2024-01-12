@@ -18,8 +18,8 @@ public:
 	static class UClass* StaticClass();
 	static class IScorchedEarthDayCycle_Interface_C* GetDefaultObj();
 
-	void GetIsElectricalStorm(bool Return);
-	void GetElectricalStormValues(TArray<class AActor*>* LocationRegions, int32* CurrentRegion, double* Radius);
+	bool GetIsElectricalStorm();
+	double GetElectricalStormValues();
 };
 
 }

@@ -18,7 +18,7 @@ namespace Params
 struct IBPI_PageWidgets_C_UpdateSearch_Params
 {
 public:
-	class FText                                  SearchInput;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FText                                  SearchInput;                                       // 0x0(0x18)(ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -34,7 +34,7 @@ public:
 struct IBPI_PageWidgets_C_OnSearch_Params
 {
 public:
-	class FText                                  Search_Input;                                      // 0x0(0x18)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FText                                  Search_Input;                                      // 0x0(0x18)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

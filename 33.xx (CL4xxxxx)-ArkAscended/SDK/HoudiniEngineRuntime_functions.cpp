@@ -196,9 +196,9 @@ int32 UHoudiniAssetBlueprintComponent::SetFloatParameter(class FString* Name, fl
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniAssetBlueprintComponent::HasParameter(class FString* Name, bool* ReturnValue)
+bool UHoudiniAssetBlueprintComponent::HasParameter(class FString* Name)
 {
 	static class UFunction* Func = nullptr;
 
@@ -219,8 +219,7 @@ void UHoudiniAssetBlueprintComponent::HasParameter(class FString* Name, bool* Re
 	if (Name != nullptr)
 		*Name = std::move(Parms.Name);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2468,8 +2467,8 @@ class UHoudiniStaticMesh* UHoudiniStaticMesh::GetDefaultObj()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetVertexPosition
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InVertexIndex                                                    (ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector3f                   InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InVertexIndex                                                    (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector3f                   InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FVector3f UHoudiniStaticMesh::SetVertexPosition()
 {
@@ -2497,11 +2496,11 @@ struct FVector3f UHoudiniStaticMesh::SetVertexPosition()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleVertexVTangent
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint8                              InTriangleVertexIndex                                            (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector3f                   InVTangent                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint8                              InTriangleVertexIndex                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector3f                   InVTangent                                                       (ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FVector3f UHoudiniStaticMesh::SetTriangleVertexVTangent()
+struct FVector3f UHoudiniStaticMesh::SetTriangleVertexVTangent(uint32* InTriangleIndex, uint8* InTriangleVertexIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2519,6 +2518,12 @@ struct FVector3f UHoudiniStaticMesh::SetTriangleVertexVTangent()
 
 	Func->FunctionFlags = Flgs;
 
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
+	if (InTriangleVertexIndex != nullptr)
+		*InTriangleVertexIndex = Parms.InTriangleVertexIndex;
+
 	return Parms.ReturnValue;
 
 }
@@ -2527,12 +2532,12 @@ struct FVector3f UHoudiniStaticMesh::SetTriangleVertexVTangent()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleVertexUV
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint8                              InTriangleVertexIndex                                            (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint8                              InUVLayer                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector2f                   InUV                                                             (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint8                              InTriangleVertexIndex                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint8                              InUVLayer                                                        (ConstParm, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector2f                   InUV                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FVector2f UHoudiniStaticMesh::SetTriangleVertexUV()
+struct FVector2f UHoudiniStaticMesh::SetTriangleVertexUV(uint32* InTriangleIndex, uint8* InTriangleVertexIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2550,6 +2555,12 @@ struct FVector2f UHoudiniStaticMesh::SetTriangleVertexUV()
 
 	Func->FunctionFlags = Flgs;
 
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
+	if (InTriangleVertexIndex != nullptr)
+		*InTriangleVertexIndex = Parms.InTriangleVertexIndex;
+
 	return Parms.ReturnValue;
 
 }
@@ -2558,11 +2569,11 @@ struct FVector2f UHoudiniStaticMesh::SetTriangleVertexUV()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleVertexUTangent
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint8                              InTriangleVertexIndex                                            (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector3f                   InUTangent                                                       (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint8                              InTriangleVertexIndex                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector3f                   InUTangent                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FVector3f UHoudiniStaticMesh::SetTriangleVertexUTangent()
+struct FVector3f UHoudiniStaticMesh::SetTriangleVertexUTangent(uint32* InTriangleIndex, uint8* InTriangleVertexIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2580,6 +2591,12 @@ struct FVector3f UHoudiniStaticMesh::SetTriangleVertexUTangent()
 
 	Func->FunctionFlags = Flgs;
 
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
+	if (InTriangleVertexIndex != nullptr)
+		*InTriangleVertexIndex = Parms.InTriangleVertexIndex;
+
 	return Parms.ReturnValue;
 
 }
@@ -2588,11 +2605,11 @@ struct FVector3f UHoudiniStaticMesh::SetTriangleVertexUTangent()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleVertexNormal
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint8                              InTriangleVertexIndex                                            (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector3f                   InNormal                                                         (ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint8                              InTriangleVertexIndex                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector3f                   InNormal                                                         (BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FVector3f UHoudiniStaticMesh::SetTriangleVertexNormal()
+struct FVector3f UHoudiniStaticMesh::SetTriangleVertexNormal(uint32* InTriangleIndex, uint8* InTriangleVertexIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2610,6 +2627,12 @@ struct FVector3f UHoudiniStaticMesh::SetTriangleVertexNormal()
 
 	Func->FunctionFlags = Flgs;
 
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
+	if (InTriangleVertexIndex != nullptr)
+		*InTriangleVertexIndex = Parms.InTriangleVertexIndex;
+
 	return Parms.ReturnValue;
 
 }
@@ -2618,10 +2641,10 @@ struct FVector3f UHoudiniStaticMesh::SetTriangleVertexNormal()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleVertexIndices
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FIntVector                  InTriangleVertexIndices                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FIntVector                  InTriangleVertexIndices                                          (Edit, ConstParm, BlueprintVisible, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FIntVector UHoudiniStaticMesh::SetTriangleVertexIndices()
+struct FIntVector UHoudiniStaticMesh::SetTriangleVertexIndices(uint32* InTriangleIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2639,6 +2662,9 @@ struct FIntVector UHoudiniStaticMesh::SetTriangleVertexIndices()
 
 	Func->FunctionFlags = Flgs;
 
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
 	return Parms.ReturnValue;
 
 }
@@ -2647,11 +2673,11 @@ struct FIntVector UHoudiniStaticMesh::SetTriangleVertexIndices()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleVertexColor
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint8                              InTriangleVertexIndex                                            (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FColor                      InColor                                                          (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint8                              InTriangleVertexIndex                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FColor                      InColor                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FColor UHoudiniStaticMesh::SetTriangleVertexColor()
+void UHoudiniStaticMesh::SetTriangleVertexColor(uint32* InTriangleIndex, uint8* InTriangleVertexIndex, struct FColor* InColor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2669,7 +2695,14 @@ struct FColor UHoudiniStaticMesh::SetTriangleVertexColor()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
+	if (InTriangleVertexIndex != nullptr)
+		*InTriangleVertexIndex = Parms.InTriangleVertexIndex;
+
+	if (InColor != nullptr)
+		*InColor = std::move(Parms.InColor);
 
 }
 
@@ -2677,10 +2710,10 @@ struct FColor UHoudiniStaticMesh::SetTriangleVertexColor()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleMaterialID
 // (Final, Native, Public)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InMaterialID                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              InMaterialID                                                     (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 UHoudiniStaticMesh::SetTriangleMaterialID()
+void UHoudiniStaticMesh::SetTriangleMaterialID(uint32* InTriangleIndex, int32* InMaterialID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2698,7 +2731,11 @@ int32 UHoudiniStaticMesh::SetTriangleMaterialID()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
+	if (InMaterialID != nullptr)
+		*InMaterialID = Parms.InMaterialID;
 
 }
 
@@ -2706,10 +2743,10 @@ int32 UHoudiniStaticMesh::SetTriangleMaterialID()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetStaticMaterial
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// uint32                             InMaterialIndex                                                  (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FStaticMaterial             InStaticMaterial                                                 (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InMaterialIndex                                                  (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FStaticMaterial             InStaticMaterial                                                 (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FStaticMaterial UHoudiniStaticMesh::SetStaticMaterial()
+void UHoudiniStaticMesh::SetStaticMaterial(uint32* InMaterialIndex, struct FStaticMaterial* InStaticMaterial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2727,7 +2764,11 @@ struct FStaticMaterial UHoudiniStaticMesh::SetStaticMaterial()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InMaterialIndex != nullptr)
+		*InMaterialIndex = Parms.InMaterialIndex;
+
+	if (InStaticMaterial != nullptr)
+		*InStaticMaterial = std::move(Parms.InStaticMaterial);
 
 }
 
@@ -2735,9 +2776,9 @@ struct FStaticMaterial UHoudiniStaticMesh::SetStaticMaterial()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetNumUVLayers
 // (Final, Native, Public)
 // Parameters:
-// uint32                             InNumUVLayers                                                    (Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InNumUVLayers                                                    (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-uint32 UHoudiniStaticMesh::SetNumUVLayers()
+void UHoudiniStaticMesh::SetNumUVLayers(uint32* InNumUVLayers)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2755,7 +2796,8 @@ uint32 UHoudiniStaticMesh::SetNumUVLayers()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InNumUVLayers != nullptr)
+		*InNumUVLayers = Parms.InNumUVLayers;
 
 }
 
@@ -2763,9 +2805,9 @@ uint32 UHoudiniStaticMesh::SetNumUVLayers()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetNumStaticMaterials
 // (Final, Native, Public)
 // Parameters:
-// uint32                             InNumStaticMaterials                                             (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InNumStaticMaterials                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-uint32 UHoudiniStaticMesh::SetNumStaticMaterials()
+void UHoudiniStaticMesh::SetNumStaticMaterials(uint32* InNumStaticMaterials)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2783,7 +2825,8 @@ uint32 UHoudiniStaticMesh::SetNumStaticMaterials()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InNumStaticMaterials != nullptr)
+		*InNumStaticMaterials = Parms.InNumStaticMaterials;
 
 }
 
@@ -2791,9 +2834,9 @@ uint32 UHoudiniStaticMesh::SetNumStaticMaterials()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetHasTangents
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInHasTangents                                                   (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHasTangents                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::SetHasTangents()
+void UHoudiniStaticMesh::SetHasTangents(bool* bInHasTangents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2811,7 +2854,8 @@ bool UHoudiniStaticMesh::SetHasTangents()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInHasTangents != nullptr)
+		*bInHasTangents = Parms.bInHasTangents;
 
 }
 
@@ -2819,9 +2863,9 @@ bool UHoudiniStaticMesh::SetHasTangents()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetHasPerFaceMaterials
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInHasPerFaceMaterials                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHasPerFaceMaterials                                           (Edit, ConstParm, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::SetHasPerFaceMaterials()
+void UHoudiniStaticMesh::SetHasPerFaceMaterials(bool* bInHasPerFaceMaterials)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2839,7 +2883,8 @@ bool UHoudiniStaticMesh::SetHasPerFaceMaterials()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInHasPerFaceMaterials != nullptr)
+		*bInHasPerFaceMaterials = Parms.bInHasPerFaceMaterials;
 
 }
 
@@ -2847,9 +2892,9 @@ bool UHoudiniStaticMesh::SetHasPerFaceMaterials()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetHasNormals
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInHasNormals                                                    (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHasNormals                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::SetHasNormals()
+void UHoudiniStaticMesh::SetHasNormals(bool* bInHasNormals)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2867,7 +2912,8 @@ bool UHoudiniStaticMesh::SetHasNormals()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInHasNormals != nullptr)
+		*bInHasNormals = Parms.bInHasNormals;
 
 }
 
@@ -2875,9 +2921,9 @@ bool UHoudiniStaticMesh::SetHasNormals()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetHasColors
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInHasColors                                                     (Edit, ConstParm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHasColors                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::SetHasColors()
+void UHoudiniStaticMesh::SetHasColors(bool* bInHasColors)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2895,7 +2941,8 @@ bool UHoudiniStaticMesh::SetHasColors()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInHasColors != nullptr)
+		*bInHasColors = Parms.bInHasColors;
 
 }
 
@@ -2927,10 +2974,10 @@ void UHoudiniStaticMesh::Optimize()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.IsValid
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               bInSkipVertexIndicesCheck                                        (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bInSkipVertexIndicesCheck                                        (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UHoudiniStaticMesh::IsValid(bool* ReturnValue)
+bool UHoudiniStaticMesh::IsValid(bool* bInSkipVertexIndicesCheck)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2948,8 +2995,8 @@ bool UHoudiniStaticMesh::IsValid(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (bInSkipVertexIndicesCheck != nullptr)
+		*bInSkipVertexIndicesCheck = Parms.bInSkipVertexIndicesCheck;
 
 	return Parms.ReturnValue;
 
@@ -2959,16 +3006,16 @@ bool UHoudiniStaticMesh::IsValid(bool* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.Initialize
 // (Final, Native, Public)
 // Parameters:
-// uint32                             InNumVertices                                                    (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint32                             InNumTriangles                                                   (Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint32                             InNumUVLayers                                                    (Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint32                             InInitialNumStaticMaterials                                      (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bInHasNormals                                                    (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bInHasTangents                                                   (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bInHasColors                                                     (Edit, ConstParm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bInHasPerFaceMaterials                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InNumVertices                                                    (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InNumTriangles                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InNumUVLayers                                                    (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InInitialNumStaticMaterials                                      (ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHasNormals                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHasTangents                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHasColors                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHasPerFaceMaterials                                           (Edit, ConstParm, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::Initialize()
+void UHoudiniStaticMesh::Initialize(uint32* InNumVertices, uint32* InNumTriangles, uint32* InNumUVLayers, uint32* InInitialNumStaticMaterials, bool* bInHasNormals, bool* bInHasTangents, bool* bInHasColors, bool* bInHasPerFaceMaterials)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2986,7 +3033,29 @@ bool UHoudiniStaticMesh::Initialize()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InNumVertices != nullptr)
+		*InNumVertices = Parms.InNumVertices;
+
+	if (InNumTriangles != nullptr)
+		*InNumTriangles = Parms.InNumTriangles;
+
+	if (InNumUVLayers != nullptr)
+		*InNumUVLayers = Parms.InNumUVLayers;
+
+	if (InInitialNumStaticMaterials != nullptr)
+		*InInitialNumStaticMaterials = Parms.InInitialNumStaticMaterials;
+
+	if (bInHasNormals != nullptr)
+		*bInHasNormals = Parms.bInHasNormals;
+
+	if (bInHasTangents != nullptr)
+		*bInHasTangents = Parms.bInHasTangents;
+
+	if (bInHasColors != nullptr)
+		*bInHasColors = Parms.bInHasColors;
+
+	if (bInHasPerFaceMaterials != nullptr)
+		*bInHasPerFaceMaterials = Parms.bInHasPerFaceMaterials;
 
 }
 
@@ -2994,9 +3063,9 @@ bool UHoudiniStaticMesh::Initialize()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.HasTangents
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::HasTangents(bool* ReturnValue)
+bool UHoudiniStaticMesh::HasTangents()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3014,8 +3083,7 @@ void UHoudiniStaticMesh::HasTangents(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3023,9 +3091,9 @@ void UHoudiniStaticMesh::HasTangents(bool* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.HasPerFaceMaterials
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::HasPerFaceMaterials(bool* ReturnValue)
+bool UHoudiniStaticMesh::HasPerFaceMaterials()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3043,8 +3111,7 @@ void UHoudiniStaticMesh::HasPerFaceMaterials(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3052,9 +3119,9 @@ void UHoudiniStaticMesh::HasPerFaceMaterials(bool* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.HasNormals
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::HasNormals(bool* ReturnValue)
+bool UHoudiniStaticMesh::HasNormals()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3072,8 +3139,7 @@ void UHoudiniStaticMesh::HasNormals(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3081,9 +3147,9 @@ void UHoudiniStaticMesh::HasNormals(bool* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.HasColors
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::HasColors(bool* ReturnValue)
+bool UHoudiniStaticMesh::HasColors()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3101,8 +3167,7 @@ void UHoudiniStaticMesh::HasColors(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3110,9 +3175,9 @@ void UHoudiniStaticMesh::HasColors(bool* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetVertexPositions
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FVector3f>           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector3f>           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetVertexPositions(TArray<struct FVector3f>* ReturnValue)
+TArray<struct FVector3f> UHoudiniStaticMesh::GetVertexPositions()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3130,8 +3195,7 @@ void UHoudiniStaticMesh::GetVertexPositions(TArray<struct FVector3f>* ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3139,9 +3203,9 @@ void UHoudiniStaticMesh::GetVertexPositions(TArray<struct FVector3f>* ReturnValu
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetVertexInstanceVTangents
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FVector3f>           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector3f>           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetVertexInstanceVTangents(TArray<struct FVector3f>* ReturnValue)
+TArray<struct FVector3f> UHoudiniStaticMesh::GetVertexInstanceVTangents()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3159,8 +3223,7 @@ void UHoudiniStaticMesh::GetVertexInstanceVTangents(TArray<struct FVector3f>* Re
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3168,9 +3231,9 @@ void UHoudiniStaticMesh::GetVertexInstanceVTangents(TArray<struct FVector3f>* Re
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetVertexInstanceUVs
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FVector2f>           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector2f>           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetVertexInstanceUVs(TArray<struct FVector2f>* ReturnValue)
+TArray<struct FVector2f> UHoudiniStaticMesh::GetVertexInstanceUVs()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3188,8 +3251,7 @@ void UHoudiniStaticMesh::GetVertexInstanceUVs(TArray<struct FVector2f>* ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3197,9 +3259,9 @@ void UHoudiniStaticMesh::GetVertexInstanceUVs(TArray<struct FVector2f>* ReturnVa
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetVertexInstanceUTangents
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FVector3f>           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector3f>           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetVertexInstanceUTangents(TArray<struct FVector3f>* ReturnValue)
+TArray<struct FVector3f> UHoudiniStaticMesh::GetVertexInstanceUTangents()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3217,8 +3279,7 @@ void UHoudiniStaticMesh::GetVertexInstanceUTangents(TArray<struct FVector3f>* Re
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3226,9 +3287,9 @@ void UHoudiniStaticMesh::GetVertexInstanceUTangents(TArray<struct FVector3f>* Re
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetVertexInstanceNormals
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FVector3f>           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector3f>           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetVertexInstanceNormals(TArray<struct FVector3f>* ReturnValue)
+TArray<struct FVector3f> UHoudiniStaticMesh::GetVertexInstanceNormals()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3246,8 +3307,7 @@ void UHoudiniStaticMesh::GetVertexInstanceNormals(TArray<struct FVector3f>* Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3255,9 +3315,9 @@ void UHoudiniStaticMesh::GetVertexInstanceNormals(TArray<struct FVector3f>* Retu
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetVertexInstanceColors
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FColor>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FColor>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetVertexInstanceColors(TArray<struct FColor>* ReturnValue)
+TArray<struct FColor> UHoudiniStaticMesh::GetVertexInstanceColors()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3275,8 +3335,7 @@ void UHoudiniStaticMesh::GetVertexInstanceColors(TArray<struct FColor>* ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3284,9 +3343,9 @@ void UHoudiniStaticMesh::GetVertexInstanceColors(TArray<struct FColor>* ReturnVa
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetTriangleIndices
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FIntVector>          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FIntVector>          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetTriangleIndices(TArray<struct FIntVector>* ReturnValue)
+TArray<struct FIntVector> UHoudiniStaticMesh::GetTriangleIndices()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3304,8 +3363,7 @@ void UHoudiniStaticMesh::GetTriangleIndices(TArray<struct FIntVector>* ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3313,9 +3371,9 @@ void UHoudiniStaticMesh::GetTriangleIndices(TArray<struct FIntVector>* ReturnVal
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetStaticMaterials
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FStaticMaterial>     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FStaticMaterial>     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetStaticMaterials(TArray<struct FStaticMaterial>* ReturnValue)
+TArray<struct FStaticMaterial> UHoudiniStaticMesh::GetStaticMaterials()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3333,8 +3391,7 @@ void UHoudiniStaticMesh::GetStaticMaterials(TArray<struct FStaticMaterial>* Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3342,9 +3399,9 @@ void UHoudiniStaticMesh::GetStaticMaterials(TArray<struct FStaticMaterial>* Retu
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetNumVertices
 // (Final, Native, Public, Const)
 // Parameters:
-// uint32                             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// uint32                             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetNumVertices(uint32* ReturnValue)
+uint32 UHoudiniStaticMesh::GetNumVertices()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3362,8 +3419,7 @@ void UHoudiniStaticMesh::GetNumVertices(uint32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3371,9 +3427,9 @@ void UHoudiniStaticMesh::GetNumVertices(uint32* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetNumVertexInstances
 // (Final, Native, Public, Const)
 // Parameters:
-// uint32                             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// uint32                             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetNumVertexInstances(uint32* ReturnValue)
+uint32 UHoudiniStaticMesh::GetNumVertexInstances()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3391,8 +3447,7 @@ void UHoudiniStaticMesh::GetNumVertexInstances(uint32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3400,9 +3455,9 @@ void UHoudiniStaticMesh::GetNumVertexInstances(uint32* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetNumUVLayers
 // (Final, Native, Public, Const)
 // Parameters:
-// uint32                             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// uint32                             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetNumUVLayers(uint32* ReturnValue)
+uint32 UHoudiniStaticMesh::GetNumUVLayers()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3420,8 +3475,7 @@ void UHoudiniStaticMesh::GetNumUVLayers(uint32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3429,9 +3483,9 @@ void UHoudiniStaticMesh::GetNumUVLayers(uint32* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetNumTriangles
 // (Final, Native, Public, Const)
 // Parameters:
-// uint32                             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// uint32                             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetNumTriangles(uint32* ReturnValue)
+uint32 UHoudiniStaticMesh::GetNumTriangles()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3449,8 +3503,7 @@ void UHoudiniStaticMesh::GetNumTriangles(uint32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3458,9 +3511,9 @@ void UHoudiniStaticMesh::GetNumTriangles(uint32* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetNumStaticMaterials
 // (Final, Native, Public, Const)
 // Parameters:
-// uint32                             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// uint32                             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetNumStaticMaterials(uint32* ReturnValue)
+uint32 UHoudiniStaticMesh::GetNumStaticMaterials()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3478,8 +3531,7 @@ void UHoudiniStaticMesh::GetNumStaticMaterials(uint32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3487,10 +3539,10 @@ void UHoudiniStaticMesh::GetNumStaticMaterials(uint32* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetMaterialIndex
 // (Final, Native, Public, Const)
 // Parameters:
-// class FName                        InMaterialSlotName                                               (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InMaterialSlotName                                               (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UHoudiniStaticMesh::GetMaterialIndex(int32* ReturnValue)
+int32 UHoudiniStaticMesh::GetMaterialIndex(class FName* InMaterialSlotName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3508,8 +3560,8 @@ class FName UHoudiniStaticMesh::GetMaterialIndex(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InMaterialSlotName != nullptr)
+		*InMaterialSlotName = Parms.InMaterialSlotName;
 
 	return Parms.ReturnValue;
 
@@ -3519,9 +3571,9 @@ class FName UHoudiniStaticMesh::GetMaterialIndex(int32* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetMaterialIDsPerTriangle
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<int32>                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<int32>                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::GetMaterialIDsPerTriangle(TArray<int32>* ReturnValue)
+TArray<int32> UHoudiniStaticMesh::GetMaterialIDsPerTriangle()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3539,8 +3591,7 @@ void UHoudiniStaticMesh::GetMaterialIDsPerTriangle(TArray<int32>* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3548,10 +3599,10 @@ void UHoudiniStaticMesh::GetMaterialIDsPerTriangle(TArray<int32>* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetMaterial
 // (Final, Native, Public)
 // Parameters:
-// int32                              InMaterialIndex                                                  (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UMaterialInterface*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InMaterialIndex                                                  (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMaterialInterface*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UHoudiniStaticMesh::GetMaterial(class UMaterialInterface** ReturnValue)
+class UMaterialInterface* UHoudiniStaticMesh::GetMaterial(int32* InMaterialIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3569,8 +3620,8 @@ int32 UHoudiniStaticMesh::GetMaterial(class UMaterialInterface** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InMaterialIndex != nullptr)
+		*InMaterialIndex = Parms.InMaterialIndex;
 
 	return Parms.ReturnValue;
 
@@ -3580,9 +3631,9 @@ int32 UHoudiniStaticMesh::GetMaterial(class UMaterialInterface** ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.CalculateTangents
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInComputeWeightedNormals                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInComputeWeightedNormals                                        (ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::CalculateTangents()
+void UHoudiniStaticMesh::CalculateTangents(bool* bInComputeWeightedNormals)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3600,7 +3651,8 @@ bool UHoudiniStaticMesh::CalculateTangents()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInComputeWeightedNormals != nullptr)
+		*bInComputeWeightedNormals = Parms.bInComputeWeightedNormals;
 
 }
 
@@ -3608,9 +3660,9 @@ bool UHoudiniStaticMesh::CalculateTangents()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.CalculateNormals
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInComputeWeightedNormals                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInComputeWeightedNormals                                        (ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::CalculateNormals()
+void UHoudiniStaticMesh::CalculateNormals(bool* bInComputeWeightedNormals)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3628,7 +3680,8 @@ bool UHoudiniStaticMesh::CalculateNormals()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInComputeWeightedNormals != nullptr)
+		*bInComputeWeightedNormals = Parms.bInComputeWeightedNormals;
 
 }
 
@@ -3636,9 +3689,9 @@ bool UHoudiniStaticMesh::CalculateNormals()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.CalcBounds
 // (Final, Native, Public, HasDefaults, Const)
 // Parameters:
-// struct FBox                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBox                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMesh::CalcBounds(struct FBox* ReturnValue)
+struct FBox UHoudiniStaticMesh::CalcBounds()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3656,8 +3709,7 @@ void UHoudiniStaticMesh::CalcBounds(struct FBox* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3665,10 +3717,10 @@ void UHoudiniStaticMesh::CalcBounds(struct FBox* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.AddStaticMaterial
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// struct FStaticMaterial             InStaticMaterial                                                 (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint32                             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FStaticMaterial             InStaticMaterial                                                 (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FStaticMaterial UHoudiniStaticMesh::AddStaticMaterial(uint32* ReturnValue)
+uint32 UHoudiniStaticMesh::AddStaticMaterial(struct FStaticMaterial* InStaticMaterial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3686,8 +3738,8 @@ struct FStaticMaterial UHoudiniStaticMesh::AddStaticMaterial(uint32* ReturnValue
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InStaticMaterial != nullptr)
+		*InStaticMaterial = std::move(Parms.InStaticMaterial);
 
 	return Parms.ReturnValue;
 
@@ -3725,9 +3777,9 @@ class UHoudiniStaticMeshComponent* UHoudiniStaticMeshComponent::GetDefaultObj()
 // Function HoudiniEngineRuntime.HoudiniStaticMeshComponent.SetMesh
 // (Final, Native, Public)
 // Parameters:
-// class UHoudiniStaticMesh*          InMesh                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UHoudiniStaticMesh*          InMesh                                                           (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UHoudiniStaticMeshComponent::SetMesh(class UHoudiniStaticMesh* InMesh)
+class UHoudiniStaticMesh* UHoudiniStaticMeshComponent::SetMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3736,7 +3788,6 @@ void UHoudiniStaticMeshComponent::SetMesh(class UHoudiniStaticMesh* InMesh)
 
 	Params::UHoudiniStaticMeshComponent_SetMesh_Params Parms{};
 
-	Parms.InMesh = InMesh;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3746,15 +3797,17 @@ void UHoudiniStaticMeshComponent::SetMesh(class UHoudiniStaticMesh* InMesh)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function HoudiniEngineRuntime.HoudiniStaticMeshComponent.SetHoudiniIconVisible
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInHoudiniIconVisible                                            (Edit, ConstParm, ExportObject, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHoudiniIconVisible                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UHoudiniStaticMeshComponent::SetHoudiniIconVisible(bool bInHoudiniIconVisible)
+bool UHoudiniStaticMeshComponent::SetHoudiniIconVisible()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3763,7 +3816,6 @@ void UHoudiniStaticMeshComponent::SetHoudiniIconVisible(bool bInHoudiniIconVisib
 
 	Params::UHoudiniStaticMeshComponent_SetHoudiniIconVisible_Params Parms{};
 
-	Parms.bInHoudiniIconVisible = bInHoudiniIconVisible;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3772,6 +3824,8 @@ void UHoudiniStaticMeshComponent::SetHoudiniIconVisible(bool bInHoudiniIconVisib
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3803,9 +3857,9 @@ void UHoudiniStaticMeshComponent::NotifyMeshUpdated()
 // Function HoudiniEngineRuntime.HoudiniStaticMeshComponent.IsHoudiniIconVisible
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMeshComponent::IsHoudiniIconVisible(bool* ReturnValue)
+bool UHoudiniStaticMeshComponent::IsHoudiniIconVisible()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3823,8 +3877,7 @@ void UHoudiniStaticMeshComponent::IsHoudiniIconVisible(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3832,9 +3885,9 @@ void UHoudiniStaticMeshComponent::IsHoudiniIconVisible(bool* ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMeshComponent.GetMesh
 // (Final, Native, Public)
 // Parameters:
-// class UHoudiniStaticMesh*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UHoudiniStaticMesh*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHoudiniStaticMeshComponent::GetMesh(class UHoudiniStaticMesh** ReturnValue)
+class UHoudiniStaticMesh* UHoudiniStaticMeshComponent::GetMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3852,8 +3905,7 @@ void UHoudiniStaticMeshComponent::GetMesh(class UHoudiniStaticMesh** ReturnValue
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 

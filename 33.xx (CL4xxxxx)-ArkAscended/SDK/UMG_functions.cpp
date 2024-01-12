@@ -71,9 +71,9 @@ class UWidget* UWidget::GetDefaultObj()
 // Function UMG.Widget.SetVisibility
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ESlateVisibility        InVisibility                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ESlateVisibility        InVisibility                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UWidget::SetVisibility(enum class ESlateVisibility* InVisibility)
+enum class ESlateVisibility UWidget::SetVisibility()
 {
 	static class UFunction* Func = nullptr;
 
@@ -91,8 +91,7 @@ void UWidget::SetVisibility(enum class ESlateVisibility* InVisibility)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVisibility != nullptr)
-		*InVisibility = Parms.InVisibility;
+	return Parms.ReturnValue;
 
 }
 
@@ -129,9 +128,9 @@ void UWidget::SetUserFocus(class APlayerController** PlayerController)
 // Function UMG.Widget.SetToolTipText
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FText                        InToolTipText                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FText                        InToolTipText                                                    (ConstParm, BlueprintVisible, Net, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UWidget::SetToolTipText(class FText InToolTipText)
+class FText UWidget::SetToolTipText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -140,7 +139,6 @@ void UWidget::SetToolTipText(class FText InToolTipText)
 
 	Params::UWidget_SetToolTipText_Params Parms{};
 
-	Parms.InToolTipText = InToolTipText;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -149,6 +147,8 @@ void UWidget::SetToolTipText(class FText InToolTipText)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -211,9 +211,9 @@ void UWidget::SetRenderTranslation(const struct FVector2D& Translation)
 // Function UMG.Widget.SetRenderTransformPivot
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   Pivot                                                            (ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector2D                   Pivot                                                            (BlueprintVisible, ExportObject, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UWidget::SetRenderTransformPivot(const struct FVector2D& Pivot)
+struct FVector2D UWidget::SetRenderTransformPivot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -222,7 +222,6 @@ void UWidget::SetRenderTransformPivot(const struct FVector2D& Pivot)
 
 	Params::UWidget_SetRenderTransformPivot_Params Parms{};
 
-	Parms.Pivot = Pivot;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -232,15 +231,17 @@ void UWidget::SetRenderTransformPivot(const struct FVector2D& Pivot)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.Widget.SetRenderTransformAngle
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Angle                                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              Angle                                                            (Edit, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UWidget::SetRenderTransformAngle(float Angle)
+float UWidget::SetRenderTransformAngle()
 {
 	static class UFunction* Func = nullptr;
 
@@ -249,7 +250,6 @@ void UWidget::SetRenderTransformAngle(float Angle)
 
 	Params::UWidget_SetRenderTransformAngle_Params Parms{};
 
-	Parms.Angle = Angle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -259,15 +259,17 @@ void UWidget::SetRenderTransformAngle(float Angle)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.Widget.SetRenderTransform
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FWidgetTransform            InTransform                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FWidgetTransform            InTransform                                                      (Edit, BlueprintVisible, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UWidget::SetRenderTransform(const struct FWidgetTransform& InTransform)
+struct FWidgetTransform UWidget::SetRenderTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -276,7 +278,6 @@ void UWidget::SetRenderTransform(const struct FWidgetTransform& InTransform)
 
 	Params::UWidget_SetRenderTransform_Params Parms{};
 
-	Parms.InTransform = InTransform;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -286,15 +287,17 @@ void UWidget::SetRenderTransform(const struct FWidgetTransform& InTransform)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.Widget.SetRenderShear
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   Shear                                                            (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector2D                   Shear                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UWidget::SetRenderShear(const struct FVector2D& Shear)
+void UWidget::SetRenderShear(struct FVector2D* Shear)
 {
 	static class UFunction* Func = nullptr;
 
@@ -303,7 +306,6 @@ void UWidget::SetRenderShear(const struct FVector2D& Shear)
 
 	Params::UWidget_SetRenderShear_Params Parms{};
 
-	Parms.Shear = Shear;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -312,6 +314,9 @@ void UWidget::SetRenderShear(const struct FVector2D& Shear)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Shear != nullptr)
+		*Shear = std::move(Parms.Shear);
 
 }
 
@@ -346,9 +351,9 @@ void UWidget::SetRenderScale(const struct FVector2D& Scale)
 // Function UMG.Widget.SetRenderOpacity
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InOpacity                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InOpacity                                                        (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UWidget::SetRenderOpacity(float InOpacity)
+void UWidget::SetRenderOpacity(float* InOpacity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -357,7 +362,6 @@ void UWidget::SetRenderOpacity(float InOpacity)
 
 	Params::UWidget_SetRenderOpacity_Params Parms{};
 
-	Parms.InOpacity = InOpacity;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -367,16 +371,19 @@ void UWidget::SetRenderOpacity(float InOpacity)
 
 	Func->FunctionFlags = Flgs;
 
+	if (InOpacity != nullptr)
+		*InOpacity = Parms.InOpacity;
+
 }
 
 
 // Function UMG.Widget.SetNavigationRuleExplicit
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EUINavigation           Direction                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// class UWidget*                     InWidget                                                         (Edit, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EUINavigation           Direction                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+// class UWidget*                     InWidget                                                         (ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-enum class EUINavigation UWidget::SetNavigationRuleExplicit(class UWidget* InWidget)
+void UWidget::SetNavigationRuleExplicit(enum class EUINavigation* Direction, class UWidget** InWidget)
 {
 	static class UFunction* Func = nullptr;
 
@@ -385,7 +392,6 @@ enum class EUINavigation UWidget::SetNavigationRuleExplicit(class UWidget* InWid
 
 	Params::UWidget_SetNavigationRuleExplicit_Params Parms{};
 
-	Parms.InWidget = InWidget;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -395,7 +401,11 @@ enum class EUINavigation UWidget::SetNavigationRuleExplicit(class UWidget* InWid
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Direction != nullptr)
+		*Direction = Parms.Direction;
+
+	if (InWidget != nullptr)
+		*InWidget = Parms.InWidget;
 
 }
 
@@ -403,10 +413,10 @@ enum class EUINavigation UWidget::SetNavigationRuleExplicit(class UWidget* InWid
 // Function UMG.Widget.SetNavigationRuleCustomBoundary
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EUINavigation           Direction                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// FDelegateProperty_                 InCustomDelegate                                                 (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EUINavigation           Direction                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+// FDelegateProperty_                 InCustomDelegate                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-enum class EUINavigation UWidget::SetNavigationRuleCustomBoundary(FDelegateProperty_ InCustomDelegate)
+void UWidget::SetNavigationRuleCustomBoundary(enum class EUINavigation* Direction, FDelegateProperty_* InCustomDelegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -415,7 +425,6 @@ enum class EUINavigation UWidget::SetNavigationRuleCustomBoundary(FDelegatePrope
 
 	Params::UWidget_SetNavigationRuleCustomBoundary_Params Parms{};
 
-	Parms.InCustomDelegate = InCustomDelegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -425,7 +434,11 @@ enum class EUINavigation UWidget::SetNavigationRuleCustomBoundary(FDelegatePrope
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Direction != nullptr)
+		*Direction = Parms.Direction;
+
+	if (InCustomDelegate != nullptr)
+		*InCustomDelegate = Parms.InCustomDelegate;
 
 }
 
@@ -433,10 +446,10 @@ enum class EUINavigation UWidget::SetNavigationRuleCustomBoundary(FDelegatePrope
 // Function UMG.Widget.SetNavigationRuleCustom
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EUINavigation           Direction                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// FDelegateProperty_                 InCustomDelegate                                                 (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EUINavigation           Direction                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+// FDelegateProperty_                 InCustomDelegate                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-enum class EUINavigation UWidget::SetNavigationRuleCustom(FDelegateProperty_ InCustomDelegate)
+void UWidget::SetNavigationRuleCustom(enum class EUINavigation* Direction, FDelegateProperty_* InCustomDelegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -445,7 +458,6 @@ enum class EUINavigation UWidget::SetNavigationRuleCustom(FDelegateProperty_ InC
 
 	Params::UWidget_SetNavigationRuleCustom_Params Parms{};
 
-	Parms.InCustomDelegate = InCustomDelegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -455,7 +467,11 @@ enum class EUINavigation UWidget::SetNavigationRuleCustom(FDelegateProperty_ InC
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Direction != nullptr)
+		*Direction = Parms.Direction;
+
+	if (InCustomDelegate != nullptr)
+		*InCustomDelegate = Parms.InCustomDelegate;
 
 }
 
@@ -463,10 +479,10 @@ enum class EUINavigation UWidget::SetNavigationRuleCustom(FDelegateProperty_ InC
 // Function UMG.Widget.SetNavigationRuleBase
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EUINavigation           Direction                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// enum class EUINavigationRule       Rule                                                             (ConstParm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EUINavigation           Direction                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+// enum class EUINavigationRule       Rule                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-enum class EUINavigation UWidget::SetNavigationRuleBase(enum class EUINavigationRule* Rule)
+void UWidget::SetNavigationRuleBase(enum class EUINavigation* Direction, enum class EUINavigationRule Rule)
 {
 	static class UFunction* Func = nullptr;
 
@@ -475,6 +491,7 @@ enum class EUINavigation UWidget::SetNavigationRuleBase(enum class EUINavigation
 
 	Params::UWidget_SetNavigationRuleBase_Params Parms{};
 
+	Parms.Rule = Rule;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -484,10 +501,8 @@ enum class EUINavigation UWidget::SetNavigationRuleBase(enum class EUINavigation
 
 	Func->FunctionFlags = Flgs;
 
-	if (Rule != nullptr)
-		*Rule = Parms.Rule;
-
-	return Parms.ReturnValue;
+	if (Direction != nullptr)
+		*Direction = Parms.Direction;
 
 }
 
@@ -495,11 +510,11 @@ enum class EUINavigation UWidget::SetNavigationRuleBase(enum class EUINavigation
 // Function UMG.Widget.SetNavigationRule
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EUINavigation           Direction                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// enum class EUINavigationRule       Rule                                                             (ConstParm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class FName                        WidgetToFocus                                                    (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EUINavigation           Direction                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+// enum class EUINavigationRule       Rule                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FName                        WidgetToFocus                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-enum class EUINavigation UWidget::SetNavigationRule(enum class EUINavigationRule* Rule, class FName WidgetToFocus)
+void UWidget::SetNavigationRule(enum class EUINavigation* Direction, enum class EUINavigationRule Rule, class FName WidgetToFocus)
 {
 	static class UFunction* Func = nullptr;
 
@@ -508,6 +523,7 @@ enum class EUINavigation UWidget::SetNavigationRule(enum class EUINavigationRule
 
 	Params::UWidget_SetNavigationRule_Params Parms{};
 
+	Parms.Rule = Rule;
 	Parms.WidgetToFocus = WidgetToFocus;
 
 	auto Flgs = Func->FunctionFlags;
@@ -518,10 +534,8 @@ enum class EUINavigation UWidget::SetNavigationRule(enum class EUINavigationRule
 
 	Func->FunctionFlags = Flgs;
 
-	if (Rule != nullptr)
-		*Rule = Parms.Rule;
-
-	return Parms.ReturnValue;
+	if (Direction != nullptr)
+		*Direction = Parms.Direction;
 
 }
 
@@ -553,7 +567,7 @@ void UWidget::SetKeyboardFocus()
 // Function UMG.Widget.SetIsEnabled
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInIsEnabled                                                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bInIsEnabled                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 void UWidget::SetIsEnabled(bool* bInIsEnabled)
 {
@@ -606,7 +620,7 @@ void UWidget::SetFocus()
 // Function UMG.Widget.SetCursor
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EMouseCursor            InCursor                                                         (BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EMouseCursor            InCursor                                                         (OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 void UWidget::SetCursor(enum class EMouseCursor* InCursor)
 {
@@ -635,9 +649,9 @@ void UWidget::SetCursor(enum class EMouseCursor* InCursor)
 // Function UMG.Widget.SetClipping
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EWidgetClipping         InClipping                                                       (ConstParm, ExportObject, Net, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EWidgetClipping         InClipping                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UWidget::SetClipping(enum class EWidgetClipping* InClipping)
+void UWidget::SetClipping(enum class EWidgetClipping InClipping)
 {
 	static class UFunction* Func = nullptr;
 
@@ -646,6 +660,7 @@ void UWidget::SetClipping(enum class EWidgetClipping* InClipping)
 
 	Params::UWidget_SetClipping_Params Parms{};
 
+	Parms.InClipping = InClipping;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -655,19 +670,16 @@ void UWidget::SetClipping(enum class EWidgetClipping* InClipping)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InClipping != nullptr)
-		*InClipping = Parms.InClipping;
-
 }
 
 
 // Function UMG.Widget.SetAllNavigationRules
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EUINavigationRule       Rule                                                             (ConstParm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class FName                        WidgetToFocus                                                    (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EUINavigationRule       Rule                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FName                        WidgetToFocus                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UWidget::SetAllNavigationRules(enum class EUINavigationRule* Rule, class FName WidgetToFocus)
+void UWidget::SetAllNavigationRules(enum class EUINavigationRule Rule, class FName WidgetToFocus)
 {
 	static class UFunction* Func = nullptr;
 
@@ -676,6 +688,7 @@ void UWidget::SetAllNavigationRules(enum class EUINavigationRule* Rule, class FN
 
 	Params::UWidget_SetAllNavigationRules_Params Parms{};
 
+	Parms.Rule = Rule;
 	Parms.WidgetToFocus = WidgetToFocus;
 
 	auto Flgs = Func->FunctionFlags;
@@ -685,9 +698,6 @@ void UWidget::SetAllNavigationRules(enum class EUINavigationRule* Rule, class FN
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Rule != nullptr)
-		*Rule = Parms.Rule;
 
 }
 
@@ -743,9 +753,9 @@ void UWidget::RemoveFromParent()
 // DelegateFunction UMG.Widget.OnReply__DelegateSignature
 // (Public, Delegate)
 // Parameters:
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::OnReply__DelegateSignature(struct FEventReply* ReturnValue)
+struct FEventReply UWidget::OnReply__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -757,8 +767,7 @@ void UWidget::OnReply__DelegateSignature(struct FEventReply* ReturnValue)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -766,11 +775,11 @@ void UWidget::OnReply__DelegateSignature(struct FEventReply* ReturnValue)
 // DelegateFunction UMG.Widget.OnPointerEvent__DelegateSignature
 // (Public, Delegate, HasOutParams)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               MouseEvent                                                       (ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               MouseEvent                                                       (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::OnPointerEvent__DelegateSignature(const struct FGeometry& MyGeometry, const struct FPointerEvent& MouseEvent, struct FEventReply* ReturnValue)
+struct FEventReply UWidget::OnPointerEvent__DelegateSignature(struct FGeometry* MyGeometry, struct FPointerEvent* MouseEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -779,13 +788,16 @@ void UWidget::OnPointerEvent__DelegateSignature(const struct FGeometry& MyGeomet
 
 	Params::UWidget_OnPointerEvent__DelegateSignature_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
-	Parms.MouseEvent = MouseEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
+
+	if (MouseEvent != nullptr)
+		*MouseEvent = std::move(Parms.MouseEvent);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -793,10 +805,10 @@ void UWidget::OnPointerEvent__DelegateSignature(const struct FGeometry& MyGeomet
 // Function UMG.Widget.K2_RemoveFieldValueChangedDelegate
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FFieldNotificationId        FieldId                                                          (ExportObject, BlueprintReadOnly, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFieldNotificationId        FieldId                                                          (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-FDelegateProperty_ UWidget::K2_RemoveFieldValueChangedDelegate(const struct FFieldNotificationId& FieldId)
+void UWidget::K2_RemoveFieldValueChangedDelegate(struct FFieldNotificationId* FieldId, FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -805,7 +817,7 @@ FDelegateProperty_ UWidget::K2_RemoveFieldValueChangedDelegate(const struct FFie
 
 	Params::UWidget_K2_RemoveFieldValueChangedDelegate_Params Parms{};
 
-	Parms.FieldId = FieldId;
+	Parms.Delegate = Delegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -815,7 +827,8 @@ FDelegateProperty_ UWidget::K2_RemoveFieldValueChangedDelegate(const struct FFie
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (FieldId != nullptr)
+		*FieldId = std::move(Parms.FieldId);
 
 }
 
@@ -823,9 +836,9 @@ FDelegateProperty_ UWidget::K2_RemoveFieldValueChangedDelegate(const struct FFie
 // Function UMG.Widget.K2_BroadcastFieldValueChanged
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// struct FFieldNotificationId        FieldId                                                          (ExportObject, BlueprintReadOnly, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FFieldNotificationId        FieldId                                                          (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UWidget::K2_BroadcastFieldValueChanged(const struct FFieldNotificationId& FieldId)
+void UWidget::K2_BroadcastFieldValueChanged(struct FFieldNotificationId* FieldId)
 {
 	static class UFunction* Func = nullptr;
 
@@ -834,7 +847,6 @@ void UWidget::K2_BroadcastFieldValueChanged(const struct FFieldNotificationId& F
 
 	Params::UWidget_K2_BroadcastFieldValueChanged_Params Parms{};
 
-	Parms.FieldId = FieldId;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -844,16 +856,19 @@ void UWidget::K2_BroadcastFieldValueChanged(const struct FFieldNotificationId& F
 
 	Func->FunctionFlags = Flgs;
 
+	if (FieldId != nullptr)
+		*FieldId = std::move(Parms.FieldId);
+
 }
 
 
 // Function UMG.Widget.K2_AddFieldValueChangedDelegate
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FFieldNotificationId        FieldId                                                          (ExportObject, BlueprintReadOnly, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFieldNotificationId        FieldId                                                          (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-FDelegateProperty_ UWidget::K2_AddFieldValueChangedDelegate(const struct FFieldNotificationId& FieldId)
+void UWidget::K2_AddFieldValueChangedDelegate(struct FFieldNotificationId* FieldId, FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -862,7 +877,7 @@ FDelegateProperty_ UWidget::K2_AddFieldValueChangedDelegate(const struct FFieldN
 
 	Params::UWidget_K2_AddFieldValueChangedDelegate_Params Parms{};
 
-	Parms.FieldId = FieldId;
+	Parms.Delegate = Delegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -872,7 +887,8 @@ FDelegateProperty_ UWidget::K2_AddFieldValueChangedDelegate(const struct FFieldN
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (FieldId != nullptr)
+		*FieldId = std::move(Parms.FieldId);
 
 }
 
@@ -880,9 +896,9 @@ FDelegateProperty_ UWidget::K2_AddFieldValueChangedDelegate(const struct FFieldN
 // Function UMG.Widget.IsVisible
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::IsVisible(bool* ReturnValue)
+bool UWidget::IsVisible()
 {
 	static class UFunction* Func = nullptr;
 
@@ -900,8 +916,7 @@ void UWidget::IsVisible(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -909,9 +924,9 @@ void UWidget::IsVisible(bool* ReturnValue)
 // Function UMG.Widget.IsRendered
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::IsRendered(bool* ReturnValue)
+bool UWidget::IsRendered()
 {
 	static class UFunction* Func = nullptr;
 
@@ -929,8 +944,7 @@ void UWidget::IsRendered(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -938,9 +952,9 @@ void UWidget::IsRendered(bool* ReturnValue)
 // Function UMG.Widget.IsInViewport
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::IsInViewport(bool* ReturnValue)
+bool UWidget::IsInViewport()
 {
 	static class UFunction* Func = nullptr;
 
@@ -958,8 +972,7 @@ void UWidget::IsInViewport(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -967,9 +980,9 @@ void UWidget::IsInViewport(bool* ReturnValue)
 // Function UMG.Widget.IsHovered
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::IsHovered(bool* ReturnValue)
+bool UWidget::IsHovered()
 {
 	static class UFunction* Func = nullptr;
 
@@ -987,8 +1000,7 @@ void UWidget::IsHovered(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1021,9 +1033,9 @@ void UWidget::InvalidateLayoutAndVolatility()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // class APlayerController*           PlayerController                                                 (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::HasUserFocusedDescendants(class APlayerController** PlayerController, bool* ReturnValue)
+bool UWidget::HasUserFocusedDescendants(class APlayerController** PlayerController)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1044,8 +1056,7 @@ void UWidget::HasUserFocusedDescendants(class APlayerController** PlayerControll
 	if (PlayerController != nullptr)
 		*PlayerController = Parms.PlayerController;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1054,9 +1065,9 @@ void UWidget::HasUserFocusedDescendants(class APlayerController** PlayerControll
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // class APlayerController*           PlayerController                                                 (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::HasUserFocus(class APlayerController** PlayerController, bool* ReturnValue)
+bool UWidget::HasUserFocus(class APlayerController** PlayerController)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1077,8 +1088,7 @@ void UWidget::HasUserFocus(class APlayerController** PlayerController, bool* Ret
 	if (PlayerController != nullptr)
 		*PlayerController = Parms.PlayerController;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1086,11 +1096,11 @@ void UWidget::HasUserFocus(class APlayerController** PlayerController, bool* Ret
 // Function UMG.Widget.HasMouseCaptureByUser
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              UserIndex                                                        (Edit, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              PointerIndex                                                     (ConstParm, ExportObject, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              UserIndex                                                        (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              PointerIndex                                                     (BlueprintVisible, ExportObject, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::HasMouseCaptureByUser(int32 UserIndex, int32 PointerIndex, bool* ReturnValue)
+bool UWidget::HasMouseCaptureByUser(int32* UserIndex, int32* PointerIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1099,8 +1109,6 @@ void UWidget::HasMouseCaptureByUser(int32 UserIndex, int32 PointerIndex, bool* R
 
 	Params::UWidget_HasMouseCaptureByUser_Params Parms{};
 
-	Parms.UserIndex = UserIndex;
-	Parms.PointerIndex = PointerIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1110,8 +1118,13 @@ void UWidget::HasMouseCaptureByUser(int32 UserIndex, int32 PointerIndex, bool* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (UserIndex != nullptr)
+		*UserIndex = Parms.UserIndex;
+
+	if (PointerIndex != nullptr)
+		*PointerIndex = Parms.PointerIndex;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -1119,9 +1132,9 @@ void UWidget::HasMouseCaptureByUser(int32 UserIndex, int32 PointerIndex, bool* R
 // Function UMG.Widget.HasMouseCapture
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::HasMouseCapture(bool* ReturnValue)
+bool UWidget::HasMouseCapture()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1139,8 +1152,7 @@ void UWidget::HasMouseCapture(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1148,9 +1160,9 @@ void UWidget::HasMouseCapture(bool* ReturnValue)
 // Function UMG.Widget.HasKeyboardFocus
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::HasKeyboardFocus(bool* ReturnValue)
+bool UWidget::HasKeyboardFocus()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1168,8 +1180,7 @@ void UWidget::HasKeyboardFocus(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1177,9 +1188,9 @@ void UWidget::HasKeyboardFocus(bool* ReturnValue)
 // Function UMG.Widget.HasFocusedDescendants
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::HasFocusedDescendants(bool* ReturnValue)
+bool UWidget::HasFocusedDescendants()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1197,8 +1208,7 @@ void UWidget::HasFocusedDescendants(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1206,9 +1216,9 @@ void UWidget::HasFocusedDescendants(bool* ReturnValue)
 // Function UMG.Widget.HasAnyUserFocus
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::HasAnyUserFocus(bool* ReturnValue)
+bool UWidget::HasAnyUserFocus()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1226,8 +1236,7 @@ void UWidget::HasAnyUserFocus(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1235,9 +1244,9 @@ void UWidget::HasAnyUserFocus(bool* ReturnValue)
 // DelegateFunction UMG.Widget.GetWidget__DelegateSignature
 // (Public, Delegate)
 // Parameters:
-// class UWidget*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetWidget__DelegateSignature(class UWidget** ReturnValue)
+class UWidget* UWidget::GetWidget__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1249,8 +1258,7 @@ void UWidget::GetWidget__DelegateSignature(class UWidget** ReturnValue)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1258,9 +1266,9 @@ void UWidget::GetWidget__DelegateSignature(class UWidget** ReturnValue)
 // Function UMG.Widget.GetVisibility
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class ESlateVisibility        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ESlateVisibility        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetVisibility(enum class ESlateVisibility* ReturnValue)
+enum class ESlateVisibility UWidget::GetVisibility()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1278,8 +1286,7 @@ void UWidget::GetVisibility(enum class ESlateVisibility* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1287,9 +1294,9 @@ void UWidget::GetVisibility(enum class ESlateVisibility* ReturnValue)
 // Function UMG.Widget.GetTickSpaceGeometry
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FGeometry                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetTickSpaceGeometry(struct FGeometry* ReturnValue)
+struct FGeometry UWidget::GetTickSpaceGeometry()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1307,8 +1314,7 @@ void UWidget::GetTickSpaceGeometry(struct FGeometry* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1316,9 +1322,9 @@ void UWidget::GetTickSpaceGeometry(struct FGeometry* ReturnValue)
 // DelegateFunction UMG.Widget.GetText__DelegateSignature
 // (Public, Delegate)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetText__DelegateSignature(class FText* ReturnValue)
+class FText UWidget::GetText__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1330,8 +1336,7 @@ void UWidget::GetText__DelegateSignature(class FText* ReturnValue)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1339,9 +1344,9 @@ void UWidget::GetText__DelegateSignature(class FText* ReturnValue)
 // DelegateFunction UMG.Widget.GetSlateVisibility__DelegateSignature
 // (Public, Delegate)
 // Parameters:
-// enum class ESlateVisibility        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ESlateVisibility        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetSlateVisibility__DelegateSignature(enum class ESlateVisibility* ReturnValue)
+enum class ESlateVisibility UWidget::GetSlateVisibility__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1353,8 +1358,7 @@ void UWidget::GetSlateVisibility__DelegateSignature(enum class ESlateVisibility*
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1362,9 +1366,9 @@ void UWidget::GetSlateVisibility__DelegateSignature(enum class ESlateVisibility*
 // DelegateFunction UMG.Widget.GetSlateColor__DelegateSignature
 // (Public, Delegate)
 // Parameters:
-// struct FSlateColor                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSlateColor                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetSlateColor__DelegateSignature(struct FSlateColor* ReturnValue)
+struct FSlateColor UWidget::GetSlateColor__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1376,8 +1380,7 @@ void UWidget::GetSlateColor__DelegateSignature(struct FSlateColor* ReturnValue)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1385,9 +1388,9 @@ void UWidget::GetSlateColor__DelegateSignature(struct FSlateColor* ReturnValue)
 // DelegateFunction UMG.Widget.GetSlateBrush__DelegateSignature
 // (Public, Delegate)
 // Parameters:
-// struct FSlateBrush                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSlateBrush                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetSlateBrush__DelegateSignature(struct FSlateBrush* ReturnValue)
+struct FSlateBrush UWidget::GetSlateBrush__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1399,8 +1402,7 @@ void UWidget::GetSlateBrush__DelegateSignature(struct FSlateBrush* ReturnValue)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1408,9 +1410,9 @@ void UWidget::GetSlateBrush__DelegateSignature(struct FSlateBrush* ReturnValue)
 // Function UMG.Widget.GetRenderTransformAngle
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetRenderTransformAngle(float* ReturnValue)
+float UWidget::GetRenderTransformAngle()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1428,8 +1430,7 @@ void UWidget::GetRenderTransformAngle(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1437,9 +1438,9 @@ void UWidget::GetRenderTransformAngle(float* ReturnValue)
 // Function UMG.Widget.GetRenderOpacity
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetRenderOpacity(float* ReturnValue)
+float UWidget::GetRenderOpacity()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1457,8 +1458,7 @@ void UWidget::GetRenderOpacity(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1466,9 +1466,9 @@ void UWidget::GetRenderOpacity(float* ReturnValue)
 // Function UMG.Widget.GetParent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPanelWidget*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPanelWidget*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetParent(class UPanelWidget** ReturnValue)
+class UPanelWidget* UWidget::GetParent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1486,8 +1486,7 @@ void UWidget::GetParent(class UPanelWidget** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1495,9 +1494,9 @@ void UWidget::GetParent(class UPanelWidget** ReturnValue)
 // Function UMG.Widget.GetPaintSpaceGeometry
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FGeometry                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetPaintSpaceGeometry(struct FGeometry* ReturnValue)
+struct FGeometry UWidget::GetPaintSpaceGeometry()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1515,8 +1514,7 @@ void UWidget::GetPaintSpaceGeometry(struct FGeometry* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1524,9 +1522,9 @@ void UWidget::GetPaintSpaceGeometry(struct FGeometry* ReturnValue)
 // Function UMG.Widget.GetOwningPlayer
 // (BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class APlayerController*           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APlayerController*           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetOwningPlayer(class APlayerController** ReturnValue)
+class APlayerController* UWidget::GetOwningPlayer()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1544,8 +1542,7 @@ void UWidget::GetOwningPlayer(class APlayerController** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1553,9 +1550,9 @@ void UWidget::GetOwningPlayer(class APlayerController** ReturnValue)
 // Function UMG.Widget.GetOwningLocalPlayer
 // (BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class ULocalPlayer*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class ULocalPlayer*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetOwningLocalPlayer(class ULocalPlayer** ReturnValue)
+class ULocalPlayer* UWidget::GetOwningLocalPlayer()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1573,8 +1570,7 @@ void UWidget::GetOwningLocalPlayer(class ULocalPlayer** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1582,9 +1578,9 @@ void UWidget::GetOwningLocalPlayer(class ULocalPlayer** ReturnValue)
 // DelegateFunction UMG.Widget.GetMouseCursor__DelegateSignature
 // (Public, Delegate)
 // Parameters:
-// enum class EMouseCursor            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EMouseCursor            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetMouseCursor__DelegateSignature(enum class EMouseCursor* ReturnValue)
+enum class EMouseCursor UWidget::GetMouseCursor__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1596,8 +1592,7 @@ void UWidget::GetMouseCursor__DelegateSignature(enum class EMouseCursor* ReturnV
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1605,9 +1600,9 @@ void UWidget::GetMouseCursor__DelegateSignature(enum class EMouseCursor* ReturnV
 // DelegateFunction UMG.Widget.GetLinearColor__DelegateSignature
 // (Public, Delegate, HasDefaults)
 // Parameters:
-// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetLinearColor__DelegateSignature(struct FLinearColor* ReturnValue)
+struct FLinearColor UWidget::GetLinearColor__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1619,8 +1614,7 @@ void UWidget::GetLinearColor__DelegateSignature(struct FLinearColor* ReturnValue
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1628,9 +1622,9 @@ void UWidget::GetLinearColor__DelegateSignature(struct FLinearColor* ReturnValue
 // Function UMG.Widget.GetIsThisAndParentsEnabled
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetIsThisAndParentsEnabled(bool* ReturnValue)
+bool UWidget::GetIsThisAndParentsEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1648,8 +1642,7 @@ void UWidget::GetIsThisAndParentsEnabled(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1657,9 +1650,9 @@ void UWidget::GetIsThisAndParentsEnabled(bool* ReturnValue)
 // Function UMG.Widget.GetIsEnabled
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetIsEnabled(bool* ReturnValue)
+bool UWidget::GetIsEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1677,8 +1670,7 @@ void UWidget::GetIsEnabled(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1686,9 +1678,9 @@ void UWidget::GetIsEnabled(bool* ReturnValue)
 // DelegateFunction UMG.Widget.GetInt32__DelegateSignature
 // (Public, Delegate)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetInt32__DelegateSignature(int32* ReturnValue)
+int32 UWidget::GetInt32__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1700,8 +1692,7 @@ void UWidget::GetInt32__DelegateSignature(int32* ReturnValue)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1709,9 +1700,9 @@ void UWidget::GetInt32__DelegateSignature(int32* ReturnValue)
 // Function UMG.Widget.GetGameInstance
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UGameInstance*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UGameInstance*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetGameInstance(class UGameInstance** ReturnValue)
+class UGameInstance* UWidget::GetGameInstance()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1729,8 +1720,7 @@ void UWidget::GetGameInstance(class UGameInstance** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1738,9 +1728,9 @@ void UWidget::GetGameInstance(class UGameInstance** ReturnValue)
 // DelegateFunction UMG.Widget.GetFloat__DelegateSignature
 // (Public, Delegate)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetFloat__DelegateSignature(float* ReturnValue)
+float UWidget::GetFloat__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1752,8 +1742,7 @@ void UWidget::GetFloat__DelegateSignature(float* ReturnValue)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1761,9 +1750,9 @@ void UWidget::GetFloat__DelegateSignature(float* ReturnValue)
 // Function UMG.Widget.GetDesiredSize
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetDesiredSize(struct FVector2D* ReturnValue)
+struct FVector2D UWidget::GetDesiredSize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1781,8 +1770,7 @@ void UWidget::GetDesiredSize(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1790,9 +1778,9 @@ void UWidget::GetDesiredSize(struct FVector2D* ReturnValue)
 // Function UMG.Widget.GetClipping
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EWidgetClipping         ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EWidgetClipping         ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetClipping(enum class EWidgetClipping* ReturnValue)
+enum class EWidgetClipping UWidget::GetClipping()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1810,8 +1798,7 @@ void UWidget::GetClipping(enum class EWidgetClipping* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1819,9 +1806,9 @@ void UWidget::GetClipping(enum class EWidgetClipping* ReturnValue)
 // DelegateFunction UMG.Widget.GetCheckBoxState__DelegateSignature
 // (Public, Delegate)
 // Parameters:
-// enum class ECheckBoxState          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ECheckBoxState          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetCheckBoxState__DelegateSignature(enum class ECheckBoxState* ReturnValue)
+enum class ECheckBoxState UWidget::GetCheckBoxState__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1833,8 +1820,7 @@ void UWidget::GetCheckBoxState__DelegateSignature(enum class ECheckBoxState* Ret
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1842,9 +1828,9 @@ void UWidget::GetCheckBoxState__DelegateSignature(enum class ECheckBoxState* Ret
 // Function UMG.Widget.GetCachedGeometry
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FGeometry                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetCachedGeometry(struct FGeometry* ReturnValue)
+struct FGeometry UWidget::GetCachedGeometry()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1862,8 +1848,7 @@ void UWidget::GetCachedGeometry(struct FGeometry* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1871,9 +1856,9 @@ void UWidget::GetCachedGeometry(struct FGeometry* ReturnValue)
 // DelegateFunction UMG.Widget.GetBool__DelegateSignature
 // (Public, Delegate)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetBool__DelegateSignature(bool* ReturnValue)
+bool UWidget::GetBool__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1885,8 +1870,7 @@ void UWidget::GetBool__DelegateSignature(bool* ReturnValue)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1894,9 +1878,9 @@ void UWidget::GetBool__DelegateSignature(bool* ReturnValue)
 // Function UMG.Widget.GetAccessibleText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetAccessibleText(class FText* ReturnValue)
+class FText UWidget::GetAccessibleText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1914,8 +1898,7 @@ void UWidget::GetAccessibleText(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1923,9 +1906,9 @@ void UWidget::GetAccessibleText(class FText* ReturnValue)
 // Function UMG.Widget.GetAccessibleSummaryText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidget::GetAccessibleSummaryText(class FText* ReturnValue)
+class FText UWidget::GetAccessibleSummaryText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1943,8 +1926,7 @@ void UWidget::GetAccessibleSummaryText(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1953,9 +1935,9 @@ void UWidget::GetAccessibleSummaryText(class FText* ReturnValue)
 // (Public, Delegate)
 // Parameters:
 // class FString                      Item                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config)
-// class UWidget*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UWidget::GenerateWidgetForString__DelegateSignature(class UWidget** ReturnValue)
+class UWidget* UWidget::GenerateWidgetForString__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1967,9 +1949,6 @@ class FString UWidget::GenerateWidgetForString__DelegateSignature(class UWidget*
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -1979,9 +1958,9 @@ class FString UWidget::GenerateWidgetForString__DelegateSignature(class UWidget*
 // (Public, Delegate)
 // Parameters:
 // class UObject*                     Item                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config)
-// class UWidget*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UWidget::GenerateWidgetForObject__DelegateSignature(class UWidget** ReturnValue)
+class UWidget* UWidget::GenerateWidgetForObject__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1993,9 +1972,6 @@ class UObject* UWidget::GenerateWidgetForObject__DelegateSignature(class UWidget
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -2004,9 +1980,9 @@ class UObject* UWidget::GenerateWidgetForObject__DelegateSignature(class UWidget
 // Function UMG.Widget.ForceVolatile
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bForce                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bForce                                                           (Edit, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UWidget::ForceVolatile(bool bForce)
+void UWidget::ForceVolatile(bool* bForce)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2015,7 +1991,6 @@ void UWidget::ForceVolatile(bool bForce)
 
 	Params::UWidget_ForceVolatile_Params Parms{};
 
-	Parms.bForce = bForce;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2024,6 +1999,9 @@ void UWidget::ForceVolatile(bool bForce)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (bForce != nullptr)
+		*bForce = Parms.bForce;
 
 }
 
@@ -2108,9 +2086,9 @@ void UUserWidget::UnregisterInputComponent()
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class UWidgetAnimation*            Animation                                                        (Edit, Net, EditFixedSize, Config, EditConst)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-FDelegateProperty_ UUserWidget::UnbindFromAnimationStarted(class UWidgetAnimation* Animation)
+void UUserWidget::UnbindFromAnimationStarted(class UWidgetAnimation* Animation, FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2120,6 +2098,7 @@ FDelegateProperty_ UUserWidget::UnbindFromAnimationStarted(class UWidgetAnimatio
 	Params::UUserWidget_UnbindFromAnimationStarted_Params Parms{};
 
 	Parms.Animation = Animation;
+	Parms.Delegate = Delegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2129,8 +2108,6 @@ FDelegateProperty_ UUserWidget::UnbindFromAnimationStarted(class UWidgetAnimatio
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -2138,9 +2115,9 @@ FDelegateProperty_ UUserWidget::UnbindFromAnimationStarted(class UWidgetAnimatio
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class UWidgetAnimation*            Animation                                                        (Edit, Net, EditFixedSize, Config, EditConst)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-FDelegateProperty_ UUserWidget::UnbindFromAnimationFinished(class UWidgetAnimation* Animation)
+void UUserWidget::UnbindFromAnimationFinished(class UWidgetAnimation* Animation, FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2150,6 +2127,7 @@ FDelegateProperty_ UUserWidget::UnbindFromAnimationFinished(class UWidgetAnimati
 	Params::UUserWidget_UnbindFromAnimationFinished_Params Parms{};
 
 	Parms.Animation = Animation;
+	Parms.Delegate = Delegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2158,8 +2136,6 @@ FDelegateProperty_ UUserWidget::UnbindFromAnimationFinished(class UWidgetAnimati
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -2221,10 +2197,10 @@ void UUserWidget::UnbindAllFromAnimationFinished(class UWidgetAnimation* Animati
 // Function UMG.UserWidget.Tick
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              InDeltaTime                                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InDeltaTime                                                      (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
-float UUserWidget::Tick(const struct FGeometry& MyGeometry)
+float UUserWidget::Tick(struct FGeometry* MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2233,9 +2209,11 @@ float UUserWidget::Tick(const struct FGeometry& MyGeometry)
 
 	Params::UUserWidget_Tick_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -2245,10 +2223,10 @@ float UUserWidget::Tick(const struct FGeometry& MyGeometry)
 // Function UMG.UserWidget.StopListeningForInputAction
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// class FName                        ActionName                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class EInputEvent             EventType                                                        (ConstParm, BlueprintVisible, Net, EditFixedSize, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ActionName                                                       (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EInputEvent             EventType                                                        (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UUserWidget::StopListeningForInputAction(enum class EInputEvent EventType)
+void UUserWidget::StopListeningForInputAction(class FName* ActionName, enum class EInputEvent* EventType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2257,7 +2235,6 @@ class FName UUserWidget::StopListeningForInputAction(enum class EInputEvent Even
 
 	Params::UUserWidget_StopListeningForInputAction_Params Parms{};
 
-	Parms.EventType = EventType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2267,7 +2244,11 @@ class FName UUserWidget::StopListeningForInputAction(enum class EInputEvent Even
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ActionName != nullptr)
+		*ActionName = Parms.ActionName;
+
+	if (EventType != nullptr)
+		*EventType = Parms.EventType;
 
 }
 
@@ -2323,9 +2304,9 @@ void UUserWidget::StopAnimationsAndLatentActions()
 // Function UMG.UserWidget.StopAnimation
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UUserWidget::StopAnimation(class UWidgetAnimation** InAnimation)
+class UWidgetAnimation* UUserWidget::StopAnimation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2343,8 +2324,7 @@ void UUserWidget::StopAnimation(class UWidgetAnimation** InAnimation)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
+	return Parms.ReturnValue;
 
 }
 
@@ -2377,9 +2357,9 @@ void UUserWidget::StopAllAnimations()
 // (Final, BlueprintCosmetic, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
 // struct FVector2D                   Position                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
-// bool                               bRemoveDPIScale                                                  (BlueprintVisible, ExportObject, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bRemoveDPIScale                                                  (BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UUserWidget::SetPositionInViewport(const struct FVector2D& Position)
+void UUserWidget::SetPositionInViewport(const struct FVector2D& Position, bool* bRemoveDPIScale)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2398,7 +2378,8 @@ bool UUserWidget::SetPositionInViewport(const struct FVector2D& Position)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bRemoveDPIScale != nullptr)
+		*bRemoveDPIScale = Parms.bRemoveDPIScale;
 
 }
 
@@ -2406,10 +2387,10 @@ bool UUserWidget::SetPositionInViewport(const struct FVector2D& Position)
 // Function UMG.UserWidget.SetPlaybackSpeed
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              PlaybackSpeed                                                    (BlueprintVisible, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              PlaybackSpeed                                                    (BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-float UUserWidget::SetPlaybackSpeed(class UWidgetAnimation** InAnimation)
+class UWidgetAnimation* UUserWidget::SetPlaybackSpeed(float PlaybackSpeed)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2418,6 +2399,7 @@ float UUserWidget::SetPlaybackSpeed(class UWidgetAnimation** InAnimation)
 
 	Params::UUserWidget_SetPlaybackSpeed_Params Parms{};
 
+	Parms.PlaybackSpeed = PlaybackSpeed;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2427,9 +2409,6 @@ float UUserWidget::SetPlaybackSpeed(class UWidgetAnimation** InAnimation)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
-
 	return Parms.ReturnValue;
 
 }
@@ -2438,9 +2417,9 @@ float UUserWidget::SetPlaybackSpeed(class UWidgetAnimation** InAnimation)
 // Function UMG.UserWidget.SetPadding
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UUserWidget::SetPadding()
+void UUserWidget::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2458,7 +2437,8 @@ struct FMargin UUserWidget::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -2466,9 +2446,9 @@ struct FMargin UUserWidget::SetPadding()
 // Function UMG.UserWidget.SetOwningPlayer
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class APlayerController*           LocalPlayerController                                            (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class APlayerController*           LocalPlayerController                                            (ConstParm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class APlayerController* UUserWidget::SetOwningPlayer()
+void UUserWidget::SetOwningPlayer(class APlayerController** LocalPlayerController)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2486,7 +2466,8 @@ class APlayerController* UUserWidget::SetOwningPlayer()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (LocalPlayerController != nullptr)
+		*LocalPlayerController = Parms.LocalPlayerController;
 
 }
 
@@ -2494,10 +2475,10 @@ class APlayerController* UUserWidget::SetOwningPlayer()
 // Function UMG.UserWidget.SetNumLoopsToPlay
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              NumLoopsToPlay                                                   (ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              NumLoopsToPlay                                                   (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-int32 UUserWidget::SetNumLoopsToPlay(class UWidgetAnimation** InAnimation)
+class UWidgetAnimation* UUserWidget::SetNumLoopsToPlay(int32 NumLoopsToPlay)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2506,6 +2487,7 @@ int32 UUserWidget::SetNumLoopsToPlay(class UWidgetAnimation** InAnimation)
 
 	Params::UUserWidget_SetNumLoopsToPlay_Params Parms{};
 
+	Parms.NumLoopsToPlay = NumLoopsToPlay;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2514,9 +2496,6 @@ int32 UUserWidget::SetNumLoopsToPlay(class UWidgetAnimation** InAnimation)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
 
 	return Parms.ReturnValue;
 
@@ -2526,9 +2505,9 @@ int32 UUserWidget::SetNumLoopsToPlay(class UWidgetAnimation** InAnimation)
 // Function UMG.UserWidget.SetInputActionPriority
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// int32                              NewPriority                                                      (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              NewPriority                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-int32 UUserWidget::SetInputActionPriority()
+void UUserWidget::SetInputActionPriority(int32 NewPriority)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2537,6 +2516,7 @@ int32 UUserWidget::SetInputActionPriority()
 
 	Params::UUserWidget_SetInputActionPriority_Params Parms{};
 
+	Parms.NewPriority = NewPriority;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2546,17 +2526,15 @@ int32 UUserWidget::SetInputActionPriority()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.UserWidget.SetInputActionBlocking
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// bool                               bShouldBlock                                                     (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bShouldBlock                                                     (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UUserWidget::SetInputActionBlocking()
+void UUserWidget::SetInputActionBlocking(bool bShouldBlock)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2565,6 +2543,7 @@ bool UUserWidget::SetInputActionBlocking()
 
 	Params::UUserWidget_SetInputActionBlocking_Params Parms{};
 
+	Parms.bShouldBlock = bShouldBlock;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2574,17 +2553,15 @@ bool UUserWidget::SetInputActionBlocking()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.UserWidget.SetForegroundColor
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FSlateColor                 InForegroundColor                                                (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FSlateColor                 InForegroundColor                                                (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UUserWidget::SetForegroundColor(struct FSlateColor* InForegroundColor)
+struct FSlateColor UUserWidget::SetForegroundColor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2602,8 +2579,7 @@ void UUserWidget::SetForegroundColor(struct FSlateColor* InForegroundColor)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InForegroundColor != nullptr)
-		*InForegroundColor = std::move(Parms.InForegroundColor);
+	return Parms.ReturnValue;
 
 }
 
@@ -2639,9 +2615,9 @@ struct FVector2D UUserWidget::SetDesiredSizeInViewport()
 // Function UMG.UserWidget.SetColorAndOpacity
 // (Final, BlueprintCosmetic, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InColorAndOpacity                                                (ConstParm, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InColorAndOpacity                                                (ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FLinearColor UUserWidget::SetColorAndOpacity()
+void UUserWidget::SetColorAndOpacity(const struct FLinearColor& InColorAndOpacity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2650,6 +2626,7 @@ struct FLinearColor UUserWidget::SetColorAndOpacity()
 
 	Params::UUserWidget_SetColorAndOpacity_Params Parms{};
 
+	Parms.InColorAndOpacity = InColorAndOpacity;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2659,18 +2636,16 @@ struct FLinearColor UUserWidget::SetColorAndOpacity()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.UserWidget.SetAnimationCurrentTime
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              InTime                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InTime                                                           (Edit, ExportObject, Net, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UUserWidget::SetAnimationCurrentTime(class UWidgetAnimation** InAnimation)
+class UWidgetAnimation* UUserWidget::SetAnimationCurrentTime(float InTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2679,6 +2654,7 @@ float UUserWidget::SetAnimationCurrentTime(class UWidgetAnimation** InAnimation)
 
 	Params::UUserWidget_SetAnimationCurrentTime_Params Parms{};
 
+	Parms.InTime = InTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2687,9 +2663,6 @@ float UUserWidget::SetAnimationCurrentTime(class UWidgetAnimation** InAnimation)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
 
 	return Parms.ReturnValue;
 
@@ -2727,9 +2700,9 @@ struct FAnchors UUserWidget::SetAnchorsInViewport()
 // Function UMG.UserWidget.SetAlignmentInViewport
 // (Final, BlueprintCosmetic, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   Alignment                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector2D                   Alignment                                                        (BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FVector2D UUserWidget::SetAlignmentInViewport()
+void UUserWidget::SetAlignmentInViewport(const struct FVector2D& Alignment)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2738,6 +2711,7 @@ struct FVector2D UUserWidget::SetAlignmentInViewport()
 
 	Params::UUserWidget_SetAlignmentInViewport_Params Parms{};
 
+	Parms.Alignment = Alignment;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2747,17 +2721,15 @@ struct FVector2D UUserWidget::SetAlignmentInViewport()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.UserWidget.ReverseAnimation
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UUserWidget::ReverseAnimation(class UWidgetAnimation** InAnimation)
+class UWidgetAnimation* UUserWidget::ReverseAnimation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2775,8 +2747,7 @@ void UUserWidget::ReverseAnimation(class UWidgetAnimation** InAnimation)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
+	return Parms.ReturnValue;
 
 }
 
@@ -2808,9 +2779,9 @@ void UUserWidget::RemoveFromViewport()
 // Function UMG.UserWidget.RemoveExtensions
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InExtensionType                                                  (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UClass*                      InExtensionType                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UUserWidget::RemoveExtensions(class UClass** InExtensionType)
+class UClass* UUserWidget::RemoveExtensions()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2828,8 +2799,7 @@ void UUserWidget::RemoveExtensions(class UClass** InExtensionType)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InExtensionType != nullptr)
-		*InExtensionType = Parms.InExtensionType;
+	return Parms.ReturnValue;
 
 }
 
@@ -2837,9 +2807,9 @@ void UUserWidget::RemoveExtensions(class UClass** InExtensionType)
 // Function UMG.UserWidget.RemoveExtension
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UUserWidgetExtension*        InExtension                                                      (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UUserWidgetExtension*        InExtension                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class UUserWidgetExtension* UUserWidget::RemoveExtension()
+void UUserWidget::RemoveExtension(class UUserWidgetExtension* InExtension)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2848,6 +2818,7 @@ class UUserWidgetExtension* UUserWidget::RemoveExtension()
 
 	Params::UUserWidget_RemoveExtension_Params Parms{};
 
+	Parms.InExtension = InExtension;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2856,8 +2827,6 @@ class UUserWidgetExtension* UUserWidget::RemoveExtension()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -2889,9 +2858,9 @@ void UUserWidget::RegisterInputComponent()
 // Function UMG.UserWidget.PreConstruct
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               IsDesignTime                                                     (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               IsDesignTime                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UUserWidget::PreConstruct()
+void UUserWidget::PreConstruct(bool IsDesignTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2900,10 +2869,9 @@ bool UUserWidget::PreConstruct()
 
 	Params::UUserWidget_PreConstruct_Params Parms{};
 
+	Parms.IsDesignTime = IsDesignTime;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -2911,9 +2879,9 @@ bool UUserWidget::PreConstruct()
 // Function UMG.UserWidget.PlaySound
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundBase*                  SoundToPlay                                                      (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class USoundBase*                  SoundToPlay                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class USoundBase* UUserWidget::PlaySound()
+void UUserWidget::PlaySound(class USoundBase* SoundToPlay)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2922,6 +2890,7 @@ class USoundBase* UUserWidget::PlaySound()
 
 	Params::UUserWidget_PlaySound_Params Parms{};
 
+	Parms.SoundToPlay = SoundToPlay;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2931,24 +2900,22 @@ class USoundBase* UUserWidget::PlaySound()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.UserWidget.PlayAnimationTimeRange
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              StartAtTime                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              EndAtTime                                                        (Edit, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              NumLoopsToPlay                                                   (ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// enum class EUMGSequencePlayMode    PlayMode                                                         (BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              PlaybackSpeed                                                    (BlueprintVisible, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bRestoreState                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UUMGSequencePlayer*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              StartAtTime                                                      (ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              EndAtTime                                                        (Edit, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              NumLoopsToPlay                                                   (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EUMGSequencePlayMode    PlayMode                                                         (BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              PlaybackSpeed                                                    (BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bRestoreState                                                    (BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UUMGSequencePlayer*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UUserWidget::PlayAnimationTimeRange(class UWidgetAnimation** InAnimation, class UUMGSequencePlayer** ReturnValue)
+class UUMGSequencePlayer* UUserWidget::PlayAnimationTimeRange(float StartAtTime, float EndAtTime, int32 NumLoopsToPlay, enum class EUMGSequencePlayMode PlayMode, float PlaybackSpeed, bool bRestoreState)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2957,6 +2924,12 @@ bool UUserWidget::PlayAnimationTimeRange(class UWidgetAnimation** InAnimation, c
 
 	Params::UUserWidget_PlayAnimationTimeRange_Params Parms{};
 
+	Parms.StartAtTime = StartAtTime;
+	Parms.EndAtTime = EndAtTime;
+	Parms.NumLoopsToPlay = NumLoopsToPlay;
+	Parms.PlayMode = PlayMode;
+	Parms.PlaybackSpeed = PlaybackSpeed;
+	Parms.bRestoreState = bRestoreState;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2965,12 +2938,6 @@ bool UUserWidget::PlayAnimationTimeRange(class UWidgetAnimation** InAnimation, c
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -2980,12 +2947,12 @@ bool UUserWidget::PlayAnimationTimeRange(class UWidgetAnimation** InAnimation, c
 // Function UMG.UserWidget.PlayAnimationReverse
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              PlaybackSpeed                                                    (BlueprintVisible, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bRestoreState                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UUMGSequencePlayer*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              PlaybackSpeed                                                    (BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bRestoreState                                                    (BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UUMGSequencePlayer*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UUserWidget::PlayAnimationReverse(class UWidgetAnimation** InAnimation, class UUMGSequencePlayer** ReturnValue)
+class UUMGSequencePlayer* UUserWidget::PlayAnimationReverse(float PlaybackSpeed, bool bRestoreState)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2994,6 +2961,8 @@ bool UUserWidget::PlayAnimationReverse(class UWidgetAnimation** InAnimation, cla
 
 	Params::UUserWidget_PlayAnimationReverse_Params Parms{};
 
+	Parms.PlaybackSpeed = PlaybackSpeed;
+	Parms.bRestoreState = bRestoreState;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3002,12 +2971,6 @@ bool UUserWidget::PlayAnimationReverse(class UWidgetAnimation** InAnimation, cla
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3017,12 +2980,12 @@ bool UUserWidget::PlayAnimationReverse(class UWidgetAnimation** InAnimation, cla
 // Function UMG.UserWidget.PlayAnimationForward
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              PlaybackSpeed                                                    (BlueprintVisible, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bRestoreState                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UUMGSequencePlayer*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              PlaybackSpeed                                                    (BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bRestoreState                                                    (BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UUMGSequencePlayer*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UUserWidget::PlayAnimationForward(class UWidgetAnimation** InAnimation, class UUMGSequencePlayer** ReturnValue)
+class UUMGSequencePlayer* UUserWidget::PlayAnimationForward(float PlaybackSpeed, bool bRestoreState)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3031,6 +2994,8 @@ bool UUserWidget::PlayAnimationForward(class UWidgetAnimation** InAnimation, cla
 
 	Params::UUserWidget_PlayAnimationForward_Params Parms{};
 
+	Parms.PlaybackSpeed = PlaybackSpeed;
+	Parms.bRestoreState = bRestoreState;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3039,12 +3004,6 @@ bool UUserWidget::PlayAnimationForward(class UWidgetAnimation** InAnimation, cla
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3054,15 +3013,15 @@ bool UUserWidget::PlayAnimationForward(class UWidgetAnimation** InAnimation, cla
 // Function UMG.UserWidget.PlayAnimation
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              StartAtTime                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              NumLoopsToPlay                                                   (ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// enum class EUMGSequencePlayMode    PlayMode                                                         (BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              PlaybackSpeed                                                    (BlueprintVisible, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bRestoreState                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UUMGSequencePlayer*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              StartAtTime                                                      (ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              NumLoopsToPlay                                                   (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EUMGSequencePlayMode    PlayMode                                                         (BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              PlaybackSpeed                                                    (BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bRestoreState                                                    (BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UUMGSequencePlayer*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UUserWidget::PlayAnimation(class UWidgetAnimation** InAnimation, class UUMGSequencePlayer** ReturnValue)
+class UUMGSequencePlayer* UUserWidget::PlayAnimation(float StartAtTime, int32 NumLoopsToPlay, enum class EUMGSequencePlayMode PlayMode, float PlaybackSpeed, bool bRestoreState)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3071,6 +3030,11 @@ bool UUserWidget::PlayAnimation(class UWidgetAnimation** InAnimation, class UUMG
 
 	Params::UUserWidget_PlayAnimation_Params Parms{};
 
+	Parms.StartAtTime = StartAtTime;
+	Parms.NumLoopsToPlay = NumLoopsToPlay;
+	Parms.PlayMode = PlayMode;
+	Parms.PlaybackSpeed = PlaybackSpeed;
+	Parms.bRestoreState = bRestoreState;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3080,12 +3044,6 @@ bool UUserWidget::PlayAnimation(class UWidgetAnimation** InAnimation, class UUMG
 
 	Func->FunctionFlags = Flgs;
 
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -3094,10 +3052,10 @@ bool UUserWidget::PlayAnimation(class UWidgetAnimation** InAnimation, class UUMG
 // Function UMG.UserWidget.PauseAnimation
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::PauseAnimation(class UWidgetAnimation** InAnimation, float* ReturnValue)
+float UUserWidget::PauseAnimation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3115,11 +3073,7 @@ void UUserWidget::PauseAnimation(class UWidgetAnimation** InAnimation, float* Re
 
 	Func->FunctionFlags = Flgs;
 
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3127,11 +3081,11 @@ void UUserWidget::PauseAnimation(class UWidgetAnimation** InAnimation, float* Re
 // Function UMG.UserWidget.OnTouchStarted
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               InTouchEvent                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               InTouchEvent                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPointerEvent UUserWidget::OnTouchStarted(const struct FGeometry& MyGeometry, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnTouchStarted(struct FGeometry* MyGeometry, const struct FPointerEvent& InTouchEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3140,12 +3094,12 @@ struct FPointerEvent UUserWidget::OnTouchStarted(const struct FGeometry& MyGeome
 
 	Params::UUserWidget_OnTouchStarted_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
+	Parms.InTouchEvent = InTouchEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -3155,11 +3109,11 @@ struct FPointerEvent UUserWidget::OnTouchStarted(const struct FGeometry& MyGeome
 // Function UMG.UserWidget.OnTouchMoved
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               InTouchEvent                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               InTouchEvent                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPointerEvent UUserWidget::OnTouchMoved(const struct FGeometry& MyGeometry, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnTouchMoved(struct FGeometry* MyGeometry, const struct FPointerEvent& InTouchEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3168,12 +3122,12 @@ struct FPointerEvent UUserWidget::OnTouchMoved(const struct FGeometry& MyGeometr
 
 	Params::UUserWidget_OnTouchMoved_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
+	Parms.InTouchEvent = InTouchEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -3183,11 +3137,11 @@ struct FPointerEvent UUserWidget::OnTouchMoved(const struct FGeometry& MyGeometr
 // Function UMG.UserWidget.OnTouchGesture
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               GestureEvent                                                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               GestureEvent                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPointerEvent UUserWidget::OnTouchGesture(const struct FGeometry& MyGeometry, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnTouchGesture(struct FGeometry* MyGeometry, const struct FPointerEvent& GestureEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3196,12 +3150,12 @@ struct FPointerEvent UUserWidget::OnTouchGesture(const struct FGeometry& MyGeome
 
 	Params::UUserWidget_OnTouchGesture_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
+	Parms.GestureEvent = GestureEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -3211,11 +3165,11 @@ struct FPointerEvent UUserWidget::OnTouchGesture(const struct FGeometry& MyGeome
 // Function UMG.UserWidget.OnTouchForceChanged
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               InTouchEvent                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               InTouchEvent                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPointerEvent UUserWidget::OnTouchForceChanged(const struct FGeometry& MyGeometry, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnTouchForceChanged(struct FGeometry* MyGeometry, const struct FPointerEvent& InTouchEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3224,12 +3178,12 @@ struct FPointerEvent UUserWidget::OnTouchForceChanged(const struct FGeometry& My
 
 	Params::UUserWidget_OnTouchForceChanged_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
+	Parms.InTouchEvent = InTouchEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -3239,11 +3193,11 @@ struct FPointerEvent UUserWidget::OnTouchForceChanged(const struct FGeometry& My
 // Function UMG.UserWidget.OnTouchEnded
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               InTouchEvent                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               InTouchEvent                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPointerEvent UUserWidget::OnTouchEnded(const struct FGeometry& MyGeometry, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnTouchEnded(struct FGeometry* MyGeometry, const struct FPointerEvent& InTouchEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3252,12 +3206,12 @@ struct FPointerEvent UUserWidget::OnTouchEnded(const struct FGeometry& MyGeometr
 
 	Params::UUserWidget_OnTouchEnded_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
+	Parms.InTouchEvent = InTouchEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -3267,9 +3221,9 @@ struct FPointerEvent UUserWidget::OnTouchEnded(const struct FGeometry& MyGeometr
 // Function UMG.UserWidget.OnRemovedFromFocusPath
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FFocusEvent                 InFocusEvent                                                     (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FFocusEvent                 InFocusEvent                                                     (BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUserWidget::OnRemovedFromFocusPath(struct FFocusEvent* InFocusEvent)
+struct FFocusEvent UUserWidget::OnRemovedFromFocusPath()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3281,8 +3235,7 @@ void UUserWidget::OnRemovedFromFocusPath(struct FFocusEvent* InFocusEvent)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (InFocusEvent != nullptr)
-		*InFocusEvent = std::move(Parms.InFocusEvent);
+	return Parms.ReturnValue;
 
 }
 
@@ -3290,11 +3243,11 @@ void UUserWidget::OnRemovedFromFocusPath(struct FFocusEvent* InFocusEvent)
 // Function UMG.UserWidget.OnPreviewMouseButtonDown
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               MouseEvent                                                       (ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               MouseEvent                                                       (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::OnPreviewMouseButtonDown(const struct FGeometry& MyGeometry, const struct FPointerEvent& MouseEvent, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnPreviewMouseButtonDown(struct FGeometry* MyGeometry, struct FPointerEvent* MouseEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3303,13 +3256,16 @@ void UUserWidget::OnPreviewMouseButtonDown(const struct FGeometry& MyGeometry, c
 
 	Params::UUserWidget_OnPreviewMouseButtonDown_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
-	Parms.MouseEvent = MouseEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
+
+	if (MouseEvent != nullptr)
+		*MouseEvent = std::move(Parms.MouseEvent);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3317,11 +3273,11 @@ void UUserWidget::OnPreviewMouseButtonDown(const struct FGeometry& MyGeometry, c
 // Function UMG.UserWidget.OnPreviewKeyDown
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FKeyEvent                   InKeyEvent                                                       (ConstParm, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FKeyEvent                   InKeyEvent                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::OnPreviewKeyDown(const struct FGeometry& MyGeometry, const struct FKeyEvent& InKeyEvent, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnPreviewKeyDown(struct FGeometry* MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3330,13 +3286,13 @@ void UUserWidget::OnPreviewKeyDown(const struct FGeometry& MyGeometry, const str
 
 	Params::UUserWidget_OnPreviewKeyDown_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
-	Parms.InKeyEvent = InKeyEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3344,9 +3300,9 @@ void UUserWidget::OnPreviewKeyDown(const struct FGeometry& MyGeometry, const str
 // Function UMG.UserWidget.OnPaint
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// struct FPaintContext               Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPaintContext               Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::OnPaint(const struct FPaintContext& Context)
+struct FPaintContext UUserWidget::OnPaint()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3355,9 +3311,10 @@ void UUserWidget::OnPaint(const struct FPaintContext& Context)
 
 	Params::UUserWidget_OnPaint_Params Parms{};
 
-	Parms.Context = Context;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3365,11 +3322,11 @@ void UUserWidget::OnPaint(const struct FPaintContext& Context)
 // Function UMG.UserWidget.OnMouseWheel
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               MouseEvent                                                       (ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               MouseEvent                                                       (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::OnMouseWheel(const struct FGeometry& MyGeometry, const struct FPointerEvent& MouseEvent, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnMouseWheel(struct FGeometry* MyGeometry, struct FPointerEvent* MouseEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3378,13 +3335,16 @@ void UUserWidget::OnMouseWheel(const struct FGeometry& MyGeometry, const struct 
 
 	Params::UUserWidget_OnMouseWheel_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
-	Parms.MouseEvent = MouseEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
+
+	if (MouseEvent != nullptr)
+		*MouseEvent = std::move(Parms.MouseEvent);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3392,11 +3352,11 @@ void UUserWidget::OnMouseWheel(const struct FGeometry& MyGeometry, const struct 
 // Function UMG.UserWidget.OnMouseMove
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               MouseEvent                                                       (ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               MouseEvent                                                       (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::OnMouseMove(const struct FGeometry& MyGeometry, const struct FPointerEvent& MouseEvent, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnMouseMove(struct FGeometry* MyGeometry, struct FPointerEvent* MouseEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3405,13 +3365,16 @@ void UUserWidget::OnMouseMove(const struct FGeometry& MyGeometry, const struct F
 
 	Params::UUserWidget_OnMouseMove_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
-	Parms.MouseEvent = MouseEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
+
+	if (MouseEvent != nullptr)
+		*MouseEvent = std::move(Parms.MouseEvent);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3419,9 +3382,9 @@ void UUserWidget::OnMouseMove(const struct FGeometry& MyGeometry, const struct F
 // Function UMG.UserWidget.OnMouseLeave
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FPointerEvent               MouseEvent                                                       (ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               MouseEvent                                                       (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UUserWidget::OnMouseLeave(const struct FPointerEvent& MouseEvent)
+void UUserWidget::OnMouseLeave(struct FPointerEvent* MouseEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3430,9 +3393,11 @@ void UUserWidget::OnMouseLeave(const struct FPointerEvent& MouseEvent)
 
 	Params::UUserWidget_OnMouseLeave_Params Parms{};
 
-	Parms.MouseEvent = MouseEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (MouseEvent != nullptr)
+		*MouseEvent = std::move(Parms.MouseEvent);
 
 }
 
@@ -3440,10 +3405,10 @@ void UUserWidget::OnMouseLeave(const struct FPointerEvent& MouseEvent)
 // Function UMG.UserWidget.OnMouseEnter
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               MouseEvent                                                       (ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               MouseEvent                                                       (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UUserWidget::OnMouseEnter(const struct FGeometry& MyGeometry, const struct FPointerEvent& MouseEvent)
+void UUserWidget::OnMouseEnter(struct FGeometry* MyGeometry, struct FPointerEvent* MouseEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3452,10 +3417,14 @@ void UUserWidget::OnMouseEnter(const struct FGeometry& MyGeometry, const struct 
 
 	Params::UUserWidget_OnMouseEnter_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
-	Parms.MouseEvent = MouseEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
+
+	if (MouseEvent != nullptr)
+		*MouseEvent = std::move(Parms.MouseEvent);
 
 }
 
@@ -3481,11 +3450,11 @@ void UUserWidget::OnMouseCaptureLost()
 // Function UMG.UserWidget.OnMouseButtonUp
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               MouseEvent                                                       (ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               MouseEvent                                                       (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::OnMouseButtonUp(const struct FGeometry& MyGeometry, const struct FPointerEvent& MouseEvent, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnMouseButtonUp(struct FGeometry* MyGeometry, struct FPointerEvent* MouseEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3494,13 +3463,16 @@ void UUserWidget::OnMouseButtonUp(const struct FGeometry& MyGeometry, const stru
 
 	Params::UUserWidget_OnMouseButtonUp_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
-	Parms.MouseEvent = MouseEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
+
+	if (MouseEvent != nullptr)
+		*MouseEvent = std::move(Parms.MouseEvent);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3508,11 +3480,11 @@ void UUserWidget::OnMouseButtonUp(const struct FGeometry& MyGeometry, const stru
 // Function UMG.UserWidget.OnMouseButtonDown
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               MouseEvent                                                       (ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               MouseEvent                                                       (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::OnMouseButtonDown(const struct FGeometry& MyGeometry, const struct FPointerEvent& MouseEvent, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnMouseButtonDown(struct FGeometry* MyGeometry, struct FPointerEvent* MouseEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3521,13 +3493,16 @@ void UUserWidget::OnMouseButtonDown(const struct FGeometry& MyGeometry, const st
 
 	Params::UUserWidget_OnMouseButtonDown_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
-	Parms.MouseEvent = MouseEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
+
+	if (MouseEvent != nullptr)
+		*MouseEvent = std::move(Parms.MouseEvent);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3535,11 +3510,11 @@ void UUserWidget::OnMouseButtonDown(const struct FGeometry& MyGeometry, const st
 // Function UMG.UserWidget.OnMouseButtonDoubleClick
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   InMyGeometry                                                     (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               InMouseEvent                                                     (Net, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   InMyGeometry                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               InMouseEvent                                                     (ExportObject, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPointerEvent UUserWidget::OnMouseButtonDoubleClick(struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnMouseButtonDoubleClick(const struct FGeometry& InMyGeometry, const struct FPointerEvent& InMouseEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3548,11 +3523,10 @@ struct FPointerEvent UUserWidget::OnMouseButtonDoubleClick(struct FEventReply* R
 
 	Params::UUserWidget_OnMouseButtonDoubleClick_Params Parms{};
 
+	Parms.InMyGeometry = InMyGeometry;
+	Parms.InMouseEvent = InMouseEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -3562,11 +3536,11 @@ struct FPointerEvent UUserWidget::OnMouseButtonDoubleClick(struct FEventReply* R
 // Function UMG.UserWidget.OnMotionDetected
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FMotionEvent                InMotionEvent                                                    (ExportObject, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMotionEvent                InMotionEvent                                                    (Net, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FMotionEvent UUserWidget::OnMotionDetected(const struct FGeometry& MyGeometry, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnMotionDetected(struct FGeometry* MyGeometry, const struct FMotionEvent& InMotionEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3575,12 +3549,12 @@ struct FMotionEvent UUserWidget::OnMotionDetected(const struct FGeometry& MyGeom
 
 	Params::UUserWidget_OnMotionDetected_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
+	Parms.InMotionEvent = InMotionEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -3590,11 +3564,11 @@ struct FMotionEvent UUserWidget::OnMotionDetected(const struct FGeometry& MyGeom
 // Function UMG.UserWidget.OnKeyUp
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FKeyEvent                   InKeyEvent                                                       (ConstParm, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FKeyEvent                   InKeyEvent                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::OnKeyUp(const struct FGeometry& MyGeometry, const struct FKeyEvent& InKeyEvent, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnKeyUp(struct FGeometry* MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3603,13 +3577,13 @@ void UUserWidget::OnKeyUp(const struct FGeometry& MyGeometry, const struct FKeyE
 
 	Params::UUserWidget_OnKeyUp_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
-	Parms.InKeyEvent = InKeyEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3617,11 +3591,11 @@ void UUserWidget::OnKeyUp(const struct FGeometry& MyGeometry, const struct FKeyE
 // Function UMG.UserWidget.OnKeyDown
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FKeyEvent                   InKeyEvent                                                       (ConstParm, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FKeyEvent                   InKeyEvent                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::OnKeyDown(const struct FGeometry& MyGeometry, const struct FKeyEvent& InKeyEvent, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnKeyDown(struct FGeometry* MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3630,13 +3604,13 @@ void UUserWidget::OnKeyDown(const struct FGeometry& MyGeometry, const struct FKe
 
 	Params::UUserWidget_OnKeyDown_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
-	Parms.InKeyEvent = InKeyEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3644,11 +3618,11 @@ void UUserWidget::OnKeyDown(const struct FGeometry& MyGeometry, const struct FKe
 // Function UMG.UserWidget.OnKeyChar
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FCharacterEvent             InCharacterEvent                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FCharacterEvent             InCharacterEvent                                                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FCharacterEvent UUserWidget::OnKeyChar(const struct FGeometry& MyGeometry, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnKeyChar(struct FGeometry* MyGeometry, const struct FCharacterEvent& InCharacterEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3657,12 +3631,12 @@ struct FCharacterEvent UUserWidget::OnKeyChar(const struct FGeometry& MyGeometry
 
 	Params::UUserWidget_OnKeyChar_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
+	Parms.InCharacterEvent = InCharacterEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -3690,11 +3664,11 @@ void UUserWidget::OnInitialized()
 // Function UMG.UserWidget.OnFocusReceived
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FFocusEvent                 InFocusEvent                                                     (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FFocusEvent                 InFocusEvent                                                     (BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::OnFocusReceived(const struct FGeometry& MyGeometry, struct FFocusEvent* InFocusEvent, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnFocusReceived(struct FGeometry* MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3703,15 +3677,13 @@ void UUserWidget::OnFocusReceived(const struct FGeometry& MyGeometry, struct FFo
 
 	Params::UUserWidget_OnFocusReceived_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (InFocusEvent != nullptr)
-		*InFocusEvent = std::move(Parms.InFocusEvent);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3719,9 +3691,9 @@ void UUserWidget::OnFocusReceived(const struct FGeometry& MyGeometry, struct FFo
 // Function UMG.UserWidget.OnFocusLost
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FFocusEvent                 InFocusEvent                                                     (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FFocusEvent                 InFocusEvent                                                     (BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUserWidget::OnFocusLost(struct FFocusEvent* InFocusEvent)
+struct FFocusEvent UUserWidget::OnFocusLost()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3733,8 +3705,7 @@ void UUserWidget::OnFocusLost(struct FFocusEvent* InFocusEvent)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (InFocusEvent != nullptr)
-		*InFocusEvent = std::move(Parms.InFocusEvent);
+	return Parms.ReturnValue;
 
 }
 
@@ -3742,12 +3713,12 @@ void UUserWidget::OnFocusLost(struct FFocusEvent* InFocusEvent)
 // Function UMG.UserWidget.OnDrop
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 // struct FPointerEvent               PointerEvent                                                     (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, Config, DisableEditOnInstance)
-// class UDragDropOperation*          Operation                                                        (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDragDropOperation*          Operation                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UDragDropOperation* UUserWidget::OnDrop(const struct FGeometry& MyGeometry, struct FPointerEvent* PointerEvent, bool* ReturnValue)
+bool UUserWidget::OnDrop(struct FGeometry* MyGeometry, struct FPointerEvent* PointerEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3756,15 +3727,14 @@ class UDragDropOperation* UUserWidget::OnDrop(const struct FGeometry& MyGeometry
 
 	Params::UUserWidget_OnDrop_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
+
 	if (PointerEvent != nullptr)
 		*PointerEvent = std::move(Parms.PointerEvent);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3774,12 +3744,12 @@ class UDragDropOperation* UUserWidget::OnDrop(const struct FGeometry& MyGeometry
 // Function UMG.UserWidget.OnDragOver
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 // struct FPointerEvent               PointerEvent                                                     (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, Config, DisableEditOnInstance)
-// class UDragDropOperation*          Operation                                                        (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDragDropOperation*          Operation                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UDragDropOperation* UUserWidget::OnDragOver(const struct FGeometry& MyGeometry, struct FPointerEvent* PointerEvent, bool* ReturnValue)
+bool UUserWidget::OnDragOver(struct FGeometry* MyGeometry, struct FPointerEvent* PointerEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3788,15 +3758,14 @@ class UDragDropOperation* UUserWidget::OnDragOver(const struct FGeometry& MyGeom
 
 	Params::UUserWidget_OnDragOver_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
+
 	if (PointerEvent != nullptr)
 		*PointerEvent = std::move(Parms.PointerEvent);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3807,7 +3776,7 @@ class UDragDropOperation* UUserWidget::OnDragOver(const struct FGeometry& MyGeom
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
 // struct FPointerEvent               PointerEvent                                                     (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, Config, DisableEditOnInstance)
-// class UDragDropOperation*          Operation                                                        (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UDragDropOperation*          Operation                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 class UDragDropOperation* UUserWidget::OnDragLeave(struct FPointerEvent* PointerEvent)
 {
@@ -3832,11 +3801,11 @@ class UDragDropOperation* UUserWidget::OnDragLeave(struct FPointerEvent* Pointer
 // Function UMG.UserWidget.OnDragEnter
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 // struct FPointerEvent               PointerEvent                                                     (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, Config, DisableEditOnInstance)
-// class UDragDropOperation*          Operation                                                        (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UDragDropOperation*          Operation                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class UDragDropOperation* UUserWidget::OnDragEnter(const struct FGeometry& MyGeometry, struct FPointerEvent* PointerEvent)
+class UDragDropOperation* UUserWidget::OnDragEnter(struct FGeometry* MyGeometry, struct FPointerEvent* PointerEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3845,9 +3814,11 @@ class UDragDropOperation* UUserWidget::OnDragEnter(const struct FGeometry& MyGeo
 
 	Params::UUserWidget_OnDragEnter_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	if (PointerEvent != nullptr)
 		*PointerEvent = std::move(Parms.PointerEvent);
@@ -3860,11 +3831,11 @@ class UDragDropOperation* UUserWidget::OnDragEnter(const struct FGeometry& MyGeo
 // Function UMG.UserWidget.OnDragDetected
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 // struct FPointerEvent               PointerEvent                                                     (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, Config, DisableEditOnInstance)
-// class UDragDropOperation*          Operation                                                        (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UDragDropOperation*          Operation                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class UDragDropOperation* UUserWidget::OnDragDetected(const struct FGeometry& MyGeometry, struct FPointerEvent* PointerEvent)
+class UDragDropOperation* UUserWidget::OnDragDetected(struct FGeometry* MyGeometry, struct FPointerEvent* PointerEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3873,9 +3844,11 @@ class UDragDropOperation* UUserWidget::OnDragDetected(const struct FGeometry& My
 
 	Params::UUserWidget_OnDragDetected_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	if (PointerEvent != nullptr)
 		*PointerEvent = std::move(Parms.PointerEvent);
@@ -3889,7 +3862,7 @@ class UDragDropOperation* UUserWidget::OnDragDetected(const struct FGeometry& My
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
 // struct FPointerEvent               PointerEvent                                                     (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, Config, DisableEditOnInstance)
-// class UDragDropOperation*          Operation                                                        (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UDragDropOperation*          Operation                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 class UDragDropOperation* UUserWidget::OnDragCancelled(struct FPointerEvent* PointerEvent)
 {
@@ -3968,11 +3941,11 @@ void UUserWidget::OnAnimationFinished(class UWidgetAnimation* Animation)
 // Function UMG.UserWidget.OnAnalogValueChanged
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FAnalogInputEvent           InAnalogInputEvent                                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FAnalogInputEvent           InAnalogInputEvent                                               (Edit, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::OnAnalogValueChanged(const struct FGeometry& MyGeometry, struct FAnalogInputEvent* InAnalogInputEvent, struct FEventReply* ReturnValue)
+struct FEventReply UUserWidget::OnAnalogValueChanged(struct FGeometry* MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3981,15 +3954,13 @@ void UUserWidget::OnAnalogValueChanged(const struct FGeometry& MyGeometry, struc
 
 	Params::UUserWidget_OnAnalogValueChanged_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (InAnalogInputEvent != nullptr)
-		*InAnalogInputEvent = std::move(Parms.InAnalogInputEvent);
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3997,9 +3968,9 @@ void UUserWidget::OnAnalogValueChanged(const struct FGeometry& MyGeometry, struc
 // Function UMG.UserWidget.OnAddedToFocusPath
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FFocusEvent                 InFocusEvent                                                     (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FFocusEvent                 InFocusEvent                                                     (BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUserWidget::OnAddedToFocusPath(struct FFocusEvent* InFocusEvent)
+struct FFocusEvent UUserWidget::OnAddedToFocusPath()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4011,8 +3982,7 @@ void UUserWidget::OnAddedToFocusPath(struct FFocusEvent* InFocusEvent)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (InFocusEvent != nullptr)
-		*InFocusEvent = std::move(Parms.InFocusEvent);
+	return Parms.ReturnValue;
 
 }
 
@@ -4020,12 +3990,12 @@ void UUserWidget::OnAddedToFocusPath(struct FFocusEvent* InFocusEvent)
 // Function UMG.UserWidget.ListenForInputAction
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// class FName                        ActionName                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class EInputEvent             EventType                                                        (ConstParm, BlueprintVisible, Net, EditFixedSize, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bConsume                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 Callback                                                         (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FName                        ActionName                                                       (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EInputEvent             EventType                                                        (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bConsume                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 Callback                                                         (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class FName UUserWidget::ListenForInputAction(enum class EInputEvent EventType, bool* bConsume, FDelegateProperty_* Callback)
+FDelegateProperty_ UUserWidget::ListenForInputAction(class FName* ActionName, enum class EInputEvent* EventType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4034,7 +4004,6 @@ class FName UUserWidget::ListenForInputAction(enum class EInputEvent EventType, 
 
 	Params::UUserWidget_ListenForInputAction_Params Parms{};
 
-	Parms.EventType = EventType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4044,11 +4013,11 @@ class FName UUserWidget::ListenForInputAction(enum class EInputEvent EventType, 
 
 	Func->FunctionFlags = Flgs;
 
-	if (bConsume != nullptr)
-		*bConsume = Parms.bConsume;
+	if (ActionName != nullptr)
+		*ActionName = Parms.ActionName;
 
-	if (Callback != nullptr)
-		*Callback = Parms.Callback;
+	if (EventType != nullptr)
+		*EventType = Parms.EventType;
 
 	return Parms.ReturnValue;
 
@@ -4058,9 +4027,9 @@ class FName UUserWidget::ListenForInputAction(enum class EInputEvent EventType, 
 // Function UMG.UserWidget.IsPlayingAnimation
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::IsPlayingAnimation(bool* ReturnValue)
+bool UUserWidget::IsPlayingAnimation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4078,8 +4047,7 @@ void UUserWidget::IsPlayingAnimation(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4087,10 +4055,10 @@ void UUserWidget::IsPlayingAnimation(bool* ReturnValue)
 // Function UMG.UserWidget.IsListeningForInputAction
 // (Final, Native, Protected, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        ActionName                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ActionName                                                       (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UUserWidget::IsListeningForInputAction(bool* ReturnValue)
+bool UUserWidget::IsListeningForInputAction(class FName* ActionName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4108,8 +4076,8 @@ class FName UUserWidget::IsListeningForInputAction(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (ActionName != nullptr)
+		*ActionName = Parms.ActionName;
 
 	return Parms.ReturnValue;
 
@@ -4119,9 +4087,9 @@ class FName UUserWidget::IsListeningForInputAction(bool* ReturnValue)
 // Function UMG.UserWidget.IsInteractable
 // (BlueprintCosmetic, Event, Public, BlueprintEvent, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::IsInteractable(bool* ReturnValue)
+bool UUserWidget::IsInteractable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4133,8 +4101,7 @@ void UUserWidget::IsInteractable(bool* ReturnValue)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4142,9 +4109,9 @@ void UUserWidget::IsInteractable(bool* ReturnValue)
 // Function UMG.UserWidget.IsAnyAnimationPlaying
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::IsAnyAnimationPlaying(bool* ReturnValue)
+bool UUserWidget::IsAnyAnimationPlaying()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4162,8 +4129,7 @@ void UUserWidget::IsAnyAnimationPlaying(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4171,10 +4137,10 @@ void UUserWidget::IsAnyAnimationPlaying(bool* ReturnValue)
 // Function UMG.UserWidget.IsAnimationPlayingForward
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::IsAnimationPlayingForward(class UWidgetAnimation** InAnimation, bool* ReturnValue)
+bool UUserWidget::IsAnimationPlayingForward()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4192,11 +4158,7 @@ void UUserWidget::IsAnimationPlayingForward(class UWidgetAnimation** InAnimation
 
 	Func->FunctionFlags = Flgs;
 
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4204,10 +4166,10 @@ void UUserWidget::IsAnimationPlayingForward(class UWidgetAnimation** InAnimation
 // Function UMG.UserWidget.IsAnimationPlaying
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::IsAnimationPlaying(class UWidgetAnimation** InAnimation, bool* ReturnValue)
+bool UUserWidget::IsAnimationPlaying()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4225,11 +4187,7 @@ void UUserWidget::IsAnimationPlaying(class UWidgetAnimation** InAnimation, bool*
 
 	Func->FunctionFlags = Flgs;
 
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4237,9 +4195,9 @@ void UUserWidget::IsAnimationPlaying(class UWidgetAnimation** InAnimation, bool*
 // Function UMG.UserWidget.GetOwningPlayerPawn
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class APawn*                       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APawn*                       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::GetOwningPlayerPawn(class APawn** ReturnValue)
+class APawn* UUserWidget::GetOwningPlayerPawn()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4257,8 +4215,7 @@ void UUserWidget::GetOwningPlayerPawn(class APawn** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4266,9 +4223,9 @@ void UUserWidget::GetOwningPlayerPawn(class APawn** ReturnValue)
 // Function UMG.UserWidget.GetOwningPlayerCameraManager
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class APlayerCameraManager*        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APlayerCameraManager*        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::GetOwningPlayerCameraManager(class APlayerCameraManager** ReturnValue)
+class APlayerCameraManager* UUserWidget::GetOwningPlayerCameraManager()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4286,8 +4243,7 @@ void UUserWidget::GetOwningPlayerCameraManager(class APlayerCameraManager** Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4295,9 +4251,9 @@ void UUserWidget::GetOwningPlayerCameraManager(class APlayerCameraManager** Retu
 // Function UMG.UserWidget.GetIsVisible
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::GetIsVisible(bool* ReturnValue)
+bool UUserWidget::GetIsVisible()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4315,8 +4271,7 @@ void UUserWidget::GetIsVisible(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4324,10 +4279,10 @@ void UUserWidget::GetIsVisible(bool* ReturnValue)
 // Function UMG.UserWidget.GetExtensions
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UClass*                      ExtensionType                                                    (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// TArray<class UUserWidgetExtension*>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      ExtensionType                                                    (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// TArray<class UUserWidgetExtension*>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::GetExtensions(class UClass** ExtensionType, TArray<class UUserWidgetExtension*>* ReturnValue)
+TArray<class UUserWidgetExtension*> UUserWidget::GetExtensions()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4345,11 +4300,7 @@ void UUserWidget::GetExtensions(class UClass** ExtensionType, TArray<class UUser
 
 	Func->FunctionFlags = Flgs;
 
-	if (ExtensionType != nullptr)
-		*ExtensionType = Parms.ExtensionType;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -4357,10 +4308,10 @@ void UUserWidget::GetExtensions(class UClass** ExtensionType, TArray<class UUser
 // Function UMG.UserWidget.GetExtension
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UClass*                      ExtensionType                                                    (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UUserWidgetExtension*        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      ExtensionType                                                    (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UUserWidgetExtension*        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::GetExtension(class UClass** ExtensionType, class UUserWidgetExtension** ReturnValue)
+class UUserWidgetExtension* UUserWidget::GetExtension()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4378,11 +4329,7 @@ void UUserWidget::GetExtension(class UClass** ExtensionType, class UUserWidgetEx
 
 	Func->FunctionFlags = Flgs;
 
-	if (ExtensionType != nullptr)
-		*ExtensionType = Parms.ExtensionType;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4390,10 +4337,10 @@ void UUserWidget::GetExtension(class UClass** ExtensionType, class UUserWidgetEx
 // Function UMG.UserWidget.GetAnimationCurrentTime
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::GetAnimationCurrentTime(class UWidgetAnimation** InAnimation, float* ReturnValue)
+float UUserWidget::GetAnimationCurrentTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4411,11 +4358,7 @@ void UUserWidget::GetAnimationCurrentTime(class UWidgetAnimation** InAnimation, 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4423,9 +4366,9 @@ void UUserWidget::GetAnimationCurrentTime(class UWidgetAnimation** InAnimation, 
 // Function UMG.UserWidget.GetAnchorsInViewport
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FAnchors                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnchors                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::GetAnchorsInViewport(struct FAnchors* ReturnValue)
+struct FAnchors UUserWidget::GetAnchorsInViewport()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4443,8 +4386,7 @@ void UUserWidget::GetAnchorsInViewport(struct FAnchors* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -4452,9 +4394,9 @@ void UUserWidget::GetAnchorsInViewport(struct FAnchors* ReturnValue)
 // Function UMG.UserWidget.GetAlignmentInViewport
 // (Final, BlueprintCosmetic, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::GetAlignmentInViewport(struct FVector2D* ReturnValue)
+struct FVector2D UUserWidget::GetAlignmentInViewport()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4472,8 +4414,7 @@ void UUserWidget::GetAlignmentInViewport(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -4566,9 +4507,9 @@ void UUserWidget::CancelLatentActions()
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class UWidgetAnimation*            Animation                                                        (Edit, Net, EditFixedSize, Config, EditConst)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-FDelegateProperty_ UUserWidget::BindToAnimationStarted(class UWidgetAnimation* Animation)
+void UUserWidget::BindToAnimationStarted(class UWidgetAnimation* Animation, FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4578,6 +4519,7 @@ FDelegateProperty_ UUserWidget::BindToAnimationStarted(class UWidgetAnimation* A
 	Params::UUserWidget_BindToAnimationStarted_Params Parms{};
 
 	Parms.Animation = Animation;
+	Parms.Delegate = Delegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4587,8 +4529,6 @@ FDelegateProperty_ UUserWidget::BindToAnimationStarted(class UWidgetAnimation* A
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -4596,9 +4536,9 @@ FDelegateProperty_ UUserWidget::BindToAnimationStarted(class UWidgetAnimation* A
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class UWidgetAnimation*            Animation                                                        (Edit, Net, EditFixedSize, Config, EditConst)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-FDelegateProperty_ UUserWidget::BindToAnimationFinished(class UWidgetAnimation* Animation)
+void UUserWidget::BindToAnimationFinished(class UWidgetAnimation* Animation, FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4608,6 +4548,7 @@ FDelegateProperty_ UUserWidget::BindToAnimationFinished(class UWidgetAnimation* 
 	Params::UUserWidget_BindToAnimationFinished_Params Parms{};
 
 	Parms.Animation = Animation;
+	Parms.Delegate = Delegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4617,8 +4558,6 @@ FDelegateProperty_ UUserWidget::BindToAnimationFinished(class UWidgetAnimation* 
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -4626,11 +4565,11 @@ FDelegateProperty_ UUserWidget::BindToAnimationFinished(class UWidgetAnimation* 
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class UWidgetAnimation*            Animation                                                        (Edit, Net, EditFixedSize, Config, EditConst)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class EWidgetAnimationEvent   AnimationEvent                                                   (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class FName                        UserTag                                                          (Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EWidgetAnimationEvent   AnimationEvent                                                   (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FName                        UserTag                                                          (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-FDelegateProperty_ UUserWidget::BindToAnimationEvent(class UWidgetAnimation* Animation, enum class EWidgetAnimationEvent* AnimationEvent, class FName* UserTag)
+class FName UUserWidget::BindToAnimationEvent(class UWidgetAnimation* Animation, FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4640,6 +4579,7 @@ FDelegateProperty_ UUserWidget::BindToAnimationEvent(class UWidgetAnimation* Ani
 	Params::UUserWidget_BindToAnimationEvent_Params Parms{};
 
 	Parms.Animation = Animation;
+	Parms.Delegate = Delegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4649,12 +4589,6 @@ FDelegateProperty_ UUserWidget::BindToAnimationEvent(class UWidgetAnimation* Ani
 
 	Func->FunctionFlags = Flgs;
 
-	if (AnimationEvent != nullptr)
-		*AnimationEvent = Parms.AnimationEvent;
-
-	if (UserTag != nullptr)
-		*UserTag = Parms.UserTag;
-
 	return Parms.ReturnValue;
 
 }
@@ -4663,9 +4597,9 @@ FDelegateProperty_ UUserWidget::BindToAnimationEvent(class UWidgetAnimation* Ani
 // Function UMG.UserWidget.AddToViewport
 // (BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              ZOrder                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              ZOrder                                                           (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UUserWidget::AddToViewport(int32* ZOrder)
+int32 UUserWidget::AddToViewport()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4683,8 +4617,7 @@ void UUserWidget::AddToViewport(int32* ZOrder)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ZOrder != nullptr)
-		*ZOrder = Parms.ZOrder;
+	return Parms.ReturnValue;
 
 }
 
@@ -4692,10 +4625,10 @@ void UUserWidget::AddToViewport(int32* ZOrder)
 // Function UMG.UserWidget.AddToPlayerScreen
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              ZOrder                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ZOrder                                                           (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::AddToPlayerScreen(int32* ZOrder, bool* ReturnValue)
+bool UUserWidget::AddToPlayerScreen()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4713,11 +4646,7 @@ void UUserWidget::AddToPlayerScreen(int32* ZOrder, bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ZOrder != nullptr)
-		*ZOrder = Parms.ZOrder;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4725,10 +4654,10 @@ void UUserWidget::AddToPlayerScreen(int32* ZOrder, bool* ReturnValue)
 // Function UMG.UserWidget.AddExtension
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InExtensionType                                                  (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UUserWidgetExtension*        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InExtensionType                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UUserWidgetExtension*        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUserWidget::AddExtension(class UClass** InExtensionType, class UUserWidgetExtension** ReturnValue)
+class UUserWidgetExtension* UUserWidget::AddExtension()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4746,11 +4675,7 @@ void UUserWidget::AddExtension(class UClass** InExtensionType, class UUserWidget
 
 	Func->FunctionFlags = Flgs;
 
-	if (InExtensionType != nullptr)
-		*InExtensionType = Parms.InExtensionType;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4786,9 +4711,9 @@ class UImage* UImage::GetDefaultObj()
 // Function UMG.Image.SetOpacity
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InOpacity                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InOpacity                                                        (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UImage::SetOpacity(float InOpacity)
+void UImage::SetOpacity(float* InOpacity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4797,7 +4722,6 @@ void UImage::SetOpacity(float InOpacity)
 
 	Params::UImage_SetOpacity_Params Parms{};
 
-	Parms.InOpacity = InOpacity;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4806,6 +4730,9 @@ void UImage::SetOpacity(float InOpacity)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InOpacity != nullptr)
+		*InOpacity = Parms.InOpacity;
 
 }
 
@@ -4813,9 +4740,9 @@ void UImage::SetOpacity(float InOpacity)
 // Function UMG.Image.SetDesiredSizeOverride
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   DesiredSize                                                      (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   DesiredSize                                                      (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UImage::SetDesiredSizeOverride(const struct FVector2D& DesiredSize)
+struct FVector2D UImage::SetDesiredSizeOverride()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4823,33 +4750,6 @@ void UImage::SetDesiredSizeOverride(const struct FVector2D& DesiredSize)
 		Func = Class->GetFunction("Image", "SetDesiredSizeOverride");
 
 	Params::UImage_SetDesiredSizeOverride_Params Parms{};
-
-	Parms.DesiredSize = DesiredSize;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function UMG.Image.SetColorAndOpacity
-// (Final, Native, Public, HasDefaults, BlueprintCallable)
-// Parameters:
-// struct FLinearColor                InColorAndOpacity                                                (ConstParm, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-
-struct FLinearColor UImage::SetColorAndOpacity()
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("Image", "SetColorAndOpacity");
-
-	Params::UImage_SetColorAndOpacity_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -4865,10 +4765,37 @@ struct FLinearColor UImage::SetColorAndOpacity()
 }
 
 
+// Function UMG.Image.SetColorAndOpacity
+// (Final, Native, Public, HasDefaults, BlueprintCallable)
+// Parameters:
+// struct FLinearColor                InColorAndOpacity                                                (ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+
+void UImage::SetColorAndOpacity(const struct FLinearColor& InColorAndOpacity)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("Image", "SetColorAndOpacity");
+
+	Params::UImage_SetColorAndOpacity_Params Parms{};
+
+	Parms.InColorAndOpacity = InColorAndOpacity;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+}
+
+
 // Function UMG.Image.SetBrushTintColor
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FSlateColor                 TintColor                                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FSlateColor                 TintColor                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 struct FSlateColor UImage::SetBrushTintColor()
 {
@@ -4896,9 +4823,9 @@ struct FSlateColor UImage::SetBrushTintColor()
 // Function UMG.Image.SetBrushResourceObject
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     ResourceObject                                                   (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Config, EditConst, SubobjectReference)
+// class UObject*                     ResourceObject                                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
 
-void UImage::SetBrushResourceObject(class UObject** ResourceObject)
+class UObject* UImage::SetBrushResourceObject()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4916,8 +4843,7 @@ void UImage::SetBrushResourceObject(class UObject** ResourceObject)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ResourceObject != nullptr)
-		*ResourceObject = Parms.ResourceObject;
+	return Parms.ReturnValue;
 
 }
 
@@ -4926,9 +4852,9 @@ void UImage::SetBrushResourceObject(class UObject** ResourceObject)
 // (Native, Public, BlueprintCallable)
 // Parameters:
 // class UTexture2DDynamic*           Texture                                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
-// bool                               bMatchSize                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bMatchSize                                                       (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-class UTexture2DDynamic* UImage::SetBrushFromTextureDynamic(bool bMatchSize)
+bool UImage::SetBrushFromTextureDynamic()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4937,7 +4863,6 @@ class UTexture2DDynamic* UImage::SetBrushFromTextureDynamic(bool bMatchSize)
 
 	Params::UImage_SetBrushFromTextureDynamic_Params Parms{};
 
-	Parms.bMatchSize = bMatchSize;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4956,9 +4881,9 @@ class UTexture2DDynamic* UImage::SetBrushFromTextureDynamic(bool bMatchSize)
 // (Native, Public, BlueprintCallable)
 // Parameters:
 // class UTexture2D*                  Texture                                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
-// bool                               bMatchSize                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bMatchSize                                                       (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-class UTexture2D* UImage::SetBrushFromTexture(bool bMatchSize)
+bool UImage::SetBrushFromTexture()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4967,7 +4892,6 @@ class UTexture2D* UImage::SetBrushFromTexture(bool bMatchSize)
 
 	Params::UImage_SetBrushFromTexture_Params Parms{};
 
-	Parms.bMatchSize = bMatchSize;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4985,10 +4909,10 @@ class UTexture2D* UImage::SetBrushFromTexture(bool bMatchSize)
 // Function UMG.Image.SetBrushFromSoftTexture
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// TSoftObjectPtr<class UTexture2D>   SoftTexture                                                      (ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bMatchSize                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// TSoftObjectPtr<class UTexture2D>   SoftTexture                                                      (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bMatchSize                                                       (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UImage::SetBrushFromSoftTexture(TSoftObjectPtr<class UTexture2D> SoftTexture, bool bMatchSize)
+bool UImage::SetBrushFromSoftTexture()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4997,8 +4921,6 @@ void UImage::SetBrushFromSoftTexture(TSoftObjectPtr<class UTexture2D> SoftTextur
 
 	Params::UImage_SetBrushFromSoftTexture_Params Parms{};
 
-	Parms.SoftTexture = SoftTexture;
-	Parms.bMatchSize = bMatchSize;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5008,15 +4930,17 @@ void UImage::SetBrushFromSoftTexture(TSoftObjectPtr<class UTexture2D> SoftTextur
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.Image.SetBrushFromSoftMaterial
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// TSoftObjectPtr<class UMaterialInterface>SoftMaterial                                                     (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// TSoftObjectPtr<class UMaterialInterface>SoftMaterial                                                     (EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UImage::SetBrushFromSoftMaterial(TSoftObjectPtr<class UMaterialInterface> SoftMaterial)
+TSoftObjectPtr<class UMaterialInterface> UImage::SetBrushFromSoftMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5025,7 +4949,6 @@ void UImage::SetBrushFromSoftMaterial(TSoftObjectPtr<class UMaterialInterface> S
 
 	Params::UImage_SetBrushFromSoftMaterial_Params Parms{};
 
-	Parms.SoftMaterial = SoftMaterial;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5034,6 +4957,8 @@ void UImage::SetBrushFromSoftMaterial(TSoftObjectPtr<class UMaterialInterface> S
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -5069,10 +4994,10 @@ class UMaterialInterface* UImage::SetBrushFromMaterial()
 // Function UMG.Image.SetBrushFromAtlasInterface
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// TScriptInterface<class ISlateTextureAtlasInterface>AtlasRegion                                                      (BlueprintVisible, Net, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bMatchSize                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// TScriptInterface<class ISlateTextureAtlasInterface>AtlasRegion                                                      (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bMatchSize                                                       (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UImage::SetBrushFromAtlasInterface(TScriptInterface<class ISlateTextureAtlasInterface> AtlasRegion, bool bMatchSize)
+bool UImage::SetBrushFromAtlasInterface()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5081,8 +5006,6 @@ void UImage::SetBrushFromAtlasInterface(TScriptInterface<class ISlateTextureAtla
 
 	Params::UImage_SetBrushFromAtlasInterface_Params Parms{};
 
-	Parms.AtlasRegion = AtlasRegion;
-	Parms.bMatchSize = bMatchSize;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5092,13 +5015,15 @@ void UImage::SetBrushFromAtlasInterface(TScriptInterface<class ISlateTextureAtla
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.Image.SetBrushFromAsset
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class USlateBrushAsset*            Asset                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USlateBrushAsset*            Asset                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
 void UImage::SetBrushFromAsset(class USlateBrushAsset** Asset)
 {
@@ -5127,9 +5052,9 @@ void UImage::SetBrushFromAsset(class USlateBrushAsset** Asset)
 // Function UMG.Image.SetBrush
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSlateBrush                 InBrush                                                          (Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FSlateBrush                 InBrush                                                          (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UImage::SetBrush(const struct FSlateBrush& InBrush)
+struct FSlateBrush UImage::SetBrush()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5138,7 +5063,6 @@ void UImage::SetBrush(const struct FSlateBrush& InBrush)
 
 	Params::UImage_SetBrush_Params Parms{};
 
-	Parms.InBrush = InBrush;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5148,15 +5072,17 @@ void UImage::SetBrush(const struct FSlateBrush& InBrush)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.Image.GetDynamicMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInstanceDynamic*    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMaterialInstanceDynamic*    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UImage::GetDynamicMaterial(class UMaterialInstanceDynamic** ReturnValue)
+class UMaterialInstanceDynamic* UImage::GetDynamicMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5174,8 +5100,7 @@ void UImage::GetDynamicMaterial(class UMaterialInstanceDynamic** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5211,9 +5136,9 @@ class UTextLayoutWidget* UTextLayoutWidget::GetDefaultObj()
 // Function UMG.TextLayoutWidget.SetJustification
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ETextJustify            InJustification                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ETextJustify            InJustification                                                  (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UTextLayoutWidget::SetJustification(enum class ETextJustify* InJustification)
+enum class ETextJustify UTextLayoutWidget::SetJustification()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5231,8 +5156,7 @@ void UTextLayoutWidget::SetJustification(enum class ETextJustify* InJustificatio
 
 	Func->FunctionFlags = Flgs;
 
-	if (InJustification != nullptr)
-		*InJustification = Parms.InJustification;
+	return Parms.ReturnValue;
 
 }
 
@@ -5268,9 +5192,9 @@ class URichTextBlock* URichTextBlock::GetDefaultObj()
 // Function UMG.RichTextBlock.SetTextTransformPolicy
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ETextTransformPolicy    InTransformPolicy                                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class ETextTransformPolicy    InTransformPolicy                                                (ConstParm, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void URichTextBlock::SetTextTransformPolicy(enum class ETextTransformPolicy* InTransformPolicy)
+void URichTextBlock::SetTextTransformPolicy(enum class ETextTransformPolicy InTransformPolicy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5279,6 +5203,7 @@ void URichTextBlock::SetTextTransformPolicy(enum class ETextTransformPolicy* InT
 
 	Params::URichTextBlock_SetTextTransformPolicy_Params Parms{};
 
+	Parms.InTransformPolicy = InTransformPolicy;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5288,18 +5213,15 @@ void URichTextBlock::SetTextTransformPolicy(enum class ETextTransformPolicy* InT
 
 	Func->FunctionFlags = Flgs;
 
-	if (InTransformPolicy != nullptr)
-		*InTransformPolicy = Parms.InTransformPolicy;
-
 }
 
 
 // Function UMG.RichTextBlock.SetTextStyleSet
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UDataTable*                  NewTextStyleSet                                                  (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// class UDataTable*                  NewTextStyleSet                                                  (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void URichTextBlock::SetTextStyleSet(class UDataTable** NewTextStyleSet)
+void URichTextBlock::SetTextStyleSet(class UDataTable* NewTextStyleSet)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5308,6 +5230,7 @@ void URichTextBlock::SetTextStyleSet(class UDataTable** NewTextStyleSet)
 
 	Params::URichTextBlock_SetTextStyleSet_Params Parms{};
 
+	Parms.NewTextStyleSet = NewTextStyleSet;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5317,18 +5240,15 @@ void URichTextBlock::SetTextStyleSet(class UDataTable** NewTextStyleSet)
 
 	Func->FunctionFlags = Flgs;
 
-	if (NewTextStyleSet != nullptr)
-		*NewTextStyleSet = Parms.NewTextStyleSet;
-
 }
 
 
 // Function UMG.RichTextBlock.SetTextOverflowPolicy
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ETextOverflowPolicy     InOverflowPolicy                                                 (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ETextOverflowPolicy     InOverflowPolicy                                                 (BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void URichTextBlock::SetTextOverflowPolicy(enum class ETextOverflowPolicy* InOverflowPolicy)
+enum class ETextOverflowPolicy URichTextBlock::SetTextOverflowPolicy()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5346,8 +5266,7 @@ void URichTextBlock::SetTextOverflowPolicy(enum class ETextOverflowPolicy* InOve
 
 	Func->FunctionFlags = Flgs;
 
-	if (InOverflowPolicy != nullptr)
-		*InOverflowPolicy = Parms.InOverflowPolicy;
+	return Parms.ReturnValue;
 
 }
 
@@ -5355,7 +5274,7 @@ void URichTextBlock::SetTextOverflowPolicy(enum class ETextOverflowPolicy* InOve
 // Function UMG.RichTextBlock.SetText
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FText                        InText                                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        InText                                                           (Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
 class FText URichTextBlock::SetText()
 {
@@ -5383,9 +5302,9 @@ class FText URichTextBlock::SetText()
 // Function UMG.RichTextBlock.SetMinDesiredWidth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMinDesiredWidth                                                (BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InMinDesiredWidth                                                (ConstParm, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void URichTextBlock::SetMinDesiredWidth(float* InMinDesiredWidth)
+float URichTextBlock::SetMinDesiredWidth()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5403,8 +5322,7 @@ void URichTextBlock::SetMinDesiredWidth(float* InMinDesiredWidth)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMinDesiredWidth != nullptr)
-		*InMinDesiredWidth = Parms.InMinDesiredWidth;
+	return Parms.ReturnValue;
 
 }
 
@@ -5412,9 +5330,9 @@ void URichTextBlock::SetMinDesiredWidth(float* InMinDesiredWidth)
 // Function UMG.RichTextBlock.SetDefaultTextStyle
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FTextBlockStyle             InDefaultTextStyle                                               (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FTextBlockStyle             InDefaultTextStyle                                               (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void URichTextBlock::SetDefaultTextStyle(struct FTextBlockStyle* InDefaultTextStyle)
+void URichTextBlock::SetDefaultTextStyle(const struct FTextBlockStyle& InDefaultTextStyle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5423,6 +5341,7 @@ void URichTextBlock::SetDefaultTextStyle(struct FTextBlockStyle* InDefaultTextSt
 
 	Params::URichTextBlock_SetDefaultTextStyle_Params Parms{};
 
+	Parms.InDefaultTextStyle = InDefaultTextStyle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5432,18 +5351,15 @@ void URichTextBlock::SetDefaultTextStyle(struct FTextBlockStyle* InDefaultTextSt
 
 	Func->FunctionFlags = Flgs;
 
-	if (InDefaultTextStyle != nullptr)
-		*InDefaultTextStyle = std::move(Parms.InDefaultTextStyle);
-
 }
 
 
 // Function UMG.RichTextBlock.SetDefaultStrikeBrush
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSlateBrush                 InStrikeBrush                                                    (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FSlateBrush                 InStrikeBrush                                                    (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void URichTextBlock::SetDefaultStrikeBrush(struct FSlateBrush* InStrikeBrush)
+void URichTextBlock::SetDefaultStrikeBrush(const struct FSlateBrush& InStrikeBrush)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5452,6 +5368,7 @@ void URichTextBlock::SetDefaultStrikeBrush(struct FSlateBrush* InStrikeBrush)
 
 	Params::URichTextBlock_SetDefaultStrikeBrush_Params Parms{};
 
+	Parms.InStrikeBrush = InStrikeBrush;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5461,18 +5378,15 @@ void URichTextBlock::SetDefaultStrikeBrush(struct FSlateBrush* InStrikeBrush)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InStrikeBrush != nullptr)
-		*InStrikeBrush = std::move(Parms.InStrikeBrush);
-
 }
 
 
 // Function UMG.RichTextBlock.SetDefaultShadowOffset
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InShadowOffset                                                   (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InShadowOffset                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void URichTextBlock::SetDefaultShadowOffset(struct FVector2D* InShadowOffset)
+void URichTextBlock::SetDefaultShadowOffset(const struct FVector2D& InShadowOffset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5481,6 +5395,7 @@ void URichTextBlock::SetDefaultShadowOffset(struct FVector2D* InShadowOffset)
 
 	Params::URichTextBlock_SetDefaultShadowOffset_Params Parms{};
 
+	Parms.InShadowOffset = InShadowOffset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5490,18 +5405,15 @@ void URichTextBlock::SetDefaultShadowOffset(struct FVector2D* InShadowOffset)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InShadowOffset != nullptr)
-		*InShadowOffset = std::move(Parms.InShadowOffset);
-
 }
 
 
 // Function UMG.RichTextBlock.SetDefaultShadowColorAndOpacity
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InShadowColorAndOpacity                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FLinearColor                InShadowColorAndOpacity                                          (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void URichTextBlock::SetDefaultShadowColorAndOpacity(struct FLinearColor* InShadowColorAndOpacity)
+void URichTextBlock::SetDefaultShadowColorAndOpacity(const struct FLinearColor& InShadowColorAndOpacity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5510,6 +5422,7 @@ void URichTextBlock::SetDefaultShadowColorAndOpacity(struct FLinearColor* InShad
 
 	Params::URichTextBlock_SetDefaultShadowColorAndOpacity_Params Parms{};
 
+	Parms.InShadowColorAndOpacity = InShadowColorAndOpacity;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5518,9 +5431,6 @@ void URichTextBlock::SetDefaultShadowColorAndOpacity(struct FLinearColor* InShad
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InShadowColorAndOpacity != nullptr)
-		*InShadowColorAndOpacity = std::move(Parms.InShadowColorAndOpacity);
 
 }
 
@@ -5528,9 +5438,9 @@ void URichTextBlock::SetDefaultShadowColorAndOpacity(struct FLinearColor* InShad
 // Function UMG.RichTextBlock.SetDefaultMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInterface*          InMaterial                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UMaterialInterface*          InMaterial                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void URichTextBlock::SetDefaultMaterial(class UMaterialInterface* InMaterial)
+class UMaterialInterface* URichTextBlock::SetDefaultMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5538,60 +5448,6 @@ void URichTextBlock::SetDefaultMaterial(class UMaterialInterface* InMaterial)
 		Func = Class->GetFunction("RichTextBlock", "SetDefaultMaterial");
 
 	Params::URichTextBlock_SetDefaultMaterial_Params Parms{};
-
-	Parms.InMaterial = InMaterial;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function UMG.RichTextBlock.SetDefaultFont
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// struct FSlateFontInfo              InFontInfo                                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-
-void URichTextBlock::SetDefaultFont(const struct FSlateFontInfo& InFontInfo)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("RichTextBlock", "SetDefaultFont");
-
-	Params::URichTextBlock_SetDefaultFont_Params Parms{};
-
-	Parms.InFontInfo = InFontInfo;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function UMG.RichTextBlock.SetDefaultColorAndOpacity
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// struct FSlateColor                 InColorAndOpacity                                                (ConstParm, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-
-struct FSlateColor URichTextBlock::SetDefaultColorAndOpacity()
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("RichTextBlock", "SetDefaultColorAndOpacity");
-
-	Params::URichTextBlock_SetDefaultColorAndOpacity_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -5607,12 +5463,67 @@ struct FSlateColor URichTextBlock::SetDefaultColorAndOpacity()
 }
 
 
+// Function UMG.RichTextBlock.SetDefaultFont
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// struct FSlateFontInfo              InFontInfo                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+
+struct FSlateFontInfo URichTextBlock::SetDefaultFont()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("RichTextBlock", "SetDefaultFont");
+
+	Params::URichTextBlock_SetDefaultFont_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function UMG.RichTextBlock.SetDefaultColorAndOpacity
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// struct FSlateColor                 InColorAndOpacity                                                (ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+
+void URichTextBlock::SetDefaultColorAndOpacity(const struct FSlateColor& InColorAndOpacity)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("RichTextBlock", "SetDefaultColorAndOpacity");
+
+	Params::URichTextBlock_SetDefaultColorAndOpacity_Params Parms{};
+
+	Parms.InColorAndOpacity = InColorAndOpacity;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+}
+
+
 // Function UMG.RichTextBlock.SetDecorators
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class UClass*>              InDecoratorClasses                                               (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// TArray<class UClass*>              InDecoratorClasses                                               (ExportObject, EditFixedSize, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void URichTextBlock::SetDecorators(TArray<class UClass*>* InDecoratorClasses)
+void URichTextBlock::SetDecorators(const TArray<class UClass*>& InDecoratorClasses)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5621,6 +5532,7 @@ void URichTextBlock::SetDecorators(TArray<class UClass*>* InDecoratorClasses)
 
 	Params::URichTextBlock_SetDecorators_Params Parms{};
 
+	Parms.InDecoratorClasses = InDecoratorClasses;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5630,18 +5542,15 @@ void URichTextBlock::SetDecorators(TArray<class UClass*>* InDecoratorClasses)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InDecoratorClasses != nullptr)
-		*InDecoratorClasses = std::move(Parms.InDecoratorClasses);
-
 }
 
 
 // Function UMG.RichTextBlock.SetAutoWrapText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InAutoTextWrap                                                   (Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               InAutoTextWrap                                                   (EditFixedSize, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void URichTextBlock::SetAutoWrapText(bool* InAutoTextWrap)
+void URichTextBlock::SetAutoWrapText(bool InAutoTextWrap)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5650,6 +5559,7 @@ void URichTextBlock::SetAutoWrapText(bool* InAutoTextWrap)
 
 	Params::URichTextBlock_SetAutoWrapText_Params Parms{};
 
+	Parms.InAutoTextWrap = InAutoTextWrap;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5658,9 +5568,6 @@ void URichTextBlock::SetAutoWrapText(bool* InAutoTextWrap)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InAutoTextWrap != nullptr)
-		*InAutoTextWrap = Parms.InAutoTextWrap;
 
 }
 
@@ -5692,9 +5599,9 @@ void URichTextBlock::RefreshTextLayout()
 // Function UMG.RichTextBlock.GetTextStyleSet
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UDataTable*                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDataTable*                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void URichTextBlock::GetTextStyleSet(class UDataTable** ReturnValue)
+class UDataTable* URichTextBlock::GetTextStyleSet()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5712,8 +5619,7 @@ void URichTextBlock::GetTextStyleSet(class UDataTable** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5721,9 +5627,9 @@ void URichTextBlock::GetTextStyleSet(class UDataTable** ReturnValue)
 // Function UMG.RichTextBlock.GetText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void URichTextBlock::GetText(class FText* ReturnValue)
+class FText URichTextBlock::GetText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5741,8 +5647,7 @@ void URichTextBlock::GetText(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5750,9 +5655,9 @@ void URichTextBlock::GetText(class FText* ReturnValue)
 // Function UMG.RichTextBlock.GetDefaultDynamicMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInstanceDynamic*    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMaterialInstanceDynamic*    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void URichTextBlock::GetDefaultDynamicMaterial(class UMaterialInstanceDynamic** ReturnValue)
+class UMaterialInstanceDynamic* URichTextBlock::GetDefaultDynamicMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5770,8 +5675,7 @@ void URichTextBlock::GetDefaultDynamicMaterial(class UMaterialInstanceDynamic** 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5779,10 +5683,10 @@ void URichTextBlock::GetDefaultDynamicMaterial(class UMaterialInstanceDynamic** 
 // Function UMG.RichTextBlock.GetDecoratorByClass
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      DecoratorClass                                                   (Edit, ConstParm, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-// class URichTextBlockDecorator*     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      DecoratorClass                                                   (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class URichTextBlockDecorator*     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void URichTextBlock::GetDecoratorByClass(class UClass** DecoratorClass, class URichTextBlockDecorator** ReturnValue)
+class URichTextBlockDecorator* URichTextBlock::GetDecoratorByClass(class UClass* DecoratorClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5791,6 +5695,7 @@ void URichTextBlock::GetDecoratorByClass(class UClass** DecoratorClass, class UR
 
 	Params::URichTextBlock_GetDecoratorByClass_Params Parms{};
 
+	Parms.DecoratorClass = DecoratorClass;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5800,11 +5705,7 @@ void URichTextBlock::GetDecoratorByClass(class UClass** DecoratorClass, class UR
 
 	Func->FunctionFlags = Flgs;
 
-	if (DecoratorClass != nullptr)
-		*DecoratorClass = Parms.DecoratorClass;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5921,9 +5822,9 @@ class UPanelWidget* UPanelWidget::GetDefaultObj()
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UPanelWidget::RemoveChildAt(bool* ReturnValue)
+bool UPanelWidget::RemoveChildAt()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5941,9 +5842,6 @@ int32 UPanelWidget::RemoveChildAt(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -5952,10 +5850,10 @@ int32 UPanelWidget::RemoveChildAt(bool* ReturnValue)
 // Function UMG.PanelWidget.RemoveChild
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UPanelWidget::RemoveChild(bool* ReturnValue)
+bool UPanelWidget::RemoveChild(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5973,8 +5871,8 @@ class UWidget* UPanelWidget::RemoveChild(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -5984,10 +5882,10 @@ class UWidget* UPanelWidget::RemoveChild(bool* ReturnValue)
 // Function UMG.PanelWidget.HasChild
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UPanelWidget::HasChild(bool* ReturnValue)
+bool UPanelWidget::HasChild(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6005,8 +5903,8 @@ class UWidget* UPanelWidget::HasChild(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -6016,9 +5914,9 @@ class UWidget* UPanelWidget::HasChild(bool* ReturnValue)
 // Function UMG.PanelWidget.HasAnyChildren
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPanelWidget::HasAnyChildren(bool* ReturnValue)
+bool UPanelWidget::HasAnyChildren()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6036,8 +5934,7 @@ void UPanelWidget::HasAnyChildren(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6045,9 +5942,9 @@ void UPanelWidget::HasAnyChildren(bool* ReturnValue)
 // Function UMG.PanelWidget.GetChildrenCount
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPanelWidget::GetChildrenCount(int32* ReturnValue)
+int32 UPanelWidget::GetChildrenCount()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6065,8 +5962,7 @@ void UPanelWidget::GetChildrenCount(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6074,10 +5970,10 @@ void UPanelWidget::GetChildrenCount(int32* ReturnValue)
 // Function UMG.PanelWidget.GetChildIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UPanelWidget::GetChildIndex(int32* ReturnValue)
+int32 UPanelWidget::GetChildIndex(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6095,8 +5991,8 @@ class UWidget* UPanelWidget::GetChildIndex(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -6107,9 +6003,9 @@ class UWidget* UPanelWidget::GetChildIndex(int32* ReturnValue)
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// class UWidget*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UPanelWidget::GetChildAt(class UWidget** ReturnValue)
+class UWidget* UPanelWidget::GetChildAt()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6127,9 +6023,6 @@ int32 UPanelWidget::GetChildAt(class UWidget** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -6138,9 +6031,9 @@ int32 UPanelWidget::GetChildAt(class UWidget** ReturnValue)
 // Function UMG.PanelWidget.GetAllChildren
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UWidget*>             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UWidget*>             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPanelWidget::GetAllChildren(TArray<class UWidget*>* ReturnValue)
+TArray<class UWidget*> UPanelWidget::GetAllChildren()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6158,8 +6051,7 @@ void UPanelWidget::GetAllChildren(TArray<class UWidget*>* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -6191,10 +6083,10 @@ void UPanelWidget::ClearChildren()
 // Function UMG.PanelWidget.AddChild
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// class UPanelSlot*                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// class UPanelSlot*                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UPanelWidget::AddChild(class UPanelSlot** ReturnValue)
+class UPanelSlot* UPanelWidget::AddChild(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6212,8 +6104,8 @@ class UWidget* UPanelWidget::AddChild(class UPanelSlot** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -6251,10 +6143,10 @@ class UContentWidget* UContentWidget::GetDefaultObj()
 // Function UMG.ContentWidget.SetContent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// class UPanelSlot*                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// class UPanelSlot*                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UContentWidget::SetContent(class UPanelSlot** ReturnValue)
+class UPanelSlot* UContentWidget::SetContent(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6272,8 +6164,8 @@ class UWidget* UContentWidget::SetContent(class UPanelSlot** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -6283,9 +6175,9 @@ class UWidget* UContentWidget::SetContent(class UPanelSlot** ReturnValue)
 // Function UMG.ContentWidget.GetContentSlot
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPanelSlot*                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPanelSlot*                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UContentWidget::GetContentSlot(class UPanelSlot** ReturnValue)
+class UPanelSlot* UContentWidget::GetContentSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6303,8 +6195,7 @@ void UContentWidget::GetContentSlot(class UPanelSlot** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6312,9 +6203,9 @@ void UContentWidget::GetContentSlot(class UPanelSlot** ReturnValue)
 // Function UMG.ContentWidget.GetContent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UWidget*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UContentWidget::GetContent(class UWidget** ReturnValue)
+class UWidget* UContentWidget::GetContent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6332,8 +6223,7 @@ void UContentWidget::GetContent(class UWidget** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6369,9 +6259,9 @@ class UButton* UButton::GetDefaultObj()
 // Function UMG.Button.SetTouchMethod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EButtonTouchMethod      InTouchMethod                                                    (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EButtonTouchMethod      InTouchMethod                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UButton::SetTouchMethod(enum class EButtonTouchMethod InTouchMethod)
+enum class EButtonTouchMethod UButton::SetTouchMethod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6379,87 +6269,6 @@ void UButton::SetTouchMethod(enum class EButtonTouchMethod InTouchMethod)
 		Func = Class->GetFunction("Button", "SetTouchMethod");
 
 	Params::UButton_SetTouchMethod_Params Parms{};
-
-	Parms.InTouchMethod = InTouchMethod;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function UMG.Button.SetStyle
-// (Final, Native, Public, HasOutParams, BlueprintCallable)
-// Parameters:
-// struct FButtonStyle                InStyle                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-
-void UButton::SetStyle(const struct FButtonStyle& InStyle)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("Button", "SetStyle");
-
-	Params::UButton_SetStyle_Params Parms{};
-
-	Parms.InStyle = InStyle;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function UMG.Button.SetPressMethod
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// enum class EButtonPressMethod      InPressMethod                                                    (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-
-void UButton::SetPressMethod(enum class EButtonPressMethod InPressMethod)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("Button", "SetPressMethod");
-
-	Params::UButton_SetPressMethod_Params Parms{};
-
-	Parms.InPressMethod = InPressMethod;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function UMG.Button.SetColorAndOpacity
-// (Final, Native, Public, HasDefaults, BlueprintCallable)
-// Parameters:
-// struct FLinearColor                InColorAndOpacity                                                (ConstParm, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-
-struct FLinearColor UButton::SetColorAndOpacity()
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("Button", "SetColorAndOpacity");
-
-	Params::UButton_SetColorAndOpacity_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -6475,12 +6284,95 @@ struct FLinearColor UButton::SetColorAndOpacity()
 }
 
 
+// Function UMG.Button.SetStyle
+// (Final, Native, Public, HasOutParams, BlueprintCallable)
+// Parameters:
+// struct FButtonStyle                InStyle                                                          (ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+
+struct FButtonStyle UButton::SetStyle()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("Button", "SetStyle");
+
+	Params::UButton_SetStyle_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function UMG.Button.SetPressMethod
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// enum class EButtonPressMethod      InPressMethod                                                    (ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+
+enum class EButtonPressMethod UButton::SetPressMethod()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("Button", "SetPressMethod");
+
+	Params::UButton_SetPressMethod_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function UMG.Button.SetColorAndOpacity
+// (Final, Native, Public, HasDefaults, BlueprintCallable)
+// Parameters:
+// struct FLinearColor                InColorAndOpacity                                                (ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+
+void UButton::SetColorAndOpacity(const struct FLinearColor& InColorAndOpacity)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("Button", "SetColorAndOpacity");
+
+	Params::UButton_SetColorAndOpacity_Params Parms{};
+
+	Parms.InColorAndOpacity = InColorAndOpacity;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+}
+
+
 // Function UMG.Button.SetClickMethod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EButtonClickMethod      InClickMethod                                                    (Edit, BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EButtonClickMethod      InClickMethod                                                    (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UButton::SetClickMethod(enum class EButtonClickMethod InClickMethod)
+enum class EButtonClickMethod UButton::SetClickMethod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6489,7 +6381,6 @@ void UButton::SetClickMethod(enum class EButtonClickMethod InClickMethod)
 
 	Params::UButton_SetClickMethod_Params Parms{};
 
-	Parms.InClickMethod = InClickMethod;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6499,15 +6390,17 @@ void UButton::SetClickMethod(enum class EButtonClickMethod InClickMethod)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.Button.SetBackgroundColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InBackgroundColor                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FLinearColor                InBackgroundColor                                                (BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UButton::SetBackgroundColor(const struct FLinearColor& InBackgroundColor)
+struct FLinearColor UButton::SetBackgroundColor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6516,7 +6409,6 @@ void UButton::SetBackgroundColor(const struct FLinearColor& InBackgroundColor)
 
 	Params::UButton_SetBackgroundColor_Params Parms{};
 
-	Parms.InBackgroundColor = InBackgroundColor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6526,15 +6418,17 @@ void UButton::SetBackgroundColor(const struct FLinearColor& InBackgroundColor)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.Button.MimickClicked
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bFromGamepad                                                     (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bFromGamepad                                                     (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UButton::MimickClicked(bool bFromGamepad)
+bool UButton::MimickClicked()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6543,7 +6437,6 @@ void UButton::MimickClicked(bool bFromGamepad)
 
 	Params::UButton_MimickClicked_Params Parms{};
 
-	Parms.bFromGamepad = bFromGamepad;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6553,15 +6446,17 @@ void UButton::MimickClicked(bool bFromGamepad)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.Button.IsPressed
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UButton::IsPressed(bool* ReturnValue)
+bool UButton::IsPressed()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6579,8 +6474,7 @@ void UButton::IsPressed(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -6616,7 +6510,7 @@ class UScrollBox* UScrollBox::GetDefaultObj()
 // Function UMG.ScrollBox.SetWheelScrollMultiplier
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewWheelScrollMultiplier                                         (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              NewWheelScrollMultiplier                                         (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
 void UScrollBox::SetWheelScrollMultiplier(float NewWheelScrollMultiplier)
 {
@@ -6643,7 +6537,7 @@ void UScrollBox::SetWheelScrollMultiplier(float NewWheelScrollMultiplier)
 // Function UMG.ScrollBox.SetScrollWhenFocusChanges
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EScrollWhenFocusChanges NewScrollWhenFocusChanges                                        (BlueprintVisible, ExportObject, EditFixedSize, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EScrollWhenFocusChanges NewScrollWhenFocusChanges                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
 void UScrollBox::SetScrollWhenFocusChanges(enum class EScrollWhenFocusChanges NewScrollWhenFocusChanges)
 {
@@ -6670,7 +6564,7 @@ void UScrollBox::SetScrollWhenFocusChanges(enum class EScrollWhenFocusChanges Ne
 // Function UMG.ScrollBox.SetScrollOffset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewScrollOffset                                                  (Edit, ConstParm, EditFixedSize, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              NewScrollOffset                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
 void UScrollBox::SetScrollOffset(float NewScrollOffset)
 {
@@ -6697,7 +6591,7 @@ void UScrollBox::SetScrollOffset(float NewScrollOffset)
 // Function UMG.ScrollBox.SetScrollBarVisibility
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ESlateVisibility        NewScrollBarVisibility                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class ESlateVisibility        NewScrollBarVisibility                                           (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
 void UScrollBox::SetScrollBarVisibility(enum class ESlateVisibility NewScrollBarVisibility)
 {
@@ -6724,7 +6618,7 @@ void UScrollBox::SetScrollBarVisibility(enum class ESlateVisibility NewScrollBar
 // Function UMG.ScrollBox.SetScrollbarThickness
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   NewScrollbarThickness                                            (Edit, ConstParm, ExportObject, Net, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   NewScrollbarThickness                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
 void UScrollBox::SetScrollbarThickness(const struct FVector2D& NewScrollbarThickness)
 {
@@ -6751,7 +6645,7 @@ void UScrollBox::SetScrollbarThickness(const struct FVector2D& NewScrollbarThick
 // Function UMG.ScrollBox.SetScrollbarPadding
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FMargin                     NewScrollbarPadding                                              (Net, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FMargin                     NewScrollbarPadding                                              (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
 void UScrollBox::SetScrollbarPadding(const struct FMargin& NewScrollbarPadding)
 {
@@ -6778,7 +6672,7 @@ void UScrollBox::SetScrollbarPadding(const struct FMargin& NewScrollbarPadding)
 // Function UMG.ScrollBox.SetOrientation
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EOrientation            NewOrientation                                                   (ExportObject, BlueprintReadOnly, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EOrientation            NewOrientation                                                   (Edit, ConstParm, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
 void UScrollBox::SetOrientation(enum class EOrientation NewOrientation)
 {
@@ -6805,7 +6699,7 @@ void UScrollBox::SetOrientation(enum class EOrientation NewOrientation)
 // Function UMG.ScrollBox.SetNavigationDestination
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EDescendantScrollDestinationNewNavigationDestination                                         (Edit, ConstParm, ExportObject, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EDescendantScrollDestinationNewNavigationDestination                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
 void UScrollBox::SetNavigationDestination(enum class EDescendantScrollDestination NewNavigationDestination)
 {
@@ -6832,7 +6726,7 @@ void UScrollBox::SetNavigationDestination(enum class EDescendantScrollDestinatio
 // Function UMG.ScrollBox.SetConsumeMouseWheel
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EConsumeMouseWheel      NewConsumeMouseWheel                                             (Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EConsumeMouseWheel      NewConsumeMouseWheel                                             (Edit, ConstParm, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
 void UScrollBox::SetConsumeMouseWheel(enum class EConsumeMouseWheel NewConsumeMouseWheel)
 {
@@ -6859,7 +6753,7 @@ void UScrollBox::SetConsumeMouseWheel(enum class EConsumeMouseWheel NewConsumeMo
 // Function UMG.ScrollBox.SetAnimateWheelScrolling
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bShouldAnimateWheelScrolling                                     (Edit, BlueprintReadOnly, Net, EditFixedSize, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bShouldAnimateWheelScrolling                                     (BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
 void UScrollBox::SetAnimateWheelScrolling(bool bShouldAnimateWheelScrolling)
 {
@@ -6886,9 +6780,9 @@ void UScrollBox::SetAnimateWheelScrolling(bool bShouldAnimateWheelScrolling)
 // Function UMG.ScrollBox.SetAlwaysShowScrollbar
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               NewAlwaysShowScrollbar                                           (Edit, BlueprintVisible, Net, EditFixedSize, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               NewAlwaysShowScrollbar                                           (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-void UScrollBox::SetAlwaysShowScrollbar(bool NewAlwaysShowScrollbar)
+void UScrollBox::SetAlwaysShowScrollbar(bool* NewAlwaysShowScrollbar)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6897,7 +6791,6 @@ void UScrollBox::SetAlwaysShowScrollbar(bool NewAlwaysShowScrollbar)
 
 	Params::UScrollBox_SetAlwaysShowScrollbar_Params Parms{};
 
-	Parms.NewAlwaysShowScrollbar = NewAlwaysShowScrollbar;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6907,15 +6800,18 @@ void UScrollBox::SetAlwaysShowScrollbar(bool NewAlwaysShowScrollbar)
 
 	Func->FunctionFlags = Flgs;
 
+	if (NewAlwaysShowScrollbar != nullptr)
+		*NewAlwaysShowScrollbar = Parms.NewAlwaysShowScrollbar;
+
 }
 
 
 // Function UMG.ScrollBox.SetAllowOverscroll
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               NewAllowOverscroll                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               NewAllowOverscroll                                               (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-void UScrollBox::SetAllowOverscroll(bool NewAllowOverscroll)
+void UScrollBox::SetAllowOverscroll(bool* NewAllowOverscroll)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6924,7 +6820,6 @@ void UScrollBox::SetAllowOverscroll(bool NewAllowOverscroll)
 
 	Params::UScrollBox_SetAllowOverscroll_Params Parms{};
 
-	Parms.NewAllowOverscroll = NewAllowOverscroll;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6934,18 +6829,21 @@ void UScrollBox::SetAllowOverscroll(bool NewAllowOverscroll)
 
 	Func->FunctionFlags = Flgs;
 
+	if (NewAllowOverscroll != nullptr)
+		*NewAllowOverscroll = Parms.NewAllowOverscroll;
+
 }
 
 
 // Function UMG.ScrollBox.ScrollWidgetIntoView
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     WidgetToFind                                                     (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               AnimateScroll                                                    (BlueprintVisible, ExportObject, EditFixedSize, Transient, EditConst, InstancedReference, SubobjectReference)
-// enum class EDescendantScrollDestinationScrollDestination                                                (ConstParm, EditFixedSize, Transient, EditConst, InstancedReference, SubobjectReference)
-// float                              Padding                                                          (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidget*                     WidgetToFind                                                     (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               AnimateScroll                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// enum class EDescendantScrollDestinationScrollDestination                                                (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// float                              Padding                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UScrollBox::ScrollWidgetIntoView(class UWidget* WidgetToFind, bool AnimateScroll, enum class EDescendantScrollDestination ScrollDestination, float Padding)
+void UScrollBox::ScrollWidgetIntoView(class UWidget** WidgetToFind, bool* AnimateScroll, enum class EDescendantScrollDestination* ScrollDestination, float* Padding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6954,10 +6852,6 @@ void UScrollBox::ScrollWidgetIntoView(class UWidget* WidgetToFind, bool AnimateS
 
 	Params::UScrollBox_ScrollWidgetIntoView_Params Parms{};
 
-	Parms.WidgetToFind = WidgetToFind;
-	Parms.AnimateScroll = AnimateScroll;
-	Parms.ScrollDestination = ScrollDestination;
-	Parms.Padding = Padding;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6966,6 +6860,18 @@ void UScrollBox::ScrollWidgetIntoView(class UWidget* WidgetToFind, bool AnimateS
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WidgetToFind != nullptr)
+		*WidgetToFind = Parms.WidgetToFind;
+
+	if (AnimateScroll != nullptr)
+		*AnimateScroll = Parms.AnimateScroll;
+
+	if (ScrollDestination != nullptr)
+		*ScrollDestination = Parms.ScrollDestination;
+
+	if (Padding != nullptr)
+		*Padding = Parms.Padding;
 
 }
 
@@ -7021,9 +6927,9 @@ void UScrollBox::ScrollToEnd()
 // Function UMG.ScrollBox.GetViewOffsetFraction
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UScrollBox::GetViewOffsetFraction(float* ReturnValue)
+float UScrollBox::GetViewOffsetFraction()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7041,8 +6947,7 @@ void UScrollBox::GetViewOffsetFraction(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7050,9 +6955,9 @@ void UScrollBox::GetViewOffsetFraction(float* ReturnValue)
 // Function UMG.ScrollBox.GetViewFraction
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UScrollBox::GetViewFraction(float* ReturnValue)
+float UScrollBox::GetViewFraction()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7070,8 +6975,7 @@ void UScrollBox::GetViewFraction(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7079,9 +6983,9 @@ void UScrollBox::GetViewFraction(float* ReturnValue)
 // Function UMG.ScrollBox.GetScrollOffsetOfEnd
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UScrollBox::GetScrollOffsetOfEnd(float* ReturnValue)
+float UScrollBox::GetScrollOffsetOfEnd()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7099,8 +7003,7 @@ void UScrollBox::GetScrollOffsetOfEnd(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7108,9 +7011,9 @@ void UScrollBox::GetScrollOffsetOfEnd(float* ReturnValue)
 // Function UMG.ScrollBox.GetScrollOffset
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UScrollBox::GetScrollOffset(float* ReturnValue)
+float UScrollBox::GetScrollOffset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7128,8 +7031,7 @@ void UScrollBox::GetScrollOffset(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7137,9 +7039,9 @@ void UScrollBox::GetScrollOffset(float* ReturnValue)
 // Function UMG.ScrollBox.GetScrollMax
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UScrollBox::GetScrollMax(float* ReturnValue)
+float UScrollBox::GetScrollMax()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7157,8 +7059,7 @@ void UScrollBox::GetScrollMax(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7166,9 +7067,9 @@ void UScrollBox::GetScrollMax(float* ReturnValue)
 // Function UMG.ScrollBox.GetScrollContentSize
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UScrollBox::GetScrollContentSize(struct FVector2D* ReturnValue)
+struct FVector2D UScrollBox::GetScrollContentSize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7186,8 +7087,7 @@ void UScrollBox::GetScrollContentSize(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -7195,9 +7095,9 @@ void UScrollBox::GetScrollContentSize(struct FVector2D* ReturnValue)
 // Function UMG.ScrollBox.GetPhysicalScrollOffset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UScrollBox::GetPhysicalScrollOffset(float* ReturnValue)
+float UScrollBox::GetPhysicalScrollOffset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7215,8 +7115,7 @@ void UScrollBox::GetPhysicalScrollOffset(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7276,9 +7175,9 @@ class UBorder* UBorder::GetDefaultObj()
 // Function UMG.Border.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBorder::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UBorder::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7296,8 +7195,7 @@ void UBorder::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlig
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -7305,9 +7203,9 @@ void UBorder::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlig
 // Function UMG.Border.SetShowEffectWhenDisabled
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInShowEffectWhenDisabled                                        (Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bInShowEffectWhenDisabled                                        (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBorder::SetShowEffectWhenDisabled(bool* bInShowEffectWhenDisabled)
+bool UBorder::SetShowEffectWhenDisabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7325,8 +7223,7 @@ void UBorder::SetShowEffectWhenDisabled(bool* bInShowEffectWhenDisabled)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bInShowEffectWhenDisabled != nullptr)
-		*bInShowEffectWhenDisabled = Parms.bInShowEffectWhenDisabled;
+	return Parms.ReturnValue;
 
 }
 
@@ -7334,9 +7231,9 @@ void UBorder::SetShowEffectWhenDisabled(bool* bInShowEffectWhenDisabled)
 // Function UMG.Border.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UBorder::SetPadding()
+void UBorder::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7354,7 +7251,8 @@ struct FMargin UBorder::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -7362,9 +7260,9 @@ struct FMargin UBorder::SetPadding()
 // Function UMG.Border.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBorder::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UBorder::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7382,8 +7280,7 @@ void UBorder::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizont
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -7391,9 +7288,9 @@ void UBorder::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizont
 // Function UMG.Border.SetDesiredSizeScale
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InScale                                                          (Edit, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FVector2D                   InScale                                                          (ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FVector2D UBorder::SetDesiredSizeScale()
+void UBorder::SetDesiredSizeScale(struct FVector2D* InScale)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7411,7 +7308,8 @@ struct FVector2D UBorder::SetDesiredSizeScale()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InScale != nullptr)
+		*InScale = std::move(Parms.InScale);
 
 }
 
@@ -7419,9 +7317,9 @@ struct FVector2D UBorder::SetDesiredSizeScale()
 // Function UMG.Border.SetContentColorAndOpacity
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InContentColorAndOpacity                                         (Edit, ConstParm, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FLinearColor                InContentColorAndOpacity                                         (ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBorder::SetContentColorAndOpacity(struct FLinearColor* InContentColorAndOpacity)
+struct FLinearColor UBorder::SetContentColorAndOpacity()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7439,8 +7337,7 @@ void UBorder::SetContentColorAndOpacity(struct FLinearColor* InContentColorAndOp
 
 	Func->FunctionFlags = Flgs;
 
-	if (InContentColorAndOpacity != nullptr)
-		*InContentColorAndOpacity = std::move(Parms.InContentColorAndOpacity);
+	return Parms.ReturnValue;
 
 }
 
@@ -7504,7 +7401,7 @@ class UMaterialInterface* UBorder::SetBrushFromMaterial()
 // Function UMG.Border.SetBrushFromAsset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USlateBrushAsset*            Asset                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USlateBrushAsset*            Asset                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
 void UBorder::SetBrushFromAsset(class USlateBrushAsset** Asset)
 {
@@ -7533,9 +7430,9 @@ void UBorder::SetBrushFromAsset(class USlateBrushAsset** Asset)
 // Function UMG.Border.SetBrushColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InBrushColor                                                     (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FLinearColor                InBrushColor                                                     (Edit, ConstParm, BlueprintReadOnly, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBorder::SetBrushColor(struct FLinearColor* InBrushColor)
+struct FLinearColor UBorder::SetBrushColor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7553,8 +7450,7 @@ void UBorder::SetBrushColor(struct FLinearColor* InBrushColor)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InBrushColor != nullptr)
-		*InBrushColor = std::move(Parms.InBrushColor);
+	return Parms.ReturnValue;
 
 }
 
@@ -7562,9 +7458,9 @@ void UBorder::SetBrushColor(struct FLinearColor* InBrushColor)
 // Function UMG.Border.SetBrush
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSlateBrush                 InBrush                                                          (Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FSlateBrush                 InBrush                                                          (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBorder::SetBrush(const struct FSlateBrush& InBrush)
+struct FSlateBrush UBorder::SetBrush()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7573,7 +7469,6 @@ void UBorder::SetBrush(const struct FSlateBrush& InBrush)
 
 	Params::UBorder_SetBrush_Params Parms{};
 
-	Parms.InBrush = InBrush;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7583,15 +7478,17 @@ void UBorder::SetBrush(const struct FSlateBrush& InBrush)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.Border.GetDynamicMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInstanceDynamic*    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMaterialInstanceDynamic*    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBorder::GetDynamicMaterial(class UMaterialInstanceDynamic** ReturnValue)
+class UMaterialInstanceDynamic* UBorder::GetDynamicMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7609,8 +7506,7 @@ void UBorder::GetDynamicMaterial(class UMaterialInstanceDynamic** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -7646,9 +7542,9 @@ class UEditableText* UEditableText::GetDefaultObj()
 // Function UMG.EditableText.SetTextOverflowPolicy
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ETextOverflowPolicy     InOverflowPolicy                                                 (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ETextOverflowPolicy     InOverflowPolicy                                                 (BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UEditableText::SetTextOverflowPolicy(enum class ETextOverflowPolicy* InOverflowPolicy)
+enum class ETextOverflowPolicy UEditableText::SetTextOverflowPolicy()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7666,8 +7562,7 @@ void UEditableText::SetTextOverflowPolicy(enum class ETextOverflowPolicy* InOver
 
 	Func->FunctionFlags = Flgs;
 
-	if (InOverflowPolicy != nullptr)
-		*InOverflowPolicy = Parms.InOverflowPolicy;
+	return Parms.ReturnValue;
 
 }
 
@@ -7675,7 +7570,7 @@ void UEditableText::SetTextOverflowPolicy(enum class ETextOverflowPolicy* InOver
 // Function UMG.EditableText.SetText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        InText                                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        InText                                                           (Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
 class FText UEditableText::SetText()
 {
@@ -7703,9 +7598,9 @@ class FText UEditableText::SetText()
 // Function UMG.EditableText.SetMinimumDesiredWidth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMinDesiredWidth                                                (BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InMinDesiredWidth                                                (ConstParm, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UEditableText::SetMinimumDesiredWidth(float* InMinDesiredWidth)
+float UEditableText::SetMinimumDesiredWidth()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7723,8 +7618,7 @@ void UEditableText::SetMinimumDesiredWidth(float* InMinDesiredWidth)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMinDesiredWidth != nullptr)
-		*InMinDesiredWidth = Parms.InMinDesiredWidth;
+	return Parms.ReturnValue;
 
 }
 
@@ -7732,9 +7626,9 @@ void UEditableText::SetMinimumDesiredWidth(float* InMinDesiredWidth)
 // Function UMG.EditableText.SetJustification
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ETextJustify            InJustification                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ETextJustify            InJustification                                                  (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UEditableText::SetJustification(enum class ETextJustify* InJustification)
+enum class ETextJustify UEditableText::SetJustification()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7752,8 +7646,7 @@ void UEditableText::SetJustification(enum class ETextJustify* InJustification)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InJustification != nullptr)
-		*InJustification = Parms.InJustification;
+	return Parms.ReturnValue;
 
 }
 
@@ -7761,9 +7654,9 @@ void UEditableText::SetJustification(enum class ETextJustify* InJustification)
 // Function UMG.EditableText.SetIsReadOnly
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InbIsReadyOnly                                                   (Edit, ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               InbIsReadyOnly                                                   (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UEditableText::SetIsReadOnly(bool* InbIsReadyOnly)
+bool UEditableText::SetIsReadOnly()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7781,8 +7674,7 @@ void UEditableText::SetIsReadOnly(bool* InbIsReadyOnly)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InbIsReadyOnly != nullptr)
-		*InbIsReadyOnly = Parms.InbIsReadyOnly;
+	return Parms.ReturnValue;
 
 }
 
@@ -7790,9 +7682,9 @@ void UEditableText::SetIsReadOnly(bool* InbIsReadyOnly)
 // Function UMG.EditableText.SetIsPassword
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InbIsPassword                                                    (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               InbIsPassword                                                    (Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UEditableText::SetIsPassword(bool* InbIsPassword)
+bool UEditableText::SetIsPassword()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7810,8 +7702,7 @@ void UEditableText::SetIsPassword(bool* InbIsPassword)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InbIsPassword != nullptr)
-		*InbIsPassword = Parms.InbIsPassword;
+	return Parms.ReturnValue;
 
 }
 
@@ -7819,9 +7710,9 @@ void UEditableText::SetIsPassword(bool* InbIsPassword)
 // Function UMG.EditableText.SetHintText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        InHintText                                                       (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FText                        InHintText                                                       (Edit, ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UEditableText::SetHintText(class FText* InHintText)
+class FText UEditableText::SetHintText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7839,8 +7730,7 @@ void UEditableText::SetHintText(class FText* InHintText)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHintText != nullptr)
-		*InHintText = Parms.InHintText;
+	return Parms.ReturnValue;
 
 }
 
@@ -7848,9 +7738,9 @@ void UEditableText::SetHintText(class FText* InHintText)
 // Function UMG.EditableText.SetFontOutlineMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInterface*          InMaterial                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UMaterialInterface*          InMaterial                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UEditableText::SetFontOutlineMaterial(class UMaterialInterface* InMaterial)
+class UMaterialInterface* UEditableText::SetFontOutlineMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7859,7 +7749,6 @@ void UEditableText::SetFontOutlineMaterial(class UMaterialInterface* InMaterial)
 
 	Params::UEditableText_SetFontOutlineMaterial_Params Parms{};
 
-	Parms.InMaterial = InMaterial;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7869,15 +7758,17 @@ void UEditableText::SetFontOutlineMaterial(class UMaterialInterface* InMaterial)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.EditableText.SetFontMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInterface*          InMaterial                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UMaterialInterface*          InMaterial                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UEditableText::SetFontMaterial(class UMaterialInterface* InMaterial)
+class UMaterialInterface* UEditableText::SetFontMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7886,7 +7777,6 @@ void UEditableText::SetFontMaterial(class UMaterialInterface* InMaterial)
 
 	Params::UEditableText_SetFontMaterial_Params Parms{};
 
-	Parms.InMaterial = InMaterial;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7896,15 +7786,17 @@ void UEditableText::SetFontMaterial(class UMaterialInterface* InMaterial)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.EditableText.SetFont
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FSlateFontInfo              InFontInfo                                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FSlateFontInfo              InFontInfo                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UEditableText::SetFont(const struct FSlateFontInfo& InFontInfo)
+struct FSlateFontInfo UEditableText::SetFont()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7913,7 +7805,6 @@ void UEditableText::SetFont(const struct FSlateFontInfo& InFontInfo)
 
 	Params::UEditableText_SetFont_Params Parms{};
 
-	Parms.InFontInfo = InFontInfo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7923,6 +7814,8 @@ void UEditableText::SetFont(const struct FSlateFontInfo& InFontInfo)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
@@ -7930,9 +7823,9 @@ void UEditableText::SetFont(const struct FSlateFontInfo& InFontInfo)
 // (MulticastDelegate, Public, Delegate, HasOutParams)
 // Parameters:
 // class FText                        Text                                                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, EditConst)
-// enum class ETextCommit             CommitMethod                                                     (Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ETextCommit             CommitMethod                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class FText UEditableText::OnEditableTextCommittedEvent__DelegateSignature(enum class ETextCommit CommitMethod)
+enum class ETextCommit UEditableText::OnEditableTextCommittedEvent__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7941,7 +7834,6 @@ class FText UEditableText::OnEditableTextCommittedEvent__DelegateSignature(enum 
 
 	Params::UEditableText_OnEditableTextCommittedEvent__DelegateSignature_Params Parms{};
 
-	Parms.CommitMethod = CommitMethod;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -7975,9 +7867,9 @@ class FText UEditableText::OnEditableTextChangedEvent__DelegateSignature()
 // Function UMG.EditableText.GetText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEditableText::GetText(class FText* ReturnValue)
+class FText UEditableText::GetText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7995,8 +7887,7 @@ void UEditableText::GetText(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -8004,9 +7895,9 @@ void UEditableText::GetText(class FText* ReturnValue)
 // Function UMG.EditableText.GetJustification
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class ETextJustify            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ETextJustify            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEditableText::GetJustification(enum class ETextJustify* ReturnValue)
+enum class ETextJustify UEditableText::GetJustification()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8024,8 +7915,7 @@ void UEditableText::GetJustification(enum class ETextJustify* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -8033,9 +7923,9 @@ void UEditableText::GetJustification(enum class ETextJustify* ReturnValue)
 // Function UMG.EditableText.GetHintText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEditableText::GetHintText(class FText* ReturnValue)
+class FText UEditableText::GetHintText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8053,8 +7943,7 @@ void UEditableText::GetHintText(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -8062,9 +7951,9 @@ void UEditableText::GetHintText(class FText* ReturnValue)
 // Function UMG.EditableText.GetFont
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FSlateFontInfo              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSlateFontInfo              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEditableText::GetFont(struct FSlateFontInfo* ReturnValue)
+struct FSlateFontInfo UEditableText::GetFont()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8082,8 +7971,7 @@ void UEditableText::GetFont(struct FSlateFontInfo* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -8175,7 +8063,7 @@ class UListViewBase* UListViewBase::GetDefaultObj()
 // Function UMG.ListViewBase.SetWheelScrollMultiplier
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewWheelScrollMultiplier                                         (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              NewWheelScrollMultiplier                                         (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
 void UListViewBase::SetWheelScrollMultiplier(float NewWheelScrollMultiplier)
 {
@@ -8202,9 +8090,9 @@ void UListViewBase::SetWheelScrollMultiplier(float NewWheelScrollMultiplier)
 // Function UMG.ListViewBase.SetScrollOffset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InScrollOffset                                                   (Edit, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InScrollOffset                                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-float UListViewBase::SetScrollOffset()
+void UListViewBase::SetScrollOffset(float InScrollOffset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8213,6 +8101,7 @@ float UListViewBase::SetScrollOffset()
 
 	Params::UListViewBase_SetScrollOffset_Params Parms{};
 
+	Parms.InScrollOffset = InScrollOffset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8222,17 +8111,15 @@ float UListViewBase::SetScrollOffset()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.ListViewBase.SetScrollBarVisibility
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ESlateVisibility        InVisibility                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ESlateVisibility        InVisibility                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UListViewBase::SetScrollBarVisibility(enum class ESlateVisibility* InVisibility)
+enum class ESlateVisibility UListViewBase::SetScrollBarVisibility()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8250,8 +8137,7 @@ void UListViewBase::SetScrollBarVisibility(enum class ESlateVisibility* InVisibi
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVisibility != nullptr)
-		*InVisibility = Parms.InVisibility;
+	return Parms.ReturnValue;
 
 }
 
@@ -8355,9 +8241,9 @@ void UListViewBase::RegenerateAllEntries()
 // Function UMG.ListViewBase.GetScrollOffset
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UListViewBase::GetScrollOffset(float* ReturnValue)
+float UListViewBase::GetScrollOffset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8375,8 +8261,7 @@ void UListViewBase::GetScrollOffset(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -8384,9 +8269,9 @@ void UListViewBase::GetScrollOffset(float* ReturnValue)
 // Function UMG.ListViewBase.GetDisplayedEntryWidgets
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UUserWidget*>         ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UUserWidget*>         ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UListViewBase::GetDisplayedEntryWidgets(TArray<class UUserWidget*>* ReturnValue)
+TArray<class UUserWidget*> UListViewBase::GetDisplayedEntryWidgets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8404,8 +8289,7 @@ void UListViewBase::GetDisplayedEntryWidgets(TArray<class UUserWidget*>* ReturnV
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -8441,9 +8325,9 @@ class UListView* UListView::GetDefaultObj()
 // Function UMG.ListView.SetSelectionMode
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ESelectionMode          SelectionMode                                                    (Edit, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class ESelectionMode          SelectionMode                                                    (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UListView::SetSelectionMode(enum class ESelectionMode SelectionMode)
+enum class ESelectionMode UListView::SetSelectionMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8452,7 +8336,6 @@ void UListView::SetSelectionMode(enum class ESelectionMode SelectionMode)
 
 	Params::UListView_SetSelectionMode_Params Parms{};
 
-	Parms.SelectionMode = SelectionMode;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8461,6 +8344,8 @@ void UListView::SetSelectionMode(enum class ESelectionMode SelectionMode)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -8552,10 +8437,10 @@ class UObject* UListView::RemoveItem()
 // Function UMG.ListView.OnListItemOuterEndPlayed
 // (Final, Native, Protected)
 // Parameters:
-// class AActor*                      ItemOuter                                                        (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EEndPlayReason          EndPlayReason                                                    (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      ItemOuter                                                        (BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EEndPlayReason          EndPlayReason                                                    (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EEndPlayReason UListView::OnListItemOuterEndPlayed()
+void UListView::OnListItemOuterEndPlayed(class AActor* ItemOuter, enum class EEndPlayReason* EndPlayReason)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8564,6 +8449,7 @@ enum class EEndPlayReason UListView::OnListItemOuterEndPlayed()
 
 	Params::UListView_OnListItemOuterEndPlayed_Params Parms{};
 
+	Parms.ItemOuter = ItemOuter;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8573,7 +8459,8 @@ enum class EEndPlayReason UListView::OnListItemOuterEndPlayed()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (EndPlayReason != nullptr)
+		*EndPlayReason = Parms.EndPlayReason;
 
 }
 
@@ -8582,9 +8469,9 @@ enum class EEndPlayReason UListView::OnListItemOuterEndPlayed()
 // (Final, Native, Protected)
 // Parameters:
 // class AActor*                      Item                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config)
-// enum class EEndPlayReason          EndPlayReason                                                    (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EEndPlayReason          EndPlayReason                                                    (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EEndPlayReason UListView::OnListItemEndPlayed()
+class AActor* UListView::OnListItemEndPlayed(enum class EEndPlayReason* EndPlayReason)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8601,6 +8488,9 @@ enum class EEndPlayReason UListView::OnListItemEndPlayed()
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (EndPlayReason != nullptr)
+		*EndPlayReason = Parms.EndPlayReason;
 
 	return Parms.ReturnValue;
 
@@ -8638,9 +8528,9 @@ int32 UListView::NavigateToIndex()
 // Function UMG.ListView.IsRefreshPending
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UListView::IsRefreshPending(bool* ReturnValue)
+bool UListView::IsRefreshPending()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8658,8 +8548,7 @@ void UListView::IsRefreshPending(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -8667,9 +8556,9 @@ void UListView::IsRefreshPending(bool* ReturnValue)
 // Function UMG.ListView.GetNumItems
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UListView::GetNumItems(int32* ReturnValue)
+int32 UListView::GetNumItems()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8687,8 +8576,7 @@ void UListView::GetNumItems(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -8696,9 +8584,9 @@ void UListView::GetNumItems(int32* ReturnValue)
 // Function UMG.ListView.GetListItems
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UObject*>             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UObject*>             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UListView::GetListItems(TArray<class UObject*>* ReturnValue)
+TArray<class UObject*> UListView::GetListItems()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8716,8 +8604,7 @@ void UListView::GetListItems(TArray<class UObject*>* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -8726,9 +8613,9 @@ void UListView::GetListItems(TArray<class UObject*>* ReturnValue)
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UListView::GetItemAt(class UObject** ReturnValue)
+class UObject* UListView::GetItemAt()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8746,9 +8633,6 @@ int32 UListView::GetItemAt(class UObject** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -8758,9 +8642,9 @@ int32 UListView::GetItemAt(class UObject** ReturnValue)
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // class UObject*                     Item                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UListView::GetIndexForItem(int32* ReturnValue)
+int32 UListView::GetIndexForItem()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8777,9 +8661,6 @@ class UObject* UListView::GetIndexForItem(int32* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -8841,9 +8722,9 @@ class UObject* UListView::BP_SetSelectedItem()
 // Function UMG.ListView.BP_SetListItems
 // (Final, Native, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class UObject*>             InListItems                                                      (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class UObject*>             InListItems                                                      (Edit, ExportObject, Parm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-TArray<class UObject*> UListView::BP_SetListItems()
+void UListView::BP_SetListItems(const TArray<class UObject*>& InListItems)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8852,6 +8733,7 @@ TArray<class UObject*> UListView::BP_SetListItems()
 
 	Params::UListView_BP_SetListItems_Params Parms{};
 
+	Parms.InListItems = InListItems;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8861,8 +8743,6 @@ TArray<class UObject*> UListView::BP_SetListItems()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -8870,7 +8750,7 @@ TArray<class UObject*> UListView::BP_SetListItems()
 // (Final, Native, Private, BlueprintCallable)
 // Parameters:
 // class UObject*                     Item                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config)
-// bool                               bSelected                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// bool                               bSelected                                                        (BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 bool UListView::BP_SetItemSelection()
 {
@@ -8955,9 +8835,9 @@ class UObject* UListView::BP_NavigateToItem()
 // (Final, Native, Private, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // class UObject*                     Item                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UListView::BP_IsItemVisible(bool* ReturnValue)
+bool UListView::BP_IsItemVisible()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8975,9 +8855,6 @@ class UObject* UListView::BP_IsItemVisible(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -8986,10 +8863,10 @@ class UObject* UListView::BP_IsItemVisible(bool* ReturnValue)
 // Function UMG.ListView.BP_GetSelectedItems
 // (Final, Native, Private, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// TArray<class UObject*>             Items                                                            (Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UObject*>             Items                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UListView::BP_GetSelectedItems(TArray<class UObject*>* Items, bool* ReturnValue)
+bool UListView::BP_GetSelectedItems()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9007,11 +8884,7 @@ void UListView::BP_GetSelectedItems(TArray<class UObject*>* Items, bool* ReturnV
 
 	Func->FunctionFlags = Flgs;
 
-	if (Items != nullptr)
-		*Items = std::move(Parms.Items);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -9019,9 +8892,9 @@ void UListView::BP_GetSelectedItems(TArray<class UObject*>* Items, bool* ReturnV
 // Function UMG.ListView.BP_GetSelectedItem
 // (Final, Native, Private, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UListView::BP_GetSelectedItem(class UObject** ReturnValue)
+class UObject* UListView::BP_GetSelectedItem()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9039,8 +8912,7 @@ void UListView::BP_GetSelectedItem(class UObject** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -9048,9 +8920,9 @@ void UListView::BP_GetSelectedItem(class UObject** ReturnValue)
 // Function UMG.ListView.BP_GetNumItemsSelected
 // (Final, Native, Private, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UListView::BP_GetNumItemsSelected(int32* ReturnValue)
+int32 UListView::BP_GetNumItemsSelected()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9068,8 +8940,7 @@ void UListView::BP_GetNumItemsSelected(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -9601,9 +9472,9 @@ class UUMGSequencePlayer* UUMGSequencePlayer::GetDefaultObj()
 // Function UMG.UMGSequencePlayer.SetUserTag
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InUserTag                                                        (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InUserTag                                                        (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UUMGSequencePlayer::SetUserTag(class FName* InUserTag)
+class FName UUMGSequencePlayer::SetUserTag()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9621,8 +9492,7 @@ void UUMGSequencePlayer::SetUserTag(class FName* InUserTag)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InUserTag != nullptr)
-		*InUserTag = Parms.InUserTag;
+	return Parms.ReturnValue;
 
 }
 
@@ -9630,9 +9500,9 @@ void UUMGSequencePlayer::SetUserTag(class FName* InUserTag)
 // Function UMG.UMGSequencePlayer.GetUserTag
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUMGSequencePlayer::GetUserTag(class FName* ReturnValue)
+class FName UUMGSequencePlayer::GetUserTag()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9650,8 +9520,7 @@ void UUMGSequencePlayer::GetUserTag(class FName* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -9716,9 +9585,9 @@ class UWidgetAnimation* UWidgetAnimation::GetDefaultObj()
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class UUserWidget*                 Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-FDelegateProperty_ UWidgetAnimation::UnbindFromAnimationStarted()
+class UUserWidget* UWidgetAnimation::UnbindFromAnimationStarted(FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9727,6 +9596,7 @@ FDelegateProperty_ UWidgetAnimation::UnbindFromAnimationStarted()
 
 	Params::UWidgetAnimation_UnbindFromAnimationStarted_Params Parms{};
 
+	Parms.Delegate = Delegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9745,9 +9615,9 @@ FDelegateProperty_ UWidgetAnimation::UnbindFromAnimationStarted()
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class UUserWidget*                 Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-FDelegateProperty_ UWidgetAnimation::UnbindFromAnimationFinished()
+class UUserWidget* UWidgetAnimation::UnbindFromAnimationFinished(FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9756,6 +9626,7 @@ FDelegateProperty_ UWidgetAnimation::UnbindFromAnimationFinished()
 
 	Params::UWidgetAnimation_UnbindFromAnimationFinished_Params Parms{};
 
+	Parms.Delegate = Delegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9829,9 +9700,9 @@ class UUserWidget* UWidgetAnimation::UnbindAllFromAnimationFinished()
 // Function UMG.WidgetAnimation.GetStartTime
 // (Final, RequiredAPI, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetAnimation::GetStartTime(float* ReturnValue)
+float UWidgetAnimation::GetStartTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9849,8 +9720,7 @@ void UWidgetAnimation::GetStartTime(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -9858,9 +9728,9 @@ void UWidgetAnimation::GetStartTime(float* ReturnValue)
 // Function UMG.WidgetAnimation.GetEndTime
 // (Final, RequiredAPI, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetAnimation::GetEndTime(float* ReturnValue)
+float UWidgetAnimation::GetEndTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9878,8 +9748,7 @@ void UWidgetAnimation::GetEndTime(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -9888,9 +9757,9 @@ void UWidgetAnimation::GetEndTime(float* ReturnValue)
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class UUserWidget*                 Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-FDelegateProperty_ UWidgetAnimation::BindToAnimationStarted()
+class UUserWidget* UWidgetAnimation::BindToAnimationStarted(FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9899,6 +9768,7 @@ FDelegateProperty_ UWidgetAnimation::BindToAnimationStarted()
 
 	Params::UWidgetAnimation_BindToAnimationStarted_Params Parms{};
 
+	Parms.Delegate = Delegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9917,9 +9787,9 @@ FDelegateProperty_ UWidgetAnimation::BindToAnimationStarted()
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class UUserWidget*                 Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-FDelegateProperty_ UWidgetAnimation::BindToAnimationFinished()
+class UUserWidget* UWidgetAnimation::BindToAnimationFinished(FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9928,6 +9798,7 @@ FDelegateProperty_ UWidgetAnimation::BindToAnimationFinished()
 
 	Params::UWidgetAnimation_BindToAnimationFinished_Params Parms{};
 
+	Parms.Delegate = Delegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10003,15 +9874,15 @@ class UWidgetAnimationPlayCallbackProxy* UWidgetAnimationPlayCallbackProxy::GetD
 // Parameters:
 // class UUMGSequencePlayer*          Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
 // class UUserWidget*                 Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              StartAtTime                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              EndAtTime                                                        (Edit, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              NumLoopsToPlay                                                   (ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// enum class EUMGSequencePlayMode    PlayMode                                                         (BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              PlaybackSpeed                                                    (BlueprintVisible, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UWidgetAnimationPlayCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              StartAtTime                                                      (ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              EndAtTime                                                        (Edit, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              NumLoopsToPlay                                                   (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EUMGSequencePlayMode    PlayMode                                                         (BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              PlaybackSpeed                                                    (BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidgetAnimationPlayCallbackProxy*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UWidgetAnimationPlayCallbackProxy::CreatePlayAnimationTimeRangeProxyObject(class UUMGSequencePlayer** Result, class UWidgetAnimation** InAnimation, class UWidgetAnimationPlayCallbackProxy** ReturnValue)
+class UWidgetAnimationPlayCallbackProxy* UWidgetAnimationPlayCallbackProxy::CreatePlayAnimationTimeRangeProxyObject(class UUMGSequencePlayer** Result, float StartAtTime, float EndAtTime, int32 NumLoopsToPlay, enum class EUMGSequencePlayMode PlayMode, float PlaybackSpeed)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10020,6 +9891,11 @@ float UWidgetAnimationPlayCallbackProxy::CreatePlayAnimationTimeRangeProxyObject
 
 	Params::UWidgetAnimationPlayCallbackProxy_CreatePlayAnimationTimeRangeProxyObject_Params Parms{};
 
+	Parms.StartAtTime = StartAtTime;
+	Parms.EndAtTime = EndAtTime;
+	Parms.NumLoopsToPlay = NumLoopsToPlay;
+	Parms.PlayMode = PlayMode;
+	Parms.PlaybackSpeed = PlaybackSpeed;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10031,12 +9907,6 @@ float UWidgetAnimationPlayCallbackProxy::CreatePlayAnimationTimeRangeProxyObject
 
 	if (Result != nullptr)
 		*Result = Parms.Result;
-
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -10048,14 +9918,14 @@ float UWidgetAnimationPlayCallbackProxy::CreatePlayAnimationTimeRangeProxyObject
 // Parameters:
 // class UUMGSequencePlayer*          Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
 // class UUserWidget*                 Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              StartAtTime                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              NumLoopsToPlay                                                   (ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// enum class EUMGSequencePlayMode    PlayMode                                                         (BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              PlaybackSpeed                                                    (BlueprintVisible, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UWidgetAnimationPlayCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidgetAnimation*            InAnimation                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              StartAtTime                                                      (ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              NumLoopsToPlay                                                   (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EUMGSequencePlayMode    PlayMode                                                         (BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              PlaybackSpeed                                                    (BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidgetAnimationPlayCallbackProxy*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UWidgetAnimationPlayCallbackProxy::CreatePlayAnimationProxyObject(class UUMGSequencePlayer** Result, class UWidgetAnimation** InAnimation, class UWidgetAnimationPlayCallbackProxy** ReturnValue)
+class UWidgetAnimationPlayCallbackProxy* UWidgetAnimationPlayCallbackProxy::CreatePlayAnimationProxyObject(class UUMGSequencePlayer** Result, float StartAtTime, int32 NumLoopsToPlay, enum class EUMGSequencePlayMode PlayMode, float PlaybackSpeed)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10064,6 +9934,10 @@ float UWidgetAnimationPlayCallbackProxy::CreatePlayAnimationProxyObject(class UU
 
 	Params::UWidgetAnimationPlayCallbackProxy_CreatePlayAnimationProxyObject_Params Parms{};
 
+	Parms.StartAtTime = StartAtTime;
+	Parms.NumLoopsToPlay = NumLoopsToPlay;
+	Parms.PlayMode = PlayMode;
+	Parms.PlaybackSpeed = PlaybackSpeed;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10075,12 +9949,6 @@ float UWidgetAnimationPlayCallbackProxy::CreatePlayAnimationProxyObject(class UU
 
 	if (Result != nullptr)
 		*Result = Parms.Result;
-
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -10146,9 +10014,9 @@ class UBoolBinding* UBoolBinding::GetDefaultObj()
 // Function UMG.BoolBinding.GetValue
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBoolBinding::GetValue(bool* ReturnValue)
+bool UBoolBinding::GetValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10166,8 +10034,7 @@ void UBoolBinding::GetValue(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10203,9 +10070,9 @@ class UBrushBinding* UBrushBinding::GetDefaultObj()
 // Function UMG.BrushBinding.GetValue
 // (Final, Native, Public, Const)
 // Parameters:
-// struct FSlateBrush                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSlateBrush                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBrushBinding::GetValue(struct FSlateBrush* ReturnValue)
+struct FSlateBrush UBrushBinding::GetValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10223,8 +10090,7 @@ void UBrushBinding::GetValue(struct FSlateBrush* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -10260,9 +10126,9 @@ class UCheckedStateBinding* UCheckedStateBinding::GetDefaultObj()
 // Function UMG.CheckedStateBinding.GetValue
 // (Final, Native, Public, Const)
 // Parameters:
-// enum class ECheckBoxState          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ECheckBoxState          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCheckedStateBinding::GetValue(enum class ECheckBoxState* ReturnValue)
+enum class ECheckBoxState UCheckedStateBinding::GetValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10280,8 +10146,7 @@ void UCheckedStateBinding::GetValue(enum class ECheckBoxState* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10317,9 +10182,9 @@ class UColorBinding* UColorBinding::GetDefaultObj()
 // Function UMG.ColorBinding.GetSlateValue
 // (Final, Native, Public, Const)
 // Parameters:
-// struct FSlateColor                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSlateColor                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UColorBinding::GetSlateValue(struct FSlateColor* ReturnValue)
+struct FSlateColor UColorBinding::GetSlateValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10337,8 +10202,7 @@ void UColorBinding::GetSlateValue(struct FSlateColor* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -10346,9 +10210,9 @@ void UColorBinding::GetSlateValue(struct FSlateColor* ReturnValue)
 // Function UMG.ColorBinding.GetLinearValue
 // (Final, Native, Public, HasDefaults, Const)
 // Parameters:
-// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UColorBinding::GetLinearValue(struct FLinearColor* ReturnValue)
+struct FLinearColor UColorBinding::GetLinearValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10366,8 +10230,7 @@ void UColorBinding::GetLinearValue(struct FLinearColor* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -10403,9 +10266,9 @@ class UFloatBinding* UFloatBinding::GetDefaultObj()
 // Function UMG.FloatBinding.GetValue
 // (Final, Native, Public, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UFloatBinding::GetValue(float* ReturnValue)
+float UFloatBinding::GetValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10423,8 +10286,7 @@ void UFloatBinding::GetValue(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10460,9 +10322,9 @@ class UInt32Binding* UInt32Binding::GetDefaultObj()
 // Function UMG.Int32Binding.GetValue
 // (Final, Native, Public, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UInt32Binding::GetValue(int32* ReturnValue)
+int32 UInt32Binding::GetValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10480,8 +10342,7 @@ void UInt32Binding::GetValue(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10517,9 +10378,9 @@ class UMouseCursorBinding* UMouseCursorBinding::GetDefaultObj()
 // Function UMG.MouseCursorBinding.GetValue
 // (Final, Native, Public, Const)
 // Parameters:
-// enum class EMouseCursor            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EMouseCursor            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMouseCursorBinding::GetValue(enum class EMouseCursor* ReturnValue)
+enum class EMouseCursor UMouseCursorBinding::GetValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10537,8 +10398,7 @@ void UMouseCursorBinding::GetValue(enum class EMouseCursor* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10574,9 +10434,9 @@ class UTextBinding* UTextBinding::GetDefaultObj()
 // Function UMG.TextBinding.GetTextValue
 // (Final, Native, Public, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UTextBinding::GetTextValue(class FText* ReturnValue)
+class FText UTextBinding::GetTextValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10594,8 +10454,7 @@ void UTextBinding::GetTextValue(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10603,9 +10462,9 @@ void UTextBinding::GetTextValue(class FText* ReturnValue)
 // Function UMG.TextBinding.GetStringValue
 // (Final, Native, Public, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UTextBinding::GetStringValue(class FString* ReturnValue)
+class FString UTextBinding::GetStringValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10623,8 +10482,7 @@ void UTextBinding::GetStringValue(class FString* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -10660,9 +10518,9 @@ class UVisibilityBinding* UVisibilityBinding::GetDefaultObj()
 // Function UMG.VisibilityBinding.GetValue
 // (Final, Native, Public, Const)
 // Parameters:
-// enum class ESlateVisibility        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ESlateVisibility        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UVisibilityBinding::GetValue(enum class ESlateVisibility* ReturnValue)
+enum class ESlateVisibility UVisibilityBinding::GetValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10680,8 +10538,7 @@ void UVisibilityBinding::GetValue(enum class ESlateVisibility* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10717,9 +10574,9 @@ class UWidgetBinding* UWidgetBinding::GetDefaultObj()
 // Function UMG.WidgetBinding.GetValue
 // (Final, Native, Public, Const)
 // Parameters:
-// class UWidget*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetBinding::GetValue(class UWidget** ReturnValue)
+class UWidget* UWidgetBinding::GetValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10737,8 +10594,7 @@ void UWidgetBinding::GetValue(class UWidget** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10775,9 +10631,9 @@ class UAsyncTaskDownloadImage* UAsyncTaskDownloadImage::GetDefaultObj()
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class FString                      URL                                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, EditConst)
-// class UAsyncTaskDownloadImage*     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAsyncTaskDownloadImage*     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAsyncTaskDownloadImage::DownloadImage(class FString* URL, class UAsyncTaskDownloadImage** ReturnValue)
+class UAsyncTaskDownloadImage* UAsyncTaskDownloadImage::DownloadImage(class FString* URL)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10798,8 +10654,7 @@ void UAsyncTaskDownloadImage::DownloadImage(class FString* URL, class UAsyncTask
 	if (URL != nullptr)
 		*URL = std::move(Parms.URL);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10835,13 +10690,13 @@ class UGameViewportSubsystem* UGameViewportSubsystem::GetDefaultObj()
 // Function UMG.GameViewportSubsystem.SetWidgetSlotPosition
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FGameViewportWidgetSlot     Slot                                                             (Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FGameViewportWidgetSlot     Slot                                                             (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
 // struct FVector2D                   Position                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
-// bool                               bRemoveDPIScale                                                  (BlueprintVisible, ExportObject, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FGameViewportWidgetSlot     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bRemoveDPIScale                                                  (BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FGameViewportWidgetSlot     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UGameViewportSubsystem::SetWidgetSlotPosition(const struct FVector2D& Position, struct FGameViewportWidgetSlot* ReturnValue)
+struct FGameViewportWidgetSlot UGameViewportSubsystem::SetWidgetSlotPosition(const struct FVector2D& Position, bool* bRemoveDPIScale)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10860,8 +10715,8 @@ bool UGameViewportSubsystem::SetWidgetSlotPosition(const struct FVector2D& Posit
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (bRemoveDPIScale != nullptr)
+		*bRemoveDPIScale = Parms.bRemoveDPIScale;
 
 	return Parms.ReturnValue;
 
@@ -10871,11 +10726,11 @@ bool UGameViewportSubsystem::SetWidgetSlotPosition(const struct FVector2D& Posit
 // Function UMG.GameViewportSubsystem.SetWidgetSlotDesiredSize
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FGameViewportWidgetSlot     Slot                                                             (Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FGameViewportWidgetSlot     Slot                                                             (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 // struct FVector2D                   Size                                                             (Edit, ExportObject, EditFixedSize, ReturnParm, Transient, Config)
-// struct FGameViewportWidgetSlot     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameViewportWidgetSlot     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UGameViewportSubsystem::SetWidgetSlotDesiredSize(struct FGameViewportWidgetSlot* ReturnValue)
+struct FGameViewportWidgetSlot UGameViewportSubsystem::SetWidgetSlotDesiredSize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10893,9 +10748,6 @@ struct FVector2D UGameViewportSubsystem::SetWidgetSlotDesiredSize(struct FGameVi
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -10905,7 +10757,7 @@ struct FVector2D UGameViewportSubsystem::SetWidgetSlotDesiredSize(struct FGameVi
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// struct FGameViewportWidgetSlot     Slot                                                             (Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FGameViewportWidgetSlot     Slot                                                             (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 struct FGameViewportWidgetSlot UGameViewportSubsystem::SetWidgetSlot()
 {
@@ -10962,9 +10814,9 @@ class UWidget* UGameViewportSubsystem::RemoveWidget()
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UGameViewportSubsystem::IsWidgetAdded(bool* ReturnValue)
+bool UGameViewportSubsystem::IsWidgetAdded()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10982,9 +10834,6 @@ class UWidget* UGameViewportSubsystem::IsWidgetAdded(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -10994,9 +10843,9 @@ class UWidget* UGameViewportSubsystem::IsWidgetAdded(bool* ReturnValue)
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// struct FGameViewportWidgetSlot     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameViewportWidgetSlot     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UGameViewportSubsystem::GetWidgetSlot(struct FGameViewportWidgetSlot* ReturnValue)
+struct FGameViewportWidgetSlot UGameViewportSubsystem::GetWidgetSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11014,9 +10863,6 @@ class UWidget* UGameViewportSubsystem::GetWidgetSlot(struct FGameViewportWidgetS
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -11027,7 +10873,7 @@ class UWidget* UGameViewportSubsystem::GetWidgetSlot(struct FGameViewportWidgetS
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
 // class ULocalPlayer*                Player                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst)
-// struct FGameViewportWidgetSlot     Slot                                                             (Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FGameViewportWidgetSlot     Slot                                                             (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 struct FGameViewportWidgetSlot UGameViewportSubsystem::AddWidgetForPlayer()
 {
@@ -11056,7 +10902,7 @@ struct FGameViewportWidgetSlot UGameViewportSubsystem::AddWidgetForPlayer()
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// struct FGameViewportWidgetSlot     Slot                                                             (Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FGameViewportWidgetSlot     Slot                                                             (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 struct FGameViewportWidgetSlot UGameViewportSubsystem::AddWidget()
 {
@@ -11112,9 +10958,9 @@ class IUserListEntry* IUserListEntry::GetDefaultObj()
 // Function UMG.UserListEntry.BP_OnItemSelectionChanged
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// bool                               bIsSelected                                                      (Edit, ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bIsSelected                                                      (Edit, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool IUserListEntry::BP_OnItemSelectionChanged()
+void IUserListEntry::BP_OnItemSelectionChanged(bool bIsSelected)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11123,10 +10969,9 @@ bool IUserListEntry::BP_OnItemSelectionChanged()
 
 	Params::IUserListEntry_BP_OnItemSelectionChanged_Params Parms{};
 
+	Parms.bIsSelected = bIsSelected;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -11203,9 +11048,9 @@ class UUserListEntryLibrary* UUserListEntryLibrary::GetDefaultObj()
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // TScriptInterface<class IUserListEntry>UserListEntry                                                    (BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TScriptInterface<class IUserListEntry> UUserListEntryLibrary::IsListItemSelected(bool* ReturnValue)
+bool UUserListEntryLibrary::IsListItemSelected()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11223,9 +11068,6 @@ TScriptInterface<class IUserListEntry> UUserListEntryLibrary::IsListItemSelected
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -11235,9 +11077,9 @@ TScriptInterface<class IUserListEntry> UUserListEntryLibrary::IsListItemSelected
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // TScriptInterface<class IUserListEntry>UserListEntry                                                    (BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TScriptInterface<class IUserListEntry> UUserListEntryLibrary::IsListItemExpanded(bool* ReturnValue)
+bool UUserListEntryLibrary::IsListItemExpanded()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11255,9 +11097,6 @@ TScriptInterface<class IUserListEntry> UUserListEntryLibrary::IsListItemExpanded
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -11267,9 +11106,9 @@ TScriptInterface<class IUserListEntry> UUserListEntryLibrary::IsListItemExpanded
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // TScriptInterface<class IUserListEntry>UserListEntry                                                    (BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig)
-// class UListViewBase*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UListViewBase*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TScriptInterface<class IUserListEntry> UUserListEntryLibrary::GetOwningListView(class UListViewBase** ReturnValue)
+class UListViewBase* UUserListEntryLibrary::GetOwningListView()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11286,9 +11125,6 @@ TScriptInterface<class IUserListEntry> UUserListEntryLibrary::GetOwningListView(
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -11326,9 +11162,9 @@ class IUserObjectListEntry* IUserObjectListEntry::GetDefaultObj()
 // Function UMG.UserObjectListEntry.OnListItemObjectSet
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class UObject*                     ListItemObject                                                   (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     ListItemObject                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IUserObjectListEntry::OnListItemObjectSet(class UObject** ListItemObject)
+class UObject* IUserObjectListEntry::OnListItemObjectSet()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11340,8 +11176,7 @@ void IUserObjectListEntry::OnListItemObjectSet(class UObject** ListItemObject)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ListItemObject != nullptr)
-		*ListItemObject = Parms.ListItemObject;
+	return Parms.ReturnValue;
 
 }
 
@@ -11378,9 +11213,9 @@ class UUserObjectListEntryLibrary* UUserObjectListEntryLibrary::GetDefaultObj()
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // TScriptInterface<class IUserObjectListEntry>UserObjectListEntry                                              (Edit, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig)
-// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TScriptInterface<class IUserObjectListEntry> UUserObjectListEntryLibrary::GetListItemObject(class UObject** ReturnValue)
+class UObject* UUserObjectListEntryLibrary::GetListItemObject()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11397,9 +11232,6 @@ TScriptInterface<class IUserObjectListEntry> UUserObjectListEntryLibrary::GetLis
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -11437,9 +11269,9 @@ class UBackgroundBlur* UBackgroundBlur::GetDefaultObj()
 // Function UMG.BackgroundBlur.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBackgroundBlur::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UBackgroundBlur::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11457,8 +11289,7 @@ void UBackgroundBlur::SetVerticalAlignment(enum class EVerticalAlignment* InVert
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -11466,9 +11297,9 @@ void UBackgroundBlur::SetVerticalAlignment(enum class EVerticalAlignment* InVert
 // Function UMG.BackgroundBlur.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UBackgroundBlur::SetPadding()
+void UBackgroundBlur::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11486,7 +11317,8 @@ struct FMargin UBackgroundBlur::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -11494,9 +11326,9 @@ struct FMargin UBackgroundBlur::SetPadding()
 // Function UMG.BackgroundBlur.SetLowQualityFallbackBrush
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSlateBrush                 InBrush                                                          (Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FSlateBrush                 InBrush                                                          (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBackgroundBlur::SetLowQualityFallbackBrush(const struct FSlateBrush& InBrush)
+struct FSlateBrush UBackgroundBlur::SetLowQualityFallbackBrush()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11505,7 +11337,6 @@ void UBackgroundBlur::SetLowQualityFallbackBrush(const struct FSlateBrush& InBru
 
 	Params::UBackgroundBlur_SetLowQualityFallbackBrush_Params Parms{};
 
-	Parms.InBrush = InBrush;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -11515,15 +11346,17 @@ void UBackgroundBlur::SetLowQualityFallbackBrush(const struct FSlateBrush& InBru
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.BackgroundBlur.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBackgroundBlur::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UBackgroundBlur::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11541,8 +11374,7 @@ void UBackgroundBlur::SetHorizontalAlignment(enum class EHorizontalAlignment* In
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -11550,9 +11382,9 @@ void UBackgroundBlur::SetHorizontalAlignment(enum class EHorizontalAlignment* In
 // Function UMG.BackgroundBlur.SetCornerRadius
 // (Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector4                    InCornerRadius                                                   (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector4                    InCornerRadius                                                   (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBackgroundBlur::SetCornerRadius(struct FVector4* InCornerRadius)
+struct FVector4 UBackgroundBlur::SetCornerRadius()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11570,8 +11402,7 @@ void UBackgroundBlur::SetCornerRadius(struct FVector4* InCornerRadius)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InCornerRadius != nullptr)
-		*InCornerRadius = std::move(Parms.InCornerRadius);
+	return Parms.ReturnValue;
 
 }
 
@@ -11579,9 +11410,9 @@ void UBackgroundBlur::SetCornerRadius(struct FVector4* InCornerRadius)
 // Function UMG.BackgroundBlur.SetBlurStrength
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InStrength                                                       (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InStrength                                                       (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBackgroundBlur::SetBlurStrength(float* InStrength)
+float UBackgroundBlur::SetBlurStrength()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11599,8 +11430,7 @@ void UBackgroundBlur::SetBlurStrength(float* InStrength)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InStrength != nullptr)
-		*InStrength = Parms.InStrength;
+	return Parms.ReturnValue;
 
 }
 
@@ -11608,9 +11438,9 @@ void UBackgroundBlur::SetBlurStrength(float* InStrength)
 // Function UMG.BackgroundBlur.SetBlurRadius
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InBlurRadius                                                     (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InBlurRadius                                                     (Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBackgroundBlur::SetBlurRadius(int32* InBlurRadius)
+int32 UBackgroundBlur::SetBlurRadius()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11628,8 +11458,7 @@ void UBackgroundBlur::SetBlurRadius(int32* InBlurRadius)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InBlurRadius != nullptr)
-		*InBlurRadius = Parms.InBlurRadius;
+	return Parms.ReturnValue;
 
 }
 
@@ -11637,9 +11466,9 @@ void UBackgroundBlur::SetBlurRadius(int32* InBlurRadius)
 // Function UMG.BackgroundBlur.SetApplyAlphaToBlur
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInApplyAlphaToBlur                                              (Edit, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInApplyAlphaToBlur                                              (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBackgroundBlur::SetApplyAlphaToBlur(bool* bInApplyAlphaToBlur)
+bool UBackgroundBlur::SetApplyAlphaToBlur()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11657,8 +11486,7 @@ void UBackgroundBlur::SetApplyAlphaToBlur(bool* bInApplyAlphaToBlur)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bInApplyAlphaToBlur != nullptr)
-		*bInApplyAlphaToBlur = Parms.bInApplyAlphaToBlur;
+	return Parms.ReturnValue;
 
 }
 
@@ -11722,9 +11550,9 @@ class UBackgroundBlurSlot* UBackgroundBlurSlot::GetDefaultObj()
 // Function UMG.BackgroundBlurSlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBackgroundBlurSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UBackgroundBlurSlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11742,8 +11570,7 @@ void UBackgroundBlurSlot::SetVerticalAlignment(enum class EVerticalAlignment* In
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -11751,9 +11578,9 @@ void UBackgroundBlurSlot::SetVerticalAlignment(enum class EVerticalAlignment* In
 // Function UMG.BackgroundBlurSlot.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UBackgroundBlurSlot::SetPadding()
+void UBackgroundBlurSlot::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11771,7 +11598,8 @@ struct FMargin UBackgroundBlurSlot::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -11779,9 +11607,9 @@ struct FMargin UBackgroundBlurSlot::SetPadding()
 // Function UMG.BackgroundBlurSlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBackgroundBlurSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UBackgroundBlurSlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11799,8 +11627,7 @@ void UBackgroundBlurSlot::SetHorizontalAlignment(enum class EHorizontalAlignment
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -11836,9 +11663,9 @@ class UBorderSlot* UBorderSlot::GetDefaultObj()
 // Function UMG.BorderSlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBorderSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UBorderSlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11856,8 +11683,7 @@ void UBorderSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVertical
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -11865,9 +11691,9 @@ void UBorderSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVertical
 // Function UMG.BorderSlot.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UBorderSlot::SetPadding()
+void UBorderSlot::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11885,7 +11711,8 @@ struct FMargin UBorderSlot::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -11893,9 +11720,9 @@ struct FMargin UBorderSlot::SetPadding()
 // Function UMG.BorderSlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBorderSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UBorderSlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11913,8 +11740,7 @@ void UBorderSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHori
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -11950,9 +11776,9 @@ class UButtonSlot* UButtonSlot::GetDefaultObj()
 // Function UMG.ButtonSlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UButtonSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UButtonSlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -11970,8 +11796,7 @@ void UButtonSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVertical
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -11979,9 +11804,9 @@ void UButtonSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVertical
 // Function UMG.ButtonSlot.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UButtonSlot::SetPadding()
+void UButtonSlot::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11999,7 +11824,8 @@ struct FMargin UButtonSlot::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -12007,9 +11833,9 @@ struct FMargin UButtonSlot::SetPadding()
 // Function UMG.ButtonSlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UButtonSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UButtonSlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12027,8 +11853,7 @@ void UButtonSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHori
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -12064,9 +11889,9 @@ class UCanvasPanel* UCanvasPanel::GetDefaultObj()
 // Function UMG.CanvasPanel.SetColorAndOpacity
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InColorAndOpacity                                                (ConstParm, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InColorAndOpacity                                                (ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FLinearColor UCanvasPanel::SetColorAndOpacity()
+void UCanvasPanel::SetColorAndOpacity(const struct FLinearColor& InColorAndOpacity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -12075,6 +11900,7 @@ struct FLinearColor UCanvasPanel::SetColorAndOpacity()
 
 	Params::UCanvasPanel_SetColorAndOpacity_Params Parms{};
 
+	Parms.InColorAndOpacity = InColorAndOpacity;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -12084,18 +11910,16 @@ struct FLinearColor UCanvasPanel::SetColorAndOpacity()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.CanvasPanel.AddChildToCanvas
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// class UCanvasPanelSlot*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// class UCanvasPanelSlot*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UCanvasPanel::AddChildToCanvas(class UCanvasPanelSlot** ReturnValue)
+class UCanvasPanelSlot* UCanvasPanel::AddChildToCanvas(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -12113,8 +11937,8 @@ class UWidget* UCanvasPanel::AddChildToCanvas(class UCanvasPanelSlot** ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -12152,7 +11976,7 @@ class UCanvasPanelSlot* UCanvasPanelSlot::GetDefaultObj()
 // Function UMG.CanvasPanelSlot.SetZOrder
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InZOrder                                                         (ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InZOrder                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 int32 UCanvasPanelSlot::SetZOrder()
 {
@@ -12180,9 +12004,9 @@ int32 UCanvasPanelSlot::SetZOrder()
 // Function UMG.CanvasPanelSlot.SetSize
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InSize                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FVector2D                   InSize                                                           (ExportObject, Net, EditFixedSize, Parm, Transient, EditConst, SubobjectReference)
 
-struct FVector2D UCanvasPanelSlot::SetSize()
+void UCanvasPanelSlot::SetSize(const struct FVector2D& InSize)
 {
 	static class UFunction* Func = nullptr;
 
@@ -12191,6 +12015,7 @@ struct FVector2D UCanvasPanelSlot::SetSize()
 
 	Params::UCanvasPanelSlot_SetSize_Params Parms{};
 
+	Parms.InSize = InSize;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -12200,15 +12025,13 @@ struct FVector2D UCanvasPanelSlot::SetSize()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.CanvasPanelSlot.SetPosition
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector2D                   InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FVector2D UCanvasPanelSlot::SetPosition()
 {
@@ -12236,7 +12059,7 @@ struct FVector2D UCanvasPanelSlot::SetPosition()
 // Function UMG.CanvasPanelSlot.SetOffsets
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InOffset                                                         (Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FMargin                     InOffset                                                         (BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FMargin UCanvasPanelSlot::SetOffsets()
 {
@@ -12264,7 +12087,7 @@ struct FMargin UCanvasPanelSlot::SetOffsets()
 // Function UMG.CanvasPanelSlot.SetMinimum
 // (Final, Native, Public, HasDefaults)
 // Parameters:
-// struct FVector2D                   InMinimumAnchors                                                 (BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   InMinimumAnchors                                                 (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FVector2D UCanvasPanelSlot::SetMinimum()
 {
@@ -12292,7 +12115,7 @@ struct FVector2D UCanvasPanelSlot::SetMinimum()
 // Function UMG.CanvasPanelSlot.SetMaximum
 // (Final, Native, Public, HasDefaults)
 // Parameters:
-// struct FVector2D                   InMaximumAnchors                                                 (Edit, ConstParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   InMaximumAnchors                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FVector2D UCanvasPanelSlot::SetMaximum()
 {
@@ -12320,9 +12143,9 @@ struct FVector2D UCanvasPanelSlot::SetMaximum()
 // Function UMG.CanvasPanelSlot.SetLayout
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAnchorData                 InLayoutData                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FAnchorData                 InLayoutData                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UCanvasPanelSlot::SetLayout(struct FAnchorData* InLayoutData)
+struct FAnchorData UCanvasPanelSlot::SetLayout()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12340,8 +12163,7 @@ void UCanvasPanelSlot::SetLayout(struct FAnchorData* InLayoutData)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InLayoutData != nullptr)
-		*InLayoutData = std::move(Parms.InLayoutData);
+	return Parms.ReturnValue;
 
 }
 
@@ -12349,9 +12171,9 @@ void UCanvasPanelSlot::SetLayout(struct FAnchorData* InLayoutData)
 // Function UMG.CanvasPanelSlot.SetAutoSize
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InbAutoSize                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               InbAutoSize                                                      (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UCanvasPanelSlot::SetAutoSize(bool* InbAutoSize)
+bool UCanvasPanelSlot::SetAutoSize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12369,8 +12191,7 @@ void UCanvasPanelSlot::SetAutoSize(bool* InbAutoSize)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InbAutoSize != nullptr)
-		*InbAutoSize = Parms.InbAutoSize;
+	return Parms.ReturnValue;
 
 }
 
@@ -12378,9 +12199,9 @@ void UCanvasPanelSlot::SetAutoSize(bool* InbAutoSize)
 // Function UMG.CanvasPanelSlot.SetAnchors
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FAnchors                    InAnchors                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FAnchors                    InAnchors                                                        (ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UCanvasPanelSlot::SetAnchors(struct FAnchors* InAnchors)
+struct FAnchors UCanvasPanelSlot::SetAnchors()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12398,8 +12219,7 @@ void UCanvasPanelSlot::SetAnchors(struct FAnchors* InAnchors)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InAnchors != nullptr)
-		*InAnchors = std::move(Parms.InAnchors);
+	return Parms.ReturnValue;
 
 }
 
@@ -12407,9 +12227,9 @@ void UCanvasPanelSlot::SetAnchors(struct FAnchors* InAnchors)
 // Function UMG.CanvasPanelSlot.SetAlignment
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InAlignment                                                      (ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   InAlignment                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UCanvasPanelSlot::SetAlignment(struct FVector2D* InAlignment)
+struct FVector2D UCanvasPanelSlot::SetAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12427,8 +12247,7 @@ void UCanvasPanelSlot::SetAlignment(struct FVector2D* InAlignment)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InAlignment != nullptr)
-		*InAlignment = std::move(Parms.InAlignment);
+	return Parms.ReturnValue;
 
 }
 
@@ -12436,9 +12255,9 @@ void UCanvasPanelSlot::SetAlignment(struct FVector2D* InAlignment)
 // Function UMG.CanvasPanelSlot.GetZOrder
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCanvasPanelSlot::GetZOrder(int32* ReturnValue)
+int32 UCanvasPanelSlot::GetZOrder()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12456,8 +12275,7 @@ void UCanvasPanelSlot::GetZOrder(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -12465,9 +12283,9 @@ void UCanvasPanelSlot::GetZOrder(int32* ReturnValue)
 // Function UMG.CanvasPanelSlot.GetSize
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCanvasPanelSlot::GetSize(struct FVector2D* ReturnValue)
+struct FVector2D UCanvasPanelSlot::GetSize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12485,8 +12303,7 @@ void UCanvasPanelSlot::GetSize(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -12494,9 +12311,9 @@ void UCanvasPanelSlot::GetSize(struct FVector2D* ReturnValue)
 // Function UMG.CanvasPanelSlot.GetPosition
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCanvasPanelSlot::GetPosition(struct FVector2D* ReturnValue)
+struct FVector2D UCanvasPanelSlot::GetPosition()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12514,8 +12331,7 @@ void UCanvasPanelSlot::GetPosition(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -12523,9 +12339,9 @@ void UCanvasPanelSlot::GetPosition(struct FVector2D* ReturnValue)
 // Function UMG.CanvasPanelSlot.GetOffsets
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FMargin                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FMargin                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCanvasPanelSlot::GetOffsets(struct FMargin* ReturnValue)
+struct FMargin UCanvasPanelSlot::GetOffsets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12543,8 +12359,7 @@ void UCanvasPanelSlot::GetOffsets(struct FMargin* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -12552,9 +12367,9 @@ void UCanvasPanelSlot::GetOffsets(struct FMargin* ReturnValue)
 // Function UMG.CanvasPanelSlot.GetLayout
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FAnchorData                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnchorData                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCanvasPanelSlot::GetLayout(struct FAnchorData* ReturnValue)
+struct FAnchorData UCanvasPanelSlot::GetLayout()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12572,8 +12387,7 @@ void UCanvasPanelSlot::GetLayout(struct FAnchorData* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -12581,9 +12395,9 @@ void UCanvasPanelSlot::GetLayout(struct FAnchorData* ReturnValue)
 // Function UMG.CanvasPanelSlot.GetAutoSize
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCanvasPanelSlot::GetAutoSize(bool* ReturnValue)
+bool UCanvasPanelSlot::GetAutoSize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12601,8 +12415,7 @@ void UCanvasPanelSlot::GetAutoSize(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -12610,9 +12423,9 @@ void UCanvasPanelSlot::GetAutoSize(bool* ReturnValue)
 // Function UMG.CanvasPanelSlot.GetAnchors
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FAnchors                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnchors                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCanvasPanelSlot::GetAnchors(struct FAnchors* ReturnValue)
+struct FAnchors UCanvasPanelSlot::GetAnchors()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12630,8 +12443,7 @@ void UCanvasPanelSlot::GetAnchors(struct FAnchors* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -12639,9 +12451,9 @@ void UCanvasPanelSlot::GetAnchors(struct FAnchors* ReturnValue)
 // Function UMG.CanvasPanelSlot.GetAlignment
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCanvasPanelSlot::GetAlignment(struct FVector2D* ReturnValue)
+struct FVector2D UCanvasPanelSlot::GetAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12659,8 +12471,7 @@ void UCanvasPanelSlot::GetAlignment(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -12696,9 +12507,9 @@ class UCheckBox* UCheckBox::GetDefaultObj()
 // Function UMG.CheckBox.SetTouchMethod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EButtonTouchMethod      InTouchMethod                                                    (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EButtonTouchMethod      InTouchMethod                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UCheckBox::SetTouchMethod(enum class EButtonTouchMethod InTouchMethod)
+enum class EButtonTouchMethod UCheckBox::SetTouchMethod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12707,7 +12518,6 @@ void UCheckBox::SetTouchMethod(enum class EButtonTouchMethod InTouchMethod)
 
 	Params::UCheckBox_SetTouchMethod_Params Parms{};
 
-	Parms.InTouchMethod = InTouchMethod;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -12717,15 +12527,17 @@ void UCheckBox::SetTouchMethod(enum class EButtonTouchMethod InTouchMethod)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.CheckBox.SetPressMethod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EButtonPressMethod      InPressMethod                                                    (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EButtonPressMethod      InPressMethod                                                    (ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UCheckBox::SetPressMethod(enum class EButtonPressMethod InPressMethod)
+enum class EButtonPressMethod UCheckBox::SetPressMethod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12734,7 +12546,6 @@ void UCheckBox::SetPressMethod(enum class EButtonPressMethod InPressMethod)
 
 	Params::UCheckBox_SetPressMethod_Params Parms{};
 
-	Parms.InPressMethod = InPressMethod;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -12744,13 +12555,15 @@ void UCheckBox::SetPressMethod(enum class EButtonPressMethod InPressMethod)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.CheckBox.SetIsChecked
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InIsChecked                                                      (Edit, ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               InIsChecked                                                      (ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 bool UCheckBox::SetIsChecked()
 {
@@ -12778,9 +12591,9 @@ bool UCheckBox::SetIsChecked()
 // Function UMG.CheckBox.SetClickMethod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EButtonClickMethod      InClickMethod                                                    (Edit, BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EButtonClickMethod      InClickMethod                                                    (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UCheckBox::SetClickMethod(enum class EButtonClickMethod InClickMethod)
+enum class EButtonClickMethod UCheckBox::SetClickMethod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12789,7 +12602,6 @@ void UCheckBox::SetClickMethod(enum class EButtonClickMethod InClickMethod)
 
 	Params::UCheckBox_SetClickMethod_Params Parms{};
 
-	Parms.InClickMethod = InClickMethod;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -12799,13 +12611,15 @@ void UCheckBox::SetClickMethod(enum class EButtonClickMethod InClickMethod)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.CheckBox.SetCheckedState
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ECheckBoxState          InCheckedState                                                   (Edit, ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class ECheckBoxState          InCheckedState                                                   (ConstParm, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 enum class ECheckBoxState UCheckBox::SetCheckedState()
 {
@@ -12833,9 +12647,9 @@ enum class ECheckBoxState UCheckBox::SetCheckedState()
 // Function UMG.CheckBox.IsPressed
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCheckBox::IsPressed(bool* ReturnValue)
+bool UCheckBox::IsPressed()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12853,8 +12667,7 @@ void UCheckBox::IsPressed(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -12862,9 +12675,9 @@ void UCheckBox::IsPressed(bool* ReturnValue)
 // Function UMG.CheckBox.IsChecked
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCheckBox::IsChecked(bool* ReturnValue)
+bool UCheckBox::IsChecked()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12882,8 +12695,7 @@ void UCheckBox::IsChecked(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -12891,9 +12703,9 @@ void UCheckBox::IsChecked(bool* ReturnValue)
 // Function UMG.CheckBox.GetCheckedState
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class ECheckBoxState          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ECheckBoxState          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UCheckBox::GetCheckedState(enum class ECheckBoxState* ReturnValue)
+enum class ECheckBoxState UCheckBox::GetCheckedState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -12911,8 +12723,7 @@ void UCheckBox::GetCheckedState(enum class ECheckBoxState* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -12948,7 +12759,7 @@ class UCircularThrobber* UCircularThrobber::GetDefaultObj()
 // Function UMG.CircularThrobber.SetRadius
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InRadius                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InRadius                                                         (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 float UCircularThrobber::SetRadius()
 {
@@ -12976,7 +12787,7 @@ float UCircularThrobber::SetRadius()
 // Function UMG.CircularThrobber.SetPeriod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InPeriod                                                         (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InPeriod                                                         (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 float UCircularThrobber::SetPeriod()
 {
@@ -13004,7 +12815,7 @@ float UCircularThrobber::SetPeriod()
 // Function UMG.CircularThrobber.SetNumberOfPieces
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InNumberOfPieces                                                 (BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InNumberOfPieces                                                 (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 int32 UCircularThrobber::SetNumberOfPieces()
 {
@@ -13088,7 +12899,7 @@ class UComboBoxKey* UComboBoxKey::GetDefaultObj()
 // Function UMG.ComboBoxKey.SetSelectedOption
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        Option                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FName                        Option                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 class FName UComboBoxKey::SetSelectedOption()
 {
@@ -13116,10 +12927,10 @@ class FName UComboBoxKey::SetSelectedOption()
 // Function UMG.ComboBoxKey.RemoveOption
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        Option                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        Option                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UComboBoxKey::RemoveOption(bool* ReturnValue)
+bool UComboBoxKey::RemoveOption()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13137,9 +12948,6 @@ class FName UComboBoxKey::RemoveOption(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -13148,10 +12956,10 @@ class FName UComboBoxKey::RemoveOption(bool* ReturnValue)
 // DelegateFunction UMG.ComboBoxKey.OnSelectionChangedEvent__DelegateSignature
 // (MulticastDelegate, Public, Delegate)
 // Parameters:
-// class FName                        SelectedItem                                                     (ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// enum class ESelectInfo             SelectionType                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FName                        SelectedItem                                                     (Edit, BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ESelectInfo             SelectionType                                                    (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-enum class ESelectInfo UComboBoxKey::OnSelectionChangedEvent__DelegateSignature()
+enum class ESelectInfo UComboBoxKey::OnSelectionChangedEvent__DelegateSignature(class FName SelectedItem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -13160,6 +12968,7 @@ enum class ESelectInfo UComboBoxKey::OnSelectionChangedEvent__DelegateSignature(
 
 	Params::UComboBoxKey_OnSelectionChangedEvent__DelegateSignature_Params Parms{};
 
+	Parms.SelectedItem = SelectedItem;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -13189,9 +12998,9 @@ void UComboBoxKey::OnOpeningEvent__DelegateSignature()
 // Function UMG.ComboBoxKey.IsOpen
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UComboBoxKey::IsOpen(bool* ReturnValue)
+bool UComboBoxKey::IsOpen()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13209,8 +13018,7 @@ void UComboBoxKey::IsOpen(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -13218,9 +13026,9 @@ void UComboBoxKey::IsOpen(bool* ReturnValue)
 // Function UMG.ComboBoxKey.GetSelectedOption
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UComboBoxKey::GetSelectedOption(class FName* ReturnValue)
+class FName UComboBoxKey::GetSelectedOption()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13238,8 +13046,7 @@ void UComboBoxKey::GetSelectedOption(class FName* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -13248,9 +13055,9 @@ void UComboBoxKey::GetSelectedOption(class FName* ReturnValue)
 // (Public, Delegate)
 // Parameters:
 // class FName                        Item                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config)
-// class UWidget*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UComboBoxKey::GenerateWidgetEvent__DelegateSignature(class UWidget** ReturnValue)
+class UWidget* UComboBoxKey::GenerateWidgetEvent__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13261,9 +13068,6 @@ class FName UComboBoxKey::GenerateWidgetEvent__DelegateSignature(class UWidget**
 
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -13321,7 +13125,7 @@ void UComboBoxKey::ClearOptions()
 // Function UMG.ComboBoxKey.AddOption
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        Option                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FName                        Option                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 class FName UComboBoxKey::AddOption()
 {
@@ -13377,7 +13181,7 @@ class UComboBoxString* UComboBoxString::GetDefaultObj()
 // Function UMG.ComboBoxString.SetSelectedOption
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Option                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FString                      Option                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 class FString UComboBoxString::SetSelectedOption()
 {
@@ -13406,9 +13210,9 @@ class FString UComboBoxString::SetSelectedOption()
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// enum class ESelectInfo             SelectInfo                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ESelectInfo             SelectInfo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-int32 UComboBoxString::SetSelectedIndex(enum class ESelectInfo* SelectInfo)
+enum class ESelectInfo UComboBoxString::SetSelectedIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13426,9 +13230,6 @@ int32 UComboBoxString::SetSelectedIndex(enum class ESelectInfo* SelectInfo)
 
 	Func->FunctionFlags = Flgs;
 
-	if (SelectInfo != nullptr)
-		*SelectInfo = Parms.SelectInfo;
-
 	return Parms.ReturnValue;
 
 }
@@ -13437,10 +13238,10 @@ int32 UComboBoxString::SetSelectedIndex(enum class ESelectInfo* SelectInfo)
 // Function UMG.ComboBoxString.RemoveOption
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Option                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Option                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UComboBoxString::RemoveOption(bool* ReturnValue)
+bool UComboBoxString::RemoveOption()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13457,9 +13258,6 @@ class FString UComboBoxString::RemoveOption(bool* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -13493,10 +13291,10 @@ void UComboBoxString::RefreshOptions()
 // DelegateFunction UMG.ComboBoxString.OnSelectionChangedEvent__DelegateSignature
 // (MulticastDelegate, Public, Delegate)
 // Parameters:
-// class FString                      SelectedItem                                                     (ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// enum class ESelectInfo             SelectionType                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FString                      SelectedItem                                                     (Edit, BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ESelectInfo             SelectionType                                                    (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-enum class ESelectInfo UComboBoxString::OnSelectionChangedEvent__DelegateSignature()
+enum class ESelectInfo UComboBoxString::OnSelectionChangedEvent__DelegateSignature(const class FString& SelectedItem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -13505,6 +13303,7 @@ enum class ESelectInfo UComboBoxString::OnSelectionChangedEvent__DelegateSignatu
 
 	Params::UComboBoxString_OnSelectionChangedEvent__DelegateSignature_Params Parms{};
 
+	Parms.SelectedItem = SelectedItem;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -13552,9 +13351,9 @@ void UComboBoxString::OnClosingEvent__DelegateSignature()
 // Function UMG.ComboBoxString.IsOpen
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UComboBoxString::IsOpen(bool* ReturnValue)
+bool UComboBoxString::IsOpen()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13572,8 +13371,7 @@ void UComboBoxString::IsOpen(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -13581,9 +13379,9 @@ void UComboBoxString::IsOpen(bool* ReturnValue)
 // Function UMG.ComboBoxString.GetSelectedOption
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UComboBoxString::GetSelectedOption(class FString* ReturnValue)
+class FString UComboBoxString::GetSelectedOption()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13601,8 +13399,7 @@ void UComboBoxString::GetSelectedOption(class FString* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -13610,9 +13407,9 @@ void UComboBoxString::GetSelectedOption(class FString* ReturnValue)
 // Function UMG.ComboBoxString.GetSelectedIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UComboBoxString::GetSelectedIndex(int32* ReturnValue)
+int32 UComboBoxString::GetSelectedIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13630,8 +13427,7 @@ void UComboBoxString::GetSelectedIndex(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -13639,9 +13435,9 @@ void UComboBoxString::GetSelectedIndex(int32* ReturnValue)
 // Function UMG.ComboBoxString.GetOptionCount
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UComboBoxString::GetOptionCount(int32* ReturnValue)
+int32 UComboBoxString::GetOptionCount()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13659,8 +13455,7 @@ void UComboBoxString::GetOptionCount(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -13669,9 +13464,9 @@ void UComboBoxString::GetOptionCount(int32* ReturnValue)
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UComboBoxString::GetOptionAtIndex(class FString* ReturnValue)
+class FString UComboBoxString::GetOptionAtIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13689,9 +13484,6 @@ int32 UComboBoxString::GetOptionAtIndex(class FString* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -13700,10 +13492,10 @@ int32 UComboBoxString::GetOptionAtIndex(class FString* ReturnValue)
 // Function UMG.ComboBoxString.FindOptionIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      Option                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Option                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UComboBoxString::FindOptionIndex(int32* ReturnValue)
+int32 UComboBoxString::FindOptionIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13720,9 +13512,6 @@ class FString UComboBoxString::FindOptionIndex(int32* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -13780,7 +13569,7 @@ void UComboBoxString::ClearOptions()
 // Function UMG.ComboBoxString.AddOption
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Option                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FString                      Option                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 class FString UComboBoxString::AddOption()
 {
@@ -13836,7 +13625,7 @@ class UDynamicEntryBoxBase* UDynamicEntryBoxBase::GetDefaultObj()
 // Function UMG.DynamicEntryBoxBase.SetRadialSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FRadialBoxSettings          InSettings                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRadialBoxSettings          InSettings                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FRadialBoxSettings UDynamicEntryBoxBase::SetRadialSettings()
 {
@@ -13864,7 +13653,7 @@ struct FRadialBoxSettings UDynamicEntryBoxBase::SetRadialSettings()
 // Function UMG.DynamicEntryBoxBase.SetEntrySpacing
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InEntrySpacing                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   InEntrySpacing                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FVector2D UDynamicEntryBoxBase::SetEntrySpacing()
 {
@@ -13892,9 +13681,9 @@ struct FVector2D UDynamicEntryBoxBase::SetEntrySpacing()
 // Function UMG.DynamicEntryBoxBase.GetNumEntries
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDynamicEntryBoxBase::GetNumEntries(int32* ReturnValue)
+int32 UDynamicEntryBoxBase::GetNumEntries()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13912,8 +13701,7 @@ void UDynamicEntryBoxBase::GetNumEntries(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -13921,9 +13709,9 @@ void UDynamicEntryBoxBase::GetNumEntries(int32* ReturnValue)
 // Function UMG.DynamicEntryBoxBase.GetAllEntries
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UUserWidget*>         ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UUserWidget*>         ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDynamicEntryBoxBase::GetAllEntries(TArray<class UUserWidget*>* ReturnValue)
+TArray<class UUserWidget*> UDynamicEntryBoxBase::GetAllEntries()
 {
 	static class UFunction* Func = nullptr;
 
@@ -13941,8 +13729,7 @@ void UDynamicEntryBoxBase::GetAllEntries(TArray<class UUserWidget*>* ReturnValue
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -13978,7 +13765,7 @@ class UDynamicEntryBox* UDynamicEntryBox::GetDefaultObj()
 // Function UMG.DynamicEntryBox.Reset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bDeleteWidgets                                                   (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bDeleteWidgets                                                   (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 bool UDynamicEntryBox::Reset()
 {
@@ -14006,7 +13793,7 @@ bool UDynamicEntryBox::Reset()
 // Function UMG.DynamicEntryBox.RemoveEntry
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UUserWidget*                 EntryWidget                                                      (Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UUserWidget*                 EntryWidget                                                      (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 class UUserWidget* UDynamicEntryBox::RemoveEntry()
 {
@@ -14034,10 +13821,10 @@ class UUserWidget* UDynamicEntryBox::RemoveEntry()
 // Function UMG.DynamicEntryBox.BP_CreateEntryOfClass
 // (Final, Native, Private, BlueprintCallable)
 // Parameters:
-// class UClass*                      EntryClass                                                       (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UUserWidget*                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      EntryClass                                                       (ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UUserWidget*                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UDynamicEntryBox::BP_CreateEntryOfClass(class UUserWidget** ReturnValue)
+class UUserWidget* UDynamicEntryBox::BP_CreateEntryOfClass()
 {
 	static class UFunction* Func = nullptr;
 
@@ -14055,9 +13842,6 @@ class UClass* UDynamicEntryBox::BP_CreateEntryOfClass(class UUserWidget** Return
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -14066,9 +13850,9 @@ class UClass* UDynamicEntryBox::BP_CreateEntryOfClass(class UUserWidget** Return
 // Function UMG.DynamicEntryBox.BP_CreateEntry
 // (Final, Native, Private, BlueprintCallable)
 // Parameters:
-// class UUserWidget*                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UUserWidget*                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDynamicEntryBox::BP_CreateEntry(class UUserWidget** ReturnValue)
+class UUserWidget* UDynamicEntryBox::BP_CreateEntry()
 {
 	static class UFunction* Func = nullptr;
 
@@ -14086,8 +13870,7 @@ void UDynamicEntryBox::BP_CreateEntry(class UUserWidget** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -14123,9 +13906,9 @@ class UEditableTextBox* UEditableTextBox::GetDefaultObj()
 // Function UMG.EditableTextBox.SetTextOverflowPolicy
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ETextOverflowPolicy     InOverflowPolicy                                                 (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ETextOverflowPolicy     InOverflowPolicy                                                 (BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UEditableTextBox::SetTextOverflowPolicy(enum class ETextOverflowPolicy* InOverflowPolicy)
+enum class ETextOverflowPolicy UEditableTextBox::SetTextOverflowPolicy()
 {
 	static class UFunction* Func = nullptr;
 
@@ -14143,8 +13926,7 @@ void UEditableTextBox::SetTextOverflowPolicy(enum class ETextOverflowPolicy* InO
 
 	Func->FunctionFlags = Flgs;
 
-	if (InOverflowPolicy != nullptr)
-		*InOverflowPolicy = Parms.InOverflowPolicy;
+	return Parms.ReturnValue;
 
 }
 
@@ -14152,7 +13934,7 @@ void UEditableTextBox::SetTextOverflowPolicy(enum class ETextOverflowPolicy* InO
 // Function UMG.EditableTextBox.SetText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        InText                                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        InText                                                           (Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
 class FText UEditableTextBox::SetText()
 {
@@ -14180,9 +13962,9 @@ class FText UEditableTextBox::SetText()
 // Function UMG.EditableTextBox.SetJustification
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ETextJustify            InJustification                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ETextJustify            InJustification                                                  (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UEditableTextBox::SetJustification(enum class ETextJustify* InJustification)
+enum class ETextJustify UEditableTextBox::SetJustification()
 {
 	static class UFunction* Func = nullptr;
 
@@ -14200,8 +13982,7 @@ void UEditableTextBox::SetJustification(enum class ETextJustify* InJustification
 
 	Func->FunctionFlags = Flgs;
 
-	if (InJustification != nullptr)
-		*InJustification = Parms.InJustification;
+	return Parms.ReturnValue;
 
 }
 
@@ -14209,9 +13990,9 @@ void UEditableTextBox::SetJustification(enum class ETextJustify* InJustification
 // Function UMG.EditableTextBox.SetIsReadOnly
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bReadOnly                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bReadOnly                                                        (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UEditableTextBox::SetIsReadOnly()
+void UEditableTextBox::SetIsReadOnly(bool bReadOnly)
 {
 	static class UFunction* Func = nullptr;
 
@@ -14220,6 +14001,7 @@ bool UEditableTextBox::SetIsReadOnly()
 
 	Params::UEditableTextBox_SetIsReadOnly_Params Parms{};
 
+	Parms.bReadOnly = bReadOnly;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -14229,17 +14011,15 @@ bool UEditableTextBox::SetIsReadOnly()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.EditableTextBox.SetIsPassword
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bIsPassword                                                      (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bIsPassword                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UEditableTextBox::SetIsPassword()
+void UEditableTextBox::SetIsPassword(bool bIsPassword)
 {
 	static class UFunction* Func = nullptr;
 
@@ -14248,6 +14028,7 @@ bool UEditableTextBox::SetIsPassword()
 
 	Params::UEditableTextBox_SetIsPassword_Params Parms{};
 
+	Parms.bIsPassword = bIsPassword;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -14257,15 +14038,13 @@ bool UEditableTextBox::SetIsPassword()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.EditableTextBox.SetHintText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        InText                                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        InText                                                           (Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
 class FText UEditableTextBox::SetHintText()
 {
@@ -14322,9 +14101,9 @@ void UEditableTextBox::SetForegroundColor(struct FLinearColor* Color)
 // Function UMG.EditableTextBox.SetError
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        InError                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FText                        InError                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class FText UEditableTextBox::SetError()
+void UEditableTextBox::SetError(class FText InError)
 {
 	static class UFunction* Func = nullptr;
 
@@ -14333,6 +14112,7 @@ class FText UEditableTextBox::SetError()
 
 	Params::UEditableTextBox_SetError_Params Parms{};
 
+	Parms.InError = InError;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -14342,8 +14122,6 @@ class FText UEditableTextBox::SetError()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -14351,9 +14129,9 @@ class FText UEditableTextBox::SetError()
 // (MulticastDelegate, Public, Delegate, HasOutParams)
 // Parameters:
 // class FText                        Text                                                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, EditConst)
-// enum class ETextCommit             CommitMethod                                                     (Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ETextCommit             CommitMethod                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class FText UEditableTextBox::OnEditableTextBoxCommittedEvent__DelegateSignature(enum class ETextCommit CommitMethod)
+enum class ETextCommit UEditableTextBox::OnEditableTextBoxCommittedEvent__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -14362,7 +14140,6 @@ class FText UEditableTextBox::OnEditableTextBoxCommittedEvent__DelegateSignature
 
 	Params::UEditableTextBox_OnEditableTextBoxCommittedEvent__DelegateSignature_Params Parms{};
 
-	Parms.CommitMethod = CommitMethod;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -14396,9 +14173,9 @@ class FText UEditableTextBox::OnEditableTextBoxChangedEvent__DelegateSignature()
 // Function UMG.EditableTextBox.HasError
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEditableTextBox::HasError(bool* ReturnValue)
+bool UEditableTextBox::HasError()
 {
 	static class UFunction* Func = nullptr;
 
@@ -14416,8 +14193,7 @@ void UEditableTextBox::HasError(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -14425,9 +14201,9 @@ void UEditableTextBox::HasError(bool* ReturnValue)
 // Function UMG.EditableTextBox.GetText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UEditableTextBox::GetText(class FText* ReturnValue)
+class FText UEditableTextBox::GetText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -14445,8 +14221,7 @@ void UEditableTextBox::GetText(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -14562,9 +14337,9 @@ bool UExpandableArea::SetIsExpanded()
 // Function UMG.ExpandableArea.GetIsExpanded
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UExpandableArea::GetIsExpanded(bool* ReturnValue)
+bool UExpandableArea::GetIsExpanded()
 {
 	static class UFunction* Func = nullptr;
 
@@ -14582,8 +14357,7 @@ void UExpandableArea::GetIsExpanded(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -14619,10 +14393,10 @@ class UGridPanel* UGridPanel::GetDefaultObj()
 // Function UMG.GridPanel.SetRowFill
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              RowIndex                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              Coefficient                                                      (ConstParm, BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// int32                              RowIndex                                                         (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              Coefficient                                                      (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UGridPanel::SetRowFill(int32 RowIndex, float Coefficient)
+float UGridPanel::SetRowFill()
 {
 	static class UFunction* Func = nullptr;
 
@@ -14631,8 +14405,6 @@ void UGridPanel::SetRowFill(int32 RowIndex, float Coefficient)
 
 	Params::UGridPanel_SetRowFill_Params Parms{};
 
-	Parms.RowIndex = RowIndex;
-	Parms.Coefficient = Coefficient;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -14642,16 +14414,18 @@ void UGridPanel::SetRowFill(int32 RowIndex, float Coefficient)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.GridPanel.SetColumnFill
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              ColumnIndex                                                      (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              Coefficient                                                      (ConstParm, BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// int32                              ColumnIndex                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              Coefficient                                                      (ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UGridPanel::SetColumnFill(float Coefficient)
+float UGridPanel::SetColumnFill()
 {
 	static class UFunction* Func = nullptr;
 
@@ -14660,7 +14434,6 @@ int32 UGridPanel::SetColumnFill(float Coefficient)
 
 	Params::UGridPanel_SetColumnFill_Params Parms{};
 
-	Parms.Coefficient = Coefficient;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -14678,12 +14451,12 @@ int32 UGridPanel::SetColumnFill(float Coefficient)
 // Function UMG.GridPanel.AddChildToGrid
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// int32                              InRow                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              InColumn                                                         (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UGridSlot*                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// int32                              InRow                                                            (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InColumn                                                         (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UGridSlot*                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UGridPanel::AddChildToGrid(class UGridSlot** ReturnValue)
+class UGridSlot* UGridPanel::AddChildToGrid(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -14701,8 +14474,8 @@ int32 UGridPanel::AddChildToGrid(class UGridSlot** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -14740,9 +14513,9 @@ class UGridSlot* UGridSlot::GetDefaultObj()
 // Function UMG.GridSlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UGridSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UGridSlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -14760,8 +14533,7 @@ void UGridSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAl
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -14769,9 +14541,9 @@ void UGridSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAl
 // Function UMG.GridSlot.SetRowSpan
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InRowSpan                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InRowSpan                                                        (ExportObject, BlueprintReadOnly, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 UGridSlot::SetRowSpan()
+void UGridSlot::SetRowSpan(int32 InRowSpan)
 {
 	static class UFunction* Func = nullptr;
 
@@ -14780,6 +14552,7 @@ int32 UGridSlot::SetRowSpan()
 
 	Params::UGridSlot_SetRowSpan_Params Parms{};
 
+	Parms.InRowSpan = InRowSpan;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -14789,15 +14562,13 @@ int32 UGridSlot::SetRowSpan()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.GridSlot.SetRow
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InRow                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InRow                                                            (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 int32 UGridSlot::SetRow()
 {
@@ -14825,9 +14596,9 @@ int32 UGridSlot::SetRow()
 // Function UMG.GridSlot.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UGridSlot::SetPadding()
+void UGridSlot::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -14845,7 +14616,8 @@ struct FMargin UGridSlot::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -14853,9 +14625,9 @@ struct FMargin UGridSlot::SetPadding()
 // Function UMG.GridSlot.SetNudge
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InNudge                                                          (ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   InNudge                                                          (Edit, ConstParm, BlueprintReadOnly, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVector2D UGridSlot::SetNudge()
+void UGridSlot::SetNudge(const struct FVector2D& InNudge)
 {
 	static class UFunction* Func = nullptr;
 
@@ -14864,6 +14636,7 @@ struct FVector2D UGridSlot::SetNudge()
 
 	Params::UGridSlot_SetNudge_Params Parms{};
 
+	Parms.InNudge = InNudge;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -14873,17 +14646,15 @@ struct FVector2D UGridSlot::SetNudge()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.GridSlot.SetLayer
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InLayer                                                          (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InLayer                                                          (ConstParm, BlueprintVisible, ExportObject, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 UGridSlot::SetLayer()
+void UGridSlot::SetLayer(int32 InLayer)
 {
 	static class UFunction* Func = nullptr;
 
@@ -14892,6 +14663,7 @@ int32 UGridSlot::SetLayer()
 
 	Params::UGridSlot_SetLayer_Params Parms{};
 
+	Parms.InLayer = InLayer;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -14901,17 +14673,15 @@ int32 UGridSlot::SetLayer()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.GridSlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UGridSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UGridSlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -14929,8 +14699,7 @@ void UGridSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizo
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -14938,9 +14707,9 @@ void UGridSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizo
 // Function UMG.GridSlot.SetColumnSpan
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InColumnSpan                                                     (BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InColumnSpan                                                     (Edit, ConstParm, BlueprintVisible, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 UGridSlot::SetColumnSpan()
+void UGridSlot::SetColumnSpan(int32 InColumnSpan)
 {
 	static class UFunction* Func = nullptr;
 
@@ -14949,6 +14718,7 @@ int32 UGridSlot::SetColumnSpan()
 
 	Params::UGridSlot_SetColumnSpan_Params Parms{};
 
+	Parms.InColumnSpan = InColumnSpan;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -14958,15 +14728,13 @@ int32 UGridSlot::SetColumnSpan()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.GridSlot.SetColumn
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InColumn                                                         (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InColumn                                                         (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 int32 UGridSlot::SetColumn()
 {
@@ -15022,10 +14790,10 @@ class UHorizontalBox* UHorizontalBox::GetDefaultObj()
 // Function UMG.HorizontalBox.AddChildToHorizontalBox
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// class UHorizontalBoxSlot*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// class UHorizontalBoxSlot*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UHorizontalBox::AddChildToHorizontalBox(class UHorizontalBoxSlot** ReturnValue)
+class UHorizontalBoxSlot* UHorizontalBox::AddChildToHorizontalBox(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -15043,8 +14811,8 @@ class UWidget* UHorizontalBox::AddChildToHorizontalBox(class UHorizontalBoxSlot*
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -15082,9 +14850,9 @@ class UHorizontalBoxSlot* UHorizontalBoxSlot::GetDefaultObj()
 // Function UMG.HorizontalBoxSlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UHorizontalBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UHorizontalBoxSlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15102,8 +14870,7 @@ void UHorizontalBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InV
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -15111,9 +14878,9 @@ void UHorizontalBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InV
 // Function UMG.HorizontalBoxSlot.SetSize
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FSlateChildSize             InSize                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FSlateChildSize             InSize                                                           (ExportObject, Net, EditFixedSize, Parm, Transient, EditConst, SubobjectReference)
 
-struct FSlateChildSize UHorizontalBoxSlot::SetSize()
+void UHorizontalBoxSlot::SetSize(const struct FSlateChildSize& InSize)
 {
 	static class UFunction* Func = nullptr;
 
@@ -15122,6 +14889,7 @@ struct FSlateChildSize UHorizontalBoxSlot::SetSize()
 
 	Params::UHorizontalBoxSlot_SetSize_Params Parms{};
 
+	Parms.InSize = InSize;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -15131,17 +14899,15 @@ struct FSlateChildSize UHorizontalBoxSlot::SetSize()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.HorizontalBoxSlot.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UHorizontalBoxSlot::SetPadding()
+void UHorizontalBoxSlot::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -15159,7 +14925,8 @@ struct FMargin UHorizontalBoxSlot::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -15167,9 +14934,9 @@ struct FMargin UHorizontalBoxSlot::SetPadding()
 // Function UMG.HorizontalBoxSlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UHorizontalBoxSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UHorizontalBoxSlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15187,8 +14954,7 @@ void UHorizontalBoxSlot::SetHorizontalAlignment(enum class EHorizontalAlignment*
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -15224,9 +14990,9 @@ class UInputKeySelector* UInputKeySelector::GetDefaultObj()
 // Function UMG.InputKeySelector.SetTextBlockVisibility
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ESlateVisibility        InVisibility                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ESlateVisibility        InVisibility                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UInputKeySelector::SetTextBlockVisibility(enum class ESlateVisibility* InVisibility)
+enum class ESlateVisibility UInputKeySelector::SetTextBlockVisibility()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15244,8 +15010,7 @@ void UInputKeySelector::SetTextBlockVisibility(enum class ESlateVisibility* InVi
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVisibility != nullptr)
-		*InVisibility = Parms.InVisibility;
+	return Parms.ReturnValue;
 
 }
 
@@ -15253,9 +15018,9 @@ void UInputKeySelector::SetTextBlockVisibility(enum class ESlateVisibility* InVi
 // Function UMG.InputKeySelector.SetSelectedKey
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FInputChord                 InSelectedKey                                                    (Net, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FInputChord                 InSelectedKey                                                    (BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UInputKeySelector::SetSelectedKey(const struct FInputChord& InSelectedKey)
+struct FInputChord UInputKeySelector::SetSelectedKey()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15264,7 +15029,6 @@ void UInputKeySelector::SetSelectedKey(const struct FInputChord& InSelectedKey)
 
 	Params::UInputKeySelector_SetSelectedKey_Params Parms{};
 
-	Parms.InSelectedKey = InSelectedKey;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -15274,15 +15038,17 @@ void UInputKeySelector::SetSelectedKey(const struct FInputChord& InSelectedKey)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.InputKeySelector.SetNoKeySpecifiedText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        InNoKeySpecifiedText                                             (Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FText                        InNoKeySpecifiedText                                             (Edit, EditFixedSize, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UInputKeySelector::SetNoKeySpecifiedText(class FText InNoKeySpecifiedText)
+class FText UInputKeySelector::SetNoKeySpecifiedText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15291,7 +15057,6 @@ void UInputKeySelector::SetNoKeySpecifiedText(class FText InNoKeySpecifiedText)
 
 	Params::UInputKeySelector_SetNoKeySpecifiedText_Params Parms{};
 
-	Parms.InNoKeySpecifiedText = InNoKeySpecifiedText;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -15301,15 +15066,17 @@ void UInputKeySelector::SetNoKeySpecifiedText(class FText InNoKeySpecifiedText)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.InputKeySelector.SetKeySelectionText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        InKeySelectionText                                               (Edit, ConstParm, ExportObject, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FText                        InKeySelectionText                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UInputKeySelector::SetKeySelectionText(class FText InKeySelectionText)
+class FText UInputKeySelector::SetKeySelectionText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15318,7 +15085,6 @@ void UInputKeySelector::SetKeySelectionText(class FText InKeySelectionText)
 
 	Params::UInputKeySelector_SetKeySelectionText_Params Parms{};
 
-	Parms.InKeySelectionText = InKeySelectionText;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -15328,15 +15094,17 @@ void UInputKeySelector::SetKeySelectionText(class FText InKeySelectionText)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.InputKeySelector.SetEscapeKeys
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FKey>                InKeys                                                           (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// TArray<struct FKey>                InKeys                                                           (Edit, ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UInputKeySelector::SetEscapeKeys(TArray<struct FKey>* InKeys)
+TArray<struct FKey> UInputKeySelector::SetEscapeKeys()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15354,8 +15122,7 @@ void UInputKeySelector::SetEscapeKeys(TArray<struct FKey>* InKeys)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InKeys != nullptr)
-		*InKeys = std::move(Parms.InKeys);
+	return Parms.ReturnValue;
 
 }
 
@@ -15363,9 +15130,9 @@ void UInputKeySelector::SetEscapeKeys(TArray<struct FKey>* InKeys)
 // Function UMG.InputKeySelector.SetAllowModifierKeys
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInAllowModifierKeys                                             (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bInAllowModifierKeys                                             (ExportObject, Net, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UInputKeySelector::SetAllowModifierKeys(bool* bInAllowModifierKeys)
+bool UInputKeySelector::SetAllowModifierKeys()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15383,8 +15150,7 @@ void UInputKeySelector::SetAllowModifierKeys(bool* bInAllowModifierKeys)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bInAllowModifierKeys != nullptr)
-		*bInAllowModifierKeys = Parms.bInAllowModifierKeys;
+	return Parms.ReturnValue;
 
 }
 
@@ -15392,9 +15158,9 @@ void UInputKeySelector::SetAllowModifierKeys(bool* bInAllowModifierKeys)
 // Function UMG.InputKeySelector.SetAllowGamepadKeys
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInAllowGamepadKeys                                              (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bInAllowGamepadKeys                                              (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UInputKeySelector::SetAllowGamepadKeys(bool* bInAllowGamepadKeys)
+bool UInputKeySelector::SetAllowGamepadKeys()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15412,8 +15178,7 @@ void UInputKeySelector::SetAllowGamepadKeys(bool* bInAllowGamepadKeys)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bInAllowGamepadKeys != nullptr)
-		*bInAllowGamepadKeys = Parms.bInAllowGamepadKeys;
+	return Parms.ReturnValue;
 
 }
 
@@ -15461,9 +15226,9 @@ void UInputKeySelector::OnIsSelectingKeyChanged__DelegateSignature()
 // Function UMG.InputKeySelector.GetIsSelectingKey
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UInputKeySelector::GetIsSelectingKey(bool* ReturnValue)
+bool UInputKeySelector::GetIsSelectingKey()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15481,8 +15246,7 @@ void UInputKeySelector::GetIsSelectingKey(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -15518,9 +15282,9 @@ class UInvalidationBox* UInvalidationBox::GetDefaultObj()
 // Function UMG.InvalidationBox.SetCanCache
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               CanCache                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               CanCache                                                         (Edit, BlueprintReadOnly, Net, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UInvalidationBox::SetCanCache()
+void UInvalidationBox::SetCanCache(bool CanCache)
 {
 	static class UFunction* Func = nullptr;
 
@@ -15529,6 +15293,7 @@ bool UInvalidationBox::SetCanCache()
 
 	Params::UInvalidationBox_SetCanCache_Params Parms{};
 
+	Parms.CanCache = CanCache;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -15537,8 +15302,6 @@ bool UInvalidationBox::SetCanCache()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -15570,9 +15333,9 @@ void UInvalidationBox::InvalidateCache()
 // Function UMG.InvalidationBox.GetCanCache
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UInvalidationBox::GetCanCache(bool* ReturnValue)
+bool UInvalidationBox::GetCanCache()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15590,8 +15353,7 @@ void UInvalidationBox::GetCanCache(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -15627,7 +15389,7 @@ class UMenuAnchor* UMenuAnchor::GetDefaultObj()
 // Function UMG.MenuAnchor.ToggleOpen
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bFocusOnOpen                                                     (ExportObject, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bFocusOnOpen                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 bool UMenuAnchor::ToggleOpen()
 {
@@ -15655,9 +15417,9 @@ bool UMenuAnchor::ToggleOpen()
 // Function UMG.MenuAnchor.ShouldOpenDueToClick
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMenuAnchor::ShouldOpenDueToClick(bool* ReturnValue)
+bool UMenuAnchor::ShouldOpenDueToClick()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15675,8 +15437,7 @@ void UMenuAnchor::ShouldOpenDueToClick(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -15684,9 +15445,9 @@ void UMenuAnchor::ShouldOpenDueToClick(bool* ReturnValue)
 // Function UMG.MenuAnchor.SetPlacement
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EMenuPlacement          InPlacement                                                      (BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EMenuPlacement          InPlacement                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UMenuAnchor::SetPlacement(enum class EMenuPlacement* InPlacement)
+enum class EMenuPlacement UMenuAnchor::SetPlacement()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15704,8 +15465,7 @@ void UMenuAnchor::SetPlacement(enum class EMenuPlacement* InPlacement)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InPlacement != nullptr)
-		*InPlacement = Parms.InPlacement;
+	return Parms.ReturnValue;
 
 }
 
@@ -15713,9 +15473,9 @@ void UMenuAnchor::SetPlacement(enum class EMenuPlacement* InPlacement)
 // Function UMG.MenuAnchor.SetIgnoreClicksOutside
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               Ignore                                                           (BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               Ignore                                                           (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UMenuAnchor::SetIgnoreClicksOutside(bool* Ignore)
+bool UMenuAnchor::SetIgnoreClicksOutside()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15733,8 +15493,7 @@ void UMenuAnchor::SetIgnoreClicksOutside(bool* Ignore)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Ignore != nullptr)
-		*Ignore = Parms.Ignore;
+	return Parms.ReturnValue;
 
 }
 
@@ -15742,9 +15501,9 @@ void UMenuAnchor::SetIgnoreClicksOutside(bool* Ignore)
 // Function UMG.MenuAnchor.Open
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bFocusMenu                                                       (ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bFocusMenu                                                       (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UMenuAnchor::Open(bool* bFocusMenu)
+bool UMenuAnchor::Open()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15762,8 +15521,7 @@ void UMenuAnchor::Open(bool* bFocusMenu)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bFocusMenu != nullptr)
-		*bFocusMenu = Parms.bFocusMenu;
+	return Parms.ReturnValue;
 
 }
 
@@ -15771,9 +15529,9 @@ void UMenuAnchor::Open(bool* bFocusMenu)
 // Function UMG.MenuAnchor.IsOpen
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMenuAnchor::IsOpen(bool* ReturnValue)
+bool UMenuAnchor::IsOpen()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15791,8 +15549,7 @@ void UMenuAnchor::IsOpen(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -15800,9 +15557,9 @@ void UMenuAnchor::IsOpen(bool* ReturnValue)
 // Function UMG.MenuAnchor.HasOpenSubMenus
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMenuAnchor::HasOpenSubMenus(bool* ReturnValue)
+bool UMenuAnchor::HasOpenSubMenus()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15820,8 +15577,7 @@ void UMenuAnchor::HasOpenSubMenus(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -15829,9 +15585,9 @@ void UMenuAnchor::HasOpenSubMenus(bool* ReturnValue)
 // DelegateFunction UMG.MenuAnchor.GetUserWidget__DelegateSignature
 // (Public, Delegate)
 // Parameters:
-// class UUserWidget*                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UUserWidget*                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMenuAnchor::GetUserWidget__DelegateSignature(class UUserWidget** ReturnValue)
+class UUserWidget* UMenuAnchor::GetUserWidget__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15843,8 +15599,7 @@ void UMenuAnchor::GetUserWidget__DelegateSignature(class UUserWidget** ReturnVal
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -15852,9 +15607,9 @@ void UMenuAnchor::GetUserWidget__DelegateSignature(class UUserWidget** ReturnVal
 // Function UMG.MenuAnchor.GetMenuPosition
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMenuAnchor::GetMenuPosition(struct FVector2D* ReturnValue)
+struct FVector2D UMenuAnchor::GetMenuPosition()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15872,8 +15627,7 @@ void UMenuAnchor::GetMenuPosition(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -15881,9 +15635,9 @@ void UMenuAnchor::GetMenuPosition(struct FVector2D* ReturnValue)
 // Function UMG.MenuAnchor.GetIsMenuAnchorOpen
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMenuAnchor::GetIsMenuAnchorOpen(bool* ReturnValue)
+bool UMenuAnchor::GetIsMenuAnchorOpen()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15901,8 +15655,7 @@ void UMenuAnchor::GetIsMenuAnchorOpen(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -15910,9 +15663,9 @@ void UMenuAnchor::GetIsMenuAnchorOpen(bool* ReturnValue)
 // Function UMG.MenuAnchor.GetIgnoreClicksOutside
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMenuAnchor::GetIgnoreClicksOutside(bool* ReturnValue)
+bool UMenuAnchor::GetIgnoreClicksOutside()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15930,8 +15683,7 @@ void UMenuAnchor::GetIgnoreClicksOutside(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -15939,9 +15691,9 @@ void UMenuAnchor::GetIgnoreClicksOutside(bool* ReturnValue)
 // Function UMG.MenuAnchor.FitInWindow
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bFit                                                             (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bFit                                                             (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UMenuAnchor::FitInWindow(bool* bFit)
+bool UMenuAnchor::FitInWindow()
 {
 	static class UFunction* Func = nullptr;
 
@@ -15959,8 +15711,7 @@ void UMenuAnchor::FitInWindow(bool* bFit)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bFit != nullptr)
-		*bFit = Parms.bFit;
+	return Parms.ReturnValue;
 
 }
 
@@ -16020,9 +15771,9 @@ class UMultiLineEditableText* UMultiLineEditableText::GetDefaultObj()
 // Function UMG.MultiLineEditableText.SetWidgetStyle
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FTextBlockStyle             InWidgetStyle                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FTextBlockStyle             InWidgetStyle                                                    (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UMultiLineEditableText::SetWidgetStyle(const struct FTextBlockStyle& InWidgetStyle)
+void UMultiLineEditableText::SetWidgetStyle(struct FTextBlockStyle* InWidgetStyle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -16031,7 +15782,6 @@ void UMultiLineEditableText::SetWidgetStyle(const struct FTextBlockStyle& InWidg
 
 	Params::UMultiLineEditableText_SetWidgetStyle_Params Parms{};
 
-	Parms.InWidgetStyle = InWidgetStyle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -16041,13 +15791,16 @@ void UMultiLineEditableText::SetWidgetStyle(const struct FTextBlockStyle& InWidg
 
 	Func->FunctionFlags = Flgs;
 
+	if (InWidgetStyle != nullptr)
+		*InWidgetStyle = std::move(Parms.InWidgetStyle);
+
 }
 
 
 // Function UMG.MultiLineEditableText.SetText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        InText                                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        InText                                                           (Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
 class FText UMultiLineEditableText::SetText()
 {
@@ -16075,9 +15828,9 @@ class FText UMultiLineEditableText::SetText()
 // Function UMG.MultiLineEditableText.SetIsReadOnly
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bReadOnly                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bReadOnly                                                        (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UMultiLineEditableText::SetIsReadOnly()
+void UMultiLineEditableText::SetIsReadOnly(bool bReadOnly)
 {
 	static class UFunction* Func = nullptr;
 
@@ -16086,6 +15839,7 @@ bool UMultiLineEditableText::SetIsReadOnly()
 
 	Params::UMultiLineEditableText_SetIsReadOnly_Params Parms{};
 
+	Parms.bReadOnly = bReadOnly;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -16095,17 +15849,15 @@ bool UMultiLineEditableText::SetIsReadOnly()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.MultiLineEditableText.SetHintText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        InHintText                                                       (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FText                        InHintText                                                       (Edit, ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UMultiLineEditableText::SetHintText(class FText* InHintText)
+class FText UMultiLineEditableText::SetHintText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16123,8 +15875,7 @@ void UMultiLineEditableText::SetHintText(class FText* InHintText)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHintText != nullptr)
-		*InHintText = Parms.InHintText;
+	return Parms.ReturnValue;
 
 }
 
@@ -16132,9 +15883,9 @@ void UMultiLineEditableText::SetHintText(class FText* InHintText)
 // Function UMG.MultiLineEditableText.SetFontOutlineMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInterface*          InMaterial                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UMaterialInterface*          InMaterial                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UMultiLineEditableText::SetFontOutlineMaterial(class UMaterialInterface* InMaterial)
+class UMaterialInterface* UMultiLineEditableText::SetFontOutlineMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16143,7 +15894,6 @@ void UMultiLineEditableText::SetFontOutlineMaterial(class UMaterialInterface* In
 
 	Params::UMultiLineEditableText_SetFontOutlineMaterial_Params Parms{};
 
-	Parms.InMaterial = InMaterial;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -16153,15 +15903,17 @@ void UMultiLineEditableText::SetFontOutlineMaterial(class UMaterialInterface* In
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.MultiLineEditableText.SetFontMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInterface*          InMaterial                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UMaterialInterface*          InMaterial                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UMultiLineEditableText::SetFontMaterial(class UMaterialInterface* InMaterial)
+class UMaterialInterface* UMultiLineEditableText::SetFontMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16170,7 +15922,6 @@ void UMultiLineEditableText::SetFontMaterial(class UMaterialInterface* InMateria
 
 	Params::UMultiLineEditableText_SetFontMaterial_Params Parms{};
 
-	Parms.InMaterial = InMaterial;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -16180,15 +15931,17 @@ void UMultiLineEditableText::SetFontMaterial(class UMaterialInterface* InMateria
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.MultiLineEditableText.SetFont
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FSlateFontInfo              InFontInfo                                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FSlateFontInfo              InFontInfo                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UMultiLineEditableText::SetFont(const struct FSlateFontInfo& InFontInfo)
+struct FSlateFontInfo UMultiLineEditableText::SetFont()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16197,7 +15950,6 @@ void UMultiLineEditableText::SetFont(const struct FSlateFontInfo& InFontInfo)
 
 	Params::UMultiLineEditableText_SetFont_Params Parms{};
 
-	Parms.InFontInfo = InFontInfo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -16207,6 +15959,8 @@ void UMultiLineEditableText::SetFont(const struct FSlateFontInfo& InFontInfo)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
@@ -16214,9 +15968,9 @@ void UMultiLineEditableText::SetFont(const struct FSlateFontInfo& InFontInfo)
 // (MulticastDelegate, Public, Delegate, HasOutParams)
 // Parameters:
 // class FText                        Text                                                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, EditConst)
-// enum class ETextCommit             CommitMethod                                                     (Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ETextCommit             CommitMethod                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class FText UMultiLineEditableText::OnMultiLineEditableTextCommittedEvent__DelegateSignature(enum class ETextCommit CommitMethod)
+enum class ETextCommit UMultiLineEditableText::OnMultiLineEditableTextCommittedEvent__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16225,7 +15979,6 @@ class FText UMultiLineEditableText::OnMultiLineEditableTextCommittedEvent__Deleg
 
 	Params::UMultiLineEditableText_OnMultiLineEditableTextCommittedEvent__DelegateSignature_Params Parms{};
 
-	Parms.CommitMethod = CommitMethod;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -16259,9 +16012,9 @@ class FText UMultiLineEditableText::OnMultiLineEditableTextChangedEvent__Delegat
 // Function UMG.MultiLineEditableText.GetText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMultiLineEditableText::GetText(class FText* ReturnValue)
+class FText UMultiLineEditableText::GetText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16279,8 +16032,7 @@ void UMultiLineEditableText::GetText(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -16288,9 +16040,9 @@ void UMultiLineEditableText::GetText(class FText* ReturnValue)
 // Function UMG.MultiLineEditableText.GetHintText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMultiLineEditableText::GetHintText(class FText* ReturnValue)
+class FText UMultiLineEditableText::GetHintText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16308,8 +16060,7 @@ void UMultiLineEditableText::GetHintText(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -16317,9 +16068,9 @@ void UMultiLineEditableText::GetHintText(class FText* ReturnValue)
 // Function UMG.MultiLineEditableText.GetFont
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FSlateFontInfo              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSlateFontInfo              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMultiLineEditableText::GetFont(struct FSlateFontInfo* ReturnValue)
+struct FSlateFontInfo UMultiLineEditableText::GetFont()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16337,8 +16088,7 @@ void UMultiLineEditableText::GetFont(struct FSlateFontInfo* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -16374,9 +16124,9 @@ class UMultiLineEditableTextBox* UMultiLineEditableTextBox::GetDefaultObj()
 // Function UMG.MultiLineEditableTextBox.SetTextStyle
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FTextBlockStyle             InTextStyle                                                      (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FTextBlockStyle             InTextStyle                                                      (Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UMultiLineEditableTextBox::SetTextStyle(struct FTextBlockStyle* InTextStyle)
+struct FTextBlockStyle UMultiLineEditableTextBox::SetTextStyle()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16394,8 +16144,7 @@ void UMultiLineEditableTextBox::SetTextStyle(struct FTextBlockStyle* InTextStyle
 
 	Func->FunctionFlags = Flgs;
 
-	if (InTextStyle != nullptr)
-		*InTextStyle = std::move(Parms.InTextStyle);
+	return Parms.ReturnValue;
 
 }
 
@@ -16403,7 +16152,7 @@ void UMultiLineEditableTextBox::SetTextStyle(struct FTextBlockStyle* InTextStyle
 // Function UMG.MultiLineEditableTextBox.SetText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        InText                                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        InText                                                           (Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
 class FText UMultiLineEditableTextBox::SetText()
 {
@@ -16431,9 +16180,9 @@ class FText UMultiLineEditableTextBox::SetText()
 // Function UMG.MultiLineEditableTextBox.SetIsReadOnly
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bReadOnly                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bReadOnly                                                        (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UMultiLineEditableTextBox::SetIsReadOnly()
+void UMultiLineEditableTextBox::SetIsReadOnly(bool bReadOnly)
 {
 	static class UFunction* Func = nullptr;
 
@@ -16442,6 +16191,7 @@ bool UMultiLineEditableTextBox::SetIsReadOnly()
 
 	Params::UMultiLineEditableTextBox_SetIsReadOnly_Params Parms{};
 
+	Parms.bReadOnly = bReadOnly;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -16451,17 +16201,15 @@ bool UMultiLineEditableTextBox::SetIsReadOnly()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.MultiLineEditableTextBox.SetHintText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        InHintText                                                       (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FText                        InHintText                                                       (Edit, ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UMultiLineEditableTextBox::SetHintText(class FText* InHintText)
+class FText UMultiLineEditableTextBox::SetHintText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16479,8 +16227,7 @@ void UMultiLineEditableTextBox::SetHintText(class FText* InHintText)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHintText != nullptr)
-		*InHintText = Parms.InHintText;
+	return Parms.ReturnValue;
 
 }
 
@@ -16517,9 +16264,9 @@ void UMultiLineEditableTextBox::SetForegroundColor(struct FLinearColor* Color)
 // Function UMG.MultiLineEditableTextBox.SetError
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        InError                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FText                        InError                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class FText UMultiLineEditableTextBox::SetError()
+void UMultiLineEditableTextBox::SetError(class FText InError)
 {
 	static class UFunction* Func = nullptr;
 
@@ -16528,6 +16275,7 @@ class FText UMultiLineEditableTextBox::SetError()
 
 	Params::UMultiLineEditableTextBox_SetError_Params Parms{};
 
+	Parms.InError = InError;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -16537,8 +16285,6 @@ class FText UMultiLineEditableTextBox::SetError()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -16546,9 +16292,9 @@ class FText UMultiLineEditableTextBox::SetError()
 // (MulticastDelegate, Public, Delegate, HasOutParams)
 // Parameters:
 // class FText                        Text                                                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, EditConst)
-// enum class ETextCommit             CommitMethod                                                     (Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ETextCommit             CommitMethod                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class FText UMultiLineEditableTextBox::OnMultiLineEditableTextBoxCommittedEvent__DelegateSignature(enum class ETextCommit CommitMethod)
+enum class ETextCommit UMultiLineEditableTextBox::OnMultiLineEditableTextBoxCommittedEvent__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16557,7 +16303,6 @@ class FText UMultiLineEditableTextBox::OnMultiLineEditableTextBoxCommittedEvent_
 
 	Params::UMultiLineEditableTextBox_OnMultiLineEditableTextBoxCommittedEvent__DelegateSignature_Params Parms{};
 
-	Parms.CommitMethod = CommitMethod;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -16591,9 +16336,9 @@ class FText UMultiLineEditableTextBox::OnMultiLineEditableTextBoxChangedEvent__D
 // Function UMG.MultiLineEditableTextBox.GetText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMultiLineEditableTextBox::GetText(class FText* ReturnValue)
+class FText UMultiLineEditableTextBox::GetText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16611,8 +16356,7 @@ void UMultiLineEditableTextBox::GetText(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -16620,9 +16364,9 @@ void UMultiLineEditableTextBox::GetText(class FText* ReturnValue)
 // Function UMG.MultiLineEditableTextBox.GetHintText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMultiLineEditableTextBox::GetHintText(class FText* ReturnValue)
+class FText UMultiLineEditableTextBox::GetHintText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16640,8 +16384,7 @@ void UMultiLineEditableTextBox::GetHintText(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -16762,10 +16505,10 @@ class UOverlay* UOverlay::GetDefaultObj()
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UOverlay::ReplaceOverlayChildAt(bool* ReturnValue)
+bool UOverlay::ReplaceOverlayChildAt(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -16783,8 +16526,8 @@ class UWidget* UOverlay::ReplaceOverlayChildAt(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -16794,10 +16537,10 @@ class UWidget* UOverlay::ReplaceOverlayChildAt(bool* ReturnValue)
 // Function UMG.Overlay.AddChildToOverlay
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// class UOverlaySlot*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// class UOverlaySlot*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UOverlay::AddChildToOverlay(class UOverlaySlot** ReturnValue)
+class UOverlaySlot* UOverlay::AddChildToOverlay(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -16815,8 +16558,8 @@ class UWidget* UOverlay::AddChildToOverlay(class UOverlaySlot** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -16854,9 +16597,9 @@ class UOverlaySlot* UOverlaySlot::GetDefaultObj()
 // Function UMG.OverlaySlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UOverlaySlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UOverlaySlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16874,8 +16617,7 @@ void UOverlaySlot::SetVerticalAlignment(enum class EVerticalAlignment* InVertica
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -16883,9 +16625,9 @@ void UOverlaySlot::SetVerticalAlignment(enum class EVerticalAlignment* InVertica
 // Function UMG.OverlaySlot.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UOverlaySlot::SetPadding()
+void UOverlaySlot::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -16903,7 +16645,8 @@ struct FMargin UOverlaySlot::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -16911,9 +16654,9 @@ struct FMargin UOverlaySlot::SetPadding()
 // Function UMG.OverlaySlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UOverlaySlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UOverlaySlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -16931,8 +16674,7 @@ void UOverlaySlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHor
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -16968,9 +16710,9 @@ class UProgressBar* UProgressBar::GetDefaultObj()
 // Function UMG.ProgressBar.SetPercentInterpolationKey
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InterpKey                                                        (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InterpKey                                                        (Edit, BlueprintVisible, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 UProgressBar::SetPercentInterpolationKey()
+void UProgressBar::SetPercentInterpolationKey(int32* InterpKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -16988,7 +16730,8 @@ int32 UProgressBar::SetPercentInterpolationKey()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InterpKey != nullptr)
+		*InterpKey = Parms.InterpKey;
 
 }
 
@@ -16996,10 +16739,10 @@ int32 UProgressBar::SetPercentInterpolationKey()
 // Function UMG.ProgressBar.SetPercent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InPercent                                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              InterpKey                                                        (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InPercent                                                        (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InterpKey                                                        (Edit, BlueprintVisible, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 UProgressBar::SetPercent(float* InPercent)
+float UProgressBar::SetPercent(int32* InterpKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17017,8 +16760,8 @@ int32 UProgressBar::SetPercent(float* InPercent)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InPercent != nullptr)
-		*InPercent = Parms.InPercent;
+	if (InterpKey != nullptr)
+		*InterpKey = Parms.InterpKey;
 
 	return Parms.ReturnValue;
 
@@ -17028,9 +16771,9 @@ int32 UProgressBar::SetPercent(float* InPercent)
 // Function UMG.ProgressBar.SetIsMarquee
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InbIsMarquee                                                     (Edit, ConstParm, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               InbIsMarquee                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UProgressBar::SetIsMarquee()
+void UProgressBar::SetIsMarquee(bool InbIsMarquee)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17039,6 +16782,7 @@ bool UProgressBar::SetIsMarquee()
 
 	Params::UProgressBar_SetIsMarquee_Params Parms{};
 
+	Parms.InbIsMarquee = InbIsMarquee;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -17048,17 +16792,15 @@ bool UProgressBar::SetIsMarquee()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.ProgressBar.SetFillColorAndOpacity
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InColor                                                          (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FLinearColor                InColor                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FLinearColor UProgressBar::SetFillColorAndOpacity()
+void UProgressBar::SetFillColorAndOpacity(struct FLinearColor* InColor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17076,7 +16818,8 @@ struct FLinearColor UProgressBar::SetFillColorAndOpacity()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InColor != nullptr)
+		*InColor = std::move(Parms.InColor);
 
 }
 
@@ -17084,9 +16827,9 @@ struct FLinearColor UProgressBar::SetFillColorAndOpacity()
 // Function UMG.ProgressBar.SetEnginePercent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InPercent                                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InPercent                                                        (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UProgressBar::SetEnginePercent(float* InPercent)
+float UProgressBar::SetEnginePercent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -17104,8 +16847,7 @@ void UProgressBar::SetEnginePercent(float* InPercent)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InPercent != nullptr)
-		*InPercent = Parms.InPercent;
+	return Parms.ReturnValue;
 
 }
 
@@ -17141,9 +16883,9 @@ class URetainerBox* URetainerBox::GetDefaultObj()
 // Function UMG.RetainerBox.SetTextureParameter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        TextureParameter                                                 (Edit, ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        TextureParameter                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-class FName URetainerBox::SetTextureParameter()
+void URetainerBox::SetTextureParameter(class FName* TextureParameter)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17161,7 +16903,8 @@ class FName URetainerBox::SetTextureParameter()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (TextureParameter != nullptr)
+		*TextureParameter = Parms.TextureParameter;
 
 }
 
@@ -17169,9 +16912,9 @@ class FName URetainerBox::SetTextureParameter()
 // Function UMG.RetainerBox.SetRetainRendering
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInRetainRendering                                               (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInRetainRendering                                               (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool URetainerBox::SetRetainRendering()
+void URetainerBox::SetRetainRendering(bool* bInRetainRendering)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17189,7 +16932,8 @@ bool URetainerBox::SetRetainRendering()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInRetainRendering != nullptr)
+		*bInRetainRendering = Parms.bInRetainRendering;
 
 }
 
@@ -17197,10 +16941,10 @@ bool URetainerBox::SetRetainRendering()
 // Function UMG.RetainerBox.SetRenderingPhase
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              RenderPhase                                                      (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              TotalPhases                                                      (Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              RenderPhase                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              TotalPhases                                                      (ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 URetainerBox::SetRenderingPhase()
+void URetainerBox::SetRenderingPhase(int32* RenderPhase, int32* TotalPhases)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17218,7 +16962,11 @@ int32 URetainerBox::SetRenderingPhase()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (RenderPhase != nullptr)
+		*RenderPhase = Parms.RenderPhase;
+
+	if (TotalPhases != nullptr)
+		*TotalPhases = Parms.TotalPhases;
 
 }
 
@@ -17226,9 +16974,9 @@ int32 URetainerBox::SetRenderingPhase()
 // Function UMG.RetainerBox.SetEffectMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInterface*          EffectMaterial                                                   (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UMaterialInterface*          EffectMaterial                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UMaterialInterface* URetainerBox::SetEffectMaterial()
+void URetainerBox::SetEffectMaterial(class UMaterialInterface** EffectMaterial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17246,7 +16994,8 @@ class UMaterialInterface* URetainerBox::SetEffectMaterial()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (EffectMaterial != nullptr)
+		*EffectMaterial = Parms.EffectMaterial;
 
 }
 
@@ -17278,9 +17027,9 @@ void URetainerBox::RequestRender()
 // Function UMG.RetainerBox.GetEffectMaterial
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMaterialInstanceDynamic*    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMaterialInstanceDynamic*    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void URetainerBox::GetEffectMaterial(class UMaterialInstanceDynamic** ReturnValue)
+class UMaterialInstanceDynamic* URetainerBox::GetEffectMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -17298,8 +17047,7 @@ void URetainerBox::GetEffectMaterial(class UMaterialInstanceDynamic** ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -17335,12 +17083,12 @@ class USafeZone* USafeZone::GetDefaultObj()
 // Function UMG.SafeZone.SetSidesToPad
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InPadLeft                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               InPadRight                                                       (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               InPadTop                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               InPadBottom                                                      (Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               InPadLeft                                                        (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               InPadRight                                                       (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               InPadTop                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               InPadBottom                                                      (ExportObject, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool USafeZone::SetSidesToPad()
+void USafeZone::SetSidesToPad(bool* InPadLeft, bool* InPadRight, bool* InPadTop, bool* InPadBottom)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17358,7 +17106,17 @@ bool USafeZone::SetSidesToPad()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadLeft != nullptr)
+		*InPadLeft = Parms.InPadLeft;
+
+	if (InPadRight != nullptr)
+		*InPadRight = Parms.InPadRight;
+
+	if (InPadTop != nullptr)
+		*InPadTop = Parms.InPadTop;
+
+	if (InPadBottom != nullptr)
+		*InPadBottom = Parms.InPadBottom;
 
 }
 
@@ -17422,9 +17180,9 @@ class UScaleBox* UScaleBox::GetDefaultObj()
 // Function UMG.ScaleBox.SetUserSpecifiedScale
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InUserSpecifiedScale                                             (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InUserSpecifiedScale                                             (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-float UScaleBox::SetUserSpecifiedScale()
+void UScaleBox::SetUserSpecifiedScale(float* InUserSpecifiedScale)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17442,7 +17200,8 @@ float UScaleBox::SetUserSpecifiedScale()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InUserSpecifiedScale != nullptr)
+		*InUserSpecifiedScale = Parms.InUserSpecifiedScale;
 
 }
 
@@ -17450,9 +17209,9 @@ float UScaleBox::SetUserSpecifiedScale()
 // Function UMG.ScaleBox.SetStretchDirection
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EStretchDirection       InStretchDirection                                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EStretchDirection       InStretchDirection                                               (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class EStretchDirection UScaleBox::SetStretchDirection()
+void UScaleBox::SetStretchDirection(enum class EStretchDirection* InStretchDirection)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17470,7 +17229,8 @@ enum class EStretchDirection UScaleBox::SetStretchDirection()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InStretchDirection != nullptr)
+		*InStretchDirection = Parms.InStretchDirection;
 
 }
 
@@ -17478,9 +17238,9 @@ enum class EStretchDirection UScaleBox::SetStretchDirection()
 // Function UMG.ScaleBox.SetStretch
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EStretch                InStretch                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EStretch                InStretch                                                        (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class EStretch UScaleBox::SetStretch()
+void UScaleBox::SetStretch(enum class EStretch* InStretch)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17498,7 +17258,8 @@ enum class EStretch UScaleBox::SetStretch()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InStretch != nullptr)
+		*InStretch = Parms.InStretch;
 
 }
 
@@ -17506,9 +17267,9 @@ enum class EStretch UScaleBox::SetStretch()
 // Function UMG.ScaleBox.SetIgnoreInheritedScale
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInIgnoreInheritedScale                                          (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInIgnoreInheritedScale                                          (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UScaleBox::SetIgnoreInheritedScale()
+void UScaleBox::SetIgnoreInheritedScale(bool* bInIgnoreInheritedScale)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17526,7 +17287,8 @@ bool UScaleBox::SetIgnoreInheritedScale()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInIgnoreInheritedScale != nullptr)
+		*bInIgnoreInheritedScale = Parms.bInIgnoreInheritedScale;
 
 }
 
@@ -17562,9 +17324,9 @@ class UScaleBoxSlot* UScaleBoxSlot::GetDefaultObj()
 // Function UMG.ScaleBoxSlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UScaleBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UScaleBoxSlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -17582,8 +17344,7 @@ void UScaleBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVertic
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -17591,9 +17352,9 @@ void UScaleBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVertic
 // Function UMG.ScaleBoxSlot.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UScaleBoxSlot::SetPadding()
+void UScaleBoxSlot::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17611,7 +17372,8 @@ struct FMargin UScaleBoxSlot::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -17619,9 +17381,9 @@ struct FMargin UScaleBoxSlot::SetPadding()
 // Function UMG.ScaleBoxSlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UScaleBoxSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UScaleBoxSlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -17639,8 +17401,7 @@ void UScaleBoxSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHo
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -17676,10 +17437,10 @@ class UScrollBar* UScrollBar::GetDefaultObj()
 // Function UMG.ScrollBar.SetState
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InOffsetFraction                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              InThumbSizeFraction                                              (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InOffsetFraction                                                 (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InThumbSizeFraction                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-float UScrollBar::SetState()
+void UScrollBar::SetState(float* InOffsetFraction, float* InThumbSizeFraction)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17697,7 +17458,11 @@ float UScrollBar::SetState()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InOffsetFraction != nullptr)
+		*InOffsetFraction = Parms.InOffsetFraction;
+
+	if (InThumbSizeFraction != nullptr)
+		*InThumbSizeFraction = Parms.InThumbSizeFraction;
 
 }
 
@@ -17733,9 +17498,9 @@ class UScrollBoxSlot* UScrollBoxSlot::GetDefaultObj()
 // Function UMG.ScrollBoxSlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UScrollBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UScrollBoxSlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -17753,8 +17518,7 @@ void UScrollBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerti
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -17762,9 +17526,9 @@ void UScrollBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerti
 // Function UMG.ScrollBoxSlot.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UScrollBoxSlot::SetPadding()
+void UScrollBoxSlot::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17782,7 +17546,8 @@ struct FMargin UScrollBoxSlot::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -17790,9 +17555,9 @@ struct FMargin UScrollBoxSlot::SetPadding()
 // Function UMG.ScrollBoxSlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UScrollBoxSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UScrollBoxSlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -17810,8 +17575,7 @@ void UScrollBoxSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InH
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -17847,9 +17611,9 @@ class USizeBox* USizeBox::GetDefaultObj()
 // Function UMG.SizeBox.SetWidthOverride
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InWidthOverride                                                  (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InWidthOverride                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-float USizeBox::SetWidthOverride()
+void USizeBox::SetWidthOverride(float InWidthOverride)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17858,6 +17622,7 @@ float USizeBox::SetWidthOverride()
 
 	Params::USizeBox_SetWidthOverride_Params Parms{};
 
+	Parms.InWidthOverride = InWidthOverride;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -17867,17 +17632,15 @@ float USizeBox::SetWidthOverride()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SizeBox.SetMinDesiredWidth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMinDesiredWidth                                                (BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InMinDesiredWidth                                                (ConstParm, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void USizeBox::SetMinDesiredWidth(float* InMinDesiredWidth)
+float USizeBox::SetMinDesiredWidth()
 {
 	static class UFunction* Func = nullptr;
 
@@ -17895,8 +17658,7 @@ void USizeBox::SetMinDesiredWidth(float* InMinDesiredWidth)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMinDesiredWidth != nullptr)
-		*InMinDesiredWidth = Parms.InMinDesiredWidth;
+	return Parms.ReturnValue;
 
 }
 
@@ -17904,9 +17666,9 @@ void USizeBox::SetMinDesiredWidth(float* InMinDesiredWidth)
 // Function UMG.SizeBox.SetMinDesiredHeight
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMinDesiredHeight                                               (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InMinDesiredHeight                                               (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-float USizeBox::SetMinDesiredHeight()
+void USizeBox::SetMinDesiredHeight(float InMinDesiredHeight)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17915,6 +17677,7 @@ float USizeBox::SetMinDesiredHeight()
 
 	Params::USizeBox_SetMinDesiredHeight_Params Parms{};
 
+	Parms.InMinDesiredHeight = InMinDesiredHeight;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -17924,17 +17687,15 @@ float USizeBox::SetMinDesiredHeight()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SizeBox.SetMinAspectRatio
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMinAspectRatio                                                 (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InMinAspectRatio                                                 (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-float USizeBox::SetMinAspectRatio()
+void USizeBox::SetMinAspectRatio(float InMinAspectRatio)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17943,6 +17704,7 @@ float USizeBox::SetMinAspectRatio()
 
 	Params::USizeBox_SetMinAspectRatio_Params Parms{};
 
+	Parms.InMinAspectRatio = InMinAspectRatio;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -17952,17 +17714,15 @@ float USizeBox::SetMinAspectRatio()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SizeBox.SetMaxDesiredWidth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMaxDesiredWidth                                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InMaxDesiredWidth                                                (ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-float USizeBox::SetMaxDesiredWidth()
+void USizeBox::SetMaxDesiredWidth(float InMaxDesiredWidth)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17971,6 +17731,7 @@ float USizeBox::SetMaxDesiredWidth()
 
 	Params::USizeBox_SetMaxDesiredWidth_Params Parms{};
 
+	Parms.InMaxDesiredWidth = InMaxDesiredWidth;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -17980,17 +17741,15 @@ float USizeBox::SetMaxDesiredWidth()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SizeBox.SetMaxDesiredHeight
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMaxDesiredHeight                                               (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InMaxDesiredHeight                                               (ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-float USizeBox::SetMaxDesiredHeight()
+void USizeBox::SetMaxDesiredHeight(float InMaxDesiredHeight)
 {
 	static class UFunction* Func = nullptr;
 
@@ -17999,6 +17758,7 @@ float USizeBox::SetMaxDesiredHeight()
 
 	Params::USizeBox_SetMaxDesiredHeight_Params Parms{};
 
+	Parms.InMaxDesiredHeight = InMaxDesiredHeight;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -18008,17 +17768,15 @@ float USizeBox::SetMaxDesiredHeight()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SizeBox.SetMaxAspectRatio
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMaxAspectRatio                                                 (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InMaxAspectRatio                                                 (Edit, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-float USizeBox::SetMaxAspectRatio()
+void USizeBox::SetMaxAspectRatio(float InMaxAspectRatio)
 {
 	static class UFunction* Func = nullptr;
 
@@ -18027,6 +17785,7 @@ float USizeBox::SetMaxAspectRatio()
 
 	Params::USizeBox_SetMaxAspectRatio_Params Parms{};
 
+	Parms.InMaxAspectRatio = InMaxAspectRatio;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -18036,17 +17795,15 @@ float USizeBox::SetMaxAspectRatio()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SizeBox.SetHeightOverride
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InHeightOverride                                                 (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InHeightOverride                                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-float USizeBox::SetHeightOverride()
+void USizeBox::SetHeightOverride(float InHeightOverride)
 {
 	static class UFunction* Func = nullptr;
 
@@ -18055,6 +17812,7 @@ float USizeBox::SetHeightOverride()
 
 	Params::USizeBox_SetHeightOverride_Params Parms{};
 
+	Parms.InHeightOverride = InHeightOverride;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -18063,8 +17821,6 @@ float USizeBox::SetHeightOverride()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -18292,9 +18048,9 @@ class USizeBoxSlot* USizeBoxSlot::GetDefaultObj()
 // Function UMG.SizeBoxSlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void USizeBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment USizeBoxSlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -18312,8 +18068,7 @@ void USizeBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVertica
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -18321,9 +18076,9 @@ void USizeBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVertica
 // Function UMG.SizeBoxSlot.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin USizeBoxSlot::SetPadding()
+void USizeBoxSlot::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -18341,7 +18096,8 @@ struct FMargin USizeBoxSlot::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -18349,9 +18105,9 @@ struct FMargin USizeBoxSlot::SetPadding()
 // Function UMG.SizeBoxSlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void USizeBoxSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment USizeBoxSlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -18369,8 +18125,7 @@ void USizeBoxSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHor
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -18406,7 +18161,7 @@ class USlider* USlider::GetDefaultObj()
 // Function UMG.Slider.SetValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float USlider::SetValue()
 {
@@ -18434,7 +18189,7 @@ float USlider::SetValue()
 // Function UMG.Slider.SetStepSize
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float USlider::SetStepSize()
 {
@@ -18462,7 +18217,7 @@ float USlider::SetStepSize()
 // Function UMG.Slider.SetSliderHandleColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FLinearColor USlider::SetSliderHandleColor()
 {
@@ -18490,7 +18245,7 @@ struct FLinearColor USlider::SetSliderHandleColor()
 // Function UMG.Slider.SetSliderBarColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 struct FLinearColor USlider::SetSliderBarColor()
 {
@@ -18518,7 +18273,7 @@ struct FLinearColor USlider::SetSliderBarColor()
 // Function UMG.Slider.SetMinValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float USlider::SetMinValue()
 {
@@ -18546,7 +18301,7 @@ float USlider::SetMinValue()
 // Function UMG.Slider.SetMaxValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float USlider::SetMaxValue()
 {
@@ -18574,7 +18329,7 @@ float USlider::SetMaxValue()
 // Function UMG.Slider.SetLocked
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// bool                               InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 bool USlider::SetLocked()
 {
@@ -18602,7 +18357,7 @@ bool USlider::SetLocked()
 // Function UMG.Slider.SetIndentHandle
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// bool                               InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 bool USlider::SetIndentHandle()
 {
@@ -18630,9 +18385,9 @@ bool USlider::SetIndentHandle()
 // Function UMG.Slider.GetValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USlider::GetValue(float* ReturnValue)
+float USlider::GetValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -18650,8 +18405,7 @@ void USlider::GetValue(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -18659,9 +18413,9 @@ void USlider::GetValue(float* ReturnValue)
 // Function UMG.Slider.GetNormalizedValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USlider::GetNormalizedValue(float* ReturnValue)
+float USlider::GetNormalizedValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -18679,8 +18433,7 @@ void USlider::GetNormalizedValue(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -18716,9 +18469,9 @@ class USpacer* USpacer::GetDefaultObj()
 // Function UMG.Spacer.SetSize
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InSize                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FVector2D                   InSize                                                           (ExportObject, Net, EditFixedSize, Parm, Transient, EditConst, SubobjectReference)
 
-struct FVector2D USpacer::SetSize()
+void USpacer::SetSize(const struct FVector2D& InSize)
 {
 	static class UFunction* Func = nullptr;
 
@@ -18727,6 +18480,7 @@ struct FVector2D USpacer::SetSize()
 
 	Params::USpacer_SetSize_Params Parms{};
 
+	Parms.InSize = InSize;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -18735,8 +18489,6 @@ struct FVector2D USpacer::SetSize()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -18772,9 +18524,9 @@ class USpinBox* USpinBox::GetDefaultObj()
 // Function UMG.SpinBox.SetValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewValue                                                         (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              NewValue                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USpinBox::SetValue()
+void USpinBox::SetValue(float NewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -18783,6 +18535,7 @@ float USpinBox::SetValue()
 
 	Params::USpinBox_SetValue_Params Parms{};
 
+	Parms.NewValue = NewValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -18792,17 +18545,15 @@ float USpinBox::SetValue()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SpinBox.SetMinValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewValue                                                         (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              NewValue                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USpinBox::SetMinValue()
+void USpinBox::SetMinValue(float NewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -18811,6 +18562,7 @@ float USpinBox::SetMinValue()
 
 	Params::USpinBox_SetMinValue_Params Parms{};
 
+	Parms.NewValue = NewValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -18820,17 +18572,15 @@ float USpinBox::SetMinValue()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SpinBox.SetMinSliderValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewValue                                                         (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              NewValue                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USpinBox::SetMinSliderValue()
+void USpinBox::SetMinSliderValue(float NewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -18839,6 +18589,7 @@ float USpinBox::SetMinSliderValue()
 
 	Params::USpinBox_SetMinSliderValue_Params Parms{};
 
+	Parms.NewValue = NewValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -18848,17 +18599,15 @@ float USpinBox::SetMinSliderValue()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SpinBox.SetMinFractionalDigits
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NewValue                                                         (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              NewValue                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 USpinBox::SetMinFractionalDigits()
+void USpinBox::SetMinFractionalDigits(int32 NewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -18867,6 +18616,7 @@ int32 USpinBox::SetMinFractionalDigits()
 
 	Params::USpinBox_SetMinFractionalDigits_Params Parms{};
 
+	Parms.NewValue = NewValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -18876,17 +18626,15 @@ int32 USpinBox::SetMinFractionalDigits()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SpinBox.SetMaxValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewValue                                                         (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              NewValue                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USpinBox::SetMaxValue()
+void USpinBox::SetMaxValue(float NewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -18895,6 +18643,7 @@ float USpinBox::SetMaxValue()
 
 	Params::USpinBox_SetMaxValue_Params Parms{};
 
+	Parms.NewValue = NewValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -18904,17 +18653,15 @@ float USpinBox::SetMaxValue()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SpinBox.SetMaxSliderValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewValue                                                         (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              NewValue                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USpinBox::SetMaxSliderValue()
+void USpinBox::SetMaxSliderValue(float NewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -18923,6 +18670,7 @@ float USpinBox::SetMaxSliderValue()
 
 	Params::USpinBox_SetMaxSliderValue_Params Parms{};
 
+	Parms.NewValue = NewValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -18932,17 +18680,15 @@ float USpinBox::SetMaxSliderValue()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SpinBox.SetMaxFractionalDigits
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NewValue                                                         (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              NewValue                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 USpinBox::SetMaxFractionalDigits()
+void USpinBox::SetMaxFractionalDigits(int32 NewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -18951,6 +18697,7 @@ int32 USpinBox::SetMaxFractionalDigits()
 
 	Params::USpinBox_SetMaxFractionalDigits_Params Parms{};
 
+	Parms.NewValue = NewValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -18960,17 +18707,15 @@ int32 USpinBox::SetMaxFractionalDigits()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SpinBox.SetForegroundColor
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FSlateColor                 InForegroundColor                                                (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FSlateColor                 InForegroundColor                                                (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void USpinBox::SetForegroundColor(struct FSlateColor* InForegroundColor)
+struct FSlateColor USpinBox::SetForegroundColor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -18988,8 +18733,7 @@ void USpinBox::SetForegroundColor(struct FSlateColor* InForegroundColor)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InForegroundColor != nullptr)
-		*InForegroundColor = std::move(Parms.InForegroundColor);
+	return Parms.ReturnValue;
 
 }
 
@@ -18997,9 +18741,9 @@ void USpinBox::SetForegroundColor(struct FSlateColor* InForegroundColor)
 // Function UMG.SpinBox.SetDelta
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewValue                                                         (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              NewValue                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USpinBox::SetDelta()
+void USpinBox::SetDelta(float NewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -19008,6 +18752,7 @@ float USpinBox::SetDelta()
 
 	Params::USpinBox_SetDelta_Params Parms{};
 
+	Parms.NewValue = NewValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -19017,17 +18762,15 @@ float USpinBox::SetDelta()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.SpinBox.SetAlwaysUsesDeltaSnap
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bNewValue                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bNewValue                                                        (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool USpinBox::SetAlwaysUsesDeltaSnap()
+void USpinBox::SetAlwaysUsesDeltaSnap(bool bNewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -19036,6 +18779,7 @@ bool USpinBox::SetAlwaysUsesDeltaSnap()
 
 	Params::USpinBox_SetAlwaysUsesDeltaSnap_Params Parms{};
 
+	Parms.bNewValue = bNewValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -19045,18 +18789,16 @@ bool USpinBox::SetAlwaysUsesDeltaSnap()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // DelegateFunction UMG.SpinBox.OnSpinBoxValueCommittedEvent__DelegateSignature
 // (MulticastDelegate, Public, Delegate)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// enum class ETextCommit             CommitMethod                                                     (Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// enum class ETextCommit             CommitMethod                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-float USpinBox::OnSpinBoxValueCommittedEvent__DelegateSignature(enum class ETextCommit CommitMethod)
+enum class ETextCommit USpinBox::OnSpinBoxValueCommittedEvent__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19065,7 +18807,6 @@ float USpinBox::OnSpinBoxValueCommittedEvent__DelegateSignature(enum class EText
 
 	Params::USpinBox_OnSpinBoxValueCommittedEvent__DelegateSignature_Params Parms{};
 
-	Parms.CommitMethod = CommitMethod;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -19077,7 +18818,7 @@ float USpinBox::OnSpinBoxValueCommittedEvent__DelegateSignature(enum class EText
 // DelegateFunction UMG.SpinBox.OnSpinBoxValueChangedEvent__DelegateSignature
 // (MulticastDelegate, Public, Delegate)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
 float USpinBox::OnSpinBoxValueChangedEvent__DelegateSignature()
 {
@@ -19117,9 +18858,9 @@ void USpinBox::OnSpinBoxBeginSliderMovement__DelegateSignature()
 // Function UMG.SpinBox.GetValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USpinBox::GetValue(float* ReturnValue)
+float USpinBox::GetValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19137,8 +18878,7 @@ void USpinBox::GetValue(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -19146,9 +18886,9 @@ void USpinBox::GetValue(float* ReturnValue)
 // Function UMG.SpinBox.GetMinValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USpinBox::GetMinValue(float* ReturnValue)
+float USpinBox::GetMinValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19166,8 +18906,7 @@ void USpinBox::GetMinValue(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -19175,9 +18914,9 @@ void USpinBox::GetMinValue(float* ReturnValue)
 // Function UMG.SpinBox.GetMinSliderValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USpinBox::GetMinSliderValue(float* ReturnValue)
+float USpinBox::GetMinSliderValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19195,8 +18934,7 @@ void USpinBox::GetMinSliderValue(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -19204,9 +18942,9 @@ void USpinBox::GetMinSliderValue(float* ReturnValue)
 // Function UMG.SpinBox.GetMinFractionalDigits
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USpinBox::GetMinFractionalDigits(int32* ReturnValue)
+int32 USpinBox::GetMinFractionalDigits()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19224,8 +18962,7 @@ void USpinBox::GetMinFractionalDigits(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -19233,9 +18970,9 @@ void USpinBox::GetMinFractionalDigits(int32* ReturnValue)
 // Function UMG.SpinBox.GetMaxValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USpinBox::GetMaxValue(float* ReturnValue)
+float USpinBox::GetMaxValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19253,8 +18990,7 @@ void USpinBox::GetMaxValue(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -19262,9 +18998,9 @@ void USpinBox::GetMaxValue(float* ReturnValue)
 // Function UMG.SpinBox.GetMaxSliderValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USpinBox::GetMaxSliderValue(float* ReturnValue)
+float USpinBox::GetMaxSliderValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19282,8 +19018,7 @@ void USpinBox::GetMaxSliderValue(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -19291,9 +19026,9 @@ void USpinBox::GetMaxSliderValue(float* ReturnValue)
 // Function UMG.SpinBox.GetMaxFractionalDigits
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USpinBox::GetMaxFractionalDigits(int32* ReturnValue)
+int32 USpinBox::GetMaxFractionalDigits()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19311,8 +19046,7 @@ void USpinBox::GetMaxFractionalDigits(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -19320,9 +19054,9 @@ void USpinBox::GetMaxFractionalDigits(int32* ReturnValue)
 // Function UMG.SpinBox.GetDelta
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USpinBox::GetDelta(float* ReturnValue)
+float USpinBox::GetDelta()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19340,8 +19074,7 @@ void USpinBox::GetDelta(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -19349,9 +19082,9 @@ void USpinBox::GetDelta(float* ReturnValue)
 // Function UMG.SpinBox.GetAlwaysUsesDeltaSnap
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USpinBox::GetAlwaysUsesDeltaSnap(bool* ReturnValue)
+bool USpinBox::GetAlwaysUsesDeltaSnap()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19369,8 +19102,7 @@ void USpinBox::GetAlwaysUsesDeltaSnap(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -19503,10 +19235,10 @@ class UStackBox* UStackBox::GetDefaultObj()
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UStackBox::ReplaceStackBoxChildAt(bool* ReturnValue)
+bool UStackBox::ReplaceStackBoxChildAt(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -19524,8 +19256,8 @@ class UWidget* UStackBox::ReplaceStackBoxChildAt(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -19535,10 +19267,10 @@ class UWidget* UStackBox::ReplaceStackBoxChildAt(bool* ReturnValue)
 // Function UMG.StackBox.AddChildToStackBox
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// class UStackBoxSlot*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// class UStackBoxSlot*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UStackBox::AddChildToStackBox(class UStackBoxSlot** ReturnValue)
+class UStackBoxSlot* UStackBox::AddChildToStackBox(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -19556,8 +19288,8 @@ class UWidget* UStackBox::AddChildToStackBox(class UStackBoxSlot** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -19623,9 +19355,9 @@ class UTextBlock* UTextBlock::GetDefaultObj()
 // Function UMG.TextBlock.SetTextTransformPolicy
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ETextTransformPolicy    InTransformPolicy                                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class ETextTransformPolicy    InTransformPolicy                                                (ConstParm, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UTextBlock::SetTextTransformPolicy(enum class ETextTransformPolicy* InTransformPolicy)
+void UTextBlock::SetTextTransformPolicy(enum class ETextTransformPolicy InTransformPolicy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -19634,6 +19366,7 @@ void UTextBlock::SetTextTransformPolicy(enum class ETextTransformPolicy* InTrans
 
 	Params::UTextBlock_SetTextTransformPolicy_Params Parms{};
 
+	Parms.InTransformPolicy = InTransformPolicy;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -19643,18 +19376,15 @@ void UTextBlock::SetTextTransformPolicy(enum class ETextTransformPolicy* InTrans
 
 	Func->FunctionFlags = Flgs;
 
-	if (InTransformPolicy != nullptr)
-		*InTransformPolicy = Parms.InTransformPolicy;
-
 }
 
 
 // Function UMG.TextBlock.SetTextOverflowPolicy
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ETextOverflowPolicy     InOverflowPolicy                                                 (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ETextOverflowPolicy     InOverflowPolicy                                                 (BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UTextBlock::SetTextOverflowPolicy(enum class ETextOverflowPolicy* InOverflowPolicy)
+enum class ETextOverflowPolicy UTextBlock::SetTextOverflowPolicy()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19672,8 +19402,7 @@ void UTextBlock::SetTextOverflowPolicy(enum class ETextOverflowPolicy* InOverflo
 
 	Func->FunctionFlags = Flgs;
 
-	if (InOverflowPolicy != nullptr)
-		*InOverflowPolicy = Parms.InOverflowPolicy;
+	return Parms.ReturnValue;
 
 }
 
@@ -19681,7 +19410,7 @@ void UTextBlock::SetTextOverflowPolicy(enum class ETextOverflowPolicy* InOverflo
 // Function UMG.TextBlock.SetText
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        InText                                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        InText                                                           (Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
 class FText UTextBlock::SetText()
 {
@@ -19709,9 +19438,9 @@ class FText UTextBlock::SetText()
 // Function UMG.TextBlock.SetString
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InString                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InString                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UTextBlock::SetString(const class FString& InString)
+class FString UTextBlock::SetString()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19720,7 +19449,6 @@ void UTextBlock::SetString(const class FString& InString)
 
 	Params::UTextBlock_SetString_Params Parms{};
 
-	Parms.InString = InString;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -19730,15 +19458,17 @@ void UTextBlock::SetString(const class FString& InString)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function UMG.TextBlock.SetStrikeBrush
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FSlateBrush                 InStrikeBrush                                                    (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FSlateBrush                 InStrikeBrush                                                    (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UTextBlock::SetStrikeBrush(struct FSlateBrush* InStrikeBrush)
+void UTextBlock::SetStrikeBrush(const struct FSlateBrush& InStrikeBrush)
 {
 	static class UFunction* Func = nullptr;
 
@@ -19747,6 +19477,7 @@ void UTextBlock::SetStrikeBrush(struct FSlateBrush* InStrikeBrush)
 
 	Params::UTextBlock_SetStrikeBrush_Params Parms{};
 
+	Parms.InStrikeBrush = InStrikeBrush;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -19756,18 +19487,15 @@ void UTextBlock::SetStrikeBrush(struct FSlateBrush* InStrikeBrush)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InStrikeBrush != nullptr)
-		*InStrikeBrush = std::move(Parms.InStrikeBrush);
-
 }
 
 
 // Function UMG.TextBlock.SetShadowOffset
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InShadowOffset                                                   (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InShadowOffset                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UTextBlock::SetShadowOffset(struct FVector2D* InShadowOffset)
+void UTextBlock::SetShadowOffset(const struct FVector2D& InShadowOffset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -19776,6 +19504,7 @@ void UTextBlock::SetShadowOffset(struct FVector2D* InShadowOffset)
 
 	Params::UTextBlock_SetShadowOffset_Params Parms{};
 
+	Parms.InShadowOffset = InShadowOffset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -19785,18 +19514,15 @@ void UTextBlock::SetShadowOffset(struct FVector2D* InShadowOffset)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InShadowOffset != nullptr)
-		*InShadowOffset = std::move(Parms.InShadowOffset);
-
 }
 
 
 // Function UMG.TextBlock.SetShadowColorAndOpacity
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InShadowColorAndOpacity                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FLinearColor                InShadowColorAndOpacity                                          (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UTextBlock::SetShadowColorAndOpacity(struct FLinearColor* InShadowColorAndOpacity)
+void UTextBlock::SetShadowColorAndOpacity(const struct FLinearColor& InShadowColorAndOpacity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -19805,6 +19531,7 @@ void UTextBlock::SetShadowColorAndOpacity(struct FLinearColor* InShadowColorAndO
 
 	Params::UTextBlock_SetShadowColorAndOpacity_Params Parms{};
 
+	Parms.InShadowColorAndOpacity = InShadowColorAndOpacity;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -19814,18 +19541,15 @@ void UTextBlock::SetShadowColorAndOpacity(struct FLinearColor* InShadowColorAndO
 
 	Func->FunctionFlags = Flgs;
 
-	if (InShadowColorAndOpacity != nullptr)
-		*InShadowColorAndOpacity = std::move(Parms.InShadowColorAndOpacity);
-
 }
 
 
 // Function UMG.TextBlock.SetOpacity
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InOpacity                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InOpacity                                                        (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UTextBlock::SetOpacity(float InOpacity)
+void UTextBlock::SetOpacity(float* InOpacity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -19834,7 +19558,6 @@ void UTextBlock::SetOpacity(float InOpacity)
 
 	Params::UTextBlock_SetOpacity_Params Parms{};
 
-	Parms.InOpacity = InOpacity;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -19844,15 +19567,18 @@ void UTextBlock::SetOpacity(float InOpacity)
 
 	Func->FunctionFlags = Flgs;
 
+	if (InOpacity != nullptr)
+		*InOpacity = Parms.InOpacity;
+
 }
 
 
 // Function UMG.TextBlock.SetMinDesiredWidth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMinDesiredWidth                                                (BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InMinDesiredWidth                                                (ConstParm, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UTextBlock::SetMinDesiredWidth(float* InMinDesiredWidth)
+float UTextBlock::SetMinDesiredWidth()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19870,8 +19596,7 @@ void UTextBlock::SetMinDesiredWidth(float* InMinDesiredWidth)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMinDesiredWidth != nullptr)
-		*InMinDesiredWidth = Parms.InMinDesiredWidth;
+	return Parms.ReturnValue;
 
 }
 
@@ -19879,9 +19604,9 @@ void UTextBlock::SetMinDesiredWidth(float* InMinDesiredWidth)
 // Function UMG.TextBlock.SetFontOutlineMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInterface*          InMaterial                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UMaterialInterface*          InMaterial                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UTextBlock::SetFontOutlineMaterial(class UMaterialInterface* InMaterial)
+class UMaterialInterface* UTextBlock::SetFontOutlineMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -19889,87 +19614,6 @@ void UTextBlock::SetFontOutlineMaterial(class UMaterialInterface* InMaterial)
 		Func = Class->GetFunction("TextBlock", "SetFontOutlineMaterial");
 
 	Params::UTextBlock_SetFontOutlineMaterial_Params Parms{};
-
-	Parms.InMaterial = InMaterial;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function UMG.TextBlock.SetFontMaterial
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// class UMaterialInterface*          InMaterial                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-
-void UTextBlock::SetFontMaterial(class UMaterialInterface* InMaterial)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("TextBlock", "SetFontMaterial");
-
-	Params::UTextBlock_SetFontMaterial_Params Parms{};
-
-	Parms.InMaterial = InMaterial;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function UMG.TextBlock.SetFont
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// struct FSlateFontInfo              InFontInfo                                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-
-void UTextBlock::SetFont(const struct FSlateFontInfo& InFontInfo)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("TextBlock", "SetFont");
-
-	Params::UTextBlock_SetFont_Params Parms{};
-
-	Parms.InFontInfo = InFontInfo;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function UMG.TextBlock.SetColorAndOpacity
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// struct FSlateColor                 InColorAndOpacity                                                (ConstParm, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-
-struct FSlateColor UTextBlock::SetColorAndOpacity()
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("TextBlock", "SetColorAndOpacity");
-
-	Params::UTextBlock_SetColorAndOpacity_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -19985,19 +19629,19 @@ struct FSlateColor UTextBlock::SetColorAndOpacity()
 }
 
 
-// Function UMG.TextBlock.SetAutoWrapText
+// Function UMG.TextBlock.SetFontMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InAutoTextWrap                                                   (Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// class UMaterialInterface*          InMaterial                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UTextBlock::SetAutoWrapText(bool* InAutoTextWrap)
+class UMaterialInterface* UTextBlock::SetFontMaterial()
 {
 	static class UFunction* Func = nullptr;
 
 	if (!Func)
-		Func = Class->GetFunction("TextBlock", "SetAutoWrapText");
+		Func = Class->GetFunction("TextBlock", "SetFontMaterial");
 
-	Params::UTextBlock_SetAutoWrapText_Params Parms{};
+	Params::UTextBlock_SetFontMaterial_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -20008,8 +19652,89 @@ void UTextBlock::SetAutoWrapText(bool* InAutoTextWrap)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InAutoTextWrap != nullptr)
-		*InAutoTextWrap = Parms.InAutoTextWrap;
+	return Parms.ReturnValue;
+
+}
+
+
+// Function UMG.TextBlock.SetFont
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// struct FSlateFontInfo              InFontInfo                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+
+struct FSlateFontInfo UTextBlock::SetFont()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("TextBlock", "SetFont");
+
+	Params::UTextBlock_SetFont_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function UMG.TextBlock.SetColorAndOpacity
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// struct FSlateColor                 InColorAndOpacity                                                (ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+
+void UTextBlock::SetColorAndOpacity(const struct FSlateColor& InColorAndOpacity)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("TextBlock", "SetColorAndOpacity");
+
+	Params::UTextBlock_SetColorAndOpacity_Params Parms{};
+
+	Parms.InColorAndOpacity = InColorAndOpacity;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+}
+
+
+// Function UMG.TextBlock.SetAutoWrapText
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// bool                               InAutoTextWrap                                                   (EditFixedSize, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+
+void UTextBlock::SetAutoWrapText(bool InAutoTextWrap)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("TextBlock", "SetAutoWrapText");
+
+	Params::UTextBlock_SetAutoWrapText_Params Parms{};
+
+	Parms.InAutoTextWrap = InAutoTextWrap;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
 
 }
 
@@ -20017,9 +19742,9 @@ void UTextBlock::SetAutoWrapText(bool* InAutoTextWrap)
 // Function UMG.TextBlock.GetText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UTextBlock::GetText(class FText* ReturnValue)
+class FText UTextBlock::GetText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -20037,8 +19762,7 @@ void UTextBlock::GetText(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -20046,9 +19770,9 @@ void UTextBlock::GetText(class FText* ReturnValue)
 // Function UMG.TextBlock.GetDynamicOutlineMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInstanceDynamic*    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMaterialInstanceDynamic*    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UTextBlock::GetDynamicOutlineMaterial(class UMaterialInstanceDynamic** ReturnValue)
+class UMaterialInstanceDynamic* UTextBlock::GetDynamicOutlineMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -20066,8 +19790,7 @@ void UTextBlock::GetDynamicOutlineMaterial(class UMaterialInstanceDynamic** Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -20075,9 +19798,9 @@ void UTextBlock::GetDynamicOutlineMaterial(class UMaterialInstanceDynamic** Retu
 // Function UMG.TextBlock.GetDynamicFontMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInstanceDynamic*    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMaterialInstanceDynamic*    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UTextBlock::GetDynamicFontMaterial(class UMaterialInstanceDynamic** ReturnValue)
+class UMaterialInstanceDynamic* UTextBlock::GetDynamicFontMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -20095,8 +19818,7 @@ void UTextBlock::GetDynamicFontMaterial(class UMaterialInstanceDynamic** ReturnV
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -20132,7 +19854,7 @@ class UThrobber* UThrobber::GetDefaultObj()
 // Function UMG.Throbber.SetNumberOfPieces
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InNumberOfPieces                                                 (BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InNumberOfPieces                                                 (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 int32 UThrobber::SetNumberOfPieces()
 {
@@ -20160,9 +19882,9 @@ int32 UThrobber::SetNumberOfPieces()
 // Function UMG.Throbber.SetAnimateVertically
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInAnimateVertically                                             (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInAnimateVertically                                             (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UThrobber::SetAnimateVertically(bool bInAnimateVertically)
+void UThrobber::SetAnimateVertically(bool* bInAnimateVertically)
 {
 	static class UFunction* Func = nullptr;
 
@@ -20171,7 +19893,6 @@ void UThrobber::SetAnimateVertically(bool bInAnimateVertically)
 
 	Params::UThrobber_SetAnimateVertically_Params Parms{};
 
-	Parms.bInAnimateVertically = bInAnimateVertically;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -20181,15 +19902,18 @@ void UThrobber::SetAnimateVertically(bool bInAnimateVertically)
 
 	Func->FunctionFlags = Flgs;
 
+	if (bInAnimateVertically != nullptr)
+		*bInAnimateVertically = Parms.bInAnimateVertically;
+
 }
 
 
 // Function UMG.Throbber.SetAnimateOpacity
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInAnimateOpacity                                                (BlueprintReadOnly, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInAnimateOpacity                                                (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UThrobber::SetAnimateOpacity(bool bInAnimateOpacity)
+void UThrobber::SetAnimateOpacity(bool* bInAnimateOpacity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -20198,7 +19922,6 @@ void UThrobber::SetAnimateOpacity(bool bInAnimateOpacity)
 
 	Params::UThrobber_SetAnimateOpacity_Params Parms{};
 
-	Parms.bInAnimateOpacity = bInAnimateOpacity;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -20208,15 +19931,18 @@ void UThrobber::SetAnimateOpacity(bool bInAnimateOpacity)
 
 	Func->FunctionFlags = Flgs;
 
+	if (bInAnimateOpacity != nullptr)
+		*bInAnimateOpacity = Parms.bInAnimateOpacity;
+
 }
 
 
 // Function UMG.Throbber.SetAnimateHorizontally
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInAnimateHorizontally                                           (BlueprintVisible, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInAnimateHorizontally                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UThrobber::SetAnimateHorizontally(bool bInAnimateHorizontally)
+void UThrobber::SetAnimateHorizontally(bool* bInAnimateHorizontally)
 {
 	static class UFunction* Func = nullptr;
 
@@ -20225,7 +19951,6 @@ void UThrobber::SetAnimateHorizontally(bool bInAnimateHorizontally)
 
 	Params::UThrobber_SetAnimateHorizontally_Params Parms{};
 
-	Parms.bInAnimateHorizontally = bInAnimateHorizontally;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -20234,6 +19959,9 @@ void UThrobber::SetAnimateHorizontally(bool bInAnimateHorizontally)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (bInAnimateHorizontally != nullptr)
+		*bInAnimateHorizontally = Parms.bInAnimateHorizontally;
 
 }
 
@@ -20269,9 +19997,9 @@ class UTileView* UTileView::GetDefaultObj()
 // Function UMG.TileView.SetEntryWidth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewWidth                                                         (Edit, ExportObject, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              NewWidth                                                         (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UTileView::SetEntryWidth(float NewWidth)
+void UTileView::SetEntryWidth(float* NewWidth)
 {
 	static class UFunction* Func = nullptr;
 
@@ -20280,7 +20008,6 @@ void UTileView::SetEntryWidth(float NewWidth)
 
 	Params::UTileView_SetEntryWidth_Params Parms{};
 
-	Parms.NewWidth = NewWidth;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -20290,15 +20017,18 @@ void UTileView::SetEntryWidth(float NewWidth)
 
 	Func->FunctionFlags = Flgs;
 
+	if (NewWidth != nullptr)
+		*NewWidth = Parms.NewWidth;
+
 }
 
 
 // Function UMG.TileView.SetEntryHeight
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewHeight                                                        (Edit, ConstParm, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              NewHeight                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UTileView::SetEntryHeight(float NewHeight)
+void UTileView::SetEntryHeight(float* NewHeight)
 {
 	static class UFunction* Func = nullptr;
 
@@ -20307,7 +20037,6 @@ void UTileView::SetEntryHeight(float NewHeight)
 
 	Params::UTileView_SetEntryHeight_Params Parms{};
 
-	Parms.NewHeight = NewHeight;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -20317,15 +20046,18 @@ void UTileView::SetEntryHeight(float NewHeight)
 
 	Func->FunctionFlags = Flgs;
 
+	if (NewHeight != nullptr)
+		*NewHeight = Parms.NewHeight;
+
 }
 
 
 // Function UMG.TileView.GetEntryWidth
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UTileView::GetEntryWidth(float* ReturnValue)
+float UTileView::GetEntryWidth()
 {
 	static class UFunction* Func = nullptr;
 
@@ -20343,8 +20075,7 @@ void UTileView::GetEntryWidth(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -20352,9 +20083,9 @@ void UTileView::GetEntryWidth(float* ReturnValue)
 // Function UMG.TileView.GetEntryHeight
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UTileView::GetEntryHeight(float* ReturnValue)
+float UTileView::GetEntryHeight()
 {
 	static class UFunction* Func = nullptr;
 
@@ -20372,8 +20103,7 @@ void UTileView::GetEntryHeight(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -20410,9 +20140,9 @@ class UTreeView* UTreeView::GetDefaultObj()
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class UObject*                     Item                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config)
-// bool                               bExpandItem                                                      (Edit, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bExpandItem                                                      (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UTreeView::SetItemExpansion(bool bExpandItem)
+class UObject* UTreeView::SetItemExpansion(bool* bExpandItem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -20421,7 +20151,6 @@ class UObject* UTreeView::SetItemExpansion(bool bExpandItem)
 
 	Params::UTreeView_SetItemExpansion_Params Parms{};
 
-	Parms.bExpandItem = bExpandItem;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -20430,6 +20159,9 @@ class UObject* UTreeView::SetItemExpansion(bool bExpandItem)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (bExpandItem != nullptr)
+		*bExpandItem = Parms.bExpandItem;
 
 	return Parms.ReturnValue;
 
@@ -20515,9 +20247,9 @@ class UUniformGridPanel* UUniformGridPanel::GetDefaultObj()
 // Function UMG.UniformGridPanel.SetSlotPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InSlotPadding                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FMargin                     InSlotPadding                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UUniformGridPanel::SetSlotPadding(const struct FMargin& InSlotPadding)
+void UUniformGridPanel::SetSlotPadding(struct FMargin* InSlotPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -20526,7 +20258,6 @@ void UUniformGridPanel::SetSlotPadding(const struct FMargin& InSlotPadding)
 
 	Params::UUniformGridPanel_SetSlotPadding_Params Parms{};
 
-	Parms.InSlotPadding = InSlotPadding;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -20536,15 +20267,18 @@ void UUniformGridPanel::SetSlotPadding(const struct FMargin& InSlotPadding)
 
 	Func->FunctionFlags = Flgs;
 
+	if (InSlotPadding != nullptr)
+		*InSlotPadding = std::move(Parms.InSlotPadding);
+
 }
 
 
 // Function UMG.UniformGridPanel.SetMinDesiredSlotWidth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMinDesiredSlotWidth                                            (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InMinDesiredSlotWidth                                            (ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UUniformGridPanel::SetMinDesiredSlotWidth(float InMinDesiredSlotWidth)
+void UUniformGridPanel::SetMinDesiredSlotWidth(float* InMinDesiredSlotWidth)
 {
 	static class UFunction* Func = nullptr;
 
@@ -20553,7 +20287,6 @@ void UUniformGridPanel::SetMinDesiredSlotWidth(float InMinDesiredSlotWidth)
 
 	Params::UUniformGridPanel_SetMinDesiredSlotWidth_Params Parms{};
 
-	Parms.InMinDesiredSlotWidth = InMinDesiredSlotWidth;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -20563,15 +20296,18 @@ void UUniformGridPanel::SetMinDesiredSlotWidth(float InMinDesiredSlotWidth)
 
 	Func->FunctionFlags = Flgs;
 
+	if (InMinDesiredSlotWidth != nullptr)
+		*InMinDesiredSlotWidth = Parms.InMinDesiredSlotWidth;
+
 }
 
 
 // Function UMG.UniformGridPanel.SetMinDesiredSlotHeight
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMinDesiredSlotHeight                                           (Edit, ConstParm, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InMinDesiredSlotHeight                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UUniformGridPanel::SetMinDesiredSlotHeight(float InMinDesiredSlotHeight)
+void UUniformGridPanel::SetMinDesiredSlotHeight(float* InMinDesiredSlotHeight)
 {
 	static class UFunction* Func = nullptr;
 
@@ -20580,7 +20316,6 @@ void UUniformGridPanel::SetMinDesiredSlotHeight(float InMinDesiredSlotHeight)
 
 	Params::UUniformGridPanel_SetMinDesiredSlotHeight_Params Parms{};
 
-	Parms.InMinDesiredSlotHeight = InMinDesiredSlotHeight;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -20590,18 +20325,21 @@ void UUniformGridPanel::SetMinDesiredSlotHeight(float InMinDesiredSlotHeight)
 
 	Func->FunctionFlags = Flgs;
 
+	if (InMinDesiredSlotHeight != nullptr)
+		*InMinDesiredSlotHeight = Parms.InMinDesiredSlotHeight;
+
 }
 
 
 // Function UMG.UniformGridPanel.AddChildToUniformGrid
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// int32                              InRow                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              InColumn                                                         (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UUniformGridSlot*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// int32                              InRow                                                            (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InColumn                                                         (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UUniformGridSlot*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UUniformGridPanel::AddChildToUniformGrid(class UUniformGridSlot** ReturnValue)
+class UUniformGridSlot* UUniformGridPanel::AddChildToUniformGrid(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -20619,8 +20357,8 @@ int32 UUniformGridPanel::AddChildToUniformGrid(class UUniformGridSlot** ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -20658,9 +20396,9 @@ class UUniformGridSlot* UUniformGridSlot::GetDefaultObj()
 // Function UMG.UniformGridSlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UUniformGridSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UUniformGridSlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -20678,8 +20416,7 @@ void UUniformGridSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVer
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -20687,7 +20424,7 @@ void UUniformGridSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVer
 // Function UMG.UniformGridSlot.SetRow
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InRow                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InRow                                                            (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 int32 UUniformGridSlot::SetRow()
 {
@@ -20715,9 +20452,9 @@ int32 UUniformGridSlot::SetRow()
 // Function UMG.UniformGridSlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UUniformGridSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UUniformGridSlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -20735,8 +20472,7 @@ void UUniformGridSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* I
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -20744,7 +20480,7 @@ void UUniformGridSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* I
 // Function UMG.UniformGridSlot.SetColumn
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InColumn                                                         (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InColumn                                                         (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 int32 UUniformGridSlot::SetColumn()
 {
@@ -20800,10 +20536,10 @@ class UVerticalBox* UVerticalBox::GetDefaultObj()
 // Function UMG.VerticalBox.AddChildToVerticalBox
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// class UVerticalBoxSlot*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// class UVerticalBoxSlot*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UVerticalBox::AddChildToVerticalBox(class UVerticalBoxSlot** ReturnValue)
+class UVerticalBoxSlot* UVerticalBox::AddChildToVerticalBox(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -20821,8 +20557,8 @@ class UWidget* UVerticalBox::AddChildToVerticalBox(class UVerticalBoxSlot** Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -20860,9 +20596,9 @@ class UVerticalBoxSlot* UVerticalBoxSlot::GetDefaultObj()
 // Function UMG.VerticalBoxSlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UVerticalBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UVerticalBoxSlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -20880,8 +20616,7 @@ void UVerticalBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVer
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -20889,9 +20624,9 @@ void UVerticalBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVer
 // Function UMG.VerticalBoxSlot.SetSize
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FSlateChildSize             InSize                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FSlateChildSize             InSize                                                           (ExportObject, Net, EditFixedSize, Parm, Transient, EditConst, SubobjectReference)
 
-struct FSlateChildSize UVerticalBoxSlot::SetSize()
+void UVerticalBoxSlot::SetSize(const struct FSlateChildSize& InSize)
 {
 	static class UFunction* Func = nullptr;
 
@@ -20900,6 +20635,7 @@ struct FSlateChildSize UVerticalBoxSlot::SetSize()
 
 	Params::UVerticalBoxSlot_SetSize_Params Parms{};
 
+	Parms.InSize = InSize;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -20909,17 +20645,15 @@ struct FSlateChildSize UVerticalBoxSlot::SetSize()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.VerticalBoxSlot.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UVerticalBoxSlot::SetPadding()
+void UVerticalBoxSlot::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -20937,7 +20671,8 @@ struct FMargin UVerticalBoxSlot::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -20945,9 +20680,9 @@ struct FMargin UVerticalBoxSlot::SetPadding()
 // Function UMG.VerticalBoxSlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UVerticalBoxSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UVerticalBoxSlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -20965,8 +20700,7 @@ void UVerticalBoxSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* I
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -21002,10 +20736,10 @@ class UViewport* UViewport::GetDefaultObj()
 // Function UMG.Viewport.Spawn
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      ActorClass                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class AActor*                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      ActorClass                                                       (ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class AActor*                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UViewport::Spawn(class AActor** ReturnValue)
+class AActor* UViewport::Spawn(class UClass* ActorClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -21014,6 +20748,7 @@ class UClass* UViewport::Spawn(class AActor** ReturnValue)
 
 	Params::UViewport_Spawn_Params Parms{};
 
+	Parms.ActorClass = ActorClass;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -21022,9 +20757,6 @@ class UClass* UViewport::Spawn(class AActor** ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -21092,9 +20824,9 @@ void UViewport::SetViewLocation(struct FVector* Location)
 // Function UMG.Viewport.GetViewRotation
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UViewport::GetViewRotation(struct FRotator* ReturnValue)
+struct FRotator UViewport::GetViewRotation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21112,8 +20844,7 @@ void UViewport::GetViewRotation(struct FRotator* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -21121,9 +20852,9 @@ void UViewport::GetViewRotation(struct FRotator* ReturnValue)
 // Function UMG.Viewport.GetViewportWorld
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UWorld*                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWorld*                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UViewport::GetViewportWorld(class UWorld** ReturnValue)
+class UWorld* UViewport::GetViewportWorld()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21141,8 +20872,7 @@ void UViewport::GetViewportWorld(class UWorld** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -21150,9 +20880,9 @@ void UViewport::GetViewportWorld(class UWorld** ReturnValue)
 // Function UMG.Viewport.GetViewLocation
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UViewport::GetViewLocation(struct FVector* ReturnValue)
+struct FVector UViewport::GetViewLocation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21170,8 +20900,7 @@ void UViewport::GetViewLocation(struct FVector* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -21207,9 +20936,9 @@ class UWidgetComponent* UWidgetComponent::GetDefaultObj()
 // Function UMG.WidgetComponent.SetWindowVisibility
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EWindowVisibility       InVisibility                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EWindowVisibility       InVisibility                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UWidgetComponent::SetWindowVisibility(enum class EWindowVisibility* InVisibility)
+enum class EWindowVisibility UWidgetComponent::SetWindowVisibility()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21227,8 +20956,7 @@ void UWidgetComponent::SetWindowVisibility(enum class EWindowVisibility* InVisib
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVisibility != nullptr)
-		*InVisibility = Parms.InVisibility;
+	return Parms.ReturnValue;
 
 }
 
@@ -21236,9 +20964,9 @@ void UWidgetComponent::SetWindowVisibility(enum class EWindowVisibility* InVisib
 // Function UMG.WidgetComponent.SetWindowFocusable
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInWindowFocusable                                               (ConstParm, ExportObject, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInWindowFocusable                                               (Edit, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UWidgetComponent::SetWindowFocusable(bool* bInWindowFocusable)
+bool UWidgetComponent::SetWindowFocusable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21256,8 +20984,7 @@ void UWidgetComponent::SetWindowFocusable(bool* bInWindowFocusable)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bInWindowFocusable != nullptr)
-		*bInWindowFocusable = Parms.bInWindowFocusable;
+	return Parms.ReturnValue;
 
 }
 
@@ -21265,9 +20992,9 @@ void UWidgetComponent::SetWindowFocusable(bool* bInWindowFocusable)
 // Function UMG.WidgetComponent.SetWidgetSpace
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EWidgetSpace            NewSpace                                                         (Edit, BlueprintVisible, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EWidgetSpace            NewSpace                                                         (Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UWidgetComponent::SetWidgetSpace(enum class EWidgetSpace* NewSpace)
+enum class EWidgetSpace UWidgetComponent::SetWidgetSpace()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21285,8 +21012,7 @@ void UWidgetComponent::SetWidgetSpace(enum class EWidgetSpace* NewSpace)
 
 	Func->FunctionFlags = Flgs;
 
-	if (NewSpace != nullptr)
-		*NewSpace = Parms.NewSpace;
+	return Parms.ReturnValue;
 
 }
 
@@ -21322,9 +21048,9 @@ class UUserWidget* UWidgetComponent::SetWidget()
 // Function UMG.WidgetComponent.SetTwoSided
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bWantTwoSided                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bWantTwoSided                                                    (ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UWidgetComponent::SetTwoSided(bool* bWantTwoSided)
+bool UWidgetComponent::SetTwoSided()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21342,8 +21068,7 @@ void UWidgetComponent::SetTwoSided(bool* bWantTwoSided)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bWantTwoSided != nullptr)
-		*bWantTwoSided = Parms.bWantTwoSided;
+	return Parms.ReturnValue;
 
 }
 
@@ -21351,9 +21076,9 @@ void UWidgetComponent::SetTwoSided(bool* bWantTwoSided)
 // Function UMG.WidgetComponent.SetTintColorAndOpacity
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                NewTintColorAndOpacity                                           (Edit, BlueprintReadOnly, Net, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FLinearColor                NewTintColorAndOpacity                                           (BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UWidgetComponent::SetTintColorAndOpacity(struct FLinearColor* NewTintColorAndOpacity)
+struct FLinearColor UWidgetComponent::SetTintColorAndOpacity()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21371,8 +21096,7 @@ void UWidgetComponent::SetTintColorAndOpacity(struct FLinearColor* NewTintColorA
 
 	Func->FunctionFlags = Flgs;
 
-	if (NewTintColorAndOpacity != nullptr)
-		*NewTintColorAndOpacity = std::move(Parms.NewTintColorAndOpacity);
+	return Parms.ReturnValue;
 
 }
 
@@ -21380,9 +21104,9 @@ void UWidgetComponent::SetTintColorAndOpacity(struct FLinearColor* NewTintColorA
 // Function UMG.WidgetComponent.SetTickWhenOffscreen
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bWantTickWhenOffscreen                                           (Edit, BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bWantTickWhenOffscreen                                           (ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UWidgetComponent::SetTickWhenOffscreen(bool* bWantTickWhenOffscreen)
+bool UWidgetComponent::SetTickWhenOffscreen()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21400,8 +21124,7 @@ void UWidgetComponent::SetTickWhenOffscreen(bool* bWantTickWhenOffscreen)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bWantTickWhenOffscreen != nullptr)
-		*bWantTickWhenOffscreen = Parms.bWantTickWhenOffscreen;
+	return Parms.ReturnValue;
 
 }
 
@@ -21409,7 +21132,7 @@ void UWidgetComponent::SetTickWhenOffscreen(bool* bWantTickWhenOffscreen)
 // Function UMG.WidgetComponent.SetTickMode
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ETickMode               InTickMode                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class ETickMode               InTickMode                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UWidgetComponent::SetTickMode(enum class ETickMode* InTickMode)
 {
@@ -21438,7 +21161,7 @@ void UWidgetComponent::SetTickMode(enum class ETickMode* InTickMode)
 // Function UMG.WidgetComponent.SetRedrawTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InRedrawTime                                                     (ExportObject, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InRedrawTime                                                     (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UWidgetComponent::SetRedrawTime(float* InRedrawTime)
 {
@@ -21467,7 +21190,7 @@ void UWidgetComponent::SetRedrawTime(float* InRedrawTime)
 // Function UMG.WidgetComponent.SetPivot
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InPivot                                                          (Edit, ConstParm, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   InPivot                                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UWidgetComponent::SetPivot(struct FVector2D* InPivot)
 {
@@ -21523,7 +21246,7 @@ void UWidgetComponent::SetOwnerPlayer(class ULocalPlayer* LocalPlayer)
 // Function UMG.WidgetComponent.SetManuallyRedraw
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bUseManualRedraw                                                 (ConstParm, ExportObject, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bUseManualRedraw                                                 (Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UWidgetComponent::SetManuallyRedraw(bool* bUseManualRedraw)
 {
@@ -21552,7 +21275,7 @@ void UWidgetComponent::SetManuallyRedraw(bool* bUseManualRedraw)
 // Function UMG.WidgetComponent.SetGeometryMode
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EWidgetGeometryMode     InGeometryMode                                                   (ConstParm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EWidgetGeometryMode     InGeometryMode                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UWidgetComponent::SetGeometryMode(enum class EWidgetGeometryMode* InGeometryMode)
 {
@@ -21609,9 +21332,9 @@ struct FVector2D UWidgetComponent::SetDrawSize()
 // Function UMG.WidgetComponent.SetDrawAtDesiredSize
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInDrawAtDesiredSize                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInDrawAtDesiredSize                                             (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UWidgetComponent::SetDrawAtDesiredSize(bool bInDrawAtDesiredSize)
+void UWidgetComponent::SetDrawAtDesiredSize(bool* bInDrawAtDesiredSize)
 {
 	static class UFunction* Func = nullptr;
 
@@ -21620,7 +21343,6 @@ void UWidgetComponent::SetDrawAtDesiredSize(bool bInDrawAtDesiredSize)
 
 	Params::UWidgetComponent_SetDrawAtDesiredSize_Params Parms{};
 
-	Parms.bInDrawAtDesiredSize = bInDrawAtDesiredSize;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -21630,15 +21352,18 @@ void UWidgetComponent::SetDrawAtDesiredSize(bool bInDrawAtDesiredSize)
 
 	Func->FunctionFlags = Flgs;
 
+	if (bInDrawAtDesiredSize != nullptr)
+		*bInDrawAtDesiredSize = Parms.bInDrawAtDesiredSize;
+
 }
 
 
 // Function UMG.WidgetComponent.SetCylinderArcAngle
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InCylinderArcAngle                                               (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InCylinderArcAngle                                               (ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UWidgetComponent::SetCylinderArcAngle(float InCylinderArcAngle)
+void UWidgetComponent::SetCylinderArcAngle(float* InCylinderArcAngle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -21647,7 +21372,6 @@ void UWidgetComponent::SetCylinderArcAngle(float InCylinderArcAngle)
 
 	Params::UWidgetComponent_SetCylinderArcAngle_Params Parms{};
 
-	Parms.InCylinderArcAngle = InCylinderArcAngle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -21657,15 +21381,18 @@ void UWidgetComponent::SetCylinderArcAngle(float InCylinderArcAngle)
 
 	Func->FunctionFlags = Flgs;
 
+	if (InCylinderArcAngle != nullptr)
+		*InCylinderArcAngle = Parms.InCylinderArcAngle;
+
 }
 
 
 // Function UMG.WidgetComponent.SetBackgroundColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                NewBackgroundColor                                               (Edit, ConstParm, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FLinearColor                NewBackgroundColor                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UWidgetComponent::SetBackgroundColor(const struct FLinearColor& NewBackgroundColor)
+void UWidgetComponent::SetBackgroundColor(struct FLinearColor* NewBackgroundColor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -21674,7 +21401,6 @@ void UWidgetComponent::SetBackgroundColor(const struct FLinearColor& NewBackgrou
 
 	Params::UWidgetComponent_SetBackgroundColor_Params Parms{};
 
-	Parms.NewBackgroundColor = NewBackgroundColor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -21683,6 +21409,9 @@ void UWidgetComponent::SetBackgroundColor(const struct FLinearColor& NewBackgrou
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (NewBackgroundColor != nullptr)
+		*NewBackgroundColor = std::move(Parms.NewBackgroundColor);
 
 }
 
@@ -21738,9 +21467,9 @@ void UWidgetComponent::RequestRedraw()
 // Function UMG.WidgetComponent.IsWidgetVisible
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::IsWidgetVisible(bool* ReturnValue)
+bool UWidgetComponent::IsWidgetVisible()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21758,8 +21487,7 @@ void UWidgetComponent::IsWidgetVisible(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -21767,9 +21495,9 @@ void UWidgetComponent::IsWidgetVisible(bool* ReturnValue)
 // Function UMG.WidgetComponent.GetWindowVisiblility
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EWindowVisibility       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EWindowVisibility       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetWindowVisiblility(enum class EWindowVisibility* ReturnValue)
+enum class EWindowVisibility UWidgetComponent::GetWindowVisiblility()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21787,8 +21515,7 @@ void UWidgetComponent::GetWindowVisiblility(enum class EWindowVisibility* Return
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -21796,9 +21523,9 @@ void UWidgetComponent::GetWindowVisiblility(enum class EWindowVisibility* Return
 // Function UMG.WidgetComponent.GetWindowFocusable
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetWindowFocusable(bool* ReturnValue)
+bool UWidgetComponent::GetWindowFocusable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21816,8 +21543,7 @@ void UWidgetComponent::GetWindowFocusable(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -21825,9 +21551,9 @@ void UWidgetComponent::GetWindowFocusable(bool* ReturnValue)
 // Function UMG.WidgetComponent.GetWidgetSpace
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EWidgetSpace            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EWidgetSpace            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetWidgetSpace(enum class EWidgetSpace* ReturnValue)
+enum class EWidgetSpace UWidgetComponent::GetWidgetSpace()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21845,8 +21571,7 @@ void UWidgetComponent::GetWidgetSpace(enum class EWidgetSpace* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -21854,9 +21579,9 @@ void UWidgetComponent::GetWidgetSpace(enum class EWidgetSpace* ReturnValue)
 // Function UMG.WidgetComponent.GetWidget
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UUserWidget*                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UUserWidget*                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetWidget(class UUserWidget** ReturnValue)
+class UUserWidget* UWidgetComponent::GetWidget()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21874,8 +21599,7 @@ void UWidgetComponent::GetWidget(class UUserWidget** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -21883,9 +21607,9 @@ void UWidgetComponent::GetWidget(class UUserWidget** ReturnValue)
 // Function UMG.WidgetComponent.GetUserWidgetObject
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UUserWidget*                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UUserWidget*                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetUserWidgetObject(class UUserWidget** ReturnValue)
+class UUserWidget* UWidgetComponent::GetUserWidgetObject()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21903,8 +21627,7 @@ void UWidgetComponent::GetUserWidgetObject(class UUserWidget** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -21912,9 +21635,9 @@ void UWidgetComponent::GetUserWidgetObject(class UUserWidget** ReturnValue)
 // Function UMG.WidgetComponent.GetTwoSided
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetTwoSided(bool* ReturnValue)
+bool UWidgetComponent::GetTwoSided()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21932,8 +21655,7 @@ void UWidgetComponent::GetTwoSided(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -21941,9 +21663,9 @@ void UWidgetComponent::GetTwoSided(bool* ReturnValue)
 // Function UMG.WidgetComponent.GetTickWhenOffscreen
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetTickWhenOffscreen(bool* ReturnValue)
+bool UWidgetComponent::GetTickWhenOffscreen()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21961,8 +21683,7 @@ void UWidgetComponent::GetTickWhenOffscreen(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -21970,9 +21691,9 @@ void UWidgetComponent::GetTickWhenOffscreen(bool* ReturnValue)
 // Function UMG.WidgetComponent.GetRenderTarget
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UTextureRenderTarget2D*      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTextureRenderTarget2D*      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetRenderTarget(class UTextureRenderTarget2D** ReturnValue)
+class UTextureRenderTarget2D* UWidgetComponent::GetRenderTarget()
 {
 	static class UFunction* Func = nullptr;
 
@@ -21990,8 +21711,7 @@ void UWidgetComponent::GetRenderTarget(class UTextureRenderTarget2D** ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -21999,9 +21719,9 @@ void UWidgetComponent::GetRenderTarget(class UTextureRenderTarget2D** ReturnValu
 // Function UMG.WidgetComponent.GetRedrawTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetRedrawTime(float* ReturnValue)
+float UWidgetComponent::GetRedrawTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22019,8 +21739,7 @@ void UWidgetComponent::GetRedrawTime(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22028,9 +21747,9 @@ void UWidgetComponent::GetRedrawTime(float* ReturnValue)
 // Function UMG.WidgetComponent.GetPivot
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetPivot(struct FVector2D* ReturnValue)
+struct FVector2D UWidgetComponent::GetPivot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22048,8 +21767,7 @@ void UWidgetComponent::GetPivot(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -22057,9 +21775,9 @@ void UWidgetComponent::GetPivot(struct FVector2D* ReturnValue)
 // Function UMG.WidgetComponent.GetOwnerPlayer
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class ULocalPlayer*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class ULocalPlayer*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetOwnerPlayer(class ULocalPlayer** ReturnValue)
+class ULocalPlayer* UWidgetComponent::GetOwnerPlayer()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22077,8 +21795,7 @@ void UWidgetComponent::GetOwnerPlayer(class ULocalPlayer** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22086,9 +21803,9 @@ void UWidgetComponent::GetOwnerPlayer(class ULocalPlayer** ReturnValue)
 // Function UMG.WidgetComponent.GetMaterialInstance
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMaterialInstanceDynamic*    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMaterialInstanceDynamic*    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetMaterialInstance(class UMaterialInstanceDynamic** ReturnValue)
+class UMaterialInstanceDynamic* UWidgetComponent::GetMaterialInstance()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22106,8 +21823,7 @@ void UWidgetComponent::GetMaterialInstance(class UMaterialInstanceDynamic** Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22115,9 +21831,9 @@ void UWidgetComponent::GetMaterialInstance(class UMaterialInstanceDynamic** Retu
 // Function UMG.WidgetComponent.GetManuallyRedraw
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetManuallyRedraw(bool* ReturnValue)
+bool UWidgetComponent::GetManuallyRedraw()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22135,8 +21851,7 @@ void UWidgetComponent::GetManuallyRedraw(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22144,9 +21859,9 @@ void UWidgetComponent::GetManuallyRedraw(bool* ReturnValue)
 // Function UMG.WidgetComponent.GetGeometryMode
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EWidgetGeometryMode     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EWidgetGeometryMode     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetGeometryMode(enum class EWidgetGeometryMode* ReturnValue)
+enum class EWidgetGeometryMode UWidgetComponent::GetGeometryMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22164,8 +21879,7 @@ void UWidgetComponent::GetGeometryMode(enum class EWidgetGeometryMode* ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22173,9 +21887,9 @@ void UWidgetComponent::GetGeometryMode(enum class EWidgetGeometryMode* ReturnVal
 // Function UMG.WidgetComponent.GetDrawSize
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetDrawSize(struct FVector2D* ReturnValue)
+struct FVector2D UWidgetComponent::GetDrawSize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22193,8 +21907,7 @@ void UWidgetComponent::GetDrawSize(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -22202,9 +21915,9 @@ void UWidgetComponent::GetDrawSize(struct FVector2D* ReturnValue)
 // Function UMG.WidgetComponent.GetDrawAtDesiredSize
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetDrawAtDesiredSize(bool* ReturnValue)
+bool UWidgetComponent::GetDrawAtDesiredSize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22222,8 +21935,7 @@ void UWidgetComponent::GetDrawAtDesiredSize(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22231,9 +21943,9 @@ void UWidgetComponent::GetDrawAtDesiredSize(bool* ReturnValue)
 // Function UMG.WidgetComponent.GetCylinderArcAngle
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetCylinderArcAngle(float* ReturnValue)
+float UWidgetComponent::GetCylinderArcAngle()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22251,8 +21963,7 @@ void UWidgetComponent::GetCylinderArcAngle(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22260,9 +21971,9 @@ void UWidgetComponent::GetCylinderArcAngle(float* ReturnValue)
 // Function UMG.WidgetComponent.GetCurrentDrawSize
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetComponent::GetCurrentDrawSize(struct FVector2D* ReturnValue)
+struct FVector2D UWidgetComponent::GetCurrentDrawSize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22280,8 +21991,7 @@ void UWidgetComponent::GetCurrentDrawSize(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -22317,9 +22027,9 @@ class UWidgetInteractionComponent* UWidgetInteractionComponent::GetDefaultObj()
 // Function UMG.WidgetInteractionComponent.SetFocus
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     FocusWidget                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidget*                     FocusWidget                                                      (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class UWidget* UWidgetInteractionComponent::SetFocus()
+void UWidgetInteractionComponent::SetFocus(class UWidget* FocusWidget)
 {
 	static class UFunction* Func = nullptr;
 
@@ -22328,6 +22038,7 @@ class UWidget* UWidgetInteractionComponent::SetFocus()
 
 	Params::UWidgetInteractionComponent_SetFocus_Params Parms{};
 
+	Parms.FocusWidget = FocusWidget;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -22336,8 +22047,6 @@ class UWidget* UWidgetInteractionComponent::SetFocus()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -22372,11 +22081,11 @@ void UWidgetInteractionComponent::SetCustomHitResult(const struct FHitResult& Hi
 // Function UMG.WidgetInteractionComponent.SendKeyChar
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Characters                                                       (ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, DuplicateTransient)
-// bool                               bRepeat                                                          (Edit, ExportObject, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Characters                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, DuplicateTransient)
+// bool                               bRepeat                                                          (BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetInteractionComponent::SendKeyChar(const class FString& Characters, bool bRepeat, bool* ReturnValue)
+bool UWidgetInteractionComponent::SendKeyChar(class FString* Characters)
 {
 	static class UFunction* Func = nullptr;
 
@@ -22385,8 +22094,6 @@ void UWidgetInteractionComponent::SendKeyChar(const class FString& Characters, b
 
 	Params::UWidgetInteractionComponent_SendKeyChar_Params Parms{};
 
-	Parms.Characters = Characters;
-	Parms.bRepeat = bRepeat;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -22396,8 +22103,10 @@ void UWidgetInteractionComponent::SendKeyChar(const class FString& Characters, b
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Characters != nullptr)
+		*Characters = std::move(Parms.Characters);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -22405,9 +22114,9 @@ void UWidgetInteractionComponent::SendKeyChar(const class FString& Characters, b
 // Function UMG.WidgetInteractionComponent.ScrollWheel
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// float                              ScrollDelta                                                      (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ScrollDelta                                                      (Edit, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UWidgetInteractionComponent::ScrollWheel(float ScrollDelta)
+float UWidgetInteractionComponent::ScrollWheel()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22416,7 +22125,6 @@ void UWidgetInteractionComponent::ScrollWheel(float ScrollDelta)
 
 	Params::UWidgetInteractionComponent_ScrollWheel_Params Parms{};
 
-	Parms.ScrollDelta = ScrollDelta;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -22425,6 +22133,8 @@ void UWidgetInteractionComponent::ScrollWheel(float ScrollDelta)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -22460,9 +22170,9 @@ void UWidgetInteractionComponent::ReleasePointerKey(const struct FKey& Key)
 // (Native, Public, BlueprintCallable)
 // Parameters:
 // struct FKey                        Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetInteractionComponent::ReleaseKey(const struct FKey& Key, bool* ReturnValue)
+bool UWidgetInteractionComponent::ReleaseKey(const struct FKey& Key)
 {
 	static class UFunction* Func = nullptr;
 
@@ -22481,8 +22191,7 @@ void UWidgetInteractionComponent::ReleaseKey(const struct FKey& Key, bool* Retur
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22518,10 +22227,10 @@ void UWidgetInteractionComponent::PressPointerKey(const struct FKey& Key)
 // (Native, Public, BlueprintCallable)
 // Parameters:
 // struct FKey                        Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// bool                               bRepeat                                                          (Edit, ExportObject, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bRepeat                                                          (BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetInteractionComponent::PressKey(const struct FKey& Key, bool bRepeat, bool* ReturnValue)
+bool UWidgetInteractionComponent::PressKey(const struct FKey& Key)
 {
 	static class UFunction* Func = nullptr;
 
@@ -22531,7 +22240,6 @@ void UWidgetInteractionComponent::PressKey(const struct FKey& Key, bool bRepeat,
 	Params::UWidgetInteractionComponent_PressKey_Params Parms{};
 
 	Parms.Key = Key;
-	Parms.bRepeat = bRepeat;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -22541,8 +22249,7 @@ void UWidgetInteractionComponent::PressKey(const struct FKey& Key, bool bRepeat,
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22551,9 +22258,9 @@ void UWidgetInteractionComponent::PressKey(const struct FKey& Key, bool bRepeat,
 // (Native, Public, BlueprintCallable)
 // Parameters:
 // struct FKey                        Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetInteractionComponent::PressAndReleaseKey(const struct FKey& Key, bool* ReturnValue)
+bool UWidgetInteractionComponent::PressAndReleaseKey(const struct FKey& Key)
 {
 	static class UFunction* Func = nullptr;
 
@@ -22572,8 +22279,7 @@ void UWidgetInteractionComponent::PressAndReleaseKey(const struct FKey& Key, boo
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22581,9 +22287,9 @@ void UWidgetInteractionComponent::PressAndReleaseKey(const struct FKey& Key, boo
 // Function UMG.WidgetInteractionComponent.IsOverInteractableWidget
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetInteractionComponent::IsOverInteractableWidget(bool* ReturnValue)
+bool UWidgetInteractionComponent::IsOverInteractableWidget()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22601,8 +22307,7 @@ void UWidgetInteractionComponent::IsOverInteractableWidget(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22610,9 +22315,9 @@ void UWidgetInteractionComponent::IsOverInteractableWidget(bool* ReturnValue)
 // Function UMG.WidgetInteractionComponent.IsOverHitTestVisibleWidget
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetInteractionComponent::IsOverHitTestVisibleWidget(bool* ReturnValue)
+bool UWidgetInteractionComponent::IsOverHitTestVisibleWidget()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22630,8 +22335,7 @@ void UWidgetInteractionComponent::IsOverHitTestVisibleWidget(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22639,9 +22343,9 @@ void UWidgetInteractionComponent::IsOverHitTestVisibleWidget(bool* ReturnValue)
 // Function UMG.WidgetInteractionComponent.IsOverFocusableWidget
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetInteractionComponent::IsOverFocusableWidget(bool* ReturnValue)
+bool UWidgetInteractionComponent::IsOverFocusableWidget()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22659,8 +22363,7 @@ void UWidgetInteractionComponent::IsOverFocusableWidget(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22668,9 +22371,9 @@ void UWidgetInteractionComponent::IsOverFocusableWidget(bool* ReturnValue)
 // Function UMG.WidgetInteractionComponent.GetLastHitResult
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FHitResult                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FHitResult                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetInteractionComponent::GetLastHitResult(struct FHitResult* ReturnValue)
+struct FHitResult UWidgetInteractionComponent::GetLastHitResult()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22688,8 +22391,7 @@ void UWidgetInteractionComponent::GetLastHitResult(struct FHitResult* ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -22697,9 +22399,9 @@ void UWidgetInteractionComponent::GetLastHitResult(struct FHitResult* ReturnValu
 // Function UMG.WidgetInteractionComponent.GetHoveredWidgetComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UWidgetComponent*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidgetComponent*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetInteractionComponent::GetHoveredWidgetComponent(class UWidgetComponent** ReturnValue)
+class UWidgetComponent* UWidgetInteractionComponent::GetHoveredWidgetComponent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22717,8 +22419,7 @@ void UWidgetInteractionComponent::GetHoveredWidgetComponent(class UWidgetCompone
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22726,9 +22427,9 @@ void UWidgetInteractionComponent::GetHoveredWidgetComponent(class UWidgetCompone
 // Function UMG.WidgetInteractionComponent.Get2DHitLocation
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetInteractionComponent::Get2DHitLocation(struct FVector2D* ReturnValue)
+struct FVector2D UWidgetInteractionComponent::Get2DHitLocation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22746,8 +22447,7 @@ void UWidgetInteractionComponent::Get2DHitLocation(struct FVector2D* ReturnValue
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -22840,9 +22540,9 @@ class UWidget* UWidgetSwitcher::SetActiveWidget()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// class UWidget*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UWidgetSwitcher::GetWidgetAtIndex(class UWidget** ReturnValue)
+class UWidget* UWidgetSwitcher::GetWidgetAtIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22860,9 +22560,6 @@ int32 UWidgetSwitcher::GetWidgetAtIndex(class UWidget** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -22871,9 +22568,9 @@ int32 UWidgetSwitcher::GetWidgetAtIndex(class UWidget** ReturnValue)
 // Function UMG.WidgetSwitcher.GetNumWidgets
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetSwitcher::GetNumWidgets(int32* ReturnValue)
+int32 UWidgetSwitcher::GetNumWidgets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22891,8 +22588,7 @@ void UWidgetSwitcher::GetNumWidgets(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22900,9 +22596,9 @@ void UWidgetSwitcher::GetNumWidgets(int32* ReturnValue)
 // Function UMG.WidgetSwitcher.GetActiveWidgetIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetSwitcher::GetActiveWidgetIndex(int32* ReturnValue)
+int32 UWidgetSwitcher::GetActiveWidgetIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22920,8 +22616,7 @@ void UWidgetSwitcher::GetActiveWidgetIndex(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22929,9 +22624,9 @@ void UWidgetSwitcher::GetActiveWidgetIndex(int32* ReturnValue)
 // Function UMG.WidgetSwitcher.GetActiveWidget
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UWidget*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetSwitcher::GetActiveWidget(class UWidget** ReturnValue)
+class UWidget* UWidgetSwitcher::GetActiveWidget()
 {
 	static class UFunction* Func = nullptr;
 
@@ -22949,8 +22644,7 @@ void UWidgetSwitcher::GetActiveWidget(class UWidget** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -22986,9 +22680,9 @@ class UWidgetSwitcherSlot* UWidgetSwitcherSlot::GetDefaultObj()
 // Function UMG.WidgetSwitcherSlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UWidgetSwitcherSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UWidgetSwitcherSlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -23006,8 +22700,7 @@ void UWidgetSwitcherSlot::SetVerticalAlignment(enum class EVerticalAlignment* In
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -23015,9 +22708,9 @@ void UWidgetSwitcherSlot::SetVerticalAlignment(enum class EVerticalAlignment* In
 // Function UMG.WidgetSwitcherSlot.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UWidgetSwitcherSlot::SetPadding()
+void UWidgetSwitcherSlot::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -23035,7 +22728,8 @@ struct FMargin UWidgetSwitcherSlot::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -23043,9 +22737,9 @@ struct FMargin UWidgetSwitcherSlot::SetPadding()
 // Function UMG.WidgetSwitcherSlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UWidgetSwitcherSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UWidgetSwitcherSlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -23063,8 +22757,7 @@ void UWidgetSwitcherSlot::SetHorizontalAlignment(enum class EHorizontalAlignment
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -23100,9 +22793,9 @@ class UWindowTitleBarArea* UWindowTitleBarArea::GetDefaultObj()
 // Function UMG.WindowTitleBarArea.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UWindowTitleBarArea::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UWindowTitleBarArea::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -23120,8 +22813,7 @@ void UWindowTitleBarArea::SetVerticalAlignment(enum class EVerticalAlignment* In
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -23129,9 +22821,9 @@ void UWindowTitleBarArea::SetVerticalAlignment(enum class EVerticalAlignment* In
 // Function UMG.WindowTitleBarArea.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UWindowTitleBarArea::SetPadding()
+void UWindowTitleBarArea::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -23149,7 +22841,8 @@ struct FMargin UWindowTitleBarArea::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -23157,9 +22850,9 @@ struct FMargin UWindowTitleBarArea::SetPadding()
 // Function UMG.WindowTitleBarArea.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UWindowTitleBarArea::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UWindowTitleBarArea::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -23177,8 +22870,7 @@ void UWindowTitleBarArea::SetHorizontalAlignment(enum class EHorizontalAlignment
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -23214,9 +22906,9 @@ class UWindowTitleBarAreaSlot* UWindowTitleBarAreaSlot::GetDefaultObj()
 // Function UMG.WindowTitleBarAreaSlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UWindowTitleBarAreaSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UWindowTitleBarAreaSlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -23234,8 +22926,7 @@ void UWindowTitleBarAreaSlot::SetVerticalAlignment(enum class EVerticalAlignment
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -23243,9 +22934,9 @@ void UWindowTitleBarAreaSlot::SetVerticalAlignment(enum class EVerticalAlignment
 // Function UMG.WindowTitleBarAreaSlot.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UWindowTitleBarAreaSlot::SetPadding()
+void UWindowTitleBarAreaSlot::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -23263,7 +22954,8 @@ struct FMargin UWindowTitleBarAreaSlot::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -23271,9 +22963,9 @@ struct FMargin UWindowTitleBarAreaSlot::SetPadding()
 // Function UMG.WindowTitleBarAreaSlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UWindowTitleBarAreaSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UWindowTitleBarAreaSlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -23291,8 +22983,7 @@ void UWindowTitleBarAreaSlot::SetHorizontalAlignment(enum class EHorizontalAlign
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -23328,9 +23019,9 @@ class UWrapBox* UWrapBox::GetDefaultObj()
 // Function UMG.WrapBox.SetInnerSlotPadding
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector2D                   InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FVector2D UWrapBox::SetInnerSlotPadding()
+void UWrapBox::SetInnerSlotPadding(struct FVector2D* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -23348,7 +23039,8 @@ struct FVector2D UWrapBox::SetInnerSlotPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -23356,9 +23048,9 @@ struct FVector2D UWrapBox::SetInnerSlotPadding()
 // Function UMG.WrapBox.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UWrapBox::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UWrapBox::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -23376,8 +23068,7 @@ void UWrapBox::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizon
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -23385,10 +23076,10 @@ void UWrapBox::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizon
 // Function UMG.WrapBox.AddChildToWrapBox
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     Content                                                          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// class UWrapBoxSlot*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     Content                                                          (Edit, BlueprintReadOnly, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// class UWrapBoxSlot*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWrapBox::AddChildToWrapBox(class UWrapBoxSlot** ReturnValue)
+class UWrapBoxSlot* UWrapBox::AddChildToWrapBox(class UWidget** Content)
 {
 	static class UFunction* Func = nullptr;
 
@@ -23406,8 +23097,8 @@ class UWidget* UWrapBox::AddChildToWrapBox(class UWrapBoxSlot** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Content != nullptr)
+		*Content = Parms.Content;
 
 	return Parms.ReturnValue;
 
@@ -23445,9 +23136,9 @@ class UWrapBoxSlot* UWrapBoxSlot::GetDefaultObj()
 // Function UMG.WrapBoxSlot.SetVerticalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EVerticalAlignment      InVerticalAlignment                                              (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EVerticalAlignment      InVerticalAlignment                                              (Edit, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UWrapBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVerticalAlignment)
+enum class EVerticalAlignment UWrapBoxSlot::SetVerticalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -23465,8 +23156,7 @@ void UWrapBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVertica
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVerticalAlignment != nullptr)
-		*InVerticalAlignment = Parms.InVerticalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -23474,9 +23164,9 @@ void UWrapBoxSlot::SetVerticalAlignment(enum class EVerticalAlignment* InVertica
 // Function UMG.WrapBoxSlot.SetPadding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FMargin                     InPadding                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FMargin UWrapBoxSlot::SetPadding()
+void UWrapBoxSlot::SetPadding(struct FMargin* InPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -23494,7 +23184,8 @@ struct FMargin UWrapBoxSlot::SetPadding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPadding != nullptr)
+		*InPadding = std::move(Parms.InPadding);
 
 }
 
@@ -23502,9 +23193,9 @@ struct FMargin UWrapBoxSlot::SetPadding()
 // Function UMG.WrapBoxSlot.SetNewLine
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InForceNewLine                                                   (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               InForceNewLine                                                   (Edit, ConstParm, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UWrapBoxSlot::SetNewLine(bool* InForceNewLine)
+bool UWrapBoxSlot::SetNewLine()
 {
 	static class UFunction* Func = nullptr;
 
@@ -23522,8 +23213,7 @@ void UWrapBoxSlot::SetNewLine(bool* InForceNewLine)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InForceNewLine != nullptr)
-		*InForceNewLine = Parms.InForceNewLine;
+	return Parms.ReturnValue;
 
 }
 
@@ -23531,9 +23221,9 @@ void UWrapBoxSlot::SetNewLine(bool* InForceNewLine)
 // Function UMG.WrapBoxSlot.SetHorizontalAlignment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EHorizontalAlignment    InHorizontalAlignment                                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EHorizontalAlignment    InHorizontalAlignment                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UWrapBoxSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHorizontalAlignment)
+enum class EHorizontalAlignment UWrapBoxSlot::SetHorizontalAlignment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -23551,8 +23241,7 @@ void UWrapBoxSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHor
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHorizontalAlignment != nullptr)
-		*InHorizontalAlignment = Parms.InHorizontalAlignment;
+	return Parms.ReturnValue;
 
 }
 
@@ -23560,9 +23249,9 @@ void UWrapBoxSlot::SetHorizontalAlignment(enum class EHorizontalAlignment* InHor
 // Function UMG.WrapBoxSlot.SetFillSpanWhenLessThan
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InFillSpanWhenLessThan                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InFillSpanWhenLessThan                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UWrapBoxSlot::SetFillSpanWhenLessThan(float* InFillSpanWhenLessThan)
+float UWrapBoxSlot::SetFillSpanWhenLessThan()
 {
 	static class UFunction* Func = nullptr;
 
@@ -23580,8 +23269,7 @@ void UWrapBoxSlot::SetFillSpanWhenLessThan(float* InFillSpanWhenLessThan)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InFillSpanWhenLessThan != nullptr)
-		*InFillSpanWhenLessThan = Parms.InFillSpanWhenLessThan;
+	return Parms.ReturnValue;
 
 }
 
@@ -23589,9 +23277,9 @@ void UWrapBoxSlot::SetFillSpanWhenLessThan(float* InFillSpanWhenLessThan)
 // Function UMG.WrapBoxSlot.SetFillEmptySpace
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InbFillEmptySpace                                                (ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               InbFillEmptySpace                                                (Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UWrapBoxSlot::SetFillEmptySpace(bool* InbFillEmptySpace)
+bool UWrapBoxSlot::SetFillEmptySpace()
 {
 	static class UFunction* Func = nullptr;
 
@@ -23609,8 +23297,7 @@ void UWrapBoxSlot::SetFillEmptySpace(bool* InbFillEmptySpace)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InbFillEmptySpace != nullptr)
-		*InbFillEmptySpace = Parms.InbFillEmptySpace;
+	return Parms.ReturnValue;
 
 }
 
@@ -23762,10 +23449,10 @@ class USlateBlueprintLibrary* USlateBlueprintLibrary::GetDefaultObj()
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FGeometry                   Geometry                                                         (ConstParm, ExportObject, EditFixedSize, OutParm, Config, DisableEditOnInstance)
-// struct FVector2D                   LocalVector                                                      (ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   LocalVector                                                      (Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USlateBlueprintLibrary::TransformVectorLocalToAbsolute(struct FGeometry* Geometry, struct FVector2D* LocalVector, struct FVector2D* ReturnValue)
+struct FVector2D USlateBlueprintLibrary::TransformVectorLocalToAbsolute(struct FGeometry* Geometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -23786,11 +23473,7 @@ void USlateBlueprintLibrary::TransformVectorLocalToAbsolute(struct FGeometry* Ge
 	if (Geometry != nullptr)
 		*Geometry = std::move(Parms.Geometry);
 
-	if (LocalVector != nullptr)
-		*LocalVector = std::move(Parms.LocalVector);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -23799,10 +23482,10 @@ void USlateBlueprintLibrary::TransformVectorLocalToAbsolute(struct FGeometry* Ge
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FGeometry                   Geometry                                                         (ConstParm, ExportObject, EditFixedSize, OutParm, Config, DisableEditOnInstance)
-// struct FVector2D                   AbsoluteVector                                                   (EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   AbsoluteVector                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USlateBlueprintLibrary::TransformVectorAbsoluteToLocal(struct FGeometry* Geometry, struct FVector2D* AbsoluteVector, struct FVector2D* ReturnValue)
+struct FVector2D USlateBlueprintLibrary::TransformVectorAbsoluteToLocal(struct FGeometry* Geometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -23823,11 +23506,7 @@ void USlateBlueprintLibrary::TransformVectorAbsoluteToLocal(struct FGeometry* Ge
 	if (Geometry != nullptr)
 		*Geometry = std::move(Parms.Geometry);
 
-	if (AbsoluteVector != nullptr)
-		*AbsoluteVector = std::move(Parms.AbsoluteVector);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -23836,10 +23515,10 @@ void USlateBlueprintLibrary::TransformVectorAbsoluteToLocal(struct FGeometry* Ge
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FGeometry                   Geometry                                                         (ConstParm, ExportObject, EditFixedSize, OutParm, Config, DisableEditOnInstance)
-// float                              LocalScalar                                                      (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              LocalScalar                                                      (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USlateBlueprintLibrary::TransformScalarLocalToAbsolute(struct FGeometry* Geometry, float* LocalScalar, float* ReturnValue)
+float USlateBlueprintLibrary::TransformScalarLocalToAbsolute(struct FGeometry* Geometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -23860,11 +23539,7 @@ void USlateBlueprintLibrary::TransformScalarLocalToAbsolute(struct FGeometry* Ge
 	if (Geometry != nullptr)
 		*Geometry = std::move(Parms.Geometry);
 
-	if (LocalScalar != nullptr)
-		*LocalScalar = Parms.LocalScalar;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -23873,10 +23548,10 @@ void USlateBlueprintLibrary::TransformScalarLocalToAbsolute(struct FGeometry* Ge
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FGeometry                   Geometry                                                         (ConstParm, ExportObject, EditFixedSize, OutParm, Config, DisableEditOnInstance)
-// float                              AbsoluteScalar                                                   (Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              AbsoluteScalar                                                   (BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USlateBlueprintLibrary::TransformScalarAbsoluteToLocal(struct FGeometry* Geometry, float* AbsoluteScalar, float* ReturnValue)
+float USlateBlueprintLibrary::TransformScalarAbsoluteToLocal(struct FGeometry* Geometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -23897,11 +23572,7 @@ void USlateBlueprintLibrary::TransformScalarAbsoluteToLocal(struct FGeometry* Ge
 	if (Geometry != nullptr)
 		*Geometry = std::move(Parms.Geometry);
 
-	if (AbsoluteScalar != nullptr)
-		*AbsoluteScalar = Parms.AbsoluteScalar;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -23909,13 +23580,13 @@ void USlateBlueprintLibrary::TransformScalarAbsoluteToLocal(struct FGeometry* Ge
 // Function UMG.SlateBlueprintLibrary.ScreenToWidgetLocal
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FGeometry                   Geometry                                                         (ConstParm, ExportObject, EditFixedSize, OutParm, Config, DisableEditOnInstance)
-// struct FVector2D                   ScreenPosition                                                   (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector2D                   LocalCoordinate                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bIncludeWindowPosition                                           (Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   ScreenPosition                                                   (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector2D                   LocalCoordinate                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bIncludeWindowPosition                                           (Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVector2D USlateBlueprintLibrary::ScreenToWidgetLocal(struct FGeometry* Geometry, struct FVector2D* LocalCoordinate, bool* bIncludeWindowPosition)
+bool USlateBlueprintLibrary::ScreenToWidgetLocal(struct FGeometry* Geometry, struct FVector2D* ScreenPosition)
 {
 	static class UFunction* Func = nullptr;
 
@@ -23936,11 +23607,8 @@ struct FVector2D USlateBlueprintLibrary::ScreenToWidgetLocal(struct FGeometry* G
 	if (Geometry != nullptr)
 		*Geometry = std::move(Parms.Geometry);
 
-	if (LocalCoordinate != nullptr)
-		*LocalCoordinate = std::move(Parms.LocalCoordinate);
-
-	if (bIncludeWindowPosition != nullptr)
-		*bIncludeWindowPosition = Parms.bIncludeWindowPosition;
+	if (ScreenPosition != nullptr)
+		*ScreenPosition = std::move(Parms.ScreenPosition);
 
 	return Parms.ReturnValue;
 
@@ -23950,12 +23618,12 @@ struct FVector2D USlateBlueprintLibrary::ScreenToWidgetLocal(struct FGeometry* G
 // Function UMG.SlateBlueprintLibrary.ScreenToWidgetAbsolute
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector2D                   ScreenPosition                                                   (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector2D                   AbsoluteCoordinate                                               (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bIncludeWindowPosition                                           (Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ScreenPosition                                                   (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector2D                   AbsoluteCoordinate                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bIncludeWindowPosition                                           (Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVector2D USlateBlueprintLibrary::ScreenToWidgetAbsolute(struct FVector2D* AbsoluteCoordinate, bool* bIncludeWindowPosition)
+bool USlateBlueprintLibrary::ScreenToWidgetAbsolute(struct FVector2D* ScreenPosition)
 {
 	static class UFunction* Func = nullptr;
 
@@ -23973,11 +23641,8 @@ struct FVector2D USlateBlueprintLibrary::ScreenToWidgetAbsolute(struct FVector2D
 
 	Func->FunctionFlags = Flgs;
 
-	if (AbsoluteCoordinate != nullptr)
-		*AbsoluteCoordinate = std::move(Parms.AbsoluteCoordinate);
-
-	if (bIncludeWindowPosition != nullptr)
-		*bIncludeWindowPosition = Parms.bIncludeWindowPosition;
+	if (ScreenPosition != nullptr)
+		*ScreenPosition = std::move(Parms.ScreenPosition);
 
 	return Parms.ReturnValue;
 
@@ -23987,11 +23652,11 @@ struct FVector2D USlateBlueprintLibrary::ScreenToWidgetAbsolute(struct FVector2D
 // Function UMG.SlateBlueprintLibrary.ScreenToViewport
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector2D                   ScreenPosition                                                   (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector2D                   ViewportPosition                                                 (Edit, ConstParm, Net, ReturnParm, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ScreenPosition                                                   (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector2D                   ViewportPosition                                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVector2D USlateBlueprintLibrary::ScreenToViewport()
+struct FVector2D USlateBlueprintLibrary::ScreenToViewport(struct FVector2D* ScreenPosition)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24009,6 +23674,9 @@ struct FVector2D USlateBlueprintLibrary::ScreenToViewport()
 
 	Func->FunctionFlags = Flgs;
 
+	if (ScreenPosition != nullptr)
+		*ScreenPosition = std::move(Parms.ScreenPosition);
+
 	return Parms.ReturnValue;
 
 }
@@ -24017,13 +23685,13 @@ struct FVector2D USlateBlueprintLibrary::ScreenToViewport()
 // Function UMG.SlateBlueprintLibrary.LocalToViewport
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FGeometry                   Geometry                                                         (ConstParm, ExportObject, EditFixedSize, OutParm, Config, DisableEditOnInstance)
-// struct FVector2D                   LocalCoordinate                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector2D                   PixelPosition                                                    (ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector2D                   ViewportPosition                                                 (Edit, ConstParm, Net, ReturnParm, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   LocalCoordinate                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   PixelPosition                                                    (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   ViewportPosition                                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVector2D USlateBlueprintLibrary::LocalToViewport(struct FGeometry* Geometry, struct FVector2D* LocalCoordinate, struct FVector2D* PixelPosition)
+struct FVector2D USlateBlueprintLibrary::LocalToViewport(struct FGeometry* Geometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24044,12 +23712,6 @@ struct FVector2D USlateBlueprintLibrary::LocalToViewport(struct FGeometry* Geome
 	if (Geometry != nullptr)
 		*Geometry = std::move(Parms.Geometry);
 
-	if (LocalCoordinate != nullptr)
-		*LocalCoordinate = std::move(Parms.LocalCoordinate);
-
-	if (PixelPosition != nullptr)
-		*PixelPosition = std::move(Parms.PixelPosition);
-
 	return Parms.ReturnValue;
 
 }
@@ -24059,10 +23721,10 @@ struct FVector2D USlateBlueprintLibrary::LocalToViewport(struct FGeometry* Geome
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FGeometry                   Geometry                                                         (ConstParm, ExportObject, EditFixedSize, OutParm, Config, DisableEditOnInstance)
-// struct FVector2D                   LocalCoordinate                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   LocalCoordinate                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USlateBlueprintLibrary::LocalToAbsolute(struct FGeometry* Geometry, struct FVector2D* LocalCoordinate, struct FVector2D* ReturnValue)
+struct FVector2D USlateBlueprintLibrary::LocalToAbsolute(struct FGeometry* Geometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24083,11 +23745,7 @@ void USlateBlueprintLibrary::LocalToAbsolute(struct FGeometry* Geometry, struct 
 	if (Geometry != nullptr)
 		*Geometry = std::move(Parms.Geometry);
 
-	if (LocalCoordinate != nullptr)
-		*LocalCoordinate = std::move(Parms.LocalCoordinate);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -24096,10 +23754,10 @@ void USlateBlueprintLibrary::LocalToAbsolute(struct FGeometry* Geometry, struct 
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FGeometry                   Geometry                                                         (ConstParm, ExportObject, EditFixedSize, OutParm, Config, DisableEditOnInstance)
-// struct FVector2D                   AbsoluteCoordinate                                               (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   AbsoluteCoordinate                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USlateBlueprintLibrary::IsUnderLocation(struct FGeometry* Geometry, struct FVector2D* AbsoluteCoordinate, bool* ReturnValue)
+bool USlateBlueprintLibrary::IsUnderLocation(struct FGeometry* Geometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24120,11 +23778,7 @@ void USlateBlueprintLibrary::IsUnderLocation(struct FGeometry* Geometry, struct 
 	if (Geometry != nullptr)
 		*Geometry = std::move(Parms.Geometry);
 
-	if (AbsoluteCoordinate != nullptr)
-		*AbsoluteCoordinate = std::move(Parms.AbsoluteCoordinate);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -24133,9 +23787,9 @@ void USlateBlueprintLibrary::IsUnderLocation(struct FGeometry* Geometry, struct 
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FGeometry                   Geometry                                                         (ConstParm, ExportObject, EditFixedSize, OutParm, Config, DisableEditOnInstance)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USlateBlueprintLibrary::GetLocalTopLeft(struct FGeometry* Geometry, struct FVector2D* ReturnValue)
+struct FVector2D USlateBlueprintLibrary::GetLocalTopLeft(struct FGeometry* Geometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24156,8 +23810,7 @@ void USlateBlueprintLibrary::GetLocalTopLeft(struct FGeometry* Geometry, struct 
 	if (Geometry != nullptr)
 		*Geometry = std::move(Parms.Geometry);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -24166,9 +23819,9 @@ void USlateBlueprintLibrary::GetLocalTopLeft(struct FGeometry* Geometry, struct 
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FGeometry                   Geometry                                                         (ConstParm, ExportObject, EditFixedSize, OutParm, Config, DisableEditOnInstance)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USlateBlueprintLibrary::GetLocalSize(struct FGeometry* Geometry, struct FVector2D* ReturnValue)
+struct FVector2D USlateBlueprintLibrary::GetLocalSize(struct FGeometry* Geometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24189,8 +23842,7 @@ void USlateBlueprintLibrary::GetLocalSize(struct FGeometry* Geometry, struct FVe
 	if (Geometry != nullptr)
 		*Geometry = std::move(Parms.Geometry);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -24199,9 +23851,9 @@ void USlateBlueprintLibrary::GetLocalSize(struct FGeometry* Geometry, struct FVe
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FGeometry                   Geometry                                                         (ConstParm, ExportObject, EditFixedSize, OutParm, Config, DisableEditOnInstance)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USlateBlueprintLibrary::GetAbsoluteSize(struct FGeometry* Geometry, struct FVector2D* ReturnValue)
+struct FVector2D USlateBlueprintLibrary::GetAbsoluteSize(struct FGeometry* Geometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24222,8 +23874,7 @@ void USlateBlueprintLibrary::GetAbsoluteSize(struct FGeometry* Geometry, struct 
 	if (Geometry != nullptr)
 		*Geometry = std::move(Parms.Geometry);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -24233,9 +23884,9 @@ void USlateBlueprintLibrary::GetAbsoluteSize(struct FGeometry* Geometry, struct 
 // Parameters:
 // struct FSlateBrush                 A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
 // struct FSlateBrush                 B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSlateBrush USlateBlueprintLibrary::EqualEqual_SlateBrush(bool* ReturnValue)
+bool USlateBlueprintLibrary::EqualEqual_SlateBrush()
 {
 	static class UFunction* Func = nullptr;
 
@@ -24253,9 +23904,6 @@ struct FSlateBrush USlateBlueprintLibrary::EqualEqual_SlateBrush(bool* ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -24264,12 +23912,12 @@ struct FSlateBrush USlateBlueprintLibrary::EqualEqual_SlateBrush(bool* ReturnVal
 // Function UMG.SlateBlueprintLibrary.AbsoluteToViewport
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector2D                   AbsoluteDesktopCoordinate                                        (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector2D                   PixelPosition                                                    (ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector2D                   ViewportPosition                                                 (Edit, ConstParm, Net, ReturnParm, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   AbsoluteDesktopCoordinate                                        (Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   PixelPosition                                                    (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   ViewportPosition                                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVector2D USlateBlueprintLibrary::AbsoluteToViewport(struct FVector2D* AbsoluteDesktopCoordinate, struct FVector2D* PixelPosition)
+struct FVector2D USlateBlueprintLibrary::AbsoluteToViewport()
 {
 	static class UFunction* Func = nullptr;
 
@@ -24287,12 +23935,6 @@ struct FVector2D USlateBlueprintLibrary::AbsoluteToViewport(struct FVector2D* Ab
 
 	Func->FunctionFlags = Flgs;
 
-	if (AbsoluteDesktopCoordinate != nullptr)
-		*AbsoluteDesktopCoordinate = std::move(Parms.AbsoluteDesktopCoordinate);
-
-	if (PixelPosition != nullptr)
-		*PixelPosition = std::move(Parms.PixelPosition);
-
 	return Parms.ReturnValue;
 
 }
@@ -24302,10 +23944,10 @@ struct FVector2D USlateBlueprintLibrary::AbsoluteToViewport(struct FVector2D* Ab
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FGeometry                   Geometry                                                         (ConstParm, ExportObject, EditFixedSize, OutParm, Config, DisableEditOnInstance)
-// struct FVector2D                   AbsoluteCoordinate                                               (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   AbsoluteCoordinate                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USlateBlueprintLibrary::AbsoluteToLocal(struct FGeometry* Geometry, struct FVector2D* AbsoluteCoordinate, struct FVector2D* ReturnValue)
+struct FVector2D USlateBlueprintLibrary::AbsoluteToLocal(struct FGeometry* Geometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24326,11 +23968,7 @@ void USlateBlueprintLibrary::AbsoluteToLocal(struct FGeometry* Geometry, struct 
 	if (Geometry != nullptr)
 		*Geometry = std::move(Parms.Geometry);
 
-	if (AbsoluteCoordinate != nullptr)
-		*AbsoluteCoordinate = std::move(Parms.AbsoluteCoordinate);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -24422,10 +24060,10 @@ class UWidgetBlueprintLibrary* UWidgetBlueprintLibrary::GetDefaultObj()
 // Function UMG.WidgetBlueprintLibrary.UnlockMouse
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEventReply                 Reply                                                            (Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 Reply                                                            (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FEventReply UWidgetBlueprintLibrary::UnlockMouse(struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::UnlockMouse()
 {
 	static class UFunction* Func = nullptr;
 
@@ -24443,9 +24081,6 @@ struct FEventReply UWidgetBlueprintLibrary::UnlockMouse(struct FEventReply* Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -24454,9 +24089,9 @@ struct FEventReply UWidgetBlueprintLibrary::UnlockMouse(struct FEventReply* Retu
 // Function UMG.WidgetBlueprintLibrary.Unhandled
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetBlueprintLibrary::Unhandled(struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::Unhandled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -24474,8 +24109,7 @@ void UWidgetBlueprintLibrary::Unhandled(struct FEventReply* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -24483,13 +24117,13 @@ void UWidgetBlueprintLibrary::Unhandled(struct FEventReply* ReturnValue)
 // Function UMG.WidgetBlueprintLibrary.SetWindowTitleBarState
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UWidget*                     TitleBarContent                                                  (ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// enum class EWindowTitleBarMode     Mode                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bTitleBarDragEnabled                                             (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bWindowButtonsVisible                                            (ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bTitleBarVisible                                                 (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidget*                     TitleBarContent                                                  (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EWindowTitleBarMode     Mode                                                             (Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bTitleBarDragEnabled                                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bWindowButtonsVisible                                            (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bTitleBarVisible                                                 (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::SetWindowTitleBarState()
+void UWidgetBlueprintLibrary::SetWindowTitleBarState(class UWidget** TitleBarContent, enum class EWindowTitleBarMode* Mode, bool* bTitleBarDragEnabled, bool* bWindowButtonsVisible, bool* bTitleBarVisible)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24507,7 +24141,20 @@ bool UWidgetBlueprintLibrary::SetWindowTitleBarState()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (TitleBarContent != nullptr)
+		*TitleBarContent = Parms.TitleBarContent;
+
+	if (Mode != nullptr)
+		*Mode = Parms.Mode;
+
+	if (bTitleBarDragEnabled != nullptr)
+		*bTitleBarDragEnabled = Parms.bTitleBarDragEnabled;
+
+	if (bWindowButtonsVisible != nullptr)
+		*bWindowButtonsVisible = Parms.bWindowButtonsVisible;
+
+	if (bTitleBarVisible != nullptr)
+		*bTitleBarVisible = Parms.bTitleBarVisible;
 
 }
 
@@ -24515,9 +24162,9 @@ bool UWidgetBlueprintLibrary::SetWindowTitleBarState()
 // Function UMG.WidgetBlueprintLibrary.SetWindowTitleBarOnCloseClickedDelegate
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-FDelegateProperty_ UWidgetBlueprintLibrary::SetWindowTitleBarOnCloseClickedDelegate()
+void UWidgetBlueprintLibrary::SetWindowTitleBarOnCloseClickedDelegate(FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24526,6 +24173,7 @@ FDelegateProperty_ UWidgetBlueprintLibrary::SetWindowTitleBarOnCloseClickedDeleg
 
 	Params::UWidgetBlueprintLibrary_SetWindowTitleBarOnCloseClickedDelegate_Params Parms{};
 
+	Parms.Delegate = Delegate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -24535,17 +24183,15 @@ FDelegateProperty_ UWidgetBlueprintLibrary::SetWindowTitleBarOnCloseClickedDeleg
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function UMG.WidgetBlueprintLibrary.SetWindowTitleBarCloseButtonActive
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               bActive                                                          (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bActive                                                          (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::SetWindowTitleBarCloseButtonActive()
+void UWidgetBlueprintLibrary::SetWindowTitleBarCloseButtonActive(bool* bActive)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24563,7 +24209,8 @@ bool UWidgetBlueprintLibrary::SetWindowTitleBarCloseButtonActive()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bActive != nullptr)
+		*bActive = Parms.bActive;
 
 }
 
@@ -24571,12 +24218,12 @@ bool UWidgetBlueprintLibrary::SetWindowTitleBarCloseButtonActive()
 // Function UMG.WidgetBlueprintLibrary.SetUserFocus
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEventReply                 Reply                                                            (Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UWidget*                     FocusWidget                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bInAllUsers                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 Reply                                                            (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidget*                     FocusWidget                                                      (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bInAllUsers                                                      (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::SetUserFocus(struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::SetUserFocus(class UWidget* FocusWidget)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24585,6 +24232,7 @@ bool UWidgetBlueprintLibrary::SetUserFocus(struct FEventReply* ReturnValue)
 
 	Params::UWidgetBlueprintLibrary_SetUserFocus_Params Parms{};
 
+	Parms.FocusWidget = FocusWidget;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -24593,9 +24241,6 @@ bool UWidgetBlueprintLibrary::SetUserFocus(struct FEventReply* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -24605,11 +24250,11 @@ bool UWidgetBlueprintLibrary::SetUserFocus(struct FEventReply* ReturnValue)
 // Function UMG.WidgetBlueprintLibrary.SetMousePosition
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEventReply                 Reply                                                            (Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FVector2D                   NewMousePosition                                                 (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 Reply                                                            (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector2D                   NewMousePosition                                                 (ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UWidgetBlueprintLibrary::SetMousePosition(struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::SetMousePosition(const struct FVector2D& NewMousePosition)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24618,6 +24263,7 @@ struct FVector2D UWidgetBlueprintLibrary::SetMousePosition(struct FEventReply* R
 
 	Params::UWidgetBlueprintLibrary_SetMousePosition_Params Parms{};
 
+	Parms.NewMousePosition = NewMousePosition;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -24626,9 +24272,6 @@ struct FVector2D UWidgetBlueprintLibrary::SetMousePosition(struct FEventReply* R
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -24639,11 +24282,11 @@ struct FVector2D UWidgetBlueprintLibrary::SetMousePosition(struct FEventReply* R
 // (Final, BlueprintCosmetic, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class APlayerController*           PlayerController                                                 (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig)
-// class UWidget*                     InWidgetToFocus                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// enum class EMouseLockMode          InMouseLockMode                                                  (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bFlushInput                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidget*                     InWidgetToFocus                                                  (Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EMouseLockMode          InMouseLockMode                                                  (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bFlushInput                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::SetInputMode_UIOnlyEx(class APlayerController** PlayerController)
+void UWidgetBlueprintLibrary::SetInputMode_UIOnlyEx(class APlayerController** PlayerController, class UWidget* InWidgetToFocus, enum class EMouseLockMode* InMouseLockMode, bool* bFlushInput)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24652,6 +24295,7 @@ bool UWidgetBlueprintLibrary::SetInputMode_UIOnlyEx(class APlayerController** Pl
 
 	Params::UWidgetBlueprintLibrary_SetInputMode_UIOnlyEx_Params Parms{};
 
+	Parms.InWidgetToFocus = InWidgetToFocus;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -24664,7 +24308,11 @@ bool UWidgetBlueprintLibrary::SetInputMode_UIOnlyEx(class APlayerController** Pl
 	if (PlayerController != nullptr)
 		*PlayerController = Parms.PlayerController;
 
-	return Parms.ReturnValue;
+	if (InMouseLockMode != nullptr)
+		*InMouseLockMode = Parms.InMouseLockMode;
+
+	if (bFlushInput != nullptr)
+		*bFlushInput = Parms.bFlushInput;
 
 }
 
@@ -24673,9 +24321,9 @@ bool UWidgetBlueprintLibrary::SetInputMode_UIOnlyEx(class APlayerController** Pl
 // (Final, BlueprintCosmetic, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class APlayerController*           PlayerController                                                 (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig)
-// bool                               bFlushInput                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bFlushInput                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::SetInputMode_GameOnly(class APlayerController** PlayerController)
+void UWidgetBlueprintLibrary::SetInputMode_GameOnly(class APlayerController** PlayerController, bool* bFlushInput)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24696,7 +24344,8 @@ bool UWidgetBlueprintLibrary::SetInputMode_GameOnly(class APlayerController** Pl
 	if (PlayerController != nullptr)
 		*PlayerController = Parms.PlayerController;
 
-	return Parms.ReturnValue;
+	if (bFlushInput != nullptr)
+		*bFlushInput = Parms.bFlushInput;
 
 }
 
@@ -24705,12 +24354,12 @@ bool UWidgetBlueprintLibrary::SetInputMode_GameOnly(class APlayerController** Pl
 // (Final, BlueprintCosmetic, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class APlayerController*           PlayerController                                                 (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig)
-// class UWidget*                     InWidgetToFocus                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// enum class EMouseLockMode          InMouseLockMode                                                  (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bHideCursorDuringCapture                                         (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bFlushInput                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidget*                     InWidgetToFocus                                                  (Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class EMouseLockMode          InMouseLockMode                                                  (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bHideCursorDuringCapture                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bFlushInput                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::SetInputMode_GameAndUIEx(class APlayerController** PlayerController)
+void UWidgetBlueprintLibrary::SetInputMode_GameAndUIEx(class APlayerController** PlayerController, class UWidget* InWidgetToFocus, enum class EMouseLockMode* InMouseLockMode, bool* bHideCursorDuringCapture, bool* bFlushInput)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24719,6 +24368,7 @@ bool UWidgetBlueprintLibrary::SetInputMode_GameAndUIEx(class APlayerController**
 
 	Params::UWidgetBlueprintLibrary_SetInputMode_GameAndUIEx_Params Parms{};
 
+	Parms.InWidgetToFocus = InWidgetToFocus;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -24731,7 +24381,14 @@ bool UWidgetBlueprintLibrary::SetInputMode_GameAndUIEx(class APlayerController**
 	if (PlayerController != nullptr)
 		*PlayerController = Parms.PlayerController;
 
-	return Parms.ReturnValue;
+	if (InMouseLockMode != nullptr)
+		*InMouseLockMode = Parms.InMouseLockMode;
+
+	if (bHideCursorDuringCapture != nullptr)
+		*bHideCursorDuringCapture = Parms.bHideCursorDuringCapture;
+
+	if (bFlushInput != nullptr)
+		*bFlushInput = Parms.bFlushInput;
 
 }
 
@@ -24739,13 +24396,13 @@ bool UWidgetBlueprintLibrary::SetInputMode_GameAndUIEx(class APlayerController**
 // Function UMG.WidgetBlueprintLibrary.SetHardwareCursor
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class EMouseCursor            CursorShape                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class FName                        CursorName                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FVector2D                   HotSpot                                                          (ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EMouseCursor            CursorShape                                                      (BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FName                        CursorName                                                       (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector2D                   HotSpot                                                          (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UWidgetBlueprintLibrary::SetHardwareCursor(bool* ReturnValue)
+bool UWidgetBlueprintLibrary::SetHardwareCursor(enum class EMouseCursor* CursorShape, class FName* CursorName, struct FVector2D* HotSpot)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24763,8 +24420,14 @@ struct FVector2D UWidgetBlueprintLibrary::SetHardwareCursor(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (CursorShape != nullptr)
+		*CursorShape = Parms.CursorShape;
+
+	if (CursorName != nullptr)
+		*CursorName = Parms.CursorName;
+
+	if (HotSpot != nullptr)
+		*HotSpot = std::move(Parms.HotSpot);
 
 	return Parms.ReturnValue;
 
@@ -24799,11 +24462,11 @@ void UWidgetBlueprintLibrary::SetFocusToGameViewport()
 // (Final, BlueprintCosmetic, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // enum class EColorVisionDeficiency  Type                                                             (Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-// float                              Severity                                                         (Edit, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               CorrectDeficiency                                                (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               ShowCorrectionWithDeficiency                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              Severity                                                         (Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               CorrectDeficiency                                                (ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ShowCorrectionWithDeficiency                                     (Edit, ConstParm, Net, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::SetColorVisionDeficiencyType()
+float UWidgetBlueprintLibrary::SetColorVisionDeficiencyType(bool* CorrectDeficiency, bool* ShowCorrectionWithDeficiency)
 {
 	static class UFunction* Func = nullptr;
 
@@ -24820,6 +24483,12 @@ bool UWidgetBlueprintLibrary::SetColorVisionDeficiencyType()
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (CorrectDeficiency != nullptr)
+		*CorrectDeficiency = Parms.CorrectDeficiency;
+
+	if (ShowCorrectionWithDeficiency != nullptr)
+		*ShowCorrectionWithDeficiency = Parms.ShowCorrectionWithDeficiency;
 
 	return Parms.ReturnValue;
 
@@ -24911,10 +24580,10 @@ void UWidgetBlueprintLibrary::RestorePreviousWindowTitleBarState()
 // Function UMG.WidgetBlueprintLibrary.ReleaseMouseCapture
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEventReply                 Reply                                                            (Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 Reply                                                            (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FEventReply UWidgetBlueprintLibrary::ReleaseMouseCapture(struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::ReleaseMouseCapture()
 {
 	static class UFunction* Func = nullptr;
 
@@ -24932,9 +24601,6 @@ struct FEventReply UWidgetBlueprintLibrary::ReleaseMouseCapture(struct FEventRep
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -24943,11 +24609,11 @@ struct FEventReply UWidgetBlueprintLibrary::ReleaseMouseCapture(struct FEventRep
 // Function UMG.WidgetBlueprintLibrary.ReleaseJoystickCapture
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEventReply                 Reply                                                            (Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bInAllJoysticks                                                  (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 Reply                                                            (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bInAllJoysticks                                                  (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::ReleaseJoystickCapture(struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::ReleaseJoystickCapture()
 {
 	static class UFunction* Func = nullptr;
 
@@ -24964,9 +24630,6 @@ bool UWidgetBlueprintLibrary::ReleaseJoystickCapture(struct FEventReply* ReturnV
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -24994,9 +24657,9 @@ void UWidgetBlueprintLibrary::OnGameWindowCloseButtonClickedDelegate__DelegateSi
 // Function UMG.WidgetBlueprintLibrary.NoResourceBrush
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FSlateBrush                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSlateBrush                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetBlueprintLibrary::NoResourceBrush(struct FSlateBrush* ReturnValue)
+struct FSlateBrush UWidgetBlueprintLibrary::NoResourceBrush()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25014,8 +24677,7 @@ void UWidgetBlueprintLibrary::NoResourceBrush(struct FSlateBrush* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -25026,9 +24688,9 @@ void UWidgetBlueprintLibrary::NoResourceBrush(struct FSlateBrush* ReturnValue)
 // class UTexture2D*                  Texture                                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
 // int32                              Width                                                            (ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
 // int32                              Height                                                           (BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
-// struct FSlateBrush                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSlateBrush                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UTexture2D* UWidgetBlueprintLibrary::MakeBrushFromTexture(int32 Width, int32 Height, struct FSlateBrush* ReturnValue)
+struct FSlateBrush UWidgetBlueprintLibrary::MakeBrushFromTexture(int32 Width, int32 Height)
 {
 	static class UFunction* Func = nullptr;
 
@@ -25048,9 +24710,6 @@ class UTexture2D* UWidgetBlueprintLibrary::MakeBrushFromTexture(int32 Width, int
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -25062,9 +24721,9 @@ class UTexture2D* UWidgetBlueprintLibrary::MakeBrushFromTexture(int32 Width, int
 // class UMaterialInterface*          Material                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // int32                              Width                                                            (ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
 // int32                              Height                                                           (BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
-// struct FSlateBrush                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSlateBrush                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UMaterialInterface* UWidgetBlueprintLibrary::MakeBrushFromMaterial(int32 Width, int32 Height, struct FSlateBrush* ReturnValue)
+struct FSlateBrush UWidgetBlueprintLibrary::MakeBrushFromMaterial(int32 Width, int32 Height)
 {
 	static class UFunction* Func = nullptr;
 
@@ -25084,9 +24743,6 @@ class UMaterialInterface* UWidgetBlueprintLibrary::MakeBrushFromMaterial(int32 W
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -25095,10 +24751,10 @@ class UMaterialInterface* UWidgetBlueprintLibrary::MakeBrushFromMaterial(int32 W
 // Function UMG.WidgetBlueprintLibrary.MakeBrushFromAsset
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class USlateBrushAsset*            BrushAsset                                                       (BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FSlateBrush                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USlateBrushAsset*            BrushAsset                                                       (Edit, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FSlateBrush                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USlateBrushAsset* UWidgetBlueprintLibrary::MakeBrushFromAsset(struct FSlateBrush* ReturnValue)
+struct FSlateBrush UWidgetBlueprintLibrary::MakeBrushFromAsset(class USlateBrushAsset* BrushAsset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -25107,6 +24763,7 @@ class USlateBrushAsset* UWidgetBlueprintLibrary::MakeBrushFromAsset(struct FSlat
 
 	Params::UWidgetBlueprintLibrary_MakeBrushFromAsset_Params Parms{};
 
+	Parms.BrushAsset = BrushAsset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -25116,9 +24773,6 @@ class USlateBrushAsset* UWidgetBlueprintLibrary::MakeBrushFromAsset(struct FSlat
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -25127,11 +24781,11 @@ class USlateBrushAsset* UWidgetBlueprintLibrary::MakeBrushFromAsset(struct FSlat
 // Function UMG.WidgetBlueprintLibrary.LockMouse
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEventReply                 Reply                                                            (Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UWidget*                     CapturingWidget                                                  (BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 Reply                                                            (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidget*                     CapturingWidget                                                  (Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetBlueprintLibrary::LockMouse(struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::LockMouse()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25149,9 +24803,6 @@ class UWidget* UWidgetBlueprintLibrary::LockMouse(struct FEventReply* ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -25160,9 +24811,9 @@ class UWidget* UWidgetBlueprintLibrary::LockMouse(struct FEventReply* ReturnValu
 // Function UMG.WidgetBlueprintLibrary.IsDragDropping
 // (Final, BlueprintCosmetic, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetBlueprintLibrary::IsDragDropping(bool* ReturnValue)
+bool UWidgetBlueprintLibrary::IsDragDropping()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25180,8 +24831,7 @@ void UWidgetBlueprintLibrary::IsDragDropping(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -25189,9 +24839,9 @@ void UWidgetBlueprintLibrary::IsDragDropping(bool* ReturnValue)
 // Function UMG.WidgetBlueprintLibrary.Handled
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetBlueprintLibrary::Handled(struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::Handled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25209,8 +24859,7 @@ void UWidgetBlueprintLibrary::Handled(struct FEventReply* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -25218,12 +24867,12 @@ void UWidgetBlueprintLibrary::Handled(struct FEventReply* ReturnValue)
 // Function UMG.WidgetBlueprintLibrary.GetSafeZonePadding
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector4                    SafePadding                                                      (ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FVector2D                   SafePaddingScale                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FVector4                    SpillOverPadding                                                 (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector4                    SafePadding                                                      (ConstParm, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector2D                   SafePaddingScale                                                 (Edit, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector4                    SpillOverPadding                                                 (ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FVector4 UWidgetBlueprintLibrary::GetSafeZonePadding()
+class UObject* UWidgetBlueprintLibrary::GetSafeZonePadding(const struct FVector4& SafePadding, const struct FVector2D& SafePaddingScale, const struct FVector4& SpillOverPadding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -25232,6 +24881,9 @@ struct FVector4 UWidgetBlueprintLibrary::GetSafeZonePadding()
 
 	Params::UWidgetBlueprintLibrary_GetSafeZonePadding_Params Parms{};
 
+	Parms.SafePadding = SafePadding;
+	Parms.SafePaddingScale = SafePaddingScale;
+	Parms.SpillOverPadding = SpillOverPadding;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -25249,10 +24901,10 @@ struct FVector4 UWidgetBlueprintLibrary::GetSafeZonePadding()
 // Function UMG.WidgetBlueprintLibrary.GetKeyEventFromAnalogInputEvent
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAnalogInputEvent           Event                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FKeyEvent                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnalogInputEvent           Event                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FKeyEvent                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetBlueprintLibrary::GetKeyEventFromAnalogInputEvent(struct FAnalogInputEvent* Event, struct FKeyEvent* ReturnValue)
+struct FKeyEvent UWidgetBlueprintLibrary::GetKeyEventFromAnalogInputEvent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25270,11 +24922,7 @@ void UWidgetBlueprintLibrary::GetKeyEventFromAnalogInputEvent(struct FAnalogInpu
 
 	Func->FunctionFlags = Flgs;
 
-	if (Event != nullptr)
-		*Event = std::move(Parms.Event);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -25282,10 +24930,10 @@ void UWidgetBlueprintLibrary::GetKeyEventFromAnalogInputEvent(struct FAnalogInpu
 // Function UMG.WidgetBlueprintLibrary.GetInputEventFromPointerEvent
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FPointerEvent               Event                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FInputEvent                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPointerEvent               Event                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputEvent                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetBlueprintLibrary::GetInputEventFromPointerEvent(struct FPointerEvent* Event, struct FInputEvent* ReturnValue)
+struct FInputEvent UWidgetBlueprintLibrary::GetInputEventFromPointerEvent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25303,11 +24951,7 @@ void UWidgetBlueprintLibrary::GetInputEventFromPointerEvent(struct FPointerEvent
 
 	Func->FunctionFlags = Flgs;
 
-	if (Event != nullptr)
-		*Event = std::move(Parms.Event);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -25315,10 +24959,10 @@ void UWidgetBlueprintLibrary::GetInputEventFromPointerEvent(struct FPointerEvent
 // Function UMG.WidgetBlueprintLibrary.GetInputEventFromNavigationEvent
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FNavigationEvent            Event                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FInputEvent                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FNavigationEvent            Event                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputEvent                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetBlueprintLibrary::GetInputEventFromNavigationEvent(struct FNavigationEvent* Event, struct FInputEvent* ReturnValue)
+struct FInputEvent UWidgetBlueprintLibrary::GetInputEventFromNavigationEvent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25336,11 +24980,7 @@ void UWidgetBlueprintLibrary::GetInputEventFromNavigationEvent(struct FNavigatio
 
 	Func->FunctionFlags = Flgs;
 
-	if (Event != nullptr)
-		*Event = std::move(Parms.Event);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -25348,10 +24988,10 @@ void UWidgetBlueprintLibrary::GetInputEventFromNavigationEvent(struct FNavigatio
 // Function UMG.WidgetBlueprintLibrary.GetInputEventFromKeyEvent
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FKeyEvent                   Event                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FInputEvent                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FKeyEvent                   Event                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputEvent                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetBlueprintLibrary::GetInputEventFromKeyEvent(struct FKeyEvent* Event, struct FInputEvent* ReturnValue)
+struct FInputEvent UWidgetBlueprintLibrary::GetInputEventFromKeyEvent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25369,11 +25009,7 @@ void UWidgetBlueprintLibrary::GetInputEventFromKeyEvent(struct FKeyEvent* Event,
 
 	Func->FunctionFlags = Flgs;
 
-	if (Event != nullptr)
-		*Event = std::move(Parms.Event);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -25381,10 +25017,10 @@ void UWidgetBlueprintLibrary::GetInputEventFromKeyEvent(struct FKeyEvent* Event,
 // Function UMG.WidgetBlueprintLibrary.GetInputEventFromCharacterEvent
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FCharacterEvent             Event                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FInputEvent                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FCharacterEvent             Event                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInputEvent                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetBlueprintLibrary::GetInputEventFromCharacterEvent(struct FCharacterEvent* Event, struct FInputEvent* ReturnValue)
+struct FInputEvent UWidgetBlueprintLibrary::GetInputEventFromCharacterEvent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25402,11 +25038,7 @@ void UWidgetBlueprintLibrary::GetInputEventFromCharacterEvent(struct FCharacterE
 
 	Func->FunctionFlags = Flgs;
 
-	if (Event != nullptr)
-		*Event = std::move(Parms.Event);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -25415,9 +25047,9 @@ void UWidgetBlueprintLibrary::GetInputEventFromCharacterEvent(struct FCharacterE
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FSlateBrush                 Brush                                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
-// class UMaterialInstanceDynamic*    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMaterialInstanceDynamic*    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSlateBrush UWidgetBlueprintLibrary::GetDynamicMaterial(class UMaterialInstanceDynamic** ReturnValue)
+class UMaterialInstanceDynamic* UWidgetBlueprintLibrary::GetDynamicMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25435,9 +25067,6 @@ struct FSlateBrush UWidgetBlueprintLibrary::GetDynamicMaterial(class UMaterialIn
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -25446,9 +25075,9 @@ struct FSlateBrush UWidgetBlueprintLibrary::GetDynamicMaterial(class UMaterialIn
 // Function UMG.WidgetBlueprintLibrary.GetDragDroppingContent
 // (Final, BlueprintCosmetic, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UDragDropOperation*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDragDropOperation*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetBlueprintLibrary::GetDragDroppingContent(class UDragDropOperation** ReturnValue)
+class UDragDropOperation* UWidgetBlueprintLibrary::GetDragDroppingContent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25466,8 +25095,7 @@ void UWidgetBlueprintLibrary::GetDragDroppingContent(class UDragDropOperation** 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -25476,9 +25104,9 @@ void UWidgetBlueprintLibrary::GetDragDroppingContent(class UDragDropOperation** 
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FSlateBrush                 Brush                                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
-// class UTexture2D*                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTexture2D*                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSlateBrush UWidgetBlueprintLibrary::GetBrushResourceAsTexture2D(class UTexture2D** ReturnValue)
+class UTexture2D* UWidgetBlueprintLibrary::GetBrushResourceAsTexture2D()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25496,9 +25124,6 @@ struct FSlateBrush UWidgetBlueprintLibrary::GetBrushResourceAsTexture2D(class UT
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -25508,9 +25133,9 @@ struct FSlateBrush UWidgetBlueprintLibrary::GetBrushResourceAsTexture2D(class UT
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FSlateBrush                 Brush                                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
-// class UMaterialInterface*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMaterialInterface*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSlateBrush UWidgetBlueprintLibrary::GetBrushResourceAsMaterial(class UMaterialInterface** ReturnValue)
+class UMaterialInterface* UWidgetBlueprintLibrary::GetBrushResourceAsMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25528,9 +25153,6 @@ struct FSlateBrush UWidgetBlueprintLibrary::GetBrushResourceAsMaterial(class UMa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -25540,9 +25162,9 @@ struct FSlateBrush UWidgetBlueprintLibrary::GetBrushResourceAsMaterial(class UMa
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FSlateBrush                 Brush                                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
-// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSlateBrush UWidgetBlueprintLibrary::GetBrushResource(class UObject** ReturnValue)
+class UObject* UWidgetBlueprintLibrary::GetBrushResource()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25560,9 +25182,6 @@ struct FSlateBrush UWidgetBlueprintLibrary::GetBrushResource(class UObject** Ret
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -25571,13 +25190,13 @@ struct FSlateBrush UWidgetBlueprintLibrary::GetBrushResource(class UObject** Ret
 // Function UMG.WidgetBlueprintLibrary.GetAllWidgetsWithInterface
 // (Final, BlueprintCosmetic, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// TArray<class UUserWidget*>         FoundWidgets                                                     (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UUserWidget*>         FoundWidgets                                                     (Edit, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 // class UClass*                      Interface                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor)
-// class UClass*                      OutWidgetClass                                                   (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               TopLevelOnly                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UClass*                      OutWidgetClass                                                   (ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               TopLevelOnly                                                     (Edit, ConstParm, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::GetAllWidgetsWithInterface(class UClass* Interface)
+class UObject* UWidgetBlueprintLibrary::GetAllWidgetsWithInterface(const TArray<class UUserWidget*>& FoundWidgets, class UClass* Interface, class UClass* OutWidgetClass, bool TopLevelOnly)
 {
 	static class UFunction* Func = nullptr;
 
@@ -25586,7 +25205,10 @@ bool UWidgetBlueprintLibrary::GetAllWidgetsWithInterface(class UClass* Interface
 
 	Params::UWidgetBlueprintLibrary_GetAllWidgetsWithInterface_Params Parms{};
 
+	Parms.FoundWidgets = FoundWidgets;
 	Parms.Interface = Interface;
+	Parms.OutWidgetClass = OutWidgetClass;
+	Parms.TopLevelOnly = TopLevelOnly;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -25604,12 +25226,12 @@ bool UWidgetBlueprintLibrary::GetAllWidgetsWithInterface(class UClass* Interface
 // Function UMG.WidgetBlueprintLibrary.GetAllWidgetsOfClass
 // (Final, BlueprintCosmetic, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// TArray<class UUserWidget*>         FoundWidgets                                                     (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UClass*                      WidgetClass                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               TopLevelOnly                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UUserWidget*>         FoundWidgets                                                     (Edit, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UClass*                      WidgetClass                                                      (ConstParm, ExportObject, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               TopLevelOnly                                                     (Edit, ConstParm, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::GetAllWidgetsOfClass()
+class UObject* UWidgetBlueprintLibrary::GetAllWidgetsOfClass(const TArray<class UUserWidget*>& FoundWidgets, class UClass* WidgetClass, bool TopLevelOnly)
 {
 	static class UFunction* Func = nullptr;
 
@@ -25618,6 +25240,9 @@ bool UWidgetBlueprintLibrary::GetAllWidgetsOfClass()
 
 	Params::UWidgetBlueprintLibrary_GetAllWidgetsOfClass_Params Parms{};
 
+	Parms.FoundWidgets = FoundWidgets;
+	Parms.WidgetClass = WidgetClass;
+	Parms.TopLevelOnly = TopLevelOnly;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -25635,10 +25260,10 @@ bool UWidgetBlueprintLibrary::GetAllWidgetsOfClass()
 // Function UMG.WidgetBlueprintLibrary.EndDragDrop
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEventReply                 Reply                                                            (Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 Reply                                                            (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FEventReply UWidgetBlueprintLibrary::EndDragDrop(struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::EndDragDrop()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25656,9 +25281,6 @@ struct FEventReply UWidgetBlueprintLibrary::EndDragDrop(struct FEventReply* Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -25667,15 +25289,15 @@ struct FEventReply UWidgetBlueprintLibrary::EndDragDrop(struct FEventReply* Retu
 // Function UMG.WidgetBlueprintLibrary.DrawTextFormatted
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FPaintContext               Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPaintContext               Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // class FText                        Text                                                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, EditConst)
 // struct FVector2D                   Position                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
 // class UFont*                       Font                                                             (Edit, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// int32                              FontSize                                                         (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class FName                        FontTypeFace                                                     (EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FLinearColor                Tint                                                             (Edit, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              FontSize                                                         (ConstParm, BlueprintVisible, EditFixedSize, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FName                        FontTypeFace                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FLinearColor                Tint                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FLinearColor UWidgetBlueprintLibrary::DrawTextFormatted(const struct FPaintContext& Context, const struct FVector2D& Position)
+struct FLinearColor UWidgetBlueprintLibrary::DrawTextFormatted(const struct FVector2D& Position, int32 FontSize, class FName FontTypeFace)
 {
 	static class UFunction* Func = nullptr;
 
@@ -25684,8 +25306,9 @@ struct FLinearColor UWidgetBlueprintLibrary::DrawTextFormatted(const struct FPai
 
 	Params::UWidgetBlueprintLibrary_DrawTextFormatted_Params Parms{};
 
-	Parms.Context = Context;
 	Parms.Position = Position;
+	Parms.FontSize = FontSize;
+	Parms.FontTypeFace = FontTypeFace;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -25703,12 +25326,12 @@ struct FLinearColor UWidgetBlueprintLibrary::DrawTextFormatted(const struct FPai
 // Function UMG.WidgetBlueprintLibrary.DrawText
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FPaintContext               Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FString                      InString                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPaintContext               Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InString                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FVector2D                   Position                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
-// struct FLinearColor                Tint                                                             (Edit, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FLinearColor                Tint                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FLinearColor UWidgetBlueprintLibrary::DrawText(const struct FPaintContext& Context, const class FString& InString, const struct FVector2D& Position)
+struct FLinearColor UWidgetBlueprintLibrary::DrawText(const struct FVector2D& Position)
 {
 	static class UFunction* Func = nullptr;
 
@@ -25717,8 +25340,6 @@ struct FLinearColor UWidgetBlueprintLibrary::DrawText(const struct FPaintContext
 
 	Params::UWidgetBlueprintLibrary_DrawText_Params Parms{};
 
-	Parms.Context = Context;
-	Parms.InString = InString;
 	Parms.Position = Position;
 
 	auto Flgs = Func->FunctionFlags;
@@ -25737,15 +25358,15 @@ struct FLinearColor UWidgetBlueprintLibrary::DrawText(const struct FPaintContext
 // Function UMG.WidgetBlueprintLibrary.DrawSpline
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FPaintContext               Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPaintContext               Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FVector2D                   Start                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
-// struct FVector2D                   StartDir                                                         (BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector2D                   StartDir                                                         (Net, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 // struct FVector2D                   End                                                              (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance)
-// struct FVector2D                   EndDir                                                           (BlueprintVisible, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FLinearColor                Tint                                                             (Edit, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              Thickness                                                        (Edit, BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   EndDir                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FLinearColor                Tint                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              Thickness                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FLinearColor UWidgetBlueprintLibrary::DrawSpline(const struct FPaintContext& Context, struct FVector2D* Start, const struct FVector2D& End, float Thickness)
+float UWidgetBlueprintLibrary::DrawSpline(struct FVector2D* Start, const struct FVector2D& StartDir, const struct FVector2D& End, const struct FVector2D& EndDir)
 {
 	static class UFunction* Func = nullptr;
 
@@ -25754,9 +25375,9 @@ struct FLinearColor UWidgetBlueprintLibrary::DrawSpline(const struct FPaintConte
 
 	Params::UWidgetBlueprintLibrary_DrawSpline_Params Parms{};
 
-	Parms.Context = Context;
+	Parms.StartDir = StartDir;
 	Parms.End = End;
-	Parms.Thickness = Thickness;
+	Parms.EndDir = EndDir;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -25777,13 +25398,13 @@ struct FLinearColor UWidgetBlueprintLibrary::DrawSpline(const struct FPaintConte
 // Function UMG.WidgetBlueprintLibrary.DrawLines
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FPaintContext               Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// TArray<struct FVector2D>           Points                                                           (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FLinearColor                Tint                                                             (Edit, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bAntiAlias                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              Thickness                                                        (Edit, BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPaintContext               Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector2D>           Points                                                           (BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLinearColor                Tint                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bAntiAlias                                                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              Thickness                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::DrawLines(const struct FPaintContext& Context, TArray<struct FVector2D>* Points, float Thickness)
+float UWidgetBlueprintLibrary::DrawLines()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25792,8 +25413,6 @@ bool UWidgetBlueprintLibrary::DrawLines(const struct FPaintContext& Context, TAr
 
 	Params::UWidgetBlueprintLibrary_DrawLines_Params Parms{};
 
-	Parms.Context = Context;
-	Parms.Thickness = Thickness;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -25803,9 +25422,6 @@ bool UWidgetBlueprintLibrary::DrawLines(const struct FPaintContext& Context, TAr
 
 	Func->FunctionFlags = Flgs;
 
-	if (Points != nullptr)
-		*Points = std::move(Parms.Points);
-
 	return Parms.ReturnValue;
 
 }
@@ -25814,14 +25430,14 @@ bool UWidgetBlueprintLibrary::DrawLines(const struct FPaintContext& Context, TAr
 // Function UMG.WidgetBlueprintLibrary.DrawLine
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FPaintContext               Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector2D                   PositionA                                                        (ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FVector2D                   PositionB                                                        (Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FLinearColor                Tint                                                             (Edit, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bAntiAlias                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              Thickness                                                        (Edit, BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPaintContext               Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   PositionA                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector2D                   PositionB                                                        (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FLinearColor                Tint                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bAntiAlias                                                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              Thickness                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::DrawLine(const struct FPaintContext& Context, float Thickness)
+float UWidgetBlueprintLibrary::DrawLine()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25830,8 +25446,6 @@ bool UWidgetBlueprintLibrary::DrawLine(const struct FPaintContext& Context, floa
 
 	Params::UWidgetBlueprintLibrary_DrawLine_Params Parms{};
 
-	Parms.Context = Context;
-	Parms.Thickness = Thickness;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -25849,13 +25463,13 @@ bool UWidgetBlueprintLibrary::DrawLine(const struct FPaintContext& Context, floa
 // Function UMG.WidgetBlueprintLibrary.DrawBox
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FPaintContext               Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPaintContext               Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FVector2D                   Position                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
 // struct FVector2D                   Size                                                             (Edit, ExportObject, EditFixedSize, ReturnParm, Transient, Config)
 // class USlateBrushAsset*            Brush                                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
-// struct FLinearColor                Tint                                                             (Edit, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FLinearColor                Tint                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FLinearColor UWidgetBlueprintLibrary::DrawBox(const struct FPaintContext& Context, const struct FVector2D& Position)
+struct FLinearColor UWidgetBlueprintLibrary::DrawBox(const struct FVector2D& Position)
 {
 	static class UFunction* Func = nullptr;
 
@@ -25864,7 +25478,6 @@ struct FLinearColor UWidgetBlueprintLibrary::DrawBox(const struct FPaintContext&
 
 	Params::UWidgetBlueprintLibrary_DrawBox_Params Parms{};
 
-	Parms.Context = Context;
 	Parms.Position = Position;
 
 	auto Flgs = Func->FunctionFlags;
@@ -25908,11 +25521,11 @@ void UWidgetBlueprintLibrary::DismissAllMenus()
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // struct FPointerEvent               PointerEvent                                                     (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, Config, DisableEditOnInstance)
-// class UWidget*                     WidgetDetectingDrag                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FKey                        DragKey                                                          (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     WidgetDetectingDrag                                              (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FKey                        DragKey                                                          (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FKey UWidgetBlueprintLibrary::DetectDragIfPressed(struct FPointerEvent* PointerEvent, struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::DetectDragIfPressed(struct FPointerEvent* PointerEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -25933,9 +25546,6 @@ struct FKey UWidgetBlueprintLibrary::DetectDragIfPressed(struct FPointerEvent* P
 	if (PointerEvent != nullptr)
 		*PointerEvent = std::move(Parms.PointerEvent);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -25944,12 +25554,12 @@ struct FKey UWidgetBlueprintLibrary::DetectDragIfPressed(struct FPointerEvent* P
 // Function UMG.WidgetBlueprintLibrary.DetectDrag
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEventReply                 Reply                                                            (Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UWidget*                     WidgetDetectingDrag                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FKey                        DragKey                                                          (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 Reply                                                            (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidget*                     WidgetDetectingDrag                                              (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FKey                        DragKey                                                          (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FKey UWidgetBlueprintLibrary::DetectDrag(struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::DetectDrag()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25967,9 +25577,6 @@ struct FKey UWidgetBlueprintLibrary::DetectDrag(struct FEventReply* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -25978,10 +25585,10 @@ struct FKey UWidgetBlueprintLibrary::DetectDrag(struct FEventReply* ReturnValue)
 // Function UMG.WidgetBlueprintLibrary.CreateDragDropOperation
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      OperationClass                                                   (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UDragDropOperation*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      OperationClass                                                   (Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UDragDropOperation*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* UWidgetBlueprintLibrary::CreateDragDropOperation(class UDragDropOperation** ReturnValue)
+class UDragDropOperation* UWidgetBlueprintLibrary::CreateDragDropOperation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -25999,9 +25606,6 @@ class UClass* UWidgetBlueprintLibrary::CreateDragDropOperation(class UDragDropOp
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26010,12 +25614,12 @@ class UClass* UWidgetBlueprintLibrary::CreateDragDropOperation(class UDragDropOp
 // Function UMG.WidgetBlueprintLibrary.Create
 // (Final, BlueprintCosmetic, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UClass*                      WidgetType                                                       (Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class APlayerController*           OwningPlayer                                                     (BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UUserWidget*                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      WidgetType                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class APlayerController*           OwningPlayer                                                     (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UUserWidget*                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class APlayerController* UWidgetBlueprintLibrary::Create(class UUserWidget** ReturnValue)
+class UUserWidget* UWidgetBlueprintLibrary::Create()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26033,9 +25637,6 @@ class APlayerController* UWidgetBlueprintLibrary::Create(class UUserWidget** Ret
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26044,11 +25645,11 @@ class APlayerController* UWidgetBlueprintLibrary::Create(class UUserWidget** Ret
 // Function UMG.WidgetBlueprintLibrary.ClearUserFocus
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEventReply                 Reply                                                            (Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bInAllUsers                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 Reply                                                            (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bInAllUsers                                                      (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::ClearUserFocus(struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::ClearUserFocus()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26066,9 +25667,6 @@ bool UWidgetBlueprintLibrary::ClearUserFocus(struct FEventReply* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -26077,11 +25675,11 @@ bool UWidgetBlueprintLibrary::ClearUserFocus(struct FEventReply* ReturnValue)
 // Function UMG.WidgetBlueprintLibrary.CaptureMouse
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEventReply                 Reply                                                            (Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UWidget*                     CapturingWidget                                                  (BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 Reply                                                            (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidget*                     CapturingWidget                                                  (Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetBlueprintLibrary::CaptureMouse(struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::CaptureMouse()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26099,9 +25697,6 @@ class UWidget* UWidgetBlueprintLibrary::CaptureMouse(struct FEventReply* ReturnV
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -26110,12 +25705,12 @@ class UWidget* UWidgetBlueprintLibrary::CaptureMouse(struct FEventReply* ReturnV
 // Function UMG.WidgetBlueprintLibrary.CaptureJoystick
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FEventReply                 Reply                                                            (Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UWidget*                     CapturingWidget                                                  (BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bInAllJoysticks                                                  (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEventReply                 Reply                                                            (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidget*                     CapturingWidget                                                  (Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bInAllJoysticks                                                  (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UWidgetBlueprintLibrary::CaptureJoystick(struct FEventReply* ReturnValue)
+struct FEventReply UWidgetBlueprintLibrary::CaptureJoystick()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26132,9 +25727,6 @@ bool UWidgetBlueprintLibrary::CaptureJoystick(struct FEventReply* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -26197,9 +25789,9 @@ class UWidgetLayoutLibrary* UWidgetLayoutLibrary::GetDefaultObj()
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class UWrapBoxSlot*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWrapBoxSlot*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetLayoutLibrary::SlotAsWrapBoxSlot(class UWrapBoxSlot** ReturnValue)
+class UWrapBoxSlot* UWidgetLayoutLibrary::SlotAsWrapBoxSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26217,9 +25809,6 @@ class UWidget* UWidgetLayoutLibrary::SlotAsWrapBoxSlot(class UWrapBoxSlot** Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26229,9 +25818,9 @@ class UWidget* UWidgetLayoutLibrary::SlotAsWrapBoxSlot(class UWrapBoxSlot** Retu
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class UWidgetSwitcherSlot*         ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidgetSwitcherSlot*         ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetLayoutLibrary::SlotAsWidgetSwitcherSlot(class UWidgetSwitcherSlot** ReturnValue)
+class UWidgetSwitcherSlot* UWidgetLayoutLibrary::SlotAsWidgetSwitcherSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26249,9 +25838,6 @@ class UWidget* UWidgetLayoutLibrary::SlotAsWidgetSwitcherSlot(class UWidgetSwitc
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26261,9 +25847,9 @@ class UWidget* UWidgetLayoutLibrary::SlotAsWidgetSwitcherSlot(class UWidgetSwitc
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class UVerticalBoxSlot*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UVerticalBoxSlot*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetLayoutLibrary::SlotAsVerticalBoxSlot(class UVerticalBoxSlot** ReturnValue)
+class UVerticalBoxSlot* UWidgetLayoutLibrary::SlotAsVerticalBoxSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26281,9 +25867,6 @@ class UWidget* UWidgetLayoutLibrary::SlotAsVerticalBoxSlot(class UVerticalBoxSlo
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26293,9 +25876,9 @@ class UWidget* UWidgetLayoutLibrary::SlotAsVerticalBoxSlot(class UVerticalBoxSlo
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class UUniformGridSlot*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UUniformGridSlot*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetLayoutLibrary::SlotAsUniformGridSlot(class UUniformGridSlot** ReturnValue)
+class UUniformGridSlot* UWidgetLayoutLibrary::SlotAsUniformGridSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26313,9 +25896,6 @@ class UWidget* UWidgetLayoutLibrary::SlotAsUniformGridSlot(class UUniformGridSlo
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26325,9 +25905,9 @@ class UWidget* UWidgetLayoutLibrary::SlotAsUniformGridSlot(class UUniformGridSlo
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class USizeBoxSlot*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USizeBoxSlot*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetLayoutLibrary::SlotAsSizeBoxSlot(class USizeBoxSlot** ReturnValue)
+class USizeBoxSlot* UWidgetLayoutLibrary::SlotAsSizeBoxSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26345,9 +25925,6 @@ class UWidget* UWidgetLayoutLibrary::SlotAsSizeBoxSlot(class USizeBoxSlot** Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26357,9 +25934,9 @@ class UWidget* UWidgetLayoutLibrary::SlotAsSizeBoxSlot(class USizeBoxSlot** Retu
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class UScrollBoxSlot*              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UScrollBoxSlot*              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetLayoutLibrary::SlotAsScrollBoxSlot(class UScrollBoxSlot** ReturnValue)
+class UScrollBoxSlot* UWidgetLayoutLibrary::SlotAsScrollBoxSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26377,9 +25954,6 @@ class UWidget* UWidgetLayoutLibrary::SlotAsScrollBoxSlot(class UScrollBoxSlot** 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26389,9 +25963,9 @@ class UWidget* UWidgetLayoutLibrary::SlotAsScrollBoxSlot(class UScrollBoxSlot** 
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class UScaleBoxSlot*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UScaleBoxSlot*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetLayoutLibrary::SlotAsScaleBoxSlot(class UScaleBoxSlot** ReturnValue)
+class UScaleBoxSlot* UWidgetLayoutLibrary::SlotAsScaleBoxSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26409,9 +25983,6 @@ class UWidget* UWidgetLayoutLibrary::SlotAsScaleBoxSlot(class UScaleBoxSlot** Re
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26421,9 +25992,9 @@ class UWidget* UWidgetLayoutLibrary::SlotAsScaleBoxSlot(class UScaleBoxSlot** Re
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class USafeZoneSlot*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USafeZoneSlot*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetLayoutLibrary::SlotAsSafeBoxSlot(class USafeZoneSlot** ReturnValue)
+class USafeZoneSlot* UWidgetLayoutLibrary::SlotAsSafeBoxSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26441,9 +26012,6 @@ class UWidget* UWidgetLayoutLibrary::SlotAsSafeBoxSlot(class USafeZoneSlot** Ret
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26453,9 +26021,9 @@ class UWidget* UWidgetLayoutLibrary::SlotAsSafeBoxSlot(class USafeZoneSlot** Ret
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class UOverlaySlot*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOverlaySlot*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetLayoutLibrary::SlotAsOverlaySlot(class UOverlaySlot** ReturnValue)
+class UOverlaySlot* UWidgetLayoutLibrary::SlotAsOverlaySlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26473,9 +26041,6 @@ class UWidget* UWidgetLayoutLibrary::SlotAsOverlaySlot(class UOverlaySlot** Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26485,9 +26050,9 @@ class UWidget* UWidgetLayoutLibrary::SlotAsOverlaySlot(class UOverlaySlot** Retu
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class UHorizontalBoxSlot*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UHorizontalBoxSlot*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetLayoutLibrary::SlotAsHorizontalBoxSlot(class UHorizontalBoxSlot** ReturnValue)
+class UHorizontalBoxSlot* UWidgetLayoutLibrary::SlotAsHorizontalBoxSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26505,9 +26070,6 @@ class UWidget* UWidgetLayoutLibrary::SlotAsHorizontalBoxSlot(class UHorizontalBo
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26517,9 +26079,9 @@ class UWidget* UWidgetLayoutLibrary::SlotAsHorizontalBoxSlot(class UHorizontalBo
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class UGridSlot*                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UGridSlot*                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetLayoutLibrary::SlotAsGridSlot(class UGridSlot** ReturnValue)
+class UGridSlot* UWidgetLayoutLibrary::SlotAsGridSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26537,9 +26099,6 @@ class UWidget* UWidgetLayoutLibrary::SlotAsGridSlot(class UGridSlot** ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26549,9 +26108,9 @@ class UWidget* UWidgetLayoutLibrary::SlotAsGridSlot(class UGridSlot** ReturnValu
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class UCanvasPanelSlot*            ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UCanvasPanelSlot*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetLayoutLibrary::SlotAsCanvasSlot(class UCanvasPanelSlot** ReturnValue)
+class UCanvasPanelSlot* UWidgetLayoutLibrary::SlotAsCanvasSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26569,9 +26128,6 @@ class UWidget* UWidgetLayoutLibrary::SlotAsCanvasSlot(class UCanvasPanelSlot** R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26581,9 +26137,9 @@ class UWidget* UWidgetLayoutLibrary::SlotAsCanvasSlot(class UCanvasPanelSlot** R
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// class UBorderSlot*                 ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBorderSlot*                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UWidgetLayoutLibrary::SlotAsBorderSlot(class UBorderSlot** ReturnValue)
+class UBorderSlot* UWidgetLayoutLibrary::SlotAsBorderSlot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26601,9 +26157,6 @@ class UWidget* UWidgetLayoutLibrary::SlotAsBorderSlot(class UBorderSlot** Return
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26612,7 +26165,7 @@ class UWidget* UWidgetLayoutLibrary::SlotAsBorderSlot(class UBorderSlot** Return
 // Function UMG.WidgetLayoutLibrary.RemoveAllWidgets
 // (Final, BlueprintCosmetic, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 class UObject* UWidgetLayoutLibrary::RemoveAllWidgets()
 {
@@ -26641,12 +26194,12 @@ class UObject* UWidgetLayoutLibrary::RemoveAllWidgets()
 // (Final, BlueprintCosmetic, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class APlayerController*           PlayerController                                                 (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig)
-// struct FVector                     WorldLocation                                                    (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// struct FVector2D                   ScreenPosition                                                   (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bPlayerViewportRelative                                          (ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     WorldLocation                                                    (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+// struct FVector2D                   ScreenPosition                                                   (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPlayerViewportRelative                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UWidgetLayoutLibrary::ProjectWorldLocationToWidgetPosition(class APlayerController** PlayerController, bool bPlayerViewportRelative, bool* ReturnValue)
+bool UWidgetLayoutLibrary::ProjectWorldLocationToWidgetPosition(class APlayerController** PlayerController, struct FVector* WorldLocation, struct FVector2D* ScreenPosition)
 {
 	static class UFunction* Func = nullptr;
 
@@ -26655,7 +26208,6 @@ struct FVector2D UWidgetLayoutLibrary::ProjectWorldLocationToWidgetPosition(clas
 
 	Params::UWidgetLayoutLibrary_ProjectWorldLocationToWidgetPosition_Params Parms{};
 
-	Parms.bPlayerViewportRelative = bPlayerViewportRelative;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -26668,8 +26220,11 @@ struct FVector2D UWidgetLayoutLibrary::ProjectWorldLocationToWidgetPosition(clas
 	if (PlayerController != nullptr)
 		*PlayerController = Parms.PlayerController;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (WorldLocation != nullptr)
+		*WorldLocation = std::move(Parms.WorldLocation);
+
+	if (ScreenPosition != nullptr)
+		*ScreenPosition = std::move(Parms.ScreenPosition);
 
 	return Parms.ReturnValue;
 
@@ -26679,10 +26234,10 @@ struct FVector2D UWidgetLayoutLibrary::ProjectWorldLocationToWidgetPosition(clas
 // Function UMG.WidgetLayoutLibrary.GetViewportWidgetGeometry
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FGeometry                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UWidgetLayoutLibrary::GetViewportWidgetGeometry(struct FGeometry* ReturnValue)
+struct FGeometry UWidgetLayoutLibrary::GetViewportWidgetGeometry()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26700,9 +26255,6 @@ class UObject* UWidgetLayoutLibrary::GetViewportWidgetGeometry(struct FGeometry*
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -26711,10 +26263,10 @@ class UObject* UWidgetLayoutLibrary::GetViewportWidgetGeometry(struct FGeometry*
 // Function UMG.WidgetLayoutLibrary.GetViewportSize
 // (Final, BlueprintCosmetic, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UWidgetLayoutLibrary::GetViewportSize(struct FVector2D* ReturnValue)
+struct FVector2D UWidgetLayoutLibrary::GetViewportSize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26732,9 +26284,6 @@ class UObject* UWidgetLayoutLibrary::GetViewportSize(struct FVector2D* ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -26743,10 +26292,10 @@ class UObject* UWidgetLayoutLibrary::GetViewportSize(struct FVector2D* ReturnVal
 // Function UMG.WidgetLayoutLibrary.GetViewportScale
 // (Final, BlueprintCosmetic, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UWidgetLayoutLibrary::GetViewportScale(float* ReturnValue)
+float UWidgetLayoutLibrary::GetViewportScale()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26764,9 +26313,6 @@ class UObject* UWidgetLayoutLibrary::GetViewportScale(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26776,9 +26322,9 @@ class UObject* UWidgetLayoutLibrary::GetViewportScale(float* ReturnValue)
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class APlayerController*           PlayerController                                                 (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig)
-// struct FGeometry                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetLayoutLibrary::GetPlayerScreenWidgetGeometry(class APlayerController** PlayerController, struct FGeometry* ReturnValue)
+struct FGeometry UWidgetLayoutLibrary::GetPlayerScreenWidgetGeometry(class APlayerController** PlayerController)
 {
 	static class UFunction* Func = nullptr;
 
@@ -26799,8 +26345,7 @@ void UWidgetLayoutLibrary::GetPlayerScreenWidgetGeometry(class APlayerController
 	if (PlayerController != nullptr)
 		*PlayerController = Parms.PlayerController;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -26809,11 +26354,11 @@ void UWidgetLayoutLibrary::GetPlayerScreenWidgetGeometry(class APlayerController
 // (Final, BlueprintCosmetic, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class APlayerController*           Player                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst)
-// float                              LocationX                                                        (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              LocationY                                                        (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              LocationX                                                        (ConstParm, EditFixedSize, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              LocationY                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class APlayerController* UWidgetLayoutLibrary::GetMousePositionScaledByDPI(float* LocationX, float* LocationY, bool* ReturnValue)
+bool UWidgetLayoutLibrary::GetMousePositionScaledByDPI(float LocationX, float LocationY)
 {
 	static class UFunction* Func = nullptr;
 
@@ -26822,6 +26367,8 @@ class APlayerController* UWidgetLayoutLibrary::GetMousePositionScaledByDPI(float
 
 	Params::UWidgetLayoutLibrary_GetMousePositionScaledByDPI_Params Parms{};
 
+	Parms.LocationX = LocationX;
+	Parms.LocationY = LocationY;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -26831,15 +26378,6 @@ class APlayerController* UWidgetLayoutLibrary::GetMousePositionScaledByDPI(float
 
 	Func->FunctionFlags = Flgs;
 
-	if (LocationX != nullptr)
-		*LocationX = Parms.LocationX;
-
-	if (LocationY != nullptr)
-		*LocationY = Parms.LocationY;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -26848,10 +26386,10 @@ class APlayerController* UWidgetLayoutLibrary::GetMousePositionScaledByDPI(float
 // Function UMG.WidgetLayoutLibrary.GetMousePositionOnViewport
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UWidgetLayoutLibrary::GetMousePositionOnViewport(struct FVector2D* ReturnValue)
+struct FVector2D UWidgetLayoutLibrary::GetMousePositionOnViewport()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26869,9 +26407,6 @@ class UObject* UWidgetLayoutLibrary::GetMousePositionOnViewport(struct FVector2D
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -26880,9 +26415,9 @@ class UObject* UWidgetLayoutLibrary::GetMousePositionOnViewport(struct FVector2D
 // Function UMG.WidgetLayoutLibrary.GetMousePositionOnPlatform
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UWidgetLayoutLibrary::GetMousePositionOnPlatform(struct FVector2D* ReturnValue)
+struct FVector2D UWidgetLayoutLibrary::GetMousePositionOnPlatform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -26900,8 +26435,7 @@ void UWidgetLayoutLibrary::GetMousePositionOnPlatform(struct FVector2D* ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 

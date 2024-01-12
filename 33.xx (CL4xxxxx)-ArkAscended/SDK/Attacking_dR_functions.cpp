@@ -43,9 +43,9 @@ class UAttacking_DR_C* UAttacking_DR_C::GetDefaultObj()
 // Function Attacking_dR.Attacking_DR_C.ReceiveExecutionStart
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (BlueprintVisible, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
 
-class AActor* UAttacking_DR_C::ReceiveExecutionStart()
+void UAttacking_DR_C::ReceiveExecutionStart(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,7 +57,8 @@ class AActor* UAttacking_DR_C::ReceiveExecutionStart()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -65,10 +66,10 @@ class AActor* UAttacking_DR_C::ReceiveExecutionStart()
 // Function Attacking_dR.Attacking_DR_C.ReceiveExecutionFinish
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class EBTNodeResult           NodeResult                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (BlueprintVisible, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EBTNodeResult           NodeResult                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-class AActor* UAttacking_DR_C::ReceiveExecutionFinish(enum class EBTNodeResult NodeResult)
+void UAttacking_DR_C::ReceiveExecutionFinish(class AActor** OwnerActor, enum class EBTNodeResult* NodeResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -77,11 +78,14 @@ class AActor* UAttacking_DR_C::ReceiveExecutionFinish(enum class EBTNodeResult N
 
 	Params::UAttacking_DR_C_ReceiveExecutionFinish_Params Parms{};
 
-	Parms.NodeResult = NodeResult;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
+
+	if (NodeResult != nullptr)
+		*NodeResult = Parms.NodeResult;
 
 }
 
@@ -89,9 +93,9 @@ class AActor* UAttacking_DR_C::ReceiveExecutionFinish(enum class EBTNodeResult N
 // Function Attacking_dR.Attacking_DR_C.ReceiveConditionCheck
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (BlueprintVisible, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
 
-class AActor* UAttacking_DR_C::ReceiveConditionCheck()
+void UAttacking_DR_C::ReceiveConditionCheck(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -103,7 +107,8 @@ class AActor* UAttacking_DR_C::ReceiveConditionCheck()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -111,15 +116,15 @@ class AActor* UAttacking_DR_C::ReceiveConditionCheck()
 // Function Attacking_dR.Attacking_DR_C.ExecuteUbergraph_Attacking_DR
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, BlueprintVisible, Net, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class AActor*                      K2Node_Event_OwnerActor_2                                        (EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
-// class AActor*                      K2Node_Event_OwnerActor_1                                        (EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference, Interp)
-// enum class EBTNodeResult           K2Node_Event_NodeResult                                          (Net, EditFixedSize, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
-// class AActor*                      K2Node_Event_OwnerActor                                          (EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
-// class APrimalDinoAIController*     K2Node_DynamicCast_AsPrimal_Dino_AIController                    (ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      K2Node_Event_OwnerActor_2                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// class AActor*                      K2Node_Event_OwnerActor_1                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, SubobjectReference, Interp)
+// enum class EBTNodeResult           K2Node_Event_NodeResult                                          (OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+// class AActor*                      K2Node_Event_OwnerActor                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, SubobjectReference)
+// class APrimalDinoAIController*     K2Node_DynamicCast_AsPrimal_Dino_AIController                    (Edit, BlueprintReadOnly, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-bool UAttacking_DR_C::ExecuteUbergraph_Attacking_DR(int32 EntryPoint, class AActor** K2Node_Event_OwnerActor_2, class AActor** K2Node_Event_OwnerActor_1, enum class EBTNodeResult K2Node_Event_NodeResult, class AActor** K2Node_Event_OwnerActor, class APrimalDinoAIController** K2Node_DynamicCast_AsPrimal_Dino_AIController)
+enum class EBTNodeResult UAttacking_DR_C::ExecuteUbergraph_Attacking_DR(class AActor* K2Node_Event_OwnerActor_2, class AActor* K2Node_Event_OwnerActor_1, class AActor* K2Node_Event_OwnerActor, class APrimalDinoAIController* K2Node_DynamicCast_AsPrimal_Dino_AIController, bool* K2Node_DynamicCast_bSuccess)
 {
 	static class UFunction* Func = nullptr;
 
@@ -128,22 +133,15 @@ bool UAttacking_DR_C::ExecuteUbergraph_Attacking_DR(int32 EntryPoint, class AAct
 
 	Params::UAttacking_DR_C_ExecuteUbergraph_Attacking_DR_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
-	Parms.K2Node_Event_NodeResult = K2Node_Event_NodeResult;
+	Parms.K2Node_Event_OwnerActor_2 = K2Node_Event_OwnerActor_2;
+	Parms.K2Node_Event_OwnerActor_1 = K2Node_Event_OwnerActor_1;
+	Parms.K2Node_Event_OwnerActor = K2Node_Event_OwnerActor;
+	Parms.K2Node_DynamicCast_AsPrimal_Dino_AIController = K2Node_DynamicCast_AsPrimal_Dino_AIController;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (K2Node_Event_OwnerActor_2 != nullptr)
-		*K2Node_Event_OwnerActor_2 = Parms.K2Node_Event_OwnerActor_2;
-
-	if (K2Node_Event_OwnerActor_1 != nullptr)
-		*K2Node_Event_OwnerActor_1 = Parms.K2Node_Event_OwnerActor_1;
-
-	if (K2Node_Event_OwnerActor != nullptr)
-		*K2Node_Event_OwnerActor = Parms.K2Node_Event_OwnerActor;
-
-	if (K2Node_DynamicCast_AsPrimal_Dino_AIController != nullptr)
-		*K2Node_DynamicCast_AsPrimal_Dino_AIController = Parms.K2Node_DynamicCast_AsPrimal_Dino_AIController;
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
 
 	return Parms.ReturnValue;
 

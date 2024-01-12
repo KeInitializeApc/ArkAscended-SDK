@@ -68,9 +68,9 @@ enum class EUStreamlineReflexMode : uint8
 struct FStreamlineVersion
 {
 public:
-	int32                                        Major;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        Minor;                                             // 0x4(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        Build;                                             // 0x8(0x4)(Edit, ExportObject, OutParm, DisableEditOnTemplate, Config, DuplicateTransient)
+	int32                                        Major;                                             // 0x0(0x4)(OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        Minor;                                             // 0x4(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        Build;                                             // 0x8(0x4)(Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, DuplicateTransient)
 };
 
 // 0x34 (0x34 - 0x0)
@@ -78,13 +78,13 @@ public:
 struct FStreamlineFeatureRequirements
 {
 public:
-	enum class EUStreamlineFeatureSupport        Support;                                           // 0x0(0x1)(ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	enum class EUStreamlineFeatureRequirementsFlags Requirements;                                      // 0x1(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_158B[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FStreamlineVersion                    RequiredOperatingSystemVersion;                    // 0x4(0xC)(Edit, ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FStreamlineVersion                    DetectedOperatingSystemVersion;                    // 0x10(0xC)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FStreamlineVersion                    RequiredDriverVersion;                             // 0x1C(0xC)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FStreamlineVersion                    DetectedDriverVersion;                             // 0x28(0xC)(Edit, ConstParm, OutParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EUStreamlineFeatureSupport        Support;                                           // 0x0(0x1)(Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	enum class EUStreamlineFeatureRequirementsFlags Requirements;                                      // 0x1(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1F3D[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FStreamlineVersion                    RequiredOperatingSystemVersion;                    // 0x4(0xC)(BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FStreamlineVersion                    DetectedOperatingSystemVersion;                    // 0x10(0xC)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FStreamlineVersion                    RequiredDriverVersion;                             // 0x1C(0xC)(BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FStreamlineVersion                    DetectedDriverVersion;                             // 0x28(0xC)(BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 }

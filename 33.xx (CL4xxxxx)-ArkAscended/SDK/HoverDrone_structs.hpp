@@ -32,13 +32,13 @@ enum class EHoverDroneDebug : uint8
 struct FDroneSpeedParameters
 {
 public:
-	float                                        LinearAccelScale;                                  // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        LinearDecelScale;                                  // 0x4(0x4)(ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        RotAccelScale;                                     // 0x8(0x4)(ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        RotDecelScale;                                     // 0xC(0x4)(ConstParm, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        MaxLinearSpeedScale;                               // 0x10(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        MaxRotSpeedScale;                                  // 0x14(0x4)(ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        HoverThrustScale;                                  // 0x18(0x4)(Edit, BlueprintVisible, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        LinearAccelScale;                                  // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        LinearDecelScale;                                  // 0x4(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        RotAccelScale;                                     // 0x8(0x4)(Edit, ConstParm, ExportObject, Net, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        RotDecelScale;                                     // 0xC(0x4)(Edit, ConstParm, Net, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        MaxLinearSpeedScale;                               // 0x10(0x4)(ExportObject, BlueprintReadOnly, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        MaxRotSpeedScale;                                  // 0x14(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        HoverThrustScale;                                  // 0x18(0x4)(ConstParm, BlueprintVisible, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 }

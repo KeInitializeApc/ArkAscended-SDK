@@ -143,9 +143,9 @@ enum class EMultiTransformerMode : uint8
 struct FModelingToolsAxisFilter
 {
 public:
-	bool                                         bAxisX;                                            // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
-	bool                                         bAxisY;                                            // 0x1(0x1)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
-	bool                                         bAxisZ;                                            // 0x2(0x1)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	bool                                         bAxisX;                                            // 0x0(0x1)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bAxisY;                                            // 0x1(0x1)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bAxisZ;                                            // 0x2(0x1)(Edit, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x48 (0x48 - 0x0)
@@ -157,7 +157,7 @@ public:
 	struct FVector2D                             UV;                                                // 0x18(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnInstance)
 	struct FVector                               Normal;                                            // 0x28(0x18)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
 	struct FColor                                Color;                                             // 0x40(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
-	uint8                                        Pad_970[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_B8D[0x4];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xE0 (0xE0 - 0x0)
@@ -166,9 +166,9 @@ struct FRenderableTriangle
 {
 public:
 	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	struct FRenderableTriangleVertex             Vertex0;                                           // 0x8(0x48)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
-	struct FRenderableTriangleVertex             Vertex1;                                           // 0x50(0x48)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
-	struct FRenderableTriangleVertex             Vertex2;                                           // 0x98(0x48)(Edit, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	struct FRenderableTriangleVertex             Vertex0;                                           // 0x8(0x48)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FRenderableTriangleVertex             Vertex1;                                           // 0x50(0x48)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FRenderableTriangleVertex             Vertex2;                                           // 0x98(0x48)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x600 (0x600 - 0x0)
@@ -176,29 +176,29 @@ public:
 struct FCreateMeshObjectParams
 {
 public:
-	class UPrimitiveComponent*                   SourceComponent;                                   // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	enum class ECreateObjectTypeHint             TypeHint;                                          // 0x8(0x1)(ConstParm, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	uint8                                        Pad_97A[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class UClass*                                TypeHintClass;                                     // 0x10(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	int32                                        TypeHintExtended;                                  // 0x18(0x4)(ExportObject, Net, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	uint8                                        Pad_97B[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UWorld*                                TargetWorld;                                       // 0x20(0x8)(Edit, Net, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	uint8                                        Pad_97C[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class UPrimitiveComponent*                   SourceComponent;                                   // 0x0(0x8)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ECreateObjectTypeHint             TypeHint;                                          // 0x8(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_B91[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class UClass*                                TypeHintClass;                                     // 0x10(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        TypeHintExtended;                                  // 0x18(0x4)(BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_B92[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class UWorld*                                TargetWorld;                                       // 0x20(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_B93[0x8];                                      // Fixing Size After Last Property  > TateDumper <
 	struct FTransform                            Transform;                                         // 0x30(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-	class FString                                BaseName;                                          // 0x90(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	TArray<class UMaterialInterface*>            Materials;                                         // 0xA0(0x10)(Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	TArray<class UMaterialInterface*>            AssetMaterials;                                    // 0xB0(0x10)(BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	bool                                         bEnableCollision;                                  // 0xC0(0x1)(Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	enum class ECollisionTraceFlag               CollisionMode;                                     // 0xC1(0x1)(Edit, ConstParm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	bool                                         bEnableRaytracingSupport;                          // 0xC2(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
-	bool                                         bEnableRecomputeNormals;                           // 0xC3(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bEnableRecomputeTangents;                          // 0xC4(0x1)(ConstParm, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bEnableNanite;                                     // 0xC5(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
-	uint8                                        Pad_985[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        NaniteProxyTrianglePercent;                        // 0xC8(0x4)(Net, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
-	uint8                                        Pad_987[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FMeshNaniteSettings                   NaniteSettings;                                    // 0xD0(0x38)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_988[0x4F8];                                    // Fixing Size Of Struct > TateDumper <
+	class FString                                BaseName;                                          // 0x90(0x10)(ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class UMaterialInterface*>            Materials;                                         // 0xA0(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	TArray<class UMaterialInterface*>            AssetMaterials;                                    // 0xB0(0x10)(BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnableCollision;                                  // 0xC0(0x1)(Edit, ConstParm, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ECollisionTraceFlag               CollisionMode;                                     // 0xC1(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnableRaytracingSupport;                          // 0xC2(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnableRecomputeNormals;                           // 0xC3(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnableRecomputeTangents;                          // 0xC4(0x1)(Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnableNanite;                                     // 0xC5(0x1)(ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_B99[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        NaniteProxyTrianglePercent;                        // 0xC8(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_B9B[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FMeshNaniteSettings                   NaniteSettings;                                    // 0xD0(0x38)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_B9C[0x4F8];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -206,11 +206,11 @@ public:
 struct FCreateMeshObjectResult
 {
 public:
-	enum class ECreateModelingObjectResult       ResultCode;                                        // 0x0(0x1)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	uint8                                        Pad_98D[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class AActor*                                NewActor;                                          // 0x8(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   NewComponent;                                      // 0x10(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	class UObject*                               NewAsset;                                          // 0x18(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+	enum class ECreateModelingObjectResult       ResultCode;                                        // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_BA0[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class AActor*                                NewActor;                                          // 0x8(0x8)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UPrimitiveComponent*                   NewComponent;                                      // 0x10(0x8)(Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UObject*                               NewAsset;                                          // 0x18(0x8)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -218,12 +218,12 @@ public:
 struct FCreateTextureObjectParams
 {
 public:
-	int32                                        TypeHintExtended;                                  // 0x0(0x4)(ExportObject, Net, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	uint8                                        Pad_991[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UWorld*                                TargetWorld;                                       // 0x8(0x8)(Edit, Net, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	class UObject*                               StoreRelativeToObject;                             // 0x10(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	class FString                                BaseName;                                          // 0x18(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	class UTexture2D*                            GeneratedTransientTexture;                         // 0x28(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+	int32                                        TypeHintExtended;                                  // 0x0(0x4)(BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_BA4[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class UWorld*                                TargetWorld;                                       // 0x8(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UObject*                               StoreRelativeToObject;                             // 0x10(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                BaseName;                                          // 0x18(0x10)(ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UTexture2D*                            GeneratedTransientTexture;                         // 0x28(0x8)(Edit, ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -231,9 +231,9 @@ public:
 struct FCreateTextureObjectResult
 {
 public:
-	enum class ECreateModelingObjectResult       ResultCode;                                        // 0x0(0x1)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-	uint8                                        Pad_994[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class UObject*                               NewAsset;                                          // 0x8(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+	enum class ECreateModelingObjectResult       ResultCode;                                        // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_BAD[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class UObject*                               NewAsset;                                          // 0x8(0x8)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

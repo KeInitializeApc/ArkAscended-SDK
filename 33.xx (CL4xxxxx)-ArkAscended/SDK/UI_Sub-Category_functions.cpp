@@ -105,9 +105,9 @@ void UUI_SubMinusCategory_C::BndEvt__SubMinusCategory1_Btn_Category_K2Node_Compo
 // Function UI_Sub-Category.UI_Sub-Category_C.Event Set Button Style
 // (HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FButtonStyle                InStyle                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FButtonStyle                InStyle                                                          (ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UUI_SubMinusCategory_C::Event_Set_Button_Style(const struct FButtonStyle& InStyle)
+struct FButtonStyle UUI_SubMinusCategory_C::Event_Set_Button_Style()
 {
 	static class UFunction* Func = nullptr;
 
@@ -116,9 +116,10 @@ void UUI_SubMinusCategory_C::Event_Set_Button_Style(const struct FButtonStyle& I
 
 	Params::UUI_SubMinusCategory_C_Event_Set_Button_Style_Params Parms{};
 
-	Parms.InStyle = InStyle;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -144,17 +145,17 @@ void UUI_SubMinusCategory_C::Construct()
 // Function UI_Sub-Category.UI_Sub-Category_C.ExecuteUbergraph_UI_Sub-Category
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, BlueprintVisible, Net, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class UAsyncTaskDownloadImage*     CallFunc_DownloadImage_ReturnValue                               (ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UTexture2DDynamic*           K2Node_CustomEvent_Texture_1                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// class UTexture2DDynamic*           K2Node_CustomEvent_Texture                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UTexture2DDynamic*           Temp_object_Variable                                             (Edit, ExportObject, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
-// struct FButtonStyle                K2Node_CustomEvent_InStyle                                       (Edit, ExportObject, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// class UAsyncTaskDownloadImage*     CallFunc_DownloadImage_ReturnValue                               (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UTexture2DDynamic*           K2Node_CustomEvent_Texture_1                                     (BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// class UTexture2DDynamic*           K2Node_CustomEvent_Texture                                       (BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UTexture2DDynamic*           Temp_object_Variable                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// struct FButtonStyle                K2Node_CustomEvent_InStyle                                       (ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class UTexture2DDynamic* UUI_SubMinusCategory_C::ExecuteUbergraph_UI_SubMinusCategory(int32 EntryPoint, class UAsyncTaskDownloadImage* CallFunc_DownloadImage_ReturnValue, class UTexture2DDynamic* K2Node_CustomEvent_Texture_1, class UTexture2DDynamic* K2Node_CustomEvent_Texture, const struct FButtonStyle& K2Node_CustomEvent_InStyle)
+FDelegateProperty_ UUI_SubMinusCategory_C::ExecuteUbergraph_UI_SubMinusCategory(class UAsyncTaskDownloadImage* CallFunc_DownloadImage_ReturnValue, class UTexture2DDynamic** K2Node_CustomEvent_Texture_1, bool* CallFunc_IsValid_ReturnValue, class UTexture2DDynamic** K2Node_CustomEvent_Texture, class UTexture2DDynamic** Temp_object_Variable, struct FButtonStyle* K2Node_CustomEvent_InStyle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -163,13 +164,24 @@ class UTexture2DDynamic* UUI_SubMinusCategory_C::ExecuteUbergraph_UI_SubMinusCat
 
 	Params::UUI_SubMinusCategory_C_ExecuteUbergraph_UI_SubMinusCategory_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
 	Parms.CallFunc_DownloadImage_ReturnValue = CallFunc_DownloadImage_ReturnValue;
-	Parms.K2Node_CustomEvent_Texture_1 = K2Node_CustomEvent_Texture_1;
-	Parms.K2Node_CustomEvent_Texture = K2Node_CustomEvent_Texture;
-	Parms.K2Node_CustomEvent_InStyle = K2Node_CustomEvent_InStyle;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (K2Node_CustomEvent_Texture_1 != nullptr)
+		*K2Node_CustomEvent_Texture_1 = Parms.K2Node_CustomEvent_Texture_1;
+
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+
+	if (K2Node_CustomEvent_Texture != nullptr)
+		*K2Node_CustomEvent_Texture = Parms.K2Node_CustomEvent_Texture;
+
+	if (Temp_object_Variable != nullptr)
+		*Temp_object_Variable = Parms.Temp_object_Variable;
+
+	if (K2Node_CustomEvent_InStyle != nullptr)
+		*K2Node_CustomEvent_InStyle = std::move(Parms.K2Node_CustomEvent_InStyle);
 
 	return Parms.ReturnValue;
 
@@ -179,10 +191,10 @@ class UTexture2DDynamic* UUI_SubMinusCategory_C::ExecuteUbergraph_UI_SubMinusCat
 // Function UI_Sub-Category.UI_Sub-Category_C.OnSubCategoryClicked__DelegateSignature
 // (Public, Delegate, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FString                      SubCategory                                                      (BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int64                              SubCategoryID                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      SubCategory                                                      (Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int64                              SubCategoryID                                                    (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UUI_SubMinusCategory_C::OnSubCategoryClicked__DelegateSignature(const class FString& SubCategory, int64 SubCategoryID)
+void UUI_SubMinusCategory_C::OnSubCategoryClicked__DelegateSignature(class FString* SubCategory, int64* SubCategoryID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -191,10 +203,14 @@ void UUI_SubMinusCategory_C::OnSubCategoryClicked__DelegateSignature(const class
 
 	Params::UUI_SubMinusCategory_C_OnSubCategoryClicked__DelegateSignature_Params Parms{};
 
-	Parms.SubCategory = SubCategory;
-	Parms.SubCategoryID = SubCategoryID;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (SubCategory != nullptr)
+		*SubCategory = std::move(Parms.SubCategory);
+
+	if (SubCategoryID != nullptr)
+		*SubCategoryID = Parms.SubCategoryID;
 
 }
 

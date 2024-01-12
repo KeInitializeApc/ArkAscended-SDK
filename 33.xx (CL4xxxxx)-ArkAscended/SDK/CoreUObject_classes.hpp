@@ -97,7 +97,7 @@ public:
 	static class UClass* StaticClass();
 	static class UObject* GetDefaultObj();
 
-	void ExecuteUbergraph(int32 EntryPoint);
+	int32 ExecuteUbergraph();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -287,7 +287,7 @@ public:
 class ULinkerPlaceholderClass : public UClass
 {
 public:
-	uint8                                        Pad_12[0x1C0];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_11[0x1C0];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULinkerPlaceholderClass* GetDefaultObj();
@@ -299,7 +299,7 @@ public:
 class ULinkerPlaceholderExportObject : public UObject
 {
 public:
-	uint8                                        Pad_14[0xD0];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_12[0xD0];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULinkerPlaceholderExportObject* GetDefaultObj();
@@ -311,7 +311,7 @@ public:
 class ULinkerPlaceholderFunction : public UFunction
 {
 public:
-	uint8                                        Pad_16[0x1C0];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_13[0x1C0];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULinkerPlaceholderFunction* GetDefaultObj();
@@ -323,7 +323,7 @@ public:
 class UMetaData : public UObject
 {
 public:
-	uint8                                        Pad_17[0xA0];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_14[0xA0];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMetaData* GetDefaultObj();
@@ -335,7 +335,7 @@ public:
 class UObjectRedirector : public UObject
 {
 public:
-	uint8                                        Pad_18[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_15[0x8];                                       // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UObjectRedirector* GetDefaultObj();
@@ -347,7 +347,7 @@ public:
 class UProperty : public UField
 {
 public:
-	uint8                                        Pad_1B[0x40];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_16[0x40];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UProperty* GetDefaultObj();
@@ -359,7 +359,7 @@ public:
 class UEnumProperty : public UProperty
 {
 public:
-	uint8                                        Pad_1C[0x10];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_17[0x10];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UEnumProperty* GetDefaultObj();
@@ -371,7 +371,7 @@ public:
 class UArrayProperty : public UProperty
 {
 public:
-	uint8                                        Pad_1E[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_18[0x8];                                       // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UArrayProperty* GetDefaultObj();
@@ -383,7 +383,7 @@ public:
 class UObjectPropertyBase : public UProperty
 {
 public:
-	uint8                                        Pad_20[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_19[0x8];                                       // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UObjectPropertyBase* GetDefaultObj();
@@ -395,7 +395,7 @@ public:
 class UBoolProperty : public UProperty
 {
 public:
-	uint8                                        Pad_21[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1A[0x8];                                       // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UBoolProperty* GetDefaultObj();
@@ -418,7 +418,7 @@ public:
 class UByteProperty : public UNumericProperty
 {
 public:
-	uint8                                        Pad_22[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1B[0x8];                                       // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UByteProperty* GetDefaultObj();
@@ -441,7 +441,7 @@ public:
 class UClassProperty : public UObjectProperty
 {
 public:
-	uint8                                        Pad_23[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1C[0x8];                                       // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UClassProperty* GetDefaultObj();
@@ -453,7 +453,7 @@ public:
 class UDelegateProperty : public UProperty
 {
 public:
-	uint8                                        Pad_24[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1D[0x8];                                       // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UDelegateProperty* GetDefaultObj();
@@ -531,7 +531,7 @@ public:
 class UInterfaceProperty : public UProperty
 {
 public:
-	uint8                                        Pad_26[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_21[0x8];                                       // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UInterfaceProperty* GetDefaultObj();
@@ -554,7 +554,7 @@ public:
 class UMapProperty : public UProperty
 {
 public:
-	uint8                                        Pad_27[0x28];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_22[0x28];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMapProperty* GetDefaultObj();
@@ -566,7 +566,7 @@ public:
 class UMulticastDelegateProperty : public UProperty
 {
 public:
-	uint8                                        Pad_28[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_25[0x8];                                       // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMulticastDelegateProperty* GetDefaultObj();
@@ -611,7 +611,7 @@ public:
 class USetProperty : public UProperty
 {
 public:
-	uint8                                        Pad_29[0x20];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_28[0x20];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USetProperty* GetDefaultObj();
@@ -634,7 +634,7 @@ public:
 class USoftClassProperty : public USoftObjectProperty
 {
 public:
-	uint8                                        Pad_2A[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_29[0x8];                                       // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USoftClassProperty* GetDefaultObj();
@@ -724,7 +724,7 @@ public:
 class UPropertyWrapper : public UObject
 {
 public:
-	uint8                                        Pad_2C[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_31[0x8];                                       // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UPropertyWrapper* GetDefaultObj();

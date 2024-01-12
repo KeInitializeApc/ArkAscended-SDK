@@ -14,7 +14,7 @@ namespace SDK
 class UNS_DinoFootprint_BP_C : public UNiagaraComponent
 {
 public:
-	uint8                                        Pad_2A5C[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_3B3F[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UNS_DinoFootprint_BP_C* GetDefaultObj();

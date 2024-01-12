@@ -155,9 +155,9 @@ class ULiveLinkComponentController* ULiveLinkComponentController::GetDefaultObj(
 // Function LiveLinkComponents.LiveLinkComponentController.SetSubjectRepresentation
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkSubjectRepresentationInSubjectRepresentation                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FLiveLinkSubjectRepresentationInSubjectRepresentation                                          (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void ULiveLinkComponentController::SetSubjectRepresentation(const struct FLiveLinkSubjectRepresentation& InSubjectRepresentation)
+struct FLiveLinkSubjectRepresentation ULiveLinkComponentController::SetSubjectRepresentation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -166,7 +166,6 @@ void ULiveLinkComponentController::SetSubjectRepresentation(const struct FLiveLi
 
 	Params::ULiveLinkComponentController_SetSubjectRepresentation_Params Parms{};
 
-	Parms.InSubjectRepresentation = InSubjectRepresentation;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -176,15 +175,17 @@ void ULiveLinkComponentController::SetSubjectRepresentation(const struct FLiveLi
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function LiveLinkComponents.LiveLinkComponentController.GetSubjectRepresentation
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FLiveLinkSubjectRepresentationReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkSubjectRepresentationReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkComponentController::GetSubjectRepresentation(struct FLiveLinkSubjectRepresentation* ReturnValue)
+struct FLiveLinkSubjectRepresentation ULiveLinkComponentController::GetSubjectRepresentation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -202,8 +203,7 @@ void ULiveLinkComponentController::GetSubjectRepresentation(struct FLiveLinkSubj
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 

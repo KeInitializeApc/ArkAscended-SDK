@@ -14,27 +14,27 @@ namespace SDK
 class UMetasoundParameterPack : public UObject
 {
 public:
-	uint8                                        Pad_1F01[0x18];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2611[0x18];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMetasoundParameterPack* GetDefaultObj();
 
-	class FName SetTrigger(bool* OnlyIfExists, enum class ESetParamResult* ReturnValue);
-	class FString SetString(bool* OnlyIfExists, enum class ESetParamResult* ReturnValue);
-	int32 SetInt(bool* OnlyIfExists, enum class ESetParamResult* ReturnValue);
-	float SetFloat(bool* OnlyIfExists, enum class ESetParamResult* ReturnValue);
-	bool SetBool(bool* OnlyIfExists, enum class ESetParamResult* ReturnValue);
-	void MakeMetasoundParameterPack(class UMetasoundParameterPack** ReturnValue);
-	class FName HasTrigger(bool* ReturnValue);
-	class FName HasString(bool* ReturnValue);
-	class FName HasInt(bool* ReturnValue);
-	class FName HasFloat(bool* ReturnValue);
-	class FName HasBool(bool* ReturnValue);
-	class FName GetTrigger(enum class ESetParamResult* Result, bool* ReturnValue);
-	class FName GetString(enum class ESetParamResult* Result, class FString* ReturnValue);
-	class FName GetInt(enum class ESetParamResult* Result, int32* ReturnValue);
-	class FName GetFloat(enum class ESetParamResult* Result, float* ReturnValue);
-	class FName GetBool(enum class ESetParamResult* Result, bool* ReturnValue);
+	enum class ESetParamResult SetTrigger(class FName* ParameterName);
+	enum class ESetParamResult SetString(class FName* ParameterName);
+	enum class ESetParamResult SetInt(class FName* ParameterName);
+	enum class ESetParamResult SetFloat(class FName* ParameterName);
+	enum class ESetParamResult SetBool(class FName* ParameterName);
+	class UMetasoundParameterPack* MakeMetasoundParameterPack();
+	bool HasTrigger(class FName* ParameterName);
+	bool HasString(class FName* ParameterName);
+	bool HasInt(class FName* ParameterName);
+	bool HasFloat(class FName* ParameterName);
+	bool HasBool(class FName* ParameterName);
+	bool GetTrigger(class FName* ParameterName, enum class ESetParamResult* Result);
+	class FString GetString(class FName* ParameterName, enum class ESetParamResult* Result);
+	int32 GetInt(class FName* ParameterName, enum class ESetParamResult* Result);
+	float GetFloat(class FName* ParameterName, enum class ESetParamResult* Result);
+	bool GetBool(class FName* ParameterName, enum class ESetParamResult* Result);
 };
 
 }

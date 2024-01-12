@@ -43,9 +43,9 @@ class UASAUI_NewsCarousel_C* UASAUI_NewsCarousel_C::GetDefaultObj()
 // Function ASAUI_NewsCarousel.ASAUI_NewsCarousel_C.GetColorAndOpacity
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UASAUI_NewsCarousel_C::GetColorAndOpacity(struct FLinearColor* ReturnValue)
+struct FLinearColor UASAUI_NewsCarousel_C::GetColorAndOpacity()
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,8 +57,7 @@ void UASAUI_NewsCarousel_C::GetColorAndOpacity(struct FLinearColor* ReturnValue)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -66,9 +65,9 @@ void UASAUI_NewsCarousel_C::GetColorAndOpacity(struct FLinearColor* ReturnValue)
 // Function ASAUI_NewsCarousel.ASAUI_NewsCarousel_C.PreConstruct
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               IsDesignTime                                                     (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               IsDesignTime                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UASAUI_NewsCarousel_C::PreConstruct()
+void UASAUI_NewsCarousel_C::PreConstruct(bool IsDesignTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -77,10 +76,9 @@ bool UASAUI_NewsCarousel_C::PreConstruct()
 
 	Params::UASAUI_NewsCarousel_C_PreConstruct_Params Parms{};
 
+	Parms.IsDesignTime = IsDesignTime;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -106,11 +104,11 @@ void UASAUI_NewsCarousel_C::Construct()
 // Function ASAUI_NewsCarousel.ASAUI_NewsCarousel_C.ExecuteUbergraph_ASAUI_NewsCarousel
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, BlueprintVisible, Net, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UMaterialInstanceDynamic*    CallFunc_CreateDynamicMaterialInstance_ReturnValue               (ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, EditConst, SubobjectReference)
-// bool                               K2Node_Event_IsDesignTime                                        (Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMaterialInstanceDynamic*    CallFunc_CreateDynamicMaterialInstance_ReturnValue               (EditFixedSize, ReturnParm, EditConst, SubobjectReference)
+// bool                               K2Node_Event_IsDesignTime                                        (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
 
-bool UASAUI_NewsCarousel_C::ExecuteUbergraph_ASAUI_NewsCarousel(int32 EntryPoint)
+bool UASAUI_NewsCarousel_C::ExecuteUbergraph_ASAUI_NewsCarousel()
 {
 	static class UFunction* Func = nullptr;
 
@@ -119,7 +117,6 @@ bool UASAUI_NewsCarousel_C::ExecuteUbergraph_ASAUI_NewsCarousel(int32 EntryPoint
 
 	Params::UASAUI_NewsCarousel_C_ExecuteUbergraph_ASAUI_NewsCarousel_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 

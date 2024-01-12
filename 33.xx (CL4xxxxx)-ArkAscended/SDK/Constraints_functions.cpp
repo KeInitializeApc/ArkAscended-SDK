@@ -155,11 +155,11 @@ class UConstraintsScriptingLibrary* UConstraintsScriptingLibrary::GetDefaultObj(
 // Function Constraints.ConstraintsScriptingLibrary.RemoveThisConstraint
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UWorld*                      InWorld                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// class UTickableConstraint*         InTickableConstraint                                             (BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWorld*                      InWorld                                                          (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UTickableConstraint*         InTickableConstraint                                             (Edit, ConstParm, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UTickableConstraint* UConstraintsScriptingLibrary::RemoveThisConstraint(bool* ReturnValue)
+bool UConstraintsScriptingLibrary::RemoveThisConstraint(class UWorld** InWorld, class UTickableConstraint* InTickableConstraint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -168,6 +168,7 @@ class UTickableConstraint* UConstraintsScriptingLibrary::RemoveThisConstraint(bo
 
 	Params::UConstraintsScriptingLibrary_RemoveThisConstraint_Params Parms{};
 
+	Parms.InTickableConstraint = InTickableConstraint;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -177,8 +178,8 @@ class UTickableConstraint* UConstraintsScriptingLibrary::RemoveThisConstraint(bo
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InWorld != nullptr)
+		*InWorld = Parms.InWorld;
 
 	return Parms.ReturnValue;
 
@@ -188,11 +189,11 @@ class UTickableConstraint* UConstraintsScriptingLibrary::RemoveThisConstraint(bo
 // Function Constraints.ConstraintsScriptingLibrary.RemoveConstraint
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UWorld*                      InWorld                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// int32                              InIndex                                                          (ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWorld*                      InWorld                                                          (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// int32                              InIndex                                                          (BlueprintVisible, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UConstraintsScriptingLibrary::RemoveConstraint(bool* ReturnValue)
+bool UConstraintsScriptingLibrary::RemoveConstraint(class UWorld** InWorld)
 {
 	static class UFunction* Func = nullptr;
 
@@ -210,8 +211,8 @@ int32 UConstraintsScriptingLibrary::RemoveConstraint(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InWorld != nullptr)
+		*InWorld = Parms.InWorld;
 
 	return Parms.ReturnValue;
 
@@ -221,10 +222,10 @@ int32 UConstraintsScriptingLibrary::RemoveConstraint(bool* ReturnValue)
 // Function Constraints.ConstraintsScriptingLibrary.GetManager
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UWorld*                      InWorld                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// class UConstraintsManager*         ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWorld*                      InWorld                                                          (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UConstraintsManager*         ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWorld* UConstraintsScriptingLibrary::GetManager(class UConstraintsManager** ReturnValue)
+class UConstraintsManager* UConstraintsScriptingLibrary::GetManager(class UWorld** InWorld)
 {
 	static class UFunction* Func = nullptr;
 
@@ -242,8 +243,8 @@ class UWorld* UConstraintsScriptingLibrary::GetManager(class UConstraintsManager
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InWorld != nullptr)
+		*InWorld = Parms.InWorld;
 
 	return Parms.ReturnValue;
 
@@ -253,10 +254,10 @@ class UWorld* UConstraintsScriptingLibrary::GetManager(class UConstraintsManager
 // Function Constraints.ConstraintsScriptingLibrary.GetConstraintsArray
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UWorld*                      InWorld                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// TArray<class UTickableConstraint*> ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWorld*                      InWorld                                                          (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// TArray<class UTickableConstraint*> ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWorld* UConstraintsScriptingLibrary::GetConstraintsArray(TArray<class UTickableConstraint*>* ReturnValue)
+TArray<class UTickableConstraint*> UConstraintsScriptingLibrary::GetConstraintsArray(class UWorld** InWorld)
 {
 	static class UFunction* Func = nullptr;
 
@@ -274,8 +275,8 @@ class UWorld* UConstraintsScriptingLibrary::GetConstraintsArray(TArray<class UTi
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (InWorld != nullptr)
+		*InWorld = Parms.InWorld;
 
 	return Parms.ReturnValue;
 
@@ -285,12 +286,12 @@ class UWorld* UConstraintsScriptingLibrary::GetConstraintsArray(TArray<class UTi
 // Function Constraints.ConstraintsScriptingLibrary.CreateTransformableHandle
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UWorld*                      InWorld                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// class UObject*                     InObject                                                         (BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// class FName                        InAttachmentName                                                 (Edit, ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UTransformableHandle*        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWorld*                      InWorld                                                          (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     InObject                                                         (Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// class FName                        InAttachmentName                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UTransformableHandle*        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UConstraintsScriptingLibrary::CreateTransformableHandle(class UTransformableHandle** ReturnValue)
+class UTransformableHandle* UConstraintsScriptingLibrary::CreateTransformableHandle(class UWorld** InWorld, class UObject* InObject, class FName* InAttachmentName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -299,6 +300,7 @@ class FName UConstraintsScriptingLibrary::CreateTransformableHandle(class UTrans
 
 	Params::UConstraintsScriptingLibrary_CreateTransformableHandle_Params Parms{};
 
+	Parms.InObject = InObject;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -308,8 +310,11 @@ class FName UConstraintsScriptingLibrary::CreateTransformableHandle(class UTrans
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InWorld != nullptr)
+		*InWorld = Parms.InWorld;
+
+	if (InAttachmentName != nullptr)
+		*InAttachmentName = Parms.InAttachmentName;
 
 	return Parms.ReturnValue;
 
@@ -319,12 +324,12 @@ class FName UConstraintsScriptingLibrary::CreateTransformableHandle(class UTrans
 // Function Constraints.ConstraintsScriptingLibrary.CreateTransformableComponentHandle
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UWorld*                      InWorld                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// class USceneComponent*             InSceneComponent                                                 (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class FName                        InSocketName                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-// class UTransformableComponentHandle*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWorld*                      InWorld                                                          (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class USceneComponent*             InSceneComponent                                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InSocketName                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UTransformableComponentHandle*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USceneComponent* UConstraintsScriptingLibrary::CreateTransformableComponentHandle(class FName* InSocketName, class UTransformableComponentHandle** ReturnValue)
+class UTransformableComponentHandle* UConstraintsScriptingLibrary::CreateTransformableComponentHandle(class UWorld** InWorld, class USceneComponent** InSceneComponent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -342,11 +347,11 @@ class USceneComponent* UConstraintsScriptingLibrary::CreateTransformableComponen
 
 	Func->FunctionFlags = Flgs;
 
-	if (InSocketName != nullptr)
-		*InSocketName = Parms.InSocketName;
+	if (InWorld != nullptr)
+		*InWorld = Parms.InWorld;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InSceneComponent != nullptr)
+		*InSceneComponent = Parms.InSceneComponent;
 
 	return Parms.ReturnValue;
 
@@ -356,11 +361,11 @@ class USceneComponent* UConstraintsScriptingLibrary::CreateTransformableComponen
 // Function Constraints.ConstraintsScriptingLibrary.CreateFromType
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UWorld*                      InWorld                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// enum class ETransformConstraintTypeInType                                                           (Edit, ConstParm, ExportObject, Net, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class UTickableTransformConstraint*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWorld*                      InWorld                                                          (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// enum class ETransformConstraintTypeInType                                                           (EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// class UTickableTransformConstraint*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWorld* UConstraintsScriptingLibrary::CreateFromType(enum class ETransformConstraintType InType, class UTickableTransformConstraint** ReturnValue)
+class UTickableTransformConstraint* UConstraintsScriptingLibrary::CreateFromType(class UWorld** InWorld)
 {
 	static class UFunction* Func = nullptr;
 
@@ -369,7 +374,6 @@ class UWorld* UConstraintsScriptingLibrary::CreateFromType(enum class ETransform
 
 	Params::UConstraintsScriptingLibrary_CreateFromType_Params Parms{};
 
-	Parms.InType = InType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -379,8 +383,8 @@ class UWorld* UConstraintsScriptingLibrary::CreateFromType(enum class ETransform
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InWorld != nullptr)
+		*InWorld = Parms.InWorld;
 
 	return Parms.ReturnValue;
 
@@ -390,14 +394,14 @@ class UWorld* UConstraintsScriptingLibrary::CreateFromType(enum class ETransform
 // Function Constraints.ConstraintsScriptingLibrary.AddConstraint
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UWorld*                      InWorld                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// class UTransformableHandle*        InParentHandle                                                   (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UTransformableHandle*        InChildHandle                                                    (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UTickableTransformConstraint*InConstraint                                                     (Edit, ConstParm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bMaintainOffset                                                  (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWorld*                      InWorld                                                          (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UTransformableHandle*        InParentHandle                                                   (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UTransformableHandle*        InChildHandle                                                    (Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UTickableTransformConstraint*InConstraint                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bMaintainOffset                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UTickableTransformConstraint* UConstraintsScriptingLibrary::AddConstraint(bool bMaintainOffset, bool* ReturnValue)
+bool UConstraintsScriptingLibrary::AddConstraint(class UWorld** InWorld, class UTransformableHandle** InParentHandle, class UTransformableHandle** InChildHandle, class UTickableTransformConstraint** InConstraint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -406,7 +410,6 @@ class UTickableTransformConstraint* UConstraintsScriptingLibrary::AddConstraint(
 
 	Params::UConstraintsScriptingLibrary_AddConstraint_Params Parms{};
 
-	Parms.bMaintainOffset = bMaintainOffset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -416,8 +419,17 @@ class UTickableTransformConstraint* UConstraintsScriptingLibrary::AddConstraint(
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InWorld != nullptr)
+		*InWorld = Parms.InWorld;
+
+	if (InParentHandle != nullptr)
+		*InParentHandle = Parms.InParentHandle;
+
+	if (InChildHandle != nullptr)
+		*InChildHandle = Parms.InChildHandle;
+
+	if (InConstraint != nullptr)
+		*InConstraint = Parms.InConstraint;
 
 	return Parms.ReturnValue;
 

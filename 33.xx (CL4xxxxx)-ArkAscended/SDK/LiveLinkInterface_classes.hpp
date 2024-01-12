@@ -25,12 +25,12 @@ public:
 class ULiveLinkVirtualSubject : public UObject
 {
 public:
-	uint8                                        Pad_CC3[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_1354[0x8];                                     // Fixing Size After Last Property  > TateDumper <
 	class UClass*                                Role;                                              // 0x30(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
-	TArray<struct FLiveLinkSubjectName>          Subjects;                                          // 0x38(0x10)(BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	TArray<class ULiveLinkFrameTranslator*>      FrameTranslators;                                  // 0x48(0x10)(Edit, ConstParm, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bRebroadcastSubject;                               // 0x58(0x1)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_CC5[0x107];                                    // Fixing Size Of Struct > TateDumper <
+	TArray<struct FLiveLinkSubjectName>          Subjects;                                          // 0x38(0x10)(ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class ULiveLinkFrameTranslator*>      FrameTranslators;                                  // 0x48(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bRebroadcastSubject;                               // 0x58(0x1)(BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1355[0x107];                                   // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULiveLinkVirtualSubject* GetDefaultObj();
@@ -53,11 +53,11 @@ public:
 class ULiveLinkSourceSettings : public UObject
 {
 public:
-	enum class ELiveLinkSourceMode               Mode;                                              // 0x28(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_CCB[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FLiveLinkSourceBufferManagementSettings BufferSettings;                                    // 0x30(0x60)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	class FString                                ConnectionString;                                  // 0x90(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	class UClass*                                Factory;                                           // 0xA0(0x8)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	enum class ELiveLinkSourceMode               Mode;                                              // 0x28(0x1)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_1358[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FLiveLinkSourceBufferManagementSettings BufferSettings;                                    // 0x30(0x60)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FString                                ConnectionString;                                  // 0x90(0x10)(Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UClass*                                Factory;                                           // 0xA0(0x8)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ULiveLinkSourceSettings* GetDefaultObj();
@@ -113,7 +113,7 @@ public:
 class ULiveLinkCurveRemapSettings : public ULiveLinkSourceSettings
 {
 public:
-	struct FLiveLinkCurveConversionSettings      CurveConversionSettings;                           // 0xA8(0x50)(Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FLiveLinkCurveConversionSettings      CurveConversionSettings;                           // 0xA8(0x50)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ULiveLinkCurveRemapSettings* GetDefaultObj();
@@ -125,13 +125,13 @@ public:
 class ULiveLinkSubjectSettings : public UObject
 {
 public:
-	TArray<class ULiveLinkFramePreProcessor*>    PreProcessors;                                     // 0x28(0x10)(Edit, ConstParm, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class ULiveLinkFrameInterpolationProcessor*  InterpolationProcessor;                            // 0x38(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<class ULiveLinkFrameTranslator*>      Translators;                                       // 0x40(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class ULiveLinkFramePreProcessor*>    PreProcessors;                                     // 0x28(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class ULiveLinkFrameInterpolationProcessor*  InterpolationProcessor;                            // 0x38(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class ULiveLinkFrameTranslator*>      Translators;                                       // 0x40(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 	class UClass*                                Role;                                              // 0x50(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
 	struct FFrameRate                            FrameRate;                                         // 0x58(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm)
-	bool                                         bRebroadcastSubject;                               // 0x60(0x1)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_CDA[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bRebroadcastSubject;                               // 0x60(0x1)(BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1362[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULiveLinkSubjectSettings* GetDefaultObj();

@@ -231,10 +231,10 @@ void UComputeGraphComponent::DestroyDataProviders()
 // Function ComputeFramework.ComputeGraphComponent.CreateDataProviders
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InBindingIndex                                                   (Edit, BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UObject*                     InBindingObject                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              InBindingIndex                                                   (Edit, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UObject*                     InBindingObject                                                  (ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UComputeGraphComponent::CreateDataProviders(int32* InBindingIndex, class UObject** InBindingObject)
+class UObject* UComputeGraphComponent::CreateDataProviders()
 {
 	static class UFunction* Func = nullptr;
 
@@ -252,11 +252,7 @@ void UComputeGraphComponent::CreateDataProviders(int32* InBindingIndex, class UO
 
 	Func->FunctionFlags = Flgs;
 
-	if (InBindingIndex != nullptr)
-		*InBindingIndex = Parms.InBindingIndex;
-
-	if (InBindingObject != nullptr)
-		*InBindingObject = Parms.InBindingObject;
+	return Parms.ReturnValue;
 
 }
 

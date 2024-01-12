@@ -14,7 +14,7 @@ namespace SDK
 class UDinoSettings_Base_C : public UPrimalDinoSettings
 {
 public:
-	struct FStruct_VFX_DinoData                  FootPrint;                                         // 0x90(0x70)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Config, EditConst, SubobjectReference)
+	struct FStruct_VFX_DinoData                  FootPrint;                                         // 0x90(0x70)(ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UDinoSettings_Base_C* GetDefaultObj();

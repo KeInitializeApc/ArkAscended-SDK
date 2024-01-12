@@ -460,7 +460,7 @@ struct FTrackedGeometryGroup
 public:
 	class AARActor*                              ARActor;                                           // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, GlobalConfig)
 	class UARComponent*                          ARComponent;                                       // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, GlobalConfig)
-	class UARTrackedGeometry*                    TrackedGeometry;                                   // 0x10(0x8)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UARTrackedGeometry*                    TrackedGeometry;                                   // 0x10(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -468,10 +468,10 @@ public:
 struct FARSessionPayload
 {
 public:
-	int32                                        ConfigFlags;                                       // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_271E[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UMaterialInterface*                    DefaultMeshMaterial;                               // 0x8(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	class UMaterialInterface*                    DefaultWireframeMeshMaterial;                      // 0x10(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        ConfigFlags;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2BF8[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UMaterialInterface*                    DefaultMeshMaterial;                               // 0x8(0x8)(Edit, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class UMaterialInterface*                    DefaultWireframeMeshMaterial;                      // 0x10(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xD0 (0xD0 - 0x0)
@@ -479,14 +479,14 @@ public:
 struct FARPlaneUpdatePayload
 {
 public:
-	struct FARSessionPayload                     SessionPayload;                                    // 0x0(0x18)(ConstParm, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2721[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            WorldTransform;                                    // 0x20(0x60)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FARSessionPayload                     SessionPayload;                                    // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2BFF[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            WorldTransform;                                    // 0x20(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
 	struct FVector                               Center;                                            // 0x80(0x18)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
 	struct FVector                               Extents;                                           // 0x98(0x18)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config)
-	TArray<struct FVector>                       BoundaryVertices;                                  // 0xB0(0x10)(Edit, ExportObject, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class EARObjectClassification           ObjectClassification;                              // 0xC0(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2722[0xF];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<struct FVector>                       BoundaryVertices;                                  // 0xB0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	enum class EARObjectClassification           ObjectClassification;                              // 0xC0(0x1)(Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2C03[0xF];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -494,7 +494,7 @@ public:
 struct FARPointUpdatePayload
 {
 public:
-	uint8                                        Pad_2723[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2C06[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x60 (0x60 - 0x0)
@@ -502,10 +502,10 @@ public:
 struct FARFaceUpdatePayload
 {
 public:
-	struct FARSessionPayload                     SessionPayload;                                    // 0x0(0x18)(ConstParm, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FVector                               LeftEyePosition;                                   // 0x18(0x18)(ConstParm, ExportObject, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FVector                               RightEyePosition;                                  // 0x30(0x18)(Edit, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FVector                               LookAtTarget;                                      // 0x48(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FARSessionPayload                     SessionPayload;                                    // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	struct FVector                               LeftEyePosition;                                   // 0x18(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	struct FVector                               RightEyePosition;                                  // 0x30(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	struct FVector                               LookAtTarget;                                      // 0x48(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xA0 (0xA0 - 0x0)
@@ -513,12 +513,12 @@ public:
 struct FARImageUpdatePayload
 {
 public:
-	struct FARSessionPayload                     SessionPayload;                                    // 0x0(0x18)(ConstParm, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2725[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            WorldTransform;                                    // 0x20(0x60)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	class UARCandidateImage*                     DetectedImage;                                     // 0x80(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FVector2D                             EstimatedSize;                                     // 0x88(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2727[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	struct FARSessionPayload                     SessionPayload;                                    // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2C08[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            WorldTransform;                                    // 0x20(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class UARCandidateImage*                     DetectedImage;                                     // 0x80(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	struct FVector2D                             EstimatedSize;                                     // 0x88(0x10)(ExportObject, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2C09[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xB0 (0xB0 - 0x0)
@@ -526,12 +526,12 @@ public:
 struct FARQRCodeUpdatePayload
 {
 public:
-	struct FARSessionPayload                     SessionPayload;                                    // 0x0(0x18)(ConstParm, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_272B[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            WorldTransform;                                    // 0x20(0x60)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FARSessionPayload                     SessionPayload;                                    // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2C0B[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            WorldTransform;                                    // 0x20(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
 	struct FVector                               Extents;                                           // 0x80(0x18)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config)
-	class FString                                QRCode;                                            // 0x98(0x10)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_272E[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	class FString                                QRCode;                                            // 0x98(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2C0C[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x70 (0x70 - 0x0)
@@ -539,8 +539,8 @@ public:
 struct FARPoseUpdatePayload
 {
 public:
-	struct FTransform                            WorldTransform;                                    // 0x0(0x60)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<struct FTransform>                    JointTransforms;                                   // 0x60(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FTransform                            WorldTransform;                                    // 0x0(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	TArray<struct FTransform>                    JointTransforms;                                   // 0x60(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x60 (0x60 - 0x0)
@@ -548,7 +548,7 @@ public:
 struct FAREnvironmentProbeUpdatePayload
 {
 public:
-	struct FTransform                            WorldTransform;                                    // 0x0(0x60)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FTransform                            WorldTransform;                                    // 0x0(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
 };
 
 // 0x60 (0x60 - 0x0)
@@ -556,7 +556,7 @@ public:
 struct FARObjectUpdatePayload
 {
 public:
-	struct FTransform                            WorldTransform;                                    // 0x0(0x60)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FTransform                            WorldTransform;                                    // 0x0(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
 };
 
 // 0x90 (0x90 - 0x0)
@@ -564,11 +564,11 @@ public:
 struct FARMeshUpdatePayload
 {
 public:
-	struct FARSessionPayload                     SessionPayload;                                    // 0x0(0x18)(ConstParm, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2734[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            WorldTransform;                                    // 0x20(0x60)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class EARObjectClassification           ObjectClassification;                              // 0x80(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2736[0xF];                                     // Fixing Size Of Struct > TateDumper <
+	struct FARSessionPayload                     SessionPayload;                                    // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2C0E[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            WorldTransform;                                    // 0x20(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	enum class EARObjectClassification           ObjectClassification;                              // 0x80(0x1)(Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2C0F[0xF];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xA0 (0xA0 - 0x0)
@@ -576,15 +576,15 @@ public:
 struct FARGeoAnchorUpdatePayload
 {
 public:
-	struct FARSessionPayload                     SessionPayload;                                    // 0x0(0x18)(ConstParm, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2739[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            WorldTransform;                                    // 0x20(0x60)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        Longitude;                                         // 0x80(0x4)(Edit, BlueprintVisible, Parm, OutParm, ReturnParm, GlobalConfig, InstancedReference)
-	float                                        Latitude;                                          // 0x84(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        AltitudeMeters;                                    // 0x88(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class EARAltitudeSource                 AltitudeSource;                                    // 0x8C(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_273C[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                AnchorName;                                        // 0x90(0x10)(BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FARSessionPayload                     SessionPayload;                                    // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2C10[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            WorldTransform;                                    // 0x20(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	float                                        Longitude;                                         // 0x80(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, InstancedReference)
+	float                                        Latitude;                                          // 0x84(0x4)(BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	float                                        AltitudeMeters;                                    // 0x88(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	enum class EARAltitudeSource                 AltitudeSource;                                    // 0x8C(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2C11[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                AnchorName;                                        // 0x90(0x10)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -592,8 +592,8 @@ public:
 struct FARSharedWorldReplicationState
 {
 public:
-	int32                                        PreviewImageOffset;                                // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        ARWorldOffset;                                     // 0x4(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        PreviewImageOffset;                                // 0x0(0x4)(Edit, ConstParm, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	int32                                        ARWorldOffset;                                     // 0x4(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x90 (0x90 - 0x0)
@@ -601,12 +601,12 @@ public:
 struct FARTraceResult
 {
 public:
-	float                                        DistanceFromCamera;                                // 0x0(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class EARLineTraceChannels              TraceChannel;                                      // 0x4(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_273F[0xB];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            LocalTransform;                                    // 0x10(0x60)(ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	class UARTrackedGeometry*                    TrackedGeometry;                                   // 0x70(0x8)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2742[0x18];                                    // Fixing Size Of Struct > TateDumper <
+	float                                        DistanceFromCamera;                                // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	enum class EARLineTraceChannels              TraceChannel;                                      // 0x4(0x1)(Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_2C13[0xB];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            LocalTransform;                                    // 0x10(0x60)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class UARTrackedGeometry*                    TrackedGeometry;                                   // 0x70(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2C14[0x18];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -614,9 +614,9 @@ public:
 struct FARSessionStatus
 {
 public:
-	class FString                                AdditionalInfo;                                    // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class EARSessionStatus                  Status;                                            // 0x10(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2746[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class FString                                AdditionalInfo;                                    // 0x0(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EARSessionStatus                  Status;                                            // 0x10(0x1)(Edit, ConstParm, Net, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2C15[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC (0xC - 0x0)
@@ -624,7 +624,7 @@ public:
 struct FARVideoFormat
 {
 public:
-	int32                                        FPS;                                               // 0x0(0x4)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        FPS;                                               // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 	int32                                        Width;                                             // 0x4(0x4)(ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
 	int32                                        Height;                                            // 0x8(0x4)(BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
 };
@@ -634,10 +634,10 @@ public:
 struct FARSkeletonDefinition
 {
 public:
-	int32                                        NumJoints;                                         // 0x0(0x4)(Edit, ConstParm, ExportObject, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2749[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<class FName>                          JointNames;                                        // 0x8(0x10)(Edit, BlueprintVisible, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                ParentIndices;                                     // 0x18(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	int32                                        NumJoints;                                         // 0x0(0x4)(Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2C16[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<class FName>                          JointNames;                                        // 0x8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                ParentIndices;                                     // 0x18(0x10)(ExportObject, BlueprintReadOnly, Net, OutParm, InstancedReference, SubobjectReference)
 };
 
 // 0x48 (0x48 - 0x0)
@@ -645,9 +645,9 @@ public:
 struct FARPose2D
 {
 public:
-	struct FARSkeletonDefinition                 SkeletonDefinition;                                // 0x0(0x28)(Edit, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FVector2D>                     JointLocations;                                    // 0x28(0x10)(Edit, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<bool>                                 IsJointTracked;                                    // 0x38(0x10)(Edit, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FARSkeletonDefinition                 SkeletonDefinition;                                // 0x0(0x28)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector2D>                     JointLocations;                                    // 0x28(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	TArray<bool>                                 IsJointTracked;                                    // 0x38(0x10)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -655,11 +655,11 @@ public:
 struct FARPose3D
 {
 public:
-	struct FARSkeletonDefinition                 SkeletonDefinition;                                // 0x0(0x28)(Edit, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FTransform>                    JointTransforms;                                   // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<bool>                                 IsJointTracked;                                    // 0x38(0x10)(Edit, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class EARJointTransformSpace            JointTransformSpace;                               // 0x48(0x1)(Edit, ConstParm, ExportObject, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_274F[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	struct FARSkeletonDefinition                 SkeletonDefinition;                                // 0x0(0x28)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	TArray<struct FTransform>                    JointTransforms;                                   // 0x28(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	TArray<bool>                                 IsJointTracked;                                    // 0x38(0x10)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	enum class EARJointTransformSpace            JointTransformSpace;                               // 0x48(0x1)(EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2C1E[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x28 - 0x0)
@@ -667,9 +667,9 @@ public:
 struct FARCameraIntrinsics
 {
 public:
-	struct FIntPoint                             ImageResolution;                                   // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FVector2D                             FocalLength;                                       // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	struct FVector2D                             PrincipalPoint;                                    // 0x18(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FIntPoint                             ImageResolution;                                   // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	struct FVector2D                             FocalLength;                                       // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	struct FVector2D                             PrincipalPoint;                                    // 0x18(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 };
 
 }

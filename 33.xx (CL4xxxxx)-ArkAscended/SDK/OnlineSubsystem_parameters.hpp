@@ -18,8 +18,8 @@ namespace Params
 struct ITurnBasedMatchInterface_OnMatchReceivedTurn_Params
 {
 public:
-	class FString                                Match;                                             // 0x0(0x10)(ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	bool                                         bDidBecomeActive;                                  // 0x10(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FString                                Match;                                             // 0x0(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bDidBecomeActive;                                  // 0x10(0x1)(ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 	uint8                                        Pad_1[0x7];                                        // Fixing Size Of Struct > TateDumper <
 };
 
@@ -28,7 +28,7 @@ public:
 struct ITurnBasedMatchInterface_OnMatchEnded_Params
 {
 public:
-	class FString                                Match;                                             // 0x0(0x10)(ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FString                                Match;                                             // 0x0(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 }

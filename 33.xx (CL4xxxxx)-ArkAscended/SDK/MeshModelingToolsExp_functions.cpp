@@ -43,9 +43,9 @@ class UBakeInputMeshProperties* UBakeInputMeshProperties::GetDefaultObj()
 // Function MeshModelingToolsExp.BakeInputMeshProperties.GetTargetUVLayerNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBakeInputMeshProperties::GetTargetUVLayerNamesFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> UBakeInputMeshProperties::GetTargetUVLayerNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -63,8 +63,7 @@ void UBakeInputMeshProperties::GetTargetUVLayerNamesFunc(TArray<class FString>* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -72,9 +71,9 @@ void UBakeInputMeshProperties::GetTargetUVLayerNamesFunc(TArray<class FString>* 
 // Function MeshModelingToolsExp.BakeInputMeshProperties.GetSourceUVLayerNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBakeInputMeshProperties::GetSourceUVLayerNamesFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> UBakeInputMeshProperties::GetSourceUVLayerNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -92,8 +91,7 @@ void UBakeInputMeshProperties::GetSourceUVLayerNamesFunc(TArray<class FString>* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -213,9 +211,9 @@ class UBakeTexture2DProperties* UBakeTexture2DProperties::GetDefaultObj()
 // Function MeshModelingToolsExp.BakeTexture2DProperties.GetUVLayerNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBakeTexture2DProperties::GetUVLayerNamesFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> UBakeTexture2DProperties::GetUVLayerNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -233,8 +231,7 @@ void UBakeTexture2DProperties::GetUVLayerNamesFunc(TArray<class FString>* Return
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -270,9 +267,9 @@ class UBakeMultiTexture2DProperties* UBakeMultiTexture2DProperties::GetDefaultOb
 // Function MeshModelingToolsExp.BakeMultiTexture2DProperties.GetUVLayerNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBakeMultiTexture2DProperties::GetUVLayerNamesFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> UBakeMultiTexture2DProperties::GetUVLayerNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -290,8 +287,7 @@ void UBakeMultiTexture2DProperties::GetUVLayerNamesFunc(TArray<class FString>* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1755,9 +1751,9 @@ class UBakeMeshAttributeMapsToolProperties* UBakeMeshAttributeMapsToolProperties
 // Function MeshModelingToolsExp.BakeMeshAttributeMapsToolProperties.GetMapPreviewNamesFunc
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBakeMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> UBakeMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1775,8 +1771,7 @@ void UBakeMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc(TArray<class F
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2036,9 +2031,9 @@ class UBakeMultiMeshAttributeMapsToolProperties* UBakeMultiMeshAttributeMapsTool
 // Function MeshModelingToolsExp.BakeMultiMeshAttributeMapsToolProperties.GetMapPreviewNamesFunc
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBakeMultiMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> UBakeMultiMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2056,8 +2051,7 @@ void UBakeMultiMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc(TArray<cl
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2093,9 +2087,9 @@ class UBakeMultiMeshInputToolProperties* UBakeMultiMeshInputToolProperties::GetD
 // Function MeshModelingToolsExp.BakeMultiMeshInputToolProperties.GetTargetUVLayerNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBakeMultiMeshInputToolProperties::GetTargetUVLayerNamesFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> UBakeMultiMeshInputToolProperties::GetTargetUVLayerNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2113,8 +2107,7 @@ void UBakeMultiMeshInputToolProperties::GetTargetUVLayerNamesFunc(TArray<class F
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2262,9 +2255,9 @@ class UBakeRenderCaptureToolProperties* UBakeRenderCaptureToolProperties::GetDef
 // Function MeshModelingToolsExp.BakeRenderCaptureToolProperties.GetMapPreviewNamesFunc
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBakeRenderCaptureToolProperties::GetMapPreviewNamesFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> UBakeRenderCaptureToolProperties::GetMapPreviewNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2282,8 +2275,7 @@ void UBakeRenderCaptureToolProperties::GetMapPreviewNamesFunc(TArray<class FStri
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2319,9 +2311,9 @@ class UBakeRenderCaptureInputToolProperties* UBakeRenderCaptureInputToolProperti
 // Function MeshModelingToolsExp.BakeRenderCaptureInputToolProperties.GetTargetUVLayerNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBakeRenderCaptureInputToolProperties::GetTargetUVLayerNamesFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> UBakeRenderCaptureInputToolProperties::GetTargetUVLayerNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2339,8 +2331,7 @@ void UBakeRenderCaptureInputToolProperties::GetTargetUVLayerNamesFunc(TArray<cla
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2348,9 +2339,9 @@ void UBakeRenderCaptureInputToolProperties::GetTargetUVLayerNamesFunc(TArray<cla
 // Function MeshModelingToolsExp.BakeRenderCaptureInputToolProperties.GetTargetUVLayerIndex
 // (Final, Native, Public, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UBakeRenderCaptureInputToolProperties::GetTargetUVLayerIndex(int32* ReturnValue)
+int32 UBakeRenderCaptureInputToolProperties::GetTargetUVLayerIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2368,8 +2359,7 @@ void UBakeRenderCaptureInputToolProperties::GetTargetUVLayerIndex(int32* ReturnV
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2685,9 +2675,9 @@ class UOutputPolygroupLayerProperties* UOutputPolygroupLayerProperties::GetDefau
 // Function MeshModelingToolsExp.OutputPolygroupLayerProperties.GetGroupOptionsList
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOutputPolygroupLayerProperties::GetGroupOptionsList(TArray<class FString>* ReturnValue)
+TArray<class FString> UOutputPolygroupLayerProperties::GetGroupOptionsList()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2705,8 +2695,7 @@ void UOutputPolygroupLayerProperties::GetGroupOptionsList(TArray<class FString>*
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3238,9 +3227,9 @@ class UDisplaceMeshCommonProperties* UDisplaceMeshCommonProperties::GetDefaultOb
 // Function MeshModelingToolsExp.DisplaceMeshCommonProperties.GetWeightMapsFunc
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UDisplaceMeshCommonProperties::GetWeightMapsFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> UDisplaceMeshCommonProperties::GetWeightMapsFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3258,8 +3247,7 @@ void UDisplaceMeshCommonProperties::GetWeightMapsFunc(TArray<class FString>* Ret
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3295,9 +3283,9 @@ class USelectiveTessellationProperties* USelectiveTessellationProperties::GetDef
 // Function MeshModelingToolsExp.SelectiveTessellationProperties.GetMaterialIDsFunc
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USelectiveTessellationProperties::GetMaterialIDsFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> USelectiveTessellationProperties::GetMaterialIDsFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3315,8 +3303,7 @@ void USelectiveTessellationProperties::GetMaterialIDsFunc(TArray<class FString>*
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -4840,9 +4827,9 @@ class UMeshAttributePaintToolProperties* UMeshAttributePaintToolProperties::GetD
 // Function MeshModelingToolsExp.MeshAttributePaintToolProperties.GetAttributeNames
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMeshAttributePaintToolProperties::GetAttributeNames(TArray<class FString>* ReturnValue)
+TArray<class FString> UMeshAttributePaintToolProperties::GetAttributeNames()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4860,8 +4847,7 @@ void UMeshAttributePaintToolProperties::GetAttributeNames(TArray<class FString>*
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -5397,9 +5383,9 @@ class UMeshInspectorMaterialProperties* UMeshInspectorMaterialProperties::GetDef
 // Function MeshModelingToolsExp.MeshInspectorMaterialProperties.GetUVChannelNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMeshInspectorMaterialProperties::GetUVChannelNamesFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> UMeshInspectorMaterialProperties::GetUVChannelNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5417,8 +5403,7 @@ void UMeshInspectorMaterialProperties::GetUVChannelNamesFunc(TArray<class FStrin
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -8538,9 +8523,9 @@ class UTransferMeshToolProperties* UTransferMeshToolProperties::GetDefaultObj()
 // Function MeshModelingToolsExp.TransferMeshToolProperties.GetTargetLODNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UTransferMeshToolProperties::GetTargetLODNamesFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> UTransferMeshToolProperties::GetTargetLODNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8558,8 +8543,7 @@ void UTransferMeshToolProperties::GetTargetLODNamesFunc(TArray<class FString>* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -8567,9 +8551,9 @@ void UTransferMeshToolProperties::GetTargetLODNamesFunc(TArray<class FString>* R
 // Function MeshModelingToolsExp.TransferMeshToolProperties.GetSourceLODNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UTransferMeshToolProperties::GetSourceLODNamesFunc(TArray<class FString>* ReturnValue)
+TArray<class FString> UTransferMeshToolProperties::GetSourceLODNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8587,8 +8571,7 @@ void UTransferMeshToolProperties::GetSourceLODNamesFunc(TArray<class FString>* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 

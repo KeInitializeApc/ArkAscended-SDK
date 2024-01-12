@@ -19,8 +19,8 @@ namespace SDK
 struct FIIRInterpolatorVector
 {
 public:
-	float                                        InterpSpeed;                                       // 0x0(0x4)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_19A2[0x74];                                    // Fixing Size Of Struct > TateDumper <
+	float                                        InterpSpeed;                                       // 0x0(0x4)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_221D[0x74];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x108 (0x108 - 0x0)
@@ -28,9 +28,9 @@ public:
 struct FDoubleIIRInterpolatorVector
 {
 public:
-	float                                        PrimaryInterpSpeed;                                // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        IntermediateInterpSpeed;                           // 0x4(0x4)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_19A3[0x100];                                   // Fixing Size Of Struct > TateDumper <
+	float                                        PrimaryInterpSpeed;                                // 0x0(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	float                                        IntermediateInterpSpeed;                           // 0x4(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_221F[0x100];                                   // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x78 (0x78 - 0x0)
@@ -38,8 +38,8 @@ public:
 struct FIIRInterpolatorRotator
 {
 public:
-	float                                        InterpSpeed;                                       // 0x0(0x4)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_19A6[0x74];                                    // Fixing Size Of Struct > TateDumper <
+	float                                        InterpSpeed;                                       // 0x0(0x4)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2220[0x74];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x108 (0x108 - 0x0)
@@ -47,9 +47,9 @@ public:
 struct FDoubleIIRInterpolatorRotator
 {
 public:
-	float                                        PrimaryInterpSpeed;                                // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        IntermediateInterpSpeed;                           // 0x4(0x4)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_19A8[0x100];                                   // Fixing Size Of Struct > TateDumper <
+	float                                        PrimaryInterpSpeed;                                // 0x0(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	float                                        IntermediateInterpSpeed;                           // 0x4(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2224[0x100];                                   // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -57,8 +57,8 @@ public:
 struct FIIRInterpolatorFloat
 {
 public:
-	float                                        InterpSpeed;                                       // 0x0(0x4)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_19AA[0x1C];                                    // Fixing Size Of Struct > TateDumper <
+	float                                        InterpSpeed;                                       // 0x0(0x4)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2225[0x1C];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x4C (0x4C - 0x0)
@@ -66,9 +66,9 @@ public:
 struct FDoubleIIRInterpolatorFloat
 {
 public:
-	float                                        PrimaryInterpSpeed;                                // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        IntermediateInterpSpeed;                           // 0x4(0x4)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_19AC[0x44];                                    // Fixing Size Of Struct > TateDumper <
+	float                                        PrimaryInterpSpeed;                                // 0x0(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	float                                        IntermediateInterpSpeed;                           // 0x4(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2227[0x44];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -77,9 +77,9 @@ struct FAccelerationInterpolatorParams
 {
 public:
 	float                                        Acceleration;                                      // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance)
-	float                                        MinDeceleration;                                   // 0x4(0x4)(Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        MaxSpeed;                                          // 0x8(0x4)(ConstParm, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        HoldTolerance;                                     // 0xC(0x4)(Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        MinDeceleration;                                   // 0x4(0x4)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	float                                        MaxSpeed;                                          // 0x8(0x4)(Edit, ConstParm, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        HoldTolerance;                                     // 0xC(0x4)(ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -87,8 +87,8 @@ public:
 struct FAccelerationInterpolatorFloat
 {
 public:
-	struct FAccelerationInterpolatorParams       AccelerationParams;                                // 0x0(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_19AD[0x20];                                    // Fixing Size Of Struct > TateDumper <
+	struct FAccelerationInterpolatorParams       AccelerationParams;                                // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2228[0x20];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x58 (0x58 - 0x0)
@@ -96,8 +96,8 @@ public:
 struct FAccelerationInterpolatorVector
 {
 public:
-	struct FAccelerationInterpolatorParams       AccelerationParams;                                // 0x0(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_19AF[0x48];                                    // Fixing Size Of Struct > TateDumper <
+	struct FAccelerationInterpolatorParams       AccelerationParams;                                // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_222B[0x48];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x58 (0x58 - 0x0)
@@ -105,8 +105,8 @@ public:
 struct FAccelerationInterpolatorRotator
 {
 public:
-	struct FAccelerationInterpolatorParams       AccelerationParams;                                // 0x0(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_19B0[0x48];                                    // Fixing Size Of Struct > TateDumper <
+	struct FAccelerationInterpolatorParams       AccelerationParams;                                // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_222D[0x48];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xA8 (0xA8 - 0x0)
@@ -114,8 +114,8 @@ public:
 struct FCritDampSpringInterpolatorVector
 {
 public:
-	float                                        NaturalFrequency;                                  // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_19B1[0xA4];                                    // Fixing Size Of Struct > TateDumper <
+	float                                        NaturalFrequency;                                  // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2230[0xA4];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xA8 (0xA8 - 0x0)
@@ -123,8 +123,8 @@ public:
 struct FCritDampSpringInterpolatorRotator
 {
 public:
-	float                                        NaturalFrequency;                                  // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_19B3[0xA4];                                    // Fixing Size Of Struct > TateDumper <
+	float                                        NaturalFrequency;                                  // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2231[0xA4];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 }

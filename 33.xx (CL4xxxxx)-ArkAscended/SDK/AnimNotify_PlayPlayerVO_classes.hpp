@@ -14,15 +14,15 @@ namespace SDK
 class UAnimNotify_PlayPlayerVO_C : public UAnimNotify
 {
 public:
-	enum class Enum_VoiceCollectionLine          VoiceLineSelection;                                // 0x40(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_2EC6[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        Volume_Multiplier;                                 // 0x44(0x4)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+	enum class Enum_VoiceCollectionLine          VoiceLineSelection;                                // 0x40(0x1)(Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	uint8                                        Pad_4142[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Volume_Multiplier;                                 // 0x44(0x4)(Edit, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UAnimNotify_PlayPlayerVO_C* GetDefaultObj();
 
-	void GetNotifyName(class FString* ReturnValue, class FString* CallFunc_GetEnumeratorUserFriendlyName_ReturnValue, class FString* CallFunc_Concat_StrStr_ReturnValue);
-	class USoundBase* Received_Notify(class USkeletalMeshComponent* MeshComp, class UAnimSequenceBase* Animation, const struct FAnimNotifyEventReference& EventReference, bool* ReturnValue, class UPDA_VoiceCollection_C* VoiceCollection, class APlayerPawnTest_C* K2Node_DynamicCast_AsPlayer_Pawn_Test, class UPDA_VoiceCollection_C* K2Node_DynamicCast_AsPDA_Voice_Collection, class UAudioComponent** CallFunc_SpawnSoundAttached_ReturnValue);
+	class FString GetNotifyName(const class FString& CallFunc_Concat_StrStr_ReturnValue);
+	class UAudioComponent* Received_Notify(class UAnimSequenceBase* Animation, class AActor** CallFunc_GetOwner_ReturnValue, bool* K2Node_DynamicCast_bSuccess, bool* K2Node_DynamicCast_bSuccess_1, enum class Enum_VoiceCollectionLine Temp_byte_Variable, class USoundBase** K2Node_Select_Default);
 };
 
 }

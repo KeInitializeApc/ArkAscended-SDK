@@ -14,14 +14,14 @@ namespace SDK
 class UBindButtonSystem : public UEngineSubsystem
 {
 public:
-	FMulticastInlineDelegateProperty_            ControllerButtonInViewState;                       // 0x30(0x10)(ConstParm, ExportObject, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1740[0x18];                                    // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            ControllerButtonInViewState;                       // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_20B3[0x18];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UBindButtonSystem* GetDefaultObj();
 
 	void StartBind();
-	void SetViewState(enum class EViewState* NewState);
+	enum class EViewState SetViewState();
 	void EndBind();
 	void ControllerAction(const struct FKey& Key);
 };
@@ -31,10 +31,10 @@ public:
 class UCFCoreButtonImage : public UImage
 {
 public:
-	bool                                         UseDefaultBrushOnPC;                               // 0x348(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_174E[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FSlateBrush                           PlayStationButtonImage;                            // 0x350(0xD0)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	struct FSlateBrush                           XboxButtonImage;                                   // 0x420(0xD0)(ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+	bool                                         UseDefaultBrushOnPC;                               // 0x348(0x1)(ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_20B4[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FSlateBrush                           PlayStationButtonImage;                            // 0x350(0xD0)(ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	struct FSlateBrush                           XboxButtonImage;                                   // 0x420(0xD0)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UCFCoreButtonImage* GetDefaultObj();
@@ -46,18 +46,18 @@ public:
 class UCFCoreGamepadCursorSettings : public UDeveloperSettings
 {
 public:
-	struct FRuntimeFloatCurve                    AnalogCursorAccelerationCurve;                     // 0x38(0x88)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        MaxAnalogCursorSpeed;                              // 0xC0(0x4)(ExportObject, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        MaxAnalogCursorSpeedWhenHovered;                   // 0xC4(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        AnalogCursorDragCoefficient;                       // 0xC8(0x4)(ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        AnalogCursorDragCoefficientWhenHovered;            // 0xCC(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        MinAnalogCursorSpeed;                              // 0xD0(0x4)(Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        AnalogCursorDeadZone;                              // 0xD4(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        AnalogCursorAccelerationMultiplier;                // 0xD8(0x4)(BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        AnalogCursorSize;                                  // 0xDC(0x4)(Edit, ConstParm, Net, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bUseEngineAnalogCursor;                            // 0xE0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bAnalogCursorNoAcceleration;                       // 0xE1(0x1)(ExportObject, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_175D[0x16];                                    // Fixing Size Of Struct > TateDumper <
+	struct FRuntimeFloatCurve                    AnalogCursorAccelerationCurve;                     // 0x38(0x88)(ExportObject, Net, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	float                                        MaxAnalogCursorSpeed;                              // 0xC0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	float                                        MaxAnalogCursorSpeedWhenHovered;                   // 0xC4(0x4)(BlueprintVisible, ExportObject, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	float                                        AnalogCursorDragCoefficient;                       // 0xC8(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	float                                        AnalogCursorDragCoefficientWhenHovered;            // 0xCC(0x4)(Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	float                                        MinAnalogCursorSpeed;                              // 0xD0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	float                                        AnalogCursorDeadZone;                              // 0xD4(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	float                                        AnalogCursorAccelerationMultiplier;                // 0xD8(0x4)(Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	float                                        AnalogCursorSize;                                  // 0xDC(0x4)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bUseEngineAnalogCursor;                            // 0xE0(0x1)(BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bAnalogCursorNoAcceleration;                       // 0xE1(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_20B7[0x16];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UCFCoreGamepadCursorSettings* GetDefaultObj();
@@ -73,10 +73,10 @@ public:
 	static class UClass* StaticClass();
 	static class UCFCoreMathHelperFunctionLibrary* GetDefaultObj();
 
-	void Int64_SubOne(int64 Value, int64* ReturnValue);
-	void Int64_AddOne(int64 Value, int64* ReturnValue);
-	void Int32_SubOne(int32 Value, int32* ReturnValue);
-	void Int32_AddOne(int32 Value, int32* ReturnValue);
+	int64 Int64_SubOne(int64 Value);
+	int64 Int64_AddOne(int64 Value);
+	int32 Int32_SubOne(int32 Value);
+	int32 Int32_AddOne(int32 Value);
 };
 
 // 0x70 (0x980 - 0x910)
@@ -84,8 +84,8 @@ public:
 class UCFCoreRichText : public URichTextBlock
 {
 public:
-	TMap<class FString, class UTexture2DDynamic*> ImageMap;                                          // 0x910(0x50)(ExportObject, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_179E[0x20];                                    // Fixing Size Of Struct > TateDumper <
+	TMap<class FString, class UTexture2DDynamic*> ImageMap;                                          // 0x910(0x50)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_20BD[0x20];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UCFCoreRichText* GetDefaultObj();
@@ -97,14 +97,14 @@ public:
 class UCFCoreRichTextBlockImageDecorator : public URichTextBlockImageDecorator
 {
 public:
-	class UCFCoreRichText*                       CoreRichText;                                      // 0x30(0x8)(ConstParm, Net, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x38(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnFail;                                            // 0x48(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+	class UCFCoreRichText*                       CoreRichText;                                      // 0x30(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x38(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnFail;                                            // 0x48(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UCFCoreRichTextBlockImageDecorator* GetDefaultObj();
 
-	class FString SetImageToMap(class UTexture2DDynamic** Image);
+	void SetImageToMap(class UTexture2DDynamic** Image, const class FString& ImageUrl);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -116,7 +116,7 @@ public:
 	static class UClass* StaticClass();
 	static class UCFCoreThemeSettings* GetDefaultObj();
 
-	struct FCFCoreThemeRowData CommitThemeData();
+	void CommitThemeData(class UDataTable** ThemeDataTable, const class FString& ThemeName, const struct FCFCoreThemeRowData& Data);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -128,9 +128,9 @@ public:
 	static class UClass* StaticClass();
 	static class ICFCoreUIBaseModel* GetDefaultObj();
 
-	TArray<struct FInstallProgressMod> OnEventReceived_LibraryProgress(bool* ReturnValue);
-	TArray<struct FInstallProgressMod> OnEventReceived_Installed(bool* ReturnValue);
-	TArray<struct FInstallProgressMod> OnEventReceived(bool* ReturnValue);
+	bool OnEventReceived_LibraryProgress(enum class EGameModsEvent* Evt, struct FLibraryProgress* Progress, TArray<struct FInstallProgressMod>* OutModsList);
+	bool OnEventReceived_Installed(enum class EGameModsEvent* Evt, TArray<struct FInstalledMod>* InModsList, TArray<struct FInstallProgressMod>* OutModsList);
+	bool OnEventReceived(enum class EGameModsEvent* Evt, TArray<struct FCFCoreMod>* InModsList, TArray<struct FInstallProgressMod>* OutModsList);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -142,7 +142,7 @@ public:
 	static class UClass* StaticClass();
 	static class ICFCoreUIBaseView* GetDefaultObj();
 
-	TArray<struct FInstallProgressMod> OnEventBroadcasted(struct FCFCoreApiResponsePagination* Pagination, bool* ReturnValue);
+	bool OnEventBroadcasted(enum class EGameModsEvent* Evt, TArray<struct FInstallProgressMod>* ModsList);
 };
 
 // 0x58 (0x80 - 0x28)
@@ -150,7 +150,7 @@ public:
 class UCFCoreUIModel : public UObject
 {
 public:
-	uint8                                        Pad_1817[0x58];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_20CE[0x58];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UCFCoreUIModel* GetDefaultObj();
@@ -162,57 +162,57 @@ public:
 class UCFCoreUISubsystem : public UGameInstanceSubsystem
 {
 public:
-	FDelegateProperty_                           UIPurchaseModDelegate;                             // 0x30(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-	FDelegateProperty_                           UIPurchaseModsDelegate;                            // 0x40(0x10)(ConstParm, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1A7E[0x118];                                   // Fixing Size After Last Property  > TateDumper <
-	TArray<class UObject*>                       Models;                                            // 0x168(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1A7F[0x20];                                    // Fixing Size Of Struct > TateDumper <
+	FDelegateProperty_                           UIPurchaseModDelegate;                             // 0x30(0x10)(Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	FDelegateProperty_                           UIPurchaseModsDelegate;                            // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2125[0x118];                                   // Fixing Size After Last Property  > TateDumper <
+	TArray<class UObject*>                       Models;                                            // 0x168(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2126[0x20];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UCFCoreUISubsystem* GetDefaultObj();
 
-	void UpdateMod(const struct FCFCoreMod& Mod);
-	TArray<enum class EGameModsEvent> UnsubscribeViewFromEvents(class UObject* View);
-	enum class EGameModsEvent UnsubscribeViewFromEvent(class UObject* View, bool* ReturnValue);
-	class UClass* UnregisterModelClass(bool* ReturnValue);
-	void UninstallMod(const struct FCFCoreMod& Mod);
-	bool SubscribeViewToEvents(class UObject* View, bool* ReturnValue);
-	bool SubscribeViewToEvent(class UObject* View, bool* ReturnValue);
-	struct FInstalledMod SetMod(const struct FCFCoreMod& Mod);
-	void SearchMods(struct FCFCoreSearchModsFilter* Filter, struct FCFCoreApiRequestPagination* Pagination);
+	struct FCFCoreMod UpdateMod();
+	void UnsubscribeViewFromEvents(class UObject* View, TArray<enum class EGameModsEvent>* Evts);
+	bool UnsubscribeViewFromEvent(class UObject* View, enum class EGameModsEvent* Evt);
+	bool UnregisterModelClass(class UClass** ModelClass);
+	struct FCFCoreMod UninstallMod();
+	bool SubscribeViewToEvents(class UObject* View, TArray<enum class EGameModsEvent>* Evts, bool* InitializeView);
+	bool SubscribeViewToEvent(class UObject* View, enum class EGameModsEvent* Evt, bool* InitializeView);
+	struct FCFCoreMod SetMod(struct FInstalledMod* InInstalledMod, struct FInstalledMod* OutInstalledMod);
+	struct FCFCoreApiRequestPagination SearchMods(struct FCFCoreSearchModsFilter* Filter);
 	void ReleaseUIController();
-	FDelegateProperty_ RegisterPurchaseModsDelegate();
-	FDelegateProperty_ RegisterPurchaseModDelegate();
-	class UClass* RegisterModelClass(bool* ReturnValue);
-	FDelegateProperty_ RegisterErrorDelegate();
-	void PurchaseMods(const TArray<int64>& ModsId);
-	void PurchaseMod(int64* ModId);
+	void RegisterPurchaseModsDelegate(FDelegateProperty_* PurchaseModsDelegate);
+	void RegisterPurchaseModDelegate(FDelegateProperty_* PurchaseModDelegate);
+	bool RegisterModelClass(class UClass** ModelClass);
+	void RegisterErrorDelegate(FDelegateProperty_* ErrorDelegate);
+	TArray<int64> PurchaseMods();
+	int64 PurchaseMod();
 	void OnUninstall(const struct FInstalledMod& InstalledMod);
 	struct FCFCoreError OnSearchModsError();
-	void OnSearchMods(TArray<struct FCFCoreMod>* Mods, struct FCFCoreApiResponsePagination* Pagination);
+	struct FCFCoreApiResponsePagination OnSearchMods();
 	struct FCFCoreError OnMyModsError();
-	void OnMyMods(TArray<struct FCFCoreMod>* Mods);
+	TArray<struct FCFCoreMod> OnMyMods();
 	struct FCFCoreError OnModUninstallError();
-	struct FCFCoreMod OnModInstallError();
-	struct FLibraryProgress OnInstallProgress();
-	void OnGetModsByIds(TArray<struct FCFCoreMod>* Mods);
+	struct FCFCoreError OnModInstallError(struct FCFCoreMod* InstallingMod);
+	void OnInstallProgress(struct FLibraryProgress* Progress);
+	TArray<struct FCFCoreMod> OnGetModsByIds();
 	struct FCFCoreError OnGetInstalledModsError();
-	TArray<struct FInstalledMod> OnGetInstalledMods();
-	struct FInstalledMod OnFinishedUpdating();
+	void OnGetInstalledMods(TArray<struct FInstalledMod>* InstalledMods);
+	void OnFinishedUpdating(struct FInstalledMod* UpdatedMod);
 	void OnFinishedInstalling(const struct FInstalledMod& InstalledMod);
 	void OnCancelModInstallationSuccess();
 	struct FCFCoreError OnCancelModInstallation();
-	void MakeFInstallProgressModFromID(int64* ID, struct FInstallProgressMod* ReturnValue);
-	void MakeFInstallProgressMod(const struct FCFCoreMod& Mod, struct FInstallProgressMod* ReturnValue);
-	void IsAnyModInstalling(bool* ReturnValue);
-	void InstallMod(const struct FCFCoreMod& Mod);
+	struct FInstallProgressMod MakeFInstallProgressModFromID(int64* ID);
+	struct FInstallProgressMod MakeFInstallProgressMod();
+	bool IsAnyModInstalling();
+	struct FCFCoreMod InstallMod();
 	void InitializeUIController();
-	void InitializeModView(class UObject* View, const struct FCFCoreMod& Mod, bool* ReturnValue);
+	bool InitializeModView(class UObject* View);
 	void GetMyMods();
-	struct FInstallProgressMod GetModById(int64* ID, bool* ReturnValue);
+	bool GetModById(struct FInstallProgressMod* OutMod, int64* ID);
 	void GetInstalledMods();
-	void CancelModInstallation(const struct FCFCoreMod& Mod);
-	void ApiGetModsById(TArray<int64>* ModIds);
+	struct FCFCoreMod CancelModInstallation();
+	TArray<int64> ApiGetModsById();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -224,9 +224,9 @@ public:
 	static class UClass* StaticClass();
 	static class UCFCoreVirtualCursorFunctionLibrary* GetDefaultObj();
 
-	void IsCursorOverInteractableWidget(bool* ReturnValue);
-	class APlayerController* EnableVirtualCursor();
-	class APlayerController* DisableVirtualCursor();
+	bool IsCursorOverInteractableWidget();
+	void EnableVirtualCursor(class APlayerController** PC);
+	void DisableVirtualCursor(class APlayerController** PC);
 };
 
 }

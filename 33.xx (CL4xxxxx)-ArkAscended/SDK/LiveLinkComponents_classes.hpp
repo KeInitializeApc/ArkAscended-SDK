@@ -14,7 +14,7 @@ namespace SDK
 class ULiveLinkComponentSettings : public UObject
 {
 public:
-	TMap<class UClass*, class UClass*>           DefaultControllerForRole;                          // 0x28(0x50)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	TMap<class UClass*, class UClass*>           DefaultControllerForRole;                          // 0x28(0x50)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ULiveLinkComponentSettings* GetDefaultObj();
@@ -26,8 +26,8 @@ public:
 class ULiveLinkControllerBase : public UObject
 {
 public:
-	struct FComponentReference                   ComponentPicker;                                   // 0x28(0x28)(Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_E01[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	struct FComponentReference                   ComponentPicker;                                   // 0x28(0x28)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1435[0x18];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULiveLinkControllerBase* GetDefaultObj();
@@ -50,8 +50,8 @@ public:
 class ULiveLinkTransformController : public ULiveLinkControllerBase
 {
 public:
-	struct FLiveLinkTransformControllerData      TransformData;                                     // 0x68(0x6)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_E04[0x2];                                      // Fixing Size Of Struct > TateDumper <
+	struct FLiveLinkTransformControllerData      TransformData;                                     // 0x68(0x6)(ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1439[0x2];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULiveLinkTransformController* GetDefaultObj();
@@ -63,22 +63,22 @@ public:
 class ULiveLinkComponentController : public UActorComponent
 {
 public:
-	struct FLiveLinkSubjectRepresentation        SubjectRepresentation;                             // 0xB8(0x10)(ExportObject, Net, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	TMap<class UClass*, class ULiveLinkControllerBase*> ControllerMap;                                     // 0xC8(0x50)(Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bUpdateInEditor;                                   // 0x118(0x1)(ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_E11[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            OnLiveLinkUpdated;                                 // 0x120(0x10)(Edit, ConstParm, Net, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnControllerMapUpdatedDelegate;                    // 0x130(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bDisableEvaluateLiveLinkWhenSpawnable;             // 0x140(0x1)(Edit, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bEvaluateLiveLink;                                 // 0x141(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bUpdateInPreviewEditor;                            // 0x142(0x1)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_E13[0x1D];                                     // Fixing Size Of Struct > TateDumper <
+	struct FLiveLinkSubjectRepresentation        SubjectRepresentation;                             // 0xB8(0x10)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TMap<class UClass*, class ULiveLinkControllerBase*> ControllerMap;                                     // 0xC8(0x50)(Edit, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bUpdateInEditor;                                   // 0x118(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_144C[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            OnLiveLinkUpdated;                                 // 0x120(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnControllerMapUpdatedDelegate;                    // 0x130(0x10)(Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bDisableEvaluateLiveLinkWhenSpawnable;             // 0x140(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bEvaluateLiveLink;                                 // 0x141(0x1)(Edit, ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bUpdateInPreviewEditor;                            // 0x142(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_144F[0x1D];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULiveLinkComponentController* GetDefaultObj();
 
-	void SetSubjectRepresentation(const struct FLiveLinkSubjectRepresentation& InSubjectRepresentation);
-	void GetSubjectRepresentation(struct FLiveLinkSubjectRepresentation* ReturnValue);
+	struct FLiveLinkSubjectRepresentation SetSubjectRepresentation();
+	struct FLiveLinkSubjectRepresentation GetSubjectRepresentation();
 };
 
 }

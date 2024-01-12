@@ -38,7 +38,7 @@ enum class EMetasoundSourceAudioFormat : uint8
 struct FDefaultMetaSoundAssetAutoUpdateSettings
 {
 public:
-	struct FSoftObjectPath                       Metasound;                                         // 0x0(0x20)(Edit, ConstParm, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
+	struct FSoftObjectPath                       Metasound;                                         // 0x0(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -54,9 +54,9 @@ public:
 struct FMetaSoundAsyncAssetDependencies
 {
 public:
-	uint8                                        Pad_1F77[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	class UObject*                               Metasound;                                         // 0x8(0x8)(Edit, ConstParm, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1F78[0x20];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_260A[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	class UObject*                               Metasound;                                         // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_260B[0x20];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 }

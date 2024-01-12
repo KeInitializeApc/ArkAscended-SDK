@@ -43,21 +43,21 @@ class UCactusHarvestComponent_C* UCactusHarvestComponent_C::GetDefaultObj()
 // Function CactusHarvestComponent.CactusHarvestComponent_C.BPCustomHarvestResource
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UPrimalInventoryComponent*   InvComp                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              NumToGive                                                        (BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UClass*                      DamageTypeClass                                                  (ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class AActor*                      ToActor                                                          (Edit, ConstParm, ExportObject, ZeroConstructor, Transient, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class ACamelsaurus_Character_Base_BP_C*K2Node_DynamicCast_AsCamelsaurus_Character_Base_BP               (ConstParm, Parm, Transient, EditConst, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess_1                                    (Edit, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// double                             CallFunc_AddWater_NewWaterAmount                                 (ExportObject, BlueprintReadOnly, EditFixedSize, Transient, EditConst, SubobjectReference)
-// class UPrimalCharacterStatusComponent*CallFunc_GetCharacterStatusComponent_ReturnValue                 (Edit, ExportObject, Net, EditFixedSize, Transient, EditConst, SubobjectReference)
-// float                              CallFunc_AddStatusValueModifier_Speed_ImplicitCast               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, EditConst, SubobjectReference)
-// float                              CallFunc_AddStatusValueModifier_Amount_ImplicitCast              (Edit, ConstParm, Net, Transient, EditConst, SubobjectReference)
+// class UPrimalInventoryComponent*   InvComp                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// int32                              NumToGive                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      DamageTypeClass                                                  (BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class AActor*                      ToActor                                                          (Edit, ConstParm, BlueprintReadOnly, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class ACamelsaurus_Character_Base_BP_C*K2Node_DynamicCast_AsCamelsaurus_Character_Base_BP               (Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess_1                                    (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// double                             CallFunc_AddWater_NewWaterAmount                                 (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UPrimalCharacterStatusComponent*CallFunc_GetCharacterStatusComponent_ReturnValue                 (Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              CallFunc_AddStatusValueModifier_Speed_ImplicitCast               (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              CallFunc_AddStatusValueModifier_Amount_ImplicitCast              (Edit, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UCactusHarvestComponent_C::BPCustomHarvestResource(class UPrimalInventoryComponent* InvComp, int32 NumToGive, class AActor* ToActor, int32* ReturnValue, class ACamelsaurus_Character_Base_BP_C* K2Node_DynamicCast_AsCamelsaurus_Character_Base_BP, class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, double CallFunc_AddWater_NewWaterAmount, class UPrimalCharacterStatusComponent* CallFunc_GetCharacterStatusComponent_ReturnValue, float CallFunc_AddStatusValueModifier_Speed_ImplicitCast, float CallFunc_AddStatusValueModifier_Amount_ImplicitCast)
+float UCactusHarvestComponent_C::BPCustomHarvestResource(class UPrimalInventoryComponent** InvComp, int32* NumToGive, class UClass* DamageTypeClass, bool* K2Node_DynamicCast_bSuccess, class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, bool* K2Node_DynamicCast_bSuccess_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -66,20 +66,22 @@ bool UCactusHarvestComponent_C::BPCustomHarvestResource(class UPrimalInventoryCo
 
 	Params::UCactusHarvestComponent_C_BPCustomHarvestResource_Params Parms{};
 
-	Parms.InvComp = InvComp;
-	Parms.NumToGive = NumToGive;
-	Parms.ToActor = ToActor;
-	Parms.K2Node_DynamicCast_AsCamelsaurus_Character_Base_BP = K2Node_DynamicCast_AsCamelsaurus_Character_Base_BP;
+	Parms.DamageTypeClass = DamageTypeClass;
 	Parms.K2Node_DynamicCast_AsShooter_Character = K2Node_DynamicCast_AsShooter_Character;
-	Parms.CallFunc_AddWater_NewWaterAmount = CallFunc_AddWater_NewWaterAmount;
-	Parms.CallFunc_GetCharacterStatusComponent_ReturnValue = CallFunc_GetCharacterStatusComponent_ReturnValue;
-	Parms.CallFunc_AddStatusValueModifier_Speed_ImplicitCast = CallFunc_AddStatusValueModifier_Speed_ImplicitCast;
-	Parms.CallFunc_AddStatusValueModifier_Amount_ImplicitCast = CallFunc_AddStatusValueModifier_Amount_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InvComp != nullptr)
+		*InvComp = Parms.InvComp;
+
+	if (NumToGive != nullptr)
+		*NumToGive = Parms.NumToGive;
+
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+
+	if (K2Node_DynamicCast_bSuccess_1 != nullptr)
+		*K2Node_DynamicCast_bSuccess_1 = Parms.K2Node_DynamicCast_bSuccess_1;
 
 	return Parms.ReturnValue;
 

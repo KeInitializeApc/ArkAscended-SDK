@@ -43,10 +43,10 @@ class UMovieSceneParameterSection* UMovieSceneParameterSection::GetDefaultObj()
 // Function MovieSceneTracks.MovieSceneParameterSection.RemoveVectorParameter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (ConstParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UMovieSceneParameterSection::RemoveVectorParameter(bool* ReturnValue)
+bool UMovieSceneParameterSection::RemoveVectorParameter(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,6 +55,7 @@ class FName UMovieSceneParameterSection::RemoveVectorParameter(bool* ReturnValue
 
 	Params::UMovieSceneParameterSection_RemoveVectorParameter_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -63,9 +64,6 @@ class FName UMovieSceneParameterSection::RemoveVectorParameter(bool* ReturnValue
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -75,10 +73,10 @@ class FName UMovieSceneParameterSection::RemoveVectorParameter(bool* ReturnValue
 // Function MovieSceneTracks.MovieSceneParameterSection.RemoveVector2DParameter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (ConstParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UMovieSceneParameterSection::RemoveVector2DParameter(bool* ReturnValue)
+bool UMovieSceneParameterSection::RemoveVector2DParameter(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -87,6 +85,7 @@ class FName UMovieSceneParameterSection::RemoveVector2DParameter(bool* ReturnVal
 
 	Params::UMovieSceneParameterSection_RemoveVector2DParameter_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -95,9 +94,6 @@ class FName UMovieSceneParameterSection::RemoveVector2DParameter(bool* ReturnVal
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -107,10 +103,10 @@ class FName UMovieSceneParameterSection::RemoveVector2DParameter(bool* ReturnVal
 // Function MovieSceneTracks.MovieSceneParameterSection.RemoveTransformParameter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (ConstParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UMovieSceneParameterSection::RemoveTransformParameter(bool* ReturnValue)
+bool UMovieSceneParameterSection::RemoveTransformParameter(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -119,6 +115,7 @@ class FName UMovieSceneParameterSection::RemoveTransformParameter(bool* ReturnVa
 
 	Params::UMovieSceneParameterSection_RemoveTransformParameter_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -127,9 +124,6 @@ class FName UMovieSceneParameterSection::RemoveTransformParameter(bool* ReturnVa
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -139,10 +133,10 @@ class FName UMovieSceneParameterSection::RemoveTransformParameter(bool* ReturnVa
 // Function MovieSceneTracks.MovieSceneParameterSection.RemoveScalarParameter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (ConstParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UMovieSceneParameterSection::RemoveScalarParameter(bool* ReturnValue)
+bool UMovieSceneParameterSection::RemoveScalarParameter(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -151,6 +145,7 @@ class FName UMovieSceneParameterSection::RemoveScalarParameter(bool* ReturnValue
 
 	Params::UMovieSceneParameterSection_RemoveScalarParameter_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -159,9 +154,6 @@ class FName UMovieSceneParameterSection::RemoveScalarParameter(bool* ReturnValue
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -171,10 +163,10 @@ class FName UMovieSceneParameterSection::RemoveScalarParameter(bool* ReturnValue
 // Function MovieSceneTracks.MovieSceneParameterSection.RemoveColorParameter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (ConstParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UMovieSceneParameterSection::RemoveColorParameter(bool* ReturnValue)
+bool UMovieSceneParameterSection::RemoveColorParameter(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -183,6 +175,7 @@ class FName UMovieSceneParameterSection::RemoveColorParameter(bool* ReturnValue)
 
 	Params::UMovieSceneParameterSection_RemoveColorParameter_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -191,9 +184,6 @@ class FName UMovieSceneParameterSection::RemoveColorParameter(bool* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -203,10 +193,10 @@ class FName UMovieSceneParameterSection::RemoveColorParameter(bool* ReturnValue)
 // Function MovieSceneTracks.MovieSceneParameterSection.RemoveBoolParameter
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (ConstParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UMovieSceneParameterSection::RemoveBoolParameter(bool* ReturnValue)
+bool UMovieSceneParameterSection::RemoveBoolParameter(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -215,6 +205,7 @@ class FName UMovieSceneParameterSection::RemoveBoolParameter(bool* ReturnValue)
 
 	Params::UMovieSceneParameterSection_RemoveBoolParameter_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -223,9 +214,6 @@ class FName UMovieSceneParameterSection::RemoveBoolParameter(bool* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -235,9 +223,9 @@ class FName UMovieSceneParameterSection::RemoveBoolParameter(bool* ReturnValue)
 // Function MovieSceneTracks.MovieSceneParameterSection.GetParameterNames
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TSet<class FName>                  ParameterNames                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TSet<class FName>                  ParameterNames                                                   (ConstParm, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TSet<class FName> UMovieSceneParameterSection::GetParameterNames()
+void UMovieSceneParameterSection::GetParameterNames(TSet<class FName> ParameterNames)
 {
 	static class UFunction* Func = nullptr;
 
@@ -246,6 +234,7 @@ TSet<class FName> UMovieSceneParameterSection::GetParameterNames()
 
 	Params::UMovieSceneParameterSection_GetParameterNames_Params Parms{};
 
+	Parms.ParameterNames = ParameterNames;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -255,19 +244,17 @@ TSet<class FName> UMovieSceneParameterSection::GetParameterNames()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MovieSceneTracks.MovieSceneParameterSection.AddVectorParameterKey
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (ConstParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// struct FFrameNumber                InTime                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InParameterName                                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FFrameNumber                InTime                                                           (Edit, ExportObject, Net, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
-struct FVector UMovieSceneParameterSection::AddVectorParameterKey()
+struct FVector UMovieSceneParameterSection::AddVectorParameterKey(class FName InParameterName, const struct FFrameNumber& InTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -276,6 +263,8 @@ struct FVector UMovieSceneParameterSection::AddVectorParameterKey()
 
 	Params::UMovieSceneParameterSection_AddVectorParameterKey_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
+	Parms.InTime = InTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -293,11 +282,11 @@ struct FVector UMovieSceneParameterSection::AddVectorParameterKey()
 // Function MovieSceneTracks.MovieSceneParameterSection.AddVector2DParameterKey
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (ConstParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// struct FFrameNumber                InTime                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector2D                   InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InParameterName                                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FFrameNumber                InTime                                                           (Edit, ExportObject, Net, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
-struct FVector2D UMovieSceneParameterSection::AddVector2DParameterKey()
+struct FVector2D UMovieSceneParameterSection::AddVector2DParameterKey(class FName InParameterName, const struct FFrameNumber& InTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -306,6 +295,8 @@ struct FVector2D UMovieSceneParameterSection::AddVector2DParameterKey()
 
 	Params::UMovieSceneParameterSection_AddVector2DParameterKey_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
+	Parms.InTime = InTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -323,11 +314,11 @@ struct FVector2D UMovieSceneParameterSection::AddVector2DParameterKey()
 // Function MovieSceneTracks.MovieSceneParameterSection.AddTransformParameterKey
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (ConstParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// struct FFrameNumber                InTime                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FTransform                  InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InParameterName                                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FFrameNumber                InTime                                                           (Edit, ExportObject, Net, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
-struct FTransform UMovieSceneParameterSection::AddTransformParameterKey()
+struct FTransform UMovieSceneParameterSection::AddTransformParameterKey(class FName InParameterName, const struct FFrameNumber& InTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -336,6 +327,8 @@ struct FTransform UMovieSceneParameterSection::AddTransformParameterKey()
 
 	Params::UMovieSceneParameterSection_AddTransformParameterKey_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
+	Parms.InTime = InTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -353,11 +346,11 @@ struct FTransform UMovieSceneParameterSection::AddTransformParameterKey()
 // Function MovieSceneTracks.MovieSceneParameterSection.AddScalarParameterKey
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (ConstParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// struct FFrameNumber                InTime                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InParameterName                                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FFrameNumber                InTime                                                           (Edit, ExportObject, Net, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
-float UMovieSceneParameterSection::AddScalarParameterKey()
+float UMovieSceneParameterSection::AddScalarParameterKey(class FName InParameterName, const struct FFrameNumber& InTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -366,6 +359,8 @@ float UMovieSceneParameterSection::AddScalarParameterKey()
 
 	Params::UMovieSceneParameterSection_AddScalarParameterKey_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
+	Parms.InTime = InTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -383,11 +378,11 @@ float UMovieSceneParameterSection::AddScalarParameterKey()
 // Function MovieSceneTracks.MovieSceneParameterSection.AddColorParameterKey
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (ConstParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// struct FFrameNumber                InTime                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FLinearColor                InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InParameterName                                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FFrameNumber                InTime                                                           (Edit, ExportObject, Net, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
-struct FLinearColor UMovieSceneParameterSection::AddColorParameterKey()
+struct FLinearColor UMovieSceneParameterSection::AddColorParameterKey(class FName InParameterName, const struct FFrameNumber& InTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -396,6 +391,8 @@ struct FLinearColor UMovieSceneParameterSection::AddColorParameterKey()
 
 	Params::UMovieSceneParameterSection_AddColorParameterKey_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
+	Parms.InTime = InTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -413,11 +410,11 @@ struct FLinearColor UMovieSceneParameterSection::AddColorParameterKey()
 // Function MovieSceneTracks.MovieSceneParameterSection.AddBoolParameterKey
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (ConstParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// struct FFrameNumber                InTime                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// class FName                        InParameterName                                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FFrameNumber                InTime                                                           (Edit, ExportObject, Net, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
-bool UMovieSceneParameterSection::AddBoolParameterKey()
+bool UMovieSceneParameterSection::AddBoolParameterKey(class FName InParameterName, const struct FFrameNumber& InTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -426,6 +423,8 @@ bool UMovieSceneParameterSection::AddBoolParameterKey()
 
 	Params::UMovieSceneParameterSection_AddBoolParameterKey_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
+	Parms.InTime = InTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -527,9 +526,9 @@ class IMovieSceneTransformOrigin* IMovieSceneTransformOrigin::GetDefaultObj()
 // Function MovieSceneTracks.MovieSceneTransformOrigin.BP_GetTransformOrigin
 // (Event, Protected, HasDefaults, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
 // Parameters:
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void IMovieSceneTransformOrigin::BP_GetTransformOrigin(struct FTransform* ReturnValue)
+struct FTransform IMovieSceneTransformOrigin::BP_GetTransformOrigin()
 {
 	static class UFunction* Func = nullptr;
 
@@ -541,8 +540,7 @@ void IMovieSceneTransformOrigin::BP_GetTransformOrigin(struct FTransform* Return
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -802,9 +800,9 @@ class UMovieScene3DConstraintSection* UMovieScene3DConstraintSection::GetDefault
 // Function MovieSceneTracks.MovieScene3DConstraintSection.SetConstraintBindingID
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FMovieSceneObjectBindingID  InConstraintBindingID                                            (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FMovieSceneObjectBindingID  InConstraintBindingID                                            (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FMovieSceneObjectBindingID UMovieScene3DConstraintSection::SetConstraintBindingID()
+void UMovieScene3DConstraintSection::SetConstraintBindingID(const struct FMovieSceneObjectBindingID& InConstraintBindingID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -813,6 +811,7 @@ struct FMovieSceneObjectBindingID UMovieScene3DConstraintSection::SetConstraintB
 
 	Params::UMovieScene3DConstraintSection_SetConstraintBindingID_Params Parms{};
 
+	Parms.InConstraintBindingID = InConstraintBindingID;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -822,17 +821,15 @@ struct FMovieSceneObjectBindingID UMovieScene3DConstraintSection::SetConstraintB
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MovieSceneTracks.MovieScene3DConstraintSection.GetConstraintBindingID
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FMovieSceneObjectBindingID  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FMovieSceneObjectBindingID  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieScene3DConstraintSection::GetConstraintBindingID(struct FMovieSceneObjectBindingID* ReturnValue)
+struct FMovieSceneObjectBindingID UMovieScene3DConstraintSection::GetConstraintBindingID()
 {
 	static class UFunction* Func = nullptr;
 
@@ -850,8 +847,7 @@ void UMovieScene3DConstraintSection::GetConstraintBindingID(struct FMovieSceneOb
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1027,9 +1023,9 @@ class UMovieSceneAudioSection* UMovieSceneAudioSection::GetDefaultObj()
 // Function MovieSceneTracks.MovieSceneAudioSection.SetStartOffset
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FFrameNumber                InStartOffset                                                    (ConstParm, ExportObject, Net, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FFrameNumber                InStartOffset                                                    (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UMovieSceneAudioSection::SetStartOffset(const struct FFrameNumber& InStartOffset)
+void UMovieSceneAudioSection::SetStartOffset(struct FFrameNumber* InStartOffset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1038,7 +1034,6 @@ void UMovieSceneAudioSection::SetStartOffset(const struct FFrameNumber& InStartO
 
 	Params::UMovieSceneAudioSection_SetStartOffset_Params Parms{};
 
-	Parms.InStartOffset = InStartOffset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1048,15 +1043,18 @@ void UMovieSceneAudioSection::SetStartOffset(const struct FFrameNumber& InStartO
 
 	Func->FunctionFlags = Flgs;
 
+	if (InStartOffset != nullptr)
+		*InStartOffset = std::move(Parms.InStartOffset);
+
 }
 
 
 // Function MovieSceneTracks.MovieSceneAudioSection.SetSound
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundBase*                  InSound                                                          (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class USoundBase*                  InSound                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-class USoundBase* UMovieSceneAudioSection::SetSound()
+void UMovieSceneAudioSection::SetSound(class USoundBase* InSound)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1065,6 +1063,7 @@ class USoundBase* UMovieSceneAudioSection::SetSound()
 
 	Params::UMovieSceneAudioSection_SetSound_Params Parms{};
 
+	Parms.InSound = InSound;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1074,17 +1073,15 @@ class USoundBase* UMovieSceneAudioSection::SetSound()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MovieSceneTracks.MovieSceneAudioSection.GetStartOffset
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FFrameNumber                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameNumber                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieSceneAudioSection::GetStartOffset(struct FFrameNumber* ReturnValue)
+struct FFrameNumber UMovieSceneAudioSection::GetStartOffset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1102,8 +1099,7 @@ void UMovieSceneAudioSection::GetStartOffset(struct FFrameNumber* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1111,9 +1107,9 @@ void UMovieSceneAudioSection::GetStartOffset(struct FFrameNumber* ReturnValue)
 // Function MovieSceneTracks.MovieSceneAudioSection.GetSound
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class USoundBase*                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USoundBase*                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieSceneAudioSection::GetSound(class USoundBase** ReturnValue)
+class USoundBase* UMovieSceneAudioSection::GetSound()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1131,8 +1127,7 @@ void UMovieSceneAudioSection::GetSound(class USoundBase** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1224,9 +1219,9 @@ class UMovieSceneCameraCutSection* UMovieSceneCameraCutSection::GetDefaultObj()
 // Function MovieSceneTracks.MovieSceneCameraCutSection.SetCameraBindingID
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FMovieSceneObjectBindingID  InCameraBindingID                                                (Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FMovieSceneObjectBindingID  InCameraBindingID                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UMovieSceneCameraCutSection::SetCameraBindingID(const struct FMovieSceneObjectBindingID& InCameraBindingID)
+void UMovieSceneCameraCutSection::SetCameraBindingID(struct FMovieSceneObjectBindingID* InCameraBindingID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1235,7 +1230,6 @@ void UMovieSceneCameraCutSection::SetCameraBindingID(const struct FMovieSceneObj
 
 	Params::UMovieSceneCameraCutSection_SetCameraBindingID_Params Parms{};
 
-	Parms.InCameraBindingID = InCameraBindingID;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1245,15 +1239,18 @@ void UMovieSceneCameraCutSection::SetCameraBindingID(const struct FMovieSceneObj
 
 	Func->FunctionFlags = Flgs;
 
+	if (InCameraBindingID != nullptr)
+		*InCameraBindingID = std::move(Parms.InCameraBindingID);
+
 }
 
 
 // Function MovieSceneTracks.MovieSceneCameraCutSection.GetCameraBindingID
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FMovieSceneObjectBindingID  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FMovieSceneObjectBindingID  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieSceneCameraCutSection::GetCameraBindingID(struct FMovieSceneObjectBindingID* ReturnValue)
+struct FMovieSceneObjectBindingID UMovieSceneCameraCutSection::GetCameraBindingID()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1271,8 +1268,7 @@ void UMovieSceneCameraCutSection::GetCameraBindingID(struct FMovieSceneObjectBin
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1392,9 +1388,9 @@ class UMovieSceneCinematicShotSection* UMovieSceneCinematicShotSection::GetDefau
 // Function MovieSceneTracks.MovieSceneCinematicShotSection.SetShotDisplayName
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InShotDisplayName                                                (ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      InShotDisplayName                                                (Edit, ConstParm, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UMovieSceneCinematicShotSection::SetShotDisplayName(class FString* InShotDisplayName)
+class FString UMovieSceneCinematicShotSection::SetShotDisplayName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1412,8 +1408,7 @@ void UMovieSceneCinematicShotSection::SetShotDisplayName(class FString* InShotDi
 
 	Func->FunctionFlags = Flgs;
 
-	if (InShotDisplayName != nullptr)
-		*InShotDisplayName = std::move(Parms.InShotDisplayName);
+	return Parms.ReturnValue;
 
 }
 
@@ -1421,9 +1416,9 @@ void UMovieSceneCinematicShotSection::SetShotDisplayName(class FString* InShotDi
 // Function MovieSceneTracks.MovieSceneCinematicShotSection.GetShotDisplayName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieSceneCinematicShotSection::GetShotDisplayName(class FString* ReturnValue)
+class FString UMovieSceneCinematicShotSection::GetShotDisplayName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1441,8 +1436,7 @@ void UMovieSceneCinematicShotSection::GetShotDisplayName(class FString* ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1534,9 +1528,9 @@ class UMovieSceneCVarSection* UMovieSceneCVarSection::GetDefaultObj()
 // Function MovieSceneTracks.MovieSceneCVarSection.SetFromString
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InString                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InString                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieSceneCVarSection::SetFromString(const class FString& InString)
+class FString UMovieSceneCVarSection::SetFromString()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1545,7 +1539,6 @@ void UMovieSceneCVarSection::SetFromString(const class FString& InString)
 
 	Params::UMovieSceneCVarSection_SetFromString_Params Parms{};
 
-	Parms.InString = InString;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1555,15 +1548,17 @@ void UMovieSceneCVarSection::SetFromString(const class FString& InString)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MovieSceneTracks.MovieSceneCVarSection.GetString
 // (Final, RequiredAPI, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieSceneCVarSection::GetString(class FString* ReturnValue)
+class FString UMovieSceneCVarSection::GetString()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1581,8 +1576,7 @@ void UMovieSceneCVarSection::GetString(class FString* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1618,9 +1612,9 @@ class UMovieSceneDataLayerSection* UMovieSceneDataLayerSection::GetDefaultObj()
 // Function MovieSceneTracks.MovieSceneDataLayerSection.SetPrerollState
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EDataLayerRuntimeState  InPrerollState                                                   (ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EDataLayerRuntimeState  InPrerollState                                                   (Edit, BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UMovieSceneDataLayerSection::SetPrerollState(enum class EDataLayerRuntimeState* InPrerollState)
+enum class EDataLayerRuntimeState UMovieSceneDataLayerSection::SetPrerollState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1638,8 +1632,7 @@ void UMovieSceneDataLayerSection::SetPrerollState(enum class EDataLayerRuntimeSt
 
 	Func->FunctionFlags = Flgs;
 
-	if (InPrerollState != nullptr)
-		*InPrerollState = Parms.InPrerollState;
+	return Parms.ReturnValue;
 
 }
 
@@ -1647,9 +1640,9 @@ void UMovieSceneDataLayerSection::SetPrerollState(enum class EDataLayerRuntimeSt
 // Function MovieSceneTracks.MovieSceneDataLayerSection.SetFlushOnUnload
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bFlushOnUnload                                                   (ConstParm, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bFlushOnUnload                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UMovieSceneDataLayerSection::SetFlushOnUnload(bool* bFlushOnUnload)
+bool UMovieSceneDataLayerSection::SetFlushOnUnload()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1667,8 +1660,7 @@ void UMovieSceneDataLayerSection::SetFlushOnUnload(bool* bFlushOnUnload)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bFlushOnUnload != nullptr)
-		*bFlushOnUnload = Parms.bFlushOnUnload;
+	return Parms.ReturnValue;
 
 }
 
@@ -1676,9 +1668,9 @@ void UMovieSceneDataLayerSection::SetFlushOnUnload(bool* bFlushOnUnload)
 // Function MovieSceneTracks.MovieSceneDataLayerSection.SetDesiredState
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EDataLayerRuntimeState  InDesiredState                                                   (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EDataLayerRuntimeState  InDesiredState                                                   (Edit, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UMovieSceneDataLayerSection::SetDesiredState(enum class EDataLayerRuntimeState* InDesiredState)
+enum class EDataLayerRuntimeState UMovieSceneDataLayerSection::SetDesiredState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1696,8 +1688,7 @@ void UMovieSceneDataLayerSection::SetDesiredState(enum class EDataLayerRuntimeSt
 
 	Func->FunctionFlags = Flgs;
 
-	if (InDesiredState != nullptr)
-		*InDesiredState = Parms.InDesiredState;
+	return Parms.ReturnValue;
 
 }
 
@@ -1705,9 +1696,9 @@ void UMovieSceneDataLayerSection::SetDesiredState(enum class EDataLayerRuntimeSt
 // Function MovieSceneTracks.MovieSceneDataLayerSection.SetDataLayers
 // (Final, Native, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FActorDataLayer>     InDataLayers                                                     (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FActorDataLayer>     InDataLayers                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UMovieSceneDataLayerSection::SetDataLayers(TArray<struct FActorDataLayer>* InDataLayers)
+TArray<struct FActorDataLayer> UMovieSceneDataLayerSection::SetDataLayers()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1725,8 +1716,7 @@ void UMovieSceneDataLayerSection::SetDataLayers(TArray<struct FActorDataLayer>* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InDataLayers != nullptr)
-		*InDataLayers = std::move(Parms.InDataLayers);
+	return Parms.ReturnValue;
 
 }
 
@@ -1734,9 +1724,9 @@ void UMovieSceneDataLayerSection::SetDataLayers(TArray<struct FActorDataLayer>* 
 // Function MovieSceneTracks.MovieSceneDataLayerSection.SetDataLayerAssets
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class UDataLayerAsset*>     InDataLayerAssets                                                (Edit, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class UDataLayerAsset*>     InDataLayerAssets                                                (BlueprintVisible, Net, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UMovieSceneDataLayerSection::SetDataLayerAssets(TArray<class UDataLayerAsset*>* InDataLayerAssets)
+TArray<class UDataLayerAsset*> UMovieSceneDataLayerSection::SetDataLayerAssets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1754,8 +1744,7 @@ void UMovieSceneDataLayerSection::SetDataLayerAssets(TArray<class UDataLayerAsse
 
 	Func->FunctionFlags = Flgs;
 
-	if (InDataLayerAssets != nullptr)
-		*InDataLayerAssets = std::move(Parms.InDataLayerAssets);
+	return Parms.ReturnValue;
 
 }
 
@@ -1763,9 +1752,9 @@ void UMovieSceneDataLayerSection::SetDataLayerAssets(TArray<class UDataLayerAsse
 // Function MovieSceneTracks.MovieSceneDataLayerSection.GetPrerollState
 // (Final, RequiredAPI, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EDataLayerRuntimeState  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EDataLayerRuntimeState  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieSceneDataLayerSection::GetPrerollState(enum class EDataLayerRuntimeState* ReturnValue)
+enum class EDataLayerRuntimeState UMovieSceneDataLayerSection::GetPrerollState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1783,8 +1772,7 @@ void UMovieSceneDataLayerSection::GetPrerollState(enum class EDataLayerRuntimeSt
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1792,9 +1780,9 @@ void UMovieSceneDataLayerSection::GetPrerollState(enum class EDataLayerRuntimeSt
 // Function MovieSceneTracks.MovieSceneDataLayerSection.GetFlushOnUnload
 // (Final, RequiredAPI, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieSceneDataLayerSection::GetFlushOnUnload(bool* ReturnValue)
+bool UMovieSceneDataLayerSection::GetFlushOnUnload()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1812,8 +1800,7 @@ void UMovieSceneDataLayerSection::GetFlushOnUnload(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1821,9 +1808,9 @@ void UMovieSceneDataLayerSection::GetFlushOnUnload(bool* ReturnValue)
 // Function MovieSceneTracks.MovieSceneDataLayerSection.GetDesiredState
 // (Final, RequiredAPI, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EDataLayerRuntimeState  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EDataLayerRuntimeState  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieSceneDataLayerSection::GetDesiredState(enum class EDataLayerRuntimeState* ReturnValue)
+enum class EDataLayerRuntimeState UMovieSceneDataLayerSection::GetDesiredState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1841,8 +1828,7 @@ void UMovieSceneDataLayerSection::GetDesiredState(enum class EDataLayerRuntimeSt
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1850,9 +1836,9 @@ void UMovieSceneDataLayerSection::GetDesiredState(enum class EDataLayerRuntimeSt
 // Function MovieSceneTracks.MovieSceneDataLayerSection.GetDataLayers
 // (Final, Native, Private, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FActorDataLayer>     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FActorDataLayer>     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieSceneDataLayerSection::GetDataLayers(TArray<struct FActorDataLayer>* ReturnValue)
+TArray<struct FActorDataLayer> UMovieSceneDataLayerSection::GetDataLayers()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1870,8 +1856,7 @@ void UMovieSceneDataLayerSection::GetDataLayers(TArray<struct FActorDataLayer>* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1879,9 +1864,9 @@ void UMovieSceneDataLayerSection::GetDataLayers(TArray<struct FActorDataLayer>* 
 // Function MovieSceneTracks.MovieSceneDataLayerSection.GetDataLayerAssets
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UDataLayerAsset*>     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UDataLayerAsset*>     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieSceneDataLayerSection::GetDataLayerAssets(TArray<class UDataLayerAsset*>* ReturnValue)
+TArray<class UDataLayerAsset*> UMovieSceneDataLayerSection::GetDataLayerAssets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1899,8 +1884,7 @@ void UMovieSceneDataLayerSection::GetDataLayerAssets(TArray<class UDataLayerAsse
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2188,9 +2172,9 @@ class UMovieSceneLevelVisibilitySection* UMovieSceneLevelVisibilitySection::GetD
 // Function MovieSceneTracks.MovieSceneLevelVisibilitySection.SetVisibility
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ELevelVisibility        InVisibility                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ELevelVisibility        InVisibility                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UMovieSceneLevelVisibilitySection::SetVisibility(enum class ELevelVisibility* InVisibility)
+enum class ELevelVisibility UMovieSceneLevelVisibilitySection::SetVisibility()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2208,8 +2192,7 @@ void UMovieSceneLevelVisibilitySection::SetVisibility(enum class ELevelVisibilit
 
 	Func->FunctionFlags = Flgs;
 
-	if (InVisibility != nullptr)
-		*InVisibility = Parms.InVisibility;
+	return Parms.ReturnValue;
 
 }
 
@@ -2217,9 +2200,9 @@ void UMovieSceneLevelVisibilitySection::SetVisibility(enum class ELevelVisibilit
 // Function MovieSceneTracks.MovieSceneLevelVisibilitySection.SetLevelNames
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class FName>                InLevelNames                                                     (BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class FName>                InLevelNames                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UMovieSceneLevelVisibilitySection::SetLevelNames(TArray<class FName>* InLevelNames)
+TArray<class FName> UMovieSceneLevelVisibilitySection::SetLevelNames()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2237,8 +2220,7 @@ void UMovieSceneLevelVisibilitySection::SetLevelNames(TArray<class FName>* InLev
 
 	Func->FunctionFlags = Flgs;
 
-	if (InLevelNames != nullptr)
-		*InLevelNames = std::move(Parms.InLevelNames);
+	return Parms.ReturnValue;
 
 }
 
@@ -2246,9 +2228,9 @@ void UMovieSceneLevelVisibilitySection::SetLevelNames(TArray<class FName>* InLev
 // Function MovieSceneTracks.MovieSceneLevelVisibilitySection.GetVisibility
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class ELevelVisibility        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ELevelVisibility        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieSceneLevelVisibilitySection::GetVisibility(enum class ELevelVisibility* ReturnValue)
+enum class ELevelVisibility UMovieSceneLevelVisibilitySection::GetVisibility()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2266,8 +2248,7 @@ void UMovieSceneLevelVisibilitySection::GetVisibility(enum class ELevelVisibilit
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2275,9 +2256,9 @@ void UMovieSceneLevelVisibilitySection::GetVisibility(enum class ELevelVisibilit
 // Function MovieSceneTracks.MovieSceneLevelVisibilitySection.GetLevelNames
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMovieSceneLevelVisibilitySection::GetLevelNames(TArray<class FName>* ReturnValue)
+TArray<class FName> UMovieSceneLevelVisibilitySection::GetLevelNames()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2295,8 +2276,7 @@ void UMovieSceneLevelVisibilitySection::GetLevelNames(TArray<class FName>* Retur
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3761,11 +3741,11 @@ class UMovieSceneAsyncAction_SequencePrediction* UMovieSceneAsyncAction_Sequence
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UMovieSceneSequencePlayer*   Player                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst)
-// class USceneComponent*             TargetComponent                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              TimeInSeconds                                                    (Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// class UMovieSceneAsyncAction_SequencePrediction*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USceneComponent*             TargetComponent                                                  (Edit, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              TimeInSeconds                                                    (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// class UMovieSceneAsyncAction_SequencePrediction*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UMovieSceneAsyncAction_SequencePrediction::PredictWorldTransformAtTime(class USceneComponent* TargetComponent, class UMovieSceneAsyncAction_SequencePrediction** ReturnValue)
+class UMovieSceneAsyncAction_SequencePrediction* UMovieSceneAsyncAction_SequencePrediction::PredictWorldTransformAtTime(float TimeInSeconds)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3774,7 +3754,7 @@ float UMovieSceneAsyncAction_SequencePrediction::PredictWorldTransformAtTime(cla
 
 	Params::UMovieSceneAsyncAction_SequencePrediction_PredictWorldTransformAtTime_Params Parms{};
 
-	Parms.TargetComponent = TargetComponent;
+	Parms.TimeInSeconds = TimeInSeconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3783,9 +3763,6 @@ float UMovieSceneAsyncAction_SequencePrediction::PredictWorldTransformAtTime(cla
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3796,11 +3773,11 @@ float UMovieSceneAsyncAction_SequencePrediction::PredictWorldTransformAtTime(cla
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UMovieSceneSequencePlayer*   Player                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst)
-// class USceneComponent*             TargetComponent                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class USceneComponent*             TargetComponent                                                  (Edit, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 // struct FFrameTime                  FrameTime                                                        (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-// class UMovieSceneAsyncAction_SequencePrediction*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMovieSceneAsyncAction_SequencePrediction*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FFrameTime UMovieSceneAsyncAction_SequencePrediction::PredictWorldTransformAtFrame(class USceneComponent* TargetComponent, class UMovieSceneAsyncAction_SequencePrediction** ReturnValue)
+class UMovieSceneAsyncAction_SequencePrediction* UMovieSceneAsyncAction_SequencePrediction::PredictWorldTransformAtFrame()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3809,7 +3786,6 @@ struct FFrameTime UMovieSceneAsyncAction_SequencePrediction::PredictWorldTransfo
 
 	Params::UMovieSceneAsyncAction_SequencePrediction_PredictWorldTransformAtFrame_Params Parms{};
 
-	Parms.TargetComponent = TargetComponent;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3818,9 +3794,6 @@ struct FFrameTime UMovieSceneAsyncAction_SequencePrediction::PredictWorldTransfo
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3831,11 +3804,11 @@ struct FFrameTime UMovieSceneAsyncAction_SequencePrediction::PredictWorldTransfo
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UMovieSceneSequencePlayer*   Player                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst)
-// class USceneComponent*             TargetComponent                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              TimeInSeconds                                                    (Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// class UMovieSceneAsyncAction_SequencePrediction*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USceneComponent*             TargetComponent                                                  (Edit, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              TimeInSeconds                                                    (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// class UMovieSceneAsyncAction_SequencePrediction*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UMovieSceneAsyncAction_SequencePrediction::PredictLocalTransformAtTime(class USceneComponent* TargetComponent, class UMovieSceneAsyncAction_SequencePrediction** ReturnValue)
+class UMovieSceneAsyncAction_SequencePrediction* UMovieSceneAsyncAction_SequencePrediction::PredictLocalTransformAtTime(float TimeInSeconds)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3844,7 +3817,7 @@ float UMovieSceneAsyncAction_SequencePrediction::PredictLocalTransformAtTime(cla
 
 	Params::UMovieSceneAsyncAction_SequencePrediction_PredictLocalTransformAtTime_Params Parms{};
 
-	Parms.TargetComponent = TargetComponent;
+	Parms.TimeInSeconds = TimeInSeconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3853,9 +3826,6 @@ float UMovieSceneAsyncAction_SequencePrediction::PredictLocalTransformAtTime(cla
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3866,11 +3836,11 @@ float UMovieSceneAsyncAction_SequencePrediction::PredictLocalTransformAtTime(cla
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UMovieSceneSequencePlayer*   Player                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst)
-// class USceneComponent*             TargetComponent                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class USceneComponent*             TargetComponent                                                  (Edit, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 // struct FFrameTime                  FrameTime                                                        (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-// class UMovieSceneAsyncAction_SequencePrediction*ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMovieSceneAsyncAction_SequencePrediction*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FFrameTime UMovieSceneAsyncAction_SequencePrediction::PredictLocalTransformAtFrame(class USceneComponent* TargetComponent, class UMovieSceneAsyncAction_SequencePrediction** ReturnValue)
+class UMovieSceneAsyncAction_SequencePrediction* UMovieSceneAsyncAction_SequencePrediction::PredictLocalTransformAtFrame()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3879,7 +3849,6 @@ struct FFrameTime UMovieSceneAsyncAction_SequencePrediction::PredictLocalTransfo
 
 	Params::UMovieSceneAsyncAction_SequencePrediction_PredictLocalTransformAtFrame_Params Parms{};
 
-	Parms.TargetComponent = TargetComponent;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3888,9 +3857,6 @@ struct FFrameTime UMovieSceneAsyncAction_SequencePrediction::PredictLocalTransfo
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 

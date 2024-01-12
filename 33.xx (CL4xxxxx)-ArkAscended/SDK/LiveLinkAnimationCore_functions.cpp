@@ -70,9 +70,9 @@ void ULiveLinkInstance::SetSubject(const struct FLiveLinkSubjectName& SubjectNam
 // Function LiveLinkAnimationCore.LiveLinkInstance.SetRetargetAsset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      RetargetAsset                                                    (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UClass*                      RetargetAsset                                                    (BlueprintVisible, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class UClass* ULiveLinkInstance::SetRetargetAsset()
+void ULiveLinkInstance::SetRetargetAsset(class UClass* RetargetAsset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -81,6 +81,7 @@ class UClass* ULiveLinkInstance::SetRetargetAsset()
 
 	Params::ULiveLinkInstance_SetRetargetAsset_Params Parms{};
 
+	Parms.RetargetAsset = RetargetAsset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -89,8 +90,6 @@ class UClass* ULiveLinkInstance::SetRetargetAsset()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -154,9 +153,9 @@ class ULiveLinkRemapAsset* ULiveLinkRemapAsset::GetDefaultObj()
 // Function LiveLinkAnimationCore.LiveLinkRemapAsset.RemapCurveElements
 // (Native, Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// TMap<class FName, float>           CurveItems                                                       (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TMap<class FName, float>           CurveItems                                                       (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void ULiveLinkRemapAsset::RemapCurveElements(TMap<class FName, float> CurveItems)
+TMap<class FName, float> ULiveLinkRemapAsset::RemapCurveElements()
 {
 	static class UFunction* Func = nullptr;
 
@@ -165,7 +164,6 @@ void ULiveLinkRemapAsset::RemapCurveElements(TMap<class FName, float> CurveItems
 
 	Params::ULiveLinkRemapAsset_RemapCurveElements_Params Parms{};
 
-	Parms.CurveItems = CurveItems;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -175,16 +173,18 @@ void ULiveLinkRemapAsset::RemapCurveElements(TMap<class FName, float> CurveItems
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function LiveLinkAnimationCore.LiveLinkRemapAsset.GetRemappedCurveName
 // (Native, Event, Public, BlueprintEvent, Const)
 // Parameters:
-// class FName                        CurveName                                                        (BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        CurveName                                                        (ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName ULiveLinkRemapAsset::GetRemappedCurveName(class FName* ReturnValue)
+class FName ULiveLinkRemapAsset::GetRemappedCurveName(class FName CurveName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -193,6 +193,7 @@ class FName ULiveLinkRemapAsset::GetRemappedCurveName(class FName* ReturnValue)
 
 	Params::ULiveLinkRemapAsset_GetRemappedCurveName_Params Parms{};
 
+	Parms.CurveName = CurveName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -201,9 +202,6 @@ class FName ULiveLinkRemapAsset::GetRemappedCurveName(class FName* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -214,9 +212,9 @@ class FName ULiveLinkRemapAsset::GetRemappedCurveName(class FName* ReturnValue)
 // (Native, Event, Public, BlueprintEvent, Const)
 // Parameters:
 // class FName                        BoneName                                                         (ConstParm, Net, DisableEditOnTemplate, Config)
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkRemapAsset::GetRemappedBoneName(class FName BoneName, class FName* ReturnValue)
+class FName ULiveLinkRemapAsset::GetRemappedBoneName(class FName BoneName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -235,8 +233,7 @@ void ULiveLinkRemapAsset::GetRemappedBoneName(class FName BoneName, class FName*
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 

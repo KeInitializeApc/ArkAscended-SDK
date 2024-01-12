@@ -67,14 +67,14 @@ enum class EShaderResourceType : uint8
 struct FComputeGraphEdge
 {
 public:
-	int32                                        KernelIndex;                                       // 0x0(0x4)(Edit, ConstParm, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        KernelBindingIndex;                                // 0x4(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        DataInterfaceIndex;                                // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        DataInterfaceBindingIndex;                         // 0xC(0x4)(Edit, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bKernelInput;                                      // 0x10(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_132[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class FString                                BindingFunctionNameOverride;                       // 0x18(0x10)(Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FString                                BindingFunctionNamespace;                          // 0x28(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        KernelIndex;                                       // 0x0(0x4)(Edit, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        KernelBindingIndex;                                // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        DataInterfaceIndex;                                // 0x8(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        DataInterfaceBindingIndex;                         // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bKernelInput;                                      // 0x10(0x1)(ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_228[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class FString                                BindingFunctionNameOverride;                       // 0x18(0x10)(Edit, ExportObject, Net, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                BindingFunctionNamespace;                          // 0x28(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -82,8 +82,8 @@ public:
 struct FComputeGraphInstance
 {
 public:
-	TArray<class UComputeDataProvider*>          DataProviders;                                     // 0x0(0x10)(ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_133[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	TArray<class UComputeDataProvider*>          DataProviders;                                     // 0x0(0x10)(ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_22C[0x8];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -93,7 +93,7 @@ struct FComputeKernelPermutationBool
 public:
 	class FString                                Name;                                              // 0x0(0x10)(ConstParm, Net, OutParm)
 	bool                                         Value;                                             // 0x10(0x1)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-	uint8                                        Pad_134[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_22D[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -101,7 +101,7 @@ public:
 struct FComputeKernelPermutationSet
 {
 public:
-	TArray<struct FComputeKernelPermutationBool> BooleanOptions;                                    // 0x0(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FComputeKernelPermutationBool> BooleanOptions;                                    // 0x0(0x10)(BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -109,8 +109,8 @@ public:
 struct FComputeKernelDefinition
 {
 public:
-	class FString                                Symbol;                                            // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FString                                Define;                                            // 0x10(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                Symbol;                                            // 0x0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                Define;                                            // 0x10(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -118,7 +118,7 @@ public:
 struct FComputeKernelDefinitionSet
 {
 public:
-	TArray<struct FComputeKernelDefinition>      Defines;                                           // 0x0(0x10)(ConstParm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FComputeKernelDefinition>      Defines;                                           // 0x0(0x10)(OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -126,9 +126,9 @@ public:
 struct FComputeKernelPermutationVector
 {
 public:
-	TMap<class FString, uint32>                  Permutations;                                      // 0x0(0x50)(BlueprintVisible, ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint32                                       BitCount;                                          // 0x50(0x4)(Edit, ConstParm, BlueprintVisible, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_136[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	TMap<class FString, uint32>                  Permutations;                                      // 0x0(0x50)(ConstParm, ExportObject, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       BitCount;                                          // 0x50(0x4)(Edit, BlueprintVisible, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_22F[0x4];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -136,7 +136,7 @@ public:
 struct FShaderValueTypeHandle
 {
 public:
-	uint8                                        Pad_137[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_230[0x8];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -145,11 +145,11 @@ struct FShaderValueType
 {
 public:
 	enum class EShaderFundamentalType            Type;                                              // 0x0(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	enum class EShaderFundamentalDimensionType   DimensionType;                                     // 0x1(0x1)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_138[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	enum class EShaderFundamentalDimensionType   DimensionType;                                     // 0x1(0x1)(Edit, ConstParm, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_232[0x2];                                      // Fixing Size After Last Property  > TateDumper <
 	class FName                                  Name;                                              // 0x4(0x8)(ConstParm, Net, OutParm)
-	bool                                         bIsDynamicArray;                                   // 0xC(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_139[0x13];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bIsDynamicArray;                                   // 0xC(0x1)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_233[0x13];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -157,13 +157,13 @@ public:
 struct FShaderParamTypeDefinition
 {
 public:
-	class FString                                TypeDeclaration;                                   // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                TypeDeclaration;                                   // 0x0(0x10)(Edit, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	class FString                                Name;                                              // 0x10(0x10)(ConstParm, Net, OutParm)
-	struct FShaderValueTypeHandle                ValueType;                                         // 0x20(0x8)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint16                                       ArrayElementCount;                                 // 0x28(0x2)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class EShaderParamBindingType           BindingType;                                       // 0x2A(0x1)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class EShaderResourceType               ResourceType;                                      // 0x2B(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_13A[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	struct FShaderValueTypeHandle                ValueType;                                         // 0x20(0x8)(Edit, ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       ArrayElementCount;                                 // 0x28(0x2)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EShaderParamBindingType           BindingType;                                       // 0x2A(0x1)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EShaderResourceType               ResourceType;                                      // 0x2B(0x1)(Edit, ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_234[0x4];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x28 - 0x0)
@@ -172,9 +172,9 @@ struct FShaderFunctionDefinition
 {
 public:
 	class FString                                Name;                                              // 0x0(0x10)(ConstParm, Net, OutParm)
-	TArray<struct FShaderParamTypeDefinition>    ParamTypes;                                        // 0x10(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bHasReturnType;                                    // 0x20(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_13C[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	TArray<struct FShaderParamTypeDefinition>    ParamTypes;                                        // 0x10(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bHasReturnType;                                    // 0x20(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_235[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 }

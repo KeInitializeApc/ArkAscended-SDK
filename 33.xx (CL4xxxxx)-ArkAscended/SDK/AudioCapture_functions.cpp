@@ -91,9 +91,9 @@ void UAudioCapture::StartCapturingAudio()
 // Function AudioCapture.AudioCapture.IsCapturingAudio
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAudioCapture::IsCapturingAudio(bool* ReturnValue)
+bool UAudioCapture::IsCapturingAudio()
 {
 	static class UFunction* Func = nullptr;
 
@@ -111,8 +111,7 @@ void UAudioCapture::IsCapturingAudio(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -120,10 +119,10 @@ void UAudioCapture::IsCapturingAudio(bool* ReturnValue)
 // Function AudioCapture.AudioCapture.GetAudioCaptureDeviceInfo
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAudioCaptureDeviceInfo     OutInfo                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAudioCaptureDeviceInfo     OutInfo                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAudioCapture::GetAudioCaptureDeviceInfo(const struct FAudioCaptureDeviceInfo& OutInfo, bool* ReturnValue)
+bool UAudioCapture::GetAudioCaptureDeviceInfo()
 {
 	static class UFunction* Func = nullptr;
 
@@ -132,7 +131,6 @@ void UAudioCapture::GetAudioCaptureDeviceInfo(const struct FAudioCaptureDeviceIn
 
 	Params::UAudioCapture_GetAudioCaptureDeviceInfo_Params Parms{};
 
-	Parms.OutInfo = OutInfo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -142,8 +140,7 @@ void UAudioCapture::GetAudioCaptureDeviceInfo(const struct FAudioCaptureDeviceIn
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -179,9 +176,9 @@ class UAudioCaptureFunctionLibrary* UAudioCaptureFunctionLibrary::GetDefaultObj(
 // Function AudioCapture.AudioCaptureFunctionLibrary.CreateAudioCapture
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UAudioCapture*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAudioCapture*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UAudioCaptureFunctionLibrary::CreateAudioCapture(class UAudioCapture** ReturnValue)
+class UAudioCapture* UAudioCaptureFunctionLibrary::CreateAudioCapture()
 {
 	static class UFunction* Func = nullptr;
 
@@ -199,8 +196,7 @@ void UAudioCaptureFunctionLibrary::CreateAudioCapture(class UAudioCapture** Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -236,10 +232,10 @@ class UAudioCaptureBlueprintLibrary* UAudioCaptureBlueprintLibrary::GetDefaultOb
 // Function AudioCapture.AudioCaptureBlueprintLibrary.GetAvailableAudioInputDevices
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// FDelegateProperty_                 OnObtainDevicesEvent                                             (Edit, ConstParm, OutParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 OnObtainDevicesEvent                                             (ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 
-class UObject* UAudioCaptureBlueprintLibrary::GetAvailableAudioInputDevices(FDelegateProperty_* OnObtainDevicesEvent)
+FDelegateProperty_ UAudioCaptureBlueprintLibrary::GetAvailableAudioInputDevices()
 {
 	static class UFunction* Func = nullptr;
 
@@ -257,9 +253,6 @@ class UObject* UAudioCaptureBlueprintLibrary::GetAvailableAudioInputDevices(FDel
 
 	Func->FunctionFlags = Flgs;
 
-	if (OnObtainDevicesEvent != nullptr)
-		*OnObtainDevicesEvent = Parms.OnObtainDevicesEvent;
-
 	return Parms.ReturnValue;
 
 }
@@ -269,9 +262,9 @@ class UObject* UAudioCaptureBlueprintLibrary::GetAvailableAudioInputDevices(FDel
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FAudioInputDeviceInfo       Info                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FAudioInputDeviceInfo UAudioCaptureBlueprintLibrary::Conv_AudioInputDeviceInfoToString(class FString* ReturnValue)
+class FString UAudioCaptureBlueprintLibrary::Conv_AudioInputDeviceInfoToString()
 {
 	static class UFunction* Func = nullptr;
 
@@ -288,9 +281,6 @@ struct FAudioInputDeviceInfo UAudioCaptureBlueprintLibrary::Conv_AudioInputDevic
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 

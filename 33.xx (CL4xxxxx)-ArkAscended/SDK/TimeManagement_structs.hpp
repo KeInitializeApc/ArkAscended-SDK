@@ -45,7 +45,7 @@ enum class ETimedDataInputState : uint8
 struct FTimedDataChannelSampleTime
 {
 public:
-	uint8                                        Pad_65A[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_9B3[0x18];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -53,8 +53,8 @@ public:
 struct FTimedDataInputEvaluationData
 {
 public:
-	float                                        DistanceToNewestSampleSeconds;                     // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        DistanceToOldestSampleSeconds;                     // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        DistanceToNewestSampleSeconds;                     // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	float                                        DistanceToOldestSampleSeconds;                     // 0x4(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 }

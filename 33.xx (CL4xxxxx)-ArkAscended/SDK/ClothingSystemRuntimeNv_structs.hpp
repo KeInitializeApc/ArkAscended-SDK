@@ -27,9 +27,9 @@ struct FClothConstraintSetupNv
 {
 public:
 	float                                        Stiffness;                                         // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	float                                        StiffnessMultiplier;                               // 0x4(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	float                                        StretchLimit;                                      // 0x8(0x4)(Edit, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        CompressionLimit;                                  // 0xC(0x4)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        StiffnessMultiplier;                               // 0x4(0x4)(ConstParm, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        StretchLimit;                                      // 0x8(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        CompressionLimit;                                  // 0xC(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 }

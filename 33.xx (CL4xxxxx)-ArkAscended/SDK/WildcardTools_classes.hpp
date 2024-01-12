@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class UWildcardHelpers* GetDefaultObj();
 
-	void CreateJIRABug(class FString* Args);
+	void CreateJIRABug(const class FString& Args);
 };
 
 }

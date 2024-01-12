@@ -18,15 +18,15 @@ public:
 	static class UClass* StaticClass();
 	static class UNISLibrary* GetDefaultObj();
 
-	void SetNISSharpness(float* Sharpness);
-	void SetNISMode(enum class EUNISMode NISMode);
-	void SetNISCustomScreenPercentage(float CustomScreenPercentage);
-	void IsNISSupported(bool* ReturnValue);
-	void IsNISModeSupported(enum class EUNISMode NISMode, bool* ReturnValue);
-	void GetSupportedNISModes(TArray<enum class EUNISMode>* ReturnValue);
-	void GetNISScreenPercentageRange(float* MinScreenPercentage, float* MaxScreenPercentage);
-	void GetNISRecommendedScreenPercentage(enum class EUNISMode NISMode, float* ReturnValue);
-	void GetDefaultNISMode(enum class EUNISMode* ReturnValue);
+	float SetNISSharpness();
+	enum class EUNISMode SetNISMode();
+	float SetNISCustomScreenPercentage();
+	bool IsNISSupported();
+	bool IsNISModeSupported();
+	TArray<enum class EUNISMode> GetSupportedNISModes();
+	float GetNISScreenPercentageRange();
+	float GetNISRecommendedScreenPercentage();
+	enum class EUNISMode GetDefaultNISMode();
 };
 
 }

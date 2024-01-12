@@ -28,10 +28,10 @@ struct FActorSequenceObjectReference
 {
 public:
 	enum class EActorSequenceObjectReferenceType Type;                                              // 0x0(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	uint8                                        Pad_1E5B[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FGuid                                 ActorId;                                           // 0x4(0x10)(BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1E5C[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                PathToComponent;                                   // 0x18(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	uint8                                        Pad_25B0[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FGuid                                 ActorId;                                           // 0x4(0x10)(Edit, BlueprintVisible, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_25B1[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                PathToComponent;                                   // 0x18(0x10)(Edit, ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -47,8 +47,8 @@ public:
 struct FActorSequenceObjectReferenceMap
 {
 public:
-	TArray<struct FGuid>                         BindingIds;                                        // 0x0(0x10)(Edit, ConstParm, ExportObject, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	TArray<struct FActorSequenceObjectReferences> References;                                        // 0x10(0x10)(Edit, BlueprintVisible, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	TArray<struct FGuid>                         BindingIds;                                        // 0x0(0x10)(BlueprintVisible, ExportObject, InstancedReference, SubobjectReference)
+	TArray<struct FActorSequenceObjectReferences> References;                                        // 0x10(0x10)(ConstParm, BlueprintVisible, InstancedReference, SubobjectReference)
 };
 
 }

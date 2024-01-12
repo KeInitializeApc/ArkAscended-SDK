@@ -1471,10 +1471,10 @@ class UOptimusNode* UOptimusNode::GetDefaultObj()
 // Function OptimusCore.OptimusNode.SetGraphPosition
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UOptimusNode::SetGraphPosition(bool* ReturnValue)
+bool UOptimusNode::SetGraphPosition()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1492,9 +1492,6 @@ struct FVector2D UOptimusNode::SetGraphPosition(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -1503,9 +1500,9 @@ struct FVector2D UOptimusNode::SetGraphPosition(bool* ReturnValue)
 // Function OptimusCore.OptimusNode.GetNodeName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOptimusNode::GetNodeName(class FName* ReturnValue)
+class FName UOptimusNode::GetNodeName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1523,8 +1520,7 @@ void UOptimusNode::GetNodeName(class FName* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1532,9 +1528,9 @@ void UOptimusNode::GetNodeName(class FName* ReturnValue)
 // Function OptimusCore.OptimusNode.GetNodeCategory
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOptimusNode::GetNodeCategory(class FName* ReturnValue)
+class FName UOptimusNode::GetNodeCategory()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1552,8 +1548,7 @@ void UOptimusNode::GetNodeCategory(class FName* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1561,9 +1556,9 @@ void UOptimusNode::GetNodeCategory(class FName* ReturnValue)
 // Function OptimusCore.OptimusNode.GetGraphPosition
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOptimusNode::GetGraphPosition(struct FVector2D* ReturnValue)
+struct FVector2D UOptimusNode::GetGraphPosition()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1581,8 +1576,7 @@ void UOptimusNode::GetGraphPosition(struct FVector2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1590,9 +1584,9 @@ void UOptimusNode::GetGraphPosition(struct FVector2D* ReturnValue)
 // Function OptimusCore.OptimusNode.GetDisplayName
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOptimusNode::GetDisplayName(class FText* ReturnValue)
+class FText UOptimusNode::GetDisplayName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1610,8 +1604,7 @@ void UOptimusNode::GetDisplayName(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2291,9 +2284,9 @@ class UOptimusDeformer* UOptimusDeformer::GetDefaultObj()
 // Function OptimusCore.OptimusDeformer.GetVariables
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UOptimusVariableDescription*>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UOptimusVariableDescription*>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOptimusDeformer::GetVariables(TArray<class UOptimusVariableDescription*>* ReturnValue)
+TArray<class UOptimusVariableDescription*> UOptimusDeformer::GetVariables()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2311,8 +2304,7 @@ void UOptimusDeformer::GetVariables(TArray<class UOptimusVariableDescription*>* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2320,9 +2312,9 @@ void UOptimusDeformer::GetVariables(TArray<class UOptimusVariableDescription*>* 
 // Function OptimusCore.OptimusDeformer.GetResources
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UOptimusResourceDescription*>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UOptimusResourceDescription*>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOptimusDeformer::GetResources(TArray<class UOptimusResourceDescription*>* ReturnValue)
+TArray<class UOptimusResourceDescription*> UOptimusDeformer::GetResources()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2340,8 +2332,7 @@ void UOptimusDeformer::GetResources(TArray<class UOptimusResourceDescription*>* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2349,9 +2340,9 @@ void UOptimusDeformer::GetResources(TArray<class UOptimusResourceDescription*>* 
 // Function OptimusCore.OptimusDeformer.GetComponentBindings
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UOptimusComponentSourceBinding*>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UOptimusComponentSourceBinding*>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOptimusDeformer::GetComponentBindings(TArray<class UOptimusComponentSourceBinding*>* ReturnValue)
+TArray<class UOptimusComponentSourceBinding*> UOptimusDeformer::GetComponentBindings()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2369,8 +2360,7 @@ void UOptimusDeformer::GetComponentBindings(TArray<class UOptimusComponentSource
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2434,11 +2424,11 @@ class UOptimusDeformerInstance* UOptimusDeformerInstance::GetDefaultObj()
 // Function OptimusCore.OptimusDeformerInstance.SetVectorVariable
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector                     InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector                     InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector UOptimusDeformerInstance::SetVectorVariable(bool* ReturnValue)
+bool UOptimusDeformerInstance::SetVectorVariable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2456,9 +2446,6 @@ struct FVector UOptimusDeformerInstance::SetVectorVariable(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -2467,11 +2454,11 @@ struct FVector UOptimusDeformerInstance::SetVectorVariable(bool* ReturnValue)
 // Function OptimusCore.OptimusDeformerInstance.SetVector4Variable
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FVector4                    InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FVector4                    InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector4 UOptimusDeformerInstance::SetVector4Variable(bool* ReturnValue)
+bool UOptimusDeformerInstance::SetVector4Variable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2489,9 +2476,6 @@ struct FVector4 UOptimusDeformerInstance::SetVector4Variable(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -2500,11 +2484,11 @@ struct FVector4 UOptimusDeformerInstance::SetVector4Variable(bool* ReturnValue)
 // Function OptimusCore.OptimusDeformerInstance.SetTransformVariable
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FTransform                  InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FTransform                  InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTransform UOptimusDeformerInstance::SetTransformVariable(bool* ReturnValue)
+bool UOptimusDeformerInstance::SetTransformVariable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2522,9 +2506,6 @@ struct FTransform UOptimusDeformerInstance::SetTransformVariable(bool* ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -2533,11 +2514,11 @@ struct FTransform UOptimusDeformerInstance::SetTransformVariable(bool* ReturnVal
 // Function OptimusCore.OptimusDeformerInstance.SetIntVariable
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// int32                              InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// int32                              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UOptimusDeformerInstance::SetIntVariable(bool* ReturnValue)
+bool UOptimusDeformerInstance::SetIntVariable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2555,9 +2536,6 @@ int32 UOptimusDeformerInstance::SetIntVariable(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -2566,11 +2544,11 @@ int32 UOptimusDeformerInstance::SetIntVariable(bool* ReturnValue)
 // Function OptimusCore.OptimusDeformerInstance.SetFloatVariable
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// double                             InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// double                             InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-double UOptimusDeformerInstance::SetFloatVariable(bool* ReturnValue)
+bool UOptimusDeformerInstance::SetFloatVariable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2588,9 +2566,6 @@ double UOptimusDeformerInstance::SetFloatVariable(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -2599,11 +2574,11 @@ double UOptimusDeformerInstance::SetFloatVariable(bool* ReturnValue)
 // Function OptimusCore.OptimusDeformerInstance.SetBoolVariable
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// bool                               InValue                                                          (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InVariableName                                                   (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UOptimusDeformerInstance::SetBoolVariable(bool* ReturnValue)
+bool UOptimusDeformerInstance::SetBoolVariable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2621,9 +2596,6 @@ bool UOptimusDeformerInstance::SetBoolVariable(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -2632,9 +2604,9 @@ bool UOptimusDeformerInstance::SetBoolVariable(bool* ReturnValue)
 // Function OptimusCore.OptimusDeformerInstance.GetVariables
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UOptimusVariableDescription*>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UOptimusVariableDescription*>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOptimusDeformerInstance::GetVariables(TArray<class UOptimusVariableDescription*>* ReturnValue)
+TArray<class UOptimusVariableDescription*> UOptimusDeformerInstance::GetVariables()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2652,8 +2624,7 @@ void UOptimusDeformerInstance::GetVariables(TArray<class UOptimusVariableDescrip
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2661,10 +2632,10 @@ void UOptimusDeformerInstance::GetVariables(TArray<class UOptimusVariableDescrip
 // Function OptimusCore.OptimusDeformerInstance.EnqueueTriggerGraph
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InTriggerGraphName                                               (BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InTriggerGraphName                                               (Edit, BlueprintVisible, Net, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UOptimusDeformerInstance::EnqueueTriggerGraph(bool* ReturnValue)
+bool UOptimusDeformerInstance::EnqueueTriggerGraph(class FName InTriggerGraphName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2673,6 +2644,7 @@ class FName UOptimusDeformerInstance::EnqueueTriggerGraph(bool* ReturnValue)
 
 	Params::UOptimusDeformerInstance_EnqueueTriggerGraph_Params Parms{};
 
+	Parms.InTriggerGraphName = InTriggerGraphName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2681,9 +2653,6 @@ class FName UOptimusDeformerInstance::EnqueueTriggerGraph(bool* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -2721,11 +2690,11 @@ class UOptimusNodeGraph* UOptimusNodeGraph::GetDefaultObj()
 // Function OptimusCore.OptimusNodeGraph.RenameGraph
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UOptimusNodeGraph*           InGraph                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class FString                      InNewName                                                        (Edit, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNodeGraph*           InGraph                                                          (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// class FString                      InNewName                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UOptimusNodeGraph::RenameGraph(bool* ReturnValue)
+bool UOptimusNodeGraph::RenameGraph(class UOptimusNodeGraph** InGraph, class FString* InNewName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2743,8 +2712,11 @@ class FString UOptimusNodeGraph::RenameGraph(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InGraph != nullptr)
+		*InGraph = Parms.InGraph;
+
+	if (InNewName != nullptr)
+		*InNewName = std::move(Parms.InNewName);
 
 	return Parms.ReturnValue;
 
@@ -2754,10 +2726,10 @@ class FString UOptimusNodeGraph::RenameGraph(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.RemoveNodes
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class UOptimusNode*>        InNodes                                                          (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UOptimusNode*>        InNodes                                                          (Edit, ExportObject, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<class UOptimusNode*> UOptimusNodeGraph::RemoveNodes(bool* ReturnValue)
+bool UOptimusNodeGraph::RemoveNodes(TArray<class UOptimusNode*>* InNodes)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2775,8 +2747,8 @@ TArray<class UOptimusNode*> UOptimusNodeGraph::RemoveNodes(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InNodes != nullptr)
+		*InNodes = std::move(Parms.InNodes);
 
 	return Parms.ReturnValue;
 
@@ -2786,10 +2758,10 @@ TArray<class UOptimusNode*> UOptimusNodeGraph::RemoveNodes(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.RemoveNode
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UOptimusNode*                InNode                                                           (ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNode*                InNode                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOptimusNode* UOptimusNodeGraph::RemoveNode(bool* ReturnValue)
+bool UOptimusNodeGraph::RemoveNode(class UOptimusNode** InNode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2807,8 +2779,8 @@ class UOptimusNode* UOptimusNodeGraph::RemoveNode(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InNode != nullptr)
+		*InNode = Parms.InNode;
 
 	return Parms.ReturnValue;
 
@@ -2818,11 +2790,11 @@ class UOptimusNode* UOptimusNodeGraph::RemoveNode(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.RemoveLink
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UOptimusNodePin*             InNodeOutputPin                                                  (BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class UOptimusNodePin*             InNodeInputPin                                                   (BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNodePin*             InNodeOutputPin                                                  (Edit, Net, EditFixedSize, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// class UOptimusNodePin*             InNodeInputPin                                                   (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOptimusNodePin* UOptimusNodeGraph::RemoveLink(bool* ReturnValue)
+bool UOptimusNodeGraph::RemoveLink(class UOptimusNodePin* InNodeOutputPin, class UOptimusNodePin* InNodeInputPin)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2831,6 +2803,8 @@ class UOptimusNodePin* UOptimusNodeGraph::RemoveLink(bool* ReturnValue)
 
 	Params::UOptimusNodeGraph_RemoveLink_Params Parms{};
 
+	Parms.InNodeOutputPin = InNodeOutputPin;
+	Parms.InNodeInputPin = InNodeInputPin;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2840,9 +2814,6 @@ class UOptimusNodePin* UOptimusNodeGraph::RemoveLink(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -2851,10 +2822,10 @@ class UOptimusNodePin* UOptimusNodeGraph::RemoveLink(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.RemoveAllLinks
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UOptimusNodePin*             InNodePin                                                        (Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNodePin*             InNodePin                                                        (ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOptimusNodePin* UOptimusNodeGraph::RemoveAllLinks(bool* ReturnValue)
+bool UOptimusNodeGraph::RemoveAllLinks(class UOptimusNodePin** InNodePin)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2872,8 +2843,8 @@ class UOptimusNodePin* UOptimusNodeGraph::RemoveAllLinks(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InNodePin != nullptr)
+		*InNodePin = Parms.InNodePin;
 
 	return Parms.ReturnValue;
 
@@ -2883,11 +2854,11 @@ class UOptimusNodePin* UOptimusNodeGraph::RemoveAllLinks(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.MoveGraph
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UOptimusNodeGraph*           InGraph                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// int32                              InInsertBefore                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNodeGraph*           InGraph                                                          (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// int32                              InInsertBefore                                                   (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UOptimusNodeGraph::MoveGraph(bool* ReturnValue)
+bool UOptimusNodeGraph::MoveGraph(class UOptimusNodeGraph** InGraph, int32* InInsertBefore)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2905,8 +2876,11 @@ int32 UOptimusNodeGraph::MoveGraph(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InGraph != nullptr)
+		*InGraph = Parms.InGraph;
+
+	if (InInsertBefore != nullptr)
+		*InInsertBefore = Parms.InInsertBefore;
 
 	return Parms.ReturnValue;
 
@@ -2916,10 +2890,10 @@ int32 UOptimusNodeGraph::MoveGraph(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.IsSubGraphReference
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UOptimusNode*                InNode                                                           (ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNode*                InNode                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOptimusNode* UOptimusNodeGraph::IsSubGraphReference(bool* ReturnValue)
+bool UOptimusNodeGraph::IsSubGraphReference(class UOptimusNode** InNode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2937,8 +2911,8 @@ class UOptimusNode* UOptimusNodeGraph::IsSubGraphReference(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InNode != nullptr)
+		*InNode = Parms.InNode;
 
 	return Parms.ReturnValue;
 
@@ -2948,10 +2922,10 @@ class UOptimusNode* UOptimusNodeGraph::IsSubGraphReference(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.IsKernelFunction
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UOptimusNode*                InNode                                                           (ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNode*                InNode                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOptimusNode* UOptimusNodeGraph::IsKernelFunction(bool* ReturnValue)
+bool UOptimusNodeGraph::IsKernelFunction(class UOptimusNode** InNode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2969,8 +2943,8 @@ class UOptimusNode* UOptimusNodeGraph::IsKernelFunction(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InNode != nullptr)
+		*InNode = Parms.InNode;
 
 	return Parms.ReturnValue;
 
@@ -2980,10 +2954,10 @@ class UOptimusNode* UOptimusNodeGraph::IsKernelFunction(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.IsFunctionReference
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UOptimusNode*                InNode                                                           (ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNode*                InNode                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOptimusNode* UOptimusNodeGraph::IsFunctionReference(bool* ReturnValue)
+bool UOptimusNodeGraph::IsFunctionReference(class UOptimusNode** InNode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3001,8 +2975,8 @@ class UOptimusNode* UOptimusNodeGraph::IsFunctionReference(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InNode != nullptr)
+		*InNode = Parms.InNode;
 
 	return Parms.ReturnValue;
 
@@ -3012,9 +2986,9 @@ class UOptimusNode* UOptimusNodeGraph::IsFunctionReference(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.IsFunctionGraph
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOptimusNodeGraph::IsFunctionGraph(bool* ReturnValue)
+bool UOptimusNodeGraph::IsFunctionGraph()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3032,8 +3006,7 @@ void UOptimusNodeGraph::IsFunctionGraph(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3041,9 +3014,9 @@ void UOptimusNodeGraph::IsFunctionGraph(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.IsExecutionGraph
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOptimusNodeGraph::IsExecutionGraph(bool* ReturnValue)
+bool UOptimusNodeGraph::IsExecutionGraph()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3061,8 +3034,7 @@ void UOptimusNodeGraph::IsExecutionGraph(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3070,10 +3042,10 @@ void UOptimusNodeGraph::IsExecutionGraph(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.IsCustomKernel
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UOptimusNode*                InNode                                                           (ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNode*                InNode                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOptimusNode* UOptimusNodeGraph::IsCustomKernel(bool* ReturnValue)
+bool UOptimusNodeGraph::IsCustomKernel(class UOptimusNode** InNode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3091,8 +3063,8 @@ class UOptimusNode* UOptimusNodeGraph::IsCustomKernel(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InNode != nullptr)
+		*InNode = Parms.InNode;
 
 	return Parms.ReturnValue;
 
@@ -3102,9 +3074,9 @@ class UOptimusNode* UOptimusNodeGraph::IsCustomKernel(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.GetGraphType
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EOptimusNodeGraphType   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EOptimusNodeGraphType   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOptimusNodeGraph::GetGraphType(enum class EOptimusNodeGraphType* ReturnValue)
+enum class EOptimusNodeGraphType UOptimusNodeGraph::GetGraphType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3122,8 +3094,7 @@ void UOptimusNodeGraph::GetGraphType(enum class EOptimusNodeGraphType* ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3131,9 +3102,9 @@ void UOptimusNodeGraph::GetGraphType(enum class EOptimusNodeGraphType* ReturnVal
 // Function OptimusCore.OptimusNodeGraph.GetGraphs
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UOptimusNodeGraph*>   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UOptimusNodeGraph*>   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOptimusNodeGraph::GetGraphs(TArray<class UOptimusNodeGraph*>* ReturnValue)
+TArray<class UOptimusNodeGraph*> UOptimusNodeGraph::GetGraphs()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3151,8 +3122,7 @@ void UOptimusNodeGraph::GetGraphs(TArray<class UOptimusNodeGraph*>* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3160,9 +3130,9 @@ void UOptimusNodeGraph::GetGraphs(TArray<class UOptimusNodeGraph*>* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.GetGraphIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UOptimusNodeGraph::GetGraphIndex(int32* ReturnValue)
+int32 UOptimusNodeGraph::GetGraphIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3180,8 +3150,7 @@ void UOptimusNodeGraph::GetGraphIndex(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3189,10 +3158,10 @@ void UOptimusNodeGraph::GetGraphIndex(int32* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.ExpandCollapsedNodes
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UOptimusNode*                InFunctionNode                                                   (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// TArray<class UOptimusNode*>        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNode*                InFunctionNode                                                   (Edit, ConstParm, Net, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// TArray<class UOptimusNode*>        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOptimusNode* UOptimusNodeGraph::ExpandCollapsedNodes(TArray<class UOptimusNode*>* ReturnValue)
+TArray<class UOptimusNode*> UOptimusNodeGraph::ExpandCollapsedNodes(class UOptimusNode** InFunctionNode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3210,8 +3179,8 @@ class UOptimusNode* UOptimusNodeGraph::ExpandCollapsedNodes(TArray<class UOptimu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (InFunctionNode != nullptr)
+		*InFunctionNode = Parms.InFunctionNode;
 
 	return Parms.ReturnValue;
 
@@ -3221,11 +3190,11 @@ class UOptimusNode* UOptimusNodeGraph::ExpandCollapsedNodes(TArray<class UOptimu
 // Function OptimusCore.OptimusNodeGraph.DuplicateNodes
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// TArray<class UOptimusNode*>        InNodes                                                          (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UOptimusNode*>        InNodes                                                          (Edit, ExportObject, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UOptimusNodeGraph::DuplicateNodes(bool* ReturnValue)
+bool UOptimusNodeGraph::DuplicateNodes(TArray<class UOptimusNode*>* InNodes)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3243,8 +3212,8 @@ struct FVector2D UOptimusNodeGraph::DuplicateNodes(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InNodes != nullptr)
+		*InNodes = std::move(Parms.InNodes);
 
 	return Parms.ReturnValue;
 
@@ -3254,11 +3223,11 @@ struct FVector2D UOptimusNodeGraph::DuplicateNodes(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.DuplicateNode
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UOptimusNode*                InNode                                                           (ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOptimusNode*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNode*                InNode                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOptimusNode*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UOptimusNodeGraph::DuplicateNode(class UOptimusNode** ReturnValue)
+class UOptimusNode* UOptimusNodeGraph::DuplicateNode(class UOptimusNode** InNode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3276,8 +3245,8 @@ struct FVector2D UOptimusNodeGraph::DuplicateNode(class UOptimusNode** ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InNode != nullptr)
+		*InNode = Parms.InNode;
 
 	return Parms.ReturnValue;
 
@@ -3287,10 +3256,10 @@ struct FVector2D UOptimusNodeGraph::DuplicateNode(class UOptimusNode** ReturnVal
 // Function OptimusCore.OptimusNodeGraph.ConvertFunctionToCustomKernel
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UOptimusNode*                InKernelFunction                                                 (Edit, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class UOptimusNode*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNode*                InKernelFunction                                                 (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// class UOptimusNode*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOptimusNode* UOptimusNodeGraph::ConvertFunctionToCustomKernel(class UOptimusNode** ReturnValue)
+class UOptimusNode* UOptimusNodeGraph::ConvertFunctionToCustomKernel(class UOptimusNode** InKernelFunction)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3308,8 +3277,8 @@ class UOptimusNode* UOptimusNodeGraph::ConvertFunctionToCustomKernel(class UOpti
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InKernelFunction != nullptr)
+		*InKernelFunction = Parms.InKernelFunction;
 
 	return Parms.ReturnValue;
 
@@ -3319,10 +3288,10 @@ class UOptimusNode* UOptimusNodeGraph::ConvertFunctionToCustomKernel(class UOpti
 // Function OptimusCore.OptimusNodeGraph.ConvertCustomKernelToFunction
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UOptimusNode*                InCustomKernel                                                   (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class UOptimusNode*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNode*                InCustomKernel                                                   (ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// class UOptimusNode*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOptimusNode* UOptimusNodeGraph::ConvertCustomKernelToFunction(class UOptimusNode** ReturnValue)
+class UOptimusNode* UOptimusNodeGraph::ConvertCustomKernelToFunction(class UOptimusNode** InCustomKernel)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3340,8 +3309,8 @@ class UOptimusNode* UOptimusNodeGraph::ConvertCustomKernelToFunction(class UOpti
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InCustomKernel != nullptr)
+		*InCustomKernel = Parms.InCustomKernel;
 
 	return Parms.ReturnValue;
 
@@ -3351,10 +3320,10 @@ class UOptimusNode* UOptimusNodeGraph::ConvertCustomKernelToFunction(class UOpti
 // Function OptimusCore.OptimusNodeGraph.CollapseNodesToSubGraph
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class UOptimusNode*>        InNodes                                                          (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class UOptimusNode*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UOptimusNode*>        InNodes                                                          (Edit, ExportObject, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// class UOptimusNode*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<class UOptimusNode*> UOptimusNodeGraph::CollapseNodesToSubGraph(class UOptimusNode** ReturnValue)
+class UOptimusNode* UOptimusNodeGraph::CollapseNodesToSubGraph(TArray<class UOptimusNode*>* InNodes)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3372,8 +3341,8 @@ TArray<class UOptimusNode*> UOptimusNodeGraph::CollapseNodesToSubGraph(class UOp
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InNodes != nullptr)
+		*InNodes = std::move(Parms.InNodes);
 
 	return Parms.ReturnValue;
 
@@ -3383,10 +3352,10 @@ TArray<class UOptimusNode*> UOptimusNodeGraph::CollapseNodesToSubGraph(class UOp
 // Function OptimusCore.OptimusNodeGraph.CollapseNodesToFunction
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class UOptimusNode*>        InNodes                                                          (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class UOptimusNode*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UOptimusNode*>        InNodes                                                          (Edit, ExportObject, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// class UOptimusNode*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<class UOptimusNode*> UOptimusNodeGraph::CollapseNodesToFunction(class UOptimusNode** ReturnValue)
+class UOptimusNode* UOptimusNodeGraph::CollapseNodesToFunction(TArray<class UOptimusNode*>* InNodes)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3404,8 +3373,8 @@ TArray<class UOptimusNode*> UOptimusNodeGraph::CollapseNodesToFunction(class UOp
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InNodes != nullptr)
+		*InNodes = std::move(Parms.InNodes);
 
 	return Parms.ReturnValue;
 
@@ -3415,11 +3384,11 @@ TArray<class UOptimusNode*> UOptimusNodeGraph::CollapseNodesToFunction(class UOp
 // Function OptimusCore.OptimusNodeGraph.AddVariableGetNode
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UOptimusVariableDescription* InVariableDesc                                                   (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOptimusNode*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusVariableDescription* InVariableDesc                                                   (Edit, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOptimusNode*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UOptimusNodeGraph::AddVariableGetNode(class UOptimusNode** ReturnValue)
+class UOptimusNode* UOptimusNodeGraph::AddVariableGetNode(class UOptimusVariableDescription** InVariableDesc)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3437,8 +3406,8 @@ struct FVector2D UOptimusNodeGraph::AddVariableGetNode(class UOptimusNode** Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InVariableDesc != nullptr)
+		*InVariableDesc = Parms.InVariableDesc;
 
 	return Parms.ReturnValue;
 
@@ -3448,11 +3417,11 @@ struct FVector2D UOptimusNodeGraph::AddVariableGetNode(class UOptimusNode** Retu
 // Function OptimusCore.OptimusNodeGraph.AddValueNode
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FOptimusDataTypeRef         InDataTypeRef                                                    (BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOptimusNode*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FOptimusDataTypeRef         InDataTypeRef                                                    (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOptimusNode*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UOptimusNodeGraph::AddValueNode(class UOptimusNode** ReturnValue)
+class UOptimusNode* UOptimusNodeGraph::AddValueNode(const struct FOptimusDataTypeRef& InDataTypeRef)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3461,6 +3430,7 @@ struct FVector2D UOptimusNodeGraph::AddValueNode(class UOptimusNode** ReturnValu
 
 	Params::UOptimusNodeGraph_AddValueNode_Params Parms{};
 
+	Parms.InDataTypeRef = InDataTypeRef;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3469,9 +3439,6 @@ struct FVector2D UOptimusNodeGraph::AddValueNode(class UOptimusNode** ReturnValu
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3481,11 +3448,11 @@ struct FVector2D UOptimusNodeGraph::AddValueNode(class UOptimusNode** ReturnValu
 // Function OptimusCore.OptimusNodeGraph.AddResourceSetNode
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UOptimusResourceDescription* InResourceDesc                                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOptimusNode*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusResourceDescription* InResourceDesc                                                   (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOptimusNode*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UOptimusNodeGraph::AddResourceSetNode(class UOptimusNode** ReturnValue)
+class UOptimusNode* UOptimusNodeGraph::AddResourceSetNode(class UOptimusResourceDescription* InResourceDesc)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3494,6 +3461,7 @@ struct FVector2D UOptimusNodeGraph::AddResourceSetNode(class UOptimusNode** Retu
 
 	Params::UOptimusNodeGraph_AddResourceSetNode_Params Parms{};
 
+	Parms.InResourceDesc = InResourceDesc;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3502,9 +3470,6 @@ struct FVector2D UOptimusNodeGraph::AddResourceSetNode(class UOptimusNode** Retu
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3514,11 +3479,11 @@ struct FVector2D UOptimusNodeGraph::AddResourceSetNode(class UOptimusNode** Retu
 // Function OptimusCore.OptimusNodeGraph.AddResourceNode
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UOptimusResourceDescription* InResourceDesc                                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOptimusNode*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusResourceDescription* InResourceDesc                                                   (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOptimusNode*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UOptimusNodeGraph::AddResourceNode(class UOptimusNode** ReturnValue)
+class UOptimusNode* UOptimusNodeGraph::AddResourceNode(class UOptimusResourceDescription* InResourceDesc)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3527,6 +3492,7 @@ struct FVector2D UOptimusNodeGraph::AddResourceNode(class UOptimusNode** ReturnV
 
 	Params::UOptimusNodeGraph_AddResourceNode_Params Parms{};
 
+	Parms.InResourceDesc = InResourceDesc;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3535,9 +3501,6 @@ struct FVector2D UOptimusNodeGraph::AddResourceNode(class UOptimusNode** ReturnV
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3547,11 +3510,11 @@ struct FVector2D UOptimusNodeGraph::AddResourceNode(class UOptimusNode** ReturnV
 // Function OptimusCore.OptimusNodeGraph.AddResourceGetNode
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UOptimusResourceDescription* InResourceDesc                                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOptimusNode*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusResourceDescription* InResourceDesc                                                   (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOptimusNode*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UOptimusNodeGraph::AddResourceGetNode(class UOptimusNode** ReturnValue)
+class UOptimusNode* UOptimusNodeGraph::AddResourceGetNode(class UOptimusResourceDescription* InResourceDesc)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3560,6 +3523,7 @@ struct FVector2D UOptimusNodeGraph::AddResourceGetNode(class UOptimusNode** Retu
 
 	Params::UOptimusNodeGraph_AddResourceGetNode_Params Parms{};
 
+	Parms.InResourceDesc = InResourceDesc;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3568,9 +3532,6 @@ struct FVector2D UOptimusNodeGraph::AddResourceGetNode(class UOptimusNode** Retu
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3580,11 +3541,11 @@ struct FVector2D UOptimusNodeGraph::AddResourceGetNode(class UOptimusNode** Retu
 // Function OptimusCore.OptimusNodeGraph.AddNode
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UClass*                      InNodeClass                                                      (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOptimusNode*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InNodeClass                                                      (ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOptimusNode*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UOptimusNodeGraph::AddNode(class UOptimusNode** ReturnValue)
+class UOptimusNode* UOptimusNodeGraph::AddNode(class UClass* InNodeClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3593,6 +3554,7 @@ struct FVector2D UOptimusNodeGraph::AddNode(class UOptimusNode** ReturnValue)
 
 	Params::UOptimusNodeGraph_AddNode_Params Parms{};
 
+	Parms.InNodeClass = InNodeClass;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3601,9 +3563,6 @@ struct FVector2D UOptimusNodeGraph::AddNode(class UOptimusNode** ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3613,11 +3572,11 @@ struct FVector2D UOptimusNodeGraph::AddNode(class UOptimusNode** ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.AddLink
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UOptimusNodePin*             InNodeOutputPin                                                  (BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class UOptimusNodePin*             InNodeInputPin                                                   (BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusNodePin*             InNodeOutputPin                                                  (Edit, Net, EditFixedSize, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// class UOptimusNodePin*             InNodeInputPin                                                   (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOptimusNodePin* UOptimusNodeGraph::AddLink(bool* ReturnValue)
+bool UOptimusNodeGraph::AddLink(class UOptimusNodePin* InNodeOutputPin, class UOptimusNodePin* InNodeInputPin)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3626,6 +3585,8 @@ class UOptimusNodePin* UOptimusNodeGraph::AddLink(bool* ReturnValue)
 
 	Params::UOptimusNodeGraph_AddLink_Params Parms{};
 
+	Parms.InNodeOutputPin = InNodeOutputPin;
+	Parms.InNodeInputPin = InNodeInputPin;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3634,9 +3595,6 @@ class UOptimusNodePin* UOptimusNodeGraph::AddLink(bool* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3646,11 +3604,11 @@ class UOptimusNodePin* UOptimusNodeGraph::AddLink(bool* ReturnValue)
 // Function OptimusCore.OptimusNodeGraph.AddDataInterfaceNode
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UClass*                      InDataInterfaceClass                                             (Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOptimusNode*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InDataInterfaceClass                                             (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOptimusNode*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UOptimusNodeGraph::AddDataInterfaceNode(class UOptimusNode** ReturnValue)
+class UOptimusNode* UOptimusNodeGraph::AddDataInterfaceNode(class UClass* InDataInterfaceClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3659,6 +3617,7 @@ struct FVector2D UOptimusNodeGraph::AddDataInterfaceNode(class UOptimusNode** Re
 
 	Params::UOptimusNodeGraph_AddDataInterfaceNode_Params Parms{};
 
+	Parms.InDataInterfaceClass = InDataInterfaceClass;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3667,9 +3626,6 @@ struct FVector2D UOptimusNodeGraph::AddDataInterfaceNode(class UOptimusNode** Re
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3679,11 +3635,11 @@ struct FVector2D UOptimusNodeGraph::AddDataInterfaceNode(class UOptimusNode** Re
 // Function OptimusCore.OptimusNodeGraph.AddComponentBindingGetNode
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UOptimusComponentSourceBinding*InComponentBinding                                               (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOptimusNode*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOptimusComponentSourceBinding*InComponentBinding                                               (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOptimusNode*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector2D UOptimusNodeGraph::AddComponentBindingGetNode(class UOptimusNode** ReturnValue)
+class UOptimusNode* UOptimusNodeGraph::AddComponentBindingGetNode(class UOptimusComponentSourceBinding* InComponentBinding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3692,6 +3648,7 @@ struct FVector2D UOptimusNodeGraph::AddComponentBindingGetNode(class UOptimusNod
 
 	Params::UOptimusNodeGraph_AddComponentBindingGetNode_Params Parms{};
 
+	Parms.InComponentBinding = InComponentBinding;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3700,9 +3657,6 @@ struct FVector2D UOptimusNodeGraph::AddComponentBindingGetNode(class UOptimusNod
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 

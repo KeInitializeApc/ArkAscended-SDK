@@ -19,10 +19,10 @@ public:
 	static class UEyeTrackerFunctionLibrary* GetDefaultObj();
 
 	void SetEyeTrackedPlayer(class APlayerController** PlayerController);
-	void IsStereoGazeDataAvailable(bool* ReturnValue);
-	void IsEyeTrackerConnected(bool* ReturnValue);
-	struct FEyeTrackerStereoGazeData GetStereoGazeData(bool* ReturnValue);
-	struct FEyeTrackerGazeData GetGazeData(bool* ReturnValue);
+	bool IsStereoGazeDataAvailable();
+	bool IsEyeTrackerConnected();
+	bool GetStereoGazeData(struct FEyeTrackerStereoGazeData* OutGazeData);
+	bool GetGazeData(struct FEyeTrackerGazeData* OutGazeData);
 };
 
 }

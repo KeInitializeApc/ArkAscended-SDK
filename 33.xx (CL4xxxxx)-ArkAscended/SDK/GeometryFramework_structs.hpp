@@ -69,8 +69,8 @@ struct FDynamicMeshChangeInfo
 public:
 	enum class EDynamicMeshChangeType            Type;                                              // 0x0(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
 	enum class EDynamicMeshAttributeChangeFlags  Flags;                                             // 0x1(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance)
-	bool                                         bIsRevertChange;                                   // 0x2(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_8FA[0x1D];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bIsRevertChange;                                   // 0x2(0x1)(ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_BED[0x1D];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

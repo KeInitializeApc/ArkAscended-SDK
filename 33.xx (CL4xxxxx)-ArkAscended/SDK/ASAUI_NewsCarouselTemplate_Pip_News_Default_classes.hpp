@@ -14,16 +14,16 @@ namespace SDK
 class UASAUI_NewsCarouselTemplate_Pip_News_Default_C : public UUI_MenuCarouselPipWidget
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x770(0x8)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
-	class UWidgetAnimation*                      Brighten;                                          // 0x778(0x8)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UCustomButtonWidget*                   NavButton;                                         // 0x780(0x8)(ExportObject, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x770(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+	class UWidgetAnimation*                      Brighten;                                          // 0x778(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UCustomButtonWidget*                   NavButton;                                         // 0x780(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UASAUI_NewsCarouselTemplate_Pip_News_Default_C* GetDefaultObj();
 
-	bool EntryFocusStart();
-	bool EntryFocusEnd();
-	bool ExecuteUbergraph_ASAUI_NewsCarouselTemplate_Pip_News_Default(int32 EntryPoint, class UUMGSequencePlayer** CallFunc_PlayAnimationReverse_ReturnValue, class UUMGSequencePlayer** CallFunc_PlayAnimationForward_ReturnValue);
+	void EntryFocusStart(bool* bInstigatedByAutoRollover);
+	void EntryFocusEnd(bool* bInstigatedByAutoRollover);
+	class UUMGSequencePlayer* ExecuteUbergraph_ASAUI_NewsCarouselTemplate_Pip_News_Default();
 };
 
 }

@@ -44,19 +44,19 @@ class UUI_InstallationStatus_C* UUI_InstallationStatus_C::GetDefaultObj()
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // enum class EInstallStatus          Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// enum class EInstallStatus          Temp_byte_Variable                                               (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class FText                        Temp_text_Variable                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FText                        Temp_text_Variable_1                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// class FText                        Temp_text_Variable_2                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, RepNotify, Interp)
-// class FText                        Temp_text_Variable_3                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, NonTransactional)
-// class FText                        Temp_text_Variable_4                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, RepNotify, NonTransactional)
-// class FText                        Temp_text_Variable_5                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp, NonTransactional)
-// class FText                        Temp_text_Variable_6                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, RepNotify, Interp, NonTransactional)
-// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// class FText                        K2Node_Select_Default                                            (Edit, BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_Format_ReturnValue                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// enum class EInstallStatus          Temp_byte_Variable                                               (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// class FText                        Temp_text_Variable                                               (Edit, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class FText                        Temp_text_Variable_1                                             (Edit, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
+// class FText                        Temp_text_Variable_2                                             (Edit, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, RepNotify, Interp)
+// class FText                        Temp_text_Variable_3                                             (Edit, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, NonTransactional)
+// class FText                        Temp_text_Variable_4                                             (Edit, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, RepNotify, NonTransactional)
+// class FText                        Temp_text_Variable_5                                             (Edit, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp, NonTransactional)
+// class FText                        Temp_text_Variable_6                                             (Edit, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, RepNotify, Interp, NonTransactional)
+// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// class FText                        K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Format_ReturnValue                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
-class FText UUI_InstallationStatus_C::SetTextBasedOnState(TArray<struct FFormatArgumentData>* K2Node_MakeArray_Array, class FText* CallFunc_Format_ReturnValue)
+TArray<struct FFormatArgumentData> UUI_InstallationStatus_C::SetTextBasedOnState(enum class EInstallStatus Temp_byte_Variable, class FText* K2Node_Select_Default, class FText CallFunc_Format_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -65,14 +65,13 @@ class FText UUI_InstallationStatus_C::SetTextBasedOnState(TArray<struct FFormatA
 
 	Params::UUI_InstallationStatus_C_SetTextBasedOnState_Params Parms{};
 
+	Parms.Temp_byte_Variable = Temp_byte_Variable;
+	Parms.CallFunc_Format_ReturnValue = CallFunc_Format_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (K2Node_MakeArray_Array != nullptr)
-		*K2Node_MakeArray_Array = std::move(Parms.K2Node_MakeArray_Array);
-
-	if (CallFunc_Format_ReturnValue != nullptr)
-		*CallFunc_Format_ReturnValue = Parms.CallFunc_Format_ReturnValue;
+	if (K2Node_Select_Default != nullptr)
+		*K2Node_Select_Default = Parms.K2Node_Select_Default;
 
 	return Parms.ReturnValue;
 
@@ -82,30 +81,30 @@ class FText UUI_InstallationStatus_C::SetTextBasedOnState(TArray<struct FFormatA
 // Function UI_InstallationStatus.UI_InstallationStatus_C.GetTrueProgress
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// int32                              Amount                                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// enum class ELibraryProgressState   InstalationState                                                 (Edit, ConstParm, ZeroConstructor, InstancedReference, SubobjectReference)
-// double                             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               MaintainPreviousValue                                            (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
-// double                             Temp_real_Variable                                               (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference)
-// bool                               K2Node_SwitchEnum_CmpSuccess                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// double                             CallFunc_Conv_IntToDouble_ReturnValue                            (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Config, DisableEditOnInstance, SubobjectReference)
-// double                             Temp_real_Variable_1                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_MapRangeClamped_ReturnValue                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_MapRangeClamped_ReturnValue_1                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference, Interp)
-// double                             Temp_real_Variable_2                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference, RepNotify, Interp)
-// double                             Temp_real_Variable_3                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference, NonTransactional)
-// double                             Temp_real_Variable_4                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference, RepNotify, NonTransactional)
-// double                             Temp_real_Variable_5                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference, Interp, NonTransactional)
-// double                             Temp_real_Variable_6                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference, RepNotify, Interp, NonTransactional)
-// double                             Temp_real_Variable_7                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference, EditorOnly)
-// double                             Temp_real_Variable_8                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference, RepNotify, EditorOnly)
-// double                             Temp_real_Variable_9                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference, Interp, EditorOnly)
-// double                             Temp_real_Variable_10                                            (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference, RepNotify, Interp, EditorOnly)
-// enum class ELibraryProgressState   Temp_byte_Variable                                               (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             K2Node_Select_Default                                            (Edit, BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Divide_DoubleDouble_ReturnValue                         (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, EditConst, SubobjectReference)
+// int32                              Amount                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// enum class ELibraryProgressState   InstalationState                                                 (BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// double                             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               MaintainPreviousValue                                            (ConstParm, ExportObject, ZeroConstructor, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// double                             Temp_real_Variable                                               (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, SubobjectReference)
+// bool                               K2Node_SwitchEnum_CmpSuccess                                     (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, SubobjectReference)
+// double                             CallFunc_Conv_IntToDouble_ReturnValue                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             Temp_real_Variable_1                                             (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, SubobjectReference, Interp)
+// double                             CallFunc_MapRangeClamped_ReturnValue                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// double                             CallFunc_MapRangeClamped_ReturnValue_1                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference, Interp)
+// double                             Temp_real_Variable_2                                             (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, SubobjectReference, RepNotify, Interp)
+// double                             Temp_real_Variable_3                                             (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, SubobjectReference, NonTransactional)
+// double                             Temp_real_Variable_4                                             (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, SubobjectReference, RepNotify, NonTransactional)
+// double                             Temp_real_Variable_5                                             (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, SubobjectReference, Interp, NonTransactional)
+// double                             Temp_real_Variable_6                                             (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, SubobjectReference, RepNotify, Interp, NonTransactional)
+// double                             Temp_real_Variable_7                                             (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, SubobjectReference, EditorOnly)
+// double                             Temp_real_Variable_8                                             (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, SubobjectReference, RepNotify, EditorOnly)
+// double                             Temp_real_Variable_9                                             (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, SubobjectReference, Interp, EditorOnly)
+// double                             Temp_real_Variable_10                                            (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, SubobjectReference, RepNotify, Interp, EditorOnly)
+// enum class ELibraryProgressState   Temp_byte_Variable                                               (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Divide_DoubleDouble_ReturnValue                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, EditConst, SubobjectReference)
 
-double UUI_InstallationStatus_C::GetTrueProgress(enum class ELibraryProgressState InstalationState, double* ReturnValue, bool* K2Node_SwitchEnum_CmpSuccess, double* CallFunc_Conv_IntToDouble_ReturnValue)
+double UUI_InstallationStatus_C::GetTrueProgress(int32* Amount, enum class ELibraryProgressState InstalationState, bool MaintainPreviousValue, double Temp_real_Variable, double Temp_real_Variable_1, double* CallFunc_MapRangeClamped_ReturnValue, double* CallFunc_MapRangeClamped_ReturnValue_1, double Temp_real_Variable_2, double Temp_real_Variable_3, double Temp_real_Variable_4, double Temp_real_Variable_5, double Temp_real_Variable_6, double Temp_real_Variable_7, double Temp_real_Variable_8, double Temp_real_Variable_9, double Temp_real_Variable_10, enum class ELibraryProgressState Temp_byte_Variable, double* K2Node_Select_Default, double CallFunc_Divide_DoubleDouble_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -115,17 +114,34 @@ double UUI_InstallationStatus_C::GetTrueProgress(enum class ELibraryProgressStat
 	Params::UUI_InstallationStatus_C_GetTrueProgress_Params Parms{};
 
 	Parms.InstalationState = InstalationState;
+	Parms.MaintainPreviousValue = MaintainPreviousValue;
+	Parms.Temp_real_Variable = Temp_real_Variable;
+	Parms.Temp_real_Variable_1 = Temp_real_Variable_1;
+	Parms.Temp_real_Variable_2 = Temp_real_Variable_2;
+	Parms.Temp_real_Variable_3 = Temp_real_Variable_3;
+	Parms.Temp_real_Variable_4 = Temp_real_Variable_4;
+	Parms.Temp_real_Variable_5 = Temp_real_Variable_5;
+	Parms.Temp_real_Variable_6 = Temp_real_Variable_6;
+	Parms.Temp_real_Variable_7 = Temp_real_Variable_7;
+	Parms.Temp_real_Variable_8 = Temp_real_Variable_8;
+	Parms.Temp_real_Variable_9 = Temp_real_Variable_9;
+	Parms.Temp_real_Variable_10 = Temp_real_Variable_10;
+	Parms.Temp_byte_Variable = Temp_byte_Variable;
+	Parms.CallFunc_Divide_DoubleDouble_ReturnValue = CallFunc_Divide_DoubleDouble_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Amount != nullptr)
+		*Amount = Parms.Amount;
 
-	if (K2Node_SwitchEnum_CmpSuccess != nullptr)
-		*K2Node_SwitchEnum_CmpSuccess = Parms.K2Node_SwitchEnum_CmpSuccess;
+	if (CallFunc_MapRangeClamped_ReturnValue != nullptr)
+		*CallFunc_MapRangeClamped_ReturnValue = Parms.CallFunc_MapRangeClamped_ReturnValue;
 
-	if (CallFunc_Conv_IntToDouble_ReturnValue != nullptr)
-		*CallFunc_Conv_IntToDouble_ReturnValue = Parms.CallFunc_Conv_IntToDouble_ReturnValue;
+	if (CallFunc_MapRangeClamped_ReturnValue_1 != nullptr)
+		*CallFunc_MapRangeClamped_ReturnValue_1 = Parms.CallFunc_MapRangeClamped_ReturnValue_1;
+
+	if (K2Node_Select_Default != nullptr)
+		*K2Node_Select_Default = Parms.K2Node_Select_Default;
 
 	return Parms.ReturnValue;
 
@@ -135,19 +151,19 @@ double UUI_InstallationStatus_C::GetTrueProgress(enum class ELibraryProgressStat
 // Function UI_InstallationStatus.UI_InstallationStatus_C.UpdateColor
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class EInstallStatus          Install_Status                                                   (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// enum class EInstallStatus          Temp_byte_Variable                                               (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FLinearColor                Temp_struct_Variable                                             (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// struct FLinearColor                Temp_struct_Variable_1                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
-// struct FLinearColor                Temp_struct_Variable_2                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, RepNotify, Interp)
-// struct FLinearColor                Temp_struct_Variable_3                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, NonTransactional)
-// struct FLinearColor                Temp_struct_Variable_4                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, RepNotify, NonTransactional)
-// struct FLinearColor                Temp_struct_Variable_5                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, Interp, NonTransactional)
-// struct FLinearColor                Temp_struct_Variable_6                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, RepNotify, Interp, NonTransactional)
-// struct FLinearColor                K2Node_Select_Default                                            (Edit, BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// enum class EInstallStatus          Install_Status                                                   (Edit, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// enum class EInstallStatus          Temp_byte_Variable                                               (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FLinearColor                Temp_struct_Variable                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+// struct FLinearColor                Temp_struct_Variable_1                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
+// struct FLinearColor                Temp_struct_Variable_2                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, RepNotify, Interp)
+// struct FLinearColor                Temp_struct_Variable_3                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, NonTransactional)
+// struct FLinearColor                Temp_struct_Variable_4                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, RepNotify, NonTransactional)
+// struct FLinearColor                Temp_struct_Variable_5                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, Interp, NonTransactional)
+// struct FLinearColor                Temp_struct_Variable_6                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, RepNotify, Interp, NonTransactional)
+// struct FLinearColor                K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-bool UUI_InstallationStatus_C::UpdateColor()
+struct FLinearColor UUI_InstallationStatus_C::UpdateColor(enum class EInstallStatus* Install_Status, enum class EInstallStatus Temp_byte_Variable, struct FLinearColor* K2Node_Select_Default, bool* CallFunc_IsValid_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -156,8 +172,18 @@ bool UUI_InstallationStatus_C::UpdateColor()
 
 	Params::UUI_InstallationStatus_C_UpdateColor_Params Parms{};
 
+	Parms.Temp_byte_Variable = Temp_byte_Variable;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Install_Status != nullptr)
+		*Install_Status = Parms.Install_Status;
+
+	if (K2Node_Select_Default != nullptr)
+		*K2Node_Select_Default = std::move(Parms.K2Node_Select_Default);
+
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -167,23 +193,23 @@ bool UUI_InstallationStatus_C::UpdateColor()
 // Function UI_InstallationStatus.UI_InstallationStatus_C.UpdateModProgress
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              Progress                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// enum class EInstallStatus          NewInstallationStatus                                            (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
-// enum class ELibraryProgressState   InstallationPhase                                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// bool                               K2Node_SwitchEnum_CmpSuccess                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// bool                               CallFunc_IsAnimationPlaying_ReturnValue                          (BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// bool                               K2Node_SwitchEnum_CmpSuccess_1                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
-// bool                               K2Node_SwitchEnum_CmpSuccess_2                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference, RepNotify, Interp)
-// double                             CallFunc_GetTrueProgress_ReturnValue                             (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// bool                               CallFunc_GetTrueProgress_MaintainPreviousValue                   (Edit, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_NotEqual_ByteByte_ReturnValue                           (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_NotEqual_ByteByte_ReturnValue_1                         (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
-// bool                               CallFunc_BooleanAND_ReturnValue                                  (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// float                              CallFunc_SetPercent_InPercent_ImplicitCast                       (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              Progress                                                         (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+// enum class EInstallStatus          NewInstallationStatus                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// enum class ELibraryProgressState   InstallationPhase                                                (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// bool                               K2Node_SwitchEnum_CmpSuccess                                     (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, SubobjectReference)
+// bool                               CallFunc_IsAnimationPlaying_ReturnValue                          (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// bool                               K2Node_SwitchEnum_CmpSuccess_1                                   (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, SubobjectReference, Interp)
+// bool                               K2Node_SwitchEnum_CmpSuccess_2                                   (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, SubobjectReference, RepNotify, Interp)
+// double                             CallFunc_GetTrueProgress_ReturnValue                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// bool                               CallFunc_GetTrueProgress_MaintainPreviousValue                   (Edit, ConstParm, BlueprintVisible, Net, OutParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_NotEqual_ByteByte_ReturnValue                           (Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_NotEqual_ByteByte_ReturnValue_1                         (Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
+// bool                               CallFunc_BooleanAND_ReturnValue                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// float                              CallFunc_SetPercent_InPercent_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-bool UUI_InstallationStatus_C::UpdateModProgress(bool* K2Node_SwitchEnum_CmpSuccess, bool* K2Node_SwitchEnum_CmpSuccess_1, bool* K2Node_SwitchEnum_CmpSuccess_2, bool* CallFunc_BooleanAND_ReturnValue, float* CallFunc_SetPercent_InPercent_ImplicitCast)
+float UUI_InstallationStatus_C::UpdateModProgress(int32* Progress, enum class EInstallStatus NewInstallationStatus, enum class ELibraryProgressState* InstallationPhase, bool* CallFunc_IsAnimationPlaying_ReturnValue, double* CallFunc_GetTrueProgress_ReturnValue, bool* CallFunc_GetTrueProgress_MaintainPreviousValue, bool* CallFunc_IsValid_ReturnValue, bool CallFunc_NotEqual_ByteByte_ReturnValue, bool CallFunc_NotEqual_ByteByte_ReturnValue_1, bool CallFunc_BooleanAND_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -192,23 +218,30 @@ bool UUI_InstallationStatus_C::UpdateModProgress(bool* K2Node_SwitchEnum_CmpSucc
 
 	Params::UUI_InstallationStatus_C_UpdateModProgress_Params Parms{};
 
+	Parms.NewInstallationStatus = NewInstallationStatus;
+	Parms.CallFunc_NotEqual_ByteByte_ReturnValue = CallFunc_NotEqual_ByteByte_ReturnValue;
+	Parms.CallFunc_NotEqual_ByteByte_ReturnValue_1 = CallFunc_NotEqual_ByteByte_ReturnValue_1;
+	Parms.CallFunc_BooleanAND_ReturnValue = CallFunc_BooleanAND_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (K2Node_SwitchEnum_CmpSuccess != nullptr)
-		*K2Node_SwitchEnum_CmpSuccess = Parms.K2Node_SwitchEnum_CmpSuccess;
+	if (Progress != nullptr)
+		*Progress = Parms.Progress;
 
-	if (K2Node_SwitchEnum_CmpSuccess_1 != nullptr)
-		*K2Node_SwitchEnum_CmpSuccess_1 = Parms.K2Node_SwitchEnum_CmpSuccess_1;
+	if (InstallationPhase != nullptr)
+		*InstallationPhase = Parms.InstallationPhase;
 
-	if (K2Node_SwitchEnum_CmpSuccess_2 != nullptr)
-		*K2Node_SwitchEnum_CmpSuccess_2 = Parms.K2Node_SwitchEnum_CmpSuccess_2;
+	if (CallFunc_IsAnimationPlaying_ReturnValue != nullptr)
+		*CallFunc_IsAnimationPlaying_ReturnValue = Parms.CallFunc_IsAnimationPlaying_ReturnValue;
 
-	if (CallFunc_BooleanAND_ReturnValue != nullptr)
-		*CallFunc_BooleanAND_ReturnValue = Parms.CallFunc_BooleanAND_ReturnValue;
+	if (CallFunc_GetTrueProgress_ReturnValue != nullptr)
+		*CallFunc_GetTrueProgress_ReturnValue = Parms.CallFunc_GetTrueProgress_ReturnValue;
 
-	if (CallFunc_SetPercent_InPercent_ImplicitCast != nullptr)
-		*CallFunc_SetPercent_InPercent_ImplicitCast = Parms.CallFunc_SetPercent_InPercent_ImplicitCast;
+	if (CallFunc_GetTrueProgress_MaintainPreviousValue != nullptr)
+		*CallFunc_GetTrueProgress_MaintainPreviousValue = Parms.CallFunc_GetTrueProgress_MaintainPreviousValue;
+
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -218,9 +251,9 @@ bool UUI_InstallationStatus_C::UpdateModProgress(bool* K2Node_SwitchEnum_CmpSucc
 // Function UI_InstallationStatus.UI_InstallationStatus_C.Event Set Bindings To Game Slot
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UUI_GameSlot_C*              GameSlot                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class UUI_GameSlot_C*              GameSlot                                                         (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-class UUI_GameSlot_C* UUI_InstallationStatus_C::Event_Set_Bindings_To_Game_Slot()
+void UUI_InstallationStatus_C::Event_Set_Bindings_To_Game_Slot(class UUI_GameSlot_C** GameSlot)
 {
 	static class UFunction* Func = nullptr;
 
@@ -232,7 +265,8 @@ class UUI_GameSlot_C* UUI_InstallationStatus_C::Event_Set_Bindings_To_Game_Slot(
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (GameSlot != nullptr)
+		*GameSlot = Parms.GameSlot;
 
 }
 
@@ -240,10 +274,10 @@ class UUI_GameSlot_C* UUI_InstallationStatus_C::Event_Set_Bindings_To_Game_Slot(
 // Function UI_InstallationStatus.UI_InstallationStatus_C.PlayNotificationUpdate
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// double                             Duration                                                         (ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, DuplicateTransient)
-// class FText                        Message                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// double                             Duration                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, DuplicateTransient)
+// class FText                        Message                                                          (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-double UUI_InstallationStatus_C::PlayNotificationUpdate(class FText Message)
+class FText UUI_InstallationStatus_C::PlayNotificationUpdate()
 {
 	static class UFunction* Func = nullptr;
 
@@ -252,7 +286,6 @@ double UUI_InstallationStatus_C::PlayNotificationUpdate(class FText Message)
 
 	Params::UUI_InstallationStatus_C_PlayNotificationUpdate_Params Parms{};
 
-	Parms.Message = Message;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -264,16 +297,16 @@ double UUI_InstallationStatus_C::PlayNotificationUpdate(class FText Message)
 // Function UI_InstallationStatus.UI_InstallationStatus_C.ExecuteUbergraph_UI_InstallationStatus
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, BlueprintVisible, Net, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UUI_GameSlot_C*              K2Node_CustomEvent_GameSlot                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// double                             K2Node_CustomEvent_Duration                                      (Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
-// class FText                        K2Node_CustomEvent_Message                                       (Edit, BlueprintVisible, Net, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              CallFunc_RetriggerableDelay_Duration_ImplicitCast                (Edit, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UUI_GameSlot_C*              K2Node_CustomEvent_GameSlot                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// double                             K2Node_CustomEvent_Duration                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class FText                        K2Node_CustomEvent_Message                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              CallFunc_RetriggerableDelay_Duration_ImplicitCast                (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-float UUI_InstallationStatus_C::ExecuteUbergraph_UI_InstallationStatus(int32 EntryPoint)
+bool UUI_InstallationStatus_C::ExecuteUbergraph_UI_InstallationStatus(class UUI_GameSlot_C** K2Node_CustomEvent_GameSlot, bool* CallFunc_IsValid_ReturnValue, double* K2Node_CustomEvent_Duration, class FText* K2Node_CustomEvent_Message, float* CallFunc_RetriggerableDelay_Duration_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -282,9 +315,23 @@ float UUI_InstallationStatus_C::ExecuteUbergraph_UI_InstallationStatus(int32 Ent
 
 	Params::UUI_InstallationStatus_C_ExecuteUbergraph_UI_InstallationStatus_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (K2Node_CustomEvent_GameSlot != nullptr)
+		*K2Node_CustomEvent_GameSlot = Parms.K2Node_CustomEvent_GameSlot;
+
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+
+	if (K2Node_CustomEvent_Duration != nullptr)
+		*K2Node_CustomEvent_Duration = Parms.K2Node_CustomEvent_Duration;
+
+	if (K2Node_CustomEvent_Message != nullptr)
+		*K2Node_CustomEvent_Message = Parms.K2Node_CustomEvent_Message;
+
+	if (CallFunc_RetriggerableDelay_Duration_ImplicitCast != nullptr)
+		*CallFunc_RetriggerableDelay_Duration_ImplicitCast = Parms.CallFunc_RetriggerableDelay_Duration_ImplicitCast;
 
 	return Parms.ReturnValue;
 

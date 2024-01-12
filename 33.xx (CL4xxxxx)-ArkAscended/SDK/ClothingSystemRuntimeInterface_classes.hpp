@@ -14,8 +14,8 @@ namespace SDK
 class UClothingAssetBase : public UObject
 {
 public:
-	class FString                                ImportedFilePath;                                  // 0x28(0x10)(Edit, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FGuid                                 AssetGuid;                                         // 0x38(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class FString                                ImportedFilePath;                                  // 0x28(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FGuid                                 AssetGuid;                                         // 0x38(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UClothingAssetBase* GetDefaultObj();
@@ -60,7 +60,7 @@ public:
 class UClothingInteractor : public UObject
 {
 public:
-	uint8                                        Pad_24BF[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2E45[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UClothingInteractor* GetDefaultObj();
@@ -72,24 +72,24 @@ public:
 class UClothingSimulationInteractor : public UObject
 {
 public:
-	TMap<class FName, class UClothingInteractor*> ClothingInteractors;                               // 0x28(0x50)(Edit, ConstParm, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_24EB[0x18];                                    // Fixing Size Of Struct > TateDumper <
+	TMap<class FName, class UClothingInteractor*> ClothingInteractors;                               // 0x28(0x50)(ConstParm, BlueprintVisible, Parm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2E4F[0x18];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UClothingSimulationInteractor* GetDefaultObj();
 
-	void SetNumSubsteps(int32* NumSubsteps);
-	int32 SetNumIterations();
-	void SetMaxNumIterations(int32* MaxNumIterations);
-	void SetAnimDriveSpringStiffness(float* InStiffness);
+	int32 SetNumSubsteps();
+	void SetNumIterations(int32* NumIterations);
+	int32 SetMaxNumIterations();
+	float SetAnimDriveSpringStiffness();
 	void PhysicsAssetUpdated();
-	void GetSimulationTime(float* ReturnValue);
-	void GetNumSubsteps(int32* ReturnValue);
-	void GetNumKinematicParticles(int32* ReturnValue);
-	void GetNumIterations(int32* ReturnValue);
-	void GetNumDynamicParticles(int32* ReturnValue);
-	void GetNumCloths(int32* ReturnValue);
-	void GetClothingInteractor(class FString* ClothingAssetName, class UClothingInteractor** ReturnValue);
+	float GetSimulationTime();
+	int32 GetNumSubsteps();
+	int32 GetNumKinematicParticles();
+	int32 GetNumIterations();
+	int32 GetNumDynamicParticles();
+	int32 GetNumCloths();
+	class UClothingInteractor* GetClothingInteractor();
 	struct FVector EnableGravityOverride();
 	void DisableGravityOverride();
 	void ClothConfigUpdated();
@@ -101,14 +101,14 @@ class UClothPhysicalMeshDataBase_Legacy : public UObject
 {
 public:
 	TArray<struct FVector3f>                     Vertices;                                          // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	TArray<struct FVector3f>                     Normals;                                           // 0x38(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	TArray<uint32>                               Indices;                                           // 0x48(0x10)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<float>                                InverseMasses;                                     // 0x58(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<struct FClothVertBoneData>            BoneData;                                          // 0x68(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	int32                                        NumFixedVerts;                                     // 0x78(0x4)(ConstParm, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	int32                                        MaxBoneWeights;                                    // 0x7C(0x4)(ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<uint32>                               SelfCollisionIndices;                              // 0x80(0x10)(BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_24FB[0x50];                                    // Fixing Size Of Struct > TateDumper <
+	TArray<struct FVector3f>                     Normals;                                           // 0x38(0x10)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint32>                               Indices;                                           // 0x48(0x10)(ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<float>                                InverseMasses;                                     // 0x58(0x10)(Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FClothVertBoneData>            BoneData;                                          // 0x68(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        NumFixedVerts;                                     // 0x78(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        MaxBoneWeights;                                    // 0x7C(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<uint32>                               SelfCollisionIndices;                              // 0x80(0x10)(BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2E52[0x50];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UClothPhysicalMeshDataBase_Legacy* GetDefaultObj();

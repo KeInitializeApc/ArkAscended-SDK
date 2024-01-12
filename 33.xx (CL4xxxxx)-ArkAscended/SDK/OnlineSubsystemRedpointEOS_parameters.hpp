@@ -18,9 +18,9 @@ namespace Params
 struct IEOSUserInterface_EnterDevicePinCode_SetupUserInterface_Params
 {
 public:
-	class UEOSUserInterface_EnterDevicePinCode_Context* Context;                                           // 0x0(0x8)(ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	class FString                                VerificationUrl;                                   // 0x8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	class FString                                PinCode;                                           // 0x18(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UEOSUserInterface_EnterDevicePinCode_Context* Context;                                           // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FString                                VerificationUrl;                                   // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FString                                PinCode;                                           // 0x18(0x10)(ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -36,8 +36,8 @@ public:
 struct IEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_SetupUserInterface_Params
 {
 public:
-	class UEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context* Context;                                           // 0x0(0x8)(ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<struct FEOSUserInterface_CandidateEOSAccount> AvailableCandidates;                               // 0x8(0x10)(BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context* Context;                                           // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FEOSUserInterface_CandidateEOSAccount> AvailableCandidates;                               // 0x8(0x10)(BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0xD0 (0xD0 - 0x0)
@@ -45,7 +45,7 @@ public:
 struct UEOSUserInterface_SelectEOSAccount_Context_SelectCandidate_Params
 {
 public:
-	struct FEOSUserInterface_CandidateEOSAccount SelectedCandidate;                                 // 0x0(0xD0)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FEOSUserInterface_CandidateEOSAccount SelectedCandidate;                                 // 0x0(0xD0)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -53,8 +53,8 @@ public:
 struct IEOSUserInterface_SelectEOSAccount_SetupUserInterface_Params
 {
 public:
-	class UEOSUserInterface_SelectEOSAccount_Context* Context;                                           // 0x0(0x8)(ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<struct FEOSUserInterface_CandidateEOSAccount> AvailableCandidates;                               // 0x8(0x10)(BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UEOSUserInterface_SelectEOSAccount_Context* Context;                                           // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FEOSUserInterface_CandidateEOSAccount> AvailableCandidates;                               // 0x8(0x10)(BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -62,7 +62,7 @@ public:
 struct UEOSUserInterface_SignInOrCreateAccount_Context_SelectChoice_Params
 {
 public:
-	enum class EEOSUserInterface_SignInOrCreateAccount_Choice SelectedChoice;                                    // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EEOSUserInterface_SignInOrCreateAccount_Choice SelectedChoice;                                    // 0x0(0x1)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -70,7 +70,7 @@ public:
 struct IEOSUserInterface_SignInOrCreateAccount_SetupUserInterface_Params
 {
 public:
-	class UEOSUserInterface_SignInOrCreateAccount_Context* Context;                                           // 0x0(0x8)(ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UEOSUserInterface_SignInOrCreateAccount_Context* Context;                                           // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -78,7 +78,7 @@ public:
 struct UEOSUserInterface_SwitchToCrossPlatformAccount_Context_SelectChoice_Params
 {
 public:
-	enum class EEOSUserInterface_SwitchToCrossPlatformAccount_Choice SelectedChoice;                                    // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EEOSUserInterface_SwitchToCrossPlatformAccount_Choice SelectedChoice;                                    // 0x0(0x1)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -86,8 +86,8 @@ public:
 struct IEOSUserInterface_SwitchToCrossPlatformAccount_SetupUserInterface_Params
 {
 public:
-	class UEOSUserInterface_SwitchToCrossPlatformAccount_Context* Context;                                           // 0x0(0x8)(ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	class FString                                EpicAccountName;                                   // 0x8(0x10)(Edit, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UEOSUserInterface_SwitchToCrossPlatformAccount_Context* Context;                                           // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FString                                EpicAccountName;                                   // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 }

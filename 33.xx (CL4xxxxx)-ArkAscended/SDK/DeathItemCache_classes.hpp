@@ -14,7 +14,7 @@ namespace SDK
 class ADeathItemCache_C : public AStructureItemContainerBaseBP_C
 {
 public:
-	class UPrimalInventoryBP_DeathItemCache_C*   PrimalInventoryBP_DeathItemCache_C1;               // 0x14F8(0x8)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class UPrimalInventoryBP_DeathItemCache_C*   PrimalInventoryBP_DeathItemCache_C1;               // 0x14F8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ADeathItemCache_C* GetDefaultObj();

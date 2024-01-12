@@ -43,10 +43,10 @@ class ULayersBlueprintLibrary* ULayersBlueprintLibrary::GetDefaultObj()
 // Function ActorLayerUtilities.LayersBlueprintLibrary.RemoveActorFromLayer
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class AActor*                      InActor                                                          (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      InActor                                                          (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 // struct FActorLayer                 Layer                                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig)
 
-struct FActorLayer ULayersBlueprintLibrary::RemoveActorFromLayer(class AActor* InActor)
+struct FActorLayer ULayersBlueprintLibrary::RemoveActorFromLayer()
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,7 +55,6 @@ struct FActorLayer ULayersBlueprintLibrary::RemoveActorFromLayer(class AActor* I
 
 	Params::ULayersBlueprintLibrary_RemoveActorFromLayer_Params Parms{};
 
-	Parms.InActor = InActor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -73,11 +72,11 @@ struct FActorLayer ULayersBlueprintLibrary::RemoveActorFromLayer(class AActor* I
 // Function ActorLayerUtilities.LayersBlueprintLibrary.GetActors
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FActorLayer                 ActorLayer                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config)
-// TArray<class AActor*>              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class AActor*>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* ULayersBlueprintLibrary::GetActors(const struct FActorLayer& ActorLayer, TArray<class AActor*>* ReturnValue)
+TArray<class AActor*> ULayersBlueprintLibrary::GetActors(const struct FActorLayer& ActorLayer)
 {
 	static class UFunction* Func = nullptr;
 
@@ -96,9 +95,6 @@ class UObject* ULayersBlueprintLibrary::GetActors(const struct FActorLayer& Acto
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -107,10 +103,10 @@ class UObject* ULayersBlueprintLibrary::GetActors(const struct FActorLayer& Acto
 // Function ActorLayerUtilities.LayersBlueprintLibrary.AddActorToLayer
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class AActor*                      InActor                                                          (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      InActor                                                          (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 // struct FActorLayer                 Layer                                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig)
 
-struct FActorLayer ULayersBlueprintLibrary::AddActorToLayer(class AActor* InActor)
+struct FActorLayer ULayersBlueprintLibrary::AddActorToLayer()
 {
 	static class UFunction* Func = nullptr;
 
@@ -119,7 +115,6 @@ struct FActorLayer ULayersBlueprintLibrary::AddActorToLayer(class AActor* InActo
 
 	Params::ULayersBlueprintLibrary_AddActorToLayer_Params Parms{};
 
-	Parms.InActor = InActor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;

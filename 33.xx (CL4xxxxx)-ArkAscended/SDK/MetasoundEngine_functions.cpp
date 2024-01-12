@@ -43,10 +43,10 @@ class UMetasoundGeneratorHandle* UMetasoundGeneratorHandle::GetDefaultObj()
 // Function MetasoundEngine.MetasoundGeneratorHandle.CreateMetaSoundGeneratorHandle
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UAudioComponent*             OnComponent                                                      (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class UMetasoundGeneratorHandle*   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAudioComponent*             OnComponent                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class UMetasoundGeneratorHandle*   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMetasoundGeneratorHandle::CreateMetaSoundGeneratorHandle(class UAudioComponent** OnComponent, class UMetasoundGeneratorHandle** ReturnValue)
+class UMetasoundGeneratorHandle* UMetasoundGeneratorHandle::CreateMetaSoundGeneratorHandle()
 {
 	static class UFunction* Func = nullptr;
 
@@ -64,11 +64,7 @@ void UMetasoundGeneratorHandle::CreateMetaSoundGeneratorHandle(class UAudioCompo
 
 	Func->FunctionFlags = Flgs;
 
-	if (OnComponent != nullptr)
-		*OnComponent = Parms.OnComponent;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -76,10 +72,10 @@ void UMetasoundGeneratorHandle::CreateMetaSoundGeneratorHandle(class UAudioCompo
 // Function MetasoundEngine.MetasoundGeneratorHandle.ApplyParameterPack
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMetasoundParameterPack*     Pack                                                             (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMetasoundParameterPack*     Pack                                                             (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UMetasoundGeneratorHandle::ApplyParameterPack(class UMetasoundParameterPack** Pack, bool* ReturnValue)
+bool UMetasoundGeneratorHandle::ApplyParameterPack()
 {
 	static class UFunction* Func = nullptr;
 
@@ -97,11 +93,7 @@ void UMetasoundGeneratorHandle::ApplyParameterPack(class UMetasoundParameterPack
 
 	Func->FunctionFlags = Flgs;
 
-	if (Pack != nullptr)
-		*Pack = Parms.Pack;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -221,9 +213,9 @@ class UMetaSoundAssetSubsystem* UMetaSoundAssetSubsystem::GetDefaultObj()
 // Function MetasoundEngine.MetaSoundAssetSubsystem.UnregisterAssetClassesInDirectories
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FMetaSoundAssetDirectory>Directories                                                      (Edit, BlueprintVisible, ExportObject, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FMetaSoundAssetDirectory>Directories                                                      (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UMetaSoundAssetSubsystem::UnregisterAssetClassesInDirectories(TArray<struct FMetaSoundAssetDirectory>* Directories)
+TArray<struct FMetaSoundAssetDirectory> UMetaSoundAssetSubsystem::UnregisterAssetClassesInDirectories()
 {
 	static class UFunction* Func = nullptr;
 
@@ -241,8 +233,7 @@ void UMetaSoundAssetSubsystem::UnregisterAssetClassesInDirectories(TArray<struct
 
 	Func->FunctionFlags = Flgs;
 
-	if (Directories != nullptr)
-		*Directories = std::move(Parms.Directories);
+	return Parms.ReturnValue;
 
 }
 
@@ -250,9 +241,9 @@ void UMetaSoundAssetSubsystem::UnregisterAssetClassesInDirectories(TArray<struct
 // Function MetasoundEngine.MetaSoundAssetSubsystem.RegisterAssetClassesInDirectories
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FMetaSoundAssetDirectory>Directories                                                      (Edit, BlueprintVisible, ExportObject, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FMetaSoundAssetDirectory>Directories                                                      (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UMetaSoundAssetSubsystem::RegisterAssetClassesInDirectories(TArray<struct FMetaSoundAssetDirectory>* Directories)
+TArray<struct FMetaSoundAssetDirectory> UMetaSoundAssetSubsystem::RegisterAssetClassesInDirectories()
 {
 	static class UFunction* Func = nullptr;
 
@@ -270,8 +261,7 @@ void UMetaSoundAssetSubsystem::RegisterAssetClassesInDirectories(TArray<struct F
 
 	Func->FunctionFlags = Flgs;
 
-	if (Directories != nullptr)
-		*Directories = std::move(Parms.Directories);
+	return Parms.ReturnValue;
 
 }
 

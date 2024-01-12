@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class UImageWriteBlueprintLibrary* GetDefaultObj();
 
-	class FString ExportToDisk(struct FImageWriteOptions* Options);
+	struct FImageWriteOptions ExportToDisk();
 };
 
 }

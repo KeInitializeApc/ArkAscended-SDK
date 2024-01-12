@@ -14,8 +14,8 @@ namespace SDK
 class UDataListEntryWidgetGeneric_DyeResources_C : public UDataListEntryButton_DyeResources
 {
 public:
-	class UDataListButton_Widget_ASA_C*          DataListButton_Widget_ASA;                         // 0x768(0x8)(ExportObject, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, DuplicateTransient)
-	class UImage*                                ItemIcon;                                          // 0x770(0x8)(Edit, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	class UDataListButton_Widget_ASA_C*          DataListButton_Widget_ASA;                         // 0x768(0x8)(Edit, Net, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, DuplicateTransient)
+	class UImage*                                ItemIcon;                                          // 0x770(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UDataListEntryWidgetGeneric_DyeResources_C* GetDefaultObj();

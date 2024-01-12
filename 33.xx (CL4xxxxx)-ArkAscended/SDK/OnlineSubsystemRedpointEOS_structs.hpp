@@ -84,7 +84,7 @@ struct FEOSUserInterface_CandidateEOSAccount
 {
 public:
 	class FText                                  DisplayName;                                       // 0x0(0x18)(BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient)
-	uint8                                        Pad_2B8[0xB8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_3BB[0xB8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

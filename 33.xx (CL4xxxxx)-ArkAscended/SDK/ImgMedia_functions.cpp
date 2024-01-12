@@ -97,9 +97,9 @@ void UImgMediaSource::SetSequencePath(const class FString& Path)
 // Function ImgMedia.ImgMediaSource.SetMipLevelDistance
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Distance                                                         (Edit, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              Distance                                                         (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UImgMediaSource::SetMipLevelDistance(float Distance)
+float UImgMediaSource::SetMipLevelDistance()
 {
 	static class UFunction* Func = nullptr;
 
@@ -108,7 +108,6 @@ void UImgMediaSource::SetMipLevelDistance(float Distance)
 
 	Params::UImgMediaSource_SetMipLevelDistance_Params Parms{};
 
-	Parms.Distance = Distance;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -118,15 +117,17 @@ void UImgMediaSource::SetMipLevelDistance(float Distance)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ImgMedia.ImgMediaSource.RemoveTargetObject
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class AActor*                      InActor                                                          (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      InActor                                                          (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-void UImgMediaSource::RemoveTargetObject(class AActor* InActor)
+class AActor* UImgMediaSource::RemoveTargetObject()
 {
 	static class UFunction* Func = nullptr;
 
@@ -135,7 +136,6 @@ void UImgMediaSource::RemoveTargetObject(class AActor* InActor)
 
 	Params::UImgMediaSource_RemoveTargetObject_Params Parms{};
 
-	Parms.InActor = InActor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -145,15 +145,17 @@ void UImgMediaSource::RemoveTargetObject(class AActor* InActor)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ImgMedia.ImgMediaSource.RemoveGlobalCamera
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class AActor*                      InActor                                                          (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      InActor                                                          (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-void UImgMediaSource::RemoveGlobalCamera(class AActor* InActor)
+class AActor* UImgMediaSource::RemoveGlobalCamera()
 {
 	static class UFunction* Func = nullptr;
 
@@ -162,7 +164,6 @@ void UImgMediaSource::RemoveGlobalCamera(class AActor* InActor)
 
 	Params::UImgMediaSource_RemoveGlobalCamera_Params Parms{};
 
-	Parms.InActor = InActor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -172,15 +173,17 @@ void UImgMediaSource::RemoveGlobalCamera(class AActor* InActor)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ImgMedia.ImgMediaSource.GetSequencePath
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UImgMediaSource::GetSequencePath(class FString* ReturnValue)
+class FString UImgMediaSource::GetSequencePath()
 {
 	static class UFunction* Func = nullptr;
 
@@ -198,8 +201,7 @@ void UImgMediaSource::GetSequencePath(class FString* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -207,9 +209,9 @@ void UImgMediaSource::GetSequencePath(class FString* ReturnValue)
 // Function ImgMedia.ImgMediaSource.GetProxies
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class FString>              OutProxies                                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// TArray<class FString>              OutProxies                                                       (Edit, ExportObject, Net, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 
-TArray<class FString> UImgMediaSource::GetProxies()
+void UImgMediaSource::GetProxies(TArray<class FString>* OutProxies)
 {
 	static class UFunction* Func = nullptr;
 
@@ -227,7 +229,8 @@ TArray<class FString> UImgMediaSource::GetProxies()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (OutProxies != nullptr)
+		*OutProxies = std::move(Parms.OutProxies);
 
 }
 
@@ -235,9 +238,9 @@ TArray<class FString> UImgMediaSource::GetProxies()
 // Function ImgMedia.ImgMediaSource.AddTargetObject
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class AActor*                      InActor                                                          (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      InActor                                                          (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-void UImgMediaSource::AddTargetObject(class AActor* InActor)
+class AActor* UImgMediaSource::AddTargetObject()
 {
 	static class UFunction* Func = nullptr;
 
@@ -246,7 +249,6 @@ void UImgMediaSource::AddTargetObject(class AActor* InActor)
 
 	Params::UImgMediaSource_AddTargetObject_Params Parms{};
 
-	Parms.InActor = InActor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -256,15 +258,17 @@ void UImgMediaSource::AddTargetObject(class AActor* InActor)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ImgMedia.ImgMediaSource.AddGlobalCamera
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class AActor*                      InActor                                                          (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      InActor                                                          (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-void UImgMediaSource::AddGlobalCamera(class AActor* InActor)
+class AActor* UImgMediaSource::AddGlobalCamera()
 {
 	static class UFunction* Func = nullptr;
 
@@ -273,7 +277,6 @@ void UImgMediaSource::AddGlobalCamera(class AActor* InActor)
 
 	Params::UImgMediaSource_AddGlobalCamera_Params Parms{};
 
-	Parms.InActor = InActor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -282,6 +285,8 @@ void UImgMediaSource::AddGlobalCamera(class AActor* InActor)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

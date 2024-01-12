@@ -189,10 +189,10 @@ struct FLiveLinkTransform ULiveLinkBlueprintLibrary::TransformName(class FName* 
 // Function LiveLink.LiveLinkBlueprintLibrary.SetLiveLinkSubjectEnabled
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkSubjectKey         SubjectKey                                                       (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FLiveLinkSubjectKey         SubjectKey                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // bool                               bEnabled                                                         (Edit, BlueprintVisible, ExportObject, Net, OutParm, Transient, EditConst, GlobalConfig)
 
-void ULiveLinkBlueprintLibrary::SetLiveLinkSubjectEnabled(struct FLiveLinkSubjectKey* SubjectKey, bool* bEnabled)
+struct FLiveLinkSubjectKey ULiveLinkBlueprintLibrary::SetLiveLinkSubjectEnabled(bool* bEnabled)
 {
 	static class UFunction* Func = nullptr;
 
@@ -210,11 +210,10 @@ void ULiveLinkBlueprintLibrary::SetLiveLinkSubjectEnabled(struct FLiveLinkSubjec
 
 	Func->FunctionFlags = Flgs;
 
-	if (SubjectKey != nullptr)
-		*SubjectKey = std::move(Parms.SubjectKey);
-
 	if (bEnabled != nullptr)
 		*bEnabled = Parms.bEnabled;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -222,10 +221,10 @@ void ULiveLinkBlueprintLibrary::SetLiveLinkSubjectEnabled(struct FLiveLinkSubjec
 // Function LiveLink.LiveLinkBlueprintLibrary.RemoveSource
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkSourceHandle       SourceHandle                                                     (Edit, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkSourceHandle       SourceHandle                                                     (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::RemoveSource(struct FLiveLinkSourceHandle* SourceHandle, bool* ReturnValue)
+bool ULiveLinkBlueprintLibrary::RemoveSource()
 {
 	static class UFunction* Func = nullptr;
 
@@ -243,11 +242,7 @@ void ULiveLinkBlueprintLibrary::RemoveSource(struct FLiveLinkSourceHandle* Sourc
 
 	Func->FunctionFlags = Flgs;
 
-	if (SourceHandle != nullptr)
-		*SourceHandle = std::move(Parms.SourceHandle);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -288,9 +283,9 @@ struct FLiveLinkTransform ULiveLinkBlueprintLibrary::ParentBoneSpaceTransform(st
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FSubjectFrameHandle         SubjectFrameHandle                                               (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::NumberOfTransforms(int32* ReturnValue)
+int32 ULiveLinkBlueprintLibrary::NumberOfTransforms()
 {
 	static class UFunction* Func = nullptr;
 
@@ -308,9 +303,6 @@ struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::NumberOfTransforms(int32* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -319,11 +311,11 @@ struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::NumberOfTransforms(int32* 
 // Function LiveLink.LiveLinkBlueprintLibrary.IsSpecificLiveLinkSubjectEnabled
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkSubjectKey         SubjectKey                                                       (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               bForThisFrame                                                    (BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkSubjectKey         SubjectKey                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bForThisFrame                                                    (Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::IsSpecificLiveLinkSubjectEnabled(struct FLiveLinkSubjectKey* SubjectKey, bool* bForThisFrame, bool* ReturnValue)
+bool ULiveLinkBlueprintLibrary::IsSpecificLiveLinkSubjectEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -341,14 +333,7 @@ void ULiveLinkBlueprintLibrary::IsSpecificLiveLinkSubjectEnabled(struct FLiveLin
 
 	Func->FunctionFlags = Flgs;
 
-	if (SubjectKey != nullptr)
-		*SubjectKey = std::move(Parms.SubjectKey);
-
-	if (bForThisFrame != nullptr)
-		*bForThisFrame = Parms.bForThisFrame;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -356,10 +341,10 @@ void ULiveLinkBlueprintLibrary::IsSpecificLiveLinkSubjectEnabled(struct FLiveLin
 // Function LiveLink.LiveLinkBlueprintLibrary.IsSourceStillValid
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkSourceHandle       SourceHandle                                                     (Edit, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkSourceHandle       SourceHandle                                                     (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::IsSourceStillValid(struct FLiveLinkSourceHandle* SourceHandle, bool* ReturnValue)
+bool ULiveLinkBlueprintLibrary::IsSourceStillValid()
 {
 	static class UFunction* Func = nullptr;
 
@@ -377,11 +362,7 @@ void ULiveLinkBlueprintLibrary::IsSourceStillValid(struct FLiveLinkSourceHandle*
 
 	Func->FunctionFlags = Flgs;
 
-	if (SourceHandle != nullptr)
-		*SourceHandle = std::move(Parms.SourceHandle);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -390,9 +371,9 @@ void ULiveLinkBlueprintLibrary::IsSourceStillValid(struct FLiveLinkSourceHandle*
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // struct FLiveLinkSubjectName        SubjectName                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::IsLiveLinkSubjectEnabled(const struct FLiveLinkSubjectName& SubjectName, bool* ReturnValue)
+bool ULiveLinkBlueprintLibrary::IsLiveLinkSubjectEnabled(const struct FLiveLinkSubjectName& SubjectName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -411,8 +392,7 @@ void ULiveLinkBlueprintLibrary::IsLiveLinkSubjectEnabled(const struct FLiveLinkS
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -421,9 +401,9 @@ void ULiveLinkBlueprintLibrary::IsLiveLinkSubjectEnabled(const struct FLiveLinkS
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FLiveLinkTransform          LiveLinkTransform                                                (ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FLiveLinkTransform ULiveLinkBlueprintLibrary::HasParent(bool* ReturnValue)
+bool ULiveLinkBlueprintLibrary::HasParent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -440,9 +420,6 @@ struct FLiveLinkTransform ULiveLinkBlueprintLibrary::HasParent(bool* ReturnValue
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -484,10 +461,10 @@ struct FLiveLinkTransform ULiveLinkBlueprintLibrary::GetTransformByName(class FN
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FSubjectFrameHandle         SubjectFrameHandle                                               (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// int32                              TransformIndex                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// int32                              TransformIndex                                                   (Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FLiveLinkTransform          LiveLinkTransform                                                (ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
 
-struct FLiveLinkTransform ULiveLinkBlueprintLibrary::GetTransformByIndex(int32 TransformIndex)
+struct FLiveLinkTransform ULiveLinkBlueprintLibrary::GetTransformByIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -496,7 +473,6 @@ struct FLiveLinkTransform ULiveLinkBlueprintLibrary::GetTransformByIndex(int32 T
 
 	Params::ULiveLinkBlueprintLibrary_GetTransformByIndex_Params Parms{};
 
-	Parms.TransformIndex = TransformIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -514,10 +490,10 @@ struct FLiveLinkTransform ULiveLinkBlueprintLibrary::GetTransformByIndex(int32 T
 // Function LiveLink.LiveLinkBlueprintLibrary.GetSpecificLiveLinkSubjectRole
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkSubjectKey         SubjectKey                                                       (ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class UClass*                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkSubjectKey         SubjectKey                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UClass*                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::GetSpecificLiveLinkSubjectRole(struct FLiveLinkSubjectKey* SubjectKey, class UClass** ReturnValue)
+class UClass* ULiveLinkBlueprintLibrary::GetSpecificLiveLinkSubjectRole()
 {
 	static class UFunction* Func = nullptr;
 
@@ -535,11 +511,7 @@ void ULiveLinkBlueprintLibrary::GetSpecificLiveLinkSubjectRole(struct FLiveLinkS
 
 	Func->FunctionFlags = Flgs;
 
-	if (SubjectKey != nullptr)
-		*SubjectKey = std::move(Parms.SubjectKey);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -547,10 +519,10 @@ void ULiveLinkBlueprintLibrary::GetSpecificLiveLinkSubjectRole(struct FLiveLinkS
 // Function LiveLink.LiveLinkBlueprintLibrary.GetSourceTypeFromGuid
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FGuid                       SourceGuid                                                       (ExportObject, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGuid                       SourceGuid                                                       (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::GetSourceTypeFromGuid(struct FGuid* SourceGuid, class FText* ReturnValue)
+class FText ULiveLinkBlueprintLibrary::GetSourceTypeFromGuid()
 {
 	static class UFunction* Func = nullptr;
 
@@ -568,11 +540,7 @@ void ULiveLinkBlueprintLibrary::GetSourceTypeFromGuid(struct FGuid* SourceGuid, 
 
 	Func->FunctionFlags = Flgs;
 
-	if (SourceGuid != nullptr)
-		*SourceGuid = std::move(Parms.SourceGuid);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -580,10 +548,10 @@ void ULiveLinkBlueprintLibrary::GetSourceTypeFromGuid(struct FGuid* SourceGuid, 
 // Function LiveLink.LiveLinkBlueprintLibrary.GetSourceType
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkSourceHandle       SourceHandle                                                     (Edit, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkSourceHandle       SourceHandle                                                     (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::GetSourceType(struct FLiveLinkSourceHandle* SourceHandle, class FText* ReturnValue)
+class FText ULiveLinkBlueprintLibrary::GetSourceType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -601,11 +569,7 @@ void ULiveLinkBlueprintLibrary::GetSourceType(struct FLiveLinkSourceHandle* Sour
 
 	Func->FunctionFlags = Flgs;
 
-	if (SourceHandle != nullptr)
-		*SourceHandle = std::move(Parms.SourceHandle);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -613,10 +577,10 @@ void ULiveLinkBlueprintLibrary::GetSourceType(struct FLiveLinkSourceHandle* Sour
 // Function LiveLink.LiveLinkBlueprintLibrary.GetSourceStatus
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkSourceHandle       SourceHandle                                                     (Edit, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkSourceHandle       SourceHandle                                                     (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::GetSourceStatus(struct FLiveLinkSourceHandle* SourceHandle, class FText* ReturnValue)
+class FText ULiveLinkBlueprintLibrary::GetSourceStatus()
 {
 	static class UFunction* Func = nullptr;
 
@@ -634,11 +598,7 @@ void ULiveLinkBlueprintLibrary::GetSourceStatus(struct FLiveLinkSourceHandle* So
 
 	Func->FunctionFlags = Flgs;
 
-	if (SourceHandle != nullptr)
-		*SourceHandle = std::move(Parms.SourceHandle);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -646,10 +606,10 @@ void ULiveLinkBlueprintLibrary::GetSourceStatus(struct FLiveLinkSourceHandle* So
 // Function LiveLink.LiveLinkBlueprintLibrary.GetSourceMachineName
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkSourceHandle       SourceHandle                                                     (Edit, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkSourceHandle       SourceHandle                                                     (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::GetSourceMachineName(struct FLiveLinkSourceHandle* SourceHandle, class FText* ReturnValue)
+class FText ULiveLinkBlueprintLibrary::GetSourceMachineName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -667,11 +627,7 @@ void ULiveLinkBlueprintLibrary::GetSourceMachineName(struct FLiveLinkSourceHandl
 
 	Func->FunctionFlags = Flgs;
 
-	if (SourceHandle != nullptr)
-		*SourceHandle = std::move(Parms.SourceHandle);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -708,12 +664,12 @@ struct FLiveLinkTransform ULiveLinkBlueprintLibrary::GetRootTransform()
 // Function LiveLink.LiveLinkBlueprintLibrary.GetPropertyValue
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FLiveLinkBasicBlueprintData BasicData                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class FName                        PropertyName                                                     (ConstParm, ExportObject, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkBasicBlueprintData BasicData                                                        (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        PropertyName                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 // float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName ULiveLinkBlueprintLibrary::GetPropertyValue(const struct FLiveLinkBasicBlueprintData& BasicData, float Value, bool* ReturnValue)
+bool ULiveLinkBlueprintLibrary::GetPropertyValue(float Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -722,7 +678,6 @@ class FName ULiveLinkBlueprintLibrary::GetPropertyValue(const struct FLiveLinkBa
 
 	Params::ULiveLinkBlueprintLibrary_GetPropertyValue_Params Parms{};
 
-	Parms.BasicData = BasicData;
 	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
@@ -732,9 +687,6 @@ class FName ULiveLinkBlueprintLibrary::GetPropertyValue(const struct FLiveLinkBa
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -806,11 +758,11 @@ struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::GetMetadata(struct FSubjec
 // Function LiveLink.LiveLinkBlueprintLibrary.GetLiveLinkSubjects
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               bIncludeDisabledSubject                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               bIncludeVirtualSubject                                           (ConstParm, Net, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FLiveLinkSubjectKey> ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bIncludeDisabledSubject                                          (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bIncludeVirtualSubject                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FLiveLinkSubjectKey> ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::GetLiveLinkSubjects(bool bIncludeDisabledSubject, bool bIncludeVirtualSubject, TArray<struct FLiveLinkSubjectKey>* ReturnValue)
+TArray<struct FLiveLinkSubjectKey> ULiveLinkBlueprintLibrary::GetLiveLinkSubjects()
 {
 	static class UFunction* Func = nullptr;
 
@@ -819,8 +771,6 @@ void ULiveLinkBlueprintLibrary::GetLiveLinkSubjects(bool bIncludeDisabledSubject
 
 	Params::ULiveLinkBlueprintLibrary_GetLiveLinkSubjects_Params Parms{};
 
-	Parms.bIncludeDisabledSubject = bIncludeDisabledSubject;
-	Parms.bIncludeVirtualSubject = bIncludeVirtualSubject;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -830,8 +780,7 @@ void ULiveLinkBlueprintLibrary::GetLiveLinkSubjects(bool bIncludeDisabledSubject
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -840,9 +789,9 @@ void ULiveLinkBlueprintLibrary::GetLiveLinkSubjects(bool bIncludeDisabledSubject
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // struct FLiveLinkSubjectName        SubjectName                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst)
-// class UClass*                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::GetLiveLinkSubjectRole(const struct FLiveLinkSubjectName& SubjectName, class UClass** ReturnValue)
+class UClass* ULiveLinkBlueprintLibrary::GetLiveLinkSubjectRole(const struct FLiveLinkSubjectName& SubjectName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -861,8 +810,7 @@ void ULiveLinkBlueprintLibrary::GetLiveLinkSubjectRole(const struct FLiveLinkSub
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -870,10 +818,10 @@ void ULiveLinkBlueprintLibrary::GetLiveLinkSubjectRole(const struct FLiveLinkSub
 // Function LiveLink.LiveLinkBlueprintLibrary.GetLiveLinkEnabledSubjectNames
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               bIncludeVirtualSubject                                           (ConstParm, Net, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FLiveLinkSubjectName>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bIncludeVirtualSubject                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FLiveLinkSubjectName>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::GetLiveLinkEnabledSubjectNames(bool bIncludeVirtualSubject, TArray<struct FLiveLinkSubjectName>* ReturnValue)
+TArray<struct FLiveLinkSubjectName> ULiveLinkBlueprintLibrary::GetLiveLinkEnabledSubjectNames()
 {
 	static class UFunction* Func = nullptr;
 
@@ -882,7 +830,6 @@ void ULiveLinkBlueprintLibrary::GetLiveLinkEnabledSubjectNames(bool bIncludeVirt
 
 	Params::ULiveLinkBlueprintLibrary_GetLiveLinkEnabledSubjectNames_Params Parms{};
 
-	Parms.bIncludeVirtualSubject = bIncludeVirtualSubject;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -892,8 +839,7 @@ void ULiveLinkBlueprintLibrary::GetLiveLinkEnabledSubjectNames(bool bIncludeVirt
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -963,9 +909,9 @@ struct FLiveLinkTransform ULiveLinkBlueprintLibrary::GetChildren(TArray<struct F
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FSubjectFrameHandle         SubjectFrameHandle                                               (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FLiveLinkBasicBlueprintData BasicBlueprintData                                               (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FLiveLinkBasicBlueprintData BasicBlueprintData                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::GetBasicData(const struct FLiveLinkBasicBlueprintData& BasicBlueprintData)
+struct FLiveLinkBasicBlueprintData ULiveLinkBlueprintLibrary::GetBasicData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -974,7 +920,6 @@ struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::GetBasicData(const struct 
 
 	Params::ULiveLinkBlueprintLibrary_GetBasicData_Params Parms{};
 
-	Parms.BasicBlueprintData = BasicBlueprintData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -993,10 +938,10 @@ struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::GetBasicData(const struct 
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FSubjectFrameHandle         SubjectFrameHandle                                               (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FLiveLinkSkeletonStaticData AnimationStaticData                                              (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkSkeletonStaticData AnimationStaticData                                              (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::GetAnimationStaticData(const struct FLiveLinkSkeletonStaticData& AnimationStaticData, bool* ReturnValue)
+bool ULiveLinkBlueprintLibrary::GetAnimationStaticData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1005,7 +950,6 @@ struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::GetAnimationStaticData(con
 
 	Params::ULiveLinkBlueprintLibrary_GetAnimationStaticData_Params Parms{};
 
-	Parms.AnimationStaticData = AnimationStaticData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1014,9 +958,6 @@ struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::GetAnimationStaticData(con
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -1027,10 +968,10 @@ struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::GetAnimationStaticData(con
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FSubjectFrameHandle         SubjectFrameHandle                                               (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FLiveLinkAnimationFrameData AnimationFrameData                                               (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkAnimationFrameData AnimationFrameData                                               (Edit, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::GetAnimationFrameData(const struct FLiveLinkAnimationFrameData& AnimationFrameData, bool* ReturnValue)
+bool ULiveLinkBlueprintLibrary::GetAnimationFrameData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1039,7 +980,6 @@ struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::GetAnimationFrameData(cons
 
 	Params::ULiveLinkBlueprintLibrary_GetAnimationFrameData_Params Parms{};
 
-	Parms.AnimationFrameData = AnimationFrameData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1048,9 +988,6 @@ struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::GetAnimationFrameData(cons
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -1062,10 +999,10 @@ struct FSubjectFrameHandle ULiveLinkBlueprintLibrary::GetAnimationFrameData(cons
 // Parameters:
 // struct FLiveLinkSubjectName        SubjectName                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst)
 // class UClass*                      Role                                                             (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
-// struct FLiveLinkBaseBlueprintData  OutBlueprintData                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkBaseBlueprintData  OutBlueprintData                                                 (Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameWithSpecificRole(const struct FLiveLinkSubjectName& SubjectName, class UClass* Role, const struct FLiveLinkBaseBlueprintData& OutBlueprintData, bool* ReturnValue)
+bool ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameWithSpecificRole(const struct FLiveLinkSubjectName& SubjectName, class UClass* Role)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1076,7 +1013,6 @@ void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameWithSpecificRole(const stru
 
 	Parms.SubjectName = SubjectName;
 	Parms.Role = Role;
-	Parms.OutBlueprintData = OutBlueprintData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1086,8 +1022,7 @@ void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameWithSpecificRole(const stru
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1097,11 +1032,11 @@ void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameWithSpecificRole(const stru
 // Parameters:
 // struct FLiveLinkSubjectName        SubjectName                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst)
 // class UClass*                      Role                                                             (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
-// float                              WorldTimeOffset                                                  (BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FLiveLinkBaseBlueprintData  OutBlueprintData                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              WorldTimeOffset                                                  (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FLiveLinkBaseBlueprintData  OutBlueprintData                                                 (Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameAtWorldTimeOffset(const struct FLiveLinkSubjectName& SubjectName, class UClass* Role, float WorldTimeOffset, const struct FLiveLinkBaseBlueprintData& OutBlueprintData, bool* ReturnValue)
+bool ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameAtWorldTimeOffset(const struct FLiveLinkSubjectName& SubjectName, class UClass* Role)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1112,8 +1047,6 @@ void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameAtWorldTimeOffset(const str
 
 	Parms.SubjectName = SubjectName;
 	Parms.Role = Role;
-	Parms.WorldTimeOffset = WorldTimeOffset;
-	Parms.OutBlueprintData = OutBlueprintData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1123,8 +1056,7 @@ void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameAtWorldTimeOffset(const str
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1134,11 +1066,11 @@ void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameAtWorldTimeOffset(const str
 // Parameters:
 // struct FLiveLinkSubjectName        SubjectName                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst)
 // class UClass*                      Role                                                             (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
-// struct FTimecode                   SceneTime                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FLiveLinkBaseBlueprintData  OutBlueprintData                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTimecode                   SceneTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FLiveLinkBaseBlueprintData  OutBlueprintData                                                 (Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameAtSceneTime(const struct FLiveLinkSubjectName& SubjectName, class UClass* Role, struct FTimecode* SceneTime, const struct FLiveLinkBaseBlueprintData& OutBlueprintData, bool* ReturnValue)
+bool ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameAtSceneTime(const struct FLiveLinkSubjectName& SubjectName, class UClass* Role)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1149,7 +1081,6 @@ void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameAtSceneTime(const struct FL
 
 	Parms.SubjectName = SubjectName;
 	Parms.Role = Role;
-	Parms.OutBlueprintData = OutBlueprintData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1159,11 +1090,7 @@ void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameAtSceneTime(const struct FL
 
 	Func->FunctionFlags = Flgs;
 
-	if (SceneTime != nullptr)
-		*SceneTime = std::move(Parms.SceneTime);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1171,11 +1098,11 @@ void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrameAtSceneTime(const struct FL
 // Function LiveLink.LiveLinkBlueprintLibrary.EvaluateLiveLinkFrame
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkSubjectRepresentationSubjectRepresentation                                            (ExportObject, Net, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FLiveLinkBaseBlueprintData  OutBlueprintData                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkSubjectRepresentationSubjectRepresentation                                            (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FLiveLinkBaseBlueprintData  OutBlueprintData                                                 (Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrame(const struct FLiveLinkSubjectRepresentation& SubjectRepresentation, const struct FLiveLinkBaseBlueprintData& OutBlueprintData, bool* ReturnValue)
+bool ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrame()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1184,8 +1111,6 @@ void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrame(const struct FLiveLinkSubj
 
 	Params::ULiveLinkBlueprintLibrary_EvaluateLiveLinkFrame_Params Parms{};
 
-	Parms.SubjectRepresentation = SubjectRepresentation;
-	Parms.OutBlueprintData = OutBlueprintData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1195,8 +1120,7 @@ void ULiveLinkBlueprintLibrary::EvaluateLiveLinkFrame(const struct FLiveLinkSubj
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1237,9 +1161,9 @@ struct FLiveLinkTransform ULiveLinkBlueprintLibrary::ComponentSpaceTransform(str
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FLiveLinkTransform          LiveLinkTransform                                                (ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FLiveLinkTransform ULiveLinkBlueprintLibrary::ChildCount(int32* ReturnValue)
+int32 ULiveLinkBlueprintLibrary::ChildCount()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1256,9 +1180,6 @@ struct FLiveLinkTransform ULiveLinkBlueprintLibrary::ChildCount(int32* ReturnVal
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -1297,11 +1218,11 @@ class ULiveLinkComponent* ULiveLinkComponent::GetDefaultObj()
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class FName                        SubjectName                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst)
-// float                              WorldTime                                                        (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bSuccess                                                         (ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              WorldTime                                                        (Edit, ConstParm, BlueprintReadOnly, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSuccess                                                         (ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FSubjectFrameHandle         SubjectFrameHandle                                               (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
 
-struct FSubjectFrameHandle ULiveLinkComponent::GetSubjectDataAtWorldTime(class FName SubjectName, float* WorldTime, bool* bSuccess)
+struct FSubjectFrameHandle ULiveLinkComponent::GetSubjectDataAtWorldTime(class FName SubjectName, float WorldTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1311,6 +1232,7 @@ struct FSubjectFrameHandle ULiveLinkComponent::GetSubjectDataAtWorldTime(class F
 	Params::ULiveLinkComponent_GetSubjectDataAtWorldTime_Params Parms{};
 
 	Parms.SubjectName = SubjectName;
+	Parms.WorldTime = WorldTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1319,12 +1241,6 @@ struct FSubjectFrameHandle ULiveLinkComponent::GetSubjectDataAtWorldTime(class F
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (WorldTime != nullptr)
-		*WorldTime = Parms.WorldTime;
-
-	if (bSuccess != nullptr)
-		*bSuccess = Parms.bSuccess;
 
 	return Parms.ReturnValue;
 
@@ -1335,11 +1251,11 @@ struct FSubjectFrameHandle ULiveLinkComponent::GetSubjectDataAtWorldTime(class F
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class FName                        SubjectName                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst)
-// struct FTimecode                   SceneTime                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bSuccess                                                         (ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTimecode                   SceneTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSuccess                                                         (ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FSubjectFrameHandle         SubjectFrameHandle                                               (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
 
-struct FSubjectFrameHandle ULiveLinkComponent::GetSubjectDataAtSceneTime(class FName SubjectName, struct FTimecode* SceneTime, bool* bSuccess)
+struct FSubjectFrameHandle ULiveLinkComponent::GetSubjectDataAtSceneTime(class FName SubjectName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1358,12 +1274,6 @@ struct FSubjectFrameHandle ULiveLinkComponent::GetSubjectDataAtSceneTime(class F
 
 	Func->FunctionFlags = Flgs;
 
-	if (SceneTime != nullptr)
-		*SceneTime = std::move(Parms.SceneTime);
-
-	if (bSuccess != nullptr)
-		*bSuccess = Parms.bSuccess;
-
 	return Parms.ReturnValue;
 
 }
@@ -1373,10 +1283,10 @@ struct FSubjectFrameHandle ULiveLinkComponent::GetSubjectDataAtSceneTime(class F
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class FName                        SubjectName                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst)
-// bool                               bSuccess                                                         (ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bSuccess                                                         (ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FSubjectFrameHandle         SubjectFrameHandle                                               (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
 
-struct FSubjectFrameHandle ULiveLinkComponent::GetSubjectData(class FName SubjectName, bool* bSuccess)
+struct FSubjectFrameHandle ULiveLinkComponent::GetSubjectData(class FName SubjectName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1395,9 +1305,6 @@ struct FSubjectFrameHandle ULiveLinkComponent::GetSubjectData(class FName Subjec
 
 	Func->FunctionFlags = Flgs;
 
-	if (bSuccess != nullptr)
-		*bSuccess = Parms.bSuccess;
-
 	return Parms.ReturnValue;
 
 }
@@ -1406,9 +1313,9 @@ struct FSubjectFrameHandle ULiveLinkComponent::GetSubjectData(class FName Subjec
 // Function LiveLink.LiveLinkComponent.GetAvailableSubjectNames
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class FName>                SubjectNames                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// TArray<class FName>                SubjectNames                                                     (ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void ULiveLinkComponent::GetAvailableSubjectNames(TArray<class FName>* SubjectNames)
+TArray<class FName> ULiveLinkComponent::GetAvailableSubjectNames()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1426,8 +1333,7 @@ void ULiveLinkComponent::GetAvailableSubjectNames(TArray<class FName>* SubjectNa
 
 	Func->FunctionFlags = Flgs;
 
-	if (SubjectNames != nullptr)
-		*SubjectNames = std::move(Parms.SubjectNames);
+	return Parms.ReturnValue;
 
 }
 
@@ -1491,12 +1397,12 @@ class ULiveLinkMessageBusFinder* ULiveLinkMessageBusFinder::GetDefaultObj()
 // Function LiveLink.LiveLinkMessageBusFinder.GetAvailableProviders
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FLatentActionInfo           LatentInfo                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              Duration                                                         (ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, DuplicateTransient)
-// TArray<struct FProviderPollResult> AvailableProviders                                               (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLatentActionInfo           LatentInfo                                                       (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              Duration                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, DuplicateTransient)
+// TArray<struct FProviderPollResult> AvailableProviders                                               (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float ULiveLinkMessageBusFinder::GetAvailableProviders(const struct FLatentActionInfo& LatentInfo, TArray<struct FProviderPollResult>* AvailableProviders)
+TArray<struct FProviderPollResult> ULiveLinkMessageBusFinder::GetAvailableProviders()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1505,7 +1411,6 @@ float ULiveLinkMessageBusFinder::GetAvailableProviders(const struct FLatentActio
 
 	Params::ULiveLinkMessageBusFinder_GetAvailableProviders_Params Parms{};
 
-	Parms.LatentInfo = LatentInfo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1515,9 +1420,6 @@ float ULiveLinkMessageBusFinder::GetAvailableProviders(const struct FLatentActio
 
 	Func->FunctionFlags = Flgs;
 
-	if (AvailableProviders != nullptr)
-		*AvailableProviders = std::move(Parms.AvailableProviders);
-
 	return Parms.ReturnValue;
 
 }
@@ -1526,9 +1428,9 @@ float ULiveLinkMessageBusFinder::GetAvailableProviders(const struct FLatentActio
 // Function LiveLink.LiveLinkMessageBusFinder.ConstructMessageBusFinder
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class ULiveLinkMessageBusFinder*   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class ULiveLinkMessageBusFinder*   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkMessageBusFinder::ConstructMessageBusFinder(class ULiveLinkMessageBusFinder** ReturnValue)
+class ULiveLinkMessageBusFinder* ULiveLinkMessageBusFinder::ConstructMessageBusFinder()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1546,8 +1448,7 @@ void ULiveLinkMessageBusFinder::ConstructMessageBusFinder(class ULiveLinkMessage
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1555,10 +1456,10 @@ void ULiveLinkMessageBusFinder::ConstructMessageBusFinder(class ULiveLinkMessage
 // Function LiveLink.LiveLinkMessageBusFinder.ConnectToProvider
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FProviderPollResult         Provider                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FLiveLinkSourceHandle       SourceHandle                                                     (Edit, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FProviderPollResult         Provider                                                         (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FLiveLinkSourceHandle       SourceHandle                                                     (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FProviderPollResult ULiveLinkMessageBusFinder::ConnectToProvider(struct FLiveLinkSourceHandle* SourceHandle)
+struct FLiveLinkSourceHandle ULiveLinkMessageBusFinder::ConnectToProvider(struct FProviderPollResult* Provider)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1576,8 +1477,8 @@ struct FProviderPollResult ULiveLinkMessageBusFinder::ConnectToProvider(struct F
 
 	Func->FunctionFlags = Flgs;
 
-	if (SourceHandle != nullptr)
-		*SourceHandle = std::move(Parms.SourceHandle);
+	if (Provider != nullptr)
+		*Provider = std::move(Parms.Provider);
 
 	return Parms.ReturnValue;
 
@@ -1695,10 +1596,10 @@ void ULiveLinkPreset::BuildFromClient()
 // Function LiveLink.LiveLinkPreset.ApplyToClientLatent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FLatentActionInfo           LatentInfo                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLatentActionInfo           LatentInfo                                                       (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* ULiveLinkPreset::ApplyToClientLatent(const struct FLatentActionInfo& LatentInfo)
+struct FLatentActionInfo ULiveLinkPreset::ApplyToClientLatent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1707,7 +1608,6 @@ class UObject* ULiveLinkPreset::ApplyToClientLatent(const struct FLatentActionIn
 
 	Params::ULiveLinkPreset_ApplyToClientLatent_Params Parms{};
 
-	Parms.LatentInfo = LatentInfo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1725,9 +1625,9 @@ class UObject* ULiveLinkPreset::ApplyToClientLatent(const struct FLatentActionIn
 // Function LiveLink.LiveLinkPreset.ApplyToClient
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkPreset::ApplyToClient(bool* ReturnValue)
+bool ULiveLinkPreset::ApplyToClient()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1745,8 +1645,7 @@ void ULiveLinkPreset::ApplyToClient(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1754,10 +1653,10 @@ void ULiveLinkPreset::ApplyToClient(bool* ReturnValue)
 // Function LiveLink.LiveLinkPreset.AddToClient
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// bool                               bRecreatePresets                                                 (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bRecreatePresets                                                 (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkPreset::AddToClient(bool* bRecreatePresets, bool* ReturnValue)
+bool ULiveLinkPreset::AddToClient()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1775,11 +1674,7 @@ void ULiveLinkPreset::AddToClient(bool* bRecreatePresets, bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bRecreatePresets != nullptr)
-		*bRecreatePresets = Parms.bRecreatePresets;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2039,10 +1934,10 @@ class ULiveLinkBlueprintVirtualSubject* ULiveLinkBlueprintVirtualSubject::GetDef
 // Function LiveLink.LiveLinkBlueprintVirtualSubject.UpdateVirtualSubjectStaticData_Internal
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkBaseStaticData     InStruct                                                         (BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkBaseStaticData     InStruct                                                         (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintVirtualSubject::UpdateVirtualSubjectStaticData_Internal(const struct FLiveLinkBaseStaticData& InStruct, bool* ReturnValue)
+bool ULiveLinkBlueprintVirtualSubject::UpdateVirtualSubjectStaticData_Internal()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2051,7 +1946,6 @@ void ULiveLinkBlueprintVirtualSubject::UpdateVirtualSubjectStaticData_Internal(c
 
 	Params::ULiveLinkBlueprintVirtualSubject_UpdateVirtualSubjectStaticData_Internal_Params Parms{};
 
-	Parms.InStruct = InStruct;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2061,8 +1955,7 @@ void ULiveLinkBlueprintVirtualSubject::UpdateVirtualSubjectStaticData_Internal(c
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -2070,11 +1963,11 @@ void ULiveLinkBlueprintVirtualSubject::UpdateVirtualSubjectStaticData_Internal(c
 // Function LiveLink.LiveLinkBlueprintVirtualSubject.UpdateVirtualSubjectFrameData_Internal
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkBaseFrameData      InStruct                                                         (BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               bInShouldStampCurrentTime                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkBaseFrameData      InStruct                                                         (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInShouldStampCurrentTime                                        (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void ULiveLinkBlueprintVirtualSubject::UpdateVirtualSubjectFrameData_Internal(const struct FLiveLinkBaseFrameData& InStruct, bool bInShouldStampCurrentTime, bool* ReturnValue)
+bool ULiveLinkBlueprintVirtualSubject::UpdateVirtualSubjectFrameData_Internal()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2083,8 +1976,6 @@ void ULiveLinkBlueprintVirtualSubject::UpdateVirtualSubjectFrameData_Internal(co
 
 	Params::ULiveLinkBlueprintVirtualSubject_UpdateVirtualSubjectFrameData_Internal_Params Parms{};
 
-	Parms.InStruct = InStruct;
-	Parms.bInShouldStampCurrentTime = bInShouldStampCurrentTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2094,8 +1985,7 @@ void ULiveLinkBlueprintVirtualSubject::UpdateVirtualSubjectFrameData_Internal(co
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 

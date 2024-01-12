@@ -18,7 +18,7 @@ namespace Params
 struct UHoverDroneMovementComponent_SetCurrentFOV_Params
 {
 public:
-	float                                        NewFOV;                                            // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        NewFOV;                                            // 0x0(0x4)(BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -34,7 +34,7 @@ public:
 struct UHoverDroneMovementComponent_AddVelocity_Params
 {
 public:
-	struct FVector                               VelocityImpulse;                                   // 0x0(0x18)(ConstParm, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+	struct FVector                               VelocityImpulse;                                   // 0x0(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -42,7 +42,7 @@ public:
 struct UHoverDroneMovementComponent_AddRotationalVelocity_Params
 {
 public:
-	struct FRotator                              RotationalVel;                                     // 0x0(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+	struct FRotator                              RotationalVel;                                     // 0x0(0x18)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -50,7 +50,7 @@ public:
 struct AHoverDronePawn_TurnAccel_Params
 {
 public:
-	float                                        Val;                                               // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        Val;                                               // 0x0(0x4)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -58,7 +58,7 @@ public:
 struct AHoverDronePawn_SetDroneSpeedIndex_Params
 {
 public:
-	int32                                        SpeedIndex;                                        // 0x0(0x4)(Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+	int32                                        SpeedIndex;                                        // 0x0(0x4)(ConstParm, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -66,7 +66,7 @@ public:
 struct AHoverDronePawn_SetAllowSpeedChange_Params
 {
 public:
-	bool                                         bOnOff;                                            // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bOnOff;                                            // 0x0(0x1)(ConstParm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -74,7 +74,7 @@ public:
 struct AHoverDronePawn_MoveUp_Params
 {
 public:
-	float                                        Val;                                               // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        Val;                                               // 0x0(0x4)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -82,7 +82,7 @@ public:
 struct AHoverDronePawn_LookUpAccel_Params
 {
 public:
-	float                                        Val;                                               // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        Val;                                               // 0x0(0x4)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -90,7 +90,7 @@ public:
 struct AHoverDronePawn_IsMaintainingConstantAltitude_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -98,9 +98,9 @@ public:
 struct AHoverDronePawn_GetTiltedDroneRotation_Params
 {
 public:
-	float                                        DeltaTime;                                         // 0x0(0x4)(BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_1A3C[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FRotator                              ReturnValue;                                       // 0x8(0x18)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        DeltaTime;                                         // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_21BA[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FRotator                              ReturnValue;                                       // 0x8(0x18)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -108,7 +108,7 @@ public:
 struct AHoverDronePawn_GetDroneSpeedIndex_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -116,7 +116,7 @@ public:
 struct AHoverDronePawn_GetAltitude_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 }

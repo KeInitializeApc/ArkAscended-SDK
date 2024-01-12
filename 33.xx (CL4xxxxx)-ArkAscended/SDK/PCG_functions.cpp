@@ -71,11 +71,11 @@ class UPCGAttributePropertySelectorBlueprintHelpers* UPCGAttributePropertySelect
 // Function PCG.PCGAttributePropertySelectorBlueprintHelpers.SetPointProperty
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGAttributePropertySelectorSelector                                                         (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// enum class EPCGPointProperties     InPointProperty                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGAttributePropertySelectorSelector                                                         (Edit, ConstParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// enum class EPCGPointProperties     InPointProperty                                                  (Edit, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EPCGPointProperties UPCGAttributePropertySelectorBlueprintHelpers::SetPointProperty(bool* ReturnValue)
+bool UPCGAttributePropertySelectorBlueprintHelpers::SetPointProperty(const struct FPCGAttributePropertySelector& Selector, enum class EPCGPointProperties InPointProperty)
 {
 	static class UFunction* Func = nullptr;
 
@@ -84,6 +84,8 @@ enum class EPCGPointProperties UPCGAttributePropertySelectorBlueprintHelpers::Se
 
 	Params::UPCGAttributePropertySelectorBlueprintHelpers_SetPointProperty_Params Parms{};
 
+	Parms.Selector = Selector;
+	Parms.InPointProperty = InPointProperty;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -92,9 +94,6 @@ enum class EPCGPointProperties UPCGAttributePropertySelectorBlueprintHelpers::Se
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -104,11 +103,11 @@ enum class EPCGPointProperties UPCGAttributePropertySelectorBlueprintHelpers::Se
 // Function PCG.PCGAttributePropertySelectorBlueprintHelpers.SetAttributeName
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGAttributePropertySelectorSelector                                                         (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        InAttributeName                                                  (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGAttributePropertySelectorSelector                                                         (Edit, ConstParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class FName                        InAttributeName                                                  (ExportObject, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGAttributePropertySelectorBlueprintHelpers::SetAttributeName(bool* ReturnValue)
+bool UPCGAttributePropertySelectorBlueprintHelpers::SetAttributeName(const struct FPCGAttributePropertySelector& Selector, class FName InAttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -117,6 +116,8 @@ class FName UPCGAttributePropertySelectorBlueprintHelpers::SetAttributeName(bool
 
 	Params::UPCGAttributePropertySelectorBlueprintHelpers_SetAttributeName_Params Parms{};
 
+	Parms.Selector = Selector;
+	Parms.InAttributeName = InAttributeName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -125,9 +126,6 @@ class FName UPCGAttributePropertySelectorBlueprintHelpers::SetAttributeName(bool
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -137,10 +135,10 @@ class FName UPCGAttributePropertySelectorBlueprintHelpers::SetAttributeName(bool
 // Function PCG.PCGAttributePropertySelectorBlueprintHelpers.GetName
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGAttributePropertySelectorSelector                                                         (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGAttributePropertySelectorSelector                                                         (Edit, ConstParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPCGAttributePropertySelector UPCGAttributePropertySelectorBlueprintHelpers::GetName(class FName* ReturnValue)
+class FName UPCGAttributePropertySelectorBlueprintHelpers::GetName(const struct FPCGAttributePropertySelector& Selector)
 {
 	static class UFunction* Func = nullptr;
 
@@ -149,6 +147,7 @@ struct FPCGAttributePropertySelector UPCGAttributePropertySelectorBlueprintHelpe
 
 	Params::UPCGAttributePropertySelectorBlueprintHelpers_GetName_Params Parms{};
 
+	Parms.Selector = Selector;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -157,9 +156,6 @@ struct FPCGAttributePropertySelector UPCGAttributePropertySelectorBlueprintHelpe
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -225,10 +221,10 @@ class UPCGSpatialData* UPCGSpatialData::GetDefaultObj()
 // Function PCG.PCGSpatialData.UnionWith
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGSpatialData*             InOther                                                          (ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGUnionData*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGSpatialData*             InOther                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGUnionData*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGSpatialData* UPCGSpatialData::UnionWith(class UPCGUnionData** ReturnValue)
+class UPCGUnionData* UPCGSpatialData::UnionWith(class UPCGSpatialData* InOther)
 {
 	static class UFunction* Func = nullptr;
 
@@ -237,6 +233,7 @@ class UPCGSpatialData* UPCGSpatialData::UnionWith(class UPCGUnionData** ReturnVa
 
 	Params::UPCGSpatialData_UnionWith_Params Parms{};
 
+	Parms.InOther = InOther;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -245,9 +242,6 @@ class UPCGSpatialData* UPCGSpatialData::UnionWith(class UPCGUnionData** ReturnVa
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -257,10 +251,10 @@ class UPCGSpatialData* UPCGSpatialData::UnionWith(class UPCGUnionData** ReturnVa
 // Function PCG.PCGSpatialData.ToPointDataWithContext
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FPCGContext                 Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UPCGPointData*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGContext                 Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGPointData*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGSpatialData::ToPointDataWithContext(const struct FPCGContext& Context, class UPCGPointData** ReturnValue)
+class UPCGPointData* UPCGSpatialData::ToPointDataWithContext()
 {
 	static class UFunction* Func = nullptr;
 
@@ -269,7 +263,6 @@ void UPCGSpatialData::ToPointDataWithContext(const struct FPCGContext& Context, 
 
 	Params::UPCGSpatialData_ToPointDataWithContext_Params Parms{};
 
-	Parms.Context = Context;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -279,8 +272,7 @@ void UPCGSpatialData::ToPointDataWithContext(const struct FPCGContext& Context, 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -288,9 +280,9 @@ void UPCGSpatialData::ToPointDataWithContext(const struct FPCGContext& Context, 
 // Function PCG.PCGSpatialData.ToPointData
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGPointData*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGPointData*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGSpatialData::ToPointData(class UPCGPointData** ReturnValue)
+class UPCGPointData* UPCGSpatialData::ToPointData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -308,8 +300,7 @@ void UPCGSpatialData::ToPointData(class UPCGPointData** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -317,10 +308,10 @@ void UPCGSpatialData::ToPointData(class UPCGPointData** ReturnValue)
 // Function PCG.PCGSpatialData.Subtract
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGSpatialData*             InOther                                                          (ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGDifferenceData*          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGSpatialData*             InOther                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGDifferenceData*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGSpatialData* UPCGSpatialData::Subtract(class UPCGDifferenceData** ReturnValue)
+class UPCGDifferenceData* UPCGSpatialData::Subtract(class UPCGSpatialData* InOther)
 {
 	static class UFunction* Func = nullptr;
 
@@ -329,6 +320,7 @@ class UPCGSpatialData* UPCGSpatialData::Subtract(class UPCGDifferenceData** Retu
 
 	Params::UPCGSpatialData_Subtract_Params Parms{};
 
+	Parms.InOther = InOther;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -337,9 +329,6 @@ class UPCGSpatialData* UPCGSpatialData::Subtract(class UPCGDifferenceData** Retu
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -350,12 +339,12 @@ class UPCGSpatialData* UPCGSpatialData::Subtract(class UPCGDifferenceData** Retu
 // (Native, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FTransform                  Transform                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-// struct FBox                        Bounds                                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FPCGPoint                   OutPoint                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                OutMetadata                                                      (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBox                        Bounds                                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FPCGPoint                   OutPoint                                                         (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                OutMetadata                                                      (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGMetadata* UPCGSpatialData::SamplePoint(struct FTransform* Transform, bool* ReturnValue)
+bool UPCGSpatialData::SamplePoint(struct FTransform* Transform, struct FBox* Bounds, const struct FPCGPoint& OutPoint, class UPCGMetadata* OutMetadata)
 {
 	static class UFunction* Func = nullptr;
 
@@ -364,6 +353,8 @@ class UPCGMetadata* UPCGSpatialData::SamplePoint(struct FTransform* Transform, b
 
 	Params::UPCGSpatialData_SamplePoint_Params Parms{};
 
+	Parms.OutPoint = OutPoint;
+	Parms.OutMetadata = OutMetadata;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -376,8 +367,8 @@ class UPCGMetadata* UPCGSpatialData::SamplePoint(struct FTransform* Transform, b
 	if (Transform != nullptr)
 		*Transform = std::move(Parms.Transform);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (Bounds != nullptr)
+		*Bounds = std::move(Parms.Bounds);
 
 	return Parms.ReturnValue;
 
@@ -387,14 +378,14 @@ class UPCGMetadata* UPCGSpatialData::SamplePoint(struct FTransform* Transform, b
 // Function PCG.PCGSpatialData.ProjectPoint
 // (Native, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FTransform                  InTransform                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FBox                        InBounds                                                         (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FPCGProjectionParams        InParams                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-// struct FPCGPoint                   OutPoint                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                OutMetadata                                                      (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FBox                        InBounds                                                         (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGProjectionParams        InParams                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   OutPoint                                                         (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                OutMetadata                                                      (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGMetadata* UPCGSpatialData::ProjectPoint(const struct FTransform& InTransform, struct FPCGProjectionParams* InParams, bool* ReturnValue)
+bool UPCGSpatialData::ProjectPoint(const struct FBox& InBounds, const struct FPCGProjectionParams& InParams, const struct FPCGPoint& OutPoint, class UPCGMetadata* OutMetadata)
 {
 	static class UFunction* Func = nullptr;
 
@@ -403,7 +394,10 @@ class UPCGMetadata* UPCGSpatialData::ProjectPoint(const struct FTransform& InTra
 
 	Params::UPCGSpatialData_ProjectPoint_Params Parms{};
 
-	Parms.InTransform = InTransform;
+	Parms.InBounds = InBounds;
+	Parms.InParams = InParams;
+	Parms.OutPoint = OutPoint;
+	Parms.OutMetadata = OutMetadata;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -412,12 +406,6 @@ class UPCGMetadata* UPCGSpatialData::ProjectPoint(const struct FTransform& InTra
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InParams != nullptr)
-		*InParams = std::move(Parms.InParams);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -427,11 +415,11 @@ class UPCGMetadata* UPCGSpatialData::ProjectPoint(const struct FTransform& InTra
 // Function PCG.PCGSpatialData.ProjectOn
 // (Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGSpatialData*             InOther                                                          (ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FPCGProjectionParams        InParams                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-// class UPCGSpatialData*             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGSpatialData*             InOther                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGProjectionParams        InParams                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGSpatialData*             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGSpatialData* UPCGSpatialData::ProjectOn(struct FPCGProjectionParams* InParams, class UPCGSpatialData** ReturnValue)
+class UPCGSpatialData* UPCGSpatialData::ProjectOn(class UPCGSpatialData* InOther, const struct FPCGProjectionParams& InParams)
 {
 	static class UFunction* Func = nullptr;
 
@@ -440,6 +428,8 @@ class UPCGSpatialData* UPCGSpatialData::ProjectOn(struct FPCGProjectionParams* I
 
 	Params::UPCGSpatialData_ProjectOn_Params Parms{};
 
+	Parms.InOther = InOther;
+	Parms.InParams = InParams;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -449,12 +439,6 @@ class UPCGSpatialData* UPCGSpatialData::ProjectOn(struct FPCGProjectionParams* I
 
 	Func->FunctionFlags = Flgs;
 
-	if (InParams != nullptr)
-		*InParams = std::move(Parms.InParams);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -463,9 +447,9 @@ class UPCGSpatialData* UPCGSpatialData::ProjectOn(struct FPCGProjectionParams* I
 // Function PCG.PCGSpatialData.MutableMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGMetadata*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGMetadata*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGSpatialData::MutableMetadata(class UPCGMetadata** ReturnValue)
+class UPCGMetadata* UPCGSpatialData::MutableMetadata()
 {
 	static class UFunction* Func = nullptr;
 
@@ -483,8 +467,7 @@ void UPCGSpatialData::MutableMetadata(class UPCGMetadata** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -492,10 +475,10 @@ void UPCGSpatialData::MutableMetadata(class UPCGMetadata** ReturnValue)
 // Function PCG.PCGSpatialData.IntersectWith
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGSpatialData*             InOther                                                          (ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGIntersectionData*        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGSpatialData*             InOther                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGIntersectionData*        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGSpatialData* UPCGSpatialData::IntersectWith(class UPCGIntersectionData** ReturnValue)
+class UPCGIntersectionData* UPCGSpatialData::IntersectWith(class UPCGSpatialData* InOther)
 {
 	static class UFunction* Func = nullptr;
 
@@ -504,6 +487,7 @@ class UPCGSpatialData* UPCGSpatialData::IntersectWith(class UPCGIntersectionData
 
 	Params::UPCGSpatialData_IntersectWith_Params Parms{};
 
+	Parms.InOther = InOther;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -513,9 +497,6 @@ class UPCGSpatialData* UPCGSpatialData::IntersectWith(class UPCGIntersectionData
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -524,12 +505,12 @@ class UPCGSpatialData* UPCGSpatialData::IntersectWith(class UPCGIntersectionData
 // Function PCG.PCGSpatialData.InitializeFromData
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGSpatialData*             InSource                                                         (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                InMetadataParentOverride                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bInheritMetadata                                                 (ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bInheritAttributes                                               (ExportObject, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGSpatialData*             InSource                                                         (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                InMetadataParentOverride                                         (BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               bInheritMetadata                                                 (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               bInheritAttributes                                               (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGSpatialData::InitializeFromData()
+class UPCGSpatialData* UPCGSpatialData::InitializeFromData(class UPCGMetadata* InMetadataParentOverride, bool bInheritMetadata, bool bInheritAttributes)
 {
 	static class UFunction* Func = nullptr;
 
@@ -538,6 +519,9 @@ bool UPCGSpatialData::InitializeFromData()
 
 	Params::UPCGSpatialData_InitializeFromData_Params Parms{};
 
+	Parms.InMetadataParentOverride = InMetadataParentOverride;
+	Parms.bInheritMetadata = bInheritMetadata;
+	Parms.bInheritAttributes = bInheritAttributes;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -555,9 +539,9 @@ bool UPCGSpatialData::InitializeFromData()
 // Function PCG.PCGSpatialData.HasNonTrivialTransform
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGSpatialData::HasNonTrivialTransform(bool* ReturnValue)
+bool UPCGSpatialData::HasNonTrivialTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -575,8 +559,7 @@ void UPCGSpatialData::HasNonTrivialTransform(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -584,9 +567,9 @@ void UPCGSpatialData::HasNonTrivialTransform(bool* ReturnValue)
 // Function PCG.PCGSpatialData.GetStrictBounds
 // (Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FBox                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBox                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGSpatialData::GetStrictBounds(struct FBox* ReturnValue)
+struct FBox UPCGSpatialData::GetStrictBounds()
 {
 	static class UFunction* Func = nullptr;
 
@@ -604,8 +587,7 @@ void UPCGSpatialData::GetStrictBounds(struct FBox* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -613,9 +595,9 @@ void UPCGSpatialData::GetStrictBounds(struct FBox* ReturnValue)
 // Function PCG.PCGSpatialData.GetNormal
 // (Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGSpatialData::GetNormal(struct FVector* ReturnValue)
+struct FVector UPCGSpatialData::GetNormal()
 {
 	static class UFunction* Func = nullptr;
 
@@ -633,8 +615,7 @@ void UPCGSpatialData::GetNormal(struct FVector* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -642,9 +623,9 @@ void UPCGSpatialData::GetNormal(struct FVector* ReturnValue)
 // Function PCG.PCGSpatialData.GetDimension
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGSpatialData::GetDimension(int32* ReturnValue)
+int32 UPCGSpatialData::GetDimension()
 {
 	static class UFunction* Func = nullptr;
 
@@ -662,8 +643,7 @@ void UPCGSpatialData::GetDimension(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -671,10 +651,10 @@ void UPCGSpatialData::GetDimension(int32* ReturnValue)
 // Function PCG.PCGSpatialData.GetDensityAtPosition
 // (Native, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector                     InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector UPCGSpatialData::GetDensityAtPosition(float* ReturnValue)
+float UPCGSpatialData::GetDensityAtPosition()
 {
 	static class UFunction* Func = nullptr;
 
@@ -692,9 +672,6 @@ struct FVector UPCGSpatialData::GetDensityAtPosition(float* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -703,9 +680,9 @@ struct FVector UPCGSpatialData::GetDensityAtPosition(float* ReturnValue)
 // Function PCG.PCGSpatialData.GetBounds
 // (Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FBox                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBox                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGSpatialData::GetBounds(struct FBox* ReturnValue)
+struct FBox UPCGSpatialData::GetBounds()
 {
 	static class UFunction* Func = nullptr;
 
@@ -723,8 +700,7 @@ void UPCGSpatialData::GetBounds(struct FBox* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -732,9 +708,9 @@ void UPCGSpatialData::GetBounds(struct FBox* ReturnValue)
 // Function PCG.PCGSpatialData.CreateEmptyMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGMetadata*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGMetadata*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGSpatialData::CreateEmptyMetadata(class UPCGMetadata** ReturnValue)
+class UPCGMetadata* UPCGSpatialData::CreateEmptyMetadata()
 {
 	static class UFunction* Func = nullptr;
 
@@ -752,8 +728,7 @@ void UPCGSpatialData::CreateEmptyMetadata(class UPCGMetadata** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -761,9 +736,9 @@ void UPCGSpatialData::CreateEmptyMetadata(class UPCGMetadata** ReturnValue)
 // Function PCG.PCGSpatialData.ConstMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGMetadata*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGMetadata*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGSpatialData::ConstMetadata(class UPCGMetadata** ReturnValue)
+class UPCGMetadata* UPCGSpatialData::ConstMetadata()
 {
 	static class UFunction* Func = nullptr;
 
@@ -781,8 +756,7 @@ void UPCGSpatialData::ConstMetadata(class UPCGMetadata** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1126,9 +1100,9 @@ class UPCGDifferenceData* UPCGDifferenceData::GetDefaultObj()
 // Function PCG.PCGDifferenceData.SetDensityFunction
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EPCGDifferenceDensityFunctionInDensityFunction                                                (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EPCGDifferenceDensityFunctionInDensityFunction                                                (BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-enum class EPCGDifferenceDensityFunction UPCGDifferenceData::SetDensityFunction()
+void UPCGDifferenceData::SetDensityFunction(enum class EPCGDifferenceDensityFunction* InDensityFunction)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1146,7 +1120,8 @@ enum class EPCGDifferenceDensityFunction UPCGDifferenceData::SetDensityFunction(
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InDensityFunction != nullptr)
+		*InDensityFunction = Parms.InDensityFunction;
 
 }
 
@@ -1154,9 +1129,9 @@ enum class EPCGDifferenceDensityFunction UPCGDifferenceData::SetDensityFunction(
 // Function PCG.PCGDifferenceData.Initialize
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGSpatialData*             InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UPCGSpatialData*             InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-class UPCGSpatialData* UPCGDifferenceData::Initialize()
+void UPCGDifferenceData::Initialize(class UPCGSpatialData** InData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1174,7 +1149,8 @@ class UPCGSpatialData* UPCGDifferenceData::Initialize()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InData != nullptr)
+		*InData = Parms.InData;
 
 }
 
@@ -1182,9 +1158,9 @@ class UPCGSpatialData* UPCGDifferenceData::Initialize()
 // Function PCG.PCGDifferenceData.AddDifference
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGSpatialData*             InDifference                                                     (ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGSpatialData*             InDifference                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGSpatialData* UPCGDifferenceData::AddDifference()
+void UPCGDifferenceData::AddDifference(class UPCGSpatialData* InDifference)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1193,6 +1169,7 @@ class UPCGSpatialData* UPCGDifferenceData::AddDifference()
 
 	Params::UPCGDifferenceData_AddDifference_Params Parms{};
 
+	Parms.InDifference = InDifference;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1201,8 +1178,6 @@ class UPCGSpatialData* UPCGDifferenceData::AddDifference()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1407,9 +1382,9 @@ class UPCGPointData* UPCGPointData::GetDefaultObj()
 // Function PCG.PCGPointData.SetPoints
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FPCGPoint>           InPoints                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FPCGPoint>           InPoints                                                         (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-TArray<struct FPCGPoint> UPCGPointData::SetPoints()
+void UPCGPointData::SetPoints(TArray<struct FPCGPoint>* InPoints)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1427,7 +1402,8 @@ TArray<struct FPCGPoint> UPCGPointData::SetPoints()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPoints != nullptr)
+		*InPoints = std::move(Parms.InPoints);
 
 }
 
@@ -1435,9 +1411,9 @@ TArray<struct FPCGPoint> UPCGPointData::SetPoints()
 // Function PCG.PCGPointData.GetPoints
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FPCGPoint>           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FPCGPoint>           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGPointData::GetPoints(TArray<struct FPCGPoint>* ReturnValue)
+TArray<struct FPCGPoint> UPCGPointData::GetPoints()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1455,8 +1431,7 @@ void UPCGPointData::GetPoints(TArray<struct FPCGPoint>* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1465,9 +1440,9 @@ void UPCGPointData::GetPoints(TArray<struct FPCGPoint>* ReturnValue)
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FPCGPoint                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGPoint                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UPCGPointData::GetPoint(struct FPCGPoint* ReturnValue)
+struct FPCGPoint UPCGPointData::GetPoint()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1485,9 +1460,6 @@ int32 UPCGPointData::GetPoint(struct FPCGPoint* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -1496,10 +1468,10 @@ int32 UPCGPointData::GetPoint(struct FPCGPoint* ReturnValue)
 // Function PCG.PCGPointData.CopyPointsFrom
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UPCGPointData*               InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<int32>                      InDataIndices                                                    (Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGPointData*               InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<int32>                      InDataIndices                                                    (ConstParm, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-TArray<int32> UPCGPointData::CopyPointsFrom()
+void UPCGPointData::CopyPointsFrom(class UPCGPointData** InData, TArray<int32>* InDataIndices)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1517,7 +1489,11 @@ TArray<int32> UPCGPointData::CopyPointsFrom()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InData != nullptr)
+		*InData = Parms.InData;
+
+	if (InDataIndices != nullptr)
+		*InDataIndices = std::move(Parms.InDataIndices);
 
 }
 
@@ -1637,10 +1613,10 @@ class UPCGRenderTargetData* UPCGRenderTargetData::GetDefaultObj()
 // Function PCG.PCGRenderTargetData.Initialize
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UTextureRenderTarget2D*      InRenderTarget                                                   (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FTransform                  InTransform                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UTextureRenderTarget2D*      InRenderTarget                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class UTextureRenderTarget2D* UPCGRenderTargetData::Initialize(const struct FTransform& InTransform)
+struct FTransform UPCGRenderTargetData::Initialize(class UTextureRenderTarget2D** InRenderTarget)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1649,7 +1625,6 @@ class UTextureRenderTarget2D* UPCGRenderTargetData::Initialize(const struct FTra
 
 	Params::UPCGRenderTargetData_Initialize_Params Parms{};
 
-	Parms.InTransform = InTransform;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1658,6 +1633,9 @@ class UTextureRenderTarget2D* UPCGRenderTargetData::Initialize(const struct FTra
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InRenderTarget != nullptr)
+		*InRenderTarget = Parms.InRenderTarget;
 
 	return Parms.ReturnValue;
 
@@ -1751,10 +1729,10 @@ class UPCGTextureData* UPCGTextureData::GetDefaultObj()
 // Function PCG.PCGTextureData.Initialize
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UTexture2D*                  InTexture                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FTransform                  InTransform                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UTexture2D*                  InTexture                                                        (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class UTexture2D* UPCGTextureData::Initialize(const struct FTransform& InTransform)
+struct FTransform UPCGTextureData::Initialize(class UTexture2D** InTexture)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1763,7 +1741,6 @@ class UTexture2D* UPCGTextureData::Initialize(const struct FTransform& InTransfo
 
 	Params::UPCGTextureData_Initialize_Params Parms{};
 
-	Parms.InTransform = InTransform;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1772,6 +1749,9 @@ class UTexture2D* UPCGTextureData::Initialize(const struct FTransform& InTransfo
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InTexture != nullptr)
+		*InTexture = Parms.InTexture;
 
 	return Parms.ReturnValue;
 
@@ -1838,9 +1818,9 @@ void UPCGUnionData::Initialize(class UPCGSpatialData* InA, class UPCGSpatialData
 // Function PCG.PCGUnionData.AddData
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGSpatialData*             InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UPCGSpatialData*             InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-class UPCGSpatialData* UPCGUnionData::AddData()
+void UPCGUnionData::AddData(class UPCGSpatialData** InData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1858,7 +1838,8 @@ class UPCGSpatialData* UPCGUnionData::AddData()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InData != nullptr)
+		*InData = Parms.InData;
 
 }
 
@@ -2958,13 +2939,13 @@ class UPCGBlueprintElement* UPCGBlueprintElement::GetDefaultObj()
 // Function PCG.PCGBlueprintElement.VariableLoopBody
 // (Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// struct FPCGContext                 InContext                                                        (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGPointData*               InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FPCGPoint                   InPoint                                                          (Edit, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                OutMetadata                                                      (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FPCGPoint>           ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGContext                 InContext                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGPointData*               InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   InPoint                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                OutMetadata                                                      (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FPCGPoint>           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGMetadata* UPCGBlueprintElement::VariableLoopBody(const struct FPCGContext& InContext, const struct FPCGPoint& InPoint, TArray<struct FPCGPoint>* ReturnValue)
+TArray<struct FPCGPoint> UPCGBlueprintElement::VariableLoopBody(class UPCGPointData** InData, class UPCGMetadata* OutMetadata)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2973,13 +2954,12 @@ class UPCGMetadata* UPCGBlueprintElement::VariableLoopBody(const struct FPCGCont
 
 	Params::UPCGBlueprintElement_VariableLoopBody_Params Parms{};
 
-	Parms.InContext = InContext;
-	Parms.InPoint = InPoint;
+	Parms.OutMetadata = OutMetadata;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (InData != nullptr)
+		*InData = Parms.InData;
 
 	return Parms.ReturnValue;
 
@@ -2989,12 +2969,12 @@ class UPCGMetadata* UPCGBlueprintElement::VariableLoopBody(const struct FPCGCont
 // Function PCG.PCGBlueprintElement.VariableLoop
 // (Final, Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// struct FPCGContext                 InContext                                                        (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGPointData*               InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class UPCGPointData*               OutData                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class UPCGPointData*               OptionalOutData                                                  (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGContext                 InContext                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGPointData*               InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UPCGPointData*               OutData                                                          (ConstParm, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UPCGPointData*               OptionalOutData                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGPointData* UPCGBlueprintElement::VariableLoop(const struct FPCGContext& InContext, class UPCGPointData* OptionalOutData)
+class UPCGPointData* UPCGBlueprintElement::VariableLoop(class UPCGPointData** InData, class UPCGPointData** OutData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3003,8 +2983,6 @@ class UPCGPointData* UPCGBlueprintElement::VariableLoop(const struct FPCGContext
 
 	Params::UPCGBlueprintElement_VariableLoop_Params Parms{};
 
-	Parms.InContext = InContext;
-	Parms.OptionalOutData = OptionalOutData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3013,6 +2991,12 @@ class UPCGPointData* UPCGBlueprintElement::VariableLoop(const struct FPCGContext
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InData != nullptr)
+		*InData = Parms.InData;
+
+	if (OutData != nullptr)
+		*OutData = Parms.OutData;
 
 	return Parms.ReturnValue;
 
@@ -3022,14 +3006,14 @@ class UPCGPointData* UPCGBlueprintElement::VariableLoop(const struct FPCGContext
 // Function PCG.PCGBlueprintElement.PointLoopBody
 // (Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// struct FPCGContext                 InContext                                                        (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGPointData*               InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FPCGPoint                   InPoint                                                          (Edit, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FPCGPoint                   OutPoint                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                OutMetadata                                                      (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGContext                 InContext                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGPointData*               InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   InPoint                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   OutPoint                                                         (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                OutMetadata                                                      (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGMetadata* UPCGBlueprintElement::PointLoopBody(const struct FPCGContext& InContext, const struct FPCGPoint& InPoint, bool* ReturnValue)
+bool UPCGBlueprintElement::PointLoopBody(class UPCGPointData** InData, const struct FPCGPoint& OutPoint, class UPCGMetadata* OutMetadata)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3038,13 +3022,13 @@ class UPCGMetadata* UPCGBlueprintElement::PointLoopBody(const struct FPCGContext
 
 	Params::UPCGBlueprintElement_PointLoopBody_Params Parms{};
 
-	Parms.InContext = InContext;
-	Parms.InPoint = InPoint;
+	Parms.OutPoint = OutPoint;
+	Parms.OutMetadata = OutMetadata;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InData != nullptr)
+		*InData = Parms.InData;
 
 	return Parms.ReturnValue;
 
@@ -3054,12 +3038,12 @@ class UPCGMetadata* UPCGBlueprintElement::PointLoopBody(const struct FPCGContext
 // Function PCG.PCGBlueprintElement.PointLoop
 // (Final, Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// struct FPCGContext                 InContext                                                        (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGPointData*               InData                                                           (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class UPCGPointData*               OutData                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class UPCGPointData*               OptionalOutData                                                  (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGContext                 InContext                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGPointData*               InData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UPCGPointData*               OutData                                                          (ConstParm, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UPCGPointData*               OptionalOutData                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGPointData* UPCGBlueprintElement::PointLoop(const struct FPCGContext& InContext, class UPCGPointData* OptionalOutData)
+class UPCGPointData* UPCGBlueprintElement::PointLoop(class UPCGPointData** InData, class UPCGPointData** OutData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3068,8 +3052,6 @@ class UPCGPointData* UPCGBlueprintElement::PointLoop(const struct FPCGContext& I
 
 	Params::UPCGBlueprintElement_PointLoop_Params Parms{};
 
-	Parms.InContext = InContext;
-	Parms.OptionalOutData = OptionalOutData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3079,6 +3061,12 @@ class UPCGPointData* UPCGBlueprintElement::PointLoop(const struct FPCGContext& I
 
 	Func->FunctionFlags = Flgs;
 
+	if (InData != nullptr)
+		*InData = Parms.InData;
+
+	if (OutData != nullptr)
+		*OutData = Parms.OutData;
+
 	return Parms.ReturnValue;
 
 }
@@ -3087,9 +3075,9 @@ class UPCGPointData* UPCGBlueprintElement::PointLoop(const struct FPCGContext& I
 // Function PCG.PCGBlueprintElement.OutputLabels
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TSet<class FName>                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TSet<class FName>                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintElement::OutputLabels(TSet<class FName>* ReturnValue)
+TSet<class FName> UPCGBlueprintElement::OutputLabels()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3107,8 +3095,7 @@ void UPCGBlueprintElement::OutputLabels(TSet<class FName>* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3116,9 +3103,9 @@ void UPCGBlueprintElement::OutputLabels(TSet<class FName>* ReturnValue)
 // Function PCG.PCGBlueprintElement.NodeTypeOverride
 // (Native, Event, Public, BlueprintEvent, Const)
 // Parameters:
-// enum class EPCGSettingsType        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EPCGSettingsType        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintElement::NodeTypeOverride(enum class EPCGSettingsType* ReturnValue)
+enum class EPCGSettingsType UPCGBlueprintElement::NodeTypeOverride()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3136,8 +3123,7 @@ void UPCGBlueprintElement::NodeTypeOverride(enum class EPCGSettingsType* ReturnV
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3145,9 +3131,9 @@ void UPCGBlueprintElement::NodeTypeOverride(enum class EPCGSettingsType* ReturnV
 // Function PCG.PCGBlueprintElement.NodeTitleOverride
 // (Native, Event, Public, BlueprintEvent, Const)
 // Parameters:
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintElement::NodeTitleOverride(class FName* ReturnValue)
+class FName UPCGBlueprintElement::NodeTitleOverride()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3165,8 +3151,7 @@ void UPCGBlueprintElement::NodeTitleOverride(class FName* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3174,9 +3159,9 @@ void UPCGBlueprintElement::NodeTitleOverride(class FName* ReturnValue)
 // Function PCG.PCGBlueprintElement.NodeColorOverride
 // (Native, Event, Public, HasDefaults, BlueprintEvent, Const)
 // Parameters:
-// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintElement::NodeColorOverride(struct FLinearColor* ReturnValue)
+struct FLinearColor UPCGBlueprintElement::NodeColorOverride()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3194,8 +3179,7 @@ void UPCGBlueprintElement::NodeColorOverride(struct FLinearColor* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3203,16 +3187,16 @@ void UPCGBlueprintElement::NodeColorOverride(struct FLinearColor* ReturnValue)
 // Function PCG.PCGBlueprintElement.NestedLoopBody
 // (Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// struct FPCGContext                 InContext                                                        (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGPointData*               InOuterData                                                      (Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class UPCGPointData*               InInnerData                                                      (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// struct FPCGPoint                   InOuterPoint                                                     (OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// struct FPCGPoint                   InInnerPoint                                                     (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// struct FPCGPoint                   OutPoint                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                OutMetadata                                                      (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGContext                 InContext                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGPointData*               InOuterData                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+// class UPCGPointData*               InInnerData                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+// struct FPCGPoint                   InOuterPoint                                                     (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+// struct FPCGPoint                   InInnerPoint                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+// struct FPCGPoint                   OutPoint                                                         (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                OutMetadata                                                      (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGMetadata* UPCGBlueprintElement::NestedLoopBody(const struct FPCGContext& InContext, bool* ReturnValue)
+bool UPCGBlueprintElement::NestedLoopBody(class UPCGPointData* InOuterData, class UPCGPointData* InInnerData, const struct FPCGPoint& InOuterPoint, const struct FPCGPoint& InInnerPoint, const struct FPCGPoint& OutPoint, class UPCGMetadata* OutMetadata)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3221,12 +3205,14 @@ class UPCGMetadata* UPCGBlueprintElement::NestedLoopBody(const struct FPCGContex
 
 	Params::UPCGBlueprintElement_NestedLoopBody_Params Parms{};
 
-	Parms.InContext = InContext;
+	Parms.InOuterData = InOuterData;
+	Parms.InInnerData = InInnerData;
+	Parms.InOuterPoint = InOuterPoint;
+	Parms.InInnerPoint = InInnerPoint;
+	Parms.OutPoint = OutPoint;
+	Parms.OutMetadata = OutMetadata;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3236,13 +3222,13 @@ class UPCGMetadata* UPCGBlueprintElement::NestedLoopBody(const struct FPCGContex
 // Function PCG.PCGBlueprintElement.NestedLoop
 // (Final, Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// struct FPCGContext                 InContext                                                        (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGPointData*               InOuterData                                                      (Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class UPCGPointData*               InInnerData                                                      (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class UPCGPointData*               OutData                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class UPCGPointData*               OptionalOutData                                                  (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGContext                 InContext                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGPointData*               InOuterData                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+// class UPCGPointData*               InInnerData                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+// class UPCGPointData*               OutData                                                          (ConstParm, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UPCGPointData*               OptionalOutData                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGPointData* UPCGBlueprintElement::NestedLoop(const struct FPCGContext& InContext, class UPCGPointData* OptionalOutData)
+class UPCGPointData* UPCGBlueprintElement::NestedLoop(class UPCGPointData* InOuterData, class UPCGPointData* InInnerData, class UPCGPointData** OutData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3251,8 +3237,8 @@ class UPCGPointData* UPCGBlueprintElement::NestedLoop(const struct FPCGContext& 
 
 	Params::UPCGBlueprintElement_NestedLoop_Params Parms{};
 
-	Parms.InContext = InContext;
-	Parms.OptionalOutData = OptionalOutData;
+	Parms.InOuterData = InOuterData;
+	Parms.InInnerData = InInnerData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3261,6 +3247,9 @@ class UPCGPointData* UPCGBlueprintElement::NestedLoop(const struct FPCGContext& 
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutData != nullptr)
+		*OutData = Parms.OutData;
 
 	return Parms.ReturnValue;
 
@@ -3270,15 +3259,15 @@ class UPCGPointData* UPCGBlueprintElement::NestedLoop(const struct FPCGContext& 
 // Function PCG.PCGBlueprintElement.IterationLoopBody
 // (Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// struct FPCGContext                 InContext                                                        (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// int64                              Iteration                                                        (Edit, ConstParm, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGContext                 InContext                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// int64                              Iteration                                                        (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 // class UPCGSpatialData*             InA                                                              (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 // class UPCGSpatialData*             InB                                                              (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
-// struct FPCGPoint                   OutPoint                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                OutMetadata                                                      (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGPoint                   OutPoint                                                         (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                OutMetadata                                                      (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGMetadata* UPCGBlueprintElement::IterationLoopBody(const struct FPCGContext& InContext, int64 Iteration, class UPCGSpatialData* InA, class UPCGSpatialData* InB, bool* ReturnValue)
+bool UPCGBlueprintElement::IterationLoopBody(class UPCGSpatialData* InA, class UPCGSpatialData* InB, const struct FPCGPoint& OutPoint, class UPCGMetadata* OutMetadata)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3287,15 +3276,12 @@ class UPCGMetadata* UPCGBlueprintElement::IterationLoopBody(const struct FPCGCon
 
 	Params::UPCGBlueprintElement_IterationLoopBody_Params Parms{};
 
-	Parms.InContext = InContext;
-	Parms.Iteration = Iteration;
 	Parms.InA = InA;
 	Parms.InB = InB;
+	Parms.OutPoint = OutPoint;
+	Parms.OutMetadata = OutMetadata;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -3305,14 +3291,14 @@ class UPCGMetadata* UPCGBlueprintElement::IterationLoopBody(const struct FPCGCon
 // Function PCG.PCGBlueprintElement.IterationLoop
 // (Final, Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// struct FPCGContext                 InContext                                                        (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// int64                              NumIterations                                                    (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UPCGPointData*               OutData                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class UPCGSpatialData*             OptionalA                                                        (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class UPCGSpatialData*             OptionalB                                                        (ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class UPCGPointData*               OptionalOutData                                                  (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGContext                 InContext                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// int64                              NumIterations                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UPCGPointData*               OutData                                                          (ConstParm, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UPCGSpatialData*             OptionalA                                                        (BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+// class UPCGSpatialData*             OptionalB                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+// class UPCGPointData*               OptionalOutData                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGSpatialData* UPCGBlueprintElement::IterationLoop(const struct FPCGContext& InContext, class UPCGPointData* OptionalOutData)
+class UPCGPointData* UPCGBlueprintElement::IterationLoop(int64* NumIterations, class UPCGPointData** OutData, class UPCGSpatialData* OptionalA, class UPCGSpatialData* OptionalB)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3321,8 +3307,8 @@ class UPCGSpatialData* UPCGBlueprintElement::IterationLoop(const struct FPCGCont
 
 	Params::UPCGBlueprintElement_IterationLoop_Params Parms{};
 
-	Parms.InContext = InContext;
-	Parms.OptionalOutData = OptionalOutData;
+	Parms.OptionalA = OptionalA;
+	Parms.OptionalB = OptionalB;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3332,6 +3318,12 @@ class UPCGSpatialData* UPCGBlueprintElement::IterationLoop(const struct FPCGCont
 
 	Func->FunctionFlags = Flgs;
 
+	if (NumIterations != nullptr)
+		*NumIterations = Parms.NumIterations;
+
+	if (OutData != nullptr)
+		*OutData = Parms.OutData;
+
 	return Parms.ReturnValue;
 
 }
@@ -3340,9 +3332,9 @@ class UPCGSpatialData* UPCGBlueprintElement::IterationLoop(const struct FPCGCont
 // Function PCG.PCGBlueprintElement.InputLabels
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TSet<class FName>                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TSet<class FName>                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintElement::InputLabels(TSet<class FName>* ReturnValue)
+TSet<class FName> UPCGBlueprintElement::InputLabels()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3360,8 +3352,7 @@ void UPCGBlueprintElement::InputLabels(TSet<class FName>* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3369,10 +3360,10 @@ void UPCGBlueprintElement::InputLabels(TSet<class FName>* ReturnValue)
 // Function PCG.PCGBlueprintElement.GetSeed
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FPCGContext                 InContext                                                        (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGContext                 InContext                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintElement::GetSeed(const struct FPCGContext& InContext, int32* ReturnValue)
+int32 UPCGBlueprintElement::GetSeed()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3381,7 +3372,6 @@ void UPCGBlueprintElement::GetSeed(const struct FPCGContext& InContext, int32* R
 
 	Params::UPCGBlueprintElement_GetSeed_Params Parms{};
 
-	Parms.InContext = InContext;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3391,8 +3381,7 @@ void UPCGBlueprintElement::GetSeed(const struct FPCGContext& InContext, int32* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3400,10 +3389,10 @@ void UPCGBlueprintElement::GetSeed(const struct FPCGContext& InContext, int32* R
 // Function PCG.PCGBlueprintElement.GetRandomStream
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable, Const)
 // Parameters:
-// struct FPCGContext                 InContext                                                        (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FRandomStream               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGContext                 InContext                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FRandomStream               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintElement::GetRandomStream(const struct FPCGContext& InContext, struct FRandomStream* ReturnValue)
+struct FRandomStream UPCGBlueprintElement::GetRandomStream()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3412,7 +3401,6 @@ void UPCGBlueprintElement::GetRandomStream(const struct FPCGContext& InContext, 
 
 	Params::UPCGBlueprintElement_GetRandomStream_Params Parms{};
 
-	Parms.InContext = InContext;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3422,8 +3410,7 @@ void UPCGBlueprintElement::GetRandomStream(const struct FPCGContext& InContext, 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3431,11 +3418,11 @@ void UPCGBlueprintElement::GetRandomStream(const struct FPCGContext& InContext, 
 // Function PCG.PCGBlueprintElement.ExecuteWithContext
 // (Native, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FPCGContext                 InContext                                                        (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGContext                 InContext                                                        (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 // struct FPCGDataCollection          Input                                                            (Edit, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor)
 // struct FPCGDataCollection          Output                                                           (Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor)
 
-void UPCGBlueprintElement::ExecuteWithContext(const struct FPCGContext& InContext, const struct FPCGDataCollection& Input, struct FPCGDataCollection* Output)
+struct FPCGContext UPCGBlueprintElement::ExecuteWithContext(const struct FPCGDataCollection& Input, struct FPCGDataCollection* Output)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3444,7 +3431,6 @@ void UPCGBlueprintElement::ExecuteWithContext(const struct FPCGContext& InContex
 
 	Params::UPCGBlueprintElement_ExecuteWithContext_Params Parms{};
 
-	Parms.InContext = InContext;
 	Parms.Input = Input;
 
 	auto Flgs = Func->FunctionFlags;
@@ -3457,6 +3443,8 @@ void UPCGBlueprintElement::ExecuteWithContext(const struct FPCGContext& InContex
 
 	if (Output != nullptr)
 		*Output = std::move(Parms.Output);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3517,10 +3505,10 @@ class UPCGBlueprintSettings* UPCGBlueprintSettings::GetDefaultObj()
 // Function PCG.PCGBlueprintSettings.SetElementType
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UClass*                      InElementType                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGBlueprintElement*        ElementInstance                                                  (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      InElementType                                                    (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGBlueprintElement*        ElementInstance                                                  (Edit, ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-void UPCGBlueprintSettings::SetElementType(class UClass** InElementType, class UPCGBlueprintElement** ElementInstance)
+class UPCGBlueprintElement* UPCGBlueprintSettings::SetElementType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3538,11 +3526,7 @@ void UPCGBlueprintSettings::SetElementType(class UClass** InElementType, class U
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementType != nullptr)
-		*InElementType = Parms.InElementType;
-
-	if (ElementInstance != nullptr)
-		*ElementInstance = Parms.ElementInstance;
+	return Parms.ReturnValue;
 
 }
 
@@ -3550,9 +3534,9 @@ void UPCGBlueprintSettings::SetElementType(class UClass** InElementType, class U
 // Function PCG.PCGBlueprintSettings.GetElementType
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UClass*                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintSettings::GetElementType(class UClass** ReturnValue)
+class UClass* UPCGBlueprintSettings::GetElementType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3570,8 +3554,7 @@ void UPCGBlueprintSettings::GetElementType(class UClass** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3747,9 +3730,9 @@ class UPCGPointMatchAndSetSettings* UPCGPointMatchAndSetSettings::GetDefaultObj(
 // Function PCG.PCGPointMatchAndSetSettings.SetMatchAndSetType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InMatchAndSetType                                                (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      InMatchAndSetType                                                (Edit, ConstParm, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-void UPCGPointMatchAndSetSettings::SetMatchAndSetType(class UClass** InMatchAndSetType)
+class UClass* UPCGPointMatchAndSetSettings::SetMatchAndSetType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3767,8 +3750,7 @@ void UPCGPointMatchAndSetSettings::SetMatchAndSetType(class UClass** InMatchAndS
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMatchAndSetType != nullptr)
-		*InMatchAndSetType = Parms.InMatchAndSetType;
+	return Parms.ReturnValue;
 
 }
 
@@ -3972,12 +3954,12 @@ class UPCGNode* UPCGNode::GetDefaultObj()
 // Function PCG.PCGNode.RemoveEdgeTo
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        FromPinLable                                                     (ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGNode*                    To                                                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        ToPinLabel                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        FromPinLable                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGNode*                    To                                                               (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class FName                        ToPinLabel                                                       (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGNode::RemoveEdgeTo(class FName FromPinLable, class UPCGNode* To, class FName ToPinLabel, bool* ReturnValue)
+bool UPCGNode::RemoveEdgeTo()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3986,9 +3968,6 @@ void UPCGNode::RemoveEdgeTo(class FName FromPinLable, class UPCGNode* To, class 
 
 	Params::UPCGNode_RemoveEdgeTo_Params Parms{};
 
-	Parms.FromPinLable = FromPinLable;
-	Parms.To = To;
-	Parms.ToPinLabel = ToPinLabel;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3998,8 +3977,7 @@ void UPCGNode::RemoveEdgeTo(class FName FromPinLable, class UPCGNode* To, class 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4007,9 +3985,9 @@ void UPCGNode::RemoveEdgeTo(class FName FromPinLable, class UPCGNode* To, class 
 // Function PCG.PCGNode.GetSettings
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGSettings*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGSettings*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGNode::GetSettings(class UPCGSettings** ReturnValue)
+class UPCGSettings* UPCGNode::GetSettings()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4027,8 +4005,7 @@ void UPCGNode::GetSettings(class UPCGSettings** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4036,9 +4013,9 @@ void UPCGNode::GetSettings(class UPCGSettings** ReturnValue)
 // Function PCG.PCGNode.GetGraph
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGGraph*                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGGraph*                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGNode::GetGraph(class UPCGGraph** ReturnValue)
+class UPCGGraph* UPCGNode::GetGraph()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4056,8 +4033,7 @@ void UPCGNode::GetGraph(class UPCGGraph** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4065,12 +4041,12 @@ void UPCGNode::GetGraph(class UPCGGraph** ReturnValue)
 // Function PCG.PCGNode.AddEdgeTo
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        FromPinLabel                                                     (Edit, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGNode*                    To                                                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        ToPinLabel                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGNode*                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        FromPinLabel                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGNode*                    To                                                               (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class FName                        ToPinLabel                                                       (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGNode*                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGNode::AddEdgeTo(class FName FromPinLabel, class UPCGNode* To, class FName ToPinLabel, class UPCGNode** ReturnValue)
+class UPCGNode* UPCGNode::AddEdgeTo()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4079,9 +4055,6 @@ void UPCGNode::AddEdgeTo(class FName FromPinLabel, class UPCGNode* To, class FNa
 
 	Params::UPCGNode_AddEdgeTo_Params Parms{};
 
-	Parms.FromPinLabel = FromPinLabel;
-	Parms.To = To;
-	Parms.ToPinLabel = ToPinLabel;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4091,8 +4064,7 @@ void UPCGNode::AddEdgeTo(class FName FromPinLabel, class UPCGNode* To, class FNa
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4212,9 +4184,9 @@ class UPCGStaticMeshSpawnerSettings* UPCGStaticMeshSpawnerSettings::GetDefaultOb
 // Function PCG.PCGStaticMeshSpawnerSettings.SetMeshSelectorType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InMeshSelectorType                                               (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      InMeshSelectorType                                               (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-void UPCGStaticMeshSpawnerSettings::SetMeshSelectorType(class UClass* InMeshSelectorType)
+class UClass* UPCGStaticMeshSpawnerSettings::SetMeshSelectorType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4223,7 +4195,6 @@ void UPCGStaticMeshSpawnerSettings::SetMeshSelectorType(class UClass* InMeshSele
 
 	Params::UPCGStaticMeshSpawnerSettings_SetMeshSelectorType_Params Parms{};
 
-	Parms.InMeshSelectorType = InMeshSelectorType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4233,15 +4204,17 @@ void UPCGStaticMeshSpawnerSettings::SetMeshSelectorType(class UClass* InMeshSele
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function PCG.PCGStaticMeshSpawnerSettings.SetInstancePackerType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InInstancePackerType                                             (BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      InInstancePackerType                                             (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-void UPCGStaticMeshSpawnerSettings::SetInstancePackerType(class UClass* InInstancePackerType)
+class UClass* UPCGStaticMeshSpawnerSettings::SetInstancePackerType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4250,7 +4223,6 @@ void UPCGStaticMeshSpawnerSettings::SetInstancePackerType(class UClass* InInstan
 
 	Params::UPCGStaticMeshSpawnerSettings_SetInstancePackerType_Params Parms{};
 
-	Parms.InInstancePackerType = InInstancePackerType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4259,6 +4231,8 @@ void UPCGStaticMeshSpawnerSettings::SetInstancePackerType(class UClass* InInstan
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -4630,10 +4604,10 @@ class APCGPartitionActor* APCGPartitionActor::GetDefaultObj()
 // Function PCG.PCGPartitionActor.GetOriginalComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGComponent*               LocalComponent                                                   (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGComponent*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGComponent*               LocalComponent                                                   (ConstParm, ExportObject, Net, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGComponent*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void APCGPartitionActor::GetOriginalComponent(class UPCGComponent** LocalComponent, class UPCGComponent** ReturnValue)
+class UPCGComponent* APCGPartitionActor::GetOriginalComponent(class UPCGComponent* LocalComponent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4642,6 +4616,7 @@ void APCGPartitionActor::GetOriginalComponent(class UPCGComponent** LocalCompone
 
 	Params::APCGPartitionActor_GetOriginalComponent_Params Parms{};
 
+	Parms.LocalComponent = LocalComponent;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4651,11 +4626,7 @@ void APCGPartitionActor::GetOriginalComponent(class UPCGComponent** LocalCompone
 
 	Func->FunctionFlags = Flgs;
 
-	if (LocalComponent != nullptr)
-		*LocalComponent = Parms.LocalComponent;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4663,10 +4634,10 @@ void APCGPartitionActor::GetOriginalComponent(class UPCGComponent** LocalCompone
 // Function PCG.PCGPartitionActor.GetLocalComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGComponent*               OriginalComponent                                                (Edit, ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGComponent*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGComponent*               OriginalComponent                                                (Net, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGComponent*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void APCGPartitionActor::GetLocalComponent(class UPCGComponent** OriginalComponent, class UPCGComponent** ReturnValue)
+class UPCGComponent* APCGPartitionActor::GetLocalComponent(class UPCGComponent* OriginalComponent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4675,6 +4646,7 @@ void APCGPartitionActor::GetLocalComponent(class UPCGComponent** OriginalCompone
 
 	Params::APCGPartitionActor_GetLocalComponent_Params Parms{};
 
+	Parms.OriginalComponent = OriginalComponent;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4684,11 +4656,7 @@ void APCGPartitionActor::GetLocalComponent(class UPCGComponent** OriginalCompone
 
 	Func->FunctionFlags = Flgs;
 
-	if (OriginalComponent != nullptr)
-		*OriginalComponent = Parms.OriginalComponent;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4752,9 +4720,9 @@ class UPCGBlueprintHelpers* UPCGBlueprintHelpers::GetDefaultObj()
 // Function PCG.PCGBlueprintHelpers.SetSeedFromPosition
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGPoint                   InPoint                                                          (Edit, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   InPoint                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-void UPCGBlueprintHelpers::SetSeedFromPosition(const struct FPCGPoint& InPoint)
+struct FPCGPoint UPCGBlueprintHelpers::SetSeedFromPosition()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4763,7 +4731,6 @@ void UPCGBlueprintHelpers::SetSeedFromPosition(const struct FPCGPoint& InPoint)
 
 	Params::UPCGBlueprintHelpers_SetSeedFromPosition_Params Parms{};
 
-	Parms.InPoint = InPoint;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4773,16 +4740,18 @@ void UPCGBlueprintHelpers::SetSeedFromPosition(const struct FPCGPoint& InPoint)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function PCG.PCGBlueprintHelpers.SetLocalCenter
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FPCGPoint                   InPoint                                                          (Edit, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     InLocalCenter                                                    (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   InPoint                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     InLocalCenter                                                    (Edit, ConstParm, BlueprintVisible, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UPCGBlueprintHelpers::SetLocalCenter(const struct FPCGPoint& InPoint, struct FVector* InLocalCenter)
+struct FPCGPoint UPCGBlueprintHelpers::SetLocalCenter(const struct FVector& InLocalCenter)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4791,7 +4760,7 @@ void UPCGBlueprintHelpers::SetLocalCenter(const struct FPCGPoint& InPoint, struc
 
 	Params::UPCGBlueprintHelpers_SetLocalCenter_Params Parms{};
 
-	Parms.InPoint = InPoint;
+	Parms.InLocalCenter = InLocalCenter;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4801,8 +4770,7 @@ void UPCGBlueprintHelpers::SetLocalCenter(const struct FPCGPoint& InPoint, struc
 
 	Func->FunctionFlags = Flgs;
 
-	if (InLocalCenter != nullptr)
-		*InLocalCenter = std::move(Parms.InLocalCenter);
+	return Parms.ReturnValue;
 
 }
 
@@ -4810,10 +4778,10 @@ void UPCGBlueprintHelpers::SetLocalCenter(const struct FPCGPoint& InPoint, struc
 // Function PCG.PCGBlueprintHelpers.SetExtents
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FPCGPoint                   InPoint                                                          (Edit, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     InExtents                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   InPoint                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     InExtents                                                        (Edit, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UPCGBlueprintHelpers::SetExtents(const struct FPCGPoint& InPoint, struct FVector* InExtents)
+struct FPCGPoint UPCGBlueprintHelpers::SetExtents(const struct FVector& InExtents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4822,7 +4790,7 @@ void UPCGBlueprintHelpers::SetExtents(const struct FPCGPoint& InPoint, struct FV
 
 	Params::UPCGBlueprintHelpers_SetExtents_Params Parms{};
 
-	Parms.InPoint = InPoint;
+	Parms.InExtents = InExtents;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4832,8 +4800,7 @@ void UPCGBlueprintHelpers::SetExtents(const struct FPCGPoint& InPoint, struct FV
 
 	Func->FunctionFlags = Flgs;
 
-	if (InExtents != nullptr)
-		*InExtents = std::move(Parms.InExtents);
+	return Parms.ReturnValue;
 
 }
 
@@ -4841,10 +4808,10 @@ void UPCGBlueprintHelpers::SetExtents(const struct FPCGPoint& InPoint, struct FV
 // Function PCG.PCGBlueprintHelpers.GetTransformedBounds
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FPCGPoint                   InPoint                                                          (Edit, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FBox                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGPoint                   InPoint                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FBox                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintHelpers::GetTransformedBounds(const struct FPCGPoint& InPoint, struct FBox* ReturnValue)
+struct FBox UPCGBlueprintHelpers::GetTransformedBounds()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4853,7 +4820,6 @@ void UPCGBlueprintHelpers::GetTransformedBounds(const struct FPCGPoint& InPoint,
 
 	Params::UPCGBlueprintHelpers_GetTransformedBounds_Params Parms{};
 
-	Parms.InPoint = InPoint;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4863,8 +4829,7 @@ void UPCGBlueprintHelpers::GetTransformedBounds(const struct FPCGPoint& InPoint,
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -4872,10 +4837,10 @@ void UPCGBlueprintHelpers::GetTransformedBounds(const struct FPCGPoint& InPoint,
 // Function PCG.PCGBlueprintHelpers.GetTaskId
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGContext                 Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// int64                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGContext                 Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int64                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintHelpers::GetTaskId(const struct FPCGContext& Context, int64* ReturnValue)
+int64 UPCGBlueprintHelpers::GetTaskId()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4884,7 +4849,6 @@ void UPCGBlueprintHelpers::GetTaskId(const struct FPCGContext& Context, int64* R
 
 	Params::UPCGBlueprintHelpers_GetTaskId_Params Parms{};
 
-	Parms.Context = Context;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4894,8 +4858,7 @@ void UPCGBlueprintHelpers::GetTaskId(const struct FPCGContext& Context, int64* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4903,10 +4866,10 @@ void UPCGBlueprintHelpers::GetTaskId(const struct FPCGContext& Context, int64* R
 // Function PCG.PCGBlueprintHelpers.GetSettings
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGContext                 Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UPCGSettings*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGContext                 Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGSettings*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintHelpers::GetSettings(const struct FPCGContext& Context, class UPCGSettings** ReturnValue)
+class UPCGSettings* UPCGBlueprintHelpers::GetSettings()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4915,7 +4878,6 @@ void UPCGBlueprintHelpers::GetSettings(const struct FPCGContext& Context, class 
 
 	Params::UPCGBlueprintHelpers_GetSettings_Params Parms{};
 
-	Parms.Context = Context;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4925,8 +4887,7 @@ void UPCGBlueprintHelpers::GetSettings(const struct FPCGContext& Context, class 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4934,12 +4895,12 @@ void UPCGBlueprintHelpers::GetSettings(const struct FPCGContext& Context, class 
 // Function PCG.PCGBlueprintHelpers.GetRandomStream
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FPCGPoint                   InPoint                                                          (Edit, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGSettings*                OptionalSettings                                                 (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGComponent*               OptionalComponent                                                (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FRandomStream               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGPoint                   InPoint                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGSettings*                OptionalSettings                                                 (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGComponent*               OptionalComponent                                                (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FRandomStream               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintHelpers::GetRandomStream(const struct FPCGPoint& InPoint, class UPCGSettings** OptionalSettings, class UPCGComponent** OptionalComponent, struct FRandomStream* ReturnValue)
+struct FRandomStream UPCGBlueprintHelpers::GetRandomStream(class UPCGSettings* OptionalSettings, class UPCGComponent* OptionalComponent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4948,7 +4909,8 @@ void UPCGBlueprintHelpers::GetRandomStream(const struct FPCGPoint& InPoint, clas
 
 	Params::UPCGBlueprintHelpers_GetRandomStream_Params Parms{};
 
-	Parms.InPoint = InPoint;
+	Parms.OptionalSettings = OptionalSettings;
+	Parms.OptionalComponent = OptionalComponent;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4958,14 +4920,7 @@ void UPCGBlueprintHelpers::GetRandomStream(const struct FPCGPoint& InPoint, clas
 
 	Func->FunctionFlags = Flgs;
 
-	if (OptionalSettings != nullptr)
-		*OptionalSettings = Parms.OptionalSettings;
-
-	if (OptionalComponent != nullptr)
-		*OptionalComponent = Parms.OptionalComponent;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -4973,10 +4928,10 @@ void UPCGBlueprintHelpers::GetRandomStream(const struct FPCGPoint& InPoint, clas
 // Function PCG.PCGBlueprintHelpers.GetOriginalComponent
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGContext                 Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UPCGComponent*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGContext                 Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGComponent*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintHelpers::GetOriginalComponent(const struct FPCGContext& Context, class UPCGComponent** ReturnValue)
+class UPCGComponent* UPCGBlueprintHelpers::GetOriginalComponent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4985,7 +4940,6 @@ void UPCGBlueprintHelpers::GetOriginalComponent(const struct FPCGContext& Contex
 
 	Params::UPCGBlueprintHelpers_GetOriginalComponent_Params Parms{};
 
-	Parms.Context = Context;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4995,8 +4949,7 @@ void UPCGBlueprintHelpers::GetOriginalComponent(const struct FPCGContext& Contex
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5004,10 +4957,10 @@ void UPCGBlueprintHelpers::GetOriginalComponent(const struct FPCGContext& Contex
 // Function PCG.PCGBlueprintHelpers.GetLocalCenter
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FPCGPoint                   InPoint                                                          (Edit, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGPoint                   InPoint                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintHelpers::GetLocalCenter(const struct FPCGPoint& InPoint, struct FVector* ReturnValue)
+struct FVector UPCGBlueprintHelpers::GetLocalCenter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5016,7 +4969,6 @@ void UPCGBlueprintHelpers::GetLocalCenter(const struct FPCGPoint& InPoint, struc
 
 	Params::UPCGBlueprintHelpers_GetLocalCenter_Params Parms{};
 
-	Parms.InPoint = InPoint;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5026,8 +4978,7 @@ void UPCGBlueprintHelpers::GetLocalCenter(const struct FPCGPoint& InPoint, struc
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -5035,11 +4986,11 @@ void UPCGBlueprintHelpers::GetLocalCenter(const struct FPCGPoint& InPoint, struc
 // Function PCG.PCGBlueprintHelpers.GetInterpolatedPCGLandscapeLayerWeights
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// TArray<struct FPCGLandscapeLayerWeight>ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FPCGLandscapeLayerWeight>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UPCGBlueprintHelpers::GetInterpolatedPCGLandscapeLayerWeights(struct FVector* Location, TArray<struct FPCGLandscapeLayerWeight>* ReturnValue)
+TArray<struct FPCGLandscapeLayerWeight> UPCGBlueprintHelpers::GetInterpolatedPCGLandscapeLayerWeights(struct FVector* Location)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5060,9 +5011,6 @@ class UObject* UPCGBlueprintHelpers::GetInterpolatedPCGLandscapeLayerWeights(str
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -5071,10 +5019,10 @@ class UObject* UPCGBlueprintHelpers::GetInterpolatedPCGLandscapeLayerWeights(str
 // Function PCG.PCGBlueprintHelpers.GetInputData
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGContext                 Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UPCGData*                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGContext                 Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGData*                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintHelpers::GetInputData(const struct FPCGContext& Context, class UPCGData** ReturnValue)
+class UPCGData* UPCGBlueprintHelpers::GetInputData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5083,7 +5031,6 @@ void UPCGBlueprintHelpers::GetInputData(const struct FPCGContext& Context, class
 
 	Params::UPCGBlueprintHelpers_GetInputData_Params Parms{};
 
-	Parms.Context = Context;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5093,8 +5040,7 @@ void UPCGBlueprintHelpers::GetInputData(const struct FPCGContext& Context, class
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5102,10 +5048,10 @@ void UPCGBlueprintHelpers::GetInputData(const struct FPCGContext& Context, class
 // Function PCG.PCGBlueprintHelpers.GetExtents
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FPCGPoint                   InPoint                                                          (Edit, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGPoint                   InPoint                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintHelpers::GetExtents(const struct FPCGPoint& InPoint, struct FVector* ReturnValue)
+struct FVector UPCGBlueprintHelpers::GetExtents()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5114,7 +5060,6 @@ void UPCGBlueprintHelpers::GetExtents(const struct FPCGPoint& InPoint, struct FV
 
 	Params::UPCGBlueprintHelpers_GetExtents_Params Parms{};
 
-	Parms.InPoint = InPoint;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5124,8 +5069,7 @@ void UPCGBlueprintHelpers::GetExtents(const struct FPCGPoint& InPoint, struct FV
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -5133,10 +5077,10 @@ void UPCGBlueprintHelpers::GetExtents(const struct FPCGPoint& InPoint, struct FV
 // Function PCG.PCGBlueprintHelpers.GetComponent
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGContext                 Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UPCGComponent*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGContext                 Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGComponent*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintHelpers::GetComponent(const struct FPCGContext& Context, class UPCGComponent** ReturnValue)
+class UPCGComponent* UPCGBlueprintHelpers::GetComponent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5145,7 +5089,6 @@ void UPCGBlueprintHelpers::GetComponent(const struct FPCGContext& Context, class
 
 	Params::UPCGBlueprintHelpers_GetComponent_Params Parms{};
 
-	Parms.Context = Context;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5155,8 +5098,7 @@ void UPCGBlueprintHelpers::GetComponent(const struct FPCGContext& Context, class
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5164,11 +5106,11 @@ void UPCGBlueprintHelpers::GetComponent(const struct FPCGContext& Context, class
 // Function PCG.PCGBlueprintHelpers.GetActorLocalBoundsPCG
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class AActor*                      InActor                                                          (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               bIgnorePCGCreatedComponents                                      (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FBox                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      InActor                                                          (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               bIgnorePCGCreatedComponents                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FBox                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintHelpers::GetActorLocalBoundsPCG(class AActor* InActor, bool* bIgnorePCGCreatedComponents, struct FBox* ReturnValue)
+struct FBox UPCGBlueprintHelpers::GetActorLocalBoundsPCG(bool bIgnorePCGCreatedComponents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5177,7 +5119,7 @@ void UPCGBlueprintHelpers::GetActorLocalBoundsPCG(class AActor* InActor, bool* b
 
 	Params::UPCGBlueprintHelpers_GetActorLocalBoundsPCG_Params Parms{};
 
-	Parms.InActor = InActor;
+	Parms.bIgnorePCGCreatedComponents = bIgnorePCGCreatedComponents;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5187,11 +5129,7 @@ void UPCGBlueprintHelpers::GetActorLocalBoundsPCG(class AActor* InActor, bool* b
 
 	Func->FunctionFlags = Flgs;
 
-	if (bIgnorePCGCreatedComponents != nullptr)
-		*bIgnorePCGCreatedComponents = Parms.bIgnorePCGCreatedComponents;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -5199,10 +5137,10 @@ void UPCGBlueprintHelpers::GetActorLocalBoundsPCG(class AActor* InActor, bool* b
 // Function PCG.PCGBlueprintHelpers.GetActorData
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGContext                 Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UPCGData*                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGContext                 Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGData*                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintHelpers::GetActorData(const struct FPCGContext& Context, class UPCGData** ReturnValue)
+class UPCGData* UPCGBlueprintHelpers::GetActorData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5211,7 +5149,6 @@ void UPCGBlueprintHelpers::GetActorData(const struct FPCGContext& Context, class
 
 	Params::UPCGBlueprintHelpers_GetActorData_Params Parms{};
 
-	Parms.Context = Context;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5221,8 +5158,7 @@ void UPCGBlueprintHelpers::GetActorData(const struct FPCGContext& Context, class
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5230,11 +5166,11 @@ void UPCGBlueprintHelpers::GetActorData(const struct FPCGContext& Context, class
 // Function PCG.PCGBlueprintHelpers.GetActorBoundsPCG
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class AActor*                      InActor                                                          (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               bIgnorePCGCreatedComponents                                      (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FBox                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      InActor                                                          (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               bIgnorePCGCreatedComponents                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FBox                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintHelpers::GetActorBoundsPCG(class AActor* InActor, bool* bIgnorePCGCreatedComponents, struct FBox* ReturnValue)
+struct FBox UPCGBlueprintHelpers::GetActorBoundsPCG(bool bIgnorePCGCreatedComponents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5243,7 +5179,7 @@ void UPCGBlueprintHelpers::GetActorBoundsPCG(class AActor* InActor, bool* bIgnor
 
 	Params::UPCGBlueprintHelpers_GetActorBoundsPCG_Params Parms{};
 
-	Parms.InActor = InActor;
+	Parms.bIgnorePCGCreatedComponents = bIgnorePCGCreatedComponents;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5253,11 +5189,7 @@ void UPCGBlueprintHelpers::GetActorBoundsPCG(class AActor* InActor, bool* bIgnor
 
 	Func->FunctionFlags = Flgs;
 
-	if (bIgnorePCGCreatedComponents != nullptr)
-		*bIgnorePCGCreatedComponents = Parms.bIgnorePCGCreatedComponents;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -5265,11 +5197,11 @@ void UPCGBlueprintHelpers::GetActorBoundsPCG(class AActor* InActor, bool* bIgnor
 // Function PCG.PCGBlueprintHelpers.CreatePCGDataFromActor
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class AActor*                      InActor                                                          (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               bParseActor                                                      (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGData*                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      InActor                                                          (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               bParseActor                                                      (ExportObject, BlueprintReadOnly, EditFixedSize, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGData*                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGBlueprintHelpers::CreatePCGDataFromActor(class AActor* InActor, bool* bParseActor, class UPCGData** ReturnValue)
+class UPCGData* UPCGBlueprintHelpers::CreatePCGDataFromActor(bool bParseActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5278,7 +5210,7 @@ void UPCGBlueprintHelpers::CreatePCGDataFromActor(class AActor* InActor, bool* b
 
 	Params::UPCGBlueprintHelpers_CreatePCGDataFromActor_Params Parms{};
 
-	Parms.InActor = InActor;
+	Parms.bParseActor = bParseActor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5288,11 +5220,7 @@ void UPCGBlueprintHelpers::CreatePCGDataFromActor(class AActor* InActor, bool* b
 
 	Func->FunctionFlags = Flgs;
 
-	if (bParseActor != nullptr)
-		*bParseActor = Parms.bParseActor;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -5300,10 +5228,10 @@ void UPCGBlueprintHelpers::CreatePCGDataFromActor(class AActor* InActor, bool* b
 // Function PCG.PCGBlueprintHelpers.ComputeSeedFromPosition
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     InPosition                                                       (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     InPosition                                                       (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector UPCGBlueprintHelpers::ComputeSeedFromPosition(int32* ReturnValue)
+int32 UPCGBlueprintHelpers::ComputeSeedFromPosition()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5320,9 +5248,6 @@ struct FVector UPCGBlueprintHelpers::ComputeSeedFromPosition(int32* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -5360,12 +5285,12 @@ class UPCGInstancePackerBase* UPCGInstancePackerBase::GetDefaultObj()
 // Function PCG.PCGInstancePackerBase.PackInstances
 // (Native, Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// struct FPCGContext                 Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UPCGSpatialData*             InSpatialData                                                    (ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FPCGMeshInstanceList        InstanceList                                                     (Edit, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FPCGPackedCustomData        OutPackedCustomData                                              (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGContext                 Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGSpatialData*             InSpatialData                                                    (Edit, BlueprintVisible, ExportObject, Net, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGMeshInstanceList        InstanceList                                                     (ConstParm, BlueprintVisible, Net, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPackedCustomData        OutPackedCustomData                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-struct FPCGMeshInstanceList UPCGInstancePackerBase::PackInstances(const struct FPCGContext& Context, struct FPCGPackedCustomData* OutPackedCustomData)
+struct FPCGContext UPCGInstancePackerBase::PackInstances(class UPCGSpatialData* InSpatialData, const struct FPCGMeshInstanceList& InstanceList, const struct FPCGPackedCustomData& OutPackedCustomData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5374,7 +5299,9 @@ struct FPCGMeshInstanceList UPCGInstancePackerBase::PackInstances(const struct F
 
 	Params::UPCGInstancePackerBase_PackInstances_Params Parms{};
 
-	Parms.Context = Context;
+	Parms.InSpatialData = InSpatialData;
+	Parms.InstanceList = InstanceList;
+	Parms.OutPackedCustomData = OutPackedCustomData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5384,9 +5311,6 @@ struct FPCGMeshInstanceList UPCGInstancePackerBase::PackInstances(const struct F
 
 	Func->FunctionFlags = Flgs;
 
-	if (OutPackedCustomData != nullptr)
-		*OutPackedCustomData = std::move(Parms.OutPackedCustomData);
-
 	return Parms.ReturnValue;
 
 }
@@ -5395,12 +5319,12 @@ struct FPCGMeshInstanceList UPCGInstancePackerBase::PackInstances(const struct F
 // Function PCG.PCGInstancePackerBase.PackCustomDataFromAttributes
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FPCGMeshInstanceList        InstanceList                                                     (Edit, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGMeshInstanceList        InstanceList                                                     (ConstParm, BlueprintVisible, Net, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// TArray<class FName>                AttributeNames                                                   (Edit, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FPCGPackedCustomData        OutPackedCustomData                                              (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<class FName>                AttributeNames                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPackedCustomData        OutPackedCustomData                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-TArray<class FName> UPCGInstancePackerBase::PackCustomDataFromAttributes(class UPCGMetadata** MetaData, struct FPCGPackedCustomData* OutPackedCustomData)
+void UPCGInstancePackerBase::PackCustomDataFromAttributes(const struct FPCGMeshInstanceList& InstanceList, class UPCGMetadata** MetaData, const TArray<class FName>& AttributeNames, const struct FPCGPackedCustomData& OutPackedCustomData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5409,6 +5333,9 @@ TArray<class FName> UPCGInstancePackerBase::PackCustomDataFromAttributes(class U
 
 	Params::UPCGInstancePackerBase_PackCustomDataFromAttributes_Params Parms{};
 
+	Parms.InstanceList = InstanceList;
+	Parms.AttributeNames = AttributeNames;
+	Parms.OutPackedCustomData = OutPackedCustomData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5421,22 +5348,17 @@ TArray<class FName> UPCGInstancePackerBase::PackCustomDataFromAttributes(class U
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (OutPackedCustomData != nullptr)
-		*OutPackedCustomData = std::move(Parms.OutPackedCustomData);
-
-	return Parms.ReturnValue;
-
 }
 
 
 // Function PCG.PCGInstancePackerBase.AddTypeToPacking
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              TypeId                                                           (Edit, BlueprintVisible, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FPCGPackedCustomData        OutPackedCustomData                                              (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              TypeId                                                           (ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPackedCustomData        OutPackedCustomData                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UPCGInstancePackerBase::AddTypeToPacking(struct FPCGPackedCustomData* OutPackedCustomData, bool* ReturnValue)
+bool UPCGInstancePackerBase::AddTypeToPacking(int32 TypeId, const struct FPCGPackedCustomData& OutPackedCustomData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5445,6 +5367,8 @@ int32 UPCGInstancePackerBase::AddTypeToPacking(struct FPCGPackedCustomData* OutP
 
 	Params::UPCGInstancePackerBase_AddTypeToPacking_Params Parms{};
 
+	Parms.TypeId = TypeId;
+	Parms.OutPackedCustomData = OutPackedCustomData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5453,12 +5377,6 @@ int32 UPCGInstancePackerBase::AddTypeToPacking(struct FPCGPackedCustomData* OutP
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (OutPackedCustomData != nullptr)
-		*OutPackedCustomData = std::move(Parms.OutPackedCustomData);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -5552,10 +5470,10 @@ class UPCGMatchAndSetBase* UPCGMatchAndSetBase::GetDefaultObj()
 // Function PCG.PCGMatchAndSetBase.ValidatePreconditions
 // (Native, Event, Public, BlueprintEvent, Const)
 // Parameters:
-// class UPCGPointData*               InPointData                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGPointData*               InPointData                                                      (BlueprintVisible, EditFixedSize, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGPointData* UPCGMatchAndSetBase::ValidatePreconditions(bool* ReturnValue)
+bool UPCGMatchAndSetBase::ValidatePreconditions(class UPCGPointData* InPointData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5564,6 +5482,7 @@ class UPCGPointData* UPCGMatchAndSetBase::ValidatePreconditions(bool* ReturnValu
 
 	Params::UPCGMatchAndSetBase_ValidatePreconditions_Params Parms{};
 
+	Parms.InPointData = InPointData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5573,9 +5492,6 @@ class UPCGPointData* UPCGMatchAndSetBase::ValidatePreconditions(bool* ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -5584,12 +5500,12 @@ class UPCGPointData* UPCGMatchAndSetBase::ValidatePreconditions(bool* ReturnValu
 // Function PCG.PCGMatchAndSetBase.MatchAndSet
 // (Native, Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// struct FPCGContext                 Context                                                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UPCGPointMatchAndSetSettings*InSettings                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UPCGPointData*               InPointData                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGPointData*               OutPointData                                                     (ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGContext                 Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGPointMatchAndSetSettings*InSettings                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UPCGPointData*               InPointData                                                      (BlueprintVisible, EditFixedSize, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGPointData*               OutPointData                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGPointData* UPCGMatchAndSetBase::MatchAndSet(const struct FPCGContext& Context)
+class UPCGPointMatchAndSetSettings* UPCGMatchAndSetBase::MatchAndSet(class UPCGPointData* InPointData, class UPCGPointData* OutPointData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5598,7 +5514,8 @@ class UPCGPointData* UPCGMatchAndSetBase::MatchAndSet(const struct FPCGContext& 
 
 	Params::UPCGMatchAndSetBase_MatchAndSet_Params Parms{};
 
-	Parms.Context = Context;
+	Parms.InPointData = InPointData;
+	Parms.OutPointData = OutPointData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5842,9 +5759,9 @@ class UPCGMetadata* UPCGMetadata::GetDefaultObj()
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// struct FPCGPoint                   OutPoint                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   OutPoint                                                         (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-struct FPCGPoint UPCGMetadata::SetPointAttributes(class UPCGMetadata** MetaData)
+struct FPCGPoint UPCGMetadata::SetPointAttributes(class UPCGMetadata** MetaData, const struct FPCGPoint& OutPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5853,6 +5770,7 @@ struct FPCGPoint UPCGMetadata::SetPointAttributes(class UPCGMetadata** MetaData)
 
 	Params::UPCGMetadata_SetPointAttributes_Params Parms{};
 
+	Parms.OutPoint = OutPoint;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5874,11 +5792,11 @@ struct FPCGPoint UPCGMetadata::SetPointAttributes(class UPCGMetadata** MetaData)
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// class UPCGMetadata*                InMetaData                                                       (Net, Parm, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// int64                              TargetKey                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// int64                              OutKey                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                InMetaData                                                       (BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              TargetKey                                                        (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// int64                              OutKey                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-int64 UPCGMetadata::SetAttributesByKey(int64 Key)
+void UPCGMetadata::SetAttributesByKey(int64 Key, class UPCGMetadata* InMetaData, int64* TargetKey, int64* OutKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5888,6 +5806,7 @@ int64 UPCGMetadata::SetAttributesByKey(int64 Key)
 	Params::UPCGMetadata_SetAttributesByKey_Params Parms{};
 
 	Parms.Key = Key;
+	Parms.InMetaData = InMetaData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5897,7 +5816,11 @@ int64 UPCGMetadata::SetAttributesByKey(int64 Key)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (TargetKey != nullptr)
+		*TargetKey = Parms.TargetKey;
+
+	if (OutKey != nullptr)
+		*OutKey = Parms.OutKey;
 
 }
 
@@ -5905,10 +5828,10 @@ int64 UPCGMetadata::SetAttributesByKey(int64 Key)
 // Function PCG.PCGMetadata.ResetWeightedAttributesByKey
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int64                              TargetKey                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// int64                              OutKey                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// int64                              TargetKey                                                        (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// int64                              OutKey                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-int64 UPCGMetadata::ResetWeightedAttributesByKey()
+void UPCGMetadata::ResetWeightedAttributesByKey(int64* TargetKey, int64* OutKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5926,7 +5849,11 @@ int64 UPCGMetadata::ResetWeightedAttributesByKey()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (TargetKey != nullptr)
+		*TargetKey = Parms.TargetKey;
+
+	if (OutKey != nullptr)
+		*OutKey = Parms.OutKey;
 
 }
 
@@ -5934,9 +5861,9 @@ int64 UPCGMetadata::ResetWeightedAttributesByKey()
 // Function PCG.PCGMetadata.ResetPointWeightedAttributes
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGPoint                   OutPoint                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   OutPoint                                                         (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-struct FPCGPoint UPCGMetadata::ResetPointWeightedAttributes()
+void UPCGMetadata::ResetPointWeightedAttributes(const struct FPCGPoint& OutPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5945,6 +5872,7 @@ struct FPCGPoint UPCGMetadata::ResetPointWeightedAttributes()
 
 	Params::UPCGMetadata_ResetPointWeightedAttributes_Params Parms{};
 
+	Parms.OutPoint = OutPoint;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5954,19 +5882,17 @@ struct FPCGPoint UPCGMetadata::ResetPointWeightedAttributes()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function PCG.PCGMetadata.RenameAttribute
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeToRename                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        NewAttributeName                                                 (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeToRename                                                (BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class FName                        NewAttributeName                                                 (Edit, ConstParm, BlueprintVisible, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadata::RenameAttribute(bool* ReturnValue)
+bool UPCGMetadata::RenameAttribute()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5984,9 +5910,6 @@ class FName UPCGMetadata::RenameAttribute(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -5995,14 +5918,14 @@ class FName UPCGMetadata::RenameAttribute(bool* ReturnValue)
 // Function PCG.PCGMetadata.MergePointAttributes
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGPoint                   PointA                                                           (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                MetadataA                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FPCGPoint                   PointB                                                           (ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                MetadataB                                                        (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   PointA                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                MetadataA                                                        (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   PointB                                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                MetadataB                                                        (Edit, ExportObject, Net, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 // struct FPCGPoint                   TargetPoint                                                      (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig)
-// enum class EPCGMetadataOp          Op                                                               (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EPCGMetadataOp          Op                                                               (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGMetadata* UPCGMetadata::MergePointAttributes(struct FPCGPoint* TargetPoint, enum class EPCGMetadataOp Op)
+enum class EPCGMetadataOp UPCGMetadata::MergePointAttributes(struct FPCGPoint* PointA, class UPCGMetadata** MetadataA, struct FPCGPoint* PointB, class UPCGMetadata** MetadataB, struct FPCGPoint* TargetPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6011,7 +5934,6 @@ class UPCGMetadata* UPCGMetadata::MergePointAttributes(struct FPCGPoint* TargetP
 
 	Params::UPCGMetadata_MergePointAttributes_Params Parms{};
 
-	Parms.Op = Op;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6020,6 +5942,18 @@ class UPCGMetadata* UPCGMetadata::MergePointAttributes(struct FPCGPoint* TargetP
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (PointA != nullptr)
+		*PointA = std::move(Parms.PointA);
+
+	if (MetadataA != nullptr)
+		*MetadataA = Parms.MetadataA;
+
+	if (PointB != nullptr)
+		*PointB = std::move(Parms.PointB);
+
+	if (MetadataB != nullptr)
+		*MetadataB = Parms.MetadataB;
 
 	if (TargetPoint != nullptr)
 		*TargetPoint = std::move(Parms.TargetPoint);
@@ -6032,15 +5966,15 @@ class UPCGMetadata* UPCGMetadata::MergePointAttributes(struct FPCGPoint* TargetP
 // Function PCG.PCGMetadata.MergeAttributesByKey
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int64                              KeyA                                                             (Edit, ConstParm, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                MetadataA                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// int64                              KeyB                                                             (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                MetadataB                                                        (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// int64                              TargetKey                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// enum class EPCGMetadataOp          Op                                                               (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// int64                              OutKey                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// int64                              KeyA                                                             (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                MetadataA                                                        (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// int64                              KeyB                                                             (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                MetadataB                                                        (Edit, ExportObject, Net, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// int64                              TargetKey                                                        (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EPCGMetadataOp          Op                                                               (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// int64                              OutKey                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-int64 UPCGMetadata::MergeAttributesByKey(enum class EPCGMetadataOp Op)
+enum class EPCGMetadataOp UPCGMetadata::MergeAttributesByKey(int64* KeyA, class UPCGMetadata** MetadataA, int64* KeyB, class UPCGMetadata** MetadataB, int64* TargetKey, int64* OutKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6049,7 +5983,6 @@ int64 UPCGMetadata::MergeAttributesByKey(enum class EPCGMetadataOp Op)
 
 	Params::UPCGMetadata_MergeAttributesByKey_Params Parms{};
 
-	Parms.Op = Op;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6058,6 +5991,24 @@ int64 UPCGMetadata::MergeAttributesByKey(enum class EPCGMetadataOp Op)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (KeyA != nullptr)
+		*KeyA = Parms.KeyA;
+
+	if (MetadataA != nullptr)
+		*MetadataA = Parms.MetadataA;
+
+	if (KeyB != nullptr)
+		*KeyB = Parms.KeyB;
+
+	if (MetadataB != nullptr)
+		*MetadataB = Parms.MetadataB;
+
+	if (TargetKey != nullptr)
+		*TargetKey = Parms.TargetKey;
+
+	if (OutKey != nullptr)
+		*OutKey = Parms.OutKey;
 
 	return Parms.ReturnValue;
 
@@ -6067,11 +6018,11 @@ int64 UPCGMetadata::MergeAttributesByKey(enum class EPCGMetadataOp Op)
 // Function PCG.PCGMetadata.InitializeWithAttributeFilter
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UPCGMetadata*                InParent                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-// TSet<class FName>                  InFilteredAttributes                                             (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// enum class EPCGMetadataFilterMode  InFilterMode                                                     (BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                InParent                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TSet<class FName>                  InFilteredAttributes                                             (Net, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EPCGMetadataFilterMode  InFilterMode                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-enum class EPCGMetadataFilterMode UPCGMetadata::InitializeWithAttributeFilter()
+void UPCGMetadata::InitializeWithAttributeFilter(class UPCGMetadata* InParent, TSet<class FName>* InFilteredAttributes, enum class EPCGMetadataFilterMode* InFilterMode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6080,6 +6031,7 @@ enum class EPCGMetadataFilterMode UPCGMetadata::InitializeWithAttributeFilter()
 
 	Params::UPCGMetadata_InitializeWithAttributeFilter_Params Parms{};
 
+	Parms.InParent = InParent;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6089,7 +6041,11 @@ enum class EPCGMetadataFilterMode UPCGMetadata::InitializeWithAttributeFilter()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InFilteredAttributes != nullptr)
+		*InFilteredAttributes = Parms.InFilteredAttributes;
+
+	if (InFilterMode != nullptr)
+		*InFilterMode = Parms.InFilterMode;
 
 }
 
@@ -6097,11 +6053,11 @@ enum class EPCGMetadataFilterMode UPCGMetadata::InitializeWithAttributeFilter()
 // Function PCG.PCGMetadata.InitializeAsCopyWithAttributeFilter
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UPCGMetadata*                InMetadataToCopy                                                 (Edit, ConstParm, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// TSet<class FName>                  InFilteredAttributes                                             (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// enum class EPCGMetadataFilterMode  InFilterMode                                                     (BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                InMetadataToCopy                                                 (Net, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// TSet<class FName>                  InFilteredAttributes                                             (Net, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EPCGMetadataFilterMode  InFilterMode                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-enum class EPCGMetadataFilterMode UPCGMetadata::InitializeAsCopyWithAttributeFilter()
+void UPCGMetadata::InitializeAsCopyWithAttributeFilter(class UPCGMetadata** InMetadataToCopy, TSet<class FName>* InFilteredAttributes, enum class EPCGMetadataFilterMode* InFilterMode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6119,7 +6075,14 @@ enum class EPCGMetadataFilterMode UPCGMetadata::InitializeAsCopyWithAttributeFil
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InMetadataToCopy != nullptr)
+		*InMetadataToCopy = Parms.InMetadataToCopy;
+
+	if (InFilteredAttributes != nullptr)
+		*InFilteredAttributes = Parms.InFilteredAttributes;
+
+	if (InFilterMode != nullptr)
+		*InFilterMode = Parms.InFilterMode;
 
 }
 
@@ -6127,9 +6090,9 @@ enum class EPCGMetadataFilterMode UPCGMetadata::InitializeAsCopyWithAttributeFil
 // Function PCG.PCGMetadata.InitializeAsCopy
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGMetadata*                InMetadataToCopy                                                 (Edit, ConstParm, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                InMetadataToCopy                                                 (Net, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGMetadata* UPCGMetadata::InitializeAsCopy()
+void UPCGMetadata::InitializeAsCopy(class UPCGMetadata** InMetadataToCopy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6147,7 +6110,8 @@ class UPCGMetadata* UPCGMetadata::InitializeAsCopy()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InMetadataToCopy != nullptr)
+		*InMetadataToCopy = Parms.InMetadataToCopy;
 
 }
 
@@ -6155,9 +6119,9 @@ class UPCGMetadata* UPCGMetadata::InitializeAsCopy()
 // Function PCG.PCGMetadata.Initialize
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGMetadata*                InParent                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UPCGMetadata*                InParent                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-class UPCGMetadata* UPCGMetadata::Initialize()
+void UPCGMetadata::Initialize(class UPCGMetadata* InParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6166,6 +6130,7 @@ class UPCGMetadata* UPCGMetadata::Initialize()
 
 	Params::UPCGMetadata_Initialize_Params Parms{};
 
+	Parms.InParent = InParent;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6175,18 +6140,16 @@ class UPCGMetadata* UPCGMetadata::Initialize()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function PCG.PCGMetadata.HasCommonAttributes
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGMetadata*                InMetaData                                                       (Net, Parm, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGMetadata*                InMetaData                                                       (BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGMetadata* UPCGMetadata::HasCommonAttributes(bool* ReturnValue)
+bool UPCGMetadata::HasCommonAttributes(class UPCGMetadata* InMetaData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6195,6 +6158,7 @@ class UPCGMetadata* UPCGMetadata::HasCommonAttributes(bool* ReturnValue)
 
 	Params::UPCGMetadata_HasCommonAttributes_Params Parms{};
 
+	Parms.InMetaData = InMetaData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6203,9 +6167,6 @@ class UPCGMetadata* UPCGMetadata::HasCommonAttributes(bool* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -6215,10 +6176,10 @@ class UPCGMetadata* UPCGMetadata::HasCommonAttributes(bool* ReturnValue)
 // Function PCG.PCGMetadata.HasAttribute
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadata::HasAttribute(bool* ReturnValue)
+bool UPCGMetadata::HasAttribute(class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6236,8 +6197,8 @@ class FName UPCGMetadata::HasAttribute(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -6247,10 +6208,10 @@ class FName UPCGMetadata::HasAttribute(bool* ReturnValue)
 // Function PCG.PCGMetadata.GetAttributes
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class FName>                AttributeNames                                                   (Edit, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// TArray<enum class EPCGMetadataTypes>AttributeTypes                                                   (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<class FName>                AttributeNames                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<enum class EPCGMetadataTypes>AttributeTypes                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-TArray<enum class EPCGMetadataTypes> UPCGMetadata::GetAttributes()
+TArray<enum class EPCGMetadataTypes> UPCGMetadata::GetAttributes(const TArray<class FName>& AttributeNames)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6259,6 +6220,7 @@ TArray<enum class EPCGMetadataTypes> UPCGMetadata::GetAttributes()
 
 	Params::UPCGMetadata_GetAttributes_Params Parms{};
 
+	Parms.AttributeNames = AttributeNames;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6276,9 +6238,9 @@ TArray<enum class EPCGMetadataTypes> UPCGMetadata::GetAttributes()
 // Function PCG.PCGMetadata.DeleteAttribute
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class FName UPCGMetadata::DeleteAttribute()
+void UPCGMetadata::DeleteAttribute(class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6296,7 +6258,8 @@ class FName UPCGMetadata::DeleteAttribute()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -6304,12 +6267,12 @@ class FName UPCGMetadata::DeleteAttribute()
 // Function PCG.PCGMetadata.CreateVectorAttribute
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FVector                     DefaultValue                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowsInterpolation                                             (OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bOverrideParent                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector                     DefaultValue                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowsInterpolation                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bOverrideParent                                                  (BlueprintVisible, ExportObject, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGMetadata::CreateVectorAttribute(const struct FVector& DefaultValue)
+struct FVector UPCGMetadata::CreateVectorAttribute(class FName* AttributeName, bool* bAllowsInterpolation, bool* bOverrideParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6318,7 +6281,6 @@ bool UPCGMetadata::CreateVectorAttribute(const struct FVector& DefaultValue)
 
 	Params::UPCGMetadata_CreateVectorAttribute_Params Parms{};
 
-	Parms.DefaultValue = DefaultValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6327,6 +6289,15 @@ bool UPCGMetadata::CreateVectorAttribute(const struct FVector& DefaultValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
+	if (bAllowsInterpolation != nullptr)
+		*bAllowsInterpolation = Parms.bAllowsInterpolation;
+
+	if (bOverrideParent != nullptr)
+		*bOverrideParent = Parms.bOverrideParent;
 
 	return Parms.ReturnValue;
 
@@ -6336,12 +6307,12 @@ bool UPCGMetadata::CreateVectorAttribute(const struct FVector& DefaultValue)
 // Function PCG.PCGMetadata.CreateVector4Attribute
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FVector4                    DefaultValue                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowsInterpolation                                             (OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bOverrideParent                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector4                    DefaultValue                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowsInterpolation                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bOverrideParent                                                  (BlueprintVisible, ExportObject, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGMetadata::CreateVector4Attribute(const struct FVector4& DefaultValue)
+struct FVector4 UPCGMetadata::CreateVector4Attribute(class FName* AttributeName, bool* bAllowsInterpolation, bool* bOverrideParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6350,7 +6321,6 @@ bool UPCGMetadata::CreateVector4Attribute(const struct FVector4& DefaultValue)
 
 	Params::UPCGMetadata_CreateVector4Attribute_Params Parms{};
 
-	Parms.DefaultValue = DefaultValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6359,6 +6329,15 @@ bool UPCGMetadata::CreateVector4Attribute(const struct FVector4& DefaultValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
+	if (bAllowsInterpolation != nullptr)
+		*bAllowsInterpolation = Parms.bAllowsInterpolation;
+
+	if (bOverrideParent != nullptr)
+		*bOverrideParent = Parms.bOverrideParent;
 
 	return Parms.ReturnValue;
 
@@ -6368,12 +6347,12 @@ bool UPCGMetadata::CreateVector4Attribute(const struct FVector4& DefaultValue)
 // Function PCG.PCGMetadata.CreateVector2Attribute
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FVector2D                   DefaultValue                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowsInterpolation                                             (OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bOverrideParent                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector2D                   DefaultValue                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowsInterpolation                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bOverrideParent                                                  (BlueprintVisible, ExportObject, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGMetadata::CreateVector2Attribute(const struct FVector2D& DefaultValue)
+struct FVector2D UPCGMetadata::CreateVector2Attribute(class FName* AttributeName, bool* bAllowsInterpolation, bool* bOverrideParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6382,7 +6361,6 @@ bool UPCGMetadata::CreateVector2Attribute(const struct FVector2D& DefaultValue)
 
 	Params::UPCGMetadata_CreateVector2Attribute_Params Parms{};
 
-	Parms.DefaultValue = DefaultValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6391,6 +6369,15 @@ bool UPCGMetadata::CreateVector2Attribute(const struct FVector2D& DefaultValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
+	if (bAllowsInterpolation != nullptr)
+		*bAllowsInterpolation = Parms.bAllowsInterpolation;
+
+	if (bOverrideParent != nullptr)
+		*bOverrideParent = Parms.bOverrideParent;
 
 	return Parms.ReturnValue;
 
@@ -6400,12 +6387,12 @@ bool UPCGMetadata::CreateVector2Attribute(const struct FVector2D& DefaultValue)
 // Function PCG.PCGMetadata.CreateTransformAttribute
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FTransform                  DefaultValue                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowsInterpolation                                             (OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bOverrideParent                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  DefaultValue                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowsInterpolation                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bOverrideParent                                                  (BlueprintVisible, ExportObject, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGMetadata::CreateTransformAttribute(const struct FTransform& DefaultValue)
+struct FTransform UPCGMetadata::CreateTransformAttribute(class FName* AttributeName, bool* bAllowsInterpolation, bool* bOverrideParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6414,7 +6401,6 @@ bool UPCGMetadata::CreateTransformAttribute(const struct FTransform& DefaultValu
 
 	Params::UPCGMetadata_CreateTransformAttribute_Params Parms{};
 
-	Parms.DefaultValue = DefaultValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6423,6 +6409,15 @@ bool UPCGMetadata::CreateTransformAttribute(const struct FTransform& DefaultValu
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
+	if (bAllowsInterpolation != nullptr)
+		*bAllowsInterpolation = Parms.bAllowsInterpolation;
+
+	if (bOverrideParent != nullptr)
+		*bOverrideParent = Parms.bOverrideParent;
 
 	return Parms.ReturnValue;
 
@@ -6432,12 +6427,12 @@ bool UPCGMetadata::CreateTransformAttribute(const struct FTransform& DefaultValu
 // Function PCG.PCGMetadata.CreateStringAttribute
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// class FString                      DefaultValue                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowsInterpolation                                             (OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bOverrideParent                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      DefaultValue                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowsInterpolation                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bOverrideParent                                                  (BlueprintVisible, ExportObject, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGMetadata::CreateStringAttribute(const class FString& DefaultValue)
+class FString UPCGMetadata::CreateStringAttribute(class FName* AttributeName, bool* bAllowsInterpolation, bool* bOverrideParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6446,7 +6441,6 @@ bool UPCGMetadata::CreateStringAttribute(const class FString& DefaultValue)
 
 	Params::UPCGMetadata_CreateStringAttribute_Params Parms{};
 
-	Parms.DefaultValue = DefaultValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6455,6 +6449,15 @@ bool UPCGMetadata::CreateStringAttribute(const class FString& DefaultValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
+	if (bAllowsInterpolation != nullptr)
+		*bAllowsInterpolation = Parms.bAllowsInterpolation;
+
+	if (bOverrideParent != nullptr)
+		*bOverrideParent = Parms.bOverrideParent;
 
 	return Parms.ReturnValue;
 
@@ -6464,12 +6467,12 @@ bool UPCGMetadata::CreateStringAttribute(const class FString& DefaultValue)
 // Function PCG.PCGMetadata.CreateRotatorAttribute
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FRotator                    DefaultValue                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowsInterpolation                                             (OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bOverrideParent                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FRotator                    DefaultValue                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowsInterpolation                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bOverrideParent                                                  (BlueprintVisible, ExportObject, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGMetadata::CreateRotatorAttribute(const struct FRotator& DefaultValue)
+struct FRotator UPCGMetadata::CreateRotatorAttribute(class FName* AttributeName, bool* bAllowsInterpolation, bool* bOverrideParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6478,7 +6481,6 @@ bool UPCGMetadata::CreateRotatorAttribute(const struct FRotator& DefaultValue)
 
 	Params::UPCGMetadata_CreateRotatorAttribute_Params Parms{};
 
-	Parms.DefaultValue = DefaultValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6487,6 +6489,15 @@ bool UPCGMetadata::CreateRotatorAttribute(const struct FRotator& DefaultValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
+	if (bAllowsInterpolation != nullptr)
+		*bAllowsInterpolation = Parms.bAllowsInterpolation;
+
+	if (bOverrideParent != nullptr)
+		*bOverrideParent = Parms.bOverrideParent;
 
 	return Parms.ReturnValue;
 
@@ -6496,12 +6507,12 @@ bool UPCGMetadata::CreateRotatorAttribute(const struct FRotator& DefaultValue)
 // Function PCG.PCGMetadata.CreateQuatAttribute
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FQuat                       DefaultValue                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowsInterpolation                                             (OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bOverrideParent                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FQuat                       DefaultValue                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowsInterpolation                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bOverrideParent                                                  (BlueprintVisible, ExportObject, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGMetadata::CreateQuatAttribute(const struct FQuat& DefaultValue)
+struct FQuat UPCGMetadata::CreateQuatAttribute(class FName* AttributeName, bool* bAllowsInterpolation, bool* bOverrideParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6510,7 +6521,6 @@ bool UPCGMetadata::CreateQuatAttribute(const struct FQuat& DefaultValue)
 
 	Params::UPCGMetadata_CreateQuatAttribute_Params Parms{};
 
-	Parms.DefaultValue = DefaultValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6519,6 +6529,15 @@ bool UPCGMetadata::CreateQuatAttribute(const struct FQuat& DefaultValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
+	if (bAllowsInterpolation != nullptr)
+		*bAllowsInterpolation = Parms.bAllowsInterpolation;
+
+	if (bOverrideParent != nullptr)
+		*bOverrideParent = Parms.bOverrideParent;
 
 	return Parms.ReturnValue;
 
@@ -6528,12 +6547,12 @@ bool UPCGMetadata::CreateQuatAttribute(const struct FQuat& DefaultValue)
 // Function PCG.PCGMetadata.CreateInteger64Attribute
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// int64                              DefaultValue                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowsInterpolation                                             (OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bOverrideParent                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int64                              DefaultValue                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowsInterpolation                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bOverrideParent                                                  (BlueprintVisible, ExportObject, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGMetadata::CreateInteger64Attribute(int64 DefaultValue)
+int64 UPCGMetadata::CreateInteger64Attribute(class FName* AttributeName, bool* bAllowsInterpolation, bool* bOverrideParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6542,7 +6561,6 @@ bool UPCGMetadata::CreateInteger64Attribute(int64 DefaultValue)
 
 	Params::UPCGMetadata_CreateInteger64Attribute_Params Parms{};
 
-	Parms.DefaultValue = DefaultValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6551,6 +6569,15 @@ bool UPCGMetadata::CreateInteger64Attribute(int64 DefaultValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
+	if (bAllowsInterpolation != nullptr)
+		*bAllowsInterpolation = Parms.bAllowsInterpolation;
+
+	if (bOverrideParent != nullptr)
+		*bOverrideParent = Parms.bOverrideParent;
 
 	return Parms.ReturnValue;
 
@@ -6560,12 +6587,12 @@ bool UPCGMetadata::CreateInteger64Attribute(int64 DefaultValue)
 // Function PCG.PCGMetadata.CreateInteger32Attribute
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// int32                              DefaultValue                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowsInterpolation                                             (OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bOverrideParent                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              DefaultValue                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowsInterpolation                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bOverrideParent                                                  (BlueprintVisible, ExportObject, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGMetadata::CreateInteger32Attribute(int32 DefaultValue)
+int32 UPCGMetadata::CreateInteger32Attribute(class FName* AttributeName, bool* bAllowsInterpolation, bool* bOverrideParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6574,7 +6601,6 @@ bool UPCGMetadata::CreateInteger32Attribute(int32 DefaultValue)
 
 	Params::UPCGMetadata_CreateInteger32Attribute_Params Parms{};
 
-	Parms.DefaultValue = DefaultValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6583,6 +6609,15 @@ bool UPCGMetadata::CreateInteger32Attribute(int32 DefaultValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
+	if (bAllowsInterpolation != nullptr)
+		*bAllowsInterpolation = Parms.bAllowsInterpolation;
+
+	if (bOverrideParent != nullptr)
+		*bOverrideParent = Parms.bOverrideParent;
 
 	return Parms.ReturnValue;
 
@@ -6592,12 +6627,12 @@ bool UPCGMetadata::CreateInteger32Attribute(int32 DefaultValue)
 // Function PCG.PCGMetadata.CreateFloatAttribute
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// float                              DefaultValue                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowsInterpolation                                             (OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bOverrideParent                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              DefaultValue                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowsInterpolation                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bOverrideParent                                                  (BlueprintVisible, ExportObject, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGMetadata::CreateFloatAttribute(float DefaultValue)
+float UPCGMetadata::CreateFloatAttribute(class FName* AttributeName, bool* bAllowsInterpolation, bool* bOverrideParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6606,7 +6641,6 @@ bool UPCGMetadata::CreateFloatAttribute(float DefaultValue)
 
 	Params::UPCGMetadata_CreateFloatAttribute_Params Parms{};
 
-	Parms.DefaultValue = DefaultValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6615,6 +6649,15 @@ bool UPCGMetadata::CreateFloatAttribute(float DefaultValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
+	if (bAllowsInterpolation != nullptr)
+		*bAllowsInterpolation = Parms.bAllowsInterpolation;
+
+	if (bOverrideParent != nullptr)
+		*bOverrideParent = Parms.bOverrideParent;
 
 	return Parms.ReturnValue;
 
@@ -6624,12 +6667,12 @@ bool UPCGMetadata::CreateFloatAttribute(float DefaultValue)
 // Function PCG.PCGMetadata.CreateDoubleAttribute
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// double                             DefaultValue                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowsInterpolation                                             (OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bOverrideParent                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// double                             DefaultValue                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowsInterpolation                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bOverrideParent                                                  (BlueprintVisible, ExportObject, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGMetadata::CreateDoubleAttribute(double DefaultValue)
+double UPCGMetadata::CreateDoubleAttribute(class FName* AttributeName, bool* bAllowsInterpolation, bool* bOverrideParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6638,7 +6681,6 @@ bool UPCGMetadata::CreateDoubleAttribute(double DefaultValue)
 
 	Params::UPCGMetadata_CreateDoubleAttribute_Params Parms{};
 
-	Parms.DefaultValue = DefaultValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6647,6 +6689,15 @@ bool UPCGMetadata::CreateDoubleAttribute(double DefaultValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
+	if (bAllowsInterpolation != nullptr)
+		*bAllowsInterpolation = Parms.bAllowsInterpolation;
+
+	if (bOverrideParent != nullptr)
+		*bOverrideParent = Parms.bOverrideParent;
 
 	return Parms.ReturnValue;
 
@@ -6656,12 +6707,12 @@ bool UPCGMetadata::CreateDoubleAttribute(double DefaultValue)
 // Function PCG.PCGMetadata.CreateBoolAttribute
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// bool                               DefaultValue                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowsInterpolation                                             (OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bOverrideParent                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               DefaultValue                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowsInterpolation                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bOverrideParent                                                  (BlueprintVisible, ExportObject, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGMetadata::CreateBoolAttribute(bool DefaultValue)
+bool UPCGMetadata::CreateBoolAttribute(class FName* AttributeName, bool* bAllowsInterpolation, bool* bOverrideParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6670,7 +6721,6 @@ bool UPCGMetadata::CreateBoolAttribute(bool DefaultValue)
 
 	Params::UPCGMetadata_CreateBoolAttribute_Params Parms{};
 
-	Parms.DefaultValue = DefaultValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6680,6 +6730,15 @@ bool UPCGMetadata::CreateBoolAttribute(bool DefaultValue)
 
 	Func->FunctionFlags = Flgs;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
+	if (bAllowsInterpolation != nullptr)
+		*bAllowsInterpolation = Parms.bAllowsInterpolation;
+
+	if (bOverrideParent != nullptr)
+		*bOverrideParent = Parms.bOverrideParent;
+
 	return Parms.ReturnValue;
 
 }
@@ -6688,12 +6747,12 @@ bool UPCGMetadata::CreateBoolAttribute(bool DefaultValue)
 // Function PCG.PCGMetadata.CopyExistingAttribute
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeToCopy                                                  (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        NewAttributeName                                                 (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bKeepParent                                                      (BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeToCopy                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        NewAttributeName                                                 (Edit, ConstParm, BlueprintVisible, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               bKeepParent                                                      (Edit, BlueprintVisible, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UPCGMetadata::CopyExistingAttribute(bool* ReturnValue)
+bool UPCGMetadata::CopyExistingAttribute(class FName* AttributeToCopy, bool* bKeepParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6711,8 +6770,11 @@ bool UPCGMetadata::CopyExistingAttribute(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeToCopy != nullptr)
+		*AttributeToCopy = Parms.AttributeToCopy;
+
+	if (bKeepParent != nullptr)
+		*bKeepParent = Parms.bKeepParent;
 
 	return Parms.ReturnValue;
 
@@ -6722,9 +6784,9 @@ bool UPCGMetadata::CopyExistingAttribute(bool* ReturnValue)
 // Function PCG.PCGMetadata.CopyAttributes
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGMetadata*                InOther                                                          (ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                InOther                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGMetadata* UPCGMetadata::CopyAttributes()
+void UPCGMetadata::CopyAttributes(class UPCGMetadata* InOther)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6733,6 +6795,7 @@ class UPCGMetadata* UPCGMetadata::CopyAttributes()
 
 	Params::UPCGMetadata_CopyAttributes_Params Parms{};
 
+	Parms.InOther = InOther;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6742,19 +6805,17 @@ class UPCGMetadata* UPCGMetadata::CopyAttributes()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function PCG.PCGMetadata.CopyAttribute
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGMetadata*                InOther                                                          (ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        AttributeToCopy                                                  (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        NewAttributeName                                                 (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                InOther                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeToCopy                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        NewAttributeName                                                 (Edit, ConstParm, BlueprintVisible, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-class FName UPCGMetadata::CopyAttribute()
+class FName UPCGMetadata::CopyAttribute(class UPCGMetadata* InOther, class FName* AttributeToCopy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6763,6 +6824,7 @@ class FName UPCGMetadata::CopyAttribute()
 
 	Params::UPCGMetadata_CopyAttribute_Params Parms{};
 
+	Parms.InOther = InOther;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6771,6 +6833,9 @@ class FName UPCGMetadata::CopyAttribute()
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AttributeToCopy != nullptr)
+		*AttributeToCopy = Parms.AttributeToCopy;
 
 	return Parms.ReturnValue;
 
@@ -6780,9 +6845,9 @@ class FName UPCGMetadata::CopyAttribute()
 // Function PCG.PCGMetadata.ClearAttribute
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        AttributeToClear                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeToClear                                                 (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-class FName UPCGMetadata::ClearAttribute()
+void UPCGMetadata::ClearAttribute(class FName* AttributeToClear)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6800,7 +6865,8 @@ class FName UPCGMetadata::ClearAttribute()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttributeToClear != nullptr)
+		*AttributeToClear = Parms.AttributeToClear;
 
 }
 
@@ -6808,10 +6874,10 @@ class FName UPCGMetadata::ClearAttribute()
 // Function PCG.PCGMetadata.AddEntry
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int64                              ParentEntryKey                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// int64                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int64                              ParentEntryKey                                                   (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// int64                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int64 UPCGMetadata::AddEntry(int64* ReturnValue)
+int64 UPCGMetadata::AddEntry(int64* ParentEntryKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6829,8 +6895,8 @@ int64 UPCGMetadata::AddEntry(int64* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (ParentEntryKey != nullptr)
+		*ParentEntryKey = Parms.ParentEntryKey;
 
 	return Parms.ReturnValue;
 
@@ -6840,11 +6906,11 @@ int64 UPCGMetadata::AddEntry(int64* ReturnValue)
 // Function PCG.PCGMetadata.AddAttributesFiltered
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UPCGMetadata*                InOther                                                          (ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// TSet<class FName>                  InFilteredAttributes                                             (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// enum class EPCGMetadataFilterMode  InFilterMode                                                     (BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                InOther                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// TSet<class FName>                  InFilteredAttributes                                             (Net, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EPCGMetadataFilterMode  InFilterMode                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-enum class EPCGMetadataFilterMode UPCGMetadata::AddAttributesFiltered()
+void UPCGMetadata::AddAttributesFiltered(class UPCGMetadata* InOther, TSet<class FName>* InFilteredAttributes, enum class EPCGMetadataFilterMode* InFilterMode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6853,6 +6919,7 @@ enum class EPCGMetadataFilterMode UPCGMetadata::AddAttributesFiltered()
 
 	Params::UPCGMetadata_AddAttributesFiltered_Params Parms{};
 
+	Parms.InOther = InOther;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6862,7 +6929,11 @@ enum class EPCGMetadataFilterMode UPCGMetadata::AddAttributesFiltered()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InFilteredAttributes != nullptr)
+		*InFilteredAttributes = Parms.InFilteredAttributes;
+
+	if (InFilterMode != nullptr)
+		*InFilterMode = Parms.InFilterMode;
 
 }
 
@@ -6870,9 +6941,9 @@ enum class EPCGMetadataFilterMode UPCGMetadata::AddAttributesFiltered()
 // Function PCG.PCGMetadata.AddAttributes
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGMetadata*                InOther                                                          (ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                InOther                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGMetadata* UPCGMetadata::AddAttributes()
+void UPCGMetadata::AddAttributes(class UPCGMetadata* InOther)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6881,6 +6952,7 @@ class UPCGMetadata* UPCGMetadata::AddAttributes()
 
 	Params::UPCGMetadata_AddAttributes_Params Parms{};
 
+	Parms.InOther = InOther;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6890,18 +6962,16 @@ class UPCGMetadata* UPCGMetadata::AddAttributes()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function PCG.PCGMetadata.AddAttribute
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGMetadata*                InOther                                                          (ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                InOther                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class FName UPCGMetadata::AddAttribute()
+void UPCGMetadata::AddAttribute(class UPCGMetadata* InOther, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6910,6 +6980,7 @@ class FName UPCGMetadata::AddAttribute()
 
 	Params::UPCGMetadata_AddAttribute_Params Parms{};
 
+	Parms.InOther = InOther;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6919,7 +6990,8 @@ class FName UPCGMetadata::AddAttribute()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -6930,11 +7002,11 @@ class FName UPCGMetadata::AddAttribute()
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
 // float                              Weight                                                           (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// bool                               bSetNonInterpolableAttributes                                    (ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// int64                              TargetKey                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// int64                              OutKey                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bSetNonInterpolableAttributes                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// int64                              TargetKey                                                        (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// int64                              OutKey                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-int64 UPCGMetadata::AccumulateWeightedAttributesByKey(int64 Key, class UPCGMetadata** MetaData)
+float UPCGMetadata::AccumulateWeightedAttributesByKey(int64 Key, class UPCGMetadata** MetaData, bool* bSetNonInterpolableAttributes, int64* TargetKey, int64* OutKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6956,6 +7028,15 @@ int64 UPCGMetadata::AccumulateWeightedAttributesByKey(int64 Key, class UPCGMetad
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (bSetNonInterpolableAttributes != nullptr)
+		*bSetNonInterpolableAttributes = Parms.bSetNonInterpolableAttributes;
+
+	if (TargetKey != nullptr)
+		*TargetKey = Parms.TargetKey;
+
+	if (OutKey != nullptr)
+		*OutKey = Parms.OutKey;
+
 	return Parms.ReturnValue;
 
 }
@@ -6964,13 +7045,13 @@ int64 UPCGMetadata::AccumulateWeightedAttributesByKey(int64 Key, class UPCGMetad
 // Function PCG.PCGMetadata.AccumulatePointWeightedAttributes
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGPoint                   InPoint                                                          (Edit, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                InMetaData                                                       (Net, Parm, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   InPoint                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                InMetaData                                                       (BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // float                              Weight                                                           (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// bool                               bSetNonInterpolableAttributes                                    (ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FPCGPoint                   OutPoint                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bSetNonInterpolableAttributes                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   OutPoint                                                         (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-struct FPCGPoint UPCGMetadata::AccumulatePointWeightedAttributes(const struct FPCGPoint& InPoint)
+float UPCGMetadata::AccumulatePointWeightedAttributes(class UPCGMetadata* InMetaData, bool* bSetNonInterpolableAttributes, const struct FPCGPoint& OutPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6979,7 +7060,8 @@ struct FPCGPoint UPCGMetadata::AccumulatePointWeightedAttributes(const struct FP
 
 	Params::UPCGMetadata_AccumulatePointWeightedAttributes_Params Parms{};
 
-	Parms.InPoint = InPoint;
+	Parms.InMetaData = InMetaData;
+	Parms.OutPoint = OutPoint;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6988,6 +7070,9 @@ struct FPCGPoint UPCGMetadata::AccumulatePointWeightedAttributes(const struct FP
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (bSetNonInterpolableAttributes != nullptr)
+		*bSetNonInterpolableAttributes = Parms.bSetNonInterpolableAttributes;
 
 	return Parms.ReturnValue;
 
@@ -7027,10 +7112,10 @@ class UPCGMetadataAccessorHelpers* UPCGMetadataAccessorHelpers::GetDefaultObj()
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FVector                     Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetVectorAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, const struct FVector& Value)
+void UPCGMetadataAccessorHelpers::SetVectorAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName, const struct FVector& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7053,7 +7138,8 @@ class FName UPCGMetadataAccessorHelpers::SetVectorAttributeByMetadataKey(int64 K
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -7063,10 +7149,10 @@ class FName UPCGMetadataAccessorHelpers::SetVectorAttributeByMetadataKey(int64 K
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FVector                     Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetVectorAttribute(class UPCGMetadata** MetaData, const struct FVector& Value)
+struct FPCGPoint UPCGMetadataAccessorHelpers::SetVectorAttribute(class UPCGMetadata** MetaData, class FName* AttributeName, const struct FVector& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7088,6 +7174,9 @@ class FName UPCGMetadataAccessorHelpers::SetVectorAttribute(class UPCGMetadata**
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
 	return Parms.ReturnValue;
 
 }
@@ -7098,10 +7187,10 @@ class FName UPCGMetadataAccessorHelpers::SetVectorAttribute(class UPCGMetadata**
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FVector4                    Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetVector4AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, const struct FVector4& Value)
+void UPCGMetadataAccessorHelpers::SetVector4AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName, const struct FVector4& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7124,7 +7213,8 @@ class FName UPCGMetadataAccessorHelpers::SetVector4AttributeByMetadataKey(int64 
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -7134,10 +7224,10 @@ class FName UPCGMetadataAccessorHelpers::SetVector4AttributeByMetadataKey(int64 
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FVector4                    Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetVector4Attribute(class UPCGMetadata** MetaData, const struct FVector4& Value)
+struct FPCGPoint UPCGMetadataAccessorHelpers::SetVector4Attribute(class UPCGMetadata** MetaData, class FName* AttributeName, const struct FVector4& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7159,6 +7249,9 @@ class FName UPCGMetadataAccessorHelpers::SetVector4Attribute(class UPCGMetadata*
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
 	return Parms.ReturnValue;
 
 }
@@ -7169,10 +7262,10 @@ class FName UPCGMetadataAccessorHelpers::SetVector4Attribute(class UPCGMetadata*
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FVector2D                   Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetVector2AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, const struct FVector2D& Value)
+void UPCGMetadataAccessorHelpers::SetVector2AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName, const struct FVector2D& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7195,7 +7288,8 @@ class FName UPCGMetadataAccessorHelpers::SetVector2AttributeByMetadataKey(int64 
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -7205,10 +7299,10 @@ class FName UPCGMetadataAccessorHelpers::SetVector2AttributeByMetadataKey(int64 
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FVector2D                   Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetVector2Attribute(class UPCGMetadata** MetaData, const struct FVector2D& Value)
+struct FPCGPoint UPCGMetadataAccessorHelpers::SetVector2Attribute(class UPCGMetadata** MetaData, class FName* AttributeName, const struct FVector2D& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7230,6 +7324,9 @@ class FName UPCGMetadataAccessorHelpers::SetVector2Attribute(class UPCGMetadata*
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
 	return Parms.ReturnValue;
 
 }
@@ -7240,10 +7337,10 @@ class FName UPCGMetadataAccessorHelpers::SetVector2Attribute(class UPCGMetadata*
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FTransform                  Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetTransformAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, const struct FTransform& Value)
+void UPCGMetadataAccessorHelpers::SetTransformAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName, const struct FTransform& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7266,7 +7363,8 @@ class FName UPCGMetadataAccessorHelpers::SetTransformAttributeByMetadataKey(int6
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -7276,10 +7374,10 @@ class FName UPCGMetadataAccessorHelpers::SetTransformAttributeByMetadataKey(int6
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FTransform                  Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetTransformAttribute(class UPCGMetadata** MetaData, const struct FTransform& Value)
+struct FPCGPoint UPCGMetadataAccessorHelpers::SetTransformAttribute(class UPCGMetadata** MetaData, class FName* AttributeName, const struct FTransform& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7301,6 +7399,9 @@ class FName UPCGMetadataAccessorHelpers::SetTransformAttribute(class UPCGMetadat
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
 	return Parms.ReturnValue;
 
 }
@@ -7311,10 +7412,10 @@ class FName UPCGMetadataAccessorHelpers::SetTransformAttribute(class UPCGMetadat
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // class FString                      Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetStringAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, const class FString& Value)
+void UPCGMetadataAccessorHelpers::SetStringAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName, const class FString& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7337,7 +7438,8 @@ class FName UPCGMetadataAccessorHelpers::SetStringAttributeByMetadataKey(int64 K
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -7347,10 +7449,10 @@ class FName UPCGMetadataAccessorHelpers::SetStringAttributeByMetadataKey(int64 K
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // class FString                      Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetStringAttribute(class UPCGMetadata** MetaData, const class FString& Value)
+struct FPCGPoint UPCGMetadataAccessorHelpers::SetStringAttribute(class UPCGMetadata** MetaData, class FName* AttributeName, const class FString& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7372,6 +7474,9 @@ class FName UPCGMetadataAccessorHelpers::SetStringAttribute(class UPCGMetadata**
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
 	return Parms.ReturnValue;
 
 }
@@ -7382,10 +7487,10 @@ class FName UPCGMetadataAccessorHelpers::SetStringAttribute(class UPCGMetadata**
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FRotator                    Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetRotatorAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, const struct FRotator& Value)
+void UPCGMetadataAccessorHelpers::SetRotatorAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName, const struct FRotator& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7408,7 +7513,8 @@ class FName UPCGMetadataAccessorHelpers::SetRotatorAttributeByMetadataKey(int64 
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -7418,10 +7524,10 @@ class FName UPCGMetadataAccessorHelpers::SetRotatorAttributeByMetadataKey(int64 
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FRotator                    Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetRotatorAttribute(class UPCGMetadata** MetaData, const struct FRotator& Value)
+struct FPCGPoint UPCGMetadataAccessorHelpers::SetRotatorAttribute(class UPCGMetadata** MetaData, class FName* AttributeName, const struct FRotator& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7443,6 +7549,9 @@ class FName UPCGMetadataAccessorHelpers::SetRotatorAttribute(class UPCGMetadata*
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
 	return Parms.ReturnValue;
 
 }
@@ -7453,10 +7562,10 @@ class FName UPCGMetadataAccessorHelpers::SetRotatorAttribute(class UPCGMetadata*
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FQuat                       Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetQuatAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, const struct FQuat& Value)
+void UPCGMetadataAccessorHelpers::SetQuatAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName, const struct FQuat& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7479,7 +7588,8 @@ class FName UPCGMetadataAccessorHelpers::SetQuatAttributeByMetadataKey(int64 Key
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -7489,10 +7599,10 @@ class FName UPCGMetadataAccessorHelpers::SetQuatAttributeByMetadataKey(int64 Key
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FQuat                       Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetQuatAttribute(class UPCGMetadata** MetaData, const struct FQuat& Value)
+struct FPCGPoint UPCGMetadataAccessorHelpers::SetQuatAttribute(class UPCGMetadata** MetaData, class FName* AttributeName, const struct FQuat& Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7514,6 +7624,9 @@ class FName UPCGMetadataAccessorHelpers::SetQuatAttribute(class UPCGMetadata** M
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
 	return Parms.ReturnValue;
 
 }
@@ -7524,10 +7637,10 @@ class FName UPCGMetadataAccessorHelpers::SetQuatAttribute(class UPCGMetadata** M
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int64                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetInteger64AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, int64 Value)
+void UPCGMetadataAccessorHelpers::SetInteger64AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName, int64 Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7550,7 +7663,8 @@ class FName UPCGMetadataAccessorHelpers::SetInteger64AttributeByMetadataKey(int6
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -7560,10 +7674,10 @@ class FName UPCGMetadataAccessorHelpers::SetInteger64AttributeByMetadataKey(int6
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int64                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetInteger64Attribute(class UPCGMetadata** MetaData, int64 Value)
+struct FPCGPoint UPCGMetadataAccessorHelpers::SetInteger64Attribute(class UPCGMetadata** MetaData, class FName* AttributeName, int64 Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7585,6 +7699,9 @@ class FName UPCGMetadataAccessorHelpers::SetInteger64Attribute(class UPCGMetadat
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
 	return Parms.ReturnValue;
 
 }
@@ -7595,10 +7712,10 @@ class FName UPCGMetadataAccessorHelpers::SetInteger64Attribute(class UPCGMetadat
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetInteger32AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, int32 Value)
+void UPCGMetadataAccessorHelpers::SetInteger32AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName, int32 Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7621,7 +7738,8 @@ class FName UPCGMetadataAccessorHelpers::SetInteger32AttributeByMetadataKey(int6
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -7631,10 +7749,10 @@ class FName UPCGMetadataAccessorHelpers::SetInteger32AttributeByMetadataKey(int6
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetInteger32Attribute(class UPCGMetadata** MetaData, int32 Value)
+struct FPCGPoint UPCGMetadataAccessorHelpers::SetInteger32Attribute(class UPCGMetadata** MetaData, class FName* AttributeName, int32 Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7656,6 +7774,9 @@ class FName UPCGMetadataAccessorHelpers::SetInteger32Attribute(class UPCGMetadat
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
 	return Parms.ReturnValue;
 
 }
@@ -7666,10 +7787,10 @@ class FName UPCGMetadataAccessorHelpers::SetInteger32Attribute(class UPCGMetadat
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetFloatAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, float Value)
+void UPCGMetadataAccessorHelpers::SetFloatAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName, float Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7692,7 +7813,8 @@ class FName UPCGMetadataAccessorHelpers::SetFloatAttributeByMetadataKey(int64 Ke
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -7702,10 +7824,10 @@ class FName UPCGMetadataAccessorHelpers::SetFloatAttributeByMetadataKey(int64 Ke
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetFloatAttribute(class UPCGMetadata** MetaData, float Value)
+struct FPCGPoint UPCGMetadataAccessorHelpers::SetFloatAttribute(class UPCGMetadata** MetaData, class FName* AttributeName, float Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7727,6 +7849,9 @@ class FName UPCGMetadataAccessorHelpers::SetFloatAttribute(class UPCGMetadata** 
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
 	return Parms.ReturnValue;
 
 }
@@ -7737,10 +7862,10 @@ class FName UPCGMetadataAccessorHelpers::SetFloatAttribute(class UPCGMetadata** 
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // double                             Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetDoubleAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, double Value)
+void UPCGMetadataAccessorHelpers::SetDoubleAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName, double Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7763,7 +7888,8 @@ class FName UPCGMetadataAccessorHelpers::SetDoubleAttributeByMetadataKey(int64 K
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -7773,10 +7899,10 @@ class FName UPCGMetadataAccessorHelpers::SetDoubleAttributeByMetadataKey(int64 K
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // double                             Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetDoubleAttribute(class UPCGMetadata** MetaData, double Value)
+struct FPCGPoint UPCGMetadataAccessorHelpers::SetDoubleAttribute(class UPCGMetadata** MetaData, class FName* AttributeName, double Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7798,6 +7924,9 @@ class FName UPCGMetadataAccessorHelpers::SetDoubleAttribute(class UPCGMetadata**
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
 	return Parms.ReturnValue;
 
 }
@@ -7808,10 +7937,10 @@ class FName UPCGMetadataAccessorHelpers::SetDoubleAttribute(class UPCGMetadata**
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // bool                               Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetBoolAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, bool Value)
+void UPCGMetadataAccessorHelpers::SetBoolAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName, bool Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7834,7 +7963,8 @@ class FName UPCGMetadataAccessorHelpers::SetBoolAttributeByMetadataKey(int64 Key
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	return Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 }
 
@@ -7844,10 +7974,10 @@ class FName UPCGMetadataAccessorHelpers::SetBoolAttributeByMetadataKey(int64 Key
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // bool                               Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 
-class FName UPCGMetadataAccessorHelpers::SetBoolAttribute(class UPCGMetadata** MetaData, bool Value)
+struct FPCGPoint UPCGMetadataAccessorHelpers::SetBoolAttribute(class UPCGMetadata** MetaData, class FName* AttributeName, bool Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7869,6 +7999,9 @@ class FName UPCGMetadataAccessorHelpers::SetBoolAttribute(class UPCGMetadata** M
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
 	return Parms.ReturnValue;
 
 }
@@ -7879,12 +8012,12 @@ class FName UPCGMetadataAccessorHelpers::SetBoolAttribute(class UPCGMetadata** M
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // class UObject*                     Object                                                           (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// class FName                        PropertyName                                                     (ConstParm, ExportObject, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        PropertyName                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::SetAttributeFromPropertyByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class UObject** Object, bool* ReturnValue)
+bool UPCGMetadataAccessorHelpers::SetAttributeFromPropertyByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName, class UObject** Object)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7906,11 +8039,11 @@ class FName UPCGMetadataAccessorHelpers::SetAttributeFromPropertyByMetadataKey(i
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
+
 	if (Object != nullptr)
 		*Object = Parms.Object;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -7922,10 +8055,10 @@ class FName UPCGMetadataAccessorHelpers::SetAttributeFromPropertyByMetadataKey(i
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// struct FPCGPoint                   ParentPoint                                                      (Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                ParentMetadata                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   ParentPoint                                                      (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                ParentMetadata                                                   (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGMetadata* UPCGMetadataAccessorHelpers::InitializeMetadata(class UPCGMetadata** MetaData)
+struct FPCGPoint UPCGMetadataAccessorHelpers::InitializeMetadata(class UPCGMetadata** MetaData, struct FPCGPoint* ParentPoint, class UPCGMetadata** ParentMetadata)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7946,6 +8079,12 @@ class UPCGMetadata* UPCGMetadataAccessorHelpers::InitializeMetadata(class UPCGMe
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
+	if (ParentPoint != nullptr)
+		*ParentPoint = std::move(Parms.ParentPoint);
+
+	if (ParentMetadata != nullptr)
+		*ParentMetadata = Parms.ParentMetadata;
+
 	return Parms.ReturnValue;
 
 }
@@ -7956,10 +8095,10 @@ class UPCGMetadata* UPCGMetadataAccessorHelpers::InitializeMetadata(class UPCGMe
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::HasAttributeSetByMetadataKey(int64 Key, class UPCGMetadata** MetaData, bool* ReturnValue)
+bool UPCGMetadataAccessorHelpers::HasAttributeSetByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7981,8 +8120,8 @@ class FName UPCGMetadataAccessorHelpers::HasAttributeSetByMetadataKey(int64 Key,
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -7994,10 +8133,10 @@ class FName UPCGMetadataAccessorHelpers::HasAttributeSetByMetadataKey(int64 Key,
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::HasAttributeSet(class UPCGMetadata** MetaData, bool* ReturnValue)
+bool UPCGMetadataAccessorHelpers::HasAttributeSet(class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8018,8 +8157,8 @@ class FName UPCGMetadataAccessorHelpers::HasAttributeSet(class UPCGMetadata** Me
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8031,10 +8170,10 @@ class FName UPCGMetadataAccessorHelpers::HasAttributeSet(class UPCGMetadata** Me
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetVectorAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, struct FVector* ReturnValue)
+struct FVector UPCGMetadataAccessorHelpers::GetVectorAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8056,8 +8195,8 @@ class FName UPCGMetadataAccessorHelpers::GetVectorAttributeByMetadataKey(int64 K
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8069,10 +8208,10 @@ class FName UPCGMetadataAccessorHelpers::GetVectorAttributeByMetadataKey(int64 K
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetVectorAttribute(class UPCGMetadata** MetaData, struct FVector* ReturnValue)
+struct FVector UPCGMetadataAccessorHelpers::GetVectorAttribute(class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8093,8 +8232,8 @@ class FName UPCGMetadataAccessorHelpers::GetVectorAttribute(class UPCGMetadata**
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8106,10 +8245,10 @@ class FName UPCGMetadataAccessorHelpers::GetVectorAttribute(class UPCGMetadata**
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FVector4                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector4                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetVector4AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, struct FVector4* ReturnValue)
+struct FVector4 UPCGMetadataAccessorHelpers::GetVector4AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8131,8 +8270,8 @@ class FName UPCGMetadataAccessorHelpers::GetVector4AttributeByMetadataKey(int64 
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8144,10 +8283,10 @@ class FName UPCGMetadataAccessorHelpers::GetVector4AttributeByMetadataKey(int64 
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FVector4                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector4                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetVector4Attribute(class UPCGMetadata** MetaData, struct FVector4* ReturnValue)
+struct FVector4 UPCGMetadataAccessorHelpers::GetVector4Attribute(class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8168,8 +8307,8 @@ class FName UPCGMetadataAccessorHelpers::GetVector4Attribute(class UPCGMetadata*
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8181,10 +8320,10 @@ class FName UPCGMetadataAccessorHelpers::GetVector4Attribute(class UPCGMetadata*
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetVector2AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, struct FVector2D* ReturnValue)
+struct FVector2D UPCGMetadataAccessorHelpers::GetVector2AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8206,8 +8345,8 @@ class FName UPCGMetadataAccessorHelpers::GetVector2AttributeByMetadataKey(int64 
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8219,10 +8358,10 @@ class FName UPCGMetadataAccessorHelpers::GetVector2AttributeByMetadataKey(int64 
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetVector2Attribute(class UPCGMetadata** MetaData, struct FVector2D* ReturnValue)
+struct FVector2D UPCGMetadataAccessorHelpers::GetVector2Attribute(class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8243,8 +8382,8 @@ class FName UPCGMetadataAccessorHelpers::GetVector2Attribute(class UPCGMetadata*
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8256,10 +8395,10 @@ class FName UPCGMetadataAccessorHelpers::GetVector2Attribute(class UPCGMetadata*
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetTransformAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, struct FTransform* ReturnValue)
+struct FTransform UPCGMetadataAccessorHelpers::GetTransformAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8281,8 +8420,8 @@ class FName UPCGMetadataAccessorHelpers::GetTransformAttributeByMetadataKey(int6
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8294,10 +8433,10 @@ class FName UPCGMetadataAccessorHelpers::GetTransformAttributeByMetadataKey(int6
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetTransformAttribute(class UPCGMetadata** MetaData, struct FTransform* ReturnValue)
+struct FTransform UPCGMetadataAccessorHelpers::GetTransformAttribute(class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8318,8 +8457,8 @@ class FName UPCGMetadataAccessorHelpers::GetTransformAttribute(class UPCGMetadat
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8331,10 +8470,10 @@ class FName UPCGMetadataAccessorHelpers::GetTransformAttribute(class UPCGMetadat
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetStringAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FString* ReturnValue)
+class FString UPCGMetadataAccessorHelpers::GetStringAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8356,8 +8495,8 @@ class FName UPCGMetadataAccessorHelpers::GetStringAttributeByMetadataKey(int64 K
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8369,10 +8508,10 @@ class FName UPCGMetadataAccessorHelpers::GetStringAttributeByMetadataKey(int64 K
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetStringAttribute(class UPCGMetadata** MetaData, class FString* ReturnValue)
+class FString UPCGMetadataAccessorHelpers::GetStringAttribute(class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8393,8 +8532,8 @@ class FName UPCGMetadataAccessorHelpers::GetStringAttribute(class UPCGMetadata**
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8406,10 +8545,10 @@ class FName UPCGMetadataAccessorHelpers::GetStringAttribute(class UPCGMetadata**
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetRotatorAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, struct FRotator* ReturnValue)
+struct FRotator UPCGMetadataAccessorHelpers::GetRotatorAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8431,8 +8570,8 @@ class FName UPCGMetadataAccessorHelpers::GetRotatorAttributeByMetadataKey(int64 
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8444,10 +8583,10 @@ class FName UPCGMetadataAccessorHelpers::GetRotatorAttributeByMetadataKey(int64 
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetRotatorAttribute(class UPCGMetadata** MetaData, struct FRotator* ReturnValue)
+struct FRotator UPCGMetadataAccessorHelpers::GetRotatorAttribute(class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8468,8 +8607,8 @@ class FName UPCGMetadataAccessorHelpers::GetRotatorAttribute(class UPCGMetadata*
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8481,10 +8620,10 @@ class FName UPCGMetadataAccessorHelpers::GetRotatorAttribute(class UPCGMetadata*
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FQuat                       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FQuat                       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetQuatAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, struct FQuat* ReturnValue)
+struct FQuat UPCGMetadataAccessorHelpers::GetQuatAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8506,8 +8645,8 @@ class FName UPCGMetadataAccessorHelpers::GetQuatAttributeByMetadataKey(int64 Key
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8519,10 +8658,10 @@ class FName UPCGMetadataAccessorHelpers::GetQuatAttributeByMetadataKey(int64 Key
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// struct FQuat                       ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FQuat                       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetQuatAttribute(class UPCGMetadata** MetaData, struct FQuat* ReturnValue)
+struct FQuat UPCGMetadataAccessorHelpers::GetQuatAttribute(class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8543,8 +8682,8 @@ class FName UPCGMetadataAccessorHelpers::GetQuatAttribute(class UPCGMetadata** M
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8556,10 +8695,10 @@ class FName UPCGMetadataAccessorHelpers::GetQuatAttribute(class UPCGMetadata** M
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// int64                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int64                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetInteger64AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, int64* ReturnValue)
+int64 UPCGMetadataAccessorHelpers::GetInteger64AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8581,8 +8720,8 @@ class FName UPCGMetadataAccessorHelpers::GetInteger64AttributeByMetadataKey(int6
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8594,10 +8733,10 @@ class FName UPCGMetadataAccessorHelpers::GetInteger64AttributeByMetadataKey(int6
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// int64                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int64                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetInteger64Attribute(class UPCGMetadata** MetaData, int64* ReturnValue)
+int64 UPCGMetadataAccessorHelpers::GetInteger64Attribute(class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8618,8 +8757,8 @@ class FName UPCGMetadataAccessorHelpers::GetInteger64Attribute(class UPCGMetadat
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8631,10 +8770,10 @@ class FName UPCGMetadataAccessorHelpers::GetInteger64Attribute(class UPCGMetadat
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetInteger32AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, int32* ReturnValue)
+int32 UPCGMetadataAccessorHelpers::GetInteger32AttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8656,8 +8795,8 @@ class FName UPCGMetadataAccessorHelpers::GetInteger32AttributeByMetadataKey(int6
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8669,10 +8808,10 @@ class FName UPCGMetadataAccessorHelpers::GetInteger32AttributeByMetadataKey(int6
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetInteger32Attribute(class UPCGMetadata** MetaData, int32* ReturnValue)
+int32 UPCGMetadataAccessorHelpers::GetInteger32Attribute(class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8693,8 +8832,8 @@ class FName UPCGMetadataAccessorHelpers::GetInteger32Attribute(class UPCGMetadat
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8706,10 +8845,10 @@ class FName UPCGMetadataAccessorHelpers::GetInteger32Attribute(class UPCGMetadat
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetFloatAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, float* ReturnValue)
+float UPCGMetadataAccessorHelpers::GetFloatAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8731,8 +8870,8 @@ class FName UPCGMetadataAccessorHelpers::GetFloatAttributeByMetadataKey(int64 Ke
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8744,10 +8883,10 @@ class FName UPCGMetadataAccessorHelpers::GetFloatAttributeByMetadataKey(int64 Ke
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetFloatAttribute(class UPCGMetadata** MetaData, float* ReturnValue)
+float UPCGMetadataAccessorHelpers::GetFloatAttribute(class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8768,8 +8907,8 @@ class FName UPCGMetadataAccessorHelpers::GetFloatAttribute(class UPCGMetadata** 
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8781,10 +8920,10 @@ class FName UPCGMetadataAccessorHelpers::GetFloatAttribute(class UPCGMetadata** 
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// double                             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// double                             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetDoubleAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, double* ReturnValue)
+double UPCGMetadataAccessorHelpers::GetDoubleAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8806,8 +8945,8 @@ class FName UPCGMetadataAccessorHelpers::GetDoubleAttributeByMetadataKey(int64 K
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8819,10 +8958,10 @@ class FName UPCGMetadataAccessorHelpers::GetDoubleAttributeByMetadataKey(int64 K
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// double                             ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// double                             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetDoubleAttribute(class UPCGMetadata** MetaData, double* ReturnValue)
+double UPCGMetadataAccessorHelpers::GetDoubleAttribute(class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8843,8 +8982,8 @@ class FName UPCGMetadataAccessorHelpers::GetDoubleAttribute(class UPCGMetadata**
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8856,10 +8995,10 @@ class FName UPCGMetadataAccessorHelpers::GetDoubleAttribute(class UPCGMetadata**
 // Parameters:
 // int64                              Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetBoolAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, bool* ReturnValue)
+bool UPCGMetadataAccessorHelpers::GetBoolAttributeByMetadataKey(int64 Key, class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8881,8 +9020,8 @@ class FName UPCGMetadataAccessorHelpers::GetBoolAttributeByMetadataKey(int64 Key
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8894,10 +9033,10 @@ class FName UPCGMetadataAccessorHelpers::GetBoolAttributeByMetadataKey(int64 Key
 // Parameters:
 // struct FPCGPoint                   Point                                                            (ConstParm, Parm, ReturnParm)
 // class UPCGMetadata*                MetaData                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-// class FName                        AttributeName                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        AttributeName                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGMetadataAccessorHelpers::GetBoolAttribute(class UPCGMetadata** MetaData, bool* ReturnValue)
+bool UPCGMetadataAccessorHelpers::GetBoolAttribute(class UPCGMetadata** MetaData, class FName* AttributeName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8918,8 +9057,8 @@ class FName UPCGMetadataAccessorHelpers::GetBoolAttribute(class UPCGMetadata** M
 	if (MetaData != nullptr)
 		*MetaData = Parms.MetaData;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (AttributeName != nullptr)
+		*AttributeName = Parms.AttributeName;
 
 	return Parms.ReturnValue;
 
@@ -8929,13 +9068,13 @@ class FName UPCGMetadataAccessorHelpers::GetBoolAttribute(class UPCGMetadata** M
 // Function PCG.PCGMetadataAccessorHelpers.CopyPoint
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGPoint                   InPoint                                                          (Edit, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FPCGPoint                   OutPoint                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bCopyMetadata                                                    (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                InMetaData                                                       (Net, Parm, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// class UPCGMetadata*                OutMetadata                                                      (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   InPoint                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FPCGPoint                   OutPoint                                                         (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               bCopyMetadata                                                    (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                InMetaData                                                       (BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UPCGMetadata*                OutMetadata                                                      (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGMetadata* UPCGMetadataAccessorHelpers::CopyPoint(const struct FPCGPoint& InPoint)
+struct FPCGPoint UPCGMetadataAccessorHelpers::CopyPoint(const struct FPCGPoint& OutPoint, bool* bCopyMetadata, class UPCGMetadata* InMetaData, class UPCGMetadata* OutMetadata)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8944,7 +9083,9 @@ class UPCGMetadata* UPCGMetadataAccessorHelpers::CopyPoint(const struct FPCGPoin
 
 	Params::UPCGMetadataAccessorHelpers_CopyPoint_Params Parms{};
 
-	Parms.InPoint = InPoint;
+	Parms.OutPoint = OutPoint;
+	Parms.InMetaData = InMetaData;
+	Parms.OutMetadata = OutMetadata;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8953,6 +9094,9 @@ class UPCGMetadata* UPCGMetadataAccessorHelpers::CopyPoint(const struct FPCGPoin
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (bCopyMetadata != nullptr)
+		*bCopyMetadata = Parms.bCopyMetadata;
 
 	return Parms.ReturnValue;
 
@@ -8990,9 +9134,9 @@ class UPCGComponent* UPCGComponent::GetDefaultObj()
 // Function PCG.PCGComponent.SetGraph
 // (Net, NetReliable, Native, Event, NetMulticast, Public, BlueprintCallable)
 // Parameters:
-// class UPCGGraphInterface*          InGraph                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGGraphInterface*          InGraph                                                          (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGGraphInterface* UPCGComponent::SetGraph()
+void UPCGComponent::SetGraph(class UPCGGraphInterface** InGraph)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9010,7 +9154,8 @@ class UPCGGraphInterface* UPCGComponent::SetGraph()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InGraph != nullptr)
+		*InGraph = Parms.InGraph;
 
 }
 
@@ -9042,9 +9187,9 @@ void UPCGComponent::NotifyPropertiesChangedFromBlueprint()
 // Function PCG.PCGComponent.GetGeneratedGraphOutput
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FPCGDataCollection          ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGDataCollection          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGComponent::GetGeneratedGraphOutput(struct FPCGDataCollection* ReturnValue)
+struct FPCGDataCollection UPCGComponent::GetGeneratedGraphOutput()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9062,8 +9207,7 @@ void UPCGComponent::GetGeneratedGraphOutput(struct FPCGDataCollection* ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -9071,9 +9215,9 @@ void UPCGComponent::GetGeneratedGraphOutput(struct FPCGDataCollection* ReturnVal
 // Function PCG.PCGComponent.GenerateLocal
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bForce                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bForce                                                           (Edit, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UPCGComponent::GenerateLocal(bool bForce)
+void UPCGComponent::GenerateLocal(bool* bForce)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9082,7 +9226,6 @@ void UPCGComponent::GenerateLocal(bool bForce)
 
 	Params::UPCGComponent_GenerateLocal_Params Parms{};
 
-	Parms.bForce = bForce;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9092,15 +9235,18 @@ void UPCGComponent::GenerateLocal(bool bForce)
 
 	Func->FunctionFlags = Flgs;
 
+	if (bForce != nullptr)
+		*bForce = Parms.bForce;
+
 }
 
 
 // Function PCG.PCGComponent.Generate
 // (Net, NetReliable, Native, Event, NetMulticast, Public, BlueprintCallable)
 // Parameters:
-// bool                               bForce                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bForce                                                           (Edit, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UPCGComponent::Generate(bool bForce)
+void UPCGComponent::Generate(bool* bForce)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9109,7 +9255,6 @@ void UPCGComponent::Generate(bool bForce)
 
 	Params::UPCGComponent_Generate_Params Parms{};
 
-	Parms.bForce = bForce;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9119,16 +9264,19 @@ void UPCGComponent::Generate(bool bForce)
 
 	Func->FunctionFlags = Flgs;
 
+	if (bForce != nullptr)
+		*bForce = Parms.bForce;
+
 }
 
 
 // Function PCG.PCGComponent.ClearPCGLink
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      TemplateActor                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class AActor*                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      TemplateActor                                                    (BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGComponent::ClearPCGLink(class UClass* TemplateActor, class AActor** ReturnValue)
+class AActor* UPCGComponent::ClearPCGLink()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9137,7 +9285,6 @@ void UPCGComponent::ClearPCGLink(class UClass* TemplateActor, class AActor** Ret
 
 	Params::UPCGComponent_ClearPCGLink_Params Parms{};
 
-	Parms.TemplateActor = TemplateActor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9147,8 +9294,7 @@ void UPCGComponent::ClearPCGLink(class UClass* TemplateActor, class AActor** Ret
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -9156,10 +9302,10 @@ void UPCGComponent::ClearPCGLink(class UClass* TemplateActor, class AActor** Ret
 // Function PCG.PCGComponent.CleanupLocal
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bRemoveComponents                                                (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bSave                                                            (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bRemoveComponents                                                (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bSave                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGComponent::CleanupLocal()
+void UPCGComponent::CleanupLocal(bool* bRemoveComponents, bool* bSave)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9177,7 +9323,11 @@ bool UPCGComponent::CleanupLocal()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bRemoveComponents != nullptr)
+		*bRemoveComponents = Parms.bRemoveComponents;
+
+	if (bSave != nullptr)
+		*bSave = Parms.bSave;
 
 }
 
@@ -9185,10 +9335,10 @@ bool UPCGComponent::CleanupLocal()
 // Function PCG.PCGComponent.Cleanup
 // (Net, NetReliable, Native, Event, NetMulticast, Public, BlueprintCallable)
 // Parameters:
-// bool                               bRemoveComponents                                                (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               bSave                                                            (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bRemoveComponents                                                (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bSave                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool UPCGComponent::Cleanup()
+void UPCGComponent::Cleanup(bool* bRemoveComponents, bool* bSave)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9206,7 +9356,11 @@ bool UPCGComponent::Cleanup()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bRemoveComponents != nullptr)
+		*bRemoveComponents = Parms.bRemoveComponents;
+
+	if (bSave != nullptr)
+		*bSave = Parms.bSave;
 
 }
 
@@ -9214,9 +9368,9 @@ bool UPCGComponent::Cleanup()
 // Function PCG.PCGComponent.AddToManagedResources
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGManagedResource*         InResource                                                       (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGManagedResource*         InResource                                                       (Edit, Net, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGManagedResource* UPCGComponent::AddToManagedResources()
+void UPCGComponent::AddToManagedResources(class UPCGManagedResource** InResource)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9234,7 +9388,8 @@ class UPCGManagedResource* UPCGComponent::AddToManagedResources()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InResource != nullptr)
+		*InResource = Parms.InResource;
 
 }
 
@@ -9270,11 +9425,11 @@ class UPCGDataFunctionLibrary* UPCGDataFunctionLibrary::GetDefaultObj()
 // Function PCG.PCGDataFunctionLibrary.GetTaggedParams
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGDataCollection          InCollection                                                     (ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FString                      InTag                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<struct FPCGTaggedData>      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGDataCollection          InCollection                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FString                      InTag                                                            (Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FPCGTaggedData>      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UPCGDataFunctionLibrary::GetTaggedParams(TArray<struct FPCGTaggedData>* ReturnValue)
+TArray<struct FPCGTaggedData> UPCGDataFunctionLibrary::GetTaggedParams(const struct FPCGDataCollection& InCollection)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9283,6 +9438,7 @@ class FString UPCGDataFunctionLibrary::GetTaggedParams(TArray<struct FPCGTaggedD
 
 	Params::UPCGDataFunctionLibrary_GetTaggedParams_Params Parms{};
 
+	Parms.InCollection = InCollection;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9291,9 +9447,6 @@ class FString UPCGDataFunctionLibrary::GetTaggedParams(TArray<struct FPCGTaggedD
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -9303,11 +9456,11 @@ class FString UPCGDataFunctionLibrary::GetTaggedParams(TArray<struct FPCGTaggedD
 // Function PCG.PCGDataFunctionLibrary.GetTaggedInputs
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGDataCollection          InCollection                                                     (ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FString                      InTag                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<struct FPCGTaggedData>      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGDataCollection          InCollection                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FString                      InTag                                                            (Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FPCGTaggedData>      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UPCGDataFunctionLibrary::GetTaggedInputs(TArray<struct FPCGTaggedData>* ReturnValue)
+TArray<struct FPCGTaggedData> UPCGDataFunctionLibrary::GetTaggedInputs(const struct FPCGDataCollection& InCollection)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9316,6 +9469,7 @@ class FString UPCGDataFunctionLibrary::GetTaggedInputs(TArray<struct FPCGTaggedD
 
 	Params::UPCGDataFunctionLibrary_GetTaggedInputs_Params Parms{};
 
+	Parms.InCollection = InCollection;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9324,9 +9478,6 @@ class FString UPCGDataFunctionLibrary::GetTaggedInputs(TArray<struct FPCGTaggedD
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -9336,11 +9487,11 @@ class FString UPCGDataFunctionLibrary::GetTaggedInputs(TArray<struct FPCGTaggedD
 // Function PCG.PCGDataFunctionLibrary.GetParamsByPin
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGDataCollection          InCollection                                                     (ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        InPinLabel                                                       (Edit, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FPCGTaggedData>      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGDataCollection          InCollection                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        InPinLabel                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FPCGTaggedData>      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGDataFunctionLibrary::GetParamsByPin(TArray<struct FPCGTaggedData>* ReturnValue)
+TArray<struct FPCGTaggedData> UPCGDataFunctionLibrary::GetParamsByPin(const struct FPCGDataCollection& InCollection, class FName InPinLabel)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9349,6 +9500,8 @@ class FName UPCGDataFunctionLibrary::GetParamsByPin(TArray<struct FPCGTaggedData
 
 	Params::UPCGDataFunctionLibrary_GetParamsByPin_Params Parms{};
 
+	Parms.InCollection = InCollection;
+	Parms.InPinLabel = InPinLabel;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9357,9 +9510,6 @@ class FName UPCGDataFunctionLibrary::GetParamsByPin(TArray<struct FPCGTaggedData
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -9369,10 +9519,10 @@ class FName UPCGDataFunctionLibrary::GetParamsByPin(TArray<struct FPCGTaggedData
 // Function PCG.PCGDataFunctionLibrary.GetParams
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGDataCollection          InCollection                                                     (ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FPCGTaggedData>      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGDataCollection          InCollection                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FPCGTaggedData>      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPCGDataCollection UPCGDataFunctionLibrary::GetParams(TArray<struct FPCGTaggedData>* ReturnValue)
+TArray<struct FPCGTaggedData> UPCGDataFunctionLibrary::GetParams(const struct FPCGDataCollection& InCollection)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9381,6 +9531,7 @@ struct FPCGDataCollection UPCGDataFunctionLibrary::GetParams(TArray<struct FPCGT
 
 	Params::UPCGDataFunctionLibrary_GetParams_Params Parms{};
 
+	Parms.InCollection = InCollection;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9389,9 +9540,6 @@ struct FPCGDataCollection UPCGDataFunctionLibrary::GetParams(TArray<struct FPCGT
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -9401,11 +9549,11 @@ struct FPCGDataCollection UPCGDataFunctionLibrary::GetParams(TArray<struct FPCGT
 // Function PCG.PCGDataFunctionLibrary.GetInputsByPin
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGDataCollection          InCollection                                                     (ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        InPinLabel                                                       (Edit, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FPCGTaggedData>      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGDataCollection          InCollection                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        InPinLabel                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FPCGTaggedData>      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGDataFunctionLibrary::GetInputsByPin(TArray<struct FPCGTaggedData>* ReturnValue)
+TArray<struct FPCGTaggedData> UPCGDataFunctionLibrary::GetInputsByPin(const struct FPCGDataCollection& InCollection, class FName InPinLabel)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9414,6 +9562,8 @@ class FName UPCGDataFunctionLibrary::GetInputsByPin(TArray<struct FPCGTaggedData
 
 	Params::UPCGDataFunctionLibrary_GetInputsByPin_Params Parms{};
 
+	Parms.InCollection = InCollection;
+	Parms.InPinLabel = InPinLabel;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9422,9 +9572,6 @@ class FName UPCGDataFunctionLibrary::GetInputsByPin(TArray<struct FPCGTaggedData
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -9434,10 +9581,10 @@ class FName UPCGDataFunctionLibrary::GetInputsByPin(TArray<struct FPCGTaggedData
 // Function PCG.PCGDataFunctionLibrary.GetInputs
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGDataCollection          InCollection                                                     (ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FPCGTaggedData>      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGDataCollection          InCollection                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FPCGTaggedData>      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPCGDataCollection UPCGDataFunctionLibrary::GetInputs(TArray<struct FPCGTaggedData>* ReturnValue)
+TArray<struct FPCGTaggedData> UPCGDataFunctionLibrary::GetInputs(const struct FPCGDataCollection& InCollection)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9446,6 +9593,7 @@ struct FPCGDataCollection UPCGDataFunctionLibrary::GetInputs(TArray<struct FPCGT
 
 	Params::UPCGDataFunctionLibrary_GetInputs_Params Parms{};
 
+	Parms.InCollection = InCollection;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9454,9 +9602,6 @@ struct FPCGDataCollection UPCGDataFunctionLibrary::GetInputs(TArray<struct FPCGT
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -9466,10 +9611,10 @@ struct FPCGDataCollection UPCGDataFunctionLibrary::GetInputs(TArray<struct FPCGT
 // Function PCG.PCGDataFunctionLibrary.GetAllSettings
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPCGDataCollection          InCollection                                                     (ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FPCGTaggedData>      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPCGDataCollection          InCollection                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FPCGTaggedData>      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPCGDataCollection UPCGDataFunctionLibrary::GetAllSettings(TArray<struct FPCGTaggedData>* ReturnValue)
+TArray<struct FPCGTaggedData> UPCGDataFunctionLibrary::GetAllSettings(const struct FPCGDataCollection& InCollection)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9478,6 +9623,7 @@ struct FPCGDataCollection UPCGDataFunctionLibrary::GetAllSettings(TArray<struct 
 
 	Params::UPCGDataFunctionLibrary_GetAllSettings_Params Parms{};
 
+	Parms.InCollection = InCollection;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9486,9 +9632,6 @@ struct FPCGDataCollection UPCGDataFunctionLibrary::GetAllSettings(TArray<struct 
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -9554,9 +9697,9 @@ class UPCGGraphInterface* UPCGGraphInterface::GetDefaultObj()
 // Function PCG.PCGGraphInterface.GetMutablePCGGraph
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGGraph*                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGGraph*                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGGraphInterface::GetMutablePCGGraph(class UPCGGraph** ReturnValue)
+class UPCGGraph* UPCGGraphInterface::GetMutablePCGGraph()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9574,8 +9717,7 @@ void UPCGGraphInterface::GetMutablePCGGraph(class UPCGGraph** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -9583,9 +9725,9 @@ void UPCGGraphInterface::GetMutablePCGGraph(class UPCGGraph** ReturnValue)
 // Function PCG.PCGGraphInterface.GetConstPCGGraph
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGGraph*                   ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGGraph*                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGGraphInterface::GetConstPCGGraph(class UPCGGraph** ReturnValue)
+class UPCGGraph* UPCGGraphInterface::GetConstPCGGraph()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9603,8 +9745,7 @@ void UPCGGraphInterface::GetConstPCGGraph(class UPCGGraph** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -9640,9 +9781,9 @@ class UPCGGraph* UPCGGraph::GetDefaultObj()
 // Function PCG.PCGGraph.RemoveNode
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGNode*                    InNode                                                           (ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGNode*                    InNode                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
-class UPCGNode* UPCGGraph::RemoveNode()
+void UPCGGraph::RemoveNode(class UPCGNode** InNode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9660,7 +9801,8 @@ class UPCGNode* UPCGGraph::RemoveNode()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InNode != nullptr)
+		*InNode = Parms.InNode;
 
 }
 
@@ -9668,13 +9810,13 @@ class UPCGNode* UPCGGraph::RemoveNode()
 // Function PCG.PCGGraph.RemoveEdge
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UPCGNode*                    From                                                             (BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        FromLabel                                                        (ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGNode*                    To                                                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        ToLabel                                                          (Edit, ConstParm, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGNode*                    From                                                             (Edit, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        FromLabel                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGNode*                    To                                                               (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class FName                        ToLabel                                                          (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UPCGGraph::RemoveEdge(class UPCGNode* To, bool* ReturnValue)
+bool UPCGGraph::RemoveEdge(class UPCGNode* From, class FName FromLabel, class FName ToLabel)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9683,7 +9825,9 @@ class FName UPCGGraph::RemoveEdge(class UPCGNode* To, bool* ReturnValue)
 
 	Params::UPCGGraph_RemoveEdge_Params Parms{};
 
-	Parms.To = To;
+	Parms.From = From;
+	Parms.FromLabel = FromLabel;
+	Parms.ToLabel = ToLabel;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9693,9 +9837,6 @@ class FName UPCGGraph::RemoveEdge(class UPCGNode* To, bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -9704,9 +9845,9 @@ class FName UPCGGraph::RemoveEdge(class UPCGNode* To, bool* ReturnValue)
 // Function PCG.PCGGraph.GetOutputNode
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGNode*                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGNode*                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGGraph::GetOutputNode(class UPCGNode** ReturnValue)
+class UPCGNode* UPCGGraph::GetOutputNode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9724,8 +9865,7 @@ void UPCGGraph::GetOutputNode(class UPCGNode** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -9733,9 +9873,9 @@ void UPCGGraph::GetOutputNode(class UPCGNode** ReturnValue)
 // Function PCG.PCGGraph.GetInputNode
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGNode*                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGNode*                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGGraph::GetInputNode(class UPCGNode** ReturnValue)
+class UPCGNode* UPCGGraph::GetInputNode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9753,8 +9893,7 @@ void UPCGGraph::GetInputNode(class UPCGNode** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -9762,11 +9901,11 @@ void UPCGGraph::GetInputNode(class UPCGNode** ReturnValue)
 // Function PCG.PCGGraph.AddNodeOfType
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UClass*                      InSettingsClass                                                  (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGSettings*                DefaultNodeSettings                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGNode*                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InSettingsClass                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGSettings*                DefaultNodeSettings                                              (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGNode*                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGSettings* UPCGGraph::AddNodeOfType(class UPCGNode** ReturnValue)
+class UPCGNode* UPCGGraph::AddNodeOfType(class UClass* InSettingsClass, class UPCGSettings* DefaultNodeSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9775,6 +9914,8 @@ class UPCGSettings* UPCGGraph::AddNodeOfType(class UPCGNode** ReturnValue)
 
 	Params::UPCGGraph_AddNodeOfType_Params Parms{};
 
+	Parms.InSettingsClass = InSettingsClass;
+	Parms.DefaultNodeSettings = DefaultNodeSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9784,9 +9925,6 @@ class UPCGSettings* UPCGGraph::AddNodeOfType(class UPCGNode** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -9795,10 +9933,10 @@ class UPCGSettings* UPCGGraph::AddNodeOfType(class UPCGNode** ReturnValue)
 // Function PCG.PCGGraph.AddNodeInstance
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGSettings*                InSettings                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UPCGNode*                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGSettings*                InSettings                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UPCGNode*                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGSettings* UPCGGraph::AddNodeInstance(class UPCGNode** ReturnValue)
+class UPCGNode* UPCGGraph::AddNodeInstance()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9816,9 +9954,6 @@ class UPCGSettings* UPCGGraph::AddNodeInstance(class UPCGNode** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -9827,11 +9962,11 @@ class UPCGSettings* UPCGGraph::AddNodeInstance(class UPCGNode** ReturnValue)
 // Function PCG.PCGGraph.AddNodeCopy
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UPCGSettings*                InSettings                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UPCGSettings*                DefaultNodeSettings                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGNode*                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGSettings*                InSettings                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UPCGSettings*                DefaultNodeSettings                                              (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGNode*                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGSettings* UPCGGraph::AddNodeCopy(class UPCGNode** ReturnValue)
+class UPCGNode* UPCGGraph::AddNodeCopy(class UPCGSettings* DefaultNodeSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9840,6 +9975,7 @@ class UPCGSettings* UPCGGraph::AddNodeCopy(class UPCGNode** ReturnValue)
 
 	Params::UPCGGraph_AddNodeCopy_Params Parms{};
 
+	Parms.DefaultNodeSettings = DefaultNodeSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9848,9 +9984,6 @@ class UPCGSettings* UPCGGraph::AddNodeCopy(class UPCGNode** ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -9860,13 +9993,13 @@ class UPCGSettings* UPCGGraph::AddNodeCopy(class UPCGNode** ReturnValue)
 // Function PCG.PCGGraph.AddEdge
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UPCGNode*                    From                                                             (BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        FromPinLabel                                                     (Edit, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGNode*                    To                                                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FName                        ToPinLabel                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UPCGNode*                    ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGNode*                    From                                                             (Edit, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FName                        FromPinLabel                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGNode*                    To                                                               (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class FName                        ToPinLabel                                                       (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UPCGNode*                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPCGNode* UPCGGraph::AddEdge(class FName FromPinLabel, class UPCGNode* To, class FName ToPinLabel, class UPCGNode** ReturnValue)
+class UPCGNode* UPCGGraph::AddEdge(class UPCGNode* From)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9875,9 +10008,7 @@ class UPCGNode* UPCGGraph::AddEdge(class FName FromPinLabel, class UPCGNode* To,
 
 	Params::UPCGGraph_AddEdge_Params Parms{};
 
-	Parms.FromPinLabel = FromPinLabel;
-	Parms.To = To;
-	Parms.ToPinLabel = ToPinLabel;
+	Parms.From = From;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9886,9 +10017,6 @@ class UPCGNode* UPCGGraph::AddEdge(class FName FromPinLabel, class UPCGNode* To,
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -10094,9 +10222,9 @@ class UPCGParamData* UPCGParamData::GetDefaultObj()
 // Function PCG.PCGParamData.MutableMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPCGMetadata*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGMetadata*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGParamData::MutableMetadata(class UPCGMetadata** ReturnValue)
+class UPCGMetadata* UPCGParamData::MutableMetadata()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10114,8 +10242,7 @@ void UPCGParamData::MutableMetadata(class UPCGMetadata** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10123,10 +10250,10 @@ void UPCGParamData::MutableMetadata(class UPCGMetadata** ReturnValue)
 // Function PCG.PCGParamData.FindOrAddMetadataKey
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int64                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGParamData::FindOrAddMetadataKey(class FName InName, int64* ReturnValue)
+int64 UPCGParamData::FindOrAddMetadataKey()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10135,7 +10262,6 @@ void UPCGParamData::FindOrAddMetadataKey(class FName InName, int64* ReturnValue)
 
 	Params::UPCGParamData_FindOrAddMetadataKey_Params Parms{};
 
-	Parms.InName = InName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10145,8 +10271,7 @@ void UPCGParamData::FindOrAddMetadataKey(class FName InName, int64* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10154,10 +10279,10 @@ void UPCGParamData::FindOrAddMetadataKey(class FName InName, int64* ReturnValue)
 // Function PCG.PCGParamData.FindMetadataKey
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        InName                                                           (BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int64                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGParamData::FindMetadataKey(class FName InName, int64* ReturnValue)
+int64 UPCGParamData::FindMetadataKey()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10166,7 +10291,6 @@ void UPCGParamData::FindMetadataKey(class FName InName, int64* ReturnValue)
 
 	Params::UPCGParamData_FindMetadataKey_Params Parms{};
 
-	Parms.InName = InName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10176,8 +10300,7 @@ void UPCGParamData::FindMetadataKey(class FName InName, int64* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10185,10 +10308,10 @@ void UPCGParamData::FindMetadataKey(class FName InName, int64* ReturnValue)
 // Function PCG.PCGParamData.FilterParamsByName
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        InName                                                           (BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UPCGParamData*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UPCGParamData*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGParamData::FilterParamsByName(class FName InName, class UPCGParamData** ReturnValue)
+class UPCGParamData* UPCGParamData::FilterParamsByName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10197,7 +10320,6 @@ void UPCGParamData::FilterParamsByName(class FName InName, class UPCGParamData**
 
 	Params::UPCGParamData_FilterParamsByName_Params Parms{};
 
-	Parms.InName = InName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10207,8 +10329,7 @@ void UPCGParamData::FilterParamsByName(class FName InName, class UPCGParamData**
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10216,10 +10337,10 @@ void UPCGParamData::FilterParamsByName(class FName InName, class UPCGParamData**
 // Function PCG.PCGParamData.FilterParamsByKey
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int64                              InKey                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UPCGParamData*               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int64                              InKey                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UPCGParamData*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int64 UPCGParamData::FilterParamsByKey(class UPCGParamData** ReturnValue)
+class UPCGParamData* UPCGParamData::FilterParamsByKey(int64* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10237,8 +10358,8 @@ int64 UPCGParamData::FilterParamsByKey(class UPCGParamData** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	if (InKey != nullptr)
+		*InKey = Parms.InKey;
 
 	return Parms.ReturnValue;
 
@@ -10248,9 +10369,9 @@ int64 UPCGParamData::FilterParamsByKey(class UPCGParamData** ReturnValue)
 // Function PCG.PCGParamData.ConstMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPCGMetadata*                ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPCGMetadata*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGParamData::ConstMetadata(class UPCGMetadata** ReturnValue)
+class UPCGMetadata* UPCGParamData::ConstMetadata()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10268,8 +10389,7 @@ void UPCGParamData::ConstMetadata(class UPCGMetadata** ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10305,9 +10425,9 @@ class UPCGPin* UPCGPin::GetDefaultObj()
 // Function PCG.PCGPin.SetToolTip
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FText                        InTooltip                                                        (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FText                        InTooltip                                                        (EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
 
-class FText UPCGPin::SetToolTip()
+void UPCGPin::SetToolTip(class FText* InTooltip)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10325,7 +10445,8 @@ class FText UPCGPin::SetToolTip()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InTooltip != nullptr)
+		*InTooltip = Parms.InTooltip;
 
 }
 
@@ -10333,9 +10454,9 @@ class FText UPCGPin::SetToolTip()
 // Function PCG.PCGPin.GetTooltip
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPCGPin::GetTooltip(class FText* ReturnValue)
+class FText UPCGPin::GetTooltip()
 {
 	static class UFunction* Func = nullptr;
 
@@ -10353,8 +10474,7 @@ void UPCGPin::GetTooltip(class FText* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -10586,10 +10706,10 @@ class UPCGDeterminismTestBlueprintBase* UPCGDeterminismTestBlueprintBase::GetDef
 // Function PCG.PCGDeterminismTestBlueprintBase.ExecuteTest
 // (Native, Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// class UPCGNode*                    InPCGNode                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FDeterminismTestResult      InOutTestResult                                                  (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPCGNode*                    InPCGNode                                                        (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FDeterminismTestResult      InOutTestResult                                                  (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
 
-struct FDeterminismTestResult UPCGDeterminismTestBlueprintBase::ExecuteTest()
+void UPCGDeterminismTestBlueprintBase::ExecuteTest(class UPCGNode** InPCGNode, struct FDeterminismTestResult* InOutTestResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10607,7 +10727,11 @@ struct FDeterminismTestResult UPCGDeterminismTestBlueprintBase::ExecuteTest()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPCGNode != nullptr)
+		*InPCGNode = Parms.InPCGNode;
+
+	if (InOutTestResult != nullptr)
+		*InOutTestResult = std::move(Parms.InOutTestResult);
 
 }
 

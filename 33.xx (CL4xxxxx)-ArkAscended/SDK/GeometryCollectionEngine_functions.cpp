@@ -43,16 +43,16 @@ class APrimalDestructibleActor* APrimalDestructibleActor::GetDefaultObj()
 // Function GeometryCollectionEngine.PrimalDestructibleActor.StaticBPPreDestructionHandleAttachedComponentClass
 // (Event, Public, HasDefaults, BlueprintEvent)
 // Parameters:
-// class UClass*                      AttachedComponentClass                                           (ExportObject, Net, ZeroConstructor, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UInstancedStaticMeshComponent*ForMeshComp                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     InstancePosition                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FRotator                    InstanceRotation                                                 (ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              InstanceIndex                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// struct FVector                     HitDirection                                                     (Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// float                              Damage                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              TotalHealth                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      AttachedComponentClass                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UInstancedStaticMeshComponent*ForMeshComp                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     InstancePosition                                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FRotator                    InstanceRotation                                                 (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InstanceIndex                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector                     HitDirection                                                     (Edit, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Damage                                                           (ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              TotalHealth                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-class UInstancedStaticMeshComponent* APrimalDestructibleActor::StaticBPPreDestructionHandleAttachedComponentClass(class UClass* AttachedComponentClass, const struct FVector& InstancePosition, const struct FRotator& InstanceRotation, int32* InstanceIndex, const struct FVector& HitDirection, float* Damage, float TotalHealth)
+float APrimalDestructibleActor::StaticBPPreDestructionHandleAttachedComponentClass(class UInstancedStaticMeshComponent* ForMeshComp)
 {
 	static class UFunction* Func = nullptr;
 
@@ -61,19 +61,9 @@ class UInstancedStaticMeshComponent* APrimalDestructibleActor::StaticBPPreDestru
 
 	Params::APrimalDestructibleActor_StaticBPPreDestructionHandleAttachedComponentClass_Params Parms{};
 
-	Parms.AttachedComponentClass = AttachedComponentClass;
-	Parms.InstancePosition = InstancePosition;
-	Parms.InstanceRotation = InstanceRotation;
-	Parms.HitDirection = HitDirection;
-	Parms.TotalHealth = TotalHealth;
+	Parms.ForMeshComp = ForMeshComp;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (InstanceIndex != nullptr)
-		*InstanceIndex = Parms.InstanceIndex;
-
-	if (Damage != nullptr)
-		*Damage = Parms.Damage;
 
 	return Parms.ReturnValue;
 
@@ -83,9 +73,9 @@ class UInstancedStaticMeshComponent* APrimalDestructibleActor::StaticBPPreDestru
 // Function GeometryCollectionEngine.PrimalDestructibleActor.SetGeoCollection
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UGeometryCollection*         GeoCollection                                                    (ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UGeometryCollection*         GeoCollection                                                    (BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void APrimalDestructibleActor::SetGeoCollection(class UGeometryCollection* GeoCollection)
+class UGeometryCollection* APrimalDestructibleActor::SetGeoCollection()
 {
 	static class UFunction* Func = nullptr;
 
@@ -94,7 +84,6 @@ void APrimalDestructibleActor::SetGeoCollection(class UGeometryCollection* GeoCo
 
 	Params::APrimalDestructibleActor_SetGeoCollection_Params Parms{};
 
-	Parms.GeoCollection = GeoCollection;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -104,18 +93,20 @@ void APrimalDestructibleActor::SetGeoCollection(class UGeometryCollection* GeoCo
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function GeometryCollectionEngine.PrimalDestructibleActor.BPStartDestruction
 // (Event, Public, HasOutParams, HasDefaults, BlueprintEvent)
 // Parameters:
-// class UGeometryCollection*         DestructionAsset                                                 (Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     HitDirection                                                     (Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// float                              Damage                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              TotalHealth                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// class UGeometryCollection*         DestructionAsset                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     HitDirection                                                     (Edit, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Damage                                                           (ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              TotalHealth                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void APrimalDestructibleActor::BPStartDestruction(class UGeometryCollection* DestructionAsset, const struct FVector& HitDirection, float* Damage, float TotalHealth)
+float APrimalDestructibleActor::BPStartDestruction()
 {
 	static class UFunction* Func = nullptr;
 
@@ -124,14 +115,10 @@ void APrimalDestructibleActor::BPStartDestruction(class UGeometryCollection* Des
 
 	Params::APrimalDestructibleActor_BPStartDestruction_Params Parms{};
 
-	Parms.DestructionAsset = DestructionAsset;
-	Parms.HitDirection = HitDirection;
-	Parms.TotalHealth = TotalHealth;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Damage != nullptr)
-		*Damage = Parms.Damage;
+	return Parms.ReturnValue;
 
 }
 
@@ -167,10 +154,10 @@ class UChaosDestructionListener* UChaosDestructionListener::GetDefaultObj()
 // Function GeometryCollectionEngine.ChaosDestructionListener.SortTrailingEvents
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FChaosTrailingEventData>TrailingEvents                                                   (ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// enum class EChaosTrailingSortMethodSortMethod                                                       (ConstParm, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<struct FChaosTrailingEventData>TrailingEvents                                                   (ConstParm, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// enum class EChaosTrailingSortMethodSortMethod                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-TArray<struct FChaosTrailingEventData> UChaosDestructionListener::SortTrailingEvents(enum class EChaosTrailingSortMethod* SortMethod)
+enum class EChaosTrailingSortMethod UChaosDestructionListener::SortTrailingEvents(TArray<struct FChaosTrailingEventData>* TrailingEvents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -188,8 +175,8 @@ TArray<struct FChaosTrailingEventData> UChaosDestructionListener::SortTrailingEv
 
 	Func->FunctionFlags = Flgs;
 
-	if (SortMethod != nullptr)
-		*SortMethod = Parms.SortMethod;
+	if (TrailingEvents != nullptr)
+		*TrailingEvents = std::move(Parms.TrailingEvents);
 
 	return Parms.ReturnValue;
 
@@ -199,10 +186,10 @@ TArray<struct FChaosTrailingEventData> UChaosDestructionListener::SortTrailingEv
 // Function GeometryCollectionEngine.ChaosDestructionListener.SortRemovalEvents
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FChaosRemovalEventData>RemovalEvents                                                    (Edit, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// enum class EChaosRemovalSortMethod SortMethod                                                       (ConstParm, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<struct FChaosRemovalEventData>RemovalEvents                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// enum class EChaosRemovalSortMethod SortMethod                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-TArray<struct FChaosRemovalEventData> UChaosDestructionListener::SortRemovalEvents(enum class EChaosRemovalSortMethod* SortMethod)
+enum class EChaosRemovalSortMethod UChaosDestructionListener::SortRemovalEvents(TArray<struct FChaosRemovalEventData>* RemovalEvents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -220,8 +207,8 @@ TArray<struct FChaosRemovalEventData> UChaosDestructionListener::SortRemovalEven
 
 	Func->FunctionFlags = Flgs;
 
-	if (SortMethod != nullptr)
-		*SortMethod = Parms.SortMethod;
+	if (RemovalEvents != nullptr)
+		*RemovalEvents = std::move(Parms.RemovalEvents);
 
 	return Parms.ReturnValue;
 
@@ -231,10 +218,10 @@ TArray<struct FChaosRemovalEventData> UChaosDestructionListener::SortRemovalEven
 // Function GeometryCollectionEngine.ChaosDestructionListener.SortCollisionEvents
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FChaosCollisionEventData>CollisionEvents                                                  (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// enum class EChaosCollisionSortMethodSortMethod                                                       (ConstParm, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<struct FChaosCollisionEventData>CollisionEvents                                                  (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// enum class EChaosCollisionSortMethodSortMethod                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-TArray<struct FChaosCollisionEventData> UChaosDestructionListener::SortCollisionEvents(enum class EChaosCollisionSortMethod* SortMethod)
+enum class EChaosCollisionSortMethod UChaosDestructionListener::SortCollisionEvents(TArray<struct FChaosCollisionEventData>* CollisionEvents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -252,8 +239,8 @@ TArray<struct FChaosCollisionEventData> UChaosDestructionListener::SortCollision
 
 	Func->FunctionFlags = Flgs;
 
-	if (SortMethod != nullptr)
-		*SortMethod = Parms.SortMethod;
+	if (CollisionEvents != nullptr)
+		*CollisionEvents = std::move(Parms.CollisionEvents);
 
 	return Parms.ReturnValue;
 
@@ -263,10 +250,10 @@ TArray<struct FChaosCollisionEventData> UChaosDestructionListener::SortCollision
 // Function GeometryCollectionEngine.ChaosDestructionListener.SortBreakingEvents
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FChaosBreakingEventData>BreakingEvents                                                   (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// enum class EChaosBreakingSortMethodSortMethod                                                       (ConstParm, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<struct FChaosBreakingEventData>BreakingEvents                                                   (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// enum class EChaosBreakingSortMethodSortMethod                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-TArray<struct FChaosBreakingEventData> UChaosDestructionListener::SortBreakingEvents(enum class EChaosBreakingSortMethod* SortMethod)
+enum class EChaosBreakingSortMethod UChaosDestructionListener::SortBreakingEvents(const TArray<struct FChaosBreakingEventData>& BreakingEvents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -275,6 +262,7 @@ TArray<struct FChaosBreakingEventData> UChaosDestructionListener::SortBreakingEv
 
 	Params::UChaosDestructionListener_SortBreakingEvents_Params Parms{};
 
+	Parms.BreakingEvents = BreakingEvents;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -284,9 +272,6 @@ TArray<struct FChaosBreakingEventData> UChaosDestructionListener::SortBreakingEv
 
 	Func->FunctionFlags = Flgs;
 
-	if (SortMethod != nullptr)
-		*SortMethod = Parms.SortMethod;
-
 	return Parms.ReturnValue;
 
 }
@@ -295,7 +280,7 @@ TArray<struct FChaosBreakingEventData> UChaosDestructionListener::SortBreakingEv
 // Function GeometryCollectionEngine.ChaosDestructionListener.SetTrailingEventRequestSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FChaosTrailingEventRequestSettingsInSettings                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FChaosTrailingEventRequestSettingsInSettings                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FChaosTrailingEventRequestSettings UChaosDestructionListener::SetTrailingEventRequestSettings()
 {
@@ -351,7 +336,7 @@ bool UChaosDestructionListener::SetTrailingEventEnabled()
 // Function GeometryCollectionEngine.ChaosDestructionListener.SetRemovalEventRequestSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FChaosRemovalEventRequestSettingsInSettings                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FChaosRemovalEventRequestSettingsInSettings                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FChaosRemovalEventRequestSettings UChaosDestructionListener::SetRemovalEventRequestSettings()
 {
@@ -407,7 +392,7 @@ bool UChaosDestructionListener::SetRemovalEventEnabled()
 // Function GeometryCollectionEngine.ChaosDestructionListener.SetCollisionEventRequestSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FChaosCollisionEventRequestSettingsInSettings                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FChaosCollisionEventRequestSettingsInSettings                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FChaosCollisionEventRequestSettings UChaosDestructionListener::SetCollisionEventRequestSettings()
 {
@@ -463,7 +448,7 @@ bool UChaosDestructionListener::SetCollisionEventEnabled()
 // Function GeometryCollectionEngine.ChaosDestructionListener.SetBreakingEventRequestSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FChaosBreakingEventRequestSettingsInSettings                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FChaosBreakingEventRequestSettingsInSettings                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FChaosBreakingEventRequestSettings UChaosDestructionListener::SetBreakingEventRequestSettings()
 {
@@ -574,9 +559,9 @@ void UChaosDestructionListener::RemoveChaosSolverActor(class AChaosSolverActor* 
 // Function GeometryCollectionEngine.ChaosDestructionListener.IsEventListening
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UChaosDestructionListener::IsEventListening(bool* ReturnValue)
+bool UChaosDestructionListener::IsEventListening()
 {
 	static class UFunction* Func = nullptr;
 
@@ -594,8 +579,7 @@ void UChaosDestructionListener::IsEventListening(bool* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -688,10 +672,10 @@ class AGeometryCollectionActor* AGeometryCollectionActor::GetDefaultObj()
 // Parameters:
 // struct FVector                     Start                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
 // struct FVector                     End                                                              (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance)
-// struct FHitResult                  OutHit                                                           (ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FHitResult                  OutHit                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FHitResult AGeometryCollectionActor::RaycastSingle(struct FVector* Start, const struct FVector& End, bool* ReturnValue)
+bool AGeometryCollectionActor::RaycastSingle(struct FVector* Start, const struct FVector& End, const struct FHitResult& OutHit)
 {
 	static class UFunction* Func = nullptr;
 
@@ -701,6 +685,7 @@ struct FHitResult AGeometryCollectionActor::RaycastSingle(struct FVector* Start,
 	Params::AGeometryCollectionActor_RaycastSingle_Params Parms{};
 
 	Parms.End = End;
+	Parms.OutHit = OutHit;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -712,9 +697,6 @@ struct FHitResult AGeometryCollectionActor::RaycastSingle(struct FVector* Start,
 
 	if (Start != nullptr)
 		*Start = std::move(Parms.Start);
-
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -780,9 +762,9 @@ class UGeometryCollectionComponent* UGeometryCollectionComponent::GetDefaultObj(
 // Function GeometryCollectionEngine.GeometryCollectionComponent.SetRestCollection
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UGeometryCollection*         RestCollectionIn                                                 (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// class UGeometryCollection*         RestCollectionIn                                                 (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void UGeometryCollectionComponent::SetRestCollection(class UGeometryCollection** RestCollectionIn)
+class UGeometryCollection* UGeometryCollectionComponent::SetRestCollection()
 {
 	static class UFunction* Func = nullptr;
 
@@ -800,8 +782,7 @@ void UGeometryCollectionComponent::SetRestCollection(class UGeometryCollection**
 
 	Func->FunctionFlags = Flgs;
 
-	if (RestCollectionIn != nullptr)
-		*RestCollectionIn = Parms.RestCollectionIn;
+	return Parms.ReturnValue;
 
 }
 
@@ -809,9 +790,9 @@ void UGeometryCollectionComponent::SetRestCollection(class UGeometryCollection**
 // Function GeometryCollectionEngine.GeometryCollectionComponent.SetNotifyRemovals
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bNewNotifyRemovals                                               (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bNewNotifyRemovals                                               (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void UGeometryCollectionComponent::SetNotifyRemovals(bool* bNewNotifyRemovals)
+bool UGeometryCollectionComponent::SetNotifyRemovals()
 {
 	static class UFunction* Func = nullptr;
 
@@ -829,8 +810,7 @@ void UGeometryCollectionComponent::SetNotifyRemovals(bool* bNewNotifyRemovals)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bNewNotifyRemovals != nullptr)
-		*bNewNotifyRemovals = Parms.bNewNotifyRemovals;
+	return Parms.ReturnValue;
 
 }
 
@@ -838,10 +818,10 @@ void UGeometryCollectionComponent::SetNotifyRemovals(bool* bNewNotifyRemovals)
 // Function GeometryCollectionEngine.GeometryCollectionComponent.SetNotifyCrumblings
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bNewNotifyCrumblings                                             (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bNewCrumblingEventIncludesChildren                               (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bNewNotifyCrumblings                                             (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bNewCrumblingEventIncludesChildren                               (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void UGeometryCollectionComponent::SetNotifyCrumblings(bool* bNewNotifyCrumblings, bool* bNewCrumblingEventIncludesChildren)
+bool UGeometryCollectionComponent::SetNotifyCrumblings()
 {
 	static class UFunction* Func = nullptr;
 
@@ -859,11 +839,7 @@ void UGeometryCollectionComponent::SetNotifyCrumblings(bool* bNewNotifyCrumbling
 
 	Func->FunctionFlags = Flgs;
 
-	if (bNewNotifyCrumblings != nullptr)
-		*bNewNotifyCrumblings = Parms.bNewNotifyCrumblings;
-
-	if (bNewCrumblingEventIncludesChildren != nullptr)
-		*bNewCrumblingEventIncludesChildren = Parms.bNewCrumblingEventIncludesChildren;
+	return Parms.ReturnValue;
 
 }
 
@@ -871,9 +847,9 @@ void UGeometryCollectionComponent::SetNotifyCrumblings(bool* bNewNotifyCrumbling
 // Function GeometryCollectionEngine.GeometryCollectionComponent.SetNotifyBreaks
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bNewNotifyBreaks                                                 (ConstParm, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bNewNotifyBreaks                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void UGeometryCollectionComponent::SetNotifyBreaks(bool* bNewNotifyBreaks)
+bool UGeometryCollectionComponent::SetNotifyBreaks()
 {
 	static class UFunction* Func = nullptr;
 
@@ -891,8 +867,7 @@ void UGeometryCollectionComponent::SetNotifyBreaks(bool* bNewNotifyBreaks)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bNewNotifyBreaks != nullptr)
-		*bNewNotifyBreaks = Parms.bNewNotifyBreaks;
+	return Parms.ReturnValue;
 
 }
 
@@ -900,9 +875,9 @@ void UGeometryCollectionComponent::SetNotifyBreaks(bool* bNewNotifyBreaks)
 // Function GeometryCollectionEngine.GeometryCollectionComponent.SetEnableDamageFromCollision
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bValue                                                           (BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bValue                                                           (BlueprintVisible, ExportObject, Net, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-bool UGeometryCollectionComponent::SetEnableDamageFromCollision()
+void UGeometryCollectionComponent::SetEnableDamageFromCollision(bool* bValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -920,7 +895,8 @@ bool UGeometryCollectionComponent::SetEnableDamageFromCollision()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bValue != nullptr)
+		*bValue = Parms.bValue;
 
 }
 
@@ -930,10 +906,10 @@ bool UGeometryCollectionComponent::SetEnableDamageFromCollision()
 // Parameters:
 // struct FBox                        Box                                                              (Edit, ConstParm, ExportObject, OutParm)
 // struct FTransform                  Transform                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-// bool                               bAnchored                                                        (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// int32                              MaxLevel                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAnchored                                                        (BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              MaxLevel                                                         (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void UGeometryCollectionComponent::SetAnchoredByTransformedBox(struct FBox* Box, struct FTransform* Transform, bool* bAnchored, int32* MaxLevel)
+int32 UGeometryCollectionComponent::SetAnchoredByTransformedBox(struct FBox* Box, struct FTransform* Transform)
 {
 	static class UFunction* Func = nullptr;
 
@@ -957,11 +933,7 @@ void UGeometryCollectionComponent::SetAnchoredByTransformedBox(struct FBox* Box,
 	if (Transform != nullptr)
 		*Transform = std::move(Parms.Transform);
 
-	if (bAnchored != nullptr)
-		*bAnchored = Parms.bAnchored;
-
-	if (MaxLevel != nullptr)
-		*MaxLevel = Parms.MaxLevel;
+	return Parms.ReturnValue;
 
 }
 
@@ -970,9 +942,9 @@ void UGeometryCollectionComponent::SetAnchoredByTransformedBox(struct FBox* Box,
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// bool                               bAnchored                                                        (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAnchored                                                        (BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UGeometryCollectionComponent::SetAnchoredByIndex(bool* bAnchored)
+bool UGeometryCollectionComponent::SetAnchoredByIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -990,9 +962,6 @@ int32 UGeometryCollectionComponent::SetAnchoredByIndex(bool* bAnchored)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bAnchored != nullptr)
-		*bAnchored = Parms.bAnchored;
-
 	return Parms.ReturnValue;
 
 }
@@ -1001,11 +970,11 @@ int32 UGeometryCollectionComponent::SetAnchoredByIndex(bool* bAnchored)
 // Function GeometryCollectionEngine.GeometryCollectionComponent.SetAnchoredByBox
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FBox                        WorldSpaceBox                                                    (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAnchored                                                        (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// int32                              MaxLevel                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// struct FBox                        WorldSpaceBox                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAnchored                                                        (BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              MaxLevel                                                         (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void UGeometryCollectionComponent::SetAnchoredByBox(struct FBox* WorldSpaceBox, bool* bAnchored, int32* MaxLevel)
+int32 UGeometryCollectionComponent::SetAnchoredByBox()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1023,14 +992,7 @@ void UGeometryCollectionComponent::SetAnchoredByBox(struct FBox* WorldSpaceBox, 
 
 	Func->FunctionFlags = Flgs;
 
-	if (WorldSpaceBox != nullptr)
-		*WorldSpaceBox = std::move(Parms.WorldSpaceBox);
-
-	if (bAnchored != nullptr)
-		*bAnchored = Parms.bAnchored;
-
-	if (MaxLevel != nullptr)
-		*MaxLevel = Parms.MaxLevel;
+	return Parms.ReturnValue;
 
 }
 
@@ -1062,9 +1024,9 @@ void UGeometryCollectionComponent::RemoveAllAnchors()
 // Function GeometryCollectionEngine.GeometryCollectionComponent.ReceivePhysicsCollision
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FChaosPhysicsCollisionInfo  CollisionInfo                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FChaosPhysicsCollisionInfo  CollisionInfo                                                    (Edit, ConstParm, ExportObject, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-struct FChaosPhysicsCollisionInfo UGeometryCollectionComponent::ReceivePhysicsCollision()
+void UGeometryCollectionComponent::ReceivePhysicsCollision(const struct FChaosPhysicsCollisionInfo& CollisionInfo)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1073,10 +1035,9 @@ struct FChaosPhysicsCollisionInfo UGeometryCollectionComponent::ReceivePhysicsCo
 
 	Params::UGeometryCollectionComponent_ReceivePhysicsCollision_Params Parms{};
 
+	Parms.CollisionInfo = CollisionInfo;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1084,9 +1045,9 @@ struct FChaosPhysicsCollisionInfo UGeometryCollectionComponent::ReceivePhysicsCo
 // DelegateFunction GeometryCollectionEngine.GeometryCollectionComponent.NotifyGeometryCollectionPhysicsStateChange__DelegateSignature
 // (MulticastDelegate, Public, Delegate)
 // Parameters:
-// class UGeometryCollectionComponent*FracturedComponent                                               (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// class UGeometryCollectionComponent*FracturedComponent                                               (Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void UGeometryCollectionComponent::NotifyGeometryCollectionPhysicsStateChange__DelegateSignature(class UGeometryCollectionComponent** FracturedComponent)
+class UGeometryCollectionComponent* UGeometryCollectionComponent::NotifyGeometryCollectionPhysicsStateChange__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1098,8 +1059,7 @@ void UGeometryCollectionComponent::NotifyGeometryCollectionPhysicsStateChange__D
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (FracturedComponent != nullptr)
-		*FracturedComponent = Parms.FracturedComponent;
+	return Parms.ReturnValue;
 
 }
 
@@ -1107,9 +1067,9 @@ void UGeometryCollectionComponent::NotifyGeometryCollectionPhysicsStateChange__D
 // DelegateFunction GeometryCollectionEngine.GeometryCollectionComponent.NotifyGeometryCollectionPhysicsLoadingStateChange__DelegateSignature
 // (MulticastDelegate, Public, Delegate)
 // Parameters:
-// class UGeometryCollectionComponent*FracturedComponent                                               (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// class UGeometryCollectionComponent*FracturedComponent                                               (Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void UGeometryCollectionComponent::NotifyGeometryCollectionPhysicsLoadingStateChange__DelegateSignature(class UGeometryCollectionComponent** FracturedComponent)
+class UGeometryCollectionComponent* UGeometryCollectionComponent::NotifyGeometryCollectionPhysicsLoadingStateChange__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1121,8 +1081,7 @@ void UGeometryCollectionComponent::NotifyGeometryCollectionPhysicsLoadingStateCh
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (FracturedComponent != nullptr)
-		*FracturedComponent = Parms.FracturedComponent;
+	return Parms.ReturnValue;
 
 }
 
@@ -1130,9 +1089,9 @@ void UGeometryCollectionComponent::NotifyGeometryCollectionPhysicsLoadingStateCh
 // Function GeometryCollectionEngine.GeometryCollectionComponent.GetRootIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UGeometryCollectionComponent::GetRootIndex(int32* ReturnValue)
+int32 UGeometryCollectionComponent::GetRootIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1150,8 +1109,7 @@ void UGeometryCollectionComponent::GetRootIndex(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1159,11 +1117,11 @@ void UGeometryCollectionComponent::GetRootIndex(int32* ReturnValue)
 // Function GeometryCollectionEngine.GeometryCollectionComponent.GetMassAndExtents
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// int32                              ItemIndex                                                        (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              OutMass                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// struct FBox                        OutExtents                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ItemIndex                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              OutMass                                                          (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FBox                        OutExtents                                                       (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UGeometryCollectionComponent::GetMassAndExtents(float OutMass, const struct FBox& OutExtents)
+struct FBox UGeometryCollectionComponent::GetMassAndExtents(int32 ItemIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1172,8 +1130,7 @@ int32 UGeometryCollectionComponent::GetMassAndExtents(float OutMass, const struc
 
 	Params::UGeometryCollectionComponent_GetMassAndExtents_Params Parms{};
 
-	Parms.OutMass = OutMass;
-	Parms.OutExtents = OutExtents;
+	Parms.ItemIndex = ItemIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1191,9 +1148,9 @@ int32 UGeometryCollectionComponent::GetMassAndExtents(float OutMass, const struc
 // Function GeometryCollectionEngine.GeometryCollectionComponent.GetLocalBounds
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FBox                        ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBox                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UGeometryCollectionComponent::GetLocalBounds(struct FBox* ReturnValue)
+struct FBox UGeometryCollectionComponent::GetLocalBounds()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1211,8 +1168,7 @@ void UGeometryCollectionComponent::GetLocalBounds(struct FBox* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1220,10 +1176,10 @@ void UGeometryCollectionComponent::GetLocalBounds(struct FBox* ReturnValue)
 // Function GeometryCollectionEngine.GeometryCollectionComponent.GetInitialLevel
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              ItemIndex                                                        (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ItemIndex                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UGeometryCollectionComponent::GetInitialLevel(int32* ReturnValue)
+int32 UGeometryCollectionComponent::GetInitialLevel(int32 ItemIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1232,6 +1188,7 @@ int32 UGeometryCollectionComponent::GetInitialLevel(int32* ReturnValue)
 
 	Params::UGeometryCollectionComponent_GetInitialLevel_Params Parms{};
 
+	Parms.ItemIndex = ItemIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1241,9 +1198,6 @@ int32 UGeometryCollectionComponent::GetInitialLevel(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -1252,9 +1206,9 @@ int32 UGeometryCollectionComponent::GetInitialLevel(int32* ReturnValue)
 // Function GeometryCollectionEngine.GeometryCollectionComponent.GetDebugInfo
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UGeometryCollectionComponent::GetDebugInfo(class FString* ReturnValue)
+class FString UGeometryCollectionComponent::GetDebugInfo()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1272,8 +1226,7 @@ void UGeometryCollectionComponent::GetDebugInfo(class FString* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = std::move(Parms.ReturnValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -1281,9 +1234,9 @@ void UGeometryCollectionComponent::GetDebugInfo(class FString* ReturnValue)
 // Function GeometryCollectionEngine.GeometryCollectionComponent.CrumbleCluster
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              ItemIndex                                                        (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ItemIndex                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UGeometryCollectionComponent::CrumbleCluster()
+void UGeometryCollectionComponent::CrumbleCluster(int32 ItemIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1292,6 +1245,7 @@ int32 UGeometryCollectionComponent::CrumbleCluster()
 
 	Params::UGeometryCollectionComponent_CrumbleCluster_Params Parms{};
 
+	Parms.ItemIndex = ItemIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1300,8 +1254,6 @@ int32 UGeometryCollectionComponent::CrumbleCluster()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1333,9 +1285,9 @@ void UGeometryCollectionComponent::CrumbleActiveClusters()
 // Function GeometryCollectionEngine.GeometryCollectionComponent.BPGetMaxIndex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UGeometryCollectionComponent::BPGetMaxIndex(int32* ReturnValue)
+int32 UGeometryCollectionComponent::BPGetMaxIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1353,8 +1305,7 @@ void UGeometryCollectionComponent::BPGetMaxIndex(int32* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ReturnValue != nullptr)
-		*ReturnValue = Parms.ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1400,10 +1351,10 @@ class UFieldNodeBase* UGeometryCollectionComponent::ApplyPhysicsField(bool* Enab
 // Function GeometryCollectionEngine.GeometryCollectionComponent.ApplyLinearVelocity
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// int32                              ItemIndex                                                        (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     LinearVelocity                                                   (ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ItemIndex                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     LinearVelocity                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-struct FVector UGeometryCollectionComponent::ApplyLinearVelocity()
+void UGeometryCollectionComponent::ApplyLinearVelocity(int32 ItemIndex, struct FVector* LinearVelocity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1412,6 +1363,7 @@ struct FVector UGeometryCollectionComponent::ApplyLinearVelocity()
 
 	Params::UGeometryCollectionComponent_ApplyLinearVelocity_Params Parms{};
 
+	Parms.ItemIndex = ItemIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1421,7 +1373,8 @@ struct FVector UGeometryCollectionComponent::ApplyLinearVelocity()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (LinearVelocity != nullptr)
+		*LinearVelocity = std::move(Parms.LinearVelocity);
 
 }
 
@@ -1429,10 +1382,10 @@ struct FVector UGeometryCollectionComponent::ApplyLinearVelocity()
 // Function GeometryCollectionEngine.GeometryCollectionComponent.ApplyKinematicField
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// float                              Radius                                                           (ConstParm, BlueprintVisible, Net, OutParm, Config, EditConst, SubobjectReference)
+// float                              Radius                                                           (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
 // struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
 
-void UGeometryCollectionComponent::ApplyKinematicField(float* Radius, const struct FVector& Position)
+float UGeometryCollectionComponent::ApplyKinematicField(const struct FVector& Position)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1451,8 +1404,7 @@ void UGeometryCollectionComponent::ApplyKinematicField(float* Radius, const stru
 
 	Func->FunctionFlags = Flgs;
 
-	if (Radius != nullptr)
-		*Radius = Parms.Radius;
+	return Parms.ReturnValue;
 
 }
 
@@ -1460,14 +1412,14 @@ void UGeometryCollectionComponent::ApplyKinematicField(float* Radius, const stru
 // Function GeometryCollectionEngine.GeometryCollectionComponent.ApplyInternalStrain
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// int32                              ItemIndex                                                        (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ItemIndex                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// float                              Radius                                                           (ConstParm, BlueprintVisible, Net, OutParm, Config, EditConst, SubobjectReference)
-// int32                              PropagationDepth                                                 (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// float                              PropagationFactor                                                (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// float                              Strain                                                           (EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// float                              Radius                                                           (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// int32                              PropagationDepth                                                 (ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              PropagationFactor                                                (EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Strain                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UGeometryCollectionComponent::ApplyInternalStrain(struct FVector* Location, float* Radius, int32 PropagationDepth, float PropagationFactor, float Strain)
+float UGeometryCollectionComponent::ApplyInternalStrain(int32 ItemIndex, struct FVector* Location)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1476,9 +1428,7 @@ int32 UGeometryCollectionComponent::ApplyInternalStrain(struct FVector* Location
 
 	Params::UGeometryCollectionComponent_ApplyInternalStrain_Params Parms{};
 
-	Parms.PropagationDepth = PropagationDepth;
-	Parms.PropagationFactor = PropagationFactor;
-	Parms.Strain = Strain;
+	Parms.ItemIndex = ItemIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1490,9 +1440,6 @@ int32 UGeometryCollectionComponent::ApplyInternalStrain(struct FVector* Location
 
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
-
-	if (Radius != nullptr)
-		*Radius = Parms.Radius;
 
 	return Parms.ReturnValue;
 
@@ -1502,14 +1449,14 @@ int32 UGeometryCollectionComponent::ApplyInternalStrain(struct FVector* Location
 // Function GeometryCollectionEngine.GeometryCollectionComponent.ApplyExternalStrain
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// int32                              ItemIndex                                                        (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ItemIndex                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// float                              Radius                                                           (ConstParm, BlueprintVisible, Net, OutParm, Config, EditConst, SubobjectReference)
-// int32                              PropagationDepth                                                 (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// float                              PropagationFactor                                                (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// float                              Strain                                                           (EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// float                              Radius                                                           (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// int32                              PropagationDepth                                                 (ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              PropagationFactor                                                (EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Strain                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UGeometryCollectionComponent::ApplyExternalStrain(struct FVector* Location, float* Radius, int32 PropagationDepth, float PropagationFactor, float Strain)
+float UGeometryCollectionComponent::ApplyExternalStrain(int32 ItemIndex, struct FVector* Location)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1518,9 +1465,7 @@ int32 UGeometryCollectionComponent::ApplyExternalStrain(struct FVector* Location
 
 	Params::UGeometryCollectionComponent_ApplyExternalStrain_Params Parms{};
 
-	Parms.PropagationDepth = PropagationDepth;
-	Parms.PropagationFactor = PropagationFactor;
-	Parms.Strain = Strain;
+	Parms.ItemIndex = ItemIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1533,9 +1478,6 @@ int32 UGeometryCollectionComponent::ApplyExternalStrain(struct FVector* Location
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
 
-	if (Radius != nullptr)
-		*Radius = Parms.Radius;
-
 	return Parms.ReturnValue;
 
 }
@@ -1544,10 +1486,10 @@ int32 UGeometryCollectionComponent::ApplyExternalStrain(struct FVector* Location
 // Function GeometryCollectionEngine.GeometryCollectionComponent.ApplyBreakingLinearVelocity
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// int32                              ItemIndex                                                        (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     LinearVelocity                                                   (ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ItemIndex                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     LinearVelocity                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-struct FVector UGeometryCollectionComponent::ApplyBreakingLinearVelocity()
+void UGeometryCollectionComponent::ApplyBreakingLinearVelocity(int32 ItemIndex, struct FVector* LinearVelocity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1556,6 +1498,7 @@ struct FVector UGeometryCollectionComponent::ApplyBreakingLinearVelocity()
 
 	Params::UGeometryCollectionComponent_ApplyBreakingLinearVelocity_Params Parms{};
 
+	Parms.ItemIndex = ItemIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1565,7 +1508,8 @@ struct FVector UGeometryCollectionComponent::ApplyBreakingLinearVelocity()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (LinearVelocity != nullptr)
+		*LinearVelocity = std::move(Parms.LinearVelocity);
 
 }
 
@@ -1573,10 +1517,10 @@ struct FVector UGeometryCollectionComponent::ApplyBreakingLinearVelocity()
 // Function GeometryCollectionEngine.GeometryCollectionComponent.ApplyBreakingAngularVelocity
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// int32                              ItemIndex                                                        (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     AngularVelocity                                                  (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ItemIndex                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     AngularVelocity                                                  (ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UGeometryCollectionComponent::ApplyBreakingAngularVelocity(struct FVector* AngularVelocity)
+struct FVector UGeometryCollectionComponent::ApplyBreakingAngularVelocity(int32 ItemIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1585,6 +1529,7 @@ int32 UGeometryCollectionComponent::ApplyBreakingAngularVelocity(struct FVector*
 
 	Params::UGeometryCollectionComponent_ApplyBreakingAngularVelocity_Params Parms{};
 
+	Parms.ItemIndex = ItemIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1593,9 +1538,6 @@ int32 UGeometryCollectionComponent::ApplyBreakingAngularVelocity(struct FVector*
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (AngularVelocity != nullptr)
-		*AngularVelocity = std::move(Parms.AngularVelocity);
 
 	return Parms.ReturnValue;
 
@@ -1605,10 +1547,10 @@ int32 UGeometryCollectionComponent::ApplyBreakingAngularVelocity(struct FVector*
 // Function GeometryCollectionEngine.GeometryCollectionComponent.ApplyAngularVelocity
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// int32                              ItemIndex                                                        (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     AngularVelocity                                                  (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ItemIndex                                                        (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     AngularVelocity                                                  (ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UGeometryCollectionComponent::ApplyAngularVelocity(struct FVector* AngularVelocity)
+struct FVector UGeometryCollectionComponent::ApplyAngularVelocity(int32 ItemIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1617,6 +1559,7 @@ int32 UGeometryCollectionComponent::ApplyAngularVelocity(struct FVector* Angular
 
 	Params::UGeometryCollectionComponent_ApplyAngularVelocity_Params Parms{};
 
+	Parms.ItemIndex = ItemIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1625,9 +1568,6 @@ int32 UGeometryCollectionComponent::ApplyAngularVelocity(struct FVector* Angular
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (AngularVelocity != nullptr)
-		*AngularVelocity = std::move(Parms.AngularVelocity);
 
 	return Parms.ReturnValue;
 

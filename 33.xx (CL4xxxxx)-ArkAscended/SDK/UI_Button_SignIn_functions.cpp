@@ -79,9 +79,9 @@ void UUI_Button_SignIn_C::BndEvt__SignIn_Button_20_K2Node_ComponentBoundEvent_0_
 // Function UI_Button_SignIn.UI_Button_SignIn_C.PreConstruct
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               IsDesignTime                                                     (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               IsDesignTime                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UUI_Button_SignIn_C::PreConstruct()
+void UUI_Button_SignIn_C::PreConstruct(bool IsDesignTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -90,10 +90,9 @@ bool UUI_Button_SignIn_C::PreConstruct()
 
 	Params::UUI_Button_SignIn_C_PreConstruct_Params Parms{};
 
+	Parms.IsDesignTime = IsDesignTime;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -101,10 +100,10 @@ bool UUI_Button_SignIn_C::PreConstruct()
 // Function UI_Button_SignIn.UI_Button_SignIn_C.ExecuteUbergraph_UI_Button_SignIn
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, BlueprintVisible, Net, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               K2Node_Event_IsDesignTime                                        (Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               K2Node_Event_IsDesignTime                                        (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
 
-bool UUI_Button_SignIn_C::ExecuteUbergraph_UI_Button_SignIn(int32 EntryPoint)
+bool UUI_Button_SignIn_C::ExecuteUbergraph_UI_Button_SignIn()
 {
 	static class UFunction* Func = nullptr;
 
@@ -113,7 +112,6 @@ bool UUI_Button_SignIn_C::ExecuteUbergraph_UI_Button_SignIn(int32 EntryPoint)
 
 	Params::UUI_Button_SignIn_C_ExecuteUbergraph_UI_Button_SignIn_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 

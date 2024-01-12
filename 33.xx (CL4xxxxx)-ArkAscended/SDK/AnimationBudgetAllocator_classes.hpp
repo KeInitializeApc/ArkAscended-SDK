@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class UAnimationBudgetBlueprintLibrary* GetDefaultObj();
 
-	class UObject* SetAnimationBudgetParameters(struct FAnimationBudgetAllocatorParameters* InParameters);
+	struct FAnimationBudgetAllocatorParameters SetAnimationBudgetParameters();
 	class UObject* EnableAnimationBudget(bool* bEnabled);
 };
 
@@ -27,16 +27,16 @@ public:
 class USkeletalMeshComponentBudgeted : public USkeletalMeshComponent
 {
 public:
-	uint8                                        Pad_C6[0x20];                                      // Fixing Size After Last Property  > TateDumper <
-	uint8                                        bAutoRegisterWithBudgetAllocator : 1;              // Mask: 0x1, PropSize: 0x10x1428(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        bAutoCalculateSignificance : 1;                    // Mask: 0x2, PropSize: 0x10x1428(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        bShouldUseActorRenderedFlag : 1;                   // Mask: 0x4, PropSize: 0x10x1428(0x1)(EditFixedSize, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_C7[0x7];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1CC[0x20];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        bAutoRegisterWithBudgetAllocator : 1;              // Mask: 0x1, PropSize: 0x10x1428(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        bAutoCalculateSignificance : 1;                    // Mask: 0x2, PropSize: 0x10x1428(0x1)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        bShouldUseActorRenderedFlag : 1;                   // Mask: 0x4, PropSize: 0x10x1428(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1CD[0x7];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USkeletalMeshComponentBudgeted* GetDefaultObj();
 
-	bool SetAutoRegisterWithBudgetAllocator();
+	void SetAutoRegisterWithBudgetAllocator(bool* bInAutoRegisterWithBudgetAllocator);
 };
 
 }

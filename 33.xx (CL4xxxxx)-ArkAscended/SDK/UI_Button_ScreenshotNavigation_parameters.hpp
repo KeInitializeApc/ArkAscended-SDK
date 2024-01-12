@@ -18,7 +18,7 @@ namespace Params
 struct UUI_Button_ScreenshotNavigation_C_ExecuteUbergraph_UI_Button_ScreenshotNavigation_Params
 {
 public:
-	int32                                        EntryPoint;                                        // 0x0(0x4)(ConstParm, BlueprintVisible, Net, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        EntryPoint;                                        // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 }

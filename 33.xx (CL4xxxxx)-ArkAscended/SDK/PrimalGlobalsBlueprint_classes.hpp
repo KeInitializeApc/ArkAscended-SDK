@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0x3A8 - 0x3A8)
+// 0x0 (0x3B0 - 0x3B0)
 // BlueprintGeneratedClass PrimalGlobalsBlueprint.PrimalGlobalsBlueprint_C
 class UPrimalGlobalsBlueprint_C : public UPrimalGlobals
 {

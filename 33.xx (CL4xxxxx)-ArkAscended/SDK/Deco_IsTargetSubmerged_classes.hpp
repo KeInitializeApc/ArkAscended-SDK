@@ -19,7 +19,7 @@ public:
 	static class UClass* StaticClass();
 	static class UDeco_IsTargetSubmerged_C* GetDefaultObj();
 
-	bool ReceiveConditionCheck(class AActor* CallFunc_GetBlackboardValueAsActor_ReturnValue, class APrimalCharacter* K2Node_DynamicCast_AsPrimal_Character, bool CallFunc_IsSubmerged_ReturnValue);
+	class AActor* ReceiveConditionCheck(class AActor** OwnerActor, class APrimalCharacter* K2Node_DynamicCast_AsPrimal_Character, bool* K2Node_DynamicCast_bSuccess, bool CallFunc_IsSubmerged_ReturnValue);
 };
 
 }

@@ -18,7 +18,7 @@ namespace Params
 struct UResonanceAudioBlueprintFunctionLibrary_SetGlobalReverbPreset_Params
 {
 public:
-	class UResonanceAudioReverbPluginPreset*     InPreset;                                          // 0x0(0x8)(OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+	class UResonanceAudioReverbPluginPreset*     InPreset;                                          // 0x0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct UResonanceAudioBlueprintFunctionLibrary_GetGlobalReverbPreset_Params
 {
 public:
-	class UResonanceAudioReverbPluginPreset*     ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UResonanceAudioReverbPluginPreset*     ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -34,7 +34,7 @@ public:
 struct UResonanceAudioReverbPluginPreset_SetRoomRotation_Params
 {
 public:
-	struct FQuat                                 InRotation;                                        // 0x0(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FQuat                                 InRotation;                                        // 0x0(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -42,7 +42,7 @@ public:
 struct UResonanceAudioReverbPluginPreset_SetRoomPosition_Params
 {
 public:
-	struct FVector                               InPosition;                                        // 0x0(0x18)(ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FVector                               InPosition;                                        // 0x0(0x18)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -50,7 +50,7 @@ public:
 struct UResonanceAudioReverbPluginPreset_SetRoomMaterials_Params
 {
 public:
-	TArray<enum class ERaMaterialName>           InMaterials;                                       // 0x0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	TArray<enum class ERaMaterialName>           InMaterials;                                       // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -58,7 +58,7 @@ public:
 struct UResonanceAudioReverbPluginPreset_SetRoomDimensions_Params
 {
 public:
-	struct FVector                               InDimensions;                                      // 0x0(0x18)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	struct FVector                               InDimensions;                                      // 0x0(0x18)(ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -66,7 +66,7 @@ public:
 struct UResonanceAudioReverbPluginPreset_SetReverbTimeModifier_Params
 {
 public:
-	float                                        InReverbTimeModifier;                              // 0x0(0x4)(ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        InReverbTimeModifier;                              // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -74,7 +74,7 @@ public:
 struct UResonanceAudioReverbPluginPreset_SetReverbGain_Params
 {
 public:
-	float                                        InReverbGain;                                      // 0x0(0x4)(Edit, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        InReverbGain;                                      // 0x0(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -82,7 +82,7 @@ public:
 struct UResonanceAudioReverbPluginPreset_SetReverbBrightness_Params
 {
 public:
-	float                                        InReverbBrightness;                                // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        InReverbBrightness;                                // 0x0(0x4)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -90,7 +90,7 @@ public:
 struct UResonanceAudioReverbPluginPreset_SetReflectionScalar_Params
 {
 public:
-	float                                        InReflectionScalar;                                // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        InReflectionScalar;                                // 0x0(0x4)(ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -98,7 +98,7 @@ public:
 struct UResonanceAudioReverbPluginPreset_SetEnableRoomEffects_Params
 {
 public:
-	bool                                         bInEnableRoomEffects;                              // 0x0(0x1)(ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInEnableRoomEffects;                              // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -106,7 +106,7 @@ public:
 struct UResonanceAudioSpatializationSourceSettings_SetSoundSourceSpread_Params
 {
 public:
-	float                                        InSpread;                                          // 0x0(0x4)(ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        InSpread;                                          // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -114,8 +114,8 @@ public:
 struct UResonanceAudioSpatializationSourceSettings_SetSoundSourceDirectivity_Params
 {
 public:
-	float                                        InPattern;                                         // 0x0(0x4)(Edit, BlueprintVisible, Net, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        InSharpness;                                       // 0x4(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        InPattern;                                         // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        InSharpness;                                       // 0x4(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 }

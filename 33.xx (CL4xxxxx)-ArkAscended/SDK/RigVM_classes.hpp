@@ -14,41 +14,41 @@ namespace SDK
 class URigVMHost : public UObject
 {
 public:
-	uint8                                        Pad_E26[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FRigVMRuntimeSettings                 VMRuntimeSettings;                                 // 0x30(0x18)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_E27[0x10];                                     // Fixing Size After Last Property  > TateDumper <
-	class URigVM*                                VM;                                                // 0x58(0x8)(Edit, ConstParm, Net, Parm, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-	struct FRigVMDrawContainer                   DrawContainer;                                     // 0x60(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_E29[0x18];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<class FName>                          EventQueue;                                        // 0x90(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_E2B[0x90];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_102F[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FRigVMRuntimeSettings                 VMRuntimeSettings;                                 // 0x30(0x18)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1030[0x10];                                    // Fixing Size After Last Property  > TateDumper <
+	class URigVM*                                VM;                                                // 0x58(0x8)(EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	struct FRigVMDrawContainer                   DrawContainer;                                     // 0x60(0x18)(ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1033[0x18];                                    // Fixing Size After Last Property  > TateDumper <
+	TArray<class FName>                          EventQueue;                                        // 0x90(0x10)(ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1035[0x90];                                    // Fixing Size After Last Property  > TateDumper <
 	TArray<class UAssetUserData*>                AssetUserData;                                     // 0x130(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
-	uint8                                        Pad_E2C[0x40];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1036[0x40];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class URigVMHost* GetDefaultObj();
 
-	class FName SupportsEvent(bool* ReturnValue);
-	class FString SetVariableFromString(bool* ReturnValue);
+	bool SupportsEvent();
+	bool SetVariableFromString();
 	float SetFramesPerSecond();
 	float SetDeltaTime();
 	bool SetAbsoluteTime();
 	float SetAbsoluteAndDeltaTime();
 	int32 RequestRunOnceEvent();
 	void RequestInit();
-	class FName RemoveRunOnceEvent(bool* ReturnValue);
-	void GetVM(class URigVM** ReturnValue);
-	class FName GetVariableType(class FName* ReturnValue);
-	class FName GetVariableAsString(class FString* ReturnValue);
-	void GetSupportedEvents(TArray<class FName>* ReturnValue);
-	void GetScriptAccessibleVariables(TArray<class FName>* ReturnValue);
-	void GetDeltaTime(float* ReturnValue);
-	void GetCurrentFramesPerSecond(float* ReturnValue);
-	void GetAbsoluteTime(float* ReturnValue);
-	class UClass* FindRigVMHosts(class UObject* Outer, TArray<class URigVMHost*>* ReturnValue);
-	class FName ExecuteEvent(bool* ReturnValue);
-	class FName Execute(bool* ReturnValue);
-	void CanExecute(bool* ReturnValue);
+	bool RemoveRunOnceEvent();
+	class URigVM* GetVM();
+	class FName GetVariableType();
+	class FString GetVariableAsString();
+	TArray<class FName> GetSupportedEvents();
+	TArray<class FName> GetScriptAccessibleVariables();
+	float GetDeltaTime();
+	float GetCurrentFramesPerSecond();
+	float GetAbsoluteTime();
+	TArray<class URigVMHost*> FindRigVMHosts(class UObject* Outer);
+	bool ExecuteEvent();
+	bool Execute();
+	bool CanExecute();
 };
 
 // 0x30 (0x3A0 - 0x370)
@@ -56,9 +56,9 @@ public:
 class URigVMBlueprintGeneratedClass : public UBlueprintGeneratedClass
 {
 public:
-	uint8                                        Pad_E37[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FRigVMGraphFunctionStore              GraphFunctionStore;                                // 0x378(0x20)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_E38[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1039[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FRigVMGraphFunctionStore              GraphFunctionStore;                                // 0x378(0x20)(ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_103A[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class URigVMBlueprintGeneratedClass* GetDefaultObj();
@@ -70,18 +70,18 @@ public:
 class URigVMUserWorkflowOptions : public UObject
 {
 public:
-	class UObject*                               Subject;                                           // 0x28(0x8)(ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	struct FRigVMUserWorkflow                    Workflow;                                          // 0x30(0x58)(Edit, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_E4A[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               Subject;                                           // 0x28(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	struct FRigVMUserWorkflow                    Workflow;                                          // 0x30(0x58)(Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_10AD[0x10];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class URigVMUserWorkflowOptions* GetDefaultObj();
 
-	void RequiresDialog(bool* ReturnValue);
-	class FString ReportWarning();
-	class FString ReportInfo();
-	class FString ReportError();
-	void IsValid(bool* ReturnValue);
+	bool RequiresDialog();
+	void ReportWarning(class FString* InMessage);
+	void ReportInfo(class FString* InMessage);
+	void ReportError(class FString* InMessage);
+	bool IsValid();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -100,51 +100,51 @@ public:
 class URigVM : public UObject
 {
 public:
-	class URigVMMemoryStorage*                   WorkMemoryStorageObject;                           // 0x28(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class URigVMMemoryStorage*                   LiteralMemoryStorageObject;                        // 0x30(0x8)(BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class URigVMMemoryStorage*                   DebugMemoryStorageObject;                          // 0x38(0x8)(Edit, ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_FBA[0x20];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FRigVMByteCode                        ByteCodeStorage;                                   // 0x60(0x90)(ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_FBC[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FRigVMInstructionArray                Instructions;                                      // 0xF8(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-	struct FRigVMExtendedExecuteContext          Context;                                           // 0x108(0x108)(ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint32                                       NumExecutions;                                     // 0x210(0x4)(ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_FBF[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class FName>                          FunctionNamesStorage;                              // 0x218(0x10)(Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_FC2[0x38];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FRigVMParameter>               Parameters;                                        // 0x260(0x10)(ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TMap<class FName, int32>                     ParametersNameMap;                                 // 0x270(0x50)(Edit, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_FC6[0xE8];                                     // Fixing Size After Last Property  > TateDumper <
-	class URigVM*                                DeferredVMToCopy;                                  // 0x3A8(0x8)(ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_FC7[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	class URigVMMemoryStorage*                   WorkMemoryStorageObject;                           // 0x28(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class URigVMMemoryStorage*                   LiteralMemoryStorageObject;                        // 0x30(0x8)(Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class URigVMMemoryStorage*                   DebugMemoryStorageObject;                          // 0x38(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1141[0x20];                                    // Fixing Size After Last Property  > TateDumper <
+	struct FRigVMByteCode                        ByteCodeStorage;                                   // 0x60(0x90)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1149[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FRigVMInstructionArray                Instructions;                                      // 0xF8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	struct FRigVMExtendedExecuteContext          Context;                                           // 0x108(0x108)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint32                                       NumExecutions;                                     // 0x210(0x4)(Edit, BlueprintVisible, ExportObject, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_114E[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<class FName>                          FunctionNamesStorage;                              // 0x218(0x10)(ConstParm, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_114F[0x38];                                    // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FRigVMParameter>               Parameters;                                        // 0x260(0x10)(BlueprintVisible, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TMap<class FName, int32>                     ParametersNameMap;                                 // 0x270(0x50)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1151[0xE8];                                    // Fixing Size After Last Property  > TateDumper <
+	class URigVM*                                DeferredVMToCopy;                                  // 0x3A8(0x8)(Edit, ConstParm, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1152[0x18];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class URigVM* GetDefaultObj();
 
-	struct FVector2D SetParameterValueVector2D(int32* InArrayIndex);
-	struct FVector SetParameterValueVector(int32* InArrayIndex);
-	struct FTransform SetParameterValueTransform(int32* InArrayIndex);
-	class FString SetParameterValueString(int32* InArrayIndex);
-	struct FQuat SetParameterValueQuat(int32* InArrayIndex);
-	class FName SetParameterValueName(int32* InArrayIndex);
-	int32 SetParameterValueInt(int32* InArrayIndex);
-	float SetParameterValueFloat(int32* InArrayIndex);
-	double SetParameterValueDouble(int32* InArrayIndex);
-	bool SetParameterValueBool(int32* InArrayIndex);
-	void GetStatistics(struct FRigVMStatistics* ReturnValue);
-	void GetRigVMFunctionName(int32* InFunctionIndex, class FString* ReturnValue);
-	class FName GetParameterValueVector2D(int32* InArrayIndex, struct FVector2D* ReturnValue);
-	class FName GetParameterValueVector(int32* InArrayIndex, struct FVector* ReturnValue);
-	class FName GetParameterValueTransform(int32* InArrayIndex, struct FTransform* ReturnValue);
-	class FName GetParameterValueString(int32* InArrayIndex, class FString* ReturnValue);
-	class FName GetParameterValueQuat(int32* InArrayIndex, struct FQuat* ReturnValue);
-	class FName GetParameterValueName(int32* InArrayIndex, class FName* ReturnValue);
-	class FName GetParameterValueInt(int32* InArrayIndex, int32* ReturnValue);
-	class FName GetParameterValueFloat(int32* InArrayIndex, float* ReturnValue);
-	class FName GetParameterValueDouble(int32* InArrayIndex, double* ReturnValue);
-	class FName GetParameterValueBool(int32* InArrayIndex, bool* ReturnValue);
-	void Execute(class FName* InEntryName, bool* ReturnValue);
-	void AddRigVMFunction(class UScriptStruct** InRigVMStruct, class FName* InMethodName, int32* ReturnValue);
+	int32 SetParameterValueVector2D(class FName InParameterName);
+	int32 SetParameterValueVector(class FName InParameterName);
+	int32 SetParameterValueTransform(class FName InParameterName);
+	int32 SetParameterValueString(class FName InParameterName);
+	int32 SetParameterValueQuat(class FName InParameterName);
+	int32 SetParameterValueName(class FName InParameterName);
+	int32 SetParameterValueInt(class FName InParameterName);
+	int32 SetParameterValueFloat(class FName InParameterName);
+	int32 SetParameterValueDouble(class FName InParameterName);
+	int32 SetParameterValueBool(class FName InParameterName);
+	struct FRigVMStatistics GetStatistics();
+	class FString GetRigVMFunctionName();
+	struct FVector2D GetParameterValueVector2D(class FName InParameterName);
+	struct FVector GetParameterValueVector(class FName InParameterName);
+	struct FTransform GetParameterValueTransform(class FName InParameterName);
+	class FString GetParameterValueString(class FName InParameterName);
+	struct FQuat GetParameterValueQuat(class FName InParameterName);
+	class FName GetParameterValueName(class FName InParameterName);
+	int32 GetParameterValueInt(class FName InParameterName);
+	float GetParameterValueFloat(class FName InParameterName);
+	double GetParameterValueDouble(class FName InParameterName);
+	bool GetParameterValueBool(class FName InParameterName);
+	bool Execute();
+	int32 AddRigVMFunction();
 };
 
 // 0x40 (0x260 - 0x220)
@@ -152,7 +152,7 @@ public:
 class URigVMMemoryStorageGeneratorClass : public UClass
 {
 public:
-	uint8                                        Pad_FDC[0x40];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_115B[0x40];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class URigVMMemoryStorageGeneratorClass* GetDefaultObj();
@@ -175,7 +175,7 @@ public:
 class URigVMNativized : public URigVM
 {
 public:
-	uint8                                        Pad_FE4[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_115E[0x28];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class URigVMNativized* GetDefaultObj();
