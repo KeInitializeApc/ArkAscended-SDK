@@ -61,22 +61,22 @@ void UCheatMenuEggButton_C::BndEvt__SpawnButton_K2Node_ComponentBoundEvent_160_O
 // Function CheatMenuEggButton.CheatMenuEggButton_C.ExecuteUbergraph_CheatMenuEggButton
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               Temp_bool_Variable                                               (ConstParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               Temp_bool_Variable_1                                             (ConstParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// class APlayerController*           CallFunc_GetPlayerController_ReturnValue                         (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-// class AShooterPlayerController*    K2Node_DynamicCast_AsShooter_Player_Controller                   (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class FText                        CallFunc_GetText_ReturnValue                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// bool                               CallFunc_IsChecked_ReturnValue                                   (ConstParm, BlueprintVisible, ExportObject, Net, Parm, Transient, EditConst, SubobjectReference)
-// int32                              CallFunc_Conv_StringToInt_ReturnValue                            (Edit, ConstParm, Net, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// TSoftClassPtr<class UPrimalItem>   K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValidSoftClassReference_ReturnValue                   (ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, EditConst, SubobjectReference)
-// TSoftClassPtr<class UPrimalItem>   K2Node_Select_Default_1                                          (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_IsValidSoftClassReference_ReturnValue_1                 (ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               Temp_bool_Variable_1                                             (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference, Interp)
+// class APlayerController*           CallFunc_GetPlayerController_ReturnValue                         (BlueprintReadOnly, Net, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class AShooterPlayerController*    K2Node_DynamicCast_AsShooter_Player_Controller                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class FText                        CallFunc_GetText_ReturnValue                                     (Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsChecked_ReturnValue                                   (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Conv_StringToInt_ReturnValue                            (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// TSoftClassPtr<class UPrimalItem>   K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValidSoftClassReference_ReturnValue                   (Net, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// TSoftClassPtr<class UPrimalItem>   K2Node_Select_Default_1                                          (EditFixedSize, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_IsValidSoftClassReference_ReturnValue_1                 (Net, ReturnParm, DisableEditOnInstance, SubobjectReference, Interp)
 
-class AShooterPlayerController* UCheatMenuEggButton_C::ExecuteUbergraph_CheatMenuEggButton(bool Temp_bool_Variable, bool Temp_bool_Variable_1, class APlayerController* CallFunc_GetPlayerController_ReturnValue, bool* K2Node_DynamicCast_bSuccess, class FText CallFunc_GetText_ReturnValue, const class FString& CallFunc_Conv_TextToString_ReturnValue, bool CallFunc_IsChecked_ReturnValue, int32 CallFunc_Conv_StringToInt_ReturnValue, TSoftClassPtr<class UPrimalItem>* K2Node_Select_Default, bool CallFunc_IsValidSoftClassReference_ReturnValue, TSoftClassPtr<class UPrimalItem>* K2Node_Select_Default_1, bool CallFunc_IsValidSoftClassReference_ReturnValue_1)
+bool UCheatMenuEggButton_C::ExecuteUbergraph_CheatMenuEggButton(int32 EntryPoint, bool Temp_bool_Variable, bool Temp_bool_Variable_1, class APlayerController* CallFunc_GetPlayerController_ReturnValue, class AShooterPlayerController** K2Node_DynamicCast_AsShooter_Player_Controller, TSoftClassPtr<class UPrimalItem> K2Node_Select_Default, TSoftClassPtr<class UPrimalItem> K2Node_Select_Default_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -85,26 +85,17 @@ class AShooterPlayerController* UCheatMenuEggButton_C::ExecuteUbergraph_CheatMen
 
 	Params::UCheatMenuEggButton_C_ExecuteUbergraph_CheatMenuEggButton_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
 	Parms.Temp_bool_Variable = Temp_bool_Variable;
 	Parms.Temp_bool_Variable_1 = Temp_bool_Variable_1;
 	Parms.CallFunc_GetPlayerController_ReturnValue = CallFunc_GetPlayerController_ReturnValue;
-	Parms.CallFunc_GetText_ReturnValue = CallFunc_GetText_ReturnValue;
-	Parms.CallFunc_Conv_TextToString_ReturnValue = CallFunc_Conv_TextToString_ReturnValue;
-	Parms.CallFunc_IsChecked_ReturnValue = CallFunc_IsChecked_ReturnValue;
-	Parms.CallFunc_Conv_StringToInt_ReturnValue = CallFunc_Conv_StringToInt_ReturnValue;
-	Parms.CallFunc_IsValidSoftClassReference_ReturnValue = CallFunc_IsValidSoftClassReference_ReturnValue;
-	Parms.CallFunc_IsValidSoftClassReference_ReturnValue_1 = CallFunc_IsValidSoftClassReference_ReturnValue_1;
+	Parms.K2Node_Select_Default = K2Node_Select_Default;
+	Parms.K2Node_Select_Default_1 = K2Node_Select_Default_1;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (K2Node_DynamicCast_bSuccess != nullptr)
-		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
-
-	if (K2Node_Select_Default != nullptr)
-		*K2Node_Select_Default = Parms.K2Node_Select_Default;
-
-	if (K2Node_Select_Default_1 != nullptr)
-		*K2Node_Select_Default_1 = Parms.K2Node_Select_Default_1;
+	if (K2Node_DynamicCast_AsShooter_Player_Controller != nullptr)
+		*K2Node_DynamicCast_AsShooter_Player_Controller = Parms.K2Node_DynamicCast_AsShooter_Player_Controller;
 
 	return Parms.ReturnValue;
 

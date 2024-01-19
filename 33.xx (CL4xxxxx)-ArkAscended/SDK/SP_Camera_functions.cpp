@@ -67,11 +67,11 @@ void USPCameraMode::ResetToDefaultSettings()
 // Function SP_Camera.SPCameraMode.GetCustomFocusDistance
 // (Event, Protected, HasOutParams, HasDefaults, BlueprintEvent, Const)
 // Parameters:
-// class AActor*                      ViewTarget                                                       (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FTransform                  ViewToWorld                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      ViewTarget                                                       (Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// struct FTransform                  ViewToWorld                                                      (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USPCameraMode::GetCustomFocusDistance(const struct FTransform& ViewToWorld)
+struct FTransform USPCameraMode::GetCustomFocusDistance(class AActor* ViewTarget, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -80,7 +80,8 @@ float USPCameraMode::GetCustomFocusDistance(const struct FTransform& ViewToWorld
 
 	Params::USPCameraMode_GetCustomFocusDistance_Params Parms{};
 
-	Parms.ViewToWorld = ViewToWorld;
+	Parms.ViewTarget = ViewTarget;
+	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -120,10 +121,10 @@ class USPCam_AttachedCamera* USPCam_AttachedCamera::GetDefaultObj()
 // Function SP_Camera.SPCam_AttachedCamera.ChooseViewCameraComponent
 // (Native, Event, Public, BlueprintEvent, Const)
 // Parameters:
-// class AActor*                      ViewTarget                                                       (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UCameraComponent*            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      ViewTarget                                                       (Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// class UCameraComponent*            ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UCameraComponent* USPCam_AttachedCamera::ChooseViewCameraComponent()
+void USPCam_AttachedCamera::ChooseViewCameraComponent(class AActor* ViewTarget, class UCameraComponent* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -132,6 +133,8 @@ class UCameraComponent* USPCam_AttachedCamera::ChooseViewCameraComponent()
 
 	Params::USPCam_AttachedCamera_ChooseViewCameraComponent_Params Parms{};
 
+	Parms.ViewTarget = ViewTarget;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -140,8 +143,6 @@ class UCameraComponent* USPCam_AttachedCamera::ChooseViewCameraComponent()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -205,9 +206,9 @@ class ASPPlayerCameraManager* ASPPlayerCameraManager::GetDefaultObj()
 // Function SP_Camera.SPPlayerCameraManager.StopAmbientCameraShake
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bImmediate                                                       (Edit, ConstParm, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bImmediate                                                       (Edit, Net, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool ASPPlayerCameraManager::StopAmbientCameraShake()
+void ASPPlayerCameraManager::StopAmbientCameraShake(bool* bImmediate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -225,7 +226,8 @@ bool ASPPlayerCameraManager::StopAmbientCameraShake()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bImmediate != nullptr)
+		*bImmediate = Parms.bImmediate;
 
 }
 
@@ -305,10 +307,10 @@ void ASPPlayerCameraManager::SkipBlends()
 // Function SP_Camera.SPPlayerCameraManager.SetViewPitchLimits
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              MinPitch                                                         (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// float                              MaxPitch                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              MinPitch                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              MaxPitch                                                         (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
 
-float ASPPlayerCameraManager::SetViewPitchLimits()
+void ASPPlayerCameraManager::SetViewPitchLimits(float* MinPitch, float* MaxPitch)
 {
 	static class UFunction* Func = nullptr;
 
@@ -326,7 +328,11 @@ float ASPPlayerCameraManager::SetViewPitchLimits()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (MinPitch != nullptr)
+		*MinPitch = Parms.MinPitch;
+
+	if (MaxPitch != nullptr)
+		*MaxPitch = Parms.MaxPitch;
 
 }
 
@@ -334,9 +340,9 @@ float ASPPlayerCameraManager::SetViewPitchLimits()
 // Function SP_Camera.SPPlayerCameraManager.SetUsingAlternateCamera
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bNewUsingAltCamera                                               (Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bNewUsingAltCamera                                               (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
 
-bool ASPPlayerCameraManager::SetUsingAlternateCamera()
+void ASPPlayerCameraManager::SetUsingAlternateCamera(bool* bNewUsingAltCamera)
 {
 	static class UFunction* Func = nullptr;
 
@@ -354,7 +360,8 @@ bool ASPPlayerCameraManager::SetUsingAlternateCamera()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bNewUsingAltCamera != nullptr)
+		*bNewUsingAltCamera = Parms.bNewUsingAltCamera;
 
 }
 
@@ -362,9 +369,9 @@ bool ASPPlayerCameraManager::SetUsingAlternateCamera()
 // Function SP_Camera.SPPlayerCameraManager.SetDebugCameraStyle
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EDebugCameraStyle       NewDebugCameraStyle                                              (ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EDebugCameraStyle       NewDebugCameraStyle                                              (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
 
-enum class EDebugCameraStyle ASPPlayerCameraManager::SetDebugCameraStyle()
+void ASPPlayerCameraManager::SetDebugCameraStyle(enum class EDebugCameraStyle* NewDebugCameraStyle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -382,7 +389,8 @@ enum class EDebugCameraStyle ASPPlayerCameraManager::SetDebugCameraStyle()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewDebugCameraStyle != nullptr)
+		*NewDebugCameraStyle = Parms.NewDebugCameraStyle;
 
 }
 
@@ -414,9 +422,9 @@ void ASPPlayerCameraManager::ResetViewPitchLimits()
 // Function SP_Camera.SPPlayerCameraManager.IsUsingAlternateCamera
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool ASPPlayerCameraManager::IsUsingAlternateCamera()
+void ASPPlayerCameraManager::IsUsingAlternateCamera(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -425,6 +433,7 @@ bool ASPPlayerCameraManager::IsUsingAlternateCamera()
 
 	Params::ASPPlayerCameraManager_IsUsingAlternateCamera_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -434,17 +443,15 @@ bool ASPPlayerCameraManager::IsUsingAlternateCamera()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function SP_Camera.SPPlayerCameraManager.GetCurrentCameraMode
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USPCameraMode*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USPCameraMode*               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USPCameraMode* ASPPlayerCameraManager::GetCurrentCameraMode()
+void ASPPlayerCameraManager::GetCurrentCameraMode(class USPCameraMode* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -453,6 +460,7 @@ class USPCameraMode* ASPPlayerCameraManager::GetCurrentCameraMode()
 
 	Params::ASPPlayerCameraManager_GetCurrentCameraMode_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -462,18 +470,16 @@ class USPCameraMode* ASPPlayerCameraManager::GetCurrentCameraMode()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function SP_Camera.SPPlayerCameraManager.GetCameraClassForCharacter
 // (Native, Event, Protected, BlueprintEvent, Const)
 // Parameters:
-// class AActor*                      InViewTarget                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UClass*                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      InViewTarget                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UClass* ASPPlayerCameraManager::GetCameraClassForCharacter()
+void ASPPlayerCameraManager::GetCameraClassForCharacter(class AActor** InViewTarget, class UClass* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -482,6 +488,7 @@ class UClass* ASPPlayerCameraManager::GetCameraClassForCharacter()
 
 	Params::ASPPlayerCameraManager_GetCameraClassForCharacter_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -491,7 +498,8 @@ class UClass* ASPPlayerCameraManager::GetCameraClassForCharacter()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InViewTarget != nullptr)
+		*InViewTarget = Parms.InViewTarget;
 
 }
 
@@ -499,11 +507,11 @@ class UClass* ASPPlayerCameraManager::GetCameraClassForCharacter()
 // Function SP_Camera.SPPlayerCameraManager.ConfigureAlternateCamera
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      NewAltCameraMode                                                 (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class AActor*                      NewAltViewTarget                                                 (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// float                              NewAltCameraTransitionTime                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      NewAltCameraMode                                                 (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      NewAltViewTarget                                                 (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              NewAltCameraTransitionTime                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
 
-float ASPPlayerCameraManager::ConfigureAlternateCamera()
+void ASPPlayerCameraManager::ConfigureAlternateCamera(class UClass** NewAltCameraMode, class AActor** NewAltViewTarget, float* NewAltCameraTransitionTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -521,7 +529,14 @@ float ASPPlayerCameraManager::ConfigureAlternateCamera()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewAltCameraMode != nullptr)
+		*NewAltCameraMode = Parms.NewAltCameraMode;
+
+	if (NewAltViewTarget != nullptr)
+		*NewAltViewTarget = Parms.NewAltViewTarget;
+
+	if (NewAltCameraTransitionTime != nullptr)
+		*NewAltCameraTransitionTime = Parms.NewAltCameraTransitionTime;
 
 }
 

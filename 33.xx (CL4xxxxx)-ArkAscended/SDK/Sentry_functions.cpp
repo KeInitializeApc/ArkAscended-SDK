@@ -43,11 +43,11 @@ class USentryAttachment* USentryAttachment::GetDefaultObj()
 // Function Sentry.SentryAttachment.InitializeWithPath
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Path                                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig)
+// class FString                      Path                                                             (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Config, EditConst, SubobjectReference)
 // class FString                      Filename                                                         (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm)
-// class FString                      ContentType                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FString                      ContentType                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-class FString USentryAttachment::InitializeWithPath(const class FString& Path, class FString* ContentType)
+class FString USentryAttachment::InitializeWithPath(const class FString& Path)
 {
 	static class UFunction* Func = nullptr;
 
@@ -66,9 +66,6 @@ class FString USentryAttachment::InitializeWithPath(const class FString& Path, c
 
 	Func->FunctionFlags = Flgs;
 
-	if (ContentType != nullptr)
-		*ContentType = std::move(Parms.ContentType);
-
 	return Parms.ReturnValue;
 
 }
@@ -77,11 +74,11 @@ class FString USentryAttachment::InitializeWithPath(const class FString& Path, c
 // Function Sentry.SentryAttachment.InitializeWithData
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<uint8>                      Data                                                             (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<uint8>                      Data                                                             (ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // class FString                      Filename                                                         (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm)
-// class FString                      ContentType                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FString                      ContentType                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-class FString USentryAttachment::InitializeWithData(const TArray<uint8>& Data, class FString* ContentType)
+class FString USentryAttachment::InitializeWithData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -90,7 +87,6 @@ class FString USentryAttachment::InitializeWithData(const TArray<uint8>& Data, c
 
 	Params::USentryAttachment_InitializeWithData_Params Parms{};
 
-	Parms.Data = Data;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -99,9 +95,6 @@ class FString USentryAttachment::InitializeWithData(const TArray<uint8>& Data, c
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ContentType != nullptr)
-		*ContentType = std::move(Parms.ContentType);
 
 	return Parms.ReturnValue;
 
@@ -111,9 +104,9 @@ class FString USentryAttachment::InitializeWithData(const TArray<uint8>& Data, c
 // Function Sentry.SentryAttachment.GetPath
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryAttachment::GetPath()
+void USentryAttachment::GetPath(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -122,6 +115,7 @@ class FString USentryAttachment::GetPath()
 
 	Params::USentryAttachment_GetPath_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -131,17 +125,15 @@ class FString USentryAttachment::GetPath()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryAttachment.GetFilename
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryAttachment::GetFilename()
+void USentryAttachment::GetFilename(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -150,6 +142,7 @@ class FString USentryAttachment::GetFilename()
 
 	Params::USentryAttachment_GetFilename_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -159,17 +152,15 @@ class FString USentryAttachment::GetFilename()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryAttachment.GetData
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<uint8>                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<uint8>                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<uint8> USentryAttachment::GetData()
+void USentryAttachment::GetData(const TArray<uint8>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -178,6 +169,7 @@ TArray<uint8> USentryAttachment::GetData()
 
 	Params::USentryAttachment_GetData_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -187,17 +179,15 @@ TArray<uint8> USentryAttachment::GetData()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryAttachment.GetContentType
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryAttachment::GetContentType()
+void USentryAttachment::GetContentType(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -206,6 +196,7 @@ class FString USentryAttachment::GetContentType()
 
 	Params::USentryAttachment_GetContentType_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -214,8 +205,6 @@ class FString USentryAttachment::GetContentType()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -279,7 +268,7 @@ class FString USentryBreadcrumb::SetType()
 // Function Sentry.SentryBreadcrumb.SetMessage
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Message                                                          (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Message                                                          (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
 class FString USentryBreadcrumb::SetMessage()
 {
@@ -335,9 +324,9 @@ enum class ESentryLevel USentryBreadcrumb::SetLevel()
 // Function Sentry.SentryBreadcrumb.SetData
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TMap<class FString, class FString> Data                                                             (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TMap<class FString, class FString> Data                                                             (ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USentryBreadcrumb::SetData(TMap<class FString, class FString> Data)
+TMap<class FString, class FString> USentryBreadcrumb::SetData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -346,7 +335,6 @@ void USentryBreadcrumb::SetData(TMap<class FString, class FString> Data)
 
 	Params::USentryBreadcrumb_SetData_Params Parms{};
 
-	Parms.Data = Data;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -355,6 +343,8 @@ void USentryBreadcrumb::SetData(TMap<class FString, class FString> Data)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -391,9 +381,9 @@ void USentryBreadcrumb::SetCategory(class FString* Category)
 // Function Sentry.SentryBreadcrumb.GetType
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryBreadcrumb::GetType()
+void USentryBreadcrumb::GetType(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -402,6 +392,7 @@ class FString USentryBreadcrumb::GetType()
 
 	Params::USentryBreadcrumb_GetType_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -411,17 +402,15 @@ class FString USentryBreadcrumb::GetType()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryBreadcrumb.GetMessage
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryBreadcrumb::GetMessage()
+void USentryBreadcrumb::GetMessage(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -430,6 +419,7 @@ class FString USentryBreadcrumb::GetMessage()
 
 	Params::USentryBreadcrumb_GetMessage_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -439,17 +429,15 @@ class FString USentryBreadcrumb::GetMessage()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryBreadcrumb.GetLevel
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class ESentryLevel            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ESentryLevel            ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class ESentryLevel USentryBreadcrumb::GetLevel()
+void USentryBreadcrumb::GetLevel(enum class ESentryLevel ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -458,6 +446,7 @@ enum class ESentryLevel USentryBreadcrumb::GetLevel()
 
 	Params::USentryBreadcrumb_GetLevel_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -467,17 +456,15 @@ enum class ESentryLevel USentryBreadcrumb::GetLevel()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryBreadcrumb.GetData
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TMap<class FString, class FString> ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TMap<class FString, class FString> ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TMap<class FString, class FString> USentryBreadcrumb::GetData()
+void USentryBreadcrumb::GetData(TMap<class FString, class FString> ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -486,6 +473,7 @@ TMap<class FString, class FString> USentryBreadcrumb::GetData()
 
 	Params::USentryBreadcrumb_GetData_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -495,17 +483,15 @@ TMap<class FString, class FString> USentryBreadcrumb::GetData()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryBreadcrumb.GetCategory
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryBreadcrumb::GetCategory()
+void USentryBreadcrumb::GetCategory(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -514,6 +500,7 @@ class FString USentryBreadcrumb::GetCategory()
 
 	Params::USentryBreadcrumb_GetCategory_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -522,8 +509,6 @@ class FString USentryBreadcrumb::GetCategory()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -559,7 +544,7 @@ class USentryEvent* USentryEvent::GetDefaultObj()
 // Function Sentry.SentryEvent.SetMessage
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Message                                                          (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Message                                                          (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
 class FString USentryEvent::SetMessage()
 {
@@ -615,9 +600,9 @@ enum class ESentryLevel USentryEvent::SetLevel()
 // Function Sentry.SentryEvent.GetMessage
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryEvent::GetMessage()
+void USentryEvent::GetMessage(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -626,6 +611,7 @@ class FString USentryEvent::GetMessage()
 
 	Params::USentryEvent_GetMessage_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -635,17 +621,15 @@ class FString USentryEvent::GetMessage()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryEvent.GetLevel
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class ESentryLevel            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ESentryLevel            ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class ESentryLevel USentryEvent::GetLevel()
+void USentryEvent::GetLevel(enum class ESentryLevel ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -654,6 +638,7 @@ enum class ESentryLevel USentryEvent::GetLevel()
 
 	Params::USentryEvent_GetLevel_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -662,8 +647,6 @@ enum class ESentryLevel USentryEvent::GetLevel()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -699,9 +682,9 @@ class USentryId* USentryId::GetDefaultObj()
 // Function Sentry.SentryId.ToString
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryId::ToString()
+void USentryId::ToString(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -710,6 +693,7 @@ class FString USentryId::ToString()
 
 	Params::USentryId_ToString_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -718,8 +702,6 @@ class FString USentryId::ToString()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -755,10 +737,10 @@ class USentryLibrary* USentryLibrary::GetDefaultObj()
 // Function Sentry.SentryLibrary.StringToBytesArray
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InString                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// TArray<uint8>                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InString                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<uint8>                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<uint8> USentryLibrary::StringToBytesArray()
+class FString USentryLibrary::StringToBytesArray(const TArray<uint8>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -767,6 +749,7 @@ TArray<uint8> USentryLibrary::StringToBytesArray()
 
 	Params::USentryLibrary_StringToBytesArray_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -784,11 +767,11 @@ TArray<uint8> USentryLibrary::StringToBytesArray()
 // Function Sentry.SentryLibrary.SaveStringToFile
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InString                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InString                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // class FString                      Filename                                                         (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm)
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryLibrary::SaveStringToFile()
+class FString USentryLibrary::SaveStringToFile(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -797,6 +780,7 @@ class FString USentryLibrary::SaveStringToFile()
 
 	Params::USentryLibrary_SaveStringToFile_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -814,13 +798,13 @@ class FString USentryLibrary::SaveStringToFile()
 // Function Sentry.SentryLibrary.CreateSentryUserFeedback
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class USentryId*                   EventId                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class USentryId*                   EventId                                                          (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// class FString                      Email                                                            (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// class FString                      Comments                                                         (ConstParm, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class USentryUserFeedback*         ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Email                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// class FString                      Comments                                                         (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class USentryUserFeedback*         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USentryUserFeedback* USentryLibrary::CreateSentryUserFeedback(class USentryId** EventId, class FString* Name, const class FString& Email, class FString* Comments)
+class FString USentryLibrary::CreateSentryUserFeedback(class FString* Name, class USentryUserFeedback* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -829,7 +813,7 @@ class USentryUserFeedback* USentryLibrary::CreateSentryUserFeedback(class USentr
 
 	Params::USentryLibrary_CreateSentryUserFeedback_Params Parms{};
 
-	Parms.Email = Email;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -839,14 +823,8 @@ class USentryUserFeedback* USentryLibrary::CreateSentryUserFeedback(class USentr
 
 	Func->FunctionFlags = Flgs;
 
-	if (EventId != nullptr)
-		*EventId = Parms.EventId;
-
 	if (Name != nullptr)
 		*Name = std::move(Parms.Name);
-
-	if (Comments != nullptr)
-		*Comments = std::move(Parms.Comments);
 
 	return Parms.ReturnValue;
 
@@ -856,14 +834,14 @@ class USentryUserFeedback* USentryLibrary::CreateSentryUserFeedback(class USentr
 // Function Sentry.SentryLibrary.CreateSentryUser
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      Email                                                            (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// class FString                      Email                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 // class FString                      ID                                                               (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// class FString                      Username                                                         (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// class FString                      IpAddress                                                        (BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// TMap<class FString, class FString> Data                                                             (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class USentryUser*                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Username                                                         (BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// class FString                      IpAddress                                                        (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// TMap<class FString, class FString> Data                                                             (ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USentryUser*                 ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USentryUser* USentryLibrary::CreateSentryUser(const class FString& Email, class FString* ID, const class FString& Username, class FString* IpAddress, TMap<class FString, class FString> Data)
+TMap<class FString, class FString> USentryLibrary::CreateSentryUser(class FString* ID, class USentryUser* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -872,9 +850,7 @@ class USentryUser* USentryLibrary::CreateSentryUser(const class FString& Email, 
 
 	Params::USentryLibrary_CreateSentryUser_Params Parms{};
 
-	Parms.Email = Email;
-	Parms.Username = Username;
-	Parms.Data = Data;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -887,9 +863,6 @@ class USentryUser* USentryLibrary::CreateSentryUser(const class FString& Email, 
 	if (ID != nullptr)
 		*ID = std::move(Parms.ID);
 
-	if (IpAddress != nullptr)
-		*IpAddress = std::move(Parms.IpAddress);
-
 	return Parms.ReturnValue;
 
 }
@@ -898,11 +871,11 @@ class USentryUser* USentryLibrary::CreateSentryUser(const class FString& Email, 
 // Function Sentry.SentryLibrary.CreateSentryEvent
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Message                                                          (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Message                                                          (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // enum class ESentryLevel            Level                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-// class USentryEvent*                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USentryEvent*                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USentryEvent* USentryLibrary::CreateSentryEvent()
+enum class ESentryLevel USentryLibrary::CreateSentryEvent(class USentryEvent* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -911,6 +884,7 @@ class USentryEvent* USentryLibrary::CreateSentryEvent()
 
 	Params::USentryLibrary_CreateSentryEvent_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -928,14 +902,14 @@ class USentryEvent* USentryLibrary::CreateSentryEvent()
 // Function Sentry.SentryLibrary.CreateSentryBreadcrumb
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      Message                                                          (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Message                                                          (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // class FString                      Type                                                             (Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
 // class FString                      Category                                                         (ConstParm, BlueprintReadOnly, OutParm, Transient)
-// TMap<class FString, class FString> Data                                                             (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TMap<class FString, class FString> Data                                                             (ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // enum class ESentryLevel            Level                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-// class USentryBreadcrumb*           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USentryBreadcrumb*           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USentryBreadcrumb* USentryLibrary::CreateSentryBreadcrumb(class FString* Category, TMap<class FString, class FString> Data)
+enum class ESentryLevel USentryLibrary::CreateSentryBreadcrumb(class FString* Category, class USentryBreadcrumb* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -944,7 +918,7 @@ class USentryBreadcrumb* USentryLibrary::CreateSentryBreadcrumb(class FString* C
 
 	Params::USentryLibrary_CreateSentryBreadcrumb_Params Parms{};
 
-	Parms.Data = Data;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -965,12 +939,12 @@ class USentryBreadcrumb* USentryLibrary::CreateSentryBreadcrumb(class FString* C
 // Function Sentry.SentryLibrary.CreateSentryAttachmentWithPath
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Path                                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig)
+// class FString                      Path                                                             (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Config, EditConst, SubobjectReference)
 // class FString                      Filename                                                         (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm)
-// class FString                      ContentType                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class USentryAttachment*           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ContentType                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class USentryAttachment*           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USentryAttachment* USentryLibrary::CreateSentryAttachmentWithPath(const class FString& Path, class FString* ContentType)
+class FString USentryLibrary::CreateSentryAttachmentWithPath(const class FString& Path, class USentryAttachment* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -980,6 +954,7 @@ class USentryAttachment* USentryLibrary::CreateSentryAttachmentWithPath(const cl
 	Params::USentryLibrary_CreateSentryAttachmentWithPath_Params Parms{};
 
 	Parms.Path = Path;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -988,9 +963,6 @@ class USentryAttachment* USentryLibrary::CreateSentryAttachmentWithPath(const cl
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ContentType != nullptr)
-		*ContentType = std::move(Parms.ContentType);
 
 	return Parms.ReturnValue;
 
@@ -1000,12 +972,12 @@ class USentryAttachment* USentryLibrary::CreateSentryAttachmentWithPath(const cl
 // Function Sentry.SentryLibrary.CreateSentryAttachmentWithData
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<uint8>                      Data                                                             (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<uint8>                      Data                                                             (ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // class FString                      Filename                                                         (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm)
-// class FString                      ContentType                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class USentryAttachment*           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ContentType                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class USentryAttachment*           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USentryAttachment* USentryLibrary::CreateSentryAttachmentWithData(const TArray<uint8>& Data, class FString* ContentType)
+class FString USentryLibrary::CreateSentryAttachmentWithData(class USentryAttachment* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1014,7 +986,7 @@ class USentryAttachment* USentryLibrary::CreateSentryAttachmentWithData(const TA
 
 	Params::USentryLibrary_CreateSentryAttachmentWithData_Params Parms{};
 
-	Parms.Data = Data;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1023,9 +995,6 @@ class USentryAttachment* USentryLibrary::CreateSentryAttachmentWithData(const TA
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (ContentType != nullptr)
-		*ContentType = std::move(Parms.ContentType);
 
 	return Parms.ReturnValue;
 
@@ -1036,9 +1005,9 @@ class USentryAttachment* USentryLibrary::CreateSentryAttachmentWithData(const TA
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // TArray<uint8>                      Array                                                            (ExportObject, Parm, OutParm, ZeroConstructor)
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryLibrary::ByteArrayToString(TArray<uint8>* Array)
+void USentryLibrary::ByteArrayToString(TArray<uint8>* Array, const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1047,6 +1016,7 @@ class FString USentryLibrary::ByteArrayToString(TArray<uint8>* Array)
 
 	Params::USentryLibrary_ByteArrayToString_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1058,8 +1028,6 @@ class FString USentryLibrary::ByteArrayToString(TArray<uint8>* Array)
 
 	if (Array != nullptr)
 		*Array = std::move(Parms.Array);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1181,9 +1149,9 @@ enum class ESentryLevel USentryScope::SetLevel()
 // Function Sentry.SentryScope.SetFingerprint
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class FString>              Fingerprint                                                      (Edit, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// TArray<class FString>              Fingerprint                                                      (EditFixedSize, Parm, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-TArray<class FString> USentryScope::SetFingerprint()
+void USentryScope::SetFingerprint(TArray<class FString>* Fingerprint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1201,7 +1169,8 @@ TArray<class FString> USentryScope::SetFingerprint()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Fingerprint != nullptr)
+		*Fingerprint = std::move(Parms.Fingerprint);
 
 }
 
@@ -1238,9 +1207,9 @@ void USentryScope::SetExtraValue(const class FString& Key, const class FString& 
 // Function Sentry.SentryScope.SetExtras
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TMap<class FString, class FString> Extras                                                           (Edit, ConstParm, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// TMap<class FString, class FString> Extras                                                           (Edit, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void USentryScope::SetExtras(TMap<class FString, class FString>* Extras)
+TMap<class FString, class FString> USentryScope::SetExtras()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1258,8 +1227,7 @@ void USentryScope::SetExtras(TMap<class FString, class FString>* Extras)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Extras != nullptr)
-		*Extras = Parms.Extras;
+	return Parms.ReturnValue;
 
 }
 
@@ -1267,9 +1235,9 @@ void USentryScope::SetExtras(TMap<class FString, class FString>* Extras)
 // Function Sentry.SentryScope.SetEnvironment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Environment                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      Environment                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void USentryScope::SetEnvironment(class FString* Environment)
+class FString USentryScope::SetEnvironment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1287,8 +1255,7 @@ void USentryScope::SetEnvironment(class FString* Environment)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Environment != nullptr)
-		*Environment = std::move(Parms.Environment);
+	return Parms.ReturnValue;
 
 }
 
@@ -1296,9 +1263,9 @@ void USentryScope::SetEnvironment(class FString* Environment)
 // Function Sentry.SentryScope.SetDist
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Dist                                                             (EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FString                      Dist                                                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void USentryScope::SetDist(class FString* Dist)
+class FString USentryScope::SetDist()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1316,8 +1283,7 @@ void USentryScope::SetDist(class FString* Dist)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Dist != nullptr)
-		*Dist = std::move(Parms.Dist);
+	return Parms.ReturnValue;
 
 }
 
@@ -1437,9 +1403,9 @@ void USentryScope::RemoveContext(const class FString& Key)
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // class FString                      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryScope::GetTagValue(const class FString& Key)
+void USentryScope::GetTagValue(const class FString& Key, const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1449,6 +1415,7 @@ class FString USentryScope::GetTagValue(const class FString& Key)
 	Params::USentryScope_GetTagValue_Params Parms{};
 
 	Parms.Key = Key;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1458,17 +1425,15 @@ class FString USentryScope::GetTagValue(const class FString& Key)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryScope.GetTags
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TMap<class FString, class FString> ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TMap<class FString, class FString> ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TMap<class FString, class FString> USentryScope::GetTags()
+void USentryScope::GetTags(TMap<class FString, class FString> ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1477,6 +1442,7 @@ TMap<class FString, class FString> USentryScope::GetTags()
 
 	Params::USentryScope_GetTags_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1486,17 +1452,15 @@ TMap<class FString, class FString> USentryScope::GetTags()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryScope.GetLevel
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class ESentryLevel            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ESentryLevel            ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class ESentryLevel USentryScope::GetLevel()
+void USentryScope::GetLevel(enum class ESentryLevel ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1505,6 +1469,7 @@ enum class ESentryLevel USentryScope::GetLevel()
 
 	Params::USentryScope_GetLevel_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1514,17 +1479,15 @@ enum class ESentryLevel USentryScope::GetLevel()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryScope.GetFingerprint
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<class FString> USentryScope::GetFingerprint()
+void USentryScope::GetFingerprint(const TArray<class FString>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1533,6 +1496,7 @@ TArray<class FString> USentryScope::GetFingerprint()
 
 	Params::USentryScope_GetFingerprint_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1542,8 +1506,6 @@ TArray<class FString> USentryScope::GetFingerprint()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -1551,9 +1513,9 @@ TArray<class FString> USentryScope::GetFingerprint()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // class FString                      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryScope::GetExtraValue(const class FString& Key)
+void USentryScope::GetExtraValue(const class FString& Key, const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1563,6 +1525,7 @@ class FString USentryScope::GetExtraValue(const class FString& Key)
 	Params::USentryScope_GetExtraValue_Params Parms{};
 
 	Parms.Key = Key;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1572,17 +1535,15 @@ class FString USentryScope::GetExtraValue(const class FString& Key)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryScope.GetExtras
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TMap<class FString, class FString> ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TMap<class FString, class FString> ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TMap<class FString, class FString> USentryScope::GetExtras()
+void USentryScope::GetExtras(TMap<class FString, class FString> ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1591,6 +1552,7 @@ TMap<class FString, class FString> USentryScope::GetExtras()
 
 	Params::USentryScope_GetExtras_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1600,17 +1562,15 @@ TMap<class FString, class FString> USentryScope::GetExtras()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryScope.GetEnvironment
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryScope::GetEnvironment()
+void USentryScope::GetEnvironment(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1619,6 +1579,7 @@ class FString USentryScope::GetEnvironment()
 
 	Params::USentryScope_GetEnvironment_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1628,17 +1589,15 @@ class FString USentryScope::GetEnvironment()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryScope.GetDist
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryScope::GetDist()
+void USentryScope::GetDist(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1647,6 +1606,7 @@ class FString USentryScope::GetDist()
 
 	Params::USentryScope_GetDist_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1655,8 +1615,6 @@ class FString USentryScope::GetDist()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1736,9 +1694,9 @@ void USentryScope::Clear()
 // Function Sentry.SentryScope.AddBreadcrumb
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USentryBreadcrumb*           Breadcrumb                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class USentryBreadcrumb*           Breadcrumb                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void USentryScope::AddBreadcrumb(class USentryBreadcrumb** Breadcrumb)
+class USentryBreadcrumb* USentryScope::AddBreadcrumb()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1756,8 +1714,7 @@ void USentryScope::AddBreadcrumb(class USentryBreadcrumb** Breadcrumb)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Breadcrumb != nullptr)
-		*Breadcrumb = Parms.Breadcrumb;
+	return Parms.ReturnValue;
 
 }
 
@@ -1765,9 +1722,9 @@ void USentryScope::AddBreadcrumb(class USentryBreadcrumb** Breadcrumb)
 // Function Sentry.SentryScope.AddAttachment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USentryAttachment*           Attachment                                                       (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class USentryAttachment*           Attachment                                                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void USentryScope::AddAttachment(class USentryAttachment** Attachment)
+class USentryAttachment* USentryScope::AddAttachment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1785,8 +1742,7 @@ void USentryScope::AddAttachment(class USentryAttachment** Attachment)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Attachment != nullptr)
-		*Attachment = Parms.Attachment;
+	return Parms.ReturnValue;
 
 }
 
@@ -2017,9 +1973,9 @@ void USentrySubsystem::RemoveTag(const class FString& Key)
 // Function Sentry.SentrySubsystem.InitializeWithSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 OnConfigureSettings                                              (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnConfigureSettings                                              (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void USentrySubsystem::InitializeWithSettings(FDelegateProperty_ OnConfigureSettings)
+FDelegateProperty_ USentrySubsystem::InitializeWithSettings()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2028,7 +1984,6 @@ void USentrySubsystem::InitializeWithSettings(FDelegateProperty_ OnConfigureSett
 
 	Params::USentrySubsystem_InitializeWithSettings_Params Parms{};
 
-	Parms.OnConfigureSettings = OnConfigureSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2037,6 +1992,8 @@ void USentrySubsystem::InitializeWithSettings(FDelegateProperty_ OnConfigureSett
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -2068,9 +2025,9 @@ void USentrySubsystem::Initialize()
 // Function Sentry.SentrySubsystem.ConfigureScope
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 OnConfigureScope                                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnConfigureScope                                                 (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void USentrySubsystem::ConfigureScope(FDelegateProperty_* OnConfigureScope)
+FDelegateProperty_ USentrySubsystem::ConfigureScope()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2088,8 +2045,7 @@ void USentrySubsystem::ConfigureScope(FDelegateProperty_* OnConfigureScope)
 
 	Func->FunctionFlags = Flgs;
 
-	if (OnConfigureScope != nullptr)
-		*OnConfigureScope = Parms.OnConfigureScope;
+	return Parms.ReturnValue;
 
 }
 
@@ -2145,12 +2101,12 @@ void USentrySubsystem::ClearBreadcrumbs()
 // Function Sentry.SentrySubsystem.CaptureUserFeedbackWithParams
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USentryId*                   EventId                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class FString                      Email                                                            (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// class FString                      Comments                                                         (ConstParm, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class USentryId*                   EventId                                                          (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FString                      Email                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// class FString                      Comments                                                         (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
 
-void USentrySubsystem::CaptureUserFeedbackWithParams(class USentryId** EventId, const class FString& Email, class FString* Comments, class FString* Name)
+class FString USentrySubsystem::CaptureUserFeedbackWithParams(class FString* Name)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2159,7 +2115,6 @@ void USentrySubsystem::CaptureUserFeedbackWithParams(class USentryId** EventId, 
 
 	Params::USentrySubsystem_CaptureUserFeedbackWithParams_Params Parms{};
 
-	Parms.Email = Email;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2169,14 +2124,10 @@ void USentrySubsystem::CaptureUserFeedbackWithParams(class USentryId** EventId, 
 
 	Func->FunctionFlags = Flgs;
 
-	if (EventId != nullptr)
-		*EventId = Parms.EventId;
-
-	if (Comments != nullptr)
-		*Comments = std::move(Parms.Comments);
-
 	if (Name != nullptr)
 		*Name = std::move(Parms.Name);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -2184,9 +2135,9 @@ void USentrySubsystem::CaptureUserFeedbackWithParams(class USentryId** EventId, 
 // Function Sentry.SentrySubsystem.CaptureUserFeedback
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USentryUserFeedback*         UserFeedback                                                     (Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class USentryUserFeedback*         UserFeedback                                                     (Edit, ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void USentrySubsystem::CaptureUserFeedback(class USentryUserFeedback* UserFeedback)
+class USentryUserFeedback* USentrySubsystem::CaptureUserFeedback()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2195,7 +2146,6 @@ void USentrySubsystem::CaptureUserFeedback(class USentryUserFeedback* UserFeedba
 
 	Params::USentrySubsystem_CaptureUserFeedback_Params Parms{};
 
-	Parms.UserFeedback = UserFeedback;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2205,18 +2155,20 @@ void USentrySubsystem::CaptureUserFeedback(class USentryUserFeedback* UserFeedba
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Sentry.SentrySubsystem.CaptureMessageWithScope
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      Message                                                          (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// FDelegateProperty_                 OnConfigureScope                                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FString                      Message                                                          (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 OnConfigureScope                                                 (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 // enum class ESentryLevel            Level                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-// class USentryId*                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USentryId*                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USentryId* USentrySubsystem::CaptureMessageWithScope(FDelegateProperty_* OnConfigureScope)
+enum class ESentryLevel USentrySubsystem::CaptureMessageWithScope(class USentryId* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2225,6 +2177,7 @@ class USentryId* USentrySubsystem::CaptureMessageWithScope(FDelegateProperty_* O
 
 	Params::USentrySubsystem_CaptureMessageWithScope_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2233,9 +2186,6 @@ class USentryId* USentrySubsystem::CaptureMessageWithScope(FDelegateProperty_* O
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (OnConfigureScope != nullptr)
-		*OnConfigureScope = Parms.OnConfigureScope;
 
 	return Parms.ReturnValue;
 
@@ -2245,11 +2195,11 @@ class USentryId* USentrySubsystem::CaptureMessageWithScope(FDelegateProperty_* O
 // Function Sentry.SentrySubsystem.CaptureMessage
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Message                                                          (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Message                                                          (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // enum class ESentryLevel            Level                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-// class USentryId*                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USentryId*                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USentryId* USentrySubsystem::CaptureMessage()
+enum class ESentryLevel USentrySubsystem::CaptureMessage(class USentryId* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2258,6 +2208,7 @@ class USentryId* USentrySubsystem::CaptureMessage()
 
 	Params::USentrySubsystem_CaptureMessage_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2275,11 +2226,11 @@ class USentryId* USentrySubsystem::CaptureMessage()
 // Function Sentry.SentrySubsystem.CaptureEventWithScope
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class USentryEvent*                Event                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// FDelegateProperty_                 OnConfigureScope                                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class USentryId*                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USentryEvent*                Event                                                            (Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// FDelegateProperty_                 OnConfigureScope                                                 (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class USentryId*                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USentryId* USentrySubsystem::CaptureEventWithScope(FDelegateProperty_* OnConfigureScope)
+FDelegateProperty_ USentrySubsystem::CaptureEventWithScope(class USentryId* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2288,6 +2239,7 @@ class USentryId* USentrySubsystem::CaptureEventWithScope(FDelegateProperty_* OnC
 
 	Params::USentrySubsystem_CaptureEventWithScope_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2297,9 +2249,6 @@ class USentryId* USentrySubsystem::CaptureEventWithScope(FDelegateProperty_* OnC
 
 	Func->FunctionFlags = Flgs;
 
-	if (OnConfigureScope != nullptr)
-		*OnConfigureScope = Parms.OnConfigureScope;
-
 	return Parms.ReturnValue;
 
 }
@@ -2308,10 +2257,10 @@ class USentryId* USentrySubsystem::CaptureEventWithScope(FDelegateProperty_* OnC
 // Function Sentry.SentrySubsystem.CaptureEvent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USentryEvent*                Event                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class USentryId*                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USentryEvent*                Event                                                            (Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USentryId*                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USentryId* USentrySubsystem::CaptureEvent()
+class USentryEvent* USentrySubsystem::CaptureEvent(class USentryId* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2320,6 +2269,7 @@ class USentryId* USentrySubsystem::CaptureEvent()
 
 	Params::USentrySubsystem_CaptureEvent_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2337,13 +2287,13 @@ class USentryId* USentrySubsystem::CaptureEvent()
 // Function Sentry.SentrySubsystem.AddBreadcrumbWithParams
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      Message                                                          (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Message                                                          (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // class FString                      Category                                                         (ConstParm, BlueprintReadOnly, OutParm, Transient)
 // class FString                      Type                                                             (Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-// TMap<class FString, class FString> Data                                                             (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TMap<class FString, class FString> Data                                                             (ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // enum class ESentryLevel            Level                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
 
-enum class ESentryLevel USentrySubsystem::AddBreadcrumbWithParams(class FString* Category, TMap<class FString, class FString> Data)
+enum class ESentryLevel USentrySubsystem::AddBreadcrumbWithParams(class FString* Category)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2352,7 +2302,6 @@ enum class ESentryLevel USentrySubsystem::AddBreadcrumbWithParams(class FString*
 
 	Params::USentrySubsystem_AddBreadcrumbWithParams_Params Parms{};
 
-	Parms.Data = Data;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2373,9 +2322,9 @@ enum class ESentryLevel USentrySubsystem::AddBreadcrumbWithParams(class FString*
 // Function Sentry.SentrySubsystem.AddBreadcrumb
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USentryBreadcrumb*           Breadcrumb                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class USentryBreadcrumb*           Breadcrumb                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void USentrySubsystem::AddBreadcrumb(class USentryBreadcrumb** Breadcrumb)
+class USentryBreadcrumb* USentrySubsystem::AddBreadcrumb()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2393,8 +2342,7 @@ void USentrySubsystem::AddBreadcrumb(class USentryBreadcrumb** Breadcrumb)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Breadcrumb != nullptr)
-		*Breadcrumb = Parms.Breadcrumb;
+	return Parms.ReturnValue;
 
 }
 
@@ -2430,9 +2378,9 @@ class USentryUser* USentryUser::GetDefaultObj()
 // Function Sentry.SentryUser.SetUsername
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Username                                                         (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// class FString                      Username                                                         (BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void USentryUser::SetUsername(const class FString& Username)
+class FString USentryUser::SetUsername()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2441,7 +2389,6 @@ void USentryUser::SetUsername(const class FString& Username)
 
 	Params::USentryUser_SetUsername_Params Parms{};
 
-	Parms.Username = Username;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2451,15 +2398,17 @@ void USentryUser::SetUsername(const class FString& Username)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Sentry.SentryUser.SetIpAddress
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      IpAddress                                                        (BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FString                      IpAddress                                                        (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void USentryUser::SetIpAddress(class FString* IpAddress)
+class FString USentryUser::SetIpAddress()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2477,8 +2426,7 @@ void USentryUser::SetIpAddress(class FString* IpAddress)
 
 	Func->FunctionFlags = Flgs;
 
-	if (IpAddress != nullptr)
-		*IpAddress = std::move(Parms.IpAddress);
+	return Parms.ReturnValue;
 
 }
 
@@ -2515,9 +2463,9 @@ void USentryUser::SetId(class FString* ID)
 // Function Sentry.SentryUser.SetEmail
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Email                                                            (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// class FString                      Email                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void USentryUser::SetEmail(const class FString& Email)
+class FString USentryUser::SetEmail()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2526,7 +2474,6 @@ void USentryUser::SetEmail(const class FString& Email)
 
 	Params::USentryUser_SetEmail_Params Parms{};
 
-	Parms.Email = Email;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2536,15 +2483,17 @@ void USentryUser::SetEmail(const class FString& Email)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Sentry.SentryUser.SetData
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TMap<class FString, class FString> Data                                                             (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TMap<class FString, class FString> Data                                                             (ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void USentryUser::SetData(TMap<class FString, class FString> Data)
+TMap<class FString, class FString> USentryUser::SetData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2553,7 +2502,6 @@ void USentryUser::SetData(TMap<class FString, class FString> Data)
 
 	Params::USentryUser_SetData_Params Parms{};
 
-	Parms.Data = Data;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2563,15 +2511,17 @@ void USentryUser::SetData(TMap<class FString, class FString> Data)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Sentry.SentryUser.GetUsername
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryUser::GetUsername()
+void USentryUser::GetUsername(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2580,6 +2530,7 @@ class FString USentryUser::GetUsername()
 
 	Params::USentryUser_GetUsername_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2589,17 +2540,15 @@ class FString USentryUser::GetUsername()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryUser.GetIpAddress
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryUser::GetIpAddress()
+void USentryUser::GetIpAddress(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2608,6 +2557,7 @@ class FString USentryUser::GetIpAddress()
 
 	Params::USentryUser_GetIpAddress_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2617,17 +2567,15 @@ class FString USentryUser::GetIpAddress()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryUser.GetId
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryUser::GetId()
+void USentryUser::GetId(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2636,6 +2584,7 @@ class FString USentryUser::GetId()
 
 	Params::USentryUser_GetId_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2645,17 +2594,15 @@ class FString USentryUser::GetId()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryUser.GetEmail
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryUser::GetEmail()
+void USentryUser::GetEmail(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2664,6 +2611,7 @@ class FString USentryUser::GetEmail()
 
 	Params::USentryUser_GetEmail_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2673,17 +2621,15 @@ class FString USentryUser::GetEmail()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryUser.GetData
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TMap<class FString, class FString> ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TMap<class FString, class FString> ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TMap<class FString, class FString> USentryUser::GetData()
+void USentryUser::GetData(TMap<class FString, class FString> ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2692,6 +2638,7 @@ TMap<class FString, class FString> USentryUser::GetData()
 
 	Params::USentryUser_GetData_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2700,8 +2647,6 @@ TMap<class FString, class FString> USentryUser::GetData()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -2766,9 +2711,9 @@ void USentryUserFeedback::SetName(class FString* Name)
 // Function Sentry.SentryUserFeedback.SetEmail
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Email                                                            (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// class FString                      Email                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void USentryUserFeedback::SetEmail(const class FString& Email)
+class FString USentryUserFeedback::SetEmail()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2777,7 +2722,6 @@ void USentryUserFeedback::SetEmail(const class FString& Email)
 
 	Params::USentryUserFeedback_SetEmail_Params Parms{};
 
-	Parms.Email = Email;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2787,15 +2731,17 @@ void USentryUserFeedback::SetEmail(const class FString& Email)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Sentry.SentryUserFeedback.SetComment
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Comments                                                         (ConstParm, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class FString                      Comments                                                         (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void USentryUserFeedback::SetComment(class FString* Comments)
+class FString USentryUserFeedback::SetComment()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2813,8 +2759,7 @@ void USentryUserFeedback::SetComment(class FString* Comments)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Comments != nullptr)
-		*Comments = std::move(Parms.Comments);
+	return Parms.ReturnValue;
 
 }
 
@@ -2822,9 +2767,9 @@ void USentryUserFeedback::SetComment(class FString* Comments)
 // Function Sentry.SentryUserFeedback.Initialize
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USentryId*                   EventId                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class USentryId*                   EventId                                                          (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void USentryUserFeedback::Initialize(class USentryId** EventId)
+class USentryId* USentryUserFeedback::Initialize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2842,8 +2787,7 @@ void USentryUserFeedback::Initialize(class USentryId** EventId)
 
 	Func->FunctionFlags = Flgs;
 
-	if (EventId != nullptr)
-		*EventId = Parms.EventId;
+	return Parms.ReturnValue;
 
 }
 
@@ -2851,9 +2795,9 @@ void USentryUserFeedback::Initialize(class USentryId** EventId)
 // Function Sentry.SentryUserFeedback.GetName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryUserFeedback::GetName()
+void USentryUserFeedback::GetName(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2862,6 +2806,7 @@ class FString USentryUserFeedback::GetName()
 
 	Params::USentryUserFeedback_GetName_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2871,17 +2816,15 @@ class FString USentryUserFeedback::GetName()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryUserFeedback.GetEmail
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryUserFeedback::GetEmail()
+void USentryUserFeedback::GetEmail(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2890,6 +2833,7 @@ class FString USentryUserFeedback::GetEmail()
 
 	Params::USentryUserFeedback_GetEmail_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2899,17 +2843,15 @@ class FString USentryUserFeedback::GetEmail()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Sentry.SentryUserFeedback.GetComment
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString USentryUserFeedback::GetComment()
+void USentryUserFeedback::GetComment(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2918,6 +2860,7 @@ class FString USentryUserFeedback::GetComment()
 
 	Params::USentryUserFeedback_GetComment_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2926,8 +2869,6 @@ class FString USentryUserFeedback::GetComment()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 

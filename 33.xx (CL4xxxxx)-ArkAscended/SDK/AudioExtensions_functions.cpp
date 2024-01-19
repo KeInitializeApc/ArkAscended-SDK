@@ -183,9 +183,9 @@ class IAudioParameterControllerInterface* IAudioParameterControllerInterface::Ge
 // Function AudioExtensions.AudioParameterControllerInterface.SetTriggerParameter
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InName                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class FName IAudioParameterControllerInterface::SetTriggerParameter()
+void IAudioParameterControllerInterface::SetTriggerParameter(class FName* InName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -203,7 +203,8 @@ class FName IAudioParameterControllerInterface::SetTriggerParameter()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InName != nullptr)
+		*InName = Parms.InName;
 
 }
 
@@ -211,10 +212,10 @@ class FName IAudioParameterControllerInterface::SetTriggerParameter()
 // Function AudioExtensions.AudioParameterControllerInterface.SetStringParameter
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// class FName                        InName                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-class FString IAudioParameterControllerInterface::SetStringParameter()
+class FString IAudioParameterControllerInterface::SetStringParameter(class FName* InName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -232,6 +233,9 @@ class FString IAudioParameterControllerInterface::SetStringParameter()
 
 	Func->FunctionFlags = Flgs;
 
+	if (InName != nullptr)
+		*InName = Parms.InName;
+
 	return Parms.ReturnValue;
 
 }
@@ -240,10 +244,10 @@ class FString IAudioParameterControllerInterface::SetStringParameter()
 // Function AudioExtensions.AudioParameterControllerInterface.SetStringArrayParameter
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<class FString>              InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// class FName                        InName                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<class FString>              InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-TArray<class FString> IAudioParameterControllerInterface::SetStringArrayParameter()
+TArray<class FString> IAudioParameterControllerInterface::SetStringArrayParameter(class FName* InName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -261,6 +265,9 @@ TArray<class FString> IAudioParameterControllerInterface::SetStringArrayParamete
 
 	Func->FunctionFlags = Flgs;
 
+	if (InName != nullptr)
+		*InName = Parms.InName;
+
 	return Parms.ReturnValue;
 
 }
@@ -269,9 +276,9 @@ TArray<class FString> IAudioParameterControllerInterface::SetStringArrayParamete
 // Function AudioExtensions.AudioParameterControllerInterface.SetParameters_Blueprint
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FAudioParameter>     InParameters                                                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FAudioParameter>     InParameters                                                     (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 
-TArray<struct FAudioParameter> IAudioParameterControllerInterface::SetParameters_Blueprint()
+void IAudioParameterControllerInterface::SetParameters_Blueprint(const TArray<struct FAudioParameter>& InParameters)
 {
 	static class UFunction* Func = nullptr;
 
@@ -280,6 +287,7 @@ TArray<struct FAudioParameter> IAudioParameterControllerInterface::SetParameters
 
 	Params::IAudioParameterControllerInterface_SetParameters_Blueprint_Params Parms{};
 
+	Parms.InParameters = InParameters;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -289,18 +297,16 @@ TArray<struct FAudioParameter> IAudioParameterControllerInterface::SetParameters
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AudioExtensions.AudioParameterControllerInterface.SetObjectParameter
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UObject*                     InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// class FName                        InName                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UObject*                     InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-class UObject* IAudioParameterControllerInterface::SetObjectParameter()
+class UObject* IAudioParameterControllerInterface::SetObjectParameter(class FName* InName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -318,6 +324,9 @@ class UObject* IAudioParameterControllerInterface::SetObjectParameter()
 
 	Func->FunctionFlags = Flgs;
 
+	if (InName != nullptr)
+		*InName = Parms.InName;
+
 	return Parms.ReturnValue;
 
 }
@@ -326,10 +335,10 @@ class UObject* IAudioParameterControllerInterface::SetObjectParameter()
 // Function AudioExtensions.AudioParameterControllerInterface.SetObjectArrayParameter
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<class UObject*>             InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// class FName                        InName                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<class UObject*>             InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-TArray<class UObject*> IAudioParameterControllerInterface::SetObjectArrayParameter()
+TArray<class UObject*> IAudioParameterControllerInterface::SetObjectArrayParameter(class FName* InName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -347,6 +356,9 @@ TArray<class UObject*> IAudioParameterControllerInterface::SetObjectArrayParamet
 
 	Func->FunctionFlags = Flgs;
 
+	if (InName != nullptr)
+		*InName = Parms.InName;
+
 	return Parms.ReturnValue;
 
 }
@@ -355,10 +367,10 @@ TArray<class UObject*> IAudioParameterControllerInterface::SetObjectArrayParamet
 // Function AudioExtensions.AudioParameterControllerInterface.SetIntParameter
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InInt                                                            (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InName                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              InInt                                                            (Edit, ExportObject, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 IAudioParameterControllerInterface::SetIntParameter()
+int32 IAudioParameterControllerInterface::SetIntParameter(class FName* InName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -376,6 +388,9 @@ int32 IAudioParameterControllerInterface::SetIntParameter()
 
 	Func->FunctionFlags = Flgs;
 
+	if (InName != nullptr)
+		*InName = Parms.InName;
+
 	return Parms.ReturnValue;
 
 }
@@ -384,10 +399,10 @@ int32 IAudioParameterControllerInterface::SetIntParameter()
 // Function AudioExtensions.AudioParameterControllerInterface.SetIntArrayParameter
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<int32>                      InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// class FName                        InName                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<int32>                      InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-TArray<int32> IAudioParameterControllerInterface::SetIntArrayParameter()
+TArray<int32> IAudioParameterControllerInterface::SetIntArrayParameter(class FName* InName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -405,6 +420,9 @@ TArray<int32> IAudioParameterControllerInterface::SetIntArrayParameter()
 
 	Func->FunctionFlags = Flgs;
 
+	if (InName != nullptr)
+		*InName = Parms.InName;
+
 	return Parms.ReturnValue;
 
 }
@@ -413,10 +431,10 @@ TArray<int32> IAudioParameterControllerInterface::SetIntArrayParameter()
 // Function AudioExtensions.AudioParameterControllerInterface.SetFloatParameter
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              InFloat                                                          (Edit, ConstParm, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InName                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InFloat                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
 
-class FName IAudioParameterControllerInterface::SetFloatParameter(float InFloat)
+float IAudioParameterControllerInterface::SetFloatParameter(class FName* InName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -425,7 +443,6 @@ class FName IAudioParameterControllerInterface::SetFloatParameter(float InFloat)
 
 	Params::IAudioParameterControllerInterface_SetFloatParameter_Params Parms{};
 
-	Parms.InFloat = InFloat;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -435,6 +452,9 @@ class FName IAudioParameterControllerInterface::SetFloatParameter(float InFloat)
 
 	Func->FunctionFlags = Flgs;
 
+	if (InName != nullptr)
+		*InName = Parms.InName;
+
 	return Parms.ReturnValue;
 
 }
@@ -443,10 +463,10 @@ class FName IAudioParameterControllerInterface::SetFloatParameter(float InFloat)
 // Function AudioExtensions.AudioParameterControllerInterface.SetFloatArrayParameter
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<float>                      InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// class FName                        InName                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<float>                      InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-TArray<float> IAudioParameterControllerInterface::SetFloatArrayParameter()
+TArray<float> IAudioParameterControllerInterface::SetFloatArrayParameter(class FName* InName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -464,6 +484,9 @@ TArray<float> IAudioParameterControllerInterface::SetFloatArrayParameter()
 
 	Func->FunctionFlags = Flgs;
 
+	if (InName != nullptr)
+		*InName = Parms.InName;
+
 	return Parms.ReturnValue;
 
 }
@@ -472,10 +495,10 @@ TArray<float> IAudioParameterControllerInterface::SetFloatArrayParameter()
 // Function AudioExtensions.AudioParameterControllerInterface.SetBoolParameter
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               InBool                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InName                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               InBool                                                           (EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-class FName IAudioParameterControllerInterface::SetBoolParameter(bool* InBool)
+void IAudioParameterControllerInterface::SetBoolParameter(class FName* InName, bool* InBool)
 {
 	static class UFunction* Func = nullptr;
 
@@ -493,10 +516,11 @@ class FName IAudioParameterControllerInterface::SetBoolParameter(bool* InBool)
 
 	Func->FunctionFlags = Flgs;
 
+	if (InName != nullptr)
+		*InName = Parms.InName;
+
 	if (InBool != nullptr)
 		*InBool = Parms.InBool;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -504,10 +528,10 @@ class FName IAudioParameterControllerInterface::SetBoolParameter(bool* InBool)
 // Function AudioExtensions.AudioParameterControllerInterface.SetBoolArrayParameter
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<bool>                       InValue                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// class FName                        InName                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<bool>                       InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-TArray<bool> IAudioParameterControllerInterface::SetBoolArrayParameter()
+TArray<bool> IAudioParameterControllerInterface::SetBoolArrayParameter(class FName* InName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -524,6 +548,9 @@ TArray<bool> IAudioParameterControllerInterface::SetBoolArrayParameter()
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InName != nullptr)
+		*InName = Parms.InName;
 
 	return Parms.ReturnValue;
 

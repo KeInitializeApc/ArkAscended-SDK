@@ -18,10 +18,10 @@ public:
 	static class UClass* StaticClass();
 	static class UPrimalItemResource_ElementShard_C* GetDefaultObj();
 
-	TArray<float> RefillElementShard(class UPrimalItem* DestinationItem, TArray<double>* CustomFloats, class UObject** CallFunc_GetDefaultObject_ReturnValue, struct FCustomItemData* CallFunc_GetCustomItemData_OutData, bool* CallFunc_GetCustomItemData_ReturnValue, bool* K2Node_DynamicCast_bSuccess, const class FString& CallFunc_Concat_StrStr_ReturnValue, bool CallFunc_Array_IsValidIndex_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, TArray<double>* K2Node_VariableSet_CustomFloats_ImplicitCast);
-	bool CheckForElementShardData(class UPrimalItem* DestinationItem, bool* SupportsDragOnto, bool* ReturnVal, struct FCustomItemData* CallFunc_GetCustomItemData_OutData, bool* CallFunc_GetCustomItemData_ReturnValue, float* CallFunc_Array_Get_Item, bool CallFunc_Array_IsValidIndex_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, double* CallFunc_Less_DoubleDouble_A_ImplicitCast);
-	bool BPSupportUseOntoItem(class UPrimalItem* DestinationItem, bool* CallFunc_CheckForElementShardData_SupportsDragOnto);
-	void BPUsedOntoItem(class UPrimalItem* DestinationItem, int32 AdditionalData);
+	TArray<double> RefillElementShard(TArray<double>* CustomFloats, const struct FCustomItemData& K2Node_MakeStruct_CustomItemData, bool CallFunc_BooleanAND_ReturnValue);
+	bool CheckForElementShardData(float CallFunc_Array_Get_Item, bool CallFunc_Less_DoubleDouble_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, double CallFunc_Less_DoubleDouble_A_ImplicitCast);
+	bool BPSupportUseOntoItem(bool ReturnValue);
+	int32 BPUsedOntoItem();
 };
 
 }

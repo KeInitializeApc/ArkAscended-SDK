@@ -43,12 +43,12 @@ class UCheatMenuFolderButton_C* UCheatMenuFolderButton_C::GetDefaultObj()
 // Function CheatMenuFolderButton.CheatMenuFolderButton_C.SetFolder
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        FolderName                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-// int32                              ScreenNumber                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class FText                        FolderName                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// int32                              ScreenNumber                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
 // class UTexture2D*                  Image                                                            (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance)
-// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
 
-class FText UCheatMenuFolderButton_C::SetFolder(int32 ScreenNumber, class UTexture2D** Image, const class FString& CallFunc_Conv_TextToString_ReturnValue)
+class FString UCheatMenuFolderButton_C::SetFolder(class FText FolderName, class UTexture2D** Image)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,8 +57,7 @@ class FText UCheatMenuFolderButton_C::SetFolder(int32 ScreenNumber, class UTextu
 
 	Params::UCheatMenuFolderButton_C_SetFolder_Params Parms{};
 
-	Parms.ScreenNumber = ScreenNumber;
-	Parms.CallFunc_Conv_TextToString_ReturnValue = CallFunc_Conv_TextToString_ReturnValue;
+	Parms.FolderName = FolderName;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -91,9 +90,9 @@ void UCheatMenuFolderButton_C::BndEvt__SpawnButton_K2Node_ComponentBoundEvent_16
 // Function CheatMenuFolderButton.CheatMenuFolderButton_C.ExecuteUbergraph_CheatMenuFolderButton
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UCheatMenuFolderButton_C::ExecuteUbergraph_CheatMenuFolderButton()
+void UCheatMenuFolderButton_C::ExecuteUbergraph_CheatMenuFolderButton(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -102,10 +101,9 @@ int32 UCheatMenuFolderButton_C::ExecuteUbergraph_CheatMenuFolderButton()
 
 	Params::UCheatMenuFolderButton_C_ExecuteUbergraph_CheatMenuFolderButton_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 

@@ -58,7 +58,7 @@ enum class EGameplayTagSelectionType : uint8
 struct FGameplayTag
 {
 public:
-	class FName                                  TagName;                                           // 0x0(0x8)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	class FName                                  TagName;                                           // 0x0(0x8)(Edit, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -75,7 +75,7 @@ struct FGameplayTagContainer
 {
 public:
 	TArray<struct FGameplayTag>                  GameplayTags;                                      // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
-	TArray<struct FGameplayTag>                  ParentTags;                                        // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FGameplayTag>                  ParentTags;                                        // 0x10(0x10)(BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -83,7 +83,7 @@ public:
 struct FGameplayTagReferenceHelper
 {
 public:
-	uint8                                        Pad_2E5F[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2FA0[0x10];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -91,7 +91,7 @@ public:
 struct FGameplayTagCreationWidgetHelper
 {
 public:
-	uint8                                        Pad_2E60[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2FA1[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x48 (0x48 - 0x0)
@@ -99,12 +99,12 @@ public:
 struct FGameplayTagQuery
 {
 public:
-	int32                                        TokenStreamVersion;                                // 0x0(0x4)(ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2E63[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FGameplayTag>                  TagDictionary;                                     // 0x8(0x10)(BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<uint8>                                QueryTokenStream;                                  // 0x18(0x10)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class FString                                UserDescription;                                   // 0x28(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class FString                                AutoDescription;                                   // 0x38(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        TokenStreamVersion;                                // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2FA2[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FGameplayTag>                  TagDictionary;                                     // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<uint8>                                QueryTokenStream;                                  // 0x18(0x10)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                UserDescription;                                   // 0x28(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                AutoDescription;                                   // 0x38(0x10)(ConstParm, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -112,7 +112,7 @@ public:
 struct FGameplayTagContainerNetSerializerConfig : public FNetSerializerConfig
 {
 public:
-	uint8                                        Pad_2E64[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2FA4[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -120,7 +120,7 @@ public:
 struct FGameplayTagNetSerializerConfig : public FNetSerializerConfig
 {
 public:
-	uint8                                        Pad_2E65[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2FA5[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -128,8 +128,8 @@ public:
 struct FGameplayTagRedirect
 {
 public:
-	class FName                                  OldTagName;                                        // 0x0(0x8)(ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class FName                                  NewTagName;                                        // 0x8(0x8)(ConstParm, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	class FName                                  OldTagName;                                        // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class FName                                  NewTagName;                                        // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x20 - 0x8)
@@ -137,8 +137,8 @@ public:
 struct FGameplayTagTableRow : public FTableRowBase
 {
 public:
-	class FName                                  Tag;                                               // 0x8(0x8)(Edit, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	class FString                                DevComment;                                        // 0x10(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	class FName                                  Tag;                                               // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FString                                DevComment;                                        // 0x10(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x28 - 0x20)
@@ -146,8 +146,8 @@ public:
 struct FRestrictedGameplayTagTableRow : public FGameplayTagTableRow
 {
 public:
-	bool                                         bAllowNonRestrictedChildren;                       // 0x20(0x1)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2E66[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bAllowNonRestrictedChildren;                       // 0x20(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2FA6[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -156,10 +156,10 @@ struct FGameplayTagSource
 {
 public:
 	class FName                                  SourceName;                                        // 0x0(0x8)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	enum class EGameplayTagSourceType            SourceType;                                        // 0x8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2E67[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class UGameplayTagsList*                     SourceTagList;                                     // 0x10(0x8)(BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class URestrictedGameplayTagsList*           SourceRestrictedTagList;                           // 0x18(0x8)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EGameplayTagSourceType            SourceType;                                        // 0x8(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2FA7[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class UGameplayTagsList*                     SourceTagList;                                     // 0x10(0x8)(Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class URestrictedGameplayTagsList*           SourceRestrictedTagList;                           // 0x18(0x8)(Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -167,7 +167,7 @@ public:
 struct FGameplayTagNode
 {
 public:
-	uint8                                        Pad_2E68[0x50];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2FA8[0x50];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -175,8 +175,8 @@ public:
 struct FGameplayTagCategoryRemap
 {
 public:
-	class FString                                BaseCategory;                                      // 0x0(0x10)(Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<class FString>                        RemapCategories;                                   // 0x10(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                BaseCategory;                                      // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class FString>                        RemapCategories;                                   // 0x10(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -184,8 +184,8 @@ public:
 struct FRestrictedConfigInfo
 {
 public:
-	class FString                                RestrictedConfigName;                              // 0x0(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<class FString>                        Owners;                                            // 0x10(0x10)(ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                RestrictedConfigName;                              // 0x0(0x10)(Edit, ExportObject, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class FString>                        Owners;                                            // 0x10(0x10)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 }

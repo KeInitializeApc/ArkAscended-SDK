@@ -14,13 +14,13 @@ namespace SDK
 class UForceSuccess_TK_C : public UBTTask_BlueprintBase
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA8(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UForceSuccess_TK_C* GetDefaultObj();
 
-	void ReceiveExecute(class AActor** OwnerActor);
-	int32 ExecuteUbergraph_ForceSuccess_TK(class AActor* K2Node_Event_OwnerActor);
+	class AActor* ReceiveExecute();
+	void ExecuteUbergraph_ForceSuccess_TK(int32 EntryPoint, class AActor* K2Node_Event_OwnerActor);
 };
 
 }

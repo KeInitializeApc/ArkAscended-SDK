@@ -80,8 +80,8 @@ enum class ETouchType : uint8
 struct FKey
 {
 public:
-	class FName                                  KeyName;                                           // 0x0(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_28E7[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	class FName                                  KeyName;                                           // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_2959[0x10];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 }

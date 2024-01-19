@@ -67,7 +67,7 @@ void IAudioLinkBlueprintInterface::StopLink()
 // Function AudioLinkEngine.AudioLinkBlueprintInterface.SetLinkSound
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundBase*                  NewSound                                                         (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class USoundBase*                  NewSound                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 void IAudioLinkBlueprintInterface::SetLinkSound(class USoundBase* NewSound)
 {
@@ -94,9 +94,9 @@ void IAudioLinkBlueprintInterface::SetLinkSound(class USoundBase* NewSound)
 // Function AudioLinkEngine.AudioLinkBlueprintInterface.PlayLink
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// float                              StartTime                                                        (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              StartTime                                                        (BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void IAudioLinkBlueprintInterface::PlayLink(float StartTime)
+float IAudioLinkBlueprintInterface::PlayLink()
 {
 	static class UFunction* Func = nullptr;
 
@@ -104,33 +104,6 @@ void IAudioLinkBlueprintInterface::PlayLink(float StartTime)
 		Func = Class->GetFunction("AudioLinkBlueprintInterface", "PlayLink");
 
 	Params::IAudioLinkBlueprintInterface_PlayLink_Params Parms{};
-
-	Parms.StartTime = StartTime;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function AudioLinkEngine.AudioLinkBlueprintInterface.IsLinkPlaying
-// (Native, Public, BlueprintCallable, BlueprintPure, Const)
-// Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-
-bool IAudioLinkBlueprintInterface::IsLinkPlaying()
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("AudioLinkBlueprintInterface", "IsLinkPlaying");
-
-	Params::IAudioLinkBlueprintInterface_IsLinkPlaying_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -142,6 +115,33 @@ bool IAudioLinkBlueprintInterface::IsLinkPlaying()
 	Func->FunctionFlags = Flgs;
 
 	return Parms.ReturnValue;
+
+}
+
+
+// Function AudioLinkEngine.AudioLinkBlueprintInterface.IsLinkPlaying
+// (Native, Public, BlueprintCallable, BlueprintPure, Const)
+// Parameters:
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+
+void IAudioLinkBlueprintInterface::IsLinkPlaying(bool ReturnValue)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("AudioLinkBlueprintInterface", "IsLinkPlaying");
+
+	Params::IAudioLinkBlueprintInterface_IsLinkPlaying_Params Parms{};
+
+	Parms.ReturnValue = ReturnValue;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
 
 }
 

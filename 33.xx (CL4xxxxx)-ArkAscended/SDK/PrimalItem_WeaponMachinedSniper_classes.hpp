@@ -14,12 +14,12 @@ namespace SDK
 class UPrimalItem_WeaponMachinedSniper_C : public UPrimalItemWeaponGenericGun_C
 {
 public:
-	TArray<TSoftClassPtr<class APrimalDinoCharacter>> DinosNotAllowEquip;                                // 0xEB0(0x10)(Edit, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+	TArray<TSoftClassPtr<class APrimalDinoCharacter>> DinosNotAllowEquip;                                // 0xEB0(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UPrimalItem_WeaponMachinedSniper_C* GetDefaultObj();
 
-	bool BPPreventWeaponEquip(class APrimalDinoCharacter** RiddenDino, bool* CallFunc_IsValid_ReturnValue, int32 CallFunc_Add_IntInt_ReturnValue, class AShooterCharacter** CallFunc_GetOwnerPlayer_ReturnValue, class APrimalDinoCharacter** CallFunc_GetRidingDino_ReturnValue, TSoftClassPtr<class APrimalDinoCharacter>* CallFunc_Array_Get_Item, bool* CallFunc_ObjectIsChildOfSoftRef_ReturnValue, int32* CallFunc_Array_Length_ReturnValue);
+	class APrimalDinoCharacter* BPPreventWeaponEquip(bool ReturnValue, int32 Temp_int_Loop_Counter_Variable, class AShooterCharacter* CallFunc_GetOwnerPlayer_ReturnValue, TSoftClassPtr<class APrimalDinoCharacter> CallFunc_Array_Get_Item, bool CallFunc_ObjectIsChildOfSoftRef_ReturnValue, int32* CallFunc_Array_Length_ReturnValue, bool CallFunc_Less_IntInt_ReturnValue);
 };
 
 }

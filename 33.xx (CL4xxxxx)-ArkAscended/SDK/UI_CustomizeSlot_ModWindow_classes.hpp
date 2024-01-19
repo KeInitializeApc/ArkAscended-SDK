@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class UUI_CustomizeSlot_ModWindow_C* GetDefaultObj();
 
-	void SetColor(struct FLinearColor* Color, bool* CallFunc_IsValid_ReturnValue);
+	bool SetColor(struct FLinearColor* Color);
 	void GetColor(struct FLinearColor* Color, struct FCFCoreThemeRowData* CallFunc_GetCurrentTheme_CurrentTheme);
 };
 

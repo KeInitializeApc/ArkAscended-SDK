@@ -82,23 +82,23 @@ enum class EResonanceRenderMode : uint8
 struct FResonanceAudioReverbPluginSettings
 {
 public:
-	bool                                         bEnableRoomEffects;                                // 0x0(0x1)(Edit, ExportObject, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bGetTransformFromAudioVolume;                      // 0x1(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_274C[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               RoomPosition;                                      // 0x8(0x18)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FQuat                                 RoomRotation;                                      // 0x20(0x20)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FVector                               RoomDimensions;                                    // 0x40(0x18)(BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ERaMaterialName                   LeftWallMaterial;                                  // 0x58(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ERaMaterialName                   RightWallMaterial;                                 // 0x59(0x1)(Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ERaMaterialName                   FloorMaterial;                                     // 0x5A(0x1)(Edit, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ERaMaterialName                   CeilingMaterial;                                   // 0x5B(0x1)(EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ERaMaterialName                   FrontWallMaterial;                                 // 0x5C(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ERaMaterialName                   BackWallMaterial;                                  // 0x5D(0x1)(Edit, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_274D[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        ReflectionScalar;                                  // 0x60(0x4)(BlueprintVisible, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        ReverbGain;                                        // 0x64(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        ReverbTimeModifier;                                // 0x68(0x4)(BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        ReverbBrightness;                                  // 0x6C(0x4)(Edit, ConstParm, ExportObject, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bEnableRoomEffects;                                // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bGetTransformFromAudioVolume;                      // 0x1(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_26E6[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               RoomPosition;                                      // 0x8(0x18)(BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FQuat                                 RoomRotation;                                      // 0x20(0x20)(Edit, ExportObject, Net, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector                               RoomDimensions;                                    // 0x40(0x18)(Edit, Net, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ERaMaterialName                   LeftWallMaterial;                                  // 0x58(0x1)(ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ERaMaterialName                   RightWallMaterial;                                 // 0x59(0x1)(ConstParm, BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ERaMaterialName                   FloorMaterial;                                     // 0x5A(0x1)(ConstParm, BlueprintVisible, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ERaMaterialName                   CeilingMaterial;                                   // 0x5B(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ERaMaterialName                   FrontWallMaterial;                                 // 0x5C(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ERaMaterialName                   BackWallMaterial;                                  // 0x5D(0x1)(ConstParm, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_26E7[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        ReflectionScalar;                                  // 0x60(0x4)(Edit, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        ReverbGain;                                        // 0x64(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        ReverbTimeModifier;                                // 0x68(0x4)(Edit, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        ReverbBrightness;                                  // 0x6C(0x4)(ExportObject, EditFixedSize, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 }

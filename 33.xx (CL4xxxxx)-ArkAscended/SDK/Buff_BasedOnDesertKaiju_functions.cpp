@@ -43,13 +43,13 @@ class ABuff_BasedOnDesertKaiju_C* ABuff_BasedOnDesertKaiju_C::GetDefaultObj()
 // Function Buff_BasedOnDesertKaiju.Buff_BasedOnDesertKaiju_C.BPDeactivated
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class AActor*                      ForInstigator                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class UPrimalCharacterStatusComponent*CallFunc_GetCharacterStatusComponent_ReturnValue                 (Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// class UPrimalCharacterMovement*    CallFunc_CharacterMovementToPCM_ReturnValue                      (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+// class AActor*                      ForInstigator                                                    (BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UPrimalCharacterStatusComponent*CallFunc_GetCharacterStatusComponent_ReturnValue                 (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class UPrimalCharacterMovement*    CallFunc_CharacterMovementToPCM_ReturnValue                      (BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, SubobjectReference)
 
-class UPrimalCharacterMovement* ABuff_BasedOnDesertKaiju_C::BPDeactivated(class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, bool* K2Node_DynamicCast_bSuccess)
+bool ABuff_BasedOnDesertKaiju_C::BPDeactivated(class AActor** ForInstigator, class UPrimalCharacterStatusComponent** CallFunc_GetCharacterStatusComponent_ReturnValue, class UPrimalCharacterMovement** CallFunc_CharacterMovementToPCM_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -58,12 +58,17 @@ class UPrimalCharacterMovement* ABuff_BasedOnDesertKaiju_C::BPDeactivated(class 
 
 	Params::ABuff_BasedOnDesertKaiju_C_BPDeactivated_Params Parms{};
 
-	Parms.K2Node_DynamicCast_AsShooter_Character = K2Node_DynamicCast_AsShooter_Character;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (K2Node_DynamicCast_bSuccess != nullptr)
-		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+	if (ForInstigator != nullptr)
+		*ForInstigator = Parms.ForInstigator;
+
+	if (CallFunc_GetCharacterStatusComponent_ReturnValue != nullptr)
+		*CallFunc_GetCharacterStatusComponent_ReturnValue = Parms.CallFunc_GetCharacterStatusComponent_ReturnValue;
+
+	if (CallFunc_CharacterMovementToPCM_ReturnValue != nullptr)
+		*CallFunc_CharacterMovementToPCM_ReturnValue = Parms.CallFunc_CharacterMovementToPCM_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -73,13 +78,13 @@ class UPrimalCharacterMovement* ABuff_BasedOnDesertKaiju_C::BPDeactivated(class 
 // Function Buff_BasedOnDesertKaiju.Buff_BasedOnDesertKaiju_C.BPSetupForInstigator
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class AActor*                      ForInstigator                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class UPrimalCharacterStatusComponent*CallFunc_GetCharacterStatusComponent_ReturnValue                 (Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// class UPrimalCharacterMovement*    CallFunc_CharacterMovementToPCM_ReturnValue                      (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+// class AActor*                      ForInstigator                                                    (BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UPrimalCharacterStatusComponent*CallFunc_GetCharacterStatusComponent_ReturnValue                 (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class UPrimalCharacterMovement*    CallFunc_CharacterMovementToPCM_ReturnValue                      (BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, SubobjectReference)
 
-class UPrimalCharacterMovement* ABuff_BasedOnDesertKaiju_C::BPSetupForInstigator(class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, bool* K2Node_DynamicCast_bSuccess)
+bool ABuff_BasedOnDesertKaiju_C::BPSetupForInstigator(class AActor** ForInstigator, class UPrimalCharacterStatusComponent** CallFunc_GetCharacterStatusComponent_ReturnValue, class UPrimalCharacterMovement** CallFunc_CharacterMovementToPCM_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -88,12 +93,17 @@ class UPrimalCharacterMovement* ABuff_BasedOnDesertKaiju_C::BPSetupForInstigator
 
 	Params::ABuff_BasedOnDesertKaiju_C_BPSetupForInstigator_Params Parms{};
 
-	Parms.K2Node_DynamicCast_AsShooter_Character = K2Node_DynamicCast_AsShooter_Character;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (K2Node_DynamicCast_bSuccess != nullptr)
-		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+	if (ForInstigator != nullptr)
+		*ForInstigator = Parms.ForInstigator;
+
+	if (CallFunc_GetCharacterStatusComponent_ReturnValue != nullptr)
+		*CallFunc_GetCharacterStatusComponent_ReturnValue = Parms.CallFunc_GetCharacterStatusComponent_ReturnValue;
+
+	if (CallFunc_CharacterMovementToPCM_ReturnValue != nullptr)
+		*CallFunc_CharacterMovementToPCM_ReturnValue = Parms.CallFunc_CharacterMovementToPCM_ReturnValue;
 
 	return Parms.ReturnValue;
 

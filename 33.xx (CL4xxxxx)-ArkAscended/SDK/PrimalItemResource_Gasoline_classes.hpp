@@ -18,10 +18,10 @@ public:
 	static class UClass* StaticClass();
 	static class UPrimalItemResource_Gasoline_C* GetDefaultObj();
 
-	bool CheckForGasolineData(class UPrimalItem* DestinationItem, struct FCustomItemData* CallFunc_GetCustomItemData_OutData, bool* CallFunc_GetCustomItemData_ReturnValue, float* CallFunc_Array_Get_Item, double* CallFunc_Less_DoubleDouble_A_ImplicitCast);
-	TArray<float> RefillGasoline(class UPrimalItem* DestinationItem, class UObject** CallFunc_GetDefaultObject_ReturnValue, bool* K2Node_DynamicCast_bSuccess, struct FCustomItemData* CallFunc_GetCustomItemData_OutData, bool* CallFunc_GetCustomItemData_ReturnValue, const class FString& CallFunc_Concat_StrStr_ReturnValue, const class FString& CallFunc_Concat_StrStr_ReturnValue_1, int32* CallFunc_IncrementItemQuantity_ReturnValue);
-	void BPUsedOntoItem(class UPrimalItem* DestinationItem, int32 AdditionalData);
-	bool BPSupportUseOntoItem(class UPrimalItem* DestinationItem, bool* CallFunc_CheckForGasolineData_SupportsDragOn);
+	bool CheckForGasolineData(float CallFunc_Array_Get_Item, bool CallFunc_Less_DoubleDouble_ReturnValue, double CallFunc_Less_DoubleDouble_A_ImplicitCast);
+	TArray<float> RefillGasoline(const struct FCustomItemData& K2Node_MakeStruct_CustomItemData);
+	int32 BPUsedOntoItem();
+	bool BPSupportUseOntoItem(bool ReturnValue);
 };
 
 }

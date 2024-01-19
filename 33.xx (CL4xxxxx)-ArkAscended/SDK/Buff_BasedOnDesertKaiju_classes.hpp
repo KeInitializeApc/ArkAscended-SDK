@@ -14,14 +14,14 @@ namespace SDK
 class ABuff_BasedOnDesertKaiju_C : public ABuff_Base_C
 {
 public:
-	uint8                                        Pad_37EC[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	double                                       CachedMaxWalkSpeed;                                // 0xB70(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_42C4[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	double                                       CachedMaxWalkSpeed;                                // 0xB70(0x8)(Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ABuff_BasedOnDesertKaiju_C* GetDefaultObj();
 
-	class UPrimalCharacterMovement* BPDeactivated(class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, bool* K2Node_DynamicCast_bSuccess);
-	class UPrimalCharacterMovement* BPSetupForInstigator(class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, bool* K2Node_DynamicCast_bSuccess);
+	bool BPDeactivated(class AActor** ForInstigator, class UPrimalCharacterStatusComponent** CallFunc_GetCharacterStatusComponent_ReturnValue, class UPrimalCharacterMovement** CallFunc_CharacterMovementToPCM_ReturnValue);
+	bool BPSetupForInstigator(class AActor** ForInstigator, class UPrimalCharacterStatusComponent** CallFunc_GetCharacterStatusComponent_ReturnValue, class UPrimalCharacterMovement** CallFunc_CharacterMovementToPCM_ReturnValue);
 };
 
 }

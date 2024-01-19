@@ -43,10 +43,10 @@ class UUI_CustomizeColorSlot_C* UUI_CustomizeColorSlot_C::GetDefaultObj()
 // Function UI_CustomizeColorSlot.UI_CustomizeColorSlot_C.GetCurrentTheme
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// struct FCFCoreThemeRowData         CurrentTheme                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// struct FCFCoreThemeRowData         CurrentTheme                                                     (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-struct FCFCoreThemeRowData UUI_CustomizeColorSlot_C::GetCurrentTheme(bool* CallFunc_IsValid_ReturnValue)
+bool UUI_CustomizeColorSlot_C::GetCurrentTheme(const struct FCFCoreThemeRowData& CurrentTheme)
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,11 +55,9 @@ struct FCFCoreThemeRowData UUI_CustomizeColorSlot_C::GetCurrentTheme(bool* CallF
 
 	Params::UUI_CustomizeColorSlot_C_GetCurrentTheme_Params Parms{};
 
+	Parms.CurrentTheme = CurrentTheme;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -93,9 +91,9 @@ void UUI_CustomizeColorSlot_C::GetColor(struct FLinearColor* Color)
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // struct FLinearColor                Color                                                            (Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-void UUI_CustomizeColorSlot_C::SetColor(struct FLinearColor* Color, bool* CallFunc_IsValid_ReturnValue)
+bool UUI_CustomizeColorSlot_C::SetColor(struct FLinearColor* Color)
 {
 	static class UFunction* Func = nullptr;
 
@@ -110,8 +108,7 @@ void UUI_CustomizeColorSlot_C::SetColor(struct FLinearColor* Color, bool* CallFu
 	if (Color != nullptr)
 		*Color = std::move(Parms.Color);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -155,9 +152,9 @@ void UUI_CustomizeColorSlot_C::BndEvt__UI_CustomizeColorSlot_Button_Slot_K2Node_
 // Function UI_CustomizeColorSlot.UI_CustomizeColorSlot_C.PreConstruct
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               IsDesignTime                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               IsDesignTime                                                     (ConstParm, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UUI_CustomizeColorSlot_C::PreConstruct(bool IsDesignTime)
+bool UUI_CustomizeColorSlot_C::PreConstruct()
 {
 	static class UFunction* Func = nullptr;
 
@@ -166,9 +163,10 @@ void UUI_CustomizeColorSlot_C::PreConstruct(bool IsDesignTime)
 
 	Params::UUI_CustomizeColorSlot_C_PreConstruct_Params Parms{};
 
-	Parms.IsDesignTime = IsDesignTime;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -194,17 +192,17 @@ void UUI_CustomizeColorSlot_C::CustomEvent_0()
 // Function UI_CustomizeColorSlot.UI_CustomizeColorSlot_C.ExecuteUbergraph_UI_CustomizeColorSlot
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FTimerHandle                CallFunc_K2_SetTimerDelegate_ReturnValue                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
-// TArray<class UUI_ThemeCustomizer_C*>CallFunc_GetAllWidgetsOfClass_FoundWidgets                       (ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UUI_ThemeCustomizer_C*       CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               K2Node_Event_IsDesignTime                                        (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// struct FLinearColor                CallFunc_GetColor_Color                                          (Edit, ExportObject, Net, OutParm, Transient, InstancedReference, SubobjectReference)
-// struct FLinearColor                CallFunc_GetColor_Color_1                                        (Edit, ExportObject, Net, OutParm, Transient, InstancedReference, SubobjectReference, Interp)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FTimerHandle                CallFunc_K2_SetTimerDelegate_ReturnValue                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class UUI_ThemeCustomizer_C*>CallFunc_GetAllWidgetsOfClass_FoundWidgets                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUI_ThemeCustomizer_C*       CallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_Event_IsDesignTime                                        (Edit, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FLinearColor                CallFunc_GetColor_Color                                          (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FLinearColor                CallFunc_GetColor_Color_1                                        (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
 
-bool UUI_CustomizeColorSlot_C::ExecuteUbergraph_UI_CustomizeColorSlot(bool* CallFunc_IsValid_ReturnValue, TArray<class UUI_ThemeCustomizer_C*>* CallFunc_GetAllWidgetsOfClass_FoundWidgets, class UUI_ThemeCustomizer_C** CallFunc_Array_Get_Item, struct FLinearColor* CallFunc_GetColor_Color, struct FLinearColor* CallFunc_GetColor_Color_1)
+bool UUI_CustomizeColorSlot_C::ExecuteUbergraph_UI_CustomizeColorSlot(int32 EntryPoint, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate, struct FTimerHandle* CallFunc_K2_SetTimerDelegate_ReturnValue, class UUI_ThemeCustomizer_C* CallFunc_Array_Get_Item, struct FLinearColor* CallFunc_GetColor_Color, struct FLinearColor* CallFunc_GetColor_Color_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -213,17 +211,14 @@ bool UUI_CustomizeColorSlot_C::ExecuteUbergraph_UI_CustomizeColorSlot(bool* Call
 
 	Params::UUI_CustomizeColorSlot_C_ExecuteUbergraph_UI_CustomizeColorSlot_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
+	Parms.K2Node_CreateDelegate_OutputDelegate = K2Node_CreateDelegate_OutputDelegate;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_GetAllWidgetsOfClass_FoundWidgets != nullptr)
-		*CallFunc_GetAllWidgetsOfClass_FoundWidgets = std::move(Parms.CallFunc_GetAllWidgetsOfClass_FoundWidgets);
-
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = Parms.CallFunc_Array_Get_Item;
+	if (CallFunc_K2_SetTimerDelegate_ReturnValue != nullptr)
+		*CallFunc_K2_SetTimerDelegate_ReturnValue = std::move(Parms.CallFunc_K2_SetTimerDelegate_ReturnValue);
 
 	if (CallFunc_GetColor_Color != nullptr)
 		*CallFunc_GetColor_Color = std::move(Parms.CallFunc_GetColor_Color);

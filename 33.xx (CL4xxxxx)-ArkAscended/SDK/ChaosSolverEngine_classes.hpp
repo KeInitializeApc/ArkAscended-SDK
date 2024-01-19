@@ -14,7 +14,7 @@ namespace SDK
 class UChaosDebugDrawComponent : public UActorComponent
 {
 public:
-	uint8                                        Pad_2BE5[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2CFD[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UChaosDebugDrawComponent* GetDefaultObj();
@@ -26,7 +26,7 @@ public:
 class UChaosEventListenerComponent : public UActorComponent
 {
 public:
-	uint8                                        Pad_2BE6[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2CFE[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UChaosEventListenerComponent* GetDefaultObj();
@@ -38,12 +38,12 @@ public:
 class UChaosGameplayEventDispatcher : public UChaosEventListenerComponent
 {
 public:
-	uint8                                        Pad_2BE9[0x110];                                   // Fixing Size After Last Property  > TateDumper <
-	TMap<class UPrimitiveComponent*, struct FChaosHandlerSet> CollisionEventRegistrations;                       // 0x1D0(0x50)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	TMap<class UPrimitiveComponent*, struct FBreakEventCallbackWrapper> BreakEventRegistrations;                           // 0x220(0x50)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	TMap<class UPrimitiveComponent*, struct FRemovalEventCallbackWrapper> RemovalEventRegistrations;                         // 0x270(0x50)(ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	TMap<class UPrimitiveComponent*, struct FCrumblingEventCallbackWrapper> CrumblingEventRegistrations;                       // 0x2C0(0x50)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2BEA[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2CFF[0x110];                                   // Fixing Size After Last Property  > TateDumper <
+	TMap<class UPrimitiveComponent*, struct FChaosHandlerSet> CollisionEventRegistrations;                       // 0x1D0(0x50)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	TMap<class UPrimitiveComponent*, struct FBreakEventCallbackWrapper> BreakEventRegistrations;                           // 0x220(0x50)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	TMap<class UPrimitiveComponent*, struct FRemovalEventCallbackWrapper> RemovalEventRegistrations;                         // 0x270(0x50)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	TMap<class UPrimitiveComponent*, struct FCrumblingEventCallbackWrapper> CrumblingEventRegistrations;                       // 0x2C0(0x50)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2D00[0x10];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UChaosGameplayEventDispatcher* GetDefaultObj();
@@ -70,7 +70,7 @@ public:
 	static class UClass* StaticClass();
 	static class UChaosSolverEngineBlueprintLibrary* GetDefaultObj();
 
-	struct FHitResult ConvertPhysicsCollisionToHitResult(struct FChaosPhysicsCollisionInfo* PhysicsCollision);
+	void ConvertPhysicsCollisionToHitResult(const struct FChaosPhysicsCollisionInfo& PhysicsCollision, const struct FHitResult& ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -89,32 +89,32 @@ public:
 class AChaosSolverActor : public AActor
 {
 public:
-	struct FChaosSolverConfiguration             Properties;                                        // 0x4C8(0x68)(Edit, ConstParm, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	float                                        TimeStepMultiplier;                                // 0x530(0x4)(Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	int32                                        CollisionIterations;                               // 0x534(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	int32                                        PushOutIterations;                                 // 0x538(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	int32                                        PushOutPairIterations;                             // 0x53C(0x4)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        ClusterConnectionFactor;                           // 0x540(0x4)(Edit, BlueprintReadOnly, Net, ReturnParm, Config, InstancedReference, SubobjectReference)
-	enum class EClusterConnectionTypeEnum        ClusterUnionConnectionType;                        // 0x544(0x1)(Edit, ConstParm, Net, ReturnParm, Config, InstancedReference, SubobjectReference)
-	bool                                         DoGenerateCollisionData;                           // 0x545(0x1)(ExportObject, Net, EditFixedSize, OutParm, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2BFA[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FSolverCollisionFilterSettings        CollisionFilterSettings;                           // 0x548(0x10)(ConstParm, ExportObject, ReturnParm, Config, InstancedReference, SubobjectReference)
-	bool                                         DoGenerateBreakingData;                            // 0x558(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2BFB[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FSolverBreakingFilterSettings         BreakingFilterSettings;                            // 0x55C(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	bool                                         DoGenerateTrailingData;                            // 0x56C(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2BFC[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FSolverTrailingFilterSettings         TrailingFilterSettings;                            // 0x570(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	float                                        MassScale;                                         // 0x580(0x4)(ExportObject, OutParm, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bHasFloor;                                         // 0x584(0x1)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2C00[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        FloorHeight;                                       // 0x588(0x4)(BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FChaosSolverConfiguration             Properties;                                        // 0x4C8(0x68)(Net, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
+	float                                        TimeStepMultiplier;                                // 0x530(0x4)(ConstParm, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	int32                                        CollisionIterations;                               // 0x534(0x4)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        PushOutIterations;                                 // 0x538(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	int32                                        PushOutPairIterations;                             // 0x53C(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        ClusterConnectionFactor;                           // 0x540(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	enum class EClusterConnectionTypeEnum        ClusterUnionConnectionType;                        // 0x544(0x1)(Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	bool                                         DoGenerateCollisionData;                           // 0x545(0x1)(ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2D02[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FSolverCollisionFilterSettings        CollisionFilterSettings;                           // 0x548(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	bool                                         DoGenerateBreakingData;                            // 0x558(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2D03[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FSolverBreakingFilterSettings         BreakingFilterSettings;                            // 0x55C(0x10)(Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	bool                                         DoGenerateTrailingData;                            // 0x56C(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2D04[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FSolverTrailingFilterSettings         TrailingFilterSettings;                            // 0x570(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	float                                        MassScale;                                         // 0x580(0x4)(ConstParm, BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bHasFloor;                                         // 0x584(0x1)(BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2D06[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        FloorHeight;                                       // 0x588(0x4)(Edit, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 	struct FChaosDebugSubstepControl             ChaosDebugSubstepControl;                          // 0x58C(0x3)(OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-	uint8                                        Pad_2C02[0x1];                                     // Fixing Size After Last Property  > TateDumper <
-	class UBillboardComponent*                   SpriteComponent;                                   // 0x590(0x8)(Edit, ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_2C04[0x18];                                    // Fixing Size After Last Property  > TateDumper <
-	class UChaosGameplayEventDispatcher*         GameplayEventDispatcherComponent;                  // 0x5B0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2C05[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2D07[0x1];                                     // Fixing Size After Last Property  > TateDumper <
+	class UBillboardComponent*                   SpriteComponent;                                   // 0x590(0x8)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	uint8                                        Pad_2D08[0x18];                                    // Fixing Size After Last Property  > TateDumper <
+	class UChaosGameplayEventDispatcher*         GameplayEventDispatcherComponent;                  // 0x5B0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2D09[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class AChaosSolverActor* GetDefaultObj();
@@ -128,8 +128,8 @@ public:
 class UChaosSolverSettings : public UDeveloperSettings
 {
 public:
-	uint8                                        Pad_2C07[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FSoftClassPath                        DefaultChaosSolverActorClass;                      // 0x40(0x20)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference)
+	uint8                                        Pad_2D0A[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FSoftClassPath                        DefaultChaosSolverActorClass;                      // 0x40(0x20)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UChaosSolverSettings* GetDefaultObj();

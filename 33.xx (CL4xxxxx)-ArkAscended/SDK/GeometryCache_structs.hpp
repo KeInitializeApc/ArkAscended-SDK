@@ -19,7 +19,7 @@ namespace SDK
 struct FTrackRenderData
 {
 public:
-	uint8                                        Pad_B87[0xC0];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_917[0xC0];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC (0xC - 0x0)
@@ -27,7 +27,7 @@ public:
 struct FGeometryCacheMeshBatchInfo
 {
 public:
-	uint8                                        Pad_B89[0xC];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_919[0xC];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x9 (0x9 - 0x0)
@@ -35,7 +35,7 @@ public:
 struct FGeometryCacheVertexInfo
 {
 public:
-	uint8                                        Pad_B8A[0x9];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_91B[0x9];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC8 (0xC8 - 0x0)
@@ -43,7 +43,7 @@ public:
 struct FGeometryCacheMeshData
 {
 public:
-	uint8                                        Pad_B8B[0xC8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_91D[0xC8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x38 (0x38 - 0x0)
@@ -52,8 +52,8 @@ struct FNiagaraGeometryCacheReference
 {
 public:
 	class UGeometryCache*                        GeometryCache;                                     // 0x0(0x8)(Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst)
-	struct FNiagaraUserParameterBinding          GeometryCacheUserParamBinding;                     // 0x8(0x20)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TArray<class UMaterialInterface*>            OverrideMaterials;                                 // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FNiagaraUserParameterBinding          GeometryCacheUserParamBinding;                     // 0x8(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, Config, InstancedReference, SubobjectReference)
+	TArray<class UMaterialInterface*>            OverrideMaterials;                                 // 0x28(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, EditConst, SubobjectReference)
 };
 
 }

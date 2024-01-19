@@ -14,14 +14,14 @@ namespace SDK
 class UIsFollowing_DK_C : public UBTDecorator_BlueprintBase
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA0(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnInstance, SubobjectReference)
-	struct FBlackboardKeySelector                NavigationTargetObjectKey;                         // 0xA8(0x28)(ExportObject, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	struct FBlackboardKeySelector                NavigationTargetObjectKey;                         // 0xA8(0x28)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UIsFollowing_DK_C* GetDefaultObj();
 
-	void ReceiveConditionCheck(class AActor** OwnerActor);
-	class APawn* ExecuteUbergraph_IsFollowing_DK(class AActor* K2Node_Event_OwnerActor, class APrimalDinoAIController* K2Node_DynamicCast_AsPrimal_Dino_AIController, bool* K2Node_DynamicCast_bSuccess, class APrimalDinoCharacter* K2Node_DynamicCast_AsPrimal_Dino_Character, bool* K2Node_DynamicCast_bSuccess_1, class AActor** CallFunc_GetTamedFollowTarget_ReturnValue, class AActor** CallFunc_GetTamedLandTarget_ReturnValue, bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, bool CallFunc_NotEqual_ObjectObject_ReturnValue);
+	class AActor* ReceiveConditionCheck();
+	bool ExecuteUbergraph_IsFollowing_DK(int32 EntryPoint, class AActor* K2Node_Event_OwnerActor, class APawn* CallFunc_K2_GetPawn_ReturnValue, class APrimalDinoCharacter* K2Node_DynamicCast_AsPrimal_Dino_Character, class AActor* CallFunc_GetTamedLandTarget_ReturnValue);
 };
 
 }

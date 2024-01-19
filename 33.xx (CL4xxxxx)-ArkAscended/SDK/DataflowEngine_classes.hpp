@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class UDataflowBlueprintLibrary* GetDefaultObj();
 
-	class UObject* EvaluateTerminalNodeByName();
+	class UDataflow* EvaluateTerminalNodeByName(class FName* TerminalNodeName, class UObject** ResultAsset);
 };
 
 // 0x28 (0xC0 - 0x98)
@@ -26,9 +26,9 @@ public:
 class UDataflowEdNode : public UEdGraphNode
 {
 public:
-	uint8                                        Pad_2C74[0x20];                                    // Fixing Size After Last Property  > TateDumper <
-	bool                                         bRenderInAssetEditor;                              // 0xB8(0x1)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2C75[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2D31[0x20];                                    // Fixing Size After Last Property  > TateDumper <
+	bool                                         bRenderInAssetEditor;                              // 0xB8(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2D32[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UDataflowEdNode* GetDefaultObj();
@@ -40,10 +40,10 @@ public:
 class UDataflow : public UEdGraph
 {
 public:
-	uint8                                        Pad_2C76[0x28];                                    // Fixing Size After Last Property  > TateDumper <
-	bool                                         bActive;                                           // 0x88(0x1)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2C77[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<class UObject*>                       Targets;                                           // 0x90(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2D34[0x28];                                    // Fixing Size After Last Property  > TateDumper <
+	bool                                         bActive;                                           // 0x88(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2D35[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<class UObject*>                       Targets;                                           // 0x90(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
 	class UMaterial*                             Material;                                          // 0xA0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 
 	static class UClass* StaticClass();

@@ -19,10 +19,10 @@ namespace SDK
 struct FAnimStruct_CardinalDirection4
 {
 public:
-	class UAnimSequence*                         N_2_C4D53E1D48D8B95EAE45ADBC6AA8A726;              // 0x0(0x8)(ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	class UAnimSequence*                         E_6_FB4F423C4057AD968053B48E09287C2B;              // 0x8(0x8)(BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-	class UAnimSequence*                         S_7_336D6C0142C1E5AC36B5B6B56B708056;              // 0x10(0x8)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	class UAnimSequence*                         W_8_6DF6135C4BF74EC91483779A4410309E;              // 0x18(0x8)(ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, EditConst, SubobjectReference)
+	class UAnimSequence*                         N_2_C4D53E1D48D8B95EAE45ADBC6AA8A726;              // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, SubobjectReference)
+	class UAnimSequence*                         E_6_FB4F423C4057AD968053B48E09287C2B;              // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnInstance, SubobjectReference)
+	class UAnimSequence*                         S_7_336D6C0142C1E5AC36B5B6B56B708056;              // 0x10(0x8)(Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+	class UAnimSequence*                         W_8_6DF6135C4BF74EC91483779A4410309E;              // 0x18(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 };
 
 }

@@ -127,9 +127,9 @@ class UTypedElementHandleLibrary* UTypedElementHandleLibrary::GetDefaultObj()
 // Function TypedElementFramework.TypedElementHandleLibrary.Release
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   ElementHandle                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementHandle   ElementHandle                                                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UTypedElementHandleLibrary::Release(struct FScriptTypedElementHandle* ElementHandle)
+void UTypedElementHandleLibrary::Release(const struct FScriptTypedElementHandle& ElementHandle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -138,6 +138,7 @@ void UTypedElementHandleLibrary::Release(struct FScriptTypedElementHandle* Eleme
 
 	Params::UTypedElementHandleLibrary_Release_Params Parms{};
 
+	Parms.ElementHandle = ElementHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -147,20 +148,17 @@ void UTypedElementHandleLibrary::Release(struct FScriptTypedElementHandle* Eleme
 
 	Func->FunctionFlags = Flgs;
 
-	if (ElementHandle != nullptr)
-		*ElementHandle = std::move(Parms.ElementHandle);
-
 }
 
 
 // Function TypedElementFramework.TypedElementHandleLibrary.NotEqual
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FScriptTypedElementHandle   LHS                                                              (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FScriptTypedElementHandle   RHS                                                              (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   LHS                                                              (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementHandle   RHS                                                              (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTypedElementHandleLibrary::NotEqual(struct FScriptTypedElementHandle* LHS, struct FScriptTypedElementHandle* RHS)
+void UTypedElementHandleLibrary::NotEqual(const struct FScriptTypedElementHandle& LHS, const struct FScriptTypedElementHandle& RHS, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -169,6 +167,9 @@ bool UTypedElementHandleLibrary::NotEqual(struct FScriptTypedElementHandle* LHS,
 
 	Params::UTypedElementHandleLibrary_NotEqual_Params Parms{};
 
+	Parms.LHS = LHS;
+	Parms.RHS = RHS;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -178,24 +179,16 @@ bool UTypedElementHandleLibrary::NotEqual(struct FScriptTypedElementHandle* LHS,
 
 	Func->FunctionFlags = Flgs;
 
-	if (LHS != nullptr)
-		*LHS = std::move(Parms.LHS);
-
-	if (RHS != nullptr)
-		*RHS = std::move(Parms.RHS);
-
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TypedElementFramework.TypedElementHandleLibrary.IsSet
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FScriptTypedElementHandle   ElementHandle                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   ElementHandle                                                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTypedElementHandleLibrary::IsSet(struct FScriptTypedElementHandle* ElementHandle)
+void UTypedElementHandleLibrary::IsSet(const struct FScriptTypedElementHandle& ElementHandle, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -204,6 +197,8 @@ bool UTypedElementHandleLibrary::IsSet(struct FScriptTypedElementHandle* Element
 
 	Params::UTypedElementHandleLibrary_IsSet_Params Parms{};
 
+	Parms.ElementHandle = ElementHandle;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -213,22 +208,17 @@ bool UTypedElementHandleLibrary::IsSet(struct FScriptTypedElementHandle* Element
 
 	Func->FunctionFlags = Flgs;
 
-	if (ElementHandle != nullptr)
-		*ElementHandle = std::move(Parms.ElementHandle);
-
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TypedElementFramework.TypedElementHandleLibrary.Equal
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FScriptTypedElementHandle   LHS                                                              (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FScriptTypedElementHandle   RHS                                                              (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   LHS                                                              (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementHandle   RHS                                                              (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTypedElementHandleLibrary::Equal(struct FScriptTypedElementHandle* LHS, struct FScriptTypedElementHandle* RHS)
+void UTypedElementHandleLibrary::Equal(const struct FScriptTypedElementHandle& LHS, const struct FScriptTypedElementHandle& RHS, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -237,6 +227,9 @@ bool UTypedElementHandleLibrary::Equal(struct FScriptTypedElementHandle* LHS, st
 
 	Params::UTypedElementHandleLibrary_Equal_Params Parms{};
 
+	Parms.LHS = LHS;
+	Parms.RHS = RHS;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -245,14 +238,6 @@ bool UTypedElementHandleLibrary::Equal(struct FScriptTypedElementHandle* LHS, st
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (LHS != nullptr)
-		*LHS = std::move(Parms.LHS);
-
-	if (RHS != nullptr)
-		*RHS = std::move(Parms.RHS);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -288,7 +273,7 @@ class UTypedElementListLibrary* UTypedElementListLibrary::GetDefaultObj()
 // Function TypedElementFramework.TypedElementListLibrary.Shrink
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UTypedElementListLibrary::Shrink(struct FScriptTypedElementListProxy* ElementList)
 {
@@ -317,7 +302,7 @@ void UTypedElementListLibrary::Shrink(struct FScriptTypedElementListProxy* Eleme
 // Function TypedElementFramework.TypedElementListLibrary.Reset
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UTypedElementListLibrary::Reset(struct FScriptTypedElementListProxy* ElementList)
 {
@@ -346,7 +331,7 @@ void UTypedElementListLibrary::Reset(struct FScriptTypedElementListProxy* Elemen
 // Function TypedElementFramework.TypedElementListLibrary.Reserve
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 // int32                              Size                                                             (Edit, ExportObject, EditFixedSize, ReturnParm, Transient, Config)
 
 int32 UTypedElementListLibrary::Reserve(struct FScriptTypedElementListProxy* ElementList)
@@ -378,11 +363,11 @@ int32 UTypedElementListLibrary::Reserve(struct FScriptTypedElementListProxy* Ele
 // Function TypedElementFramework.TypedElementListLibrary.Remove
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FScriptTypedElementHandle   ElementHandle                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementHandle   ElementHandle                                                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTypedElementListLibrary::Remove(struct FScriptTypedElementListProxy* ElementList, struct FScriptTypedElementHandle* ElementHandle)
+void UTypedElementListLibrary::Remove(struct FScriptTypedElementListProxy* ElementList, const struct FScriptTypedElementHandle& ElementHandle, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -391,6 +376,8 @@ bool UTypedElementListLibrary::Remove(struct FScriptTypedElementListProxy* Eleme
 
 	Params::UTypedElementListLibrary_Remove_Params Parms{};
 
+	Parms.ElementHandle = ElementHandle;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -403,21 +390,16 @@ bool UTypedElementListLibrary::Remove(struct FScriptTypedElementListProxy* Eleme
 	if (ElementList != nullptr)
 		*ElementList = std::move(Parms.ElementList);
 
-	if (ElementHandle != nullptr)
-		*ElementHandle = std::move(Parms.ElementHandle);
-
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TypedElementFramework.TypedElementListLibrary.Num
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UTypedElementListLibrary::Num(struct FScriptTypedElementListProxy* ElementList)
+void UTypedElementListLibrary::Num(struct FScriptTypedElementListProxy* ElementList, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -426,6 +408,7 @@ int32 UTypedElementListLibrary::Num(struct FScriptTypedElementListProxy* Element
 
 	Params::UTypedElementListLibrary_Num_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -438,19 +421,17 @@ int32 UTypedElementListLibrary::Num(struct FScriptTypedElementListProxy* Element
 	if (ElementList != nullptr)
 		*ElementList = std::move(Parms.ElementList);
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TypedElementFramework.TypedElementListLibrary.IsValidIndex
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTypedElementListLibrary::IsValidIndex(struct FScriptTypedElementListProxy* ElementList)
+int32 UTypedElementListLibrary::IsValidIndex(struct FScriptTypedElementListProxy* ElementList, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -459,6 +440,7 @@ bool UTypedElementListLibrary::IsValidIndex(struct FScriptTypedElementListProxy*
 
 	Params::UTypedElementListLibrary_IsValidIndex_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -479,11 +461,11 @@ bool UTypedElementListLibrary::IsValidIndex(struct FScriptTypedElementListProxy*
 // Function TypedElementFramework.TypedElementListLibrary.HasElementsOfType
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class FName                        ElementTypeName                                                  (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        ElementTypeName                                                  (ConstParm, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTypedElementListLibrary::HasElementsOfType(struct FScriptTypedElementListProxy* ElementList, class FName* ElementTypeName)
+void UTypedElementListLibrary::HasElementsOfType(struct FScriptTypedElementListProxy* ElementList, class FName* ElementTypeName, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -492,6 +474,7 @@ bool UTypedElementListLibrary::HasElementsOfType(struct FScriptTypedElementListP
 
 	Params::UTypedElementListLibrary_HasElementsOfType_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -507,19 +490,17 @@ bool UTypedElementListLibrary::HasElementsOfType(struct FScriptTypedElementListP
 	if (ElementTypeName != nullptr)
 		*ElementTypeName = Parms.ElementTypeName;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TypedElementFramework.TypedElementListLibrary.HasElements
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UClass*                      BaseInterfaceType                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UClass*                      BaseInterfaceType                                                (ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTypedElementListLibrary::HasElements(struct FScriptTypedElementListProxy* ElementList, class UClass** BaseInterfaceType)
+void UTypedElementListLibrary::HasElements(struct FScriptTypedElementListProxy* ElementList, class UClass** BaseInterfaceType, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -528,6 +509,7 @@ bool UTypedElementListLibrary::HasElements(struct FScriptTypedElementListProxy* 
 
 	Params::UTypedElementListLibrary_HasElements_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -543,20 +525,18 @@ bool UTypedElementListLibrary::HasElements(struct FScriptTypedElementListProxy* 
 	if (BaseInterfaceType != nullptr)
 		*BaseInterfaceType = Parms.BaseInterfaceType;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TypedElementFramework.TypedElementListLibrary.GetElementInterface
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FScriptTypedElementHandle   ElementHandle                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UClass*                      BaseInterfaceType                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UObject*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementHandle   ElementHandle                                                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UClass*                      BaseInterfaceType                                                (ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UTypedElementListLibrary::GetElementInterface(struct FScriptTypedElementListProxy* ElementList, struct FScriptTypedElementHandle* ElementHandle, class UClass** BaseInterfaceType)
+void UTypedElementListLibrary::GetElementInterface(struct FScriptTypedElementListProxy* ElementList, const struct FScriptTypedElementHandle& ElementHandle, class UClass** BaseInterfaceType, class UObject* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -565,6 +545,8 @@ class UObject* UTypedElementListLibrary::GetElementInterface(struct FScriptTyped
 
 	Params::UTypedElementListLibrary_GetElementInterface_Params Parms{};
 
+	Parms.ElementHandle = ElementHandle;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -577,13 +559,8 @@ class UObject* UTypedElementListLibrary::GetElementInterface(struct FScriptTyped
 	if (ElementList != nullptr)
 		*ElementList = std::move(Parms.ElementList);
 
-	if (ElementHandle != nullptr)
-		*ElementHandle = std::move(Parms.ElementHandle);
-
 	if (BaseInterfaceType != nullptr)
 		*BaseInterfaceType = Parms.BaseInterfaceType;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -591,11 +568,11 @@ class UObject* UTypedElementListLibrary::GetElementInterface(struct FScriptTyped
 // Function TypedElementFramework.TypedElementListLibrary.GetElementHandles
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UClass*                      BaseInterfaceType                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FScriptTypedElementHandle>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UClass*                      BaseInterfaceType                                                (ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FScriptTypedElementHandle>ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<struct FScriptTypedElementHandle> UTypedElementListLibrary::GetElementHandles(struct FScriptTypedElementListProxy* ElementList, class UClass** BaseInterfaceType)
+void UTypedElementListLibrary::GetElementHandles(struct FScriptTypedElementListProxy* ElementList, class UClass** BaseInterfaceType, const TArray<struct FScriptTypedElementHandle>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -604,6 +581,7 @@ TArray<struct FScriptTypedElementHandle> UTypedElementListLibrary::GetElementHan
 
 	Params::UTypedElementListLibrary_GetElementHandles_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -619,19 +597,17 @@ TArray<struct FScriptTypedElementHandle> UTypedElementListLibrary::GetElementHan
 	if (BaseInterfaceType != nullptr)
 		*BaseInterfaceType = Parms.BaseInterfaceType;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TypedElementFramework.TypedElementListLibrary.GetElementHandleAt
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FScriptTypedElementHandle   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FScriptTypedElementHandle UTypedElementListLibrary::GetElementHandleAt(struct FScriptTypedElementListProxy* ElementList)
+int32 UTypedElementListLibrary::GetElementHandleAt(struct FScriptTypedElementListProxy* ElementList, const struct FScriptTypedElementHandle& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -640,6 +616,7 @@ struct FScriptTypedElementHandle UTypedElementListLibrary::GetElementHandleAt(st
 
 	Params::UTypedElementListLibrary_GetElementHandleAt_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -660,8 +637,8 @@ struct FScriptTypedElementHandle UTypedElementListLibrary::GetElementHandleAt(st
 // Function TypedElementFramework.TypedElementListLibrary.Empty
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              Slack                                                            (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              Slack                                                            (BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UTypedElementListLibrary::Empty(struct FScriptTypedElementListProxy* ElementList, int32* Slack)
 {
@@ -693,10 +670,10 @@ void UTypedElementListLibrary::Empty(struct FScriptTypedElementListProxy* Elemen
 // Function TypedElementFramework.TypedElementListLibrary.CreateScriptElementList
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UTypedElementRegistry*       Registry                                                         (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FScriptTypedElementListProxyReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTypedElementRegistry*       Registry                                                         (Edit, ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementListProxyReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FScriptTypedElementListProxy UTypedElementListLibrary::CreateScriptElementList(class UTypedElementRegistry** Registry)
+void UTypedElementListLibrary::CreateScriptElementList(class UTypedElementRegistry** Registry, const struct FScriptTypedElementListProxy& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -705,6 +682,7 @@ struct FScriptTypedElementListProxy UTypedElementListLibrary::CreateScriptElemen
 
 	Params::UTypedElementListLibrary_CreateScriptElementList_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -717,19 +695,17 @@ struct FScriptTypedElementListProxy UTypedElementListLibrary::CreateScriptElemen
 	if (Registry != nullptr)
 		*Registry = Parms.Registry;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TypedElementFramework.TypedElementListLibrary.CountElementsOfType
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class FName                        ElementTypeName                                                  (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        ElementTypeName                                                  (ConstParm, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UTypedElementListLibrary::CountElementsOfType(struct FScriptTypedElementListProxy* ElementList, class FName* ElementTypeName)
+void UTypedElementListLibrary::CountElementsOfType(struct FScriptTypedElementListProxy* ElementList, class FName* ElementTypeName, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -738,6 +714,7 @@ int32 UTypedElementListLibrary::CountElementsOfType(struct FScriptTypedElementLi
 
 	Params::UTypedElementListLibrary_CountElementsOfType_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -753,19 +730,17 @@ int32 UTypedElementListLibrary::CountElementsOfType(struct FScriptTypedElementLi
 	if (ElementTypeName != nullptr)
 		*ElementTypeName = Parms.ElementTypeName;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TypedElementFramework.TypedElementListLibrary.CountElements
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UClass*                      BaseInterfaceType                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UClass*                      BaseInterfaceType                                                (ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UTypedElementListLibrary::CountElements(struct FScriptTypedElementListProxy* ElementList, class UClass** BaseInterfaceType)
+void UTypedElementListLibrary::CountElements(struct FScriptTypedElementListProxy* ElementList, class UClass** BaseInterfaceType, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -774,6 +749,7 @@ int32 UTypedElementListLibrary::CountElements(struct FScriptTypedElementListProx
 
 	Params::UTypedElementListLibrary_CountElements_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -789,19 +765,17 @@ int32 UTypedElementListLibrary::CountElements(struct FScriptTypedElementListProx
 	if (BaseInterfaceType != nullptr)
 		*BaseInterfaceType = Parms.BaseInterfaceType;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TypedElementFramework.TypedElementListLibrary.Contains
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FScriptTypedElementHandle   ElementHandle                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementHandle   ElementHandle                                                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTypedElementListLibrary::Contains(struct FScriptTypedElementListProxy* ElementList, struct FScriptTypedElementHandle* ElementHandle)
+void UTypedElementListLibrary::Contains(struct FScriptTypedElementListProxy* ElementList, const struct FScriptTypedElementHandle& ElementHandle, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -810,6 +784,8 @@ bool UTypedElementListLibrary::Contains(struct FScriptTypedElementListProxy* Ele
 
 	Params::UTypedElementListLibrary_Contains_Params Parms{};
 
+	Parms.ElementHandle = ElementHandle;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -822,21 +798,16 @@ bool UTypedElementListLibrary::Contains(struct FScriptTypedElementListProxy* Ele
 	if (ElementList != nullptr)
 		*ElementList = std::move(Parms.ElementList);
 
-	if (ElementHandle != nullptr)
-		*ElementHandle = std::move(Parms.ElementHandle);
-
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TypedElementFramework.TypedElementListLibrary.Clone
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FScriptTypedElementListProxyReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementListProxyReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FScriptTypedElementListProxy UTypedElementListLibrary::Clone(struct FScriptTypedElementListProxy* ElementList)
+void UTypedElementListLibrary::Clone(struct FScriptTypedElementListProxy* ElementList, const struct FScriptTypedElementListProxy& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -845,6 +816,7 @@ struct FScriptTypedElementListProxy UTypedElementListLibrary::Clone(struct FScri
 
 	Params::UTypedElementListLibrary_Clone_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -857,16 +829,14 @@ struct FScriptTypedElementListProxy UTypedElementListLibrary::Clone(struct FScri
 	if (ElementList != nullptr)
 		*ElementList = std::move(Parms.ElementList);
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TypedElementFramework.TypedElementListLibrary.AppendList
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FScriptTypedElementListProxyOtherElementList                                                 (ConstParm, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementListProxyOtherElementList                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UTypedElementListLibrary::AppendList(struct FScriptTypedElementListProxy* ElementList, struct FScriptTypedElementListProxy* OtherElementList)
 {
@@ -898,8 +868,8 @@ void UTypedElementListLibrary::AppendList(struct FScriptTypedElementListProxy* E
 // Function TypedElementFramework.TypedElementListLibrary.Append
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FScriptTypedElementHandle>ElementHandles                                                   (ConstParm, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FScriptTypedElementHandle>ElementHandles                                                   (Edit, ConstParm, BlueprintVisible, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UTypedElementListLibrary::Append(struct FScriptTypedElementListProxy* ElementList, TArray<struct FScriptTypedElementHandle>* ElementHandles)
 {
@@ -931,11 +901,11 @@ void UTypedElementListLibrary::Append(struct FScriptTypedElementListProxy* Eleme
 // Function TypedElementFramework.TypedElementListLibrary.Add
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementListProxyElementList                                                      (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FScriptTypedElementHandle   ElementHandle                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementListProxyElementList                                                      (OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FScriptTypedElementHandle   ElementHandle                                                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTypedElementListLibrary::Add(struct FScriptTypedElementListProxy* ElementList, struct FScriptTypedElementHandle* ElementHandle)
+void UTypedElementListLibrary::Add(struct FScriptTypedElementListProxy* ElementList, const struct FScriptTypedElementHandle& ElementHandle, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -944,6 +914,8 @@ bool UTypedElementListLibrary::Add(struct FScriptTypedElementListProxy* ElementL
 
 	Params::UTypedElementListLibrary_Add_Params Parms{};
 
+	Parms.ElementHandle = ElementHandle;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -955,11 +927,6 @@ bool UTypedElementListLibrary::Add(struct FScriptTypedElementListProxy* ElementL
 
 	if (ElementList != nullptr)
 		*ElementList = std::move(Parms.ElementList);
-
-	if (ElementHandle != nullptr)
-		*ElementHandle = std::move(Parms.ElementHandle);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1023,9 +990,9 @@ class UTypedElementRegistry* UTypedElementRegistry::GetDefaultObj()
 // Function TypedElementFramework.TypedElementRegistry.GetInstance
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UTypedElementRegistry*       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTypedElementRegistry*       ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UTypedElementRegistry* UTypedElementRegistry::GetInstance()
+void UTypedElementRegistry::GetInstance(class UTypedElementRegistry* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1034,6 +1001,7 @@ class UTypedElementRegistry* UTypedElementRegistry::GetInstance()
 
 	Params::UTypedElementRegistry_GetInstance_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1043,19 +1011,17 @@ class UTypedElementRegistry* UTypedElementRegistry::GetInstance()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TypedElementFramework.TypedElementRegistry.GetElementInterface
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UClass*                      InBaseInterfaceType                                              (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UObject*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      InBaseInterfaceType                                              (BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UTypedElementRegistry::GetElementInterface(const struct FScriptTypedElementHandle& InElementHandle, class UClass** InBaseInterfaceType)
+class UClass* UTypedElementRegistry::GetElementInterface(class UObject* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1064,7 +1030,7 @@ class UObject* UTypedElementRegistry::GetElementInterface(const struct FScriptTy
 
 	Params::UTypedElementRegistry_GetElementInterface_Params Parms{};
 
-	Parms.InElementHandle = InElementHandle;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1073,9 +1039,6 @@ class UObject* UTypedElementRegistry::GetElementInterface(const struct FScriptTy
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InBaseInterfaceType != nullptr)
-		*InBaseInterfaceType = Parms.InBaseInterfaceType;
 
 	return Parms.ReturnValue;
 
@@ -1113,12 +1076,12 @@ class ITestTypedElementInterfaceA* ITestTypedElementInterfaceA::GetDefaultObj()
 // Function TypedElementFramework.TestTypedElementInterfaceA.SetDisplayName
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class FText                        InNewName                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-// bool                               bNotify                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class FText                        InNewName                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bNotify                                                          (BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool ITestTypedElementInterfaceA::SetDisplayName(const struct FScriptTypedElementHandle& InElementHandle, class FText* InNewName, bool* bNotify)
+class FText ITestTypedElementInterfaceA::SetDisplayName(bool* bNotify, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1127,7 +1090,7 @@ bool ITestTypedElementInterfaceA::SetDisplayName(const struct FScriptTypedElemen
 
 	Params::ITestTypedElementInterfaceA_SetDisplayName_Params Parms{};
 
-	Parms.InElementHandle = InElementHandle;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1136,9 +1099,6 @@ bool ITestTypedElementInterfaceA::SetDisplayName(const struct FScriptTypedElemen
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InNewName != nullptr)
-		*InNewName = Parms.InNewName;
 
 	if (bNotify != nullptr)
 		*bNotify = Parms.bNotify;
@@ -1151,10 +1111,10 @@ bool ITestTypedElementInterfaceA::SetDisplayName(const struct FScriptTypedElemen
 // Function TypedElementFramework.TestTypedElementInterfaceA.GetDisplayName
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class FText                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FText ITestTypedElementInterfaceA::GetDisplayName(const struct FScriptTypedElementHandle& InElementHandle)
+struct FScriptTypedElementHandle ITestTypedElementInterfaceA::GetDisplayName(class FText ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1163,7 +1123,7 @@ class FText ITestTypedElementInterfaceA::GetDisplayName(const struct FScriptType
 
 	Params::ITestTypedElementInterfaceA_GetDisplayName_Params Parms{};
 
-	Parms.InElementHandle = InElementHandle;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1209,10 +1169,10 @@ class ITestTypedElementInterfaceB* ITestTypedElementInterfaceB::GetDefaultObj()
 // Function TypedElementFramework.TestTypedElementInterfaceB.MarkAsTested
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool ITestTypedElementInterfaceB::MarkAsTested(const struct FScriptTypedElementHandle& InElementHandle)
+struct FScriptTypedElementHandle ITestTypedElementInterfaceB::MarkAsTested(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1221,7 +1181,7 @@ bool ITestTypedElementInterfaceB::MarkAsTested(const struct FScriptTypedElementH
 
 	Params::ITestTypedElementInterfaceB_MarkAsTested_Params Parms{};
 
-	Parms.InElementHandle = InElementHandle;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1267,10 +1227,10 @@ class ITestTypedElementInterfaceC* ITestTypedElementInterfaceC::GetDefaultObj()
 // Function TypedElementFramework.TestTypedElementInterfaceC.GetIsTested
 // (Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FScriptTypedElementHandle   InElementHandle                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FScriptTypedElementHandle   InElementHandle                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool ITestTypedElementInterfaceC::GetIsTested(const struct FScriptTypedElementHandle& InElementHandle)
+struct FScriptTypedElementHandle ITestTypedElementInterfaceC::GetIsTested(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1279,7 +1239,7 @@ bool ITestTypedElementInterfaceC::GetIsTested(const struct FScriptTypedElementHa
 
 	Params::ITestTypedElementInterfaceC_GetIsTested_Params Parms{};
 
-	Parms.InElementHandle = InElementHandle;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;

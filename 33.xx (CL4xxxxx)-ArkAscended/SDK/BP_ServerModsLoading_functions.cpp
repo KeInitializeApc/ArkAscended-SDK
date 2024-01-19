@@ -43,9 +43,9 @@ class UBP_ServerModsLoading_C* UBP_ServerModsLoading_C::GetDefaultObj()
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.BPEscapeClosed
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UBP_ServerModsLoading_C::BPEscapeClosed()
+void UBP_ServerModsLoading_C::BPEscapeClosed(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,10 +54,9 @@ bool UBP_ServerModsLoading_C::BPEscapeClosed()
 
 	Params::UBP_ServerModsLoading_C_BPEscapeClosed_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -65,9 +64,9 @@ bool UBP_ServerModsLoading_C::BPEscapeClosed()
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.BP_ServerModsLoading_AutoGenFunc1
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// TArray<struct FInstalledMod>       Installed_mods                                                   (ConstParm, BlueprintVisible, Net, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+// TArray<struct FInstalledMod>       Installed_mods                                                   (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
 
-void UBP_ServerModsLoading_C::BP_ServerModsLoading_AutoGenFunc1(const TArray<struct FInstalledMod>& Installed_mods)
+TArray<struct FInstalledMod> UBP_ServerModsLoading_C::BP_ServerModsLoading_AutoGenFunc1()
 {
 	static class UFunction* Func = nullptr;
 
@@ -76,29 +75,6 @@ void UBP_ServerModsLoading_C::BP_ServerModsLoading_AutoGenFunc1(const TArray<str
 
 	Params::UBP_ServerModsLoading_C_BP_ServerModsLoading_AutoGenFunc1_Params Parms{};
 
-	Parms.Installed_mods = Installed_mods;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-}
-
-
-// Function BP_ServerModsLoading.BP_ServerModsLoading_C.BP_ServerModsLoading_AutoGenFunc
-// (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
-// Parameters:
-// struct FModsUpdateProgress         UpdateProgress                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FLibraryProgress            ModInstallProgress                                               (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-
-struct FCFCoreMod UBP_ServerModsLoading_C::BP_ServerModsLoading_AutoGenFunc()
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("BP_ServerModsLoading_C", "BP_ServerModsLoading_AutoGenFunc");
-
-	Params::UBP_ServerModsLoading_C_BP_ServerModsLoading_AutoGenFunc_Params Parms{};
-
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -107,18 +83,45 @@ struct FCFCoreMod UBP_ServerModsLoading_C::BP_ServerModsLoading_AutoGenFunc()
 }
 
 
+// Function BP_ServerModsLoading.BP_ServerModsLoading_C.BP_ServerModsLoading_AutoGenFunc
+// (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
+// Parameters:
+// struct FModsUpdateProgress         UpdateProgress                                                   (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// struct FLibraryProgress            ModInstallProgress                                               (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// struct FCFCoreMod                  Mod                                                              (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, Transient, GlobalConfig, SubobjectReference)
+
+void UBP_ServerModsLoading_C::BP_ServerModsLoading_AutoGenFunc(struct FModsUpdateProgress* UpdateProgress, const struct FLibraryProgress& ModInstallProgress, const struct FCFCoreMod& Mod)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("BP_ServerModsLoading_C", "BP_ServerModsLoading_AutoGenFunc");
+
+	Params::UBP_ServerModsLoading_C_BP_ServerModsLoading_AutoGenFunc_Params Parms{};
+
+	Parms.ModInstallProgress = ModInstallProgress;
+	Parms.Mod = Mod;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+	if (UpdateProgress != nullptr)
+		*UpdateProgress = std::move(Parms.UpdateProgress);
+
+}
+
+
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.StartDownload_0
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        ServerName                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// TArray<int64>                      ModsToDownload                                                   (BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FCFCoreMod>          Mods_to_Download                                                 (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_2                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
-// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue                          (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FText                        ServerName                                                       (Edit, ConstParm, BlueprintReadOnly, Net, Parm, Config, InstancedReference, SubobjectReference)
+// TArray<int64>                      ModsToDownload                                                   (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, InstancedReference, SubobjectReference)
+// TArray<struct FCFCoreMod>          Mods_to_Download                                                 (ConstParm, ExportObject, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_2                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue                          (BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class UCFCoreSubsystem* UBP_ServerModsLoading_C::StartDownload_0(const TArray<int64>& ModsToDownload, const TArray<struct FCFCoreMod>& Mods_to_Download)
+TArray<int64> UBP_ServerModsLoading_C::StartDownload_0(class FText ServerName, const TArray<struct FCFCoreMod>& Mods_to_Download, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_1, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_2, class UCFCoreSubsystem* CallFunc_GetEngineSubsystem_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -127,8 +130,12 @@ class UCFCoreSubsystem* UBP_ServerModsLoading_C::StartDownload_0(const TArray<in
 
 	Params::UBP_ServerModsLoading_C_StartDownload_0_Params Parms{};
 
-	Parms.ModsToDownload = ModsToDownload;
+	Parms.ServerName = ServerName;
 	Parms.Mods_to_Download = Mods_to_Download;
+	Parms.K2Node_CreateDelegate_OutputDelegate = K2Node_CreateDelegate_OutputDelegate;
+	Parms.K2Node_CreateDelegate_OutputDelegate_1 = K2Node_CreateDelegate_OutputDelegate_1;
+	Parms.K2Node_CreateDelegate_OutputDelegate_2 = K2Node_CreateDelegate_OutputDelegate_2;
+	Parms.CallFunc_GetEngineSubsystem_ReturnValue = CallFunc_GetEngineSubsystem_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -140,36 +147,36 @@ class UCFCoreSubsystem* UBP_ServerModsLoading_C::StartDownload_0(const TArray<in
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.Update Downloading Proggress Text_New
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int64                              ModId                                                            (Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-// int64                              FileId                                                           (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-// enum class ELibraryProgressState   PregressState                                                    (ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              Progress                                                         (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-// int64                              TransferredBytes                                                 (BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-// enum class ELibraryProgressState   Temp_byte_Variable                                               (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FCFCoreFileSize             CallFunc_BreakFileSize_ReturnValue                               (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FCFCoreFileSize             CallFunc_BreakFileSize_ReturnValue_1                             (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// int64                              CallFunc_Conv_IntToInt64_ReturnValue                             (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData                             (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// int64                              CallFunc_Conv_IntToInt64_ReturnValue_1                           (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_1                           (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// int32                              CallFunc_Len_ReturnValue                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// bool                               CallFunc_Greater_IntInt_ReturnValue                              (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FString                      CallFunc_SelectString_ReturnValue                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_2                           (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, RepNotify, Interp)
-// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class FString                      CallFunc_Concat_StrStr_ReturnValue                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class FText                        CallFunc_Format_ReturnValue                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FText                        CallFunc_MakeLiteralText_ReturnValue                             (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference)
-// class FText                        CallFunc_MakeLiteralText_ReturnValue_1                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference, Interp)
-// class FText                        CallFunc_MakeLiteralText_ReturnValue_2                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference, RepNotify, Interp)
-// class FText                        CallFunc_MakeLiteralText_ReturnValue_3                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference, NonTransactional)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_3                           (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, NonTransactional)
-// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array_1                                         (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// class FText                        CallFunc_Format_ReturnValue_1                                    (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// class FText                        K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// int64                              FileId                                                           (Edit, ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// enum class ELibraryProgressState   PregressState                                                    (BlueprintReadOnly, Net, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// int32                              Progress                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// int64                              TransferredBytes                                                 (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// enum class ELibraryProgressState   Temp_byte_Variable                                               (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// struct FCFCoreFileSize             CallFunc_BreakFileSize_ReturnValue                               (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FCFCoreFileSize             CallFunc_BreakFileSize_ReturnValue_1                             (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// int64                              CallFunc_Conv_IntToInt64_ReturnValue                             (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData                             (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// int64                              CallFunc_Conv_IntToInt64_ReturnValue_1                           (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_1                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              CallFunc_Len_ReturnValue                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Greater_IntInt_ReturnValue                              (ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// class FString                      CallFunc_SelectString_ReturnValue                                (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_2                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class FString                      CallFunc_Concat_StrStr_ReturnValue                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Format_ReturnValue                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_MakeLiteralText_ReturnValue                             (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_MakeLiteralText_ReturnValue_1                           (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// class FText                        CallFunc_MakeLiteralText_ReturnValue_2                           (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// class FText                        CallFunc_MakeLiteralText_ReturnValue_3                           (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, NonTransactional)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_3                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, NonTransactional)
+// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array_1                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// class FText                        CallFunc_Format_ReturnValue_1                                    (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// class FText                        K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
 
-TArray<struct FFormatArgumentData> UBP_ServerModsLoading_C::Update_Downloading_Proggress_Text_New(enum class ELibraryProgressState PregressState, int32* Progress, int64* TransferredBytes, enum class ELibraryProgressState Temp_byte_Variable, struct FCFCoreFileSize* CallFunc_BreakFileSize_ReturnValue, struct FCFCoreFileSize* CallFunc_BreakFileSize_ReturnValue_1, int32* CallFunc_Len_ReturnValue, class FText CallFunc_Conv_StringToText_ReturnValue, class FString* CallFunc_SelectString_ReturnValue, const class FString& CallFunc_Concat_StrStr_ReturnValue, class FText CallFunc_Format_ReturnValue, class FText CallFunc_Format_ReturnValue_1, class FText* K2Node_Select_Default)
+class FText UBP_ServerModsLoading_C::Update_Downloading_Proggress_Text_New(int64 ModId, int64 FileId, enum class ELibraryProgressState PregressState, const struct FCFCoreFileSize& CallFunc_BreakFileSize_ReturnValue, const struct FCFCoreFileSize& CallFunc_BreakFileSize_ReturnValue_1, int64* CallFunc_Conv_IntToInt64_ReturnValue, int64* CallFunc_Conv_IntToInt64_ReturnValue_1, const class FString& CallFunc_SelectString_ReturnValue, const TArray<struct FFormatArgumentData>& K2Node_MakeArray_Array, const TArray<struct FFormatArgumentData>& K2Node_MakeArray_Array_1, class FText K2Node_Select_Default)
 {
 	static class UFunction* Func = nullptr;
 
@@ -178,35 +185,23 @@ TArray<struct FFormatArgumentData> UBP_ServerModsLoading_C::Update_Downloading_P
 
 	Params::UBP_ServerModsLoading_C_Update_Downloading_Proggress_Text_New_Params Parms{};
 
+	Parms.ModId = ModId;
+	Parms.FileId = FileId;
 	Parms.PregressState = PregressState;
-	Parms.Temp_byte_Variable = Temp_byte_Variable;
-	Parms.CallFunc_Conv_StringToText_ReturnValue = CallFunc_Conv_StringToText_ReturnValue;
-	Parms.CallFunc_Concat_StrStr_ReturnValue = CallFunc_Concat_StrStr_ReturnValue;
-	Parms.CallFunc_Format_ReturnValue = CallFunc_Format_ReturnValue;
-	Parms.CallFunc_Format_ReturnValue_1 = CallFunc_Format_ReturnValue_1;
+	Parms.CallFunc_BreakFileSize_ReturnValue = CallFunc_BreakFileSize_ReturnValue;
+	Parms.CallFunc_BreakFileSize_ReturnValue_1 = CallFunc_BreakFileSize_ReturnValue_1;
+	Parms.CallFunc_SelectString_ReturnValue = CallFunc_SelectString_ReturnValue;
+	Parms.K2Node_MakeArray_Array = K2Node_MakeArray_Array;
+	Parms.K2Node_MakeArray_Array_1 = K2Node_MakeArray_Array_1;
+	Parms.K2Node_Select_Default = K2Node_Select_Default;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Progress != nullptr)
-		*Progress = Parms.Progress;
+	if (CallFunc_Conv_IntToInt64_ReturnValue != nullptr)
+		*CallFunc_Conv_IntToInt64_ReturnValue = Parms.CallFunc_Conv_IntToInt64_ReturnValue;
 
-	if (TransferredBytes != nullptr)
-		*TransferredBytes = Parms.TransferredBytes;
-
-	if (CallFunc_BreakFileSize_ReturnValue != nullptr)
-		*CallFunc_BreakFileSize_ReturnValue = std::move(Parms.CallFunc_BreakFileSize_ReturnValue);
-
-	if (CallFunc_BreakFileSize_ReturnValue_1 != nullptr)
-		*CallFunc_BreakFileSize_ReturnValue_1 = std::move(Parms.CallFunc_BreakFileSize_ReturnValue_1);
-
-	if (CallFunc_Len_ReturnValue != nullptr)
-		*CallFunc_Len_ReturnValue = Parms.CallFunc_Len_ReturnValue;
-
-	if (CallFunc_SelectString_ReturnValue != nullptr)
-		*CallFunc_SelectString_ReturnValue = std::move(Parms.CallFunc_SelectString_ReturnValue);
-
-	if (K2Node_Select_Default != nullptr)
-		*K2Node_Select_Default = Parms.K2Node_Select_Default;
+	if (CallFunc_Conv_IntToInt64_ReturnValue_1 != nullptr)
+		*CallFunc_Conv_IntToInt64_ReturnValue_1 = Parms.CallFunc_Conv_IntToInt64_ReturnValue_1;
 
 	return Parms.ReturnValue;
 
@@ -216,13 +211,13 @@ TArray<struct FFormatArgumentData> UBP_ServerModsLoading_C::Update_Downloading_P
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.UpdateTexts
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int64                              CallFunc_Conv_IntToInt64_ReturnValue                             (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData                             (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_Format_ReturnValue                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// int64                              CallFunc_Conv_IntToInt64_ReturnValue                             (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData                             (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Format_ReturnValue                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
 
-TArray<struct FFormatArgumentData> UBP_ServerModsLoading_C::UpdateTexts(int32* CallFunc_Array_Length_ReturnValue, class FText CallFunc_Format_ReturnValue)
+class FText UBP_ServerModsLoading_C::UpdateTexts(int32* CallFunc_Array_Length_ReturnValue, int64* CallFunc_Conv_IntToInt64_ReturnValue, const TArray<struct FFormatArgumentData>& K2Node_MakeArray_Array)
 {
 	static class UFunction* Func = nullptr;
 
@@ -231,12 +226,15 @@ TArray<struct FFormatArgumentData> UBP_ServerModsLoading_C::UpdateTexts(int32* C
 
 	Params::UBP_ServerModsLoading_C_UpdateTexts_Params Parms{};
 
-	Parms.CallFunc_Format_ReturnValue = CallFunc_Format_ReturnValue;
+	Parms.K2Node_MakeArray_Array = K2Node_MakeArray_Array;
 
 	UObject::ProcessEvent(Func, &Parms);
 
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
+
+	if (CallFunc_Conv_IntToInt64_ReturnValue != nullptr)
+		*CallFunc_Conv_IntToInt64_ReturnValue = Parms.CallFunc_Conv_IntToInt64_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -246,22 +244,22 @@ TArray<struct FFormatArgumentData> UBP_ServerModsLoading_C::UpdateTexts(int32* C
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.CalculateTatalModsSize
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable_1                                  (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// int32                              Temp_int_Loop_Counter_Variable_1                                 (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// struct FCFCoreMod                  CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// struct FFile                       CallFunc_Array_Get_Item_1                                        (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// int32                              CallFunc_Array_Length_ReturnValue_1                              (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// int64                              CallFunc_Add_Int64Int64_ReturnValue                              (Edit, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue_1                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_EqualEqual_Int64Int64_ReturnValue                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue_1                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable_1                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              Temp_int_Loop_Counter_Variable_1                                 (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference, Interp)
+// struct FCFCoreMod                  CallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// struct FFile                       CallFunc_Array_Get_Item_1                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              CallFunc_Array_Length_ReturnValue_1                              (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference, Interp)
+// int64                              CallFunc_Add_Int64Int64_ReturnValue                              (ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, InstancedReference, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue_1                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_Int64Int64_ReturnValue                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue_1                                (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference, Interp)
 
-bool UBP_ServerModsLoading_C::CalculateTatalModsSize(int32 CallFunc_Add_IntInt_ReturnValue, struct FCFCoreMod* CallFunc_Array_Get_Item, int32* CallFunc_Array_Length_ReturnValue, struct FFile* CallFunc_Array_Get_Item_1, int32* CallFunc_Array_Length_ReturnValue_1, int64* CallFunc_Add_Int64Int64_ReturnValue, bool* CallFunc_EqualEqual_Int64Int64_ReturnValue, int32 CallFunc_Add_IntInt_ReturnValue_1)
+int32 UBP_ServerModsLoading_C::CalculateTatalModsSize(int32 Temp_int_Loop_Counter_Variable, int32 Temp_int_Loop_Counter_Variable_1, const struct FCFCoreMod& CallFunc_Array_Get_Item, int32* CallFunc_Array_Length_ReturnValue, bool CallFunc_Less_IntInt_ReturnValue, const struct FFile& CallFunc_Array_Get_Item_1, int32* CallFunc_Array_Length_ReturnValue_1, bool CallFunc_Less_IntInt_ReturnValue_1, bool CallFunc_EqualEqual_Int64Int64_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -270,28 +268,21 @@ bool UBP_ServerModsLoading_C::CalculateTatalModsSize(int32 CallFunc_Add_IntInt_R
 
 	Params::UBP_ServerModsLoading_C_CalculateTatalModsSize_Params Parms{};
 
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
-	Parms.CallFunc_Add_IntInt_ReturnValue_1 = CallFunc_Add_IntInt_ReturnValue_1;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.Temp_int_Loop_Counter_Variable_1 = Temp_int_Loop_Counter_Variable_1;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
+	Parms.CallFunc_Array_Get_Item_1 = CallFunc_Array_Get_Item_1;
+	Parms.CallFunc_Less_IntInt_ReturnValue_1 = CallFunc_Less_IntInt_ReturnValue_1;
+	Parms.CallFunc_EqualEqual_Int64Int64_ReturnValue = CallFunc_EqualEqual_Int64Int64_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
 
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
 
-	if (CallFunc_Array_Get_Item_1 != nullptr)
-		*CallFunc_Array_Get_Item_1 = std::move(Parms.CallFunc_Array_Get_Item_1);
-
 	if (CallFunc_Array_Length_ReturnValue_1 != nullptr)
 		*CallFunc_Array_Length_ReturnValue_1 = Parms.CallFunc_Array_Length_ReturnValue_1;
-
-	if (CallFunc_Add_Int64Int64_ReturnValue != nullptr)
-		*CallFunc_Add_Int64Int64_ReturnValue = Parms.CallFunc_Add_Int64Int64_ReturnValue;
-
-	if (CallFunc_EqualEqual_Int64Int64_ReturnValue != nullptr)
-		*CallFunc_EqualEqual_Int64Int64_ReturnValue = Parms.CallFunc_EqualEqual_Int64Int64_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -301,24 +292,24 @@ bool UBP_ServerModsLoading_C::CalculateTatalModsSize(int32 CallFunc_Add_IntInt_R
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.UpdateProgressBar
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int64                              CallFunc_Divide_Int64Int64_ReturnValue                           (ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              CallFunc_Conv_Int64ToInt_ReturnValue                             (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_Conv_IntToDouble_ReturnValue                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// int64                              CallFunc_Divide_Int64Int64_ReturnValue_1                         (ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// int32                              CallFunc_Conv_Int64ToInt_ReturnValue_1                           (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Conv_IntToDouble_ReturnValue_1                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// double                             CallFunc_Divide_DoubleDouble_ReturnValue                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, EditConst, SubobjectReference)
-// double                             CallFunc_FClamp_ReturnValue                                      (Edit, BlueprintVisible, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-// double                             CallFunc_Multiply_IntFloat_ReturnValue                           (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, EditConst, SubobjectReference)
-// int32                              CallFunc_Round_ReturnValue                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Clamp_ReturnValue                                       (ConstParm, BlueprintVisible, Net, Parm, ReturnParm, EditConst, SubobjectReference)
-// int64                              CallFunc_Conv_IntToInt64_ReturnValue                             (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData                             (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_Format_ReturnValue                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              CallFunc_SetPercent_InPercent_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int64                              CallFunc_Divide_Int64Int64_ReturnValue                           (ConstParm, Net, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              CallFunc_Conv_Int64ToInt_ReturnValue                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Conv_IntToDouble_ReturnValue                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int64                              CallFunc_Divide_Int64Int64_ReturnValue_1                         (ConstParm, Net, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// int32                              CallFunc_Conv_Int64ToInt_ReturnValue_1                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Conv_IntToDouble_ReturnValue_1                          (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Divide_DoubleDouble_ReturnValue                         (BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_FClamp_ReturnValue                                      (Edit, ConstParm, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Multiply_IntFloat_ReturnValue                           (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Round_ReturnValue                                       (BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Clamp_ReturnValue                                       (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int64                              CallFunc_Conv_IntToInt64_ReturnValue                             (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData                             (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Format_ReturnValue                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// float                              CallFunc_SetPercent_InPercent_ImplicitCast                       (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-float UBP_ServerModsLoading_C::UpdateProgressBar(int64* CallFunc_Divide_Int64Int64_ReturnValue, int32 CallFunc_Conv_Int64ToInt_ReturnValue, int64* CallFunc_Divide_Int64Int64_ReturnValue_1, int32 CallFunc_Conv_Int64ToInt_ReturnValue_1, double CallFunc_Divide_DoubleDouble_ReturnValue, double* CallFunc_FClamp_ReturnValue, int32 CallFunc_Round_ReturnValue, class FText CallFunc_Format_ReturnValue)
+float UBP_ServerModsLoading_C::UpdateProgressBar(int64 CallFunc_Divide_Int64Int64_ReturnValue, int32* CallFunc_Conv_Int64ToInt_ReturnValue, int64 CallFunc_Divide_Int64Int64_ReturnValue_1, int32* CallFunc_Conv_Int64ToInt_ReturnValue_1, double* CallFunc_FClamp_ReturnValue, int64* CallFunc_Conv_IntToInt64_ReturnValue, const TArray<struct FFormatArgumentData>& K2Node_MakeArray_Array)
 {
 	static class UFunction* Func = nullptr;
 
@@ -327,22 +318,23 @@ float UBP_ServerModsLoading_C::UpdateProgressBar(int64* CallFunc_Divide_Int64Int
 
 	Params::UBP_ServerModsLoading_C_UpdateProgressBar_Params Parms{};
 
-	Parms.CallFunc_Conv_Int64ToInt_ReturnValue = CallFunc_Conv_Int64ToInt_ReturnValue;
-	Parms.CallFunc_Conv_Int64ToInt_ReturnValue_1 = CallFunc_Conv_Int64ToInt_ReturnValue_1;
-	Parms.CallFunc_Divide_DoubleDouble_ReturnValue = CallFunc_Divide_DoubleDouble_ReturnValue;
-	Parms.CallFunc_Round_ReturnValue = CallFunc_Round_ReturnValue;
-	Parms.CallFunc_Format_ReturnValue = CallFunc_Format_ReturnValue;
+	Parms.CallFunc_Divide_Int64Int64_ReturnValue = CallFunc_Divide_Int64Int64_ReturnValue;
+	Parms.CallFunc_Divide_Int64Int64_ReturnValue_1 = CallFunc_Divide_Int64Int64_ReturnValue_1;
+	Parms.K2Node_MakeArray_Array = K2Node_MakeArray_Array;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_Divide_Int64Int64_ReturnValue != nullptr)
-		*CallFunc_Divide_Int64Int64_ReturnValue = Parms.CallFunc_Divide_Int64Int64_ReturnValue;
+	if (CallFunc_Conv_Int64ToInt_ReturnValue != nullptr)
+		*CallFunc_Conv_Int64ToInt_ReturnValue = Parms.CallFunc_Conv_Int64ToInt_ReturnValue;
 
-	if (CallFunc_Divide_Int64Int64_ReturnValue_1 != nullptr)
-		*CallFunc_Divide_Int64Int64_ReturnValue_1 = Parms.CallFunc_Divide_Int64Int64_ReturnValue_1;
+	if (CallFunc_Conv_Int64ToInt_ReturnValue_1 != nullptr)
+		*CallFunc_Conv_Int64ToInt_ReturnValue_1 = Parms.CallFunc_Conv_Int64ToInt_ReturnValue_1;
 
 	if (CallFunc_FClamp_ReturnValue != nullptr)
 		*CallFunc_FClamp_ReturnValue = Parms.CallFunc_FClamp_ReturnValue;
+
+	if (CallFunc_Conv_IntToInt64_ReturnValue != nullptr)
+		*CallFunc_Conv_IntToInt64_ReturnValue = Parms.CallFunc_Conv_IntToInt64_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -352,11 +344,11 @@ float UBP_ServerModsLoading_C::UpdateProgressBar(int64* CallFunc_Divide_Int64Int
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.GetDelegate
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// FDelegateProperty_                 BackDelegate                                                     (EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 CompletedDelegate                                                (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 ErrorDelegate                                                    (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 BackDelegate                                                     (BlueprintVisible, ExportObject, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 CompletedDelegate                                                (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 ErrorDelegate                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBP_ServerModsLoading_C::GetDelegate(FDelegateProperty_ BackDelegate, FDelegateProperty_* CompletedDelegate, FDelegateProperty_* ErrorDelegate)
+FDelegateProperty_ UBP_ServerModsLoading_C::GetDelegate(FDelegateProperty_ BackDelegate, FDelegateProperty_* CompletedDelegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -372,8 +364,7 @@ void UBP_ServerModsLoading_C::GetDelegate(FDelegateProperty_ BackDelegate, FDele
 	if (CompletedDelegate != nullptr)
 		*CompletedDelegate = Parms.CompletedDelegate;
 
-	if (ErrorDelegate != nullptr)
-		*ErrorDelegate = Parms.ErrorDelegate;
+	return Parms.ReturnValue;
 
 }
 
@@ -381,10 +372,10 @@ void UBP_ServerModsLoading_C::GetDelegate(FDelegateProperty_ BackDelegate, FDele
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.CheckIfAllDownloaded
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_GreaterEqual_IntInt_ReturnValue                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_GreaterEqual_IntInt_ReturnValue                         (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
 
-bool UBP_ServerModsLoading_C::CheckIfAllDownloaded(int32* CallFunc_Array_Length_ReturnValue)
+void UBP_ServerModsLoading_C::CheckIfAllDownloaded(int32* CallFunc_Array_Length_ReturnValue, bool* CallFunc_GreaterEqual_IntInt_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -399,7 +390,8 @@ bool UBP_ServerModsLoading_C::CheckIfAllDownloaded(int32* CallFunc_Array_Length_
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
 
-	return Parms.ReturnValue;
+	if (CallFunc_GreaterEqual_IntInt_ReturnValue != nullptr)
+		*CallFunc_GreaterEqual_IntInt_ReturnValue = Parms.CallFunc_GreaterEqual_IntInt_ReturnValue;
 
 }
 
@@ -407,15 +399,15 @@ bool UBP_ServerModsLoading_C::CheckIfAllDownloaded(int32* CallFunc_Array_Length_
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.ParsingModsFile
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FCFCoreMod                  Mod                                                              (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// struct FFile                       CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// struct FCFCoreMod                  Mod                                                              (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, Transient, GlobalConfig, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// struct FFile                       CallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
 
-bool UBP_ServerModsLoading_C::ParsingModsFile(int32* CallFunc_Array_Length_ReturnValue, struct FFile* CallFunc_Array_Get_Item, int32 CallFunc_Add_IntInt_ReturnValue)
+int32 UBP_ServerModsLoading_C::ParsingModsFile(const struct FCFCoreMod& Mod, int32* CallFunc_Array_Length_ReturnValue, const struct FFile& CallFunc_Array_Get_Item, int32 Temp_int_Loop_Counter_Variable, bool CallFunc_Less_IntInt_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -424,15 +416,15 @@ bool UBP_ServerModsLoading_C::ParsingModsFile(int32* CallFunc_Array_Length_Retur
 
 	Params::UBP_ServerModsLoading_C_ParsingModsFile_Params Parms{};
 
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
+	Parms.Mod = Mod;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
-
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
 
 	return Parms.ReturnValue;
 
@@ -442,14 +434,14 @@ bool UBP_ServerModsLoading_C::ParsingModsFile(int32* CallFunc_Array_Length_Retur
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.ParsingMods
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// struct FCFCoreMod                  CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// struct FCFCoreMod                  CallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
 
-bool UBP_ServerModsLoading_C::ParsingMods(int32 CallFunc_Add_IntInt_ReturnValue, struct FCFCoreMod* CallFunc_Array_Get_Item, int32* CallFunc_Array_Length_ReturnValue)
+int32 UBP_ServerModsLoading_C::ParsingMods(int32 Temp_int_Loop_Counter_Variable, const struct FCFCoreMod& CallFunc_Array_Get_Item, int32* CallFunc_Array_Length_ReturnValue, bool CallFunc_Less_IntInt_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -458,12 +450,11 @@ bool UBP_ServerModsLoading_C::ParsingMods(int32 CallFunc_Add_IntInt_ReturnValue,
 
 	Params::UBP_ServerModsLoading_C_ParsingMods_Params Parms{};
 
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
 
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
@@ -476,44 +467,44 @@ bool UBP_ServerModsLoading_C::ParsingMods(int32 CallFunc_Add_IntInt_ReturnValue,
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.Update Downloading Proggress Text
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int64                              ModId                                                            (Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-// int64                              FileId                                                           (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-// enum class ELibraryProgressState   PregressState                                                    (ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              Progress                                                         (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-// int64                              TransferredBytes                                                 (BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-// enum class ELibraryProgressState   Temp_byte_Variable                                               (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Conv_Int64ToInt_ReturnValue                             (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_Conv_IntToDouble_ReturnValue                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Divide_DoubleDouble_ReturnValue                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, EditConst, SubobjectReference)
-// int32                              CallFunc_Len_ReturnValue                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData                             (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// bool                               CallFunc_Greater_IntInt_ReturnValue                              (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class FString                      CallFunc_SelectString_ReturnValue                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_1                           (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// class FString                      CallFunc_Concat_StrStr_ReturnValue                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_Format_ReturnValue                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FText                        CallFunc_MakeLiteralText_ReturnValue                             (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference)
-// class FText                        CallFunc_MakeLiteralText_ReturnValue_1                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference, Interp)
-// class FText                        CallFunc_MakeLiteralText_ReturnValue_2                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference, RepNotify, Interp)
-// struct FFile                       CallFunc_Map_Find_Value                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// bool                               CallFunc_Map_Find_ReturnValue                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, SubobjectReference)
-// struct FCFCoreMod                  CallFunc_Map_Find_Value_1                                        (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// bool                               CallFunc_Map_Find_ReturnValue_1                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, SubobjectReference, Interp)
-// int32                              CallFunc_Conv_Int64ToInt_ReturnValue_1                           (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Conv_IntToDouble_ReturnValue_1                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// class FText                        CallFunc_Conv_StringToText_ReturnValue_1                         (BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Divide_DoubleDouble_ReturnValue_1                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, EditConst, SubobjectReference, Interp)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_2                           (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, RepNotify, Interp)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_3                           (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, NonTransactional)
-// class FText                        CallFunc_MakeLiteralText_ReturnValue_3                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference, NonTransactional)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_4                           (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, RepNotify, NonTransactional)
-// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array_1                                         (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// class FText                        CallFunc_Format_ReturnValue_1                                    (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// class FText                        K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// int64                              FileId                                                           (Edit, ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// enum class ELibraryProgressState   PregressState                                                    (BlueprintReadOnly, Net, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// int32                              Progress                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// int64                              TransferredBytes                                                 (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// enum class ELibraryProgressState   Temp_byte_Variable                                               (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Conv_Int64ToInt_ReturnValue                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Conv_IntToDouble_ReturnValue                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Divide_DoubleDouble_ReturnValue                         (BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Len_ReturnValue                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData                             (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Greater_IntInt_ReturnValue                              (ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class FString                      CallFunc_SelectString_ReturnValue                                (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_1                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// class FString                      CallFunc_Concat_StrStr_ReturnValue                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Format_ReturnValue                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_MakeLiteralText_ReturnValue                             (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_MakeLiteralText_ReturnValue_1                           (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// class FText                        CallFunc_MakeLiteralText_ReturnValue_2                           (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// struct FFile                       CallFunc_Map_Find_Value                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Map_Find_ReturnValue                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, SubobjectReference)
+// struct FCFCoreMod                  CallFunc_Map_Find_Value_1                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_Map_Find_ReturnValue_1                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              CallFunc_Conv_Int64ToInt_ReturnValue_1                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Conv_IntToDouble_ReturnValue_1                          (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference, Interp)
+// class FText                        CallFunc_Conv_StringToText_ReturnValue_1                         (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Divide_DoubleDouble_ReturnValue_1                       (BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_2                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_3                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, NonTransactional)
+// class FText                        CallFunc_MakeLiteralText_ReturnValue_3                           (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, NonTransactional)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_4                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, RepNotify, NonTransactional)
+// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array_1                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// class FText                        CallFunc_Format_ReturnValue_1                                    (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// class FText                        K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
 
-TArray<struct FFormatArgumentData> UBP_ServerModsLoading_C::Update_Downloading_Proggress_Text(enum class ELibraryProgressState PregressState, int32* Progress, int64* TransferredBytes, enum class ELibraryProgressState Temp_byte_Variable, int32 CallFunc_Conv_Int64ToInt_ReturnValue, double CallFunc_Divide_DoubleDouble_ReturnValue, int32* CallFunc_Len_ReturnValue, class FString* CallFunc_SelectString_ReturnValue, class FText CallFunc_Conv_StringToText_ReturnValue, const class FString& CallFunc_Concat_StrStr_ReturnValue, class FText CallFunc_Format_ReturnValue, int32 CallFunc_Conv_Int64ToInt_ReturnValue_1, class FText CallFunc_Conv_StringToText_ReturnValue_1, double CallFunc_Divide_DoubleDouble_ReturnValue_1, class FText CallFunc_Format_ReturnValue_1, class FText* K2Node_Select_Default)
+class FText UBP_ServerModsLoading_C::Update_Downloading_Proggress_Text(int64 ModId, int64 FileId, enum class ELibraryProgressState PregressState, int32* CallFunc_Conv_Int64ToInt_ReturnValue, const class FString& CallFunc_SelectString_ReturnValue, const TArray<struct FFormatArgumentData>& K2Node_MakeArray_Array, bool* CallFunc_Map_Find_ReturnValue, bool* CallFunc_Map_Find_ReturnValue_1, int32* CallFunc_Conv_Int64ToInt_ReturnValue_1, const TArray<struct FFormatArgumentData>& K2Node_MakeArray_Array_1, class FText K2Node_Select_Default)
 {
 	static class UFunction* Func = nullptr;
 
@@ -522,34 +513,27 @@ TArray<struct FFormatArgumentData> UBP_ServerModsLoading_C::Update_Downloading_P
 
 	Params::UBP_ServerModsLoading_C_Update_Downloading_Proggress_Text_Params Parms{};
 
+	Parms.ModId = ModId;
+	Parms.FileId = FileId;
 	Parms.PregressState = PregressState;
-	Parms.Temp_byte_Variable = Temp_byte_Variable;
-	Parms.CallFunc_Conv_Int64ToInt_ReturnValue = CallFunc_Conv_Int64ToInt_ReturnValue;
-	Parms.CallFunc_Divide_DoubleDouble_ReturnValue = CallFunc_Divide_DoubleDouble_ReturnValue;
-	Parms.CallFunc_Conv_StringToText_ReturnValue = CallFunc_Conv_StringToText_ReturnValue;
-	Parms.CallFunc_Concat_StrStr_ReturnValue = CallFunc_Concat_StrStr_ReturnValue;
-	Parms.CallFunc_Format_ReturnValue = CallFunc_Format_ReturnValue;
-	Parms.CallFunc_Conv_Int64ToInt_ReturnValue_1 = CallFunc_Conv_Int64ToInt_ReturnValue_1;
-	Parms.CallFunc_Conv_StringToText_ReturnValue_1 = CallFunc_Conv_StringToText_ReturnValue_1;
-	Parms.CallFunc_Divide_DoubleDouble_ReturnValue_1 = CallFunc_Divide_DoubleDouble_ReturnValue_1;
-	Parms.CallFunc_Format_ReturnValue_1 = CallFunc_Format_ReturnValue_1;
+	Parms.CallFunc_SelectString_ReturnValue = CallFunc_SelectString_ReturnValue;
+	Parms.K2Node_MakeArray_Array = K2Node_MakeArray_Array;
+	Parms.K2Node_MakeArray_Array_1 = K2Node_MakeArray_Array_1;
+	Parms.K2Node_Select_Default = K2Node_Select_Default;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Progress != nullptr)
-		*Progress = Parms.Progress;
+	if (CallFunc_Conv_Int64ToInt_ReturnValue != nullptr)
+		*CallFunc_Conv_Int64ToInt_ReturnValue = Parms.CallFunc_Conv_Int64ToInt_ReturnValue;
 
-	if (TransferredBytes != nullptr)
-		*TransferredBytes = Parms.TransferredBytes;
+	if (CallFunc_Map_Find_ReturnValue != nullptr)
+		*CallFunc_Map_Find_ReturnValue = Parms.CallFunc_Map_Find_ReturnValue;
 
-	if (CallFunc_Len_ReturnValue != nullptr)
-		*CallFunc_Len_ReturnValue = Parms.CallFunc_Len_ReturnValue;
+	if (CallFunc_Map_Find_ReturnValue_1 != nullptr)
+		*CallFunc_Map_Find_ReturnValue_1 = Parms.CallFunc_Map_Find_ReturnValue_1;
 
-	if (CallFunc_SelectString_ReturnValue != nullptr)
-		*CallFunc_SelectString_ReturnValue = std::move(Parms.CallFunc_SelectString_ReturnValue);
-
-	if (K2Node_Select_Default != nullptr)
-		*K2Node_Select_Default = Parms.K2Node_Select_Default;
+	if (CallFunc_Conv_Int64ToInt_ReturnValue_1 != nullptr)
+		*CallFunc_Conv_Int64ToInt_ReturnValue_1 = Parms.CallFunc_Conv_Int64ToInt_ReturnValue_1;
 
 	return Parms.ReturnValue;
 
@@ -559,16 +543,16 @@ TArray<struct FFormatArgumentData> UBP_ServerModsLoading_C::Update_Downloading_P
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.SetDounloadingCountText
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              CallFunc_Int32_AddOne_ReturnValue                                (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int64                              CallFunc_Conv_IntToInt64_ReturnValue                             (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int64                              CallFunc_Conv_IntToInt64_ReturnValue_1                           (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData                             (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_1                           (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_Format_ReturnValue                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// int32                              CallFunc_Int32_AddOne_ReturnValue                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// int64                              CallFunc_Conv_IntToInt64_ReturnValue                             (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int64                              CallFunc_Conv_IntToInt64_ReturnValue_1                           (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData                             (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_1                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Format_ReturnValue                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
 
-TArray<struct FFormatArgumentData> UBP_ServerModsLoading_C::SetDounloadingCountText(int32* CallFunc_Int32_AddOne_ReturnValue, int32* CallFunc_Array_Length_ReturnValue, class FText CallFunc_Format_ReturnValue)
+class FText UBP_ServerModsLoading_C::SetDounloadingCountText(int32* CallFunc_Array_Length_ReturnValue, int64* CallFunc_Conv_IntToInt64_ReturnValue, int64* CallFunc_Conv_IntToInt64_ReturnValue_1, const TArray<struct FFormatArgumentData>& K2Node_MakeArray_Array)
 {
 	static class UFunction* Func = nullptr;
 
@@ -577,15 +561,18 @@ TArray<struct FFormatArgumentData> UBP_ServerModsLoading_C::SetDounloadingCountT
 
 	Params::UBP_ServerModsLoading_C_SetDounloadingCountText_Params Parms{};
 
-	Parms.CallFunc_Format_ReturnValue = CallFunc_Format_ReturnValue;
+	Parms.K2Node_MakeArray_Array = K2Node_MakeArray_Array;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_Int32_AddOne_ReturnValue != nullptr)
-		*CallFunc_Int32_AddOne_ReturnValue = Parms.CallFunc_Int32_AddOne_ReturnValue;
-
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
+
+	if (CallFunc_Conv_IntToInt64_ReturnValue != nullptr)
+		*CallFunc_Conv_IntToInt64_ReturnValue = Parms.CallFunc_Conv_IntToInt64_ReturnValue;
+
+	if (CallFunc_Conv_IntToInt64_ReturnValue_1 != nullptr)
+		*CallFunc_Conv_IntToInt64_ReturnValue_1 = Parms.CallFunc_Conv_IntToInt64_ReturnValue_1;
 
 	return Parms.ReturnValue;
 
@@ -596,11 +583,11 @@ TArray<struct FFormatArgumentData> UBP_ServerModsLoading_C::SetDounloadingCountT
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // struct FCFCoreError                Error                                                            (ExportObject, EditFixedSize, Parm, ReturnParm)
-// int32                              CallFunc_Int32_AddOne_ReturnValue                                (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_NotEqual_ByteByte_ReturnValue                           (Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-// int32                              CallFunc_Int32_AddOne_ReturnValue_1                              (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// int32                              CallFunc_Int32_AddOne_ReturnValue                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_NotEqual_ByteByte_ReturnValue                           (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Int32_AddOne_ReturnValue_1                              (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
 
-struct FCFCoreError UBP_ServerModsLoading_C::ModInstallingError(int32* CallFunc_Int32_AddOne_ReturnValue, bool CallFunc_NotEqual_ByteByte_ReturnValue, int32* CallFunc_Int32_AddOne_ReturnValue_1)
+int32 UBP_ServerModsLoading_C::ModInstallingError()
 {
 	static class UFunction* Func = nullptr;
 
@@ -609,15 +596,8 @@ struct FCFCoreError UBP_ServerModsLoading_C::ModInstallingError(int32* CallFunc_
 
 	Params::UBP_ServerModsLoading_C_ModInstallingError_Params Parms{};
 
-	Parms.CallFunc_NotEqual_ByteByte_ReturnValue = CallFunc_NotEqual_ByteByte_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_Int32_AddOne_ReturnValue != nullptr)
-		*CallFunc_Int32_AddOne_ReturnValue = Parms.CallFunc_Int32_AddOne_ReturnValue;
-
-	if (CallFunc_Int32_AddOne_ReturnValue_1 != nullptr)
-		*CallFunc_Int32_AddOne_ReturnValue_1 = Parms.CallFunc_Int32_AddOne_ReturnValue_1;
 
 	return Parms.ReturnValue;
 
@@ -628,10 +608,10 @@ struct FCFCoreError UBP_ServerModsLoading_C::ModInstallingError(int32* CallFunc_
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // struct FInstalledMod               InstalledMod                                                     (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, Transient)
-// int32                              CallFunc_Int32_AddOne_ReturnValue                                (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              CallFunc_Int32_AddOne_ReturnValue_1                              (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// int32                              CallFunc_Int32_AddOne_ReturnValue                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              CallFunc_Int32_AddOne_ReturnValue_1                              (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
 
-void UBP_ServerModsLoading_C::ModInstallingSuccess(const struct FInstalledMod& InstalledMod, int32* CallFunc_Int32_AddOne_ReturnValue, int32* CallFunc_Int32_AddOne_ReturnValue_1)
+int32 UBP_ServerModsLoading_C::ModInstallingSuccess(const struct FInstalledMod& InstalledMod)
 {
 	static class UFunction* Func = nullptr;
 
@@ -644,11 +624,7 @@ void UBP_ServerModsLoading_C::ModInstallingSuccess(const struct FInstalledMod& I
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_Int32_AddOne_ReturnValue != nullptr)
-		*CallFunc_Int32_AddOne_ReturnValue = Parms.CallFunc_Int32_AddOne_ReturnValue;
-
-	if (CallFunc_Int32_AddOne_ReturnValue_1 != nullptr)
-		*CallFunc_Int32_AddOne_ReturnValue_1 = Parms.CallFunc_Int32_AddOne_ReturnValue_1;
+	return Parms.ReturnValue;
 
 }
 
@@ -656,20 +632,20 @@ void UBP_ServerModsLoading_C::ModInstallingSuccess(const struct FInstalledMod& I
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.ModInstallingProgress
 // (Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FLibraryProgress            Progress                                                         (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue_1                       (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_BooleanOR_ReturnValue                                   (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// TArray<int64>                      CallFunc_Map_Values_Values                                       (ConstParm, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int64                              CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int64                              CallFunc_Add_Int64Int64_ReturnValue                              (Edit, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FLibraryProgress            Progress                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (ConstParm, ExportObject, Net, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue_1                       (ConstParm, ExportObject, Net, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanOR_ReturnValue                                   (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// TArray<int64>                      CallFunc_Map_Values_Values                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Config, InstancedReference, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// int64                              CallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int64                              CallFunc_Add_Int64Int64_ReturnValue                              (ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, InstancedReference, SubobjectReference)
 
-bool UBP_ServerModsLoading_C::ModInstallingProgress(struct FLibraryProgress* Progress, int32 CallFunc_Add_IntInt_ReturnValue, TArray<int64>* CallFunc_Map_Values_Values, int32* CallFunc_Array_Length_ReturnValue, int64* CallFunc_Array_Get_Item, int64* CallFunc_Add_Int64Int64_ReturnValue)
+int64 UBP_ServerModsLoading_C::ModInstallingProgress(bool CallFunc_EqualEqual_ByteByte_ReturnValue, bool CallFunc_EqualEqual_ByteByte_ReturnValue_1, int32 Temp_int_Loop_Counter_Variable, bool* CallFunc_BooleanOR_ReturnValue, TArray<int64>* CallFunc_Map_Values_Values, int32* CallFunc_Array_Length_ReturnValue, int64 CallFunc_Array_Get_Item, bool CallFunc_Less_IntInt_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -678,24 +654,22 @@ bool UBP_ServerModsLoading_C::ModInstallingProgress(struct FLibraryProgress* Pro
 
 	Params::UBP_ServerModsLoading_C_ModInstallingProgress_Params Parms{};
 
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
+	Parms.CallFunc_EqualEqual_ByteByte_ReturnValue = CallFunc_EqualEqual_ByteByte_ReturnValue;
+	Parms.CallFunc_EqualEqual_ByteByte_ReturnValue_1 = CallFunc_EqualEqual_ByteByte_ReturnValue_1;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Progress != nullptr)
-		*Progress = std::move(Parms.Progress);
+	if (CallFunc_BooleanOR_ReturnValue != nullptr)
+		*CallFunc_BooleanOR_ReturnValue = Parms.CallFunc_BooleanOR_ReturnValue;
 
 	if (CallFunc_Map_Values_Values != nullptr)
 		*CallFunc_Map_Values_Values = std::move(Parms.CallFunc_Map_Values_Values);
 
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
-
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = Parms.CallFunc_Array_Get_Item;
-
-	if (CallFunc_Add_Int64Int64_ReturnValue != nullptr)
-		*CallFunc_Add_Int64Int64_ReturnValue = Parms.CallFunc_Add_Int64Int64_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -705,19 +679,19 @@ bool UBP_ServerModsLoading_C::ModInstallingProgress(struct FLibraryProgress* Pro
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.Downloading
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_2                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue                          (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// struct FCFCoreMod                  CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// struct FCFCoreMod                  CallFunc_Array_Get_Item_1                                        (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_2                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue                          (BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// struct FCFCoreMod                  CallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// struct FCFCoreMod                  CallFunc_Array_Get_Item_1                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
 
-bool UBP_ServerModsLoading_C::Downloading(int32 CallFunc_Add_IntInt_ReturnValue, struct FCFCoreMod* CallFunc_Array_Get_Item, struct FCFCoreMod* CallFunc_Array_Get_Item_1, int32* CallFunc_Array_Length_ReturnValue)
+int32 UBP_ServerModsLoading_C::Downloading(FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_1, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_2, int32 Temp_int_Loop_Counter_Variable, class UCFCoreSubsystem* CallFunc_GetEngineSubsystem_ReturnValue, const struct FCFCoreMod& CallFunc_Array_Get_Item, const struct FCFCoreMod& CallFunc_Array_Get_Item_1, int32* CallFunc_Array_Length_ReturnValue, bool CallFunc_Less_IntInt_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -726,15 +700,16 @@ bool UBP_ServerModsLoading_C::Downloading(int32 CallFunc_Add_IntInt_ReturnValue,
 
 	Params::UBP_ServerModsLoading_C_Downloading_Params Parms{};
 
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
+	Parms.K2Node_CreateDelegate_OutputDelegate = K2Node_CreateDelegate_OutputDelegate;
+	Parms.K2Node_CreateDelegate_OutputDelegate_1 = K2Node_CreateDelegate_OutputDelegate_1;
+	Parms.K2Node_CreateDelegate_OutputDelegate_2 = K2Node_CreateDelegate_OutputDelegate_2;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_GetEngineSubsystem_ReturnValue = CallFunc_GetEngineSubsystem_ReturnValue;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.CallFunc_Array_Get_Item_1 = CallFunc_Array_Get_Item_1;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
-
-	if (CallFunc_Array_Get_Item_1 != nullptr)
-		*CallFunc_Array_Get_Item_1 = std::move(Parms.CallFunc_Array_Get_Item_1);
 
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
@@ -747,10 +722,10 @@ bool UBP_ServerModsLoading_C::Downloading(int32 CallFunc_Add_IntInt_ReturnValue,
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.StartDownload
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        ServerName                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// TArray<struct FCFCoreMod>          ModsToDownload                                                   (BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FText                        ServerName                                                       (Edit, ConstParm, BlueprintReadOnly, Net, Parm, Config, InstancedReference, SubobjectReference)
+// TArray<struct FCFCoreMod>          ModsToDownload                                                   (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, InstancedReference, SubobjectReference)
 
-class FText UBP_ServerModsLoading_C::StartDownload(const TArray<struct FCFCoreMod>& ModsToDownload)
+TArray<struct FCFCoreMod> UBP_ServerModsLoading_C::StartDownload(class FText ServerName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -759,7 +734,7 @@ class FText UBP_ServerModsLoading_C::StartDownload(const TArray<struct FCFCoreMo
 
 	Params::UBP_ServerModsLoading_C_StartDownload_Params Parms{};
 
-	Parms.ModsToDownload = ModsToDownload;
+	Parms.ServerName = ServerName;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -852,10 +827,10 @@ void UBP_ServerModsLoading_C::ControllerAction(const struct FKey& Key, enum clas
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.Tick
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              InDeltaTime                                                      (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (Edit, BlueprintVisible, Net, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InDeltaTime                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-float UBP_ServerModsLoading_C::Tick(struct FGeometry* MyGeometry)
+float UBP_ServerModsLoading_C::Tick(const struct FGeometry& MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -864,11 +839,9 @@ float UBP_ServerModsLoading_C::Tick(struct FGeometry* MyGeometry)
 
 	Params::UBP_ServerModsLoading_C_Tick_Params Parms{};
 
+	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (MyGeometry != nullptr)
-		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -914,22 +887,22 @@ void UBP_ServerModsLoading_C::BndEvt__BP_ServerModsLoading_UI_Button_Ark_Global_
 // Function BP_ServerModsLoading.BP_ServerModsLoading_C.ExecuteUbergraph_BP_ServerModsLoading
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UBindButtonSystem*           CallFunc_GetEngineSubsystem_ReturnValue                          (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// struct FCFCoreError                K2Node_CustomEvent_error                                         (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FCFCoreMod                  CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_2                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
-// struct FKey                        K2Node_CustomEvent_Key                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class EViewState              K2Node_CustomEvent_State                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue_1                        (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FGeometry                   K2Node_Event_MyGeometry                                          (Edit, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              K2Node_Event_InDeltaTime                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBindButtonSystem*           CallFunc_GetEngineSubsystem_ReturnValue                          (BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// struct FCFCoreError                K2Node_CustomEvent_error                                         (ExportObject, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FCFCoreMod                  CallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_2                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// struct FKey                        K2Node_CustomEvent_Key                                           (ExportObject, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class EViewState              K2Node_CustomEvent_State                                         (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue_1                        (BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (ConstParm, ExportObject, Net, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FGeometry                   K2Node_Event_MyGeometry                                          (Net, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              K2Node_Event_InDeltaTime                                         (Edit, ConstParm, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
 
-bool UBP_ServerModsLoading_C::ExecuteUbergraph_BP_ServerModsLoading(struct FCFCoreMod* CallFunc_Array_Get_Item, const struct FKey& K2Node_CustomEvent_Key, enum class EViewState K2Node_CustomEvent_State, struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime)
+bool UBP_ServerModsLoading_C::ExecuteUbergraph_BP_ServerModsLoading(int32 EntryPoint, class UBindButtonSystem* CallFunc_GetEngineSubsystem_ReturnValue, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_1, const struct FCFCoreError& K2Node_CustomEvent_error, const struct FCFCoreMod& CallFunc_Array_Get_Item, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_2, enum class EViewState K2Node_CustomEvent_State, class UCFCoreSubsystem* CallFunc_GetEngineSubsystem_ReturnValue_1, bool CallFunc_EqualEqual_ByteByte_ReturnValue, struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -938,13 +911,18 @@ bool UBP_ServerModsLoading_C::ExecuteUbergraph_BP_ServerModsLoading(struct FCFCo
 
 	Params::UBP_ServerModsLoading_C_ExecuteUbergraph_BP_ServerModsLoading_Params Parms{};
 
-	Parms.K2Node_CustomEvent_Key = K2Node_CustomEvent_Key;
+	Parms.EntryPoint = EntryPoint;
+	Parms.CallFunc_GetEngineSubsystem_ReturnValue = CallFunc_GetEngineSubsystem_ReturnValue;
+	Parms.K2Node_CreateDelegate_OutputDelegate = K2Node_CreateDelegate_OutputDelegate;
+	Parms.K2Node_CreateDelegate_OutputDelegate_1 = K2Node_CreateDelegate_OutputDelegate_1;
+	Parms.K2Node_CustomEvent_error = K2Node_CustomEvent_error;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.K2Node_CreateDelegate_OutputDelegate_2 = K2Node_CreateDelegate_OutputDelegate_2;
 	Parms.K2Node_CustomEvent_State = K2Node_CustomEvent_State;
+	Parms.CallFunc_GetEngineSubsystem_ReturnValue_1 = CallFunc_GetEngineSubsystem_ReturnValue_1;
+	Parms.CallFunc_EqualEqual_ByteByte_ReturnValue = CallFunc_EqualEqual_ByteByte_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
 
 	if (K2Node_Event_MyGeometry != nullptr)
 		*K2Node_Event_MyGeometry = std::move(Parms.K2Node_Event_MyGeometry);

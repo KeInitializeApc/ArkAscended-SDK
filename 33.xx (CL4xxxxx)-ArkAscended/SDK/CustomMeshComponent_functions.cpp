@@ -44,9 +44,9 @@ class UCustomMeshComponent* UCustomMeshComponent::GetDefaultObj()
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // TArray<struct FCustomMeshTriangle> Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UCustomMeshComponent::SetCustomMeshTriangles()
+TArray<struct FCustomMeshTriangle> UCustomMeshComponent::SetCustomMeshTriangles(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,6 +55,7 @@ bool UCustomMeshComponent::SetCustomMeshTriangles()
 
 	Params::UCustomMeshComponent_SetCustomMeshTriangles_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;

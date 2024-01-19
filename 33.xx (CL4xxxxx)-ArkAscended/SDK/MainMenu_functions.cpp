@@ -133,13 +133,13 @@ void AMainMenu_C::HideVisualSettingsPP()
 // Function MainMenu.MainMenu_C.ExecuteUbergraph_MainMenu
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UGameInstance*               CallFunc_GetGameInstance_ReturnValue                             (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-// class UShooterGameInstance*        K2Node_DynamicCast_AsShooter_Game_Instance                       (Edit, BlueprintReadOnly, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class UReMainMenuUI_ASA_C*         CallFunc_Create_ReturnValue                                      (ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UGameInstance*               CallFunc_GetGameInstance_ReturnValue                             (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UShooterGameInstance*        K2Node_DynamicCast_AsShooter_Game_Instance                       (Edit, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UReMainMenuUI_ASA_C*         CallFunc_Create_ReturnValue                                      (ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
 
-class UReMainMenuUI_ASA_C* AMainMenu_C::ExecuteUbergraph_MainMenu(class UGameInstance** CallFunc_GetGameInstance_ReturnValue, class UShooterGameInstance* K2Node_DynamicCast_AsShooter_Game_Instance, bool* K2Node_DynamicCast_bSuccess)
+bool AMainMenu_C::ExecuteUbergraph_MainMenu(int32 EntryPoint, class UGameInstance** CallFunc_GetGameInstance_ReturnValue, class UReMainMenuUI_ASA_C* CallFunc_Create_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -148,15 +148,13 @@ class UReMainMenuUI_ASA_C* AMainMenu_C::ExecuteUbergraph_MainMenu(class UGameIns
 
 	Params::AMainMenu_C_ExecuteUbergraph_MainMenu_Params Parms{};
 
-	Parms.K2Node_DynamicCast_AsShooter_Game_Instance = K2Node_DynamicCast_AsShooter_Game_Instance;
+	Parms.EntryPoint = EntryPoint;
+	Parms.CallFunc_Create_ReturnValue = CallFunc_Create_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
 	if (CallFunc_GetGameInstance_ReturnValue != nullptr)
 		*CallFunc_GetGameInstance_ReturnValue = Parms.CallFunc_GetGameInstance_ReturnValue;
-
-	if (K2Node_DynamicCast_bSuccess != nullptr)
-		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
 
 	return Parms.ReturnValue;
 

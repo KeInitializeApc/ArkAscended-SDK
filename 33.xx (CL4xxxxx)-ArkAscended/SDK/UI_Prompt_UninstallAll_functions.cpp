@@ -43,11 +43,11 @@ class UUI_Prompt_UninstallAll_C* UUI_Prompt_UninstallAll_C::GetDefaultObj()
 // Function UI_Prompt_UninstallAll.UI_Prompt_UninstallAll_C.BPGamepadReleased
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FKey                        TheKey                                                           (ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FKey                        TheKey                                                           (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-bool UUI_Prompt_UninstallAll_C::BPGamepadReleased(const struct FKey& TheKey)
+bool UUI_Prompt_UninstallAll_C::BPGamepadReleased(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -56,7 +56,7 @@ bool UUI_Prompt_UninstallAll_C::BPGamepadReleased(const struct FKey& TheKey)
 
 	Params::UUI_Prompt_UninstallAll_C_BPGamepadReleased_Params Parms{};
 
-	Parms.TheKey = TheKey;
+	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -68,9 +68,9 @@ bool UUI_Prompt_UninstallAll_C::BPGamepadReleased(const struct FKey& TheKey)
 // Function UI_Prompt_UninstallAll.UI_Prompt_UninstallAll_C.BPEscapeClosed
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UUI_Prompt_UninstallAll_C::BPEscapeClosed()
+void UUI_Prompt_UninstallAll_C::BPEscapeClosed(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -79,10 +79,9 @@ bool UUI_Prompt_UninstallAll_C::BPEscapeClosed()
 
 	Params::UUI_Prompt_UninstallAll_C_BPEscapeClosed_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -90,9 +89,9 @@ bool UUI_Prompt_UninstallAll_C::BPEscapeClosed()
 // Function UI_Prompt_UninstallAll.UI_Prompt_UninstallAll_C.BPHighlightWidgetOnStart
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UUI_Prompt_UninstallAll_C::BPHighlightWidgetOnStart()
+void UUI_Prompt_UninstallAll_C::BPHighlightWidgetOnStart(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -101,10 +100,9 @@ bool UUI_Prompt_UninstallAll_C::BPHighlightWidgetOnStart()
 
 	Params::UUI_Prompt_UninstallAll_C_BPHighlightWidgetOnStart_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -166,10 +164,10 @@ void UUI_Prompt_UninstallAll_C::BndEvt__UI_Prompt_UninstallAll_UI_Button_Ark_Glo
 // Function UI_Prompt_UninstallAll.UI_Prompt_UninstallAll_C.Tick
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              InDeltaTime                                                      (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (Edit, BlueprintVisible, Net, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InDeltaTime                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-float UUI_Prompt_UninstallAll_C::Tick(struct FGeometry* MyGeometry)
+float UUI_Prompt_UninstallAll_C::Tick(const struct FGeometry& MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -178,11 +176,9 @@ float UUI_Prompt_UninstallAll_C::Tick(struct FGeometry* MyGeometry)
 
 	Params::UUI_Prompt_UninstallAll_C_Tick_Params Parms{};
 
+	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (MyGeometry != nullptr)
-		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -210,11 +206,11 @@ void UUI_Prompt_UninstallAll_C::Construct()
 // Function UI_Prompt_UninstallAll.UI_Prompt_UninstallAll_C.ExecuteUbergraph_UI_Prompt_UninstallAll
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FGeometry                   K2Node_Event_MyGeometry                                          (Edit, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              K2Node_Event_InDeltaTime                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   K2Node_Event_MyGeometry                                          (Net, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              K2Node_Event_InDeltaTime                                         (Edit, ConstParm, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
 
-int32 UUI_Prompt_UninstallAll_C::ExecuteUbergraph_UI_Prompt_UninstallAll(struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime)
+void UUI_Prompt_UninstallAll_C::ExecuteUbergraph_UI_Prompt_UninstallAll(int32 EntryPoint, struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -223,6 +219,7 @@ int32 UUI_Prompt_UninstallAll_C::ExecuteUbergraph_UI_Prompt_UninstallAll(struct 
 
 	Params::UUI_Prompt_UninstallAll_C_ExecuteUbergraph_UI_Prompt_UninstallAll_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -231,8 +228,6 @@ int32 UUI_Prompt_UninstallAll_C::ExecuteUbergraph_UI_Prompt_UninstallAll(struct 
 
 	if (K2Node_Event_InDeltaTime != nullptr)
 		*K2Node_Event_InDeltaTime = Parms.K2Node_Event_InDeltaTime;
-
-	return Parms.ReturnValue;
 
 }
 

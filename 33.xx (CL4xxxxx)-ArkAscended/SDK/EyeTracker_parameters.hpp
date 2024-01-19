@@ -18,7 +18,7 @@ namespace Params
 struct UEyeTrackerFunctionLibrary_SetEyeTrackedPlayer_Params
 {
 public:
-	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig)
+	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct UEyeTrackerFunctionLibrary_IsStereoGazeDataAvailable_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -34,7 +34,7 @@ public:
 struct UEyeTrackerFunctionLibrary_IsEyeTrackerConnected_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x88 (0x88 - 0x0)
@@ -42,9 +42,9 @@ public:
 struct UEyeTrackerFunctionLibrary_GetStereoGazeData_Params
 {
 public:
-	struct FEyeTrackerStereoGazeData             OutGazeData;                                       // 0x0(0x80)(EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x80(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_2A12[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	struct FEyeTrackerStereoGazeData             OutGazeData;                                       // 0x0(0x80)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x80(0x1)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_2B99[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x60 (0x60 - 0x0)
@@ -52,9 +52,9 @@ public:
 struct UEyeTrackerFunctionLibrary_GetGazeData_Params
 {
 public:
-	struct FEyeTrackerGazeData                   OutGazeData;                                       // 0x0(0x58)(EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x58(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_2A14[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	struct FEyeTrackerGazeData                   OutGazeData;                                       // 0x0(0x58)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x58(0x1)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_2B9C[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

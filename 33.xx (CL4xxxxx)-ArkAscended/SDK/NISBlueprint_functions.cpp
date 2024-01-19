@@ -43,9 +43,9 @@ class UNISLibrary* UNISLibrary::GetDefaultObj()
 // Function NISBlueprint.NISLibrary.SetNISSharpness
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// float                              Sharpness                                                        (Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              Sharpness                                                        (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-float UNISLibrary::SetNISSharpness()
+void UNISLibrary::SetNISSharpness(float* Sharpness)
 {
 	static class UFunction* Func = nullptr;
 
@@ -63,7 +63,8 @@ float UNISLibrary::SetNISSharpness()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Sharpness != nullptr)
+		*Sharpness = Parms.Sharpness;
 
 }
 
@@ -71,9 +72,9 @@ float UNISLibrary::SetNISSharpness()
 // Function NISBlueprint.NISLibrary.SetNISMode
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// enum class EUNISMode               NISMode                                                          (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// enum class EUNISMode               NISMode                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-enum class EUNISMode UNISLibrary::SetNISMode()
+void UNISLibrary::SetNISMode(enum class EUNISMode NISMode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -82,6 +83,7 @@ enum class EUNISMode UNISLibrary::SetNISMode()
 
 	Params::UNISLibrary_SetNISMode_Params Parms{};
 
+	Parms.NISMode = NISMode;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -91,17 +93,15 @@ enum class EUNISMode UNISLibrary::SetNISMode()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function NISBlueprint.NISLibrary.SetNISCustomScreenPercentage
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// float                              CustomScreenPercentage                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              CustomScreenPercentage                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-float UNISLibrary::SetNISCustomScreenPercentage()
+void UNISLibrary::SetNISCustomScreenPercentage(float CustomScreenPercentage)
 {
 	static class UFunction* Func = nullptr;
 
@@ -110,6 +110,7 @@ float UNISLibrary::SetNISCustomScreenPercentage()
 
 	Params::UNISLibrary_SetNISCustomScreenPercentage_Params Parms{};
 
+	Parms.CustomScreenPercentage = CustomScreenPercentage;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -119,17 +120,15 @@ float UNISLibrary::SetNISCustomScreenPercentage()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function NISBlueprint.NISLibrary.IsNISSupported
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UNISLibrary::IsNISSupported()
+void UNISLibrary::IsNISSupported(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -138,6 +137,7 @@ bool UNISLibrary::IsNISSupported()
 
 	Params::UNISLibrary_IsNISSupported_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -147,18 +147,16 @@ bool UNISLibrary::IsNISSupported()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function NISBlueprint.NISLibrary.IsNISModeSupported
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUNISMode               NISMode                                                          (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EUNISMode               NISMode                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UNISLibrary::IsNISModeSupported()
+void UNISLibrary::IsNISModeSupported(enum class EUNISMode NISMode, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -167,6 +165,8 @@ bool UNISLibrary::IsNISModeSupported()
 
 	Params::UNISLibrary_IsNISModeSupported_Params Parms{};
 
+	Parms.NISMode = NISMode;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -176,17 +176,15 @@ bool UNISLibrary::IsNISModeSupported()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function NISBlueprint.NISLibrary.GetSupportedNISModes
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// TArray<enum class EUNISMode>       ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<enum class EUNISMode>       ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<enum class EUNISMode> UNISLibrary::GetSupportedNISModes()
+void UNISLibrary::GetSupportedNISModes(const TArray<enum class EUNISMode>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -195,6 +193,7 @@ TArray<enum class EUNISMode> UNISLibrary::GetSupportedNISModes()
 
 	Params::UNISLibrary_GetSupportedNISModes_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -204,18 +203,16 @@ TArray<enum class EUNISMode> UNISLibrary::GetSupportedNISModes()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function NISBlueprint.NISLibrary.GetNISScreenPercentageRange
 // (Final, RequiredAPI, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              MinScreenPercentage                                              (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// float                              MaxScreenPercentage                                              (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              MinScreenPercentage                                              (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              MaxScreenPercentage                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-float UNISLibrary::GetNISScreenPercentageRange()
+void UNISLibrary::GetNISScreenPercentageRange(float* MinScreenPercentage, float* MaxScreenPercentage)
 {
 	static class UFunction* Func = nullptr;
 
@@ -233,7 +230,11 @@ float UNISLibrary::GetNISScreenPercentageRange()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (MinScreenPercentage != nullptr)
+		*MinScreenPercentage = Parms.MinScreenPercentage;
+
+	if (MaxScreenPercentage != nullptr)
+		*MaxScreenPercentage = Parms.MaxScreenPercentage;
 
 }
 
@@ -241,10 +242,10 @@ float UNISLibrary::GetNISScreenPercentageRange()
 // Function NISBlueprint.NISLibrary.GetNISRecommendedScreenPercentage
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUNISMode               NISMode                                                          (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EUNISMode               NISMode                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UNISLibrary::GetNISRecommendedScreenPercentage()
+void UNISLibrary::GetNISRecommendedScreenPercentage(enum class EUNISMode NISMode, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -253,6 +254,8 @@ float UNISLibrary::GetNISRecommendedScreenPercentage()
 
 	Params::UNISLibrary_GetNISRecommendedScreenPercentage_Params Parms{};
 
+	Parms.NISMode = NISMode;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -262,17 +265,15 @@ float UNISLibrary::GetNISRecommendedScreenPercentage()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function NISBlueprint.NISLibrary.GetDefaultNISMode
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUNISMode               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EUNISMode               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-enum class EUNISMode UNISLibrary::GetDefaultNISMode()
+void UNISLibrary::GetDefaultNISMode(enum class EUNISMode ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -281,6 +282,7 @@ enum class EUNISMode UNISLibrary::GetDefaultNISMode()
 
 	Params::UNISLibrary_GetDefaultNISMode_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -289,8 +291,6 @@ enum class EUNISMode UNISLibrary::GetDefaultNISMode()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 

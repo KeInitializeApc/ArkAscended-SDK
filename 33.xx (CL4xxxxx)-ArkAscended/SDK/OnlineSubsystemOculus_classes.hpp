@@ -14,14 +14,14 @@ namespace SDK
 class UOculusCreateSessionCallbackProxy : public UOnlineBlueprintCallProxyBase
 {
 public:
-	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x30(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnFailure;                                         // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_D01[0x48];                                     // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x30(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnFailure;                                         // 0x40(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A18[0x48];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOculusCreateSessionCallbackProxy* GetDefaultObj();
 
-	class UOculusCreateSessionCallbackProxy* CreateSession(int32 PublicConnections);
+	int32 CreateSession(const class FString& OculusMatchmakingPool, class UOculusCreateSessionCallbackProxy* ReturnValue);
 };
 
 // 0x20 (0x50 - 0x30)
@@ -29,13 +29,13 @@ public:
 class UOculusEntitlementCallbackProxy : public UOnlineBlueprintCallProxyBase
 {
 public:
-	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x30(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnFailure;                                         // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x30(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnFailure;                                         // 0x40(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UOculusEntitlementCallbackProxy* GetDefaultObj();
 
-	class UOculusEntitlementCallbackProxy* VerifyEntitlement();
+	void VerifyEntitlement(class UOculusEntitlementCallbackProxy* ReturnValue);
 };
 
 // 0x68 (0x98 - 0x30)
@@ -43,15 +43,15 @@ public:
 class UOculusFindSessionsCallbackProxy : public UOnlineBlueprintCallProxyBase
 {
 public:
-	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x30(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnFailure;                                         // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_D20[0x48];                                     // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x30(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnFailure;                                         // 0x40(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A2D[0x48];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOculusFindSessionsCallbackProxy* GetDefaultObj();
 
-	class UOculusFindSessionsCallbackProxy* FindModeratedSessions(int32 MaxResults);
-	class UOculusFindSessionsCallbackProxy* FindMatchmakingSessions(int32 MaxResults);
+	int32 FindModeratedSessions(class UOculusFindSessionsCallbackProxy* ReturnValue);
+	int32 FindMatchmakingSessions(const class FString& OculusMatchmakingPool, class UOculusFindSessionsCallbackProxy* ReturnValue);
 };
 
 // 0x30 (0x60 - 0x30)
@@ -59,14 +59,14 @@ public:
 class UOculusIdentityCallbackProxy : public UOnlineBlueprintCallProxyBase
 {
 public:
-	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x30(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnFailure;                                         // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_D29[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x30(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnFailure;                                         // 0x40(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A3D[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOculusIdentityCallbackProxy* GetDefaultObj();
 
-	class UOculusIdentityCallbackProxy* GetOculusIdentity();
+	void GetOculusIdentity(int32 LocalUserNum, class UOculusIdentityCallbackProxy* ReturnValue);
 };
 
 // 0x10 (0x1EC8 - 0x1EB8)
@@ -74,7 +74,7 @@ public:
 class UOculusNetConnection : public UIpConnection
 {
 public:
-	uint8                                        Pad_D2B[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_A40[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOculusNetConnection* GetDefaultObj();
@@ -86,7 +86,7 @@ public:
 class UOculusNetDriver : public UIpNetDriver
 {
 public:
-	uint8                                        Pad_D2C[0xB8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_A42[0xB8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOculusNetDriver* GetDefaultObj();
@@ -98,14 +98,14 @@ public:
 class UOculusUpdateSessionCallbackProxy : public UOnlineBlueprintCallProxyBase
 {
 public:
-	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x30(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnFailure;                                         // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_D34[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            OnSuccess;                                         // 0x30(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnFailure;                                         // 0x40(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A52[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UOculusUpdateSessionCallbackProxy* GetDefaultObj();
 
-	class UOculusUpdateSessionCallbackProxy* SetSessionEnqueue();
+	void SetSessionEnqueue(bool bShouldEnqueueInMatchmakingPool, class UOculusUpdateSessionCallbackProxy* ReturnValue);
 };
 
 }

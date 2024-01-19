@@ -43,14 +43,14 @@ class UBP_CFCoreUIModel_C* UBP_CFCoreUIModel_C::GetDefaultObj()
 // Function BP_CFCoreUIModel.BP_CFCoreUIModel_C.OnEventReceived
 // (Event, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class EGameModsEvent          Evt                                                              (Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FCFCoreMod>          InModsList                                                       (Edit, ConstParm, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FInstallProgressMod> OutModsList                                                      (BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// TArray<struct FInstallProgressMod> CallFunc_OnEventReceived_OutModsList                             (Edit, ConstParm, BlueprintVisible, Net, Parm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_OnEventReceived_ReturnValue                             (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class EGameModsEvent          Evt                                                              (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FCFCoreMod>          InModsList                                                       (Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FInstallProgressMod> OutModsList                                                      (ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FInstallProgressMod> CallFunc_OnEventReceived_OutModsList                             (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// bool                               CallFunc_OnEventReceived_ReturnValue                             (ConstParm, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
-bool UBP_CFCoreUIModel_C::OnEventReceived(enum class EGameModsEvent* Evt, TArray<struct FCFCoreMod>* InModsList, TArray<struct FInstallProgressMod>* OutModsList, const TArray<struct FInstallProgressMod>& CallFunc_OnEventReceived_OutModsList, bool CallFunc_OnEventReceived_ReturnValue)
+TArray<struct FInstallProgressMod> UBP_CFCoreUIModel_C::OnEventReceived(bool ReturnValue, const TArray<struct FInstallProgressMod>& CallFunc_OnEventReceived_OutModsList, bool* CallFunc_OnEventReceived_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -59,19 +59,13 @@ bool UBP_CFCoreUIModel_C::OnEventReceived(enum class EGameModsEvent* Evt, TArray
 
 	Params::UBP_CFCoreUIModel_C_OnEventReceived_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 	Parms.CallFunc_OnEventReceived_OutModsList = CallFunc_OnEventReceived_OutModsList;
-	Parms.CallFunc_OnEventReceived_ReturnValue = CallFunc_OnEventReceived_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Evt != nullptr)
-		*Evt = Parms.Evt;
-
-	if (InModsList != nullptr)
-		*InModsList = std::move(Parms.InModsList);
-
-	if (OutModsList != nullptr)
-		*OutModsList = std::move(Parms.OutModsList);
+	if (CallFunc_OnEventReceived_ReturnValue != nullptr)
+		*CallFunc_OnEventReceived_ReturnValue = Parms.CallFunc_OnEventReceived_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -81,14 +75,14 @@ bool UBP_CFCoreUIModel_C::OnEventReceived(enum class EGameModsEvent* Evt, TArray
 // Function BP_CFCoreUIModel.BP_CFCoreUIModel_C.OnEventReceived_LibraryProgress
 // (Event, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class EGameModsEvent          Evt                                                              (Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FLibraryProgress            Progress                                                         (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-// TArray<struct FInstallProgressMod> OutModsList                                                      (BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// TArray<struct FInstallProgressMod> CallFunc_OnEventReceived_LibraryProgress_OutModsList             (Edit, BlueprintReadOnly, Net, EditFixedSize, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_OnEventReceived_LibraryProgress_ReturnValue             (BlueprintVisible, ExportObject, Parm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class EGameModsEvent          Evt                                                              (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FLibraryProgress            Progress                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+// TArray<struct FInstallProgressMod> OutModsList                                                      (ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FInstallProgressMod> CallFunc_OnEventReceived_LibraryProgress_OutModsList             (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// bool                               CallFunc_OnEventReceived_LibraryProgress_ReturnValue             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
-bool UBP_CFCoreUIModel_C::OnEventReceived_LibraryProgress(enum class EGameModsEvent* Evt, struct FLibraryProgress* Progress, TArray<struct FInstallProgressMod>* OutModsList, const TArray<struct FInstallProgressMod>& CallFunc_OnEventReceived_LibraryProgress_OutModsList, bool CallFunc_OnEventReceived_LibraryProgress_ReturnValue)
+TArray<struct FInstallProgressMod> UBP_CFCoreUIModel_C::OnEventReceived_LibraryProgress(bool ReturnValue, const TArray<struct FInstallProgressMod>& CallFunc_OnEventReceived_LibraryProgress_OutModsList, bool CallFunc_OnEventReceived_LibraryProgress_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -97,19 +91,11 @@ bool UBP_CFCoreUIModel_C::OnEventReceived_LibraryProgress(enum class EGameModsEv
 
 	Params::UBP_CFCoreUIModel_C_OnEventReceived_LibraryProgress_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 	Parms.CallFunc_OnEventReceived_LibraryProgress_OutModsList = CallFunc_OnEventReceived_LibraryProgress_OutModsList;
 	Parms.CallFunc_OnEventReceived_LibraryProgress_ReturnValue = CallFunc_OnEventReceived_LibraryProgress_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (Evt != nullptr)
-		*Evt = Parms.Evt;
-
-	if (Progress != nullptr)
-		*Progress = std::move(Parms.Progress);
-
-	if (OutModsList != nullptr)
-		*OutModsList = std::move(Parms.OutModsList);
 
 	return Parms.ReturnValue;
 

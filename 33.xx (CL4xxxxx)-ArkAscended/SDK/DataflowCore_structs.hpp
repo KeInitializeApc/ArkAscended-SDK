@@ -19,9 +19,9 @@ namespace SDK
 struct FDataflowNode
 {
 public:
-	uint8                                        Pad_2C3C[0xC8];                                    // Fixing Size After Last Property  > TateDumper <
-	bool                                         bActive;                                           // 0xC8(0x1)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2C3D[0x1F];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2D20[0xC8];                                    // Fixing Size After Last Property  > TateDumper <
+	bool                                         bActive;                                           // 0xC8(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2D21[0x1F];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x0 (0xE8 - 0xE8)
@@ -36,7 +36,7 @@ public:
 struct FDataflowSelection
 {
 public:
-	uint8                                        Pad_2C3E[0x20];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2D23[0x20];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x0 (0x20 - 0x20)
@@ -65,7 +65,7 @@ public:
 struct FDataflowConnection
 {
 public:
-	uint8                                        Pad_2C3F[0x40];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2D24[0x40];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x48 - 0x40)
@@ -73,7 +73,7 @@ public:
 struct FDataflowInput : public FDataflowConnection
 {
 public:
-	uint8                                        Pad_2C40[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2D25[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x68 - 0x40)
@@ -81,7 +81,7 @@ public:
 struct FDataflowOutput : public FDataflowConnection
 {
 public:
-	uint8                                        Pad_2C41[0x28];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2D26[0x28];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -89,8 +89,8 @@ public:
 struct FNodeColors
 {
 public:
-	struct FLinearColor                          NodeTitleColor;                                    // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          NodeBodyTintColor;                                 // 0x10(0x10)(Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	struct FLinearColor                          NodeTitleColor;                                    // 0x0(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FLinearColor                          NodeBodyTintColor;                                 // 0x10(0x10)(ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 }

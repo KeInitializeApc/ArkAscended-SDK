@@ -43,7 +43,7 @@ class UReListSessions_ASA_C* UReListSessions_ASA_C::GetDefaultObj()
 // Function ReListSessions_ASA.ReListSessions_ASA_C.UpdateFavoritesTab
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_NotEqual_BoolBool_ReturnValue                           (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, EditConst, SubobjectReference)
+// bool                               CallFunc_NotEqual_BoolBool_ReturnValue                           (BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
 
 bool UReListSessions_ASA_C::UpdateFavoritesTab()
 {
@@ -65,12 +65,12 @@ bool UReListSessions_ASA_C::UpdateFavoritesTab()
 // Function ReListSessions_ASA.ReListSessions_ASA_C.HandleAscendDescendSwitch
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UComboBoxString*             ComboBox                                                         (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig)
-// int32                              ForIndex                                                         (ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              CallFunc_GetSelectedIndex_ReturnValue                            (ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// class UComboBoxString*             ComboBox                                                         (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// int32                              ForIndex                                                         (Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              CallFunc_GetSelectedIndex_ReturnValue                            (Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
 
-bool UReListSessions_ASA_C::HandleAscendDescendSwitch()
+int32 UReListSessions_ASA_C::HandleAscendDescendSwitch(class UComboBoxString** ComboBox, int32* ForIndex, bool CallFunc_EqualEqual_IntInt_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -79,8 +79,15 @@ bool UReListSessions_ASA_C::HandleAscendDescendSwitch()
 
 	Params::UReListSessions_ASA_C_HandleAscendDescendSwitch_Params Parms{};
 
+	Parms.CallFunc_EqualEqual_IntInt_ReturnValue = CallFunc_EqualEqual_IntInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (ComboBox != nullptr)
+		*ComboBox = Parms.ComboBox;
+
+	if (ForIndex != nullptr)
+		*ForIndex = Parms.ForIndex;
 
 	return Parms.ReturnValue;
 
@@ -90,15 +97,15 @@ bool UReListSessions_ASA_C::HandleAscendDescendSwitch()
 // Function ReListSessions_ASA.ReListSessions_ASA_C.Update Horizontal Tab Enabled States
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsChecked_ReturnValue                                   (ConstParm, BlueprintVisible, ExportObject, Net, Parm, Transient, EditConst, SubobjectReference)
-// class UWidget*                     CallFunc_SwitchButton_Widget                                     (Edit, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              CallFunc_GetSelectedIndex_ReturnValue                            (ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsChecked_ReturnValue_1                                 (ConstParm, BlueprintVisible, ExportObject, Net, Parm, Transient, EditConst, SubobjectReference, Interp)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsChecked_ReturnValue                                   (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class UWidget*                     CallFunc_SwitchButton_Widget                                     (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              CallFunc_GetSelectedIndex_ReturnValue                            (Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsChecked_ReturnValue_1                                 (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue                                  (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
-bool UReListSessions_ASA_C::Update_Horizontal_Tab_Enabled_States(bool CallFunc_IsChecked_ReturnValue, class UWidget* CallFunc_SwitchButton_Widget, bool CallFunc_IsChecked_ReturnValue_1, bool CallFunc_BooleanAND_ReturnValue)
+bool UReListSessions_ASA_C::Update_Horizontal_Tab_Enabled_States(bool CallFunc_EqualEqual_IntInt_ReturnValue, bool CallFunc_BooleanAND_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -107,9 +114,7 @@ bool UReListSessions_ASA_C::Update_Horizontal_Tab_Enabled_States(bool CallFunc_I
 
 	Params::UReListSessions_ASA_C_Update_Horizontal_Tab_Enabled_States_Params Parms{};
 
-	Parms.CallFunc_IsChecked_ReturnValue = CallFunc_IsChecked_ReturnValue;
-	Parms.CallFunc_SwitchButton_Widget = CallFunc_SwitchButton_Widget;
-	Parms.CallFunc_IsChecked_ReturnValue_1 = CallFunc_IsChecked_ReturnValue_1;
+	Parms.CallFunc_EqualEqual_IntInt_ReturnValue = CallFunc_EqualEqual_IntInt_ReturnValue;
 	Parms.CallFunc_BooleanAND_ReturnValue = CallFunc_BooleanAND_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
@@ -122,13 +127,13 @@ bool UReListSessions_ASA_C::Update_Horizontal_Tab_Enabled_States(bool CallFunc_I
 // Function ReListSessions_ASA.ReListSessions_ASA_C.SetupPlatformSpecificTextBox
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        CallFunc_MakeLiteralText_ReturnValue                             (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference)
-// class FText                        CallFunc_MakeLiteralText_ReturnValue_1                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference, Interp)
-// class FText                        CallFunc_MakeLiteralText_ReturnValue_2                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference, RepNotify, Interp)
-// class FString                      CallFunc_GetPlatformName_ReturnValue                             (ConstParm, BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_SwitchString_CmpSuccess                                   (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// class FText                        CallFunc_MakeLiteralText_ReturnValue                             (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_MakeLiteralText_ReturnValue_1                           (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// class FText                        CallFunc_MakeLiteralText_ReturnValue_2                           (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// class FString                      CallFunc_GetPlatformName_ReturnValue                             (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_SwitchString_CmpSuccess                                   (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
 
-bool UReListSessions_ASA_C::SetupPlatformSpecificTextBox()
+class FText UReListSessions_ASA_C::SetupPlatformSpecificTextBox(class FString* CallFunc_GetPlatformName_ReturnValue, bool K2Node_SwitchString_CmpSuccess)
 {
 	static class UFunction* Func = nullptr;
 
@@ -137,8 +142,12 @@ bool UReListSessions_ASA_C::SetupPlatformSpecificTextBox()
 
 	Params::UReListSessions_ASA_C_SetupPlatformSpecificTextBox_Params Parms{};
 
+	Parms.K2Node_SwitchString_CmpSuccess = K2Node_SwitchString_CmpSuccess;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (CallFunc_GetPlatformName_ReturnValue != nullptr)
+		*CallFunc_GetPlatformName_ReturnValue = std::move(Parms.CallFunc_GetPlatformName_ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -148,22 +157,22 @@ bool UReListSessions_ASA_C::SetupPlatformSpecificTextBox()
 // Function ReListSessions_ASA.ReListSessions_ASA_C.OnKeyDownEvent
 // (Event, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FKeyEvent                   InKeyboardEvent                                                  (Edit, ConstParm, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FKey                        CallFunc_GetKey_ReturnValue                                      (Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_GetIsEnabled_ReturnValue                                (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_1                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_2                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// struct FEventReply                 CallFunc_OnKeyDown_ReturnValue                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// class UComboBoxString*             CallFunc_GetOpenComboBox_ReturnValue                             (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class UWidget*                     CallFunc_SwitchButton_Widget                                     (Edit, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UWidget*                     CallFunc_SwitchButton_Widget_1                                   (Edit, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// struct FEventReply                 CallFunc_Handled_ReturnValue                                     (Edit, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (Edit, BlueprintVisible, Net, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FKeyEvent                   InKeyboardEvent                                                  (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FKey                        CallFunc_GetKey_ReturnValue                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_GetIsEnabled_ReturnValue                                (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_1                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_2                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// struct FEventReply                 CallFunc_OnKeyDown_ReturnValue                                   (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UComboBoxString*             CallFunc_GetOpenComboBox_ReturnValue                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UWidget*                     CallFunc_SwitchButton_Widget                                     (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UWidget*                     CallFunc_SwitchButton_Widget_1                                   (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// struct FEventReply                 CallFunc_Handled_ReturnValue                                     (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class UComboBoxString* UReListSessions_ASA_C::OnKeyDownEvent(struct FGeometry* MyGeometry, bool* CallFunc_GetIsEnabled_ReturnValue, bool* CallFunc_IsValid_ReturnValue, class UWidget* CallFunc_SwitchButton_Widget, class UWidget* CallFunc_SwitchButton_Widget_1, struct FEventReply* CallFunc_Handled_ReturnValue)
+struct FEventReply UReListSessions_ASA_C::OnKeyDownEvent(const struct FGeometry& MyGeometry, struct FKeyEvent* InKeyboardEvent, const struct FEventReply& ReturnValue, bool CallFunc_GetIsEnabled_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -172,22 +181,14 @@ class UComboBoxString* UReListSessions_ASA_C::OnKeyDownEvent(struct FGeometry* M
 
 	Params::UReListSessions_ASA_C_OnKeyDownEvent_Params Parms{};
 
-	Parms.CallFunc_SwitchButton_Widget = CallFunc_SwitchButton_Widget;
-	Parms.CallFunc_SwitchButton_Widget_1 = CallFunc_SwitchButton_Widget_1;
+	Parms.MyGeometry = MyGeometry;
+	Parms.ReturnValue = ReturnValue;
+	Parms.CallFunc_GetIsEnabled_ReturnValue = CallFunc_GetIsEnabled_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (MyGeometry != nullptr)
-		*MyGeometry = std::move(Parms.MyGeometry);
-
-	if (CallFunc_GetIsEnabled_ReturnValue != nullptr)
-		*CallFunc_GetIsEnabled_ReturnValue = Parms.CallFunc_GetIsEnabled_ReturnValue;
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_Handled_ReturnValue != nullptr)
-		*CallFunc_Handled_ReturnValue = std::move(Parms.CallFunc_Handled_ReturnValue);
+	if (InKeyboardEvent != nullptr)
+		*InKeyboardEvent = std::move(Parms.InKeyboardEvent);
 
 	return Parms.ReturnValue;
 
@@ -197,19 +198,19 @@ class UComboBoxString* UReListSessions_ASA_C::OnKeyDownEvent(struct FGeometry* M
 // Function ReListSessions_ASA.ReListSessions_ASA_C.OnKeyDown
 // (BlueprintCosmetic, Event, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FKeyEvent                   InKeyEvent                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FKey                        LocalKey                                                         (ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FKey                        CallFunc_GetKey_ReturnValue                                      (Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UWidget*                     CallFunc_SwitchButton_Widget                                     (Edit, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FEventReply                 CallFunc_OnKeyDown_ReturnValue                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// class UWidget*                     CallFunc_SwitchButton_Widget_1                                   (Edit, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_1                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// struct FEventReply                 CallFunc_Handled_ReturnValue                                     (Edit, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (Edit, BlueprintVisible, Net, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FKeyEvent                   InKeyEvent                                                       (Edit, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FKey                        LocalKey                                                         (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FKey                        CallFunc_GetKey_ReturnValue                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UWidget*                     CallFunc_SwitchButton_Widget                                     (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FEventReply                 CallFunc_OnKeyDown_ReturnValue                                   (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UWidget*                     CallFunc_SwitchButton_Widget_1                                   (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_1                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// struct FEventReply                 CallFunc_Handled_ReturnValue                                     (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-bool UReListSessions_ASA_C::OnKeyDown(struct FGeometry* MyGeometry, class UWidget* CallFunc_SwitchButton_Widget, class UWidget* CallFunc_SwitchButton_Widget_1, struct FEventReply* CallFunc_Handled_ReturnValue)
+struct FEventReply UReListSessions_ASA_C::OnKeyDown(const struct FGeometry& MyGeometry, struct FKeyEvent* InKeyEvent, const struct FEventReply& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -218,16 +219,13 @@ bool UReListSessions_ASA_C::OnKeyDown(struct FGeometry* MyGeometry, class UWidge
 
 	Params::UReListSessions_ASA_C_OnKeyDown_Params Parms{};
 
-	Parms.CallFunc_SwitchButton_Widget = CallFunc_SwitchButton_Widget;
-	Parms.CallFunc_SwitchButton_Widget_1 = CallFunc_SwitchButton_Widget_1;
+	Parms.MyGeometry = MyGeometry;
+	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (MyGeometry != nullptr)
-		*MyGeometry = std::move(Parms.MyGeometry);
-
-	if (CallFunc_Handled_ReturnValue != nullptr)
-		*CallFunc_Handled_ReturnValue = std::move(Parms.CallFunc_Handled_ReturnValue);
+	if (InKeyEvent != nullptr)
+		*InKeyEvent = std::move(Parms.InKeyEvent);
 
 	return Parms.ReturnValue;
 
@@ -237,9 +235,9 @@ bool UReListSessions_ASA_C::OnKeyDown(struct FGeometry* MyGeometry, class UWidge
 // Function ReListSessions_ASA.ReListSessions_ASA_C.GetSizeboxForExtraHandheldScaling
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class USizeBox*                    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USizeBox*                    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USizeBox* UReListSessions_ASA_C::GetSizeboxForExtraHandheldScaling()
+void UReListSessions_ASA_C::GetSizeboxForExtraHandheldScaling(class USizeBox* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -248,10 +246,9 @@ class USizeBox* UReListSessions_ASA_C::GetSizeboxForExtraHandheldScaling()
 
 	Params::UReListSessions_ASA_C_GetSizeboxForExtraHandheldScaling_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -259,9 +256,9 @@ class USizeBox* UReListSessions_ASA_C::GetSizeboxForExtraHandheldScaling()
 // Function ReListSessions_ASA.ReListSessions_ASA_C.GetWidgetToScaleForHandheld
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UWidget*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UWidget* UReListSessions_ASA_C::GetWidgetToScaleForHandheld()
+void UReListSessions_ASA_C::GetWidgetToScaleForHandheld(class UWidget* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -270,10 +267,9 @@ class UWidget* UReListSessions_ASA_C::GetWidgetToScaleForHandheld()
 
 	Params::UReListSessions_ASA_C_GetWidgetToScaleForHandheld_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -281,9 +277,9 @@ class UWidget* UReListSessions_ASA_C::GetWidgetToScaleForHandheld()
 // Function ReListSessions_ASA.ReListSessions_ASA_C.BndEvt__ShowProtectedServersCheckBox_K2Node_ComponentBoundEvent_88_OnCheckBoxComponentStateChanged__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
-// bool                               bIsChecked                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bIsChecked                                                       (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UReListSessions_ASA_C::BndEvt__ShowProtectedServersCheckBox_K2Node_ComponentBoundEvent_88_OnCheckBoxComponentStateChanged__DelegateSignature()
+void UReListSessions_ASA_C::BndEvt__ShowProtectedServersCheckBox_K2Node_ComponentBoundEvent_88_OnCheckBoxComponentStateChanged__DelegateSignature(bool* bIsChecked)
 {
 	static class UFunction* Func = nullptr;
 
@@ -295,7 +291,8 @@ bool UReListSessions_ASA_C::BndEvt__ShowProtectedServersCheckBox_K2Node_Componen
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (bIsChecked != nullptr)
+		*bIsChecked = Parms.bIsChecked;
 
 }
 
@@ -519,12 +516,12 @@ void UReListSessions_ASA_C::BndEvt__ReListSessions_ASA_SettingsButton_K2Node_Com
 // Function ReListSessions_ASA.ReListSessions_ASA_C.OnServerListingClickedModPopup
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// bool                               bNeedInit                                                        (ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<int64>                      ModIds                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-// class FString                      ServerName                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// int64                              ServerID                                                         (ConstParm, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               bNeedInit                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<int64>                      ModIds                                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// class FString                      ServerName                                                       (Edit, ConstParm, BlueprintReadOnly, Net, Parm, Config, InstancedReference, SubobjectReference)
+// int64                              ServerID                                                         (Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
-class FString UReListSessions_ASA_C::OnServerListingClickedModPopup(int64* ServerID)
+int64 UReListSessions_ASA_C::OnServerListingClickedModPopup(TArray<int64>* ModIds, const class FString& ServerName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -533,11 +530,12 @@ class FString UReListSessions_ASA_C::OnServerListingClickedModPopup(int64* Serve
 
 	Params::UReListSessions_ASA_C_OnServerListingClickedModPopup_Params Parms{};
 
+	Parms.ServerName = ServerName;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ServerID != nullptr)
-		*ServerID = Parms.ServerID;
+	if (ModIds != nullptr)
+		*ModIds = std::move(Parms.ModIds);
 
 	return Parms.ReturnValue;
 
@@ -547,9 +545,9 @@ class FString UReListSessions_ASA_C::OnServerListingClickedModPopup(int64* Serve
 // Function ReListSessions_ASA.ReListSessions_ASA_C.ModUIJoinEvent
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int64                              ServerID                                                         (ConstParm, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// int64                              ServerID                                                         (Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UReListSessions_ASA_C::ModUIJoinEvent(int64* ServerID)
+int64 UReListSessions_ASA_C::ModUIJoinEvent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -561,8 +559,7 @@ void UReListSessions_ASA_C::ModUIJoinEvent(int64* ServerID)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ServerID != nullptr)
-		*ServerID = Parms.ServerID;
+	return Parms.ReturnValue;
 
 }
 
@@ -588,9 +585,9 @@ void UReListSessions_ASA_C::ModUIBackEvent()
 // Function ReListSessions_ASA.ReListSessions_ASA_C.ModUIReportEvent
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int64                              ServerID                                                         (ConstParm, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// int64                              ServerID                                                         (Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UReListSessions_ASA_C::ModUIReportEvent(int64* ServerID)
+int64 UReListSessions_ASA_C::ModUIReportEvent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -602,8 +599,7 @@ void UReListSessions_ASA_C::ModUIReportEvent(int64* ServerID)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ServerID != nullptr)
-		*ServerID = Parms.ServerID;
+	return Parms.ReturnValue;
 
 }
 
@@ -611,9 +607,9 @@ void UReListSessions_ASA_C::ModUIReportEvent(int64* ServerID)
 // Function ReListSessions_ASA.ReListSessions_ASA_C.ModUIFavoriteEvent
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int64                              ServerID                                                         (ConstParm, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// int64                              ServerID                                                         (Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UReListSessions_ASA_C::ModUIFavoriteEvent(int64* ServerID)
+int64 UReListSessions_ASA_C::ModUIFavoriteEvent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -625,8 +621,7 @@ void UReListSessions_ASA_C::ModUIFavoriteEvent(int64* ServerID)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ServerID != nullptr)
-		*ServerID = Parms.ServerID;
+	return Parms.ReturnValue;
 
 }
 
@@ -652,7 +647,7 @@ void UReListSessions_ASA_C::ModUIError()
 // Function ReListSessions_ASA.ReListSessions_ASA_C.SetCurrentServerSearchType
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              ServerType                                                       (Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ServerType                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
 
 int32 UReListSessions_ASA_C::SetCurrentServerSearchType()
 {
@@ -710,9 +705,9 @@ void UReListSessions_ASA_C::BndEvt__ReListSessions_ASA_ShowPlatformSpecificServe
 // Function ReListSessions_ASA.ReListSessions_ASA_C.BndEvt__ReListSessions_ASA_ShowPlatformSpecificServersCheckBox_K2Node_ComponentBoundEvent_13_OnCheckBoxComponentStateChanged__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
-// bool                               bIsChecked                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bIsChecked                                                       (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UReListSessions_ASA_C::BndEvt__ReListSessions_ASA_ShowPlatformSpecificServersCheckBox_K2Node_ComponentBoundEvent_13_OnCheckBoxComponentStateChanged__DelegateSignature()
+void UReListSessions_ASA_C::BndEvt__ReListSessions_ASA_ShowPlatformSpecificServersCheckBox_K2Node_ComponentBoundEvent_13_OnCheckBoxComponentStateChanged__DelegateSignature(bool* bIsChecked)
 {
 	static class UFunction* Func = nullptr;
 
@@ -724,7 +719,8 @@ bool UReListSessions_ASA_C::BndEvt__ReListSessions_ASA_ShowPlatformSpecificServe
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (bIsChecked != nullptr)
+		*bIsChecked = Parms.bIsChecked;
 
 }
 
@@ -768,10 +764,10 @@ void UReListSessions_ASA_C::ForceUpdateServerTypeSelection()
 // Function ReListSessions_ASA.ReListSessions_ASA_C.Tick
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              InDeltaTime                                                      (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (Edit, BlueprintVisible, Net, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InDeltaTime                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-float UReListSessions_ASA_C::Tick(struct FGeometry* MyGeometry)
+float UReListSessions_ASA_C::Tick(const struct FGeometry& MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -780,11 +776,9 @@ float UReListSessions_ASA_C::Tick(struct FGeometry* MyGeometry)
 
 	Params::UReListSessions_ASA_C_Tick_Params Parms{};
 
+	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (MyGeometry != nullptr)
-		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -830,47 +824,47 @@ void UReListSessions_ASA_C::BndEvt__ReListSessions_ASA_PlayerServersButton_K2Nod
 // Function ReListSessions_ASA.ReListSessions_ASA_C.ExecuteUbergraph_ReListSessions_ASA
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UBP_ServerModsWidget_C*      CallFunc_Create_ReturnValue                                      (ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_IsChecked_ReturnValue                                   (ConstParm, BlueprintVisible, ExportObject, Net, Parm, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               K2Node_ComponentBoundEvent_bIsChecked_1                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// bool                               CallFunc_IsChecked_ReturnValue_1                                 (ConstParm, BlueprintVisible, ExportObject, Net, Parm, Transient, EditConst, SubobjectReference, Interp)
-// bool                               CallFunc_IsChecked_ReturnValue_2                                 (ConstParm, BlueprintVisible, ExportObject, Net, Parm, Transient, EditConst, SubobjectReference, RepNotify, Interp)
-// bool                               CallFunc_Not_PreBool_ReturnValue_1                               (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_Not_PreBool_ReturnValue_2                               (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
-// bool                               CallFunc_IsChecked_ReturnValue_3                                 (ConstParm, BlueprintVisible, ExportObject, Net, Parm, Transient, EditConst, SubobjectReference, NonTransactional)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue_3                               (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, NonTransactional)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_2                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
-// bool                               K2Node_Event_bNeedInit                                           (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// TArray<int64>                      K2Node_Event_ModIds                                              (Edit, Net, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// class FString                      K2Node_Event_ServerName                                          (ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// int64                              K2Node_Event_ServerId                                            (BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_3                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, NonTransactional)
-// int64                              K2Node_CustomEvent_ServerId_2                                    (ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference, RepNotify, Interp)
-// int64                              K2Node_CustomEvent_ServerId_1                                    (ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference, Interp)
-// int64                              K2Node_CustomEvent_ServerId                                      (ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// int32                              K2Node_Event_ServerType                                          (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsChecked_ReturnValue_4                                 (ConstParm, BlueprintVisible, ExportObject, Net, Parm, Transient, EditConst, SubobjectReference, RepNotify, NonTransactional)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_4                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, NonTransactional)
-// bool                               CallFunc_Not_PreBool_ReturnValue_4                               (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, NonTransactional)
-// bool                               K2Node_ComponentBoundEvent_bIsChecked                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FGeometry                   K2Node_Event_MyGeometry                                          (Edit, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              K2Node_Event_InDeltaTime                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_GetSelectedIndex_ReturnValue                            (ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsVisible_ReturnValue                                   (Edit, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_BPGetGlobalUIData_bIsPsOrXbUi                           (Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class UPrimalGlobalUIData*         CallFunc_BPGetGlobalUIData_ReturnValue                           (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue_5                               (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp, NonTransactional)
-// class UTexture2D*                  CallFunc_GetIconForKeyName_ReturnValue                           (Edit, BlueprintVisible, ExportObject, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class UTexture2D*                  CallFunc_GetIconForKeyName_ReturnValue_1                         (Edit, BlueprintVisible, ExportObject, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// class UCFCoreUISubsystem*          CallFunc_GetGameInstanceSubsystem_ReturnValue                    (ConstParm, BlueprintReadOnly, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_RegisterModelClass_ReturnValue                          (ConstParm, BlueprintVisible, Net, Parm, OutParm, InstancedReference, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBP_ServerModsWidget_C*      CallFunc_Create_ReturnValue                                      (ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsChecked_ReturnValue                                   (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_ComponentBoundEvent_bIsChecked_1                          (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_IsChecked_ReturnValue_1                                 (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_IsChecked_ReturnValue_2                                 (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// bool                               CallFunc_Not_PreBool_ReturnValue_1                               (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_Not_PreBool_ReturnValue_2                               (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// bool                               CallFunc_IsChecked_ReturnValue_3                                 (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, NonTransactional)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue_3                               (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, NonTransactional)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_2                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// bool                               K2Node_Event_bNeedInit                                           (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// TArray<int64>                      K2Node_Event_ModIds                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class FString                      K2Node_Event_ServerName                                          (Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// int64                              K2Node_Event_ServerId                                            (Edit, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_3                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, NonTransactional)
+// int64                              K2Node_CustomEvent_ServerId_2                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference, RepNotify, Interp)
+// int64                              K2Node_CustomEvent_ServerId_1                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference, Interp)
+// int64                              K2Node_CustomEvent_ServerId                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// int32                              K2Node_Event_ServerType                                          (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// bool                               CallFunc_IsChecked_ReturnValue_4                                 (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, NonTransactional)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_4                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, NonTransactional)
+// bool                               CallFunc_Not_PreBool_ReturnValue_4                               (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, RepNotify, NonTransactional)
+// bool                               K2Node_ComponentBoundEvent_bIsChecked                            (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// struct FGeometry                   K2Node_Event_MyGeometry                                          (Net, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              K2Node_Event_InDeltaTime                                         (Edit, ConstParm, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_GetSelectedIndex_ReturnValue                            (Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsVisible_ReturnValue                                   (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// bool                               CallFunc_BPGetGlobalUIData_bIsPsOrXbUi                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// class UPrimalGlobalUIData*         CallFunc_BPGetGlobalUIData_ReturnValue                           (ConstParm, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue_5                               (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp, NonTransactional)
+// class UTexture2D*                  CallFunc_GetIconForKeyName_ReturnValue                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// class UTexture2D*                  CallFunc_GetIconForKeyName_ReturnValue_1                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
+// class UCFCoreUISubsystem*          CallFunc_GetGameInstanceSubsystem_ReturnValue                    (ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_RegisterModelClass_ReturnValue                          (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class UTexture2D* UReListSessions_ASA_C::ExecuteUbergraph_ReListSessions_ASA(bool CallFunc_IsChecked_ReturnValue, bool CallFunc_IsChecked_ReturnValue_1, bool CallFunc_IsChecked_ReturnValue_2, bool CallFunc_IsChecked_ReturnValue_3, class FText CallFunc_Conv_StringToText_ReturnValue, bool CallFunc_IsChecked_ReturnValue_4, struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime, class UCFCoreUISubsystem* CallFunc_GetGameInstanceSubsystem_ReturnValue, bool* CallFunc_RegisterModelClass_ReturnValue)
+bool UReListSessions_ASA_C::ExecuteUbergraph_ReListSessions_ASA(int32 EntryPoint, class UBP_ServerModsWidget_C* CallFunc_Create_ReturnValue, bool K2Node_ComponentBoundEvent_bIsChecked_1, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_1, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_2, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_3, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_4, bool K2Node_ComponentBoundEvent_bIsChecked, struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime, bool* CallFunc_IsVisible_ReturnValue, bool* CallFunc_BPGetGlobalUIData_bIsPsOrXbUi, class UPrimalGlobalUIData** CallFunc_BPGetGlobalUIData_ReturnValue, class UTexture2D** CallFunc_GetIconForKeyName_ReturnValue, class UTexture2D** CallFunc_GetIconForKeyName_ReturnValue_1, class UCFCoreUISubsystem* CallFunc_GetGameInstanceSubsystem_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -879,12 +873,15 @@ class UTexture2D* UReListSessions_ASA_C::ExecuteUbergraph_ReListSessions_ASA(boo
 
 	Params::UReListSessions_ASA_C_ExecuteUbergraph_ReListSessions_ASA_Params Parms{};
 
-	Parms.CallFunc_IsChecked_ReturnValue = CallFunc_IsChecked_ReturnValue;
-	Parms.CallFunc_IsChecked_ReturnValue_1 = CallFunc_IsChecked_ReturnValue_1;
-	Parms.CallFunc_IsChecked_ReturnValue_2 = CallFunc_IsChecked_ReturnValue_2;
-	Parms.CallFunc_IsChecked_ReturnValue_3 = CallFunc_IsChecked_ReturnValue_3;
-	Parms.CallFunc_Conv_StringToText_ReturnValue = CallFunc_Conv_StringToText_ReturnValue;
-	Parms.CallFunc_IsChecked_ReturnValue_4 = CallFunc_IsChecked_ReturnValue_4;
+	Parms.EntryPoint = EntryPoint;
+	Parms.CallFunc_Create_ReturnValue = CallFunc_Create_ReturnValue;
+	Parms.K2Node_ComponentBoundEvent_bIsChecked_1 = K2Node_ComponentBoundEvent_bIsChecked_1;
+	Parms.K2Node_CreateDelegate_OutputDelegate = K2Node_CreateDelegate_OutputDelegate;
+	Parms.K2Node_CreateDelegate_OutputDelegate_1 = K2Node_CreateDelegate_OutputDelegate_1;
+	Parms.K2Node_CreateDelegate_OutputDelegate_2 = K2Node_CreateDelegate_OutputDelegate_2;
+	Parms.K2Node_CreateDelegate_OutputDelegate_3 = K2Node_CreateDelegate_OutputDelegate_3;
+	Parms.K2Node_CreateDelegate_OutputDelegate_4 = K2Node_CreateDelegate_OutputDelegate_4;
+	Parms.K2Node_ComponentBoundEvent_bIsChecked = K2Node_ComponentBoundEvent_bIsChecked;
 	Parms.CallFunc_GetGameInstanceSubsystem_ReturnValue = CallFunc_GetGameInstanceSubsystem_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
@@ -895,8 +892,20 @@ class UTexture2D* UReListSessions_ASA_C::ExecuteUbergraph_ReListSessions_ASA(boo
 	if (K2Node_Event_InDeltaTime != nullptr)
 		*K2Node_Event_InDeltaTime = Parms.K2Node_Event_InDeltaTime;
 
-	if (CallFunc_RegisterModelClass_ReturnValue != nullptr)
-		*CallFunc_RegisterModelClass_ReturnValue = Parms.CallFunc_RegisterModelClass_ReturnValue;
+	if (CallFunc_IsVisible_ReturnValue != nullptr)
+		*CallFunc_IsVisible_ReturnValue = Parms.CallFunc_IsVisible_ReturnValue;
+
+	if (CallFunc_BPGetGlobalUIData_bIsPsOrXbUi != nullptr)
+		*CallFunc_BPGetGlobalUIData_bIsPsOrXbUi = Parms.CallFunc_BPGetGlobalUIData_bIsPsOrXbUi;
+
+	if (CallFunc_BPGetGlobalUIData_ReturnValue != nullptr)
+		*CallFunc_BPGetGlobalUIData_ReturnValue = Parms.CallFunc_BPGetGlobalUIData_ReturnValue;
+
+	if (CallFunc_GetIconForKeyName_ReturnValue != nullptr)
+		*CallFunc_GetIconForKeyName_ReturnValue = Parms.CallFunc_GetIconForKeyName_ReturnValue;
+
+	if (CallFunc_GetIconForKeyName_ReturnValue_1 != nullptr)
+		*CallFunc_GetIconForKeyName_ReturnValue_1 = Parms.CallFunc_GetIconForKeyName_ReturnValue_1;
 
 	return Parms.ReturnValue;
 

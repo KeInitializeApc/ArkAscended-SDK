@@ -75,9 +75,9 @@ enum class EGLTFMaterialPropertyGroup : uint8
 struct FGLTFExportMessages
 {
 public:
-	TArray<class FString>                        Suggestions;                                       // 0x0(0x10)(ConstParm, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<class FString>                        Warnings;                                          // 0x10(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<class FString>                        Errors;                                            // 0x20(0x10)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class FString>                        Suggestions;                                       // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class FString>                        Warnings;                                          // 0x10(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class FString>                        Errors;                                            // 0x20(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x6 (0x6 - 0x0)
@@ -85,12 +85,12 @@ public:
 struct FGLTFOverrideMaterialBakeSettings
 {
 public:
-	bool                                         bOverrideSize;                                     // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bOverrideSize;                                     // 0x0(0x1)(ExportObject, BlueprintReadOnly, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
 	enum class EGLTFMaterialBakeSizePOT          Size;                                              // 0x1(0x1)(Edit, ExportObject, EditFixedSize, ReturnParm, Transient, Config)
-	bool                                         bOverrideFilter;                                   // 0x2(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bOverrideFilter;                                   // 0x2(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
 	enum class ETextureFilter                    Filter;                                            // 0x3(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config)
-	bool                                         bOverrideTiling;                                   // 0x4(0x1)(Edit, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ETextureAddress                   Tiling;                                            // 0x5(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bOverrideTiling;                                   // 0x4(0x1)(ConstParm, BlueprintVisible, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ETextureAddress                   Tiling;                                            // 0x5(0x1)(ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 }

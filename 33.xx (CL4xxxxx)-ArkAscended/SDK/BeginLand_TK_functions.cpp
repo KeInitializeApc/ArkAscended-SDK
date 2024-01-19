@@ -43,9 +43,9 @@ class UBeginLand_TK_C* UBeginLand_TK_C::GetDefaultObj()
 // Function BeginLand_TK.BeginLand_TK_C.ReceiveExecute
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (BlueprintVisible, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
 
-void UBeginLand_TK_C::ReceiveExecute(class AActor** OwnerActor)
+class AActor* UBeginLand_TK_C::ReceiveExecute()
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,8 +57,7 @@ void UBeginLand_TK_C::ReceiveExecute(class AActor** OwnerActor)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerActor != nullptr)
-		*OwnerActor = Parms.OwnerActor;
+	return Parms.ReturnValue;
 
 }
 
@@ -66,15 +65,15 @@ void UBeginLand_TK_C::ReceiveExecute(class AActor** OwnerActor)
 // Function BeginLand_TK.BeginLand_TK_C.ExecuteUbergraph_BeginLand_TK
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// class AActor*                      K2Node_Event_OwnerActor                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, SubobjectReference)
-// class ADino_AIController_BP_C*     K2Node_DynamicCast_AsDino_AIController_BP                        (Edit, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// struct FVector                     CallFunc_GetLandingLocation_ReturnValue                          (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_VSize_ReturnValue                                       (Edit, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Greater_DoubleDouble_ReturnValue                        (BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      K2Node_Event_OwnerActor                                          (BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// class ADino_AIController_BP_C*     K2Node_DynamicCast_AsDino_AIController_BP                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// struct FVector                     CallFunc_GetLandingLocation_ReturnValue                          (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+// double                             CallFunc_VSize_ReturnValue                                       (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Greater_DoubleDouble_ReturnValue                        (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
-bool UBeginLand_TK_C::ExecuteUbergraph_BeginLand_TK(class AActor* K2Node_Event_OwnerActor, bool* K2Node_DynamicCast_bSuccess)
+double UBeginLand_TK_C::ExecuteUbergraph_BeginLand_TK(int32 EntryPoint, class AActor* K2Node_Event_OwnerActor, bool CallFunc_Greater_DoubleDouble_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -83,12 +82,11 @@ bool UBeginLand_TK_C::ExecuteUbergraph_BeginLand_TK(class AActor* K2Node_Event_O
 
 	Params::UBeginLand_TK_C_ExecuteUbergraph_BeginLand_TK_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
 	Parms.K2Node_Event_OwnerActor = K2Node_Event_OwnerActor;
+	Parms.CallFunc_Greater_DoubleDouble_ReturnValue = CallFunc_Greater_DoubleDouble_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (K2Node_DynamicCast_bSuccess != nullptr)
-		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
 
 	return Parms.ReturnValue;
 

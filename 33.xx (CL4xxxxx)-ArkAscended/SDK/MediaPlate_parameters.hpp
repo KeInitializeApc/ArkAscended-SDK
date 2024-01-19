@@ -18,7 +18,7 @@ namespace Params
 struct UMediaPlateComponent_SetPlayOnlyWhenVisible_Params
 {
 public:
-	bool                                         bInPlayOnlyWhenVisible;                            // 0x0(0x1)(Edit, Net, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInPlayOnlyWhenVisible;                            // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct UMediaPlateComponent_SetMeshRange_Params
 {
 public:
-	struct FVector2D                             InMeshRange;                                       // 0x0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+	struct FVector2D                             InMeshRange;                                       // 0x0(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -34,7 +34,7 @@ public:
 struct UMediaPlateComponent_SetLoop_Params
 {
 public:
-	bool                                         bInLoop;                                           // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInLoop;                                           // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -42,7 +42,7 @@ public:
 struct UMediaPlateComponent_SetLetterboxAspectRatio_Params
 {
 public:
-	float                                        AspectRatio;                                       // 0x0(0x4)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        AspectRatio;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -50,7 +50,7 @@ public:
 struct UMediaPlateComponent_SetIsAspectRatioAuto_Params
 {
 public:
-	bool                                         bInIsAspectRatioAuto;                              // 0x0(0x1)(ConstParm, ExportObject, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInIsAspectRatioAuto;                              // 0x0(0x1)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -58,9 +58,9 @@ public:
 struct UMediaPlateComponent_Seek_Params
 {
 public:
-	struct FTimespan                             Time;                                              // 0x0(0x8)(Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_2552[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	struct FTimespan                             Time;                                              // 0x0(0x8)(Edit, ConstParm, Net, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_2397[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -68,7 +68,7 @@ public:
 struct UMediaPlateComponent_Rewind_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -76,7 +76,7 @@ public:
 struct UMediaPlateComponent_OnMediaOpened_Params
 {
 public:
-	class FString                                DeviceUrl;                                         // 0x0(0x10)(BlueprintVisible, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+	class FString                                DeviceUrl;                                         // 0x0(0x10)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -84,7 +84,7 @@ public:
 struct UMediaPlateComponent_IsMediaPlatePlaying_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -92,7 +92,7 @@ public:
 struct UMediaPlateComponent_GetMeshRange_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -101,8 +101,8 @@ struct UMediaPlateComponent_GetMediaTexture_Params
 {
 public:
 	int32                                        Index;                                             // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	uint8                                        Pad_255C[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UMediaTexture*                         ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_2398[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UMediaTexture*                         ReturnValue;                                       // 0x8(0x8)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -110,7 +110,7 @@ public:
 struct UMediaPlateComponent_GetMediaPlayer_Params
 {
 public:
-	class UMediaPlayer*                          ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UMediaPlayer*                          ReturnValue;                                       // 0x0(0x8)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -118,7 +118,7 @@ public:
 struct UMediaPlateComponent_GetLoop_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -126,7 +126,7 @@ public:
 struct UMediaPlateComponent_GetLetterboxAspectRatio_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -134,7 +134,7 @@ public:
 struct UMediaPlateComponent_GetIsAspectRatioAuto_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 }

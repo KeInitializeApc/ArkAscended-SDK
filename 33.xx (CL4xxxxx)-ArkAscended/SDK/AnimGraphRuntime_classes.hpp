@@ -18,11 +18,11 @@ public:
 	static class UClass* StaticClass();
 	static class UBlendSpaceLibrary* GetDefaultObj();
 
-	void SnapToPosition(struct FBlendSpaceReference* BlendSpace, const struct FVector& NewPosition);
-	struct FVector GetPosition(struct FBlendSpaceReference* BlendSpace);
-	struct FVector GetFilteredPosition(struct FBlendSpaceReference* BlendSpace);
+	struct FVector SnapToPosition(struct FBlendSpaceReference* BlendSpace);
+	void GetPosition(struct FBlendSpaceReference* BlendSpace, const struct FVector& ReturnValue);
+	void GetFilteredPosition(struct FBlendSpaceReference* BlendSpace, const struct FVector& ReturnValue);
 	struct FAnimNodeReference ConvertToBlendSpacePure(struct FBlendSpaceReference* BlendSpace, bool* Result);
-	struct FBlendSpaceReference ConvertToBlendSpace(enum class EAnimNodeReferenceConversionResult* Result);
+	struct FAnimNodeReference ConvertToBlendSpace(enum class EAnimNodeReferenceConversionResult* Result, const struct FBlendSpaceReference& ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -34,12 +34,12 @@ public:
 	static class UClass* StaticClass();
 	static class UAnimationStateMachineLibrary* GetDefaultObj();
 
-	class UBlendProfile* SetState(class FName TargetState, enum class ETransitionLogicType BlendType, enum class EAlphaBlendOption AlphaBlendOption, class UCurveFloat* CustomBlendCurve);
-	bool IsStateBlendingOut();
-	bool IsStateBlendingIn();
-	class FName GetState();
-	float GetRelevantAnimTimeRemainingFraction();
-	float GetRelevantAnimTimeRemaining();
+	class UCurveFloat* SetState(const struct FAnimUpdateContext& UpdateContext, float Duration);
+	struct FAnimationStateResultReference IsStateBlendingOut(const struct FAnimUpdateContext& UpdateContext, bool ReturnValue);
+	struct FAnimationStateResultReference IsStateBlendingIn(const struct FAnimUpdateContext& UpdateContext, bool ReturnValue);
+	struct FAnimationStateMachineReference GetState(const struct FAnimUpdateContext& UpdateContext, class FName ReturnValue);
+	struct FAnimationStateResultReference GetRelevantAnimTimeRemainingFraction(const struct FAnimUpdateContext& UpdateContext, float ReturnValue);
+	struct FAnimationStateResultReference GetRelevantAnimTimeRemaining(const struct FAnimUpdateContext& UpdateContext, float ReturnValue);
 	struct FAnimNodeReference ConvertToAnimationStateResultPure(const struct FAnimationStateResultReference& AnimationState, bool* Result);
 	struct FAnimNodeReference ConvertToAnimationStateResult(const struct FAnimationStateResultReference& AnimationState, enum class EAnimNodeReferenceConversionResult* Result);
 	struct FAnimNodeReference ConvertToAnimationStateMachinePure(const struct FAnimationStateMachineReference& AnimationState, bool* Result);
@@ -55,14 +55,14 @@ public:
 	static class UClass* StaticClass();
 	static class UAnimExecutionContextLibrary* GetDefaultObj();
 
-	float GetDeltaTime();
-	float GetCurrentWeight();
-	struct FAnimNodeReference GetAnimNodeReference(class UAnimInstance** Instance);
-	class UAnimInstance* GetAnimInstance();
-	struct FAnimUpdateContext ConvertToUpdateContext(enum class EAnimExecutionContextConversionResult* Result);
-	struct FAnimPoseContext ConvertToPoseContext(enum class EAnimExecutionContextConversionResult* Result);
-	struct FAnimInitializationContext ConvertToInitializationContext(enum class EAnimExecutionContextConversionResult* Result);
-	struct FAnimComponentSpacePoseContext ConvertToComponentSpacePoseContext(enum class EAnimExecutionContextConversionResult* Result);
+	struct FAnimUpdateContext GetDeltaTime(float ReturnValue);
+	struct FAnimUpdateContext GetCurrentWeight(float ReturnValue);
+	int32 GetAnimNodeReference(const struct FAnimNodeReference& ReturnValue);
+	struct FAnimExecutionContext GetAnimInstance(class UAnimInstance* ReturnValue);
+	struct FAnimExecutionContext ConvertToUpdateContext(enum class EAnimExecutionContextConversionResult* Result, const struct FAnimUpdateContext& ReturnValue);
+	struct FAnimExecutionContext ConvertToPoseContext(enum class EAnimExecutionContextConversionResult* Result, const struct FAnimPoseContext& ReturnValue);
+	struct FAnimExecutionContext ConvertToInitializationContext(enum class EAnimExecutionContextConversionResult* Result, const struct FAnimInitializationContext& ReturnValue);
+	struct FAnimExecutionContext ConvertToComponentSpacePoseContext(enum class EAnimExecutionContextConversionResult* Result, const struct FAnimComponentSpacePoseContext& ReturnValue);
 };
 
 // 0x8 (0x48 - 0x40)
@@ -70,7 +70,7 @@ public:
 class UAnimNotify_PlayMontageNotify : public UAnimNotify
 {
 public:
-	class FName                                  NotifyName;                                        // 0x40(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FName                                  NotifyName;                                        // 0x40(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UAnimNotify_PlayMontageNotify* GetDefaultObj();
@@ -82,7 +82,7 @@ public:
 class UAnimNotify_PlayMontageNotifyWindow : public UAnimNotifyState
 {
 public:
-	class FName                                  NotifyName;                                        // 0x30(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FName                                  NotifyName;                                        // 0x30(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UAnimNotify_PlayMontageNotifyWindow* GetDefaultObj();
@@ -94,7 +94,7 @@ public:
 class UAnimSequencerInstance : public UAnimInstance
 {
 public:
-	uint8                                        Pad_1643[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_13D4[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAnimSequencerInstance* GetDefaultObj();
@@ -110,20 +110,20 @@ public:
 	static class UClass* StaticClass();
 	static class UBlendSpacePlayerLibrary* GetDefaultObj();
 
-	void SnapToPosition(const struct FBlendSpacePlayerReference& BlendSpacePlayer, const struct FVector& NewPosition);
-	bool ShouldResetPlayTimeWhenBlendSpaceChanges(const struct FBlendSpacePlayerReference& BlendSpacePlayer);
-	struct FBlendSpacePlayerReference SetResetPlayTimeWhenBlendSpaceChanges(const struct FBlendSpacePlayerReference& BlendSpacePlayer, bool* bReset);
-	struct FBlendSpacePlayerReference SetPlayRate(const struct FBlendSpacePlayerReference& BlendSpacePlayer, float PlayRate);
-	struct FBlendSpacePlayerReference SetLoop(const struct FBlendSpacePlayerReference& BlendSpacePlayer, bool bLoop);
-	struct FBlendSpacePlayerReference SetBlendSpaceWithInertialBlending(const struct FBlendSpacePlayerReference& BlendSpacePlayer, class UBlendSpace** BlendSpace, float* BlendTime);
-	struct FBlendSpacePlayerReference SetBlendSpace(const struct FBlendSpacePlayerReference& BlendSpacePlayer, class UBlendSpace** BlendSpace);
-	float GetStartPosition(const struct FBlendSpacePlayerReference& BlendSpacePlayer);
-	struct FVector GetPosition(const struct FBlendSpacePlayerReference& BlendSpacePlayer);
-	float GetPlayRate(const struct FBlendSpacePlayerReference& BlendSpacePlayer);
-	bool GetLoop(const struct FBlendSpacePlayerReference& BlendSpacePlayer);
-	class UBlendSpace* GetBlendSpace(const struct FBlendSpacePlayerReference& BlendSpacePlayer);
-	struct FAnimNodeReference ConvertToBlendSpacePlayerPure(const struct FBlendSpacePlayerReference& BlendSpacePlayer, bool* Result);
-	struct FBlendSpacePlayerReference ConvertToBlendSpacePlayer(enum class EAnimNodeReferenceConversionResult* Result);
+	struct FVector SnapToPosition();
+	struct FBlendSpacePlayerReference ShouldResetPlayTimeWhenBlendSpaceChanges(bool ReturnValue);
+	bool SetResetPlayTimeWhenBlendSpaceChanges(const struct FBlendSpacePlayerReference& ReturnValue);
+	float SetPlayRate(const struct FBlendSpacePlayerReference& ReturnValue);
+	bool SetLoop(const struct FBlendSpacePlayerReference& ReturnValue);
+	float SetBlendSpaceWithInertialBlending(const struct FAnimUpdateContext& UpdateContext, class UBlendSpace** BlendSpace, const struct FBlendSpacePlayerReference& ReturnValue);
+	struct FBlendSpacePlayerReference SetBlendSpace(class UBlendSpace** BlendSpace, const struct FBlendSpacePlayerReference& ReturnValue);
+	struct FBlendSpacePlayerReference GetStartPosition(float ReturnValue);
+	struct FBlendSpacePlayerReference GetPosition(const struct FVector& ReturnValue);
+	struct FBlendSpacePlayerReference GetPlayRate(float ReturnValue);
+	struct FBlendSpacePlayerReference GetLoop(bool ReturnValue);
+	struct FBlendSpacePlayerReference GetBlendSpace(class UBlendSpace* ReturnValue);
+	struct FBlendSpacePlayerReference ConvertToBlendSpacePlayerPure(bool* Result);
+	struct FAnimNodeReference ConvertToBlendSpacePlayer(enum class EAnimNodeReferenceConversionResult* Result, const struct FBlendSpacePlayerReference& ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -135,17 +135,17 @@ public:
 	static class UClass* StaticClass();
 	static class UKismetAnimationLibrary* GetDefaultObj();
 
-	void K2_TwoBoneIK(struct FVector* RootPos, struct FVector* JointPos, const struct FVector& EndPos, const struct FVector& JointTarget, const struct FVector& Effector, struct FVector* OutJointPos, struct FVector* OutEndPos, bool bAllowStretching, float StartStretchRatio, float MaxStretchScale);
+	float K2_TwoBoneIK(const struct FVector& RootPos, const struct FVector& JointPos, const struct FVector& OutJointPos, const struct FVector& OutEndPos);
 	void K2_StartProfilingTimer();
-	struct FVector K2_MakePerlinNoiseVectorAndRemap(float X, float Y, float Z, float* RangeOutMinX, float* RangeOutMaxX, float* RangeOutMinY, float* RangeOutMaxY, float* RangeOutMinZ, float* RangeOutMaxZ);
-	float K2_MakePerlinNoiseAndRemap(float Value, float* RangeOutMin, float RangeOutMax);
-	struct FTransform K2_LookAt(struct FTransform* CurrentTransform, const struct FVector& LookAtVector, bool bUseUpVector, struct FVector* UpVector, float ClampConeInDegree);
-	float K2_EndProfilingTimer(bool bLog, const class FString& LogPrefix);
-	float K2_DistanceBetweenTwoSocketsAndMapRange(class FName SocketOrBoneNameA, enum class ERelativeTransformSpace SocketSpaceA, class FName SocketOrBoneNameB, enum class ERelativeTransformSpace SocketSpaceB, bool bRemapRange);
-	struct FVector K2_DirectionBetweenSockets(class FName SocketOrBoneNameFrom, class FName SocketOrBoneNameTo);
-	float K2_CalculateVelocityFromSockets(float DeltaSeconds, class FName SocketOrBoneName, class FName ReferenceSocketOrBone, enum class ERelativeTransformSpace SocketSpace, const struct FVector& OffsetInBoneSpace, const struct FPositionHistory& History, int32 NumberOfSamples, float VelocityMin, float VelocityMax, enum class EEasingFuncType EasingType, const struct FRuntimeFloatCurve& CustomCurve);
-	float K2_CalculateVelocityFromPositionHistory(float DeltaSeconds, const struct FVector& Position, const struct FPositionHistory& History, int32 NumberOfSamples, float VelocityMin, float VelocityMax);
-	float CalculateDirection();
+	void K2_MakePerlinNoiseVectorAndRemap(float X, float Y, float Z, float RangeOutMinX, float RangeOutMaxX, float RangeOutMinY, float RangeOutMaxY, float RangeOutMinZ, float RangeOutMaxZ, const struct FVector& ReturnValue);
+	void K2_MakePerlinNoiseAndRemap(float Value, float RangeOutMin, float RangeOutMax, float ReturnValue);
+	struct FVector K2_LookAt(const struct FVector& LookAtVector, bool bUseUpVector, float ClampConeInDegree, const struct FTransform& ReturnValue);
+	void K2_EndProfilingTimer(bool bLog, const class FString& LogPrefix, float ReturnValue);
+	void K2_DistanceBetweenTwoSocketsAndMapRange(class USkeletalMeshComponent** Component, class FName SocketOrBoneNameA, enum class ERelativeTransformSpace SocketSpaceA, class FName SocketOrBoneNameB, enum class ERelativeTransformSpace SocketSpaceB, bool bRemapRange, float* InRangeMin, float* InRangeMax, float* OutRangeMin, float* OutRangeMax, float ReturnValue);
+	void K2_DirectionBetweenSockets(class USkeletalMeshComponent** Component, class FName SocketOrBoneNameFrom, class FName SocketOrBoneNameTo, const struct FVector& ReturnValue);
+	enum class EEasingFuncType K2_CalculateVelocityFromSockets(class USkeletalMeshComponent** Component, class FName SocketOrBoneName, class FName ReferenceSocketOrBone, enum class ERelativeTransformSpace SocketSpace, struct FRuntimeFloatCurve* CustomCurve, float ReturnValue);
+	float K2_CalculateVelocityFromPositionHistory(const struct FVector& Position, float ReturnValue);
+	struct FVector CalculateDirection(const struct FRotator& BaseRotation, float ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -157,10 +157,10 @@ public:
 	static class UClass* StaticClass();
 	static class ULayeredBoneBlendLibrary* GetDefaultObj();
 
-	struct FLayeredBoneBlendReference SetBlendMask(struct FLayeredBoneBlendReference* LayeredBoneBlend, class FName* BlendMaskName);
-	int32 GetNumPoses(struct FLayeredBoneBlendReference* LayeredBoneBlend);
-	struct FLayeredBoneBlendReference ConvertToLayeredBoneBlend(enum class EAnimNodeReferenceConversionResult* Result);
-	struct FAnimNodeReference ConvertToLayeredBlendPerBonePure(struct FLayeredBoneBlendReference* LayeredBoneBlend, bool* Result);
+	void SetBlendMask(const struct FAnimUpdateContext& UpdateContext, const struct FLayeredBoneBlendReference& LayeredBoneBlend, int32 PoseIndex, class FName BlendMaskName, const struct FLayeredBoneBlendReference& ReturnValue);
+	void GetNumPoses(const struct FLayeredBoneBlendReference& LayeredBoneBlend, int32 ReturnValue);
+	struct FAnimNodeReference ConvertToLayeredBoneBlend(enum class EAnimNodeReferenceConversionResult* Result, const struct FLayeredBoneBlendReference& ReturnValue);
+	struct FAnimNodeReference ConvertToLayeredBlendPerBonePure(const struct FLayeredBoneBlendReference& LayeredBoneBlend, bool* Result);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -172,10 +172,10 @@ public:
 	static class UClass* StaticClass();
 	static class ULinkedAnimGraphLibrary* GetDefaultObj();
 
-	bool HasLinkedAnimInstance();
-	class UAnimInstance* GetLinkedAnimInstance();
-	struct FAnimNodeReference ConvertToLinkedAnimGraphPure(struct FLinkedAnimGraphReference* LinkedAnimGraph, bool* Result);
-	struct FLinkedAnimGraphReference ConvertToLinkedAnimGraph(enum class EAnimNodeReferenceConversionResult* Result);
+	struct FLinkedAnimGraphReference HasLinkedAnimInstance(bool ReturnValue);
+	struct FLinkedAnimGraphReference GetLinkedAnimInstance(class UAnimInstance* ReturnValue);
+	struct FAnimNodeReference ConvertToLinkedAnimGraphPure(const struct FLinkedAnimGraphReference& LinkedAnimGraph, bool* Result);
+	struct FAnimNodeReference ConvertToLinkedAnimGraph(enum class EAnimNodeReferenceConversionResult* Result, const struct FLinkedAnimGraphReference& ReturnValue);
 };
 
 // 0x80 (0xA8 - 0x28)
@@ -183,21 +183,21 @@ public:
 class UPlayMontageCallbackProxy : public UObject
 {
 public:
-	FMulticastInlineDelegateProperty_            OnCompleted;                                       // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnBlendOut;                                        // 0x38(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnInterrupted;                                     // 0x48(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnNotifyBegin;                                     // 0x58(0x10)(Edit, ConstParm, ExportObject, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnNotifyEnd;                                       // 0x68(0x10)(BlueprintVisible, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_183A[0x30];                                    // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            OnCompleted;                                       // 0x28(0x10)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnBlendOut;                                        // 0x38(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnInterrupted;                                     // 0x48(0x10)(BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnNotifyBegin;                                     // 0x58(0x10)(BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnNotifyEnd;                                       // 0x68(0x10)(Edit, BlueprintVisible, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_14DA[0x30];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UPlayMontageCallbackProxy* GetDefaultObj();
 
-	void OnNotifyEndReceived(class FName NotifyName, struct FBranchingPointNotifyPayload* BranchingPointNotifyPayload);
-	void OnNotifyBeginReceived(class FName NotifyName, struct FBranchingPointNotifyPayload* BranchingPointNotifyPayload);
-	void OnMontageEnded(class UAnimMontage* Montage, bool bInterrupted);
-	void OnMontageBlendingOut(class UAnimMontage* Montage, bool bInterrupted);
-	class UPlayMontageCallbackProxy* CreateProxyObjectForPlayMontage(class USkeletalMeshComponent** InSkeletalMeshComponent, float PlayRate, float* StartingPosition, class FName* StartingSection);
+	class FName OnNotifyEndReceived(struct FBranchingPointNotifyPayload* BranchingPointNotifyPayload);
+	class FName OnNotifyBeginReceived(struct FBranchingPointNotifyPayload* BranchingPointNotifyPayload);
+	bool OnMontageEnded();
+	bool OnMontageBlendingOut();
+	float CreateProxyObjectForPlayMontage(class USkeletalMeshComponent* InSkeletalMeshComponent, class UAnimMontage** MontageToPlay, float StartingPosition, class FName StartingSection, class UPlayMontageCallbackProxy* ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -209,14 +209,14 @@ public:
 	static class UClass* StaticClass();
 	static class USequenceEvaluatorLibrary* GetDefaultObj();
 
-	struct FSequenceEvaluatorReference SetSequenceWithInertialBlending(float* BlendTime);
-	struct FSequenceEvaluatorReference SetSequence();
-	struct FSequenceEvaluatorReference SetExplicitTime(float Time);
-	class UAnimSequenceBase* GetSequence();
-	float GetAccumulatedTime();
-	struct FSequenceEvaluatorReference ConvertToSequenceEvaluatorPure(bool* Result);
-	struct FSequenceEvaluatorReference ConvertToSequenceEvaluator(enum class EAnimNodeReferenceConversionResult* Result);
-	struct FSequenceEvaluatorReference AdvanceTime(float PlayRate);
+	float SetSequenceWithInertialBlending(const struct FAnimUpdateContext& UpdateContext, const struct FSequenceEvaluatorReference& SequenceEvaluator, class UAnimSequenceBase** Sequence, const struct FSequenceEvaluatorReference& ReturnValue);
+	void SetSequence(const struct FSequenceEvaluatorReference& SequenceEvaluator, class UAnimSequenceBase** Sequence, const struct FSequenceEvaluatorReference& ReturnValue);
+	float SetExplicitTime(const struct FSequenceEvaluatorReference& SequenceEvaluator, const struct FSequenceEvaluatorReference& ReturnValue);
+	void GetSequence(const struct FSequenceEvaluatorReference& SequenceEvaluator, class UAnimSequenceBase* ReturnValue);
+	void GetAccumulatedTime(const struct FSequenceEvaluatorReference& SequenceEvaluator, float ReturnValue);
+	struct FAnimNodeReference ConvertToSequenceEvaluatorPure(const struct FSequenceEvaluatorReference& SequenceEvaluator, bool* Result);
+	struct FAnimNodeReference ConvertToSequenceEvaluator(enum class EAnimNodeReferenceConversionResult* Result, const struct FSequenceEvaluatorReference& ReturnValue);
+	float AdvanceTime(const struct FAnimUpdateContext& UpdateContext, const struct FSequenceEvaluatorReference& SequenceEvaluator, const struct FSequenceEvaluatorReference& ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -228,20 +228,20 @@ public:
 	static class UClass* StaticClass();
 	static class USequencePlayerLibrary* GetDefaultObj();
 
-	struct FSequencePlayerReference SetStartPosition(float* StartPosition);
-	struct FSequencePlayerReference SetSequenceWithInertialBlending(float* BlendTime);
-	struct FSequencePlayerReference SetSequence();
-	struct FSequencePlayerReference SetPlayRate(float PlayRate);
-	struct FSequencePlayerReference SetAccumulatedTime(float Time);
-	float GetStartPosition();
-	class UAnimSequenceBase* GetSequencePure();
-	struct FSequencePlayerReference GetSequence(class UAnimSequenceBase** SequenceBase);
-	float GetPlayRate();
-	bool GetLoopAnimation();
-	float GetAccumulatedTime();
-	struct FSequencePlayerReference ConvertToSequencePlayerPure(bool* Result);
-	struct FSequencePlayerReference ConvertToSequencePlayer(enum class EAnimNodeReferenceConversionResult* Result);
-	float ComputePlayRateFromDuration();
+	float SetStartPosition(const struct FSequencePlayerReference& SequencePlayer, const struct FSequencePlayerReference& ReturnValue);
+	float SetSequenceWithInertialBlending(const struct FAnimUpdateContext& UpdateContext, const struct FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase** Sequence, const struct FSequencePlayerReference& ReturnValue);
+	void SetSequence(const struct FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase** Sequence, const struct FSequencePlayerReference& ReturnValue);
+	float SetPlayRate(const struct FSequencePlayerReference& SequencePlayer, const struct FSequencePlayerReference& ReturnValue);
+	float SetAccumulatedTime(const struct FSequencePlayerReference& SequencePlayer, const struct FSequencePlayerReference& ReturnValue);
+	void GetStartPosition(const struct FSequencePlayerReference& SequencePlayer, float ReturnValue);
+	void GetSequencePure(const struct FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase* ReturnValue);
+	void GetSequence(const struct FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase** SequenceBase, const struct FSequencePlayerReference& ReturnValue);
+	void GetPlayRate(const struct FSequencePlayerReference& SequencePlayer, float ReturnValue);
+	void GetLoopAnimation(const struct FSequencePlayerReference& SequencePlayer, bool ReturnValue);
+	void GetAccumulatedTime(const struct FSequencePlayerReference& SequencePlayer, float ReturnValue);
+	struct FAnimNodeReference ConvertToSequencePlayerPure(const struct FSequencePlayerReference& SequencePlayer, bool* Result);
+	struct FAnimNodeReference ConvertToSequencePlayer(enum class EAnimNodeReferenceConversionResult* Result, const struct FSequencePlayerReference& ReturnValue);
+	void ComputePlayRateFromDuration(const struct FSequencePlayerReference& SequencePlayer, float Duration, float ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -264,10 +264,10 @@ public:
 	static class UClass* StaticClass();
 	static class USkeletalControlLibrary* GetDefaultObj();
 
-	struct FSkeletalControlReference SetAlpha(struct FSkeletalControlReference* SkeletalControl, float Alpha);
-	float GetAlpha(struct FSkeletalControlReference* SkeletalControl);
+	void SetAlpha(struct FSkeletalControlReference* SkeletalControl, float* Alpha, const struct FSkeletalControlReference& ReturnValue);
+	void GetAlpha(struct FSkeletalControlReference* SkeletalControl, float ReturnValue);
 	struct FAnimNodeReference ConvertToSkeletalControlPure(struct FSkeletalControlReference* SkeletalControl, bool* Result);
-	struct FSkeletalControlReference ConvertToSkeletalControl(enum class EAnimNodeReferenceConversionResult* Result);
+	struct FAnimNodeReference ConvertToSkeletalControl(enum class EAnimNodeReferenceConversionResult* Result, const struct FSkeletalControlReference& ReturnValue);
 };
 
 }

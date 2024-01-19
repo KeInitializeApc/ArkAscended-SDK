@@ -127,10 +127,10 @@ class UVirtualHeightfieldMeshComponent* UVirtualHeightfieldMeshComponent::GetDef
 // Function VirtualHeightfieldMesh.VirtualHeightfieldMeshComponent.GatherHideFlags
 // (Final, Native, Protected, HasOutParams, Const)
 // Parameters:
-// bool                               InOutHidePrimitivesInEditor                                      (BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               InOutHidePrimitivesInGame                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               InOutHidePrimitivesInEditor                                      (Edit, ConstParm, ExportObject, Parm, OutParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               InOutHidePrimitivesInGame                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UVirtualHeightfieldMeshComponent::GatherHideFlags()
+void UVirtualHeightfieldMeshComponent::GatherHideFlags(bool* InOutHidePrimitivesInEditor, bool* InOutHidePrimitivesInGame)
 {
 	static class UFunction* Func = nullptr;
 
@@ -148,7 +148,11 @@ bool UVirtualHeightfieldMeshComponent::GatherHideFlags()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InOutHidePrimitivesInEditor != nullptr)
+		*InOutHidePrimitivesInEditor = Parms.InOutHidePrimitivesInEditor;
+
+	if (InOutHidePrimitivesInGame != nullptr)
+		*InOutHidePrimitivesInGame = Parms.InOutHidePrimitivesInGame;
 
 }
 

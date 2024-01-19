@@ -43,12 +43,12 @@ class UAutomationUtilsBlueprintLibrary* UAutomationUtilsBlueprintLibrary::GetDef
 // Function AutomationUtils.AutomationUtilsBlueprintLibrary.TakeGameplayAutomationScreenshot
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      ScreenshotName                                                   (ConstParm, BlueprintReadOnly, Net, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              MaxGlobalError                                                   (ConstParm, ExportObject, Net, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              MaxLocalError                                                    (ConstParm, Net, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// class FString                      MapNameOverride                                                  (Edit, ExportObject, BlueprintReadOnly, Parm, Config, EditConst, InstancedReference, SubobjectReference)
+// class FString                      ScreenshotName                                                   (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              MaxGlobalError                                                   (ExportObject, Net, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              MaxLocalError                                                    (Net, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class FString                      MapNameOverride                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UAutomationUtilsBlueprintLibrary::TakeGameplayAutomationScreenshot(const class FString& ScreenshotName, float MaxGlobalError, float MaxLocalError, const class FString& MapNameOverride)
+class FString UAutomationUtilsBlueprintLibrary::TakeGameplayAutomationScreenshot()
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,10 +57,6 @@ void UAutomationUtilsBlueprintLibrary::TakeGameplayAutomationScreenshot(const cl
 
 	Params::UAutomationUtilsBlueprintLibrary_TakeGameplayAutomationScreenshot_Params Parms{};
 
-	Parms.ScreenshotName = ScreenshotName;
-	Parms.MaxGlobalError = MaxGlobalError;
-	Parms.MaxLocalError = MaxLocalError;
-	Parms.MapNameOverride = MapNameOverride;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -69,6 +65,8 @@ void UAutomationUtilsBlueprintLibrary::TakeGameplayAutomationScreenshot(const cl
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

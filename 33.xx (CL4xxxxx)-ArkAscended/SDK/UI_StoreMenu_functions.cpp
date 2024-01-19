@@ -43,18 +43,18 @@ class UUI_StoreMenu_C* UUI_StoreMenu_C::GetDefaultObj()
 // Function UI_StoreMenu.UI_StoreMenu_C.OnEventBroadcasted
 // (Event, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class EGameModsEvent          Evt                                                              (Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FInstallProgressMod> ModsList                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FCFCoreApiResponsePaginationPagination                                                       (EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// struct FInstallProgressMod         CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// enum class EGameModsEvent          Evt                                                              (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FInstallProgressMod> ModsList                                                         (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FCFCoreApiResponsePaginationPagination                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// struct FInstallProgressMod         CallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
 
-bool UUI_StoreMenu_C::OnEventBroadcasted(enum class EGameModsEvent* Evt, TArray<struct FInstallProgressMod>* ModsList, int32* CallFunc_Array_Length_ReturnValue, struct FInstallProgressMod* CallFunc_Array_Get_Item, int32 CallFunc_Add_IntInt_ReturnValue)
+int32 UUI_StoreMenu_C::OnEventBroadcasted(struct FCFCoreApiResponsePagination* Pagination, bool ReturnValue, int32* CallFunc_Array_Length_ReturnValue, int32 Temp_int_Loop_Counter_Variable, const struct FInstallProgressMod& CallFunc_Array_Get_Item, bool CallFunc_Less_IntInt_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -63,21 +63,18 @@ bool UUI_StoreMenu_C::OnEventBroadcasted(enum class EGameModsEvent* Evt, TArray<
 
 	Params::UUI_StoreMenu_C_OnEventBroadcasted_Params Parms{};
 
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
+	Parms.ReturnValue = ReturnValue;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Evt != nullptr)
-		*Evt = Parms.Evt;
-
-	if (ModsList != nullptr)
-		*ModsList = std::move(Parms.ModsList);
+	if (Pagination != nullptr)
+		*Pagination = std::move(Parms.Pagination);
 
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
-
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
 
 	return Parms.ReturnValue;
 
@@ -87,9 +84,9 @@ bool UUI_StoreMenu_C::OnEventBroadcasted(enum class EGameModsEvent* Evt, TArray<
 // Function UI_StoreMenu.UI_StoreMenu_C.BPEscapeClosed
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UUI_StoreMenu_C::BPEscapeClosed()
+void UUI_StoreMenu_C::BPEscapeClosed(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -98,10 +95,9 @@ bool UUI_StoreMenu_C::BPEscapeClosed()
 
 	Params::UUI_StoreMenu_C_BPEscapeClosed_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -127,10 +123,10 @@ void UUI_StoreMenu_C::DebugSignIn()
 // Function UI_StoreMenu.UI_StoreMenu_C.PlayNotificationInstalled
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FInstallProgressMod         Mod_Info                                                         (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// struct FInstallProgressMod         Mod_Info                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-struct FInstallProgressMod UUI_StoreMenu_C::PlayNotificationInstalled(bool* CallFunc_IsValid_ReturnValue)
+bool UUI_StoreMenu_C::PlayNotificationInstalled(const struct FInstallProgressMod& Mod_Info)
 {
 	static class UFunction* Func = nullptr;
 
@@ -139,11 +135,9 @@ struct FInstallProgressMod UUI_StoreMenu_C::PlayNotificationInstalled(bool* Call
 
 	Params::UUI_StoreMenu_C_PlayNotificationInstalled_Params Parms{};
 
+	Parms.Mod_Info = Mod_Info;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -153,12 +147,12 @@ struct FInstallProgressMod UUI_StoreMenu_C::PlayNotificationInstalled(bool* Call
 // Function UI_StoreMenu.UI_StoreMenu_C.NotificationHandle
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class EGameModsEvent          Selection                                                        (ConstParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FInstallProgressMod         Mod                                                              (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// struct FInstallProgressMod         ModToHandle                                                      (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_SwitchEnum_CmpSuccess                                     (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, SubobjectReference)
+// enum class EGameModsEvent          Selection                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FInstallProgressMod         Mod                                                              (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, Transient, GlobalConfig, SubobjectReference)
+// struct FInstallProgressMod         ModToHandle                                                      (OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_SwitchEnum_CmpSuccess                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
 
-bool UUI_StoreMenu_C::NotificationHandle(enum class EGameModsEvent Selection)
+void UUI_StoreMenu_C::NotificationHandle(enum class EGameModsEvent* Selection, const struct FInstallProgressMod& Mod, struct FInstallProgressMod* ModToHandle, bool* K2Node_SwitchEnum_CmpSuccess)
 {
 	static class UFunction* Func = nullptr;
 
@@ -167,11 +161,18 @@ bool UUI_StoreMenu_C::NotificationHandle(enum class EGameModsEvent Selection)
 
 	Params::UUI_StoreMenu_C_NotificationHandle_Params Parms{};
 
-	Parms.Selection = Selection;
+	Parms.Mod = Mod;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (Selection != nullptr)
+		*Selection = Parms.Selection;
+
+	if (ModToHandle != nullptr)
+		*ModToHandle = std::move(Parms.ModToHandle);
+
+	if (K2Node_SwitchEnum_CmpSuccess != nullptr)
+		*K2Node_SwitchEnum_CmpSuccess = Parms.K2Node_SwitchEnum_CmpSuccess;
 
 }
 
@@ -197,9 +198,9 @@ void UUI_StoreMenu_C::UI_StoreMenu_AutoGenFunc()
 // Function UI_StoreMenu.UI_StoreMenu_C.UI_StoreMenu_AutoGenFunc4
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int64                              ServerID                                                         (ConstParm, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// int64                              ServerID                                                         (Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UUI_StoreMenu_C::UI_StoreMenu_AutoGenFunc4(int64* ServerID)
+int64 UUI_StoreMenu_C::UI_StoreMenu_AutoGenFunc4()
 {
 	static class UFunction* Func = nullptr;
 
@@ -211,8 +212,7 @@ void UUI_StoreMenu_C::UI_StoreMenu_AutoGenFunc4(int64* ServerID)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ServerID != nullptr)
-		*ServerID = Parms.ServerID;
+	return Parms.ReturnValue;
 
 }
 
@@ -220,9 +220,9 @@ void UUI_StoreMenu_C::UI_StoreMenu_AutoGenFunc4(int64* ServerID)
 // Function UI_StoreMenu.UI_StoreMenu_C.UI_StoreMenu_AutoGenFunc3
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int64                              ServerID                                                         (ConstParm, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// int64                              ServerID                                                         (Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UUI_StoreMenu_C::UI_StoreMenu_AutoGenFunc3(int64* ServerID)
+int64 UUI_StoreMenu_C::UI_StoreMenu_AutoGenFunc3()
 {
 	static class UFunction* Func = nullptr;
 
@@ -234,8 +234,7 @@ void UUI_StoreMenu_C::UI_StoreMenu_AutoGenFunc3(int64* ServerID)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ServerID != nullptr)
-		*ServerID = Parms.ServerID;
+	return Parms.ReturnValue;
 
 }
 
@@ -243,9 +242,9 @@ void UUI_StoreMenu_C::UI_StoreMenu_AutoGenFunc3(int64* ServerID)
 // Function UI_StoreMenu.UI_StoreMenu_C.RequestInstalledModsFromAPI
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-void UUI_StoreMenu_C::RequestInstalledModsFromAPI(bool* CallFunc_IsValid_ReturnValue)
+bool UUI_StoreMenu_C::RequestInstalledModsFromAPI()
 {
 	static class UFunction* Func = nullptr;
 
@@ -257,8 +256,7 @@ void UUI_StoreMenu_C::RequestInstalledModsFromAPI(bool* CallFunc_IsValid_ReturnV
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -266,9 +264,9 @@ void UUI_StoreMenu_C::RequestInstalledModsFromAPI(bool* CallFunc_IsValid_ReturnV
 // Function UI_StoreMenu.UI_StoreMenu_C.Back from Server Mods
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-void UUI_StoreMenu_C::Back_from_Server_Mods(bool* CallFunc_IsValid_ReturnValue)
+bool UUI_StoreMenu_C::Back_from_Server_Mods()
 {
 	static class UFunction* Func = nullptr;
 
@@ -280,8 +278,7 @@ void UUI_StoreMenu_C::Back_from_Server_Mods(bool* CallFunc_IsValid_ReturnValue)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -291,29 +288,29 @@ void UUI_StoreMenu_C::Back_from_Server_Mods(bool* CallFunc_IsValid_ReturnValue)
 // Parameters:
 // struct FKey                        Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
 // enum class EViewState              State                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_1                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_2                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// bool                               CallFunc_BooleanOR_ReturnValue                                   (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_3                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, NonTransactional)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_4                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, NonTransactional)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_5                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp, NonTransactional)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_6                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp, NonTransactional)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_7                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, EditorOnly)
-// bool                               K2Node_SwitchInteger_CmpSuccess                                  (Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsVisible_ReturnValue                                   (Edit, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_SwitchInteger_CmpSuccess_1                                (Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// bool                               K2Node_SwitchInteger_CmpSuccess_2                                (Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// class UWidget*                     CallFunc_GetActiveWidget_ReturnValue                             (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// class UUI_ParentPage_C*            K2Node_DynamicCast_AsUI_Parent_Page                              (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class UUI_ParentPage_C*            K2Node_DynamicCast_AsUI_Parent_Page_1                            (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// bool                               K2Node_DynamicCast_bSuccess_1                                    (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (ConstParm, ExportObject, Net, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_1                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_2                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// bool                               CallFunc_BooleanOR_ReturnValue                                   (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_3                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, NonTransactional)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_4                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, NonTransactional)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_5                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp, NonTransactional)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_6                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp, NonTransactional)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_7                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, EditorOnly)
+// bool                               K2Node_SwitchInteger_CmpSuccess                                  (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsVisible_ReturnValue                                   (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// bool                               K2Node_SwitchInteger_CmpSuccess_1                                (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               K2Node_SwitchInteger_CmpSuccess_2                                (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// class UWidget*                     CallFunc_GetActiveWidget_ReturnValue                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// class UUI_ParentPage_C*            K2Node_DynamicCast_AsUI_Parent_Page                              (Edit, ConstParm, ExportObject, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UUI_ParentPage_C*            K2Node_DynamicCast_AsUI_Parent_Page_1                            (Edit, ConstParm, ExportObject, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               K2Node_DynamicCast_bSuccess_1                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
 
-class UUI_ParentPage_C* UUI_StoreMenu_C::SwitchControllerAction(const struct FKey& Key, enum class EViewState State, bool* CallFunc_IsValid_ReturnValue, class UWidget* CallFunc_GetActiveWidget_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, bool* K2Node_DynamicCast_bSuccess, bool* K2Node_DynamicCast_bSuccess_1)
+bool UUI_StoreMenu_C::SwitchControllerAction(const struct FKey& Key, enum class EViewState State, bool CallFunc_EqualEqual_ByteByte_ReturnValue, bool* CallFunc_BooleanOR_ReturnValue, bool* K2Node_SwitchInteger_CmpSuccess, bool* CallFunc_IsVisible_ReturnValue, bool* K2Node_SwitchInteger_CmpSuccess_1, bool* K2Node_SwitchInteger_CmpSuccess_2, class UUI_ParentPage_C* K2Node_DynamicCast_AsUI_Parent_Page, class UUI_ParentPage_C* K2Node_DynamicCast_AsUI_Parent_Page_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -324,21 +321,26 @@ class UUI_ParentPage_C* UUI_StoreMenu_C::SwitchControllerAction(const struct FKe
 
 	Parms.Key = Key;
 	Parms.State = State;
-	Parms.CallFunc_GetActiveWidget_ReturnValue = CallFunc_GetActiveWidget_ReturnValue;
+	Parms.CallFunc_EqualEqual_ByteByte_ReturnValue = CallFunc_EqualEqual_ByteByte_ReturnValue;
+	Parms.K2Node_DynamicCast_AsUI_Parent_Page = K2Node_DynamicCast_AsUI_Parent_Page;
+	Parms.K2Node_DynamicCast_AsUI_Parent_Page_1 = K2Node_DynamicCast_AsUI_Parent_Page_1;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (CallFunc_BooleanOR_ReturnValue != nullptr)
+		*CallFunc_BooleanOR_ReturnValue = Parms.CallFunc_BooleanOR_ReturnValue;
 
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+	if (K2Node_SwitchInteger_CmpSuccess != nullptr)
+		*K2Node_SwitchInteger_CmpSuccess = Parms.K2Node_SwitchInteger_CmpSuccess;
 
-	if (K2Node_DynamicCast_bSuccess != nullptr)
-		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+	if (CallFunc_IsVisible_ReturnValue != nullptr)
+		*CallFunc_IsVisible_ReturnValue = Parms.CallFunc_IsVisible_ReturnValue;
 
-	if (K2Node_DynamicCast_bSuccess_1 != nullptr)
-		*K2Node_DynamicCast_bSuccess_1 = Parms.K2Node_DynamicCast_bSuccess_1;
+	if (K2Node_SwitchInteger_CmpSuccess_1 != nullptr)
+		*K2Node_SwitchInteger_CmpSuccess_1 = Parms.K2Node_SwitchInteger_CmpSuccess_1;
+
+	if (K2Node_SwitchInteger_CmpSuccess_2 != nullptr)
+		*K2Node_SwitchInteger_CmpSuccess_2 = Parms.K2Node_SwitchInteger_CmpSuccess_2;
 
 	return Parms.ReturnValue;
 
@@ -348,11 +350,11 @@ class UUI_ParentPage_C* UUI_StoreMenu_C::SwitchControllerAction(const struct FKe
 // Function UI_StoreMenu.UI_StoreMenu_C.SetInitStoreFocus
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UWidget*                     CallFunc_GetActiveWidget_ReturnValue                             (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UUI_ParentPage_C*            K2Node_DynamicCast_AsUI_Parent_Page                              (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UWidget*                     CallFunc_GetActiveWidget_ReturnValue                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUI_ParentPage_C*            K2Node_DynamicCast_AsUI_Parent_Page                              (Edit, ConstParm, ExportObject, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-class UUI_ParentPage_C* UUI_StoreMenu_C::SetInitStoreFocus(class UWidget* CallFunc_GetActiveWidget_ReturnValue, bool* K2Node_DynamicCast_bSuccess)
+bool UUI_StoreMenu_C::SetInitStoreFocus(class UUI_ParentPage_C* K2Node_DynamicCast_AsUI_Parent_Page)
 {
 	static class UFunction* Func = nullptr;
 
@@ -361,12 +363,9 @@ class UUI_ParentPage_C* UUI_StoreMenu_C::SetInitStoreFocus(class UWidget* CallFu
 
 	Params::UUI_StoreMenu_C_SetInitStoreFocus_Params Parms{};
 
-	Parms.CallFunc_GetActiveWidget_ReturnValue = CallFunc_GetActiveWidget_ReturnValue;
+	Parms.K2Node_DynamicCast_AsUI_Parent_Page = K2Node_DynamicCast_AsUI_Parent_Page;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (K2Node_DynamicCast_bSuccess != nullptr)
-		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
 
 	return Parms.ReturnValue;
 
@@ -376,10 +375,10 @@ class UUI_ParentPage_C* UUI_StoreMenu_C::SetInitStoreFocus(class UWidget* CallFu
 // Function UI_StoreMenu.UI_StoreMenu_C.PlayStartFadeInAnimation
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-class UUMGSequencePlayer* UUI_StoreMenu_C::PlayStartFadeInAnimation(bool* CallFunc_IsValid_ReturnValue)
+bool UUI_StoreMenu_C::PlayStartFadeInAnimation(class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -388,11 +387,9 @@ class UUMGSequencePlayer* UUI_StoreMenu_C::PlayStartFadeInAnimation(bool* CallFu
 
 	Params::UUI_StoreMenu_C_PlayStartFadeInAnimation_Params Parms{};
 
+	Parms.CallFunc_PlayAnimation_ReturnValue = CallFunc_PlayAnimation_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -402,7 +399,7 @@ class UUMGSequencePlayer* UUI_StoreMenu_C::PlayStartFadeInAnimation(bool* CallFu
 // Function UI_StoreMenu.UI_StoreMenu_C.EnabledTabSwitching
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               bInIsEnabled                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bInIsEnabled                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 void UUI_StoreMenu_C::EnabledTabSwitching(bool* bInIsEnabled)
 {
@@ -425,13 +422,13 @@ void UUI_StoreMenu_C::EnabledTabSwitching(bool* bInIsEnabled)
 // Function UI_StoreMenu.UI_StoreMenu_C.UpdateMyModsVisibility
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               Temp_bool_Variable                                               (ConstParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable                                               (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable_1                                             (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// enum class ESlateVisibility        K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable                                               (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable_1                                             (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// enum class ESlateVisibility        K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
 
-void UUI_StoreMenu_C::UpdateMyModsVisibility(bool Temp_bool_Variable, enum class ESlateVisibility Temp_byte_Variable, enum class ESlateVisibility Temp_byte_Variable_1, bool* CallFunc_IsValid_ReturnValue, enum class ESlateVisibility* K2Node_Select_Default)
+bool UUI_StoreMenu_C::UpdateMyModsVisibility(bool Temp_bool_Variable, enum class ESlateVisibility K2Node_Select_Default)
 {
 	static class UFunction* Func = nullptr;
 
@@ -441,16 +438,11 @@ void UUI_StoreMenu_C::UpdateMyModsVisibility(bool Temp_bool_Variable, enum class
 	Params::UUI_StoreMenu_C_UpdateMyModsVisibility_Params Parms{};
 
 	Parms.Temp_bool_Variable = Temp_bool_Variable;
-	Parms.Temp_byte_Variable = Temp_byte_Variable;
-	Parms.Temp_byte_Variable_1 = Temp_byte_Variable_1;
+	Parms.K2Node_Select_Default = K2Node_Select_Default;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (K2Node_Select_Default != nullptr)
-		*K2Node_Select_Default = Parms.K2Node_Select_Default;
+	return Parms.ReturnValue;
 
 }
 
@@ -458,25 +450,25 @@ void UUI_StoreMenu_C::UpdateMyModsVisibility(bool Temp_bool_Variable, enum class
 // Function UI_StoreMenu.UI_StoreMenu_C.SetCurrentActivePage
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class ENUM_SideTabs           CurrentActiveTab                                                 (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               Temp_bool_Variable                                               (ConstParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Variable                                                (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Variable_1                                              (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// enum class ENUM_SideTabs           Temp_byte_Variable                                               (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// enum class ENUM_SideTabs           Temp_byte_Variable_1                                             (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               K2Node_SwitchEnum_CmpSuccess                                     (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_2                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
-// bool                               CallFunc_IsValid_ReturnValue_3                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, NonTransactional)
-// class FText                        CallFunc_GetText_ReturnValue                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_TextIsEmpty_ReturnValue                                 (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class UUI_Button_Sidebar_C*        K2Node_Select_Default_1                                          (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_IsValid_ReturnValue_4                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, NonTransactional)
-// class UUI_ParentPage_C*            K2Node_Select_Default_2                                          (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// enum class ENUM_SideTabs           CurrentActiveTab                                                 (ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Variable                                                (Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Variable_1                                              (Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// enum class ENUM_SideTabs           Temp_byte_Variable                                               (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// enum class ENUM_SideTabs           Temp_byte_Variable_1                                             (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               K2Node_SwitchEnum_CmpSuccess                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_2                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
+// bool                               CallFunc_IsValid_ReturnValue_3                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, NonTransactional)
+// class FText                        CallFunc_GetText_ReturnValue                                     (Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_TextIsEmpty_ReturnValue                                 (ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// class UUI_Button_Sidebar_C*        K2Node_Select_Default_1                                          (EditFixedSize, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue_4                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, NonTransactional)
+// class UUI_ParentPage_C*            K2Node_Select_Default_2                                          (EditFixedSize, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
 
-bool UUI_StoreMenu_C::SetCurrentActivePage(bool Temp_bool_Variable, int32* Temp_int_Variable, int32* Temp_int_Variable_1, bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, enum class ENUM_SideTabs Temp_byte_Variable, enum class ENUM_SideTabs Temp_byte_Variable_1, bool* CallFunc_IsValid_ReturnValue_2, bool* CallFunc_IsValid_ReturnValue_3, class FText CallFunc_GetText_ReturnValue, int32* K2Node_Select_Default, class UUI_Button_Sidebar_C** K2Node_Select_Default_1, bool* CallFunc_IsValid_ReturnValue_4, class UUI_ParentPage_C** K2Node_Select_Default_2)
+bool UUI_StoreMenu_C::SetCurrentActivePage(enum class ENUM_SideTabs CurrentActiveTab, bool Temp_bool_Variable, bool* K2Node_SwitchEnum_CmpSuccess, int32 K2Node_Select_Default, class UUI_Button_Sidebar_C* K2Node_Select_Default_1, class UUI_ParentPage_C* K2Node_Select_Default_2)
 {
 	static class UFunction* Func = nullptr;
 
@@ -485,42 +477,16 @@ bool UUI_StoreMenu_C::SetCurrentActivePage(bool Temp_bool_Variable, int32* Temp_
 
 	Params::UUI_StoreMenu_C_SetCurrentActivePage_Params Parms{};
 
+	Parms.CurrentActiveTab = CurrentActiveTab;
 	Parms.Temp_bool_Variable = Temp_bool_Variable;
-	Parms.Temp_byte_Variable = Temp_byte_Variable;
-	Parms.Temp_byte_Variable_1 = Temp_byte_Variable_1;
-	Parms.CallFunc_GetText_ReturnValue = CallFunc_GetText_ReturnValue;
+	Parms.K2Node_Select_Default = K2Node_Select_Default;
+	Parms.K2Node_Select_Default_1 = K2Node_Select_Default_1;
+	Parms.K2Node_Select_Default_2 = K2Node_Select_Default_2;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Temp_int_Variable != nullptr)
-		*Temp_int_Variable = Parms.Temp_int_Variable;
-
-	if (Temp_int_Variable_1 != nullptr)
-		*Temp_int_Variable_1 = Parms.Temp_int_Variable_1;
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
-
-	if (CallFunc_IsValid_ReturnValue_2 != nullptr)
-		*CallFunc_IsValid_ReturnValue_2 = Parms.CallFunc_IsValid_ReturnValue_2;
-
-	if (CallFunc_IsValid_ReturnValue_3 != nullptr)
-		*CallFunc_IsValid_ReturnValue_3 = Parms.CallFunc_IsValid_ReturnValue_3;
-
-	if (K2Node_Select_Default != nullptr)
-		*K2Node_Select_Default = Parms.K2Node_Select_Default;
-
-	if (K2Node_Select_Default_1 != nullptr)
-		*K2Node_Select_Default_1 = Parms.K2Node_Select_Default_1;
-
-	if (CallFunc_IsValid_ReturnValue_4 != nullptr)
-		*CallFunc_IsValid_ReturnValue_4 = Parms.CallFunc_IsValid_ReturnValue_4;
-
-	if (K2Node_Select_Default_2 != nullptr)
-		*K2Node_Select_Default_2 = Parms.K2Node_Select_Default_2;
+	if (K2Node_SwitchEnum_CmpSuccess != nullptr)
+		*K2Node_SwitchEnum_CmpSuccess = Parms.K2Node_SwitchEnum_CmpSuccess;
 
 	return Parms.ReturnValue;
 
@@ -530,13 +496,13 @@ bool UUI_StoreMenu_C::SetCurrentActivePage(bool Temp_bool_Variable, int32* Temp_
 // Function UI_StoreMenu.UI_StoreMenu_C.GetCurrentActivePage
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UUI_ParentPage_C*            CurrentPage                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class ENUM_SideTabs           CurrentActiveTab                                                 (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class ENUM_SideTabs           Temp_byte_Variable                                               (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// class UUI_ParentPage_C*            K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UUI_ParentPage_C*            CurrentPage                                                      (Edit, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class ENUM_SideTabs           CurrentActiveTab                                                 (ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class ENUM_SideTabs           Temp_byte_Variable                                               (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class UUI_ParentPage_C*            K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-enum class ENUM_SideTabs UUI_StoreMenu_C::GetCurrentActivePage(enum class ENUM_SideTabs Temp_byte_Variable, class UUI_ParentPage_C** K2Node_Select_Default, bool* CallFunc_IsValid_ReturnValue)
+bool UUI_StoreMenu_C::GetCurrentActivePage(enum class ENUM_SideTabs CurrentActiveTab, class UUI_ParentPage_C* K2Node_Select_Default)
 {
 	static class UFunction* Func = nullptr;
 
@@ -545,15 +511,10 @@ enum class ENUM_SideTabs UUI_StoreMenu_C::GetCurrentActivePage(enum class ENUM_S
 
 	Params::UUI_StoreMenu_C_GetCurrentActivePage_Params Parms{};
 
-	Parms.Temp_byte_Variable = Temp_byte_Variable;
+	Parms.CurrentActiveTab = CurrentActiveTab;
+	Parms.K2Node_Select_Default = K2Node_Select_Default;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (K2Node_Select_Default != nullptr)
-		*K2Node_Select_Default = Parms.K2Node_Select_Default;
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -563,19 +524,19 @@ enum class ENUM_SideTabs UUI_StoreMenu_C::GetCurrentActivePage(enum class ENUM_S
 // Function UI_StoreMenu.UI_StoreMenu_C.UpdateSearchFilter
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              Temp_int_Variable                                                (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Variable_1                                              (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class FText                        CallFunc_Format_ReturnValue                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UUI_ParentPage_C*            CallFunc_GetCurrentActivePage_CurrentPage                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class ENUM_SideTabs           CallFunc_GetCurrentActivePage_CurrentActiveTab                   (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               Temp_bool_Variable                                               (ConstParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// bool                               CallFunc_EqualEqual_TextText_ReturnValue                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Variable                                                (Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Variable_1                                              (Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class FText                        CallFunc_Format_ReturnValue                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// class UUI_ParentPage_C*            CallFunc_GetCurrentActivePage_CurrentPage                        (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class ENUM_SideTabs           CallFunc_GetCurrentActivePage_CurrentActiveTab                   (ConstParm, BlueprintVisible, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_EqualEqual_TextText_ReturnValue                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
 
-bool UUI_StoreMenu_C::UpdateSearchFilter(int32* Temp_int_Variable, int32* Temp_int_Variable_1, bool* CallFunc_IsValid_ReturnValue, class FText CallFunc_Format_ReturnValue, class UUI_ParentPage_C** CallFunc_GetCurrentActivePage_CurrentPage, bool Temp_bool_Variable, class FText CallFunc_Conv_StringToText_ReturnValue, int32* K2Node_Select_Default)
+class FText UUI_StoreMenu_C::UpdateSearchFilter(const TArray<struct FFormatArgumentData>& K2Node_MakeArray_Array, enum class ENUM_SideTabs* CallFunc_GetCurrentActivePage_CurrentActiveTab, bool Temp_bool_Variable, bool* CallFunc_EqualEqual_TextText_ReturnValue, int32 K2Node_Select_Default)
 {
 	static class UFunction* Func = nullptr;
 
@@ -584,26 +545,17 @@ bool UUI_StoreMenu_C::UpdateSearchFilter(int32* Temp_int_Variable, int32* Temp_i
 
 	Params::UUI_StoreMenu_C_UpdateSearchFilter_Params Parms{};
 
-	Parms.CallFunc_Format_ReturnValue = CallFunc_Format_ReturnValue;
+	Parms.K2Node_MakeArray_Array = K2Node_MakeArray_Array;
 	Parms.Temp_bool_Variable = Temp_bool_Variable;
-	Parms.CallFunc_Conv_StringToText_ReturnValue = CallFunc_Conv_StringToText_ReturnValue;
+	Parms.K2Node_Select_Default = K2Node_Select_Default;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Temp_int_Variable != nullptr)
-		*Temp_int_Variable = Parms.Temp_int_Variable;
+	if (CallFunc_GetCurrentActivePage_CurrentActiveTab != nullptr)
+		*CallFunc_GetCurrentActivePage_CurrentActiveTab = Parms.CallFunc_GetCurrentActivePage_CurrentActiveTab;
 
-	if (Temp_int_Variable_1 != nullptr)
-		*Temp_int_Variable_1 = Parms.Temp_int_Variable_1;
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_GetCurrentActivePage_CurrentPage != nullptr)
-		*CallFunc_GetCurrentActivePage_CurrentPage = Parms.CallFunc_GetCurrentActivePage_CurrentPage;
-
-	if (K2Node_Select_Default != nullptr)
-		*K2Node_Select_Default = Parms.K2Node_Select_Default;
+	if (CallFunc_EqualEqual_TextText_ReturnValue != nullptr)
+		*CallFunc_EqualEqual_TextText_ReturnValue = Parms.CallFunc_EqualEqual_TextText_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -613,9 +565,9 @@ bool UUI_StoreMenu_C::UpdateSearchFilter(int32* Temp_int_Variable, int32* Temp_i
 // Function UI_StoreMenu.UI_StoreMenu_C.DestroyModPageMenu
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-void UUI_StoreMenu_C::DestroyModPageMenu(bool* CallFunc_IsValid_ReturnValue)
+bool UUI_StoreMenu_C::DestroyModPageMenu()
 {
 	static class UFunction* Func = nullptr;
 
@@ -627,8 +579,7 @@ void UUI_StoreMenu_C::DestroyModPageMenu(bool* CallFunc_IsValid_ReturnValue)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -636,13 +587,13 @@ void UUI_StoreMenu_C::DestroyModPageMenu(bool* CallFunc_IsValid_ReturnValue)
 // Function UI_StoreMenu.UI_StoreMenu_C.CreateModPageMenu
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int64                              Mod_ID                                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              DrawUIOnZOrder                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UUI_GameSlot_C*              UI_GameSlotRef                                                   (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UUI_ModPage_C*               ModPageRef                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UUI_ModPage_C*               CallFunc_CreateModPageFromStoreMenu_ReturnValue                  (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int64                              Mod_ID                                                           (BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              DrawUIOnZOrder                                                   (ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUI_GameSlot_C*              UI_GameSlotRef                                                   (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUI_ModPage_C*               ModPageRef                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUI_ModPage_C*               CallFunc_CreateModPageFromStoreMenu_ReturnValue                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class UUI_ModPage_C* UUI_StoreMenu_C::CreateModPageMenu(int64 Mod_ID, int32* DrawUIOnZOrder, class UUI_GameSlot_C** UI_GameSlotRef)
+class UUI_GameSlot_C* UUI_StoreMenu_C::CreateModPageMenu(class UUI_ModPage_C* ModPageRef, class UUI_ModPage_C* CallFunc_CreateModPageFromStoreMenu_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -651,15 +602,10 @@ class UUI_ModPage_C* UUI_StoreMenu_C::CreateModPageMenu(int64 Mod_ID, int32* Dra
 
 	Params::UUI_StoreMenu_C_CreateModPageMenu_Params Parms{};
 
-	Parms.Mod_ID = Mod_ID;
+	Parms.ModPageRef = ModPageRef;
+	Parms.CallFunc_CreateModPageFromStoreMenu_ReturnValue = CallFunc_CreateModPageFromStoreMenu_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (DrawUIOnZOrder != nullptr)
-		*DrawUIOnZOrder = Parms.DrawUIOnZOrder;
-
-	if (UI_GameSlotRef != nullptr)
-		*UI_GameSlotRef = Parms.UI_GameSlotRef;
 
 	return Parms.ReturnValue;
 
@@ -669,15 +615,15 @@ class UUI_ModPage_C* UUI_StoreMenu_C::CreateModPageMenu(int64 Mod_ID, int32* Dra
 // Function UI_StoreMenu.UI_StoreMenu_C.CreateRightClickMenu
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UUI_GameSlot_C*              UI_GameSlot                                                      (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, DuplicateTransient)
-// bool                               ShouldViewBeVisible                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               SepareteReportWithLine                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// double                             WidgetWidth                                                      (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UUI_RightClickMenu_C*        MenuRef                                                          (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UUI_RightClickMenu_C*        CallFunc_Create_ReturnValue                                      (ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UUI_GameSlot_C*              UI_GameSlot                                                      (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
+// bool                               ShouldViewBeVisible                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               SepareteReportWithLine                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// double                             WidgetWidth                                                      (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// class UUI_RightClickMenu_C*        MenuRef                                                          (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUI_RightClickMenu_C*        CallFunc_Create_ReturnValue                                      (ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-class UUI_RightClickMenu_C* UUI_StoreMenu_C::CreateRightClickMenu(class UUI_GameSlot_C* UI_GameSlot, bool ShouldViewBeVisible, double* WidgetWidth, class UUI_RightClickMenu_C** MenuRef, bool* CallFunc_IsValid_ReturnValue)
+bool UUI_StoreMenu_C::CreateRightClickMenu(bool SepareteReportWithLine, class UUI_RightClickMenu_C* CallFunc_Create_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -686,19 +632,10 @@ class UUI_RightClickMenu_C* UUI_StoreMenu_C::CreateRightClickMenu(class UUI_Game
 
 	Params::UUI_StoreMenu_C_CreateRightClickMenu_Params Parms{};
 
-	Parms.UI_GameSlot = UI_GameSlot;
-	Parms.ShouldViewBeVisible = ShouldViewBeVisible;
+	Parms.SepareteReportWithLine = SepareteReportWithLine;
+	Parms.CallFunc_Create_ReturnValue = CallFunc_Create_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (WidgetWidth != nullptr)
-		*WidgetWidth = Parms.WidgetWidth;
-
-	if (MenuRef != nullptr)
-		*MenuRef = Parms.MenuRef;
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -708,10 +645,10 @@ class UUI_RightClickMenu_C* UUI_StoreMenu_C::CreateRightClickMenu(class UUI_Game
 // Function UI_StoreMenu.UI_StoreMenu_C.DestroyRightClickMenu
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
 
-void UUI_StoreMenu_C::DestroyRightClickMenu(bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1)
+bool UUI_StoreMenu_C::DestroyRightClickMenu()
 {
 	static class UFunction* Func = nullptr;
 
@@ -723,11 +660,7 @@ void UUI_StoreMenu_C::DestroyRightClickMenu(bool* CallFunc_IsValid_ReturnValue, 
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+	return Parms.ReturnValue;
 
 }
 
@@ -735,22 +668,22 @@ void UUI_StoreMenu_C::DestroyRightClickMenu(bool* CallFunc_IsValid_ReturnValue, 
 // Function UI_StoreMenu.UI_StoreMenu_C.UpdateAllStoreMenuWidgets
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UMaterialInterface*          Temp_object_Variable                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_IsValid_ReturnValue_2                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
-// bool                               Temp_bool_Variable                                               (ConstParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FButtonStyle                CallFunc_CreateButtonStyleFromSingleColor_ButtonStyle            (Edit, Net, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FButtonStyle                CallFunc_CreateButtonStyleFromSingleColor_ButtonStyle_1          (Edit, Net, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// struct FButtonStyle                K2Node_MakeStruct_ButtonStyle                                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UMaterialInterface*          Temp_object_Variable_1                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference, Interp)
-// class UMaterialInterface*          K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FSlateBrush                 K2Node_MakeStruct_SlateBrush                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FSlateBrush                 K2Node_MakeStruct_SlateBrush_1                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// struct FSlateBrush                 K2Node_MakeStruct_SlateBrush_2                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// struct FSlateBrush                 K2Node_MakeStruct_SlateBrush_3                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, NonTransactional)
+// class UMaterialInterface*          Temp_object_Variable                                             (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue_2                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
+// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// struct FButtonStyle                CallFunc_CreateButtonStyleFromSingleColor_ButtonStyle            (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FButtonStyle                CallFunc_CreateButtonStyleFromSingleColor_ButtonStyle_1          (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// struct FButtonStyle                K2Node_MakeStruct_ButtonStyle                                    (ConstParm, BlueprintVisible, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UMaterialInterface*          Temp_object_Variable_1                                           (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// class UMaterialInterface*          K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// struct FSlateBrush                 K2Node_MakeStruct_SlateBrush                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FSlateBrush                 K2Node_MakeStruct_SlateBrush_1                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// struct FSlateBrush                 K2Node_MakeStruct_SlateBrush_2                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// struct FSlateBrush                 K2Node_MakeStruct_SlateBrush_3                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, NonTransactional)
 
-void UUI_StoreMenu_C::UpdateAllStoreMenuWidgets(class UMaterialInterface** Temp_object_Variable, bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, bool* CallFunc_IsValid_ReturnValue_2, bool Temp_bool_Variable, const struct FButtonStyle& CallFunc_CreateButtonStyleFromSingleColor_ButtonStyle, const struct FButtonStyle& CallFunc_CreateButtonStyleFromSingleColor_ButtonStyle_1, const struct FButtonStyle& K2Node_MakeStruct_ButtonStyle, class UMaterialInterface** Temp_object_Variable_1, class UMaterialInterface** K2Node_Select_Default, const struct FSlateBrush& K2Node_MakeStruct_SlateBrush, const struct FSlateBrush& K2Node_MakeStruct_SlateBrush_1, const struct FSlateBrush& K2Node_MakeStruct_SlateBrush_2, const struct FSlateBrush& K2Node_MakeStruct_SlateBrush_3)
+struct FSlateBrush UUI_StoreMenu_C::UpdateAllStoreMenuWidgets(bool Temp_bool_Variable, class UMaterialInterface* K2Node_Select_Default)
 {
 	static class UFunction* Func = nullptr;
 
@@ -760,33 +693,11 @@ void UUI_StoreMenu_C::UpdateAllStoreMenuWidgets(class UMaterialInterface** Temp_
 	Params::UUI_StoreMenu_C_UpdateAllStoreMenuWidgets_Params Parms{};
 
 	Parms.Temp_bool_Variable = Temp_bool_Variable;
-	Parms.CallFunc_CreateButtonStyleFromSingleColor_ButtonStyle = CallFunc_CreateButtonStyleFromSingleColor_ButtonStyle;
-	Parms.CallFunc_CreateButtonStyleFromSingleColor_ButtonStyle_1 = CallFunc_CreateButtonStyleFromSingleColor_ButtonStyle_1;
-	Parms.K2Node_MakeStruct_ButtonStyle = K2Node_MakeStruct_ButtonStyle;
-	Parms.K2Node_MakeStruct_SlateBrush = K2Node_MakeStruct_SlateBrush;
-	Parms.K2Node_MakeStruct_SlateBrush_1 = K2Node_MakeStruct_SlateBrush_1;
-	Parms.K2Node_MakeStruct_SlateBrush_2 = K2Node_MakeStruct_SlateBrush_2;
-	Parms.K2Node_MakeStruct_SlateBrush_3 = K2Node_MakeStruct_SlateBrush_3;
+	Parms.K2Node_Select_Default = K2Node_Select_Default;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Temp_object_Variable != nullptr)
-		*Temp_object_Variable = Parms.Temp_object_Variable;
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
-
-	if (CallFunc_IsValid_ReturnValue_2 != nullptr)
-		*CallFunc_IsValid_ReturnValue_2 = Parms.CallFunc_IsValid_ReturnValue_2;
-
-	if (Temp_object_Variable_1 != nullptr)
-		*Temp_object_Variable_1 = Parms.Temp_object_Variable_1;
-
-	if (K2Node_Select_Default != nullptr)
-		*K2Node_Select_Default = Parms.K2Node_Select_Default;
+	return Parms.ReturnValue;
 
 }
 
@@ -794,11 +705,11 @@ void UUI_StoreMenu_C::UpdateAllStoreMenuWidgets(class UMaterialInterface** Temp_
 // Function UI_StoreMenu.UI_StoreMenu_C.InitTheme
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_DoesDataTableRowExist_ReturnValue                       (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FCFCoreThemeRowData         CallFunc_GetDataTableRowFromName_OutRow                          (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_GetDataTableRowFromName_ReturnValue                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// bool                               CallFunc_DoesDataTableRowExist_ReturnValue                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FCFCoreThemeRowData         CallFunc_GetDataTableRowFromName_OutRow                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_GetDataTableRowFromName_ReturnValue                     (Edit, ConstParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
 
-bool UUI_StoreMenu_C::InitTheme(struct FCFCoreThemeRowData* CallFunc_GetDataTableRowFromName_OutRow, bool* CallFunc_GetDataTableRowFromName_ReturnValue)
+bool UUI_StoreMenu_C::InitTheme(bool* CallFunc_DoesDataTableRowExist_ReturnValue, struct FCFCoreThemeRowData* CallFunc_GetDataTableRowFromName_OutRow)
 {
 	static class UFunction* Func = nullptr;
 
@@ -810,11 +721,11 @@ bool UUI_StoreMenu_C::InitTheme(struct FCFCoreThemeRowData* CallFunc_GetDataTabl
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (CallFunc_DoesDataTableRowExist_ReturnValue != nullptr)
+		*CallFunc_DoesDataTableRowExist_ReturnValue = Parms.CallFunc_DoesDataTableRowExist_ReturnValue;
+
 	if (CallFunc_GetDataTableRowFromName_OutRow != nullptr)
 		*CallFunc_GetDataTableRowFromName_OutRow = std::move(Parms.CallFunc_GetDataTableRowFromName_OutRow);
-
-	if (CallFunc_GetDataTableRowFromName_ReturnValue != nullptr)
-		*CallFunc_GetDataTableRowFromName_ReturnValue = Parms.CallFunc_GetDataTableRowFromName_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -824,10 +735,10 @@ bool UUI_StoreMenu_C::InitTheme(struct FCFCoreThemeRowData* CallFunc_GetDataTabl
 // Function UI_StoreMenu.UI_StoreMenu_C.ShouldCustomizeTheme
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UUI_ThemeCustomizer_C*       CallFunc_Create_ReturnValue                                      (ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// class UUI_ThemeCustomizer_C*       CallFunc_Create_ReturnValue                                      (ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference)
 
-FDelegateProperty_ UUI_StoreMenu_C::ShouldCustomizeTheme()
+void UUI_StoreMenu_C::ShouldCustomizeTheme(class UUI_ThemeCustomizer_C* CallFunc_Create_ReturnValue, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -836,10 +747,10 @@ FDelegateProperty_ UUI_StoreMenu_C::ShouldCustomizeTheme()
 
 	Params::UUI_StoreMenu_C_ShouldCustomizeTheme_Params Parms{};
 
+	Parms.CallFunc_Create_ReturnValue = CallFunc_Create_ReturnValue;
+	Parms.K2Node_CreateDelegate_OutputDelegate = K2Node_CreateDelegate_OutputDelegate;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -847,22 +758,22 @@ FDelegateProperty_ UUI_StoreMenu_C::ShouldCustomizeTheme()
 // Function UI_StoreMenu.UI_StoreMenu_C.InitAllTabs
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable_1                                  (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// class UUI_Button_Sidebar_C*        CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class UUI_ParentPage_C*            CallFunc_Array_Get_Item_1                                        (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// int32                              CallFunc_Array_Length_ReturnValue_1                              (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// int32                              Temp_int_Loop_Counter_Variable_1                                 (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_Less_IntInt_ReturnValue_1                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// int32                              CallFunc_Add_IntInt_ReturnValue_1                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// TArray<class UUI_ParentPage_C*>    K2Node_MakeArray_Array                                           (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// TArray<class UUI_Button_Sidebar_C*>K2Node_MakeArray_Array_1                                         (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable_1                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference, Interp)
+// class UUI_Button_Sidebar_C*        CallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// class UUI_ParentPage_C*            CallFunc_Array_Get_Item_1                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              CallFunc_Array_Length_ReturnValue_1                              (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              Temp_int_Loop_Counter_Variable_1                                 (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_Less_IntInt_ReturnValue_1                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              CallFunc_Add_IntInt_ReturnValue_1                                (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference, Interp)
+// TArray<class UUI_ParentPage_C*>    K2Node_MakeArray_Array                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// TArray<class UUI_Button_Sidebar_C*>K2Node_MakeArray_Array_1                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
 
-TArray<class UUI_Button_Sidebar_C*> UUI_StoreMenu_C::InitAllTabs(int32* CallFunc_Array_Length_ReturnValue, int32 CallFunc_Add_IntInt_ReturnValue, class UUI_Button_Sidebar_C** CallFunc_Array_Get_Item, class UUI_ParentPage_C** CallFunc_Array_Get_Item_1, int32* CallFunc_Array_Length_ReturnValue_1, int32 CallFunc_Add_IntInt_ReturnValue_1)
+int32 UUI_StoreMenu_C::InitAllTabs(int32* CallFunc_Array_Length_ReturnValue, int32 Temp_int_Loop_Counter_Variable, bool CallFunc_Less_IntInt_ReturnValue, class UUI_Button_Sidebar_C* CallFunc_Array_Get_Item, class UUI_ParentPage_C* CallFunc_Array_Get_Item_1, int32* CallFunc_Array_Length_ReturnValue_1, int32 Temp_int_Loop_Counter_Variable_1, bool CallFunc_Less_IntInt_ReturnValue_1, const TArray<class UUI_ParentPage_C*>& K2Node_MakeArray_Array, const TArray<class UUI_Button_Sidebar_C*>& K2Node_MakeArray_Array_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -871,19 +782,19 @@ TArray<class UUI_Button_Sidebar_C*> UUI_StoreMenu_C::InitAllTabs(int32* CallFunc
 
 	Params::UUI_StoreMenu_C_InitAllTabs_Params Parms{};
 
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
-	Parms.CallFunc_Add_IntInt_ReturnValue_1 = CallFunc_Add_IntInt_ReturnValue_1;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.CallFunc_Array_Get_Item_1 = CallFunc_Array_Get_Item_1;
+	Parms.Temp_int_Loop_Counter_Variable_1 = Temp_int_Loop_Counter_Variable_1;
+	Parms.CallFunc_Less_IntInt_ReturnValue_1 = CallFunc_Less_IntInt_ReturnValue_1;
+	Parms.K2Node_MakeArray_Array = K2Node_MakeArray_Array;
+	Parms.K2Node_MakeArray_Array_1 = K2Node_MakeArray_Array_1;
 
 	UObject::ProcessEvent(Func, &Parms);
 
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
-
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = Parms.CallFunc_Array_Get_Item;
-
-	if (CallFunc_Array_Get_Item_1 != nullptr)
-		*CallFunc_Array_Get_Item_1 = Parms.CallFunc_Array_Get_Item_1;
 
 	if (CallFunc_Array_Length_ReturnValue_1 != nullptr)
 		*CallFunc_Array_Length_ReturnValue_1 = Parms.CallFunc_Array_Length_ReturnValue_1;
@@ -914,21 +825,21 @@ void UUI_StoreMenu_C::RemoveExtraWidgets()
 // Function UI_StoreMenu.UI_StoreMenu_C.OnSearchedTextCommitted
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// TArray<class UWidget*>             WidgetArray                                                      (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class FText                        CallFunc_GetText_ReturnValue                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// class UWidget*                     CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// TScriptInterface<class IBPI_PageWidgets_C>K2Node_DynamicCast_AsBPI_Page_Widgets                            (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// TArray<class UWidget*>             CallFunc_GetAllChildren_ReturnValue                              (ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// class UWidget*                     CallFunc_GetActiveWidget_ReturnValue                             (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_Array_RemoveItem_ReturnValue                            (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class UWidget*>             WidgetArray                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_GetText_ReturnValue                                     (Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class UWidget*                     CallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// TScriptInterface<class IBPI_PageWidgets_C>K2Node_DynamicCast_AsBPI_Page_Widgets                            (ConstParm, ExportObject, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// TArray<class UWidget*>             CallFunc_GetAllChildren_ReturnValue                              (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UWidget*                     CallFunc_GetActiveWidget_ReturnValue                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_Array_RemoveItem_ReturnValue                            (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-bool UUI_StoreMenu_C::OnSearchedTextCommitted(int32 CallFunc_Add_IntInt_ReturnValue, class FText CallFunc_GetText_ReturnValue, class UWidget** CallFunc_Array_Get_Item, int32* CallFunc_Array_Length_ReturnValue, bool* K2Node_DynamicCast_bSuccess, const TArray<class UWidget*>& CallFunc_GetAllChildren_ReturnValue, class UWidget* CallFunc_GetActiveWidget_ReturnValue)
+class UWidget* UUI_StoreMenu_C::OnSearchedTextCommitted(TArray<class UWidget*>* WidgetArray, int32 Temp_int_Loop_Counter_Variable, class UWidget* CallFunc_Array_Get_Item, int32* CallFunc_Array_Length_ReturnValue, TScriptInterface<class IBPI_PageWidgets_C>* K2Node_DynamicCast_AsBPI_Page_Widgets, bool CallFunc_Less_IntInt_ReturnValue, TArray<class UWidget*>* CallFunc_GetAllChildren_ReturnValue, bool* CallFunc_Array_RemoveItem_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -937,21 +848,26 @@ bool UUI_StoreMenu_C::OnSearchedTextCommitted(int32 CallFunc_Add_IntInt_ReturnVa
 
 	Params::UUI_StoreMenu_C_OnSearchedTextCommitted_Params Parms{};
 
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
-	Parms.CallFunc_GetText_ReturnValue = CallFunc_GetText_ReturnValue;
-	Parms.CallFunc_GetAllChildren_ReturnValue = CallFunc_GetAllChildren_ReturnValue;
-	Parms.CallFunc_GetActiveWidget_ReturnValue = CallFunc_GetActiveWidget_ReturnValue;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = Parms.CallFunc_Array_Get_Item;
+	if (WidgetArray != nullptr)
+		*WidgetArray = std::move(Parms.WidgetArray);
 
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
 
-	if (K2Node_DynamicCast_bSuccess != nullptr)
-		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+	if (K2Node_DynamicCast_AsBPI_Page_Widgets != nullptr)
+		*K2Node_DynamicCast_AsBPI_Page_Widgets = Parms.K2Node_DynamicCast_AsBPI_Page_Widgets;
+
+	if (CallFunc_GetAllChildren_ReturnValue != nullptr)
+		*CallFunc_GetAllChildren_ReturnValue = std::move(Parms.CallFunc_GetAllChildren_ReturnValue);
+
+	if (CallFunc_Array_RemoveItem_ReturnValue != nullptr)
+		*CallFunc_Array_RemoveItem_ReturnValue = Parms.CallFunc_Array_RemoveItem_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -961,14 +877,14 @@ bool UUI_StoreMenu_C::OnSearchedTextCommitted(int32 CallFunc_Add_IntInt_ReturnVa
 // Function UI_StoreMenu.UI_StoreMenu_C.CloseBNavigation
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class EUINavigation           Navigation                                                       (ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UWidget*                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UWidget*                     CallFunc_GetActiveWidget_ReturnValue                             (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TScriptInterface<class IBPI_PageWidgets_C>K2Node_DynamicCast_AsBPI_Page_Widgets                            (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class UWidget*                     CallFunc_GetClose_B_Widget                                       (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class EUINavigation           Navigation                                                       (Edit, BlueprintVisible, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UWidget*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     CallFunc_GetActiveWidget_ReturnValue                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TScriptInterface<class IBPI_PageWidgets_C>K2Node_DynamicCast_AsBPI_Page_Widgets                            (ConstParm, ExportObject, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UWidget*                     CallFunc_GetClose_B_Widget                                       (Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class UWidget* UUI_StoreMenu_C::CloseBNavigation(enum class EUINavigation* Navigation, class UWidget* CallFunc_GetActiveWidget_ReturnValue, bool* K2Node_DynamicCast_bSuccess)
+bool UUI_StoreMenu_C::CloseBNavigation(enum class EUINavigation Navigation, class UWidget* ReturnValue, TScriptInterface<class IBPI_PageWidgets_C>* K2Node_DynamicCast_AsBPI_Page_Widgets, class UWidget* CallFunc_GetClose_B_Widget)
 {
 	static class UFunction* Func = nullptr;
 
@@ -977,15 +893,14 @@ class UWidget* UUI_StoreMenu_C::CloseBNavigation(enum class EUINavigation* Navig
 
 	Params::UUI_StoreMenu_C_CloseBNavigation_Params Parms{};
 
-	Parms.CallFunc_GetActiveWidget_ReturnValue = CallFunc_GetActiveWidget_ReturnValue;
+	Parms.Navigation = Navigation;
+	Parms.ReturnValue = ReturnValue;
+	Parms.CallFunc_GetClose_B_Widget = CallFunc_GetClose_B_Widget;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Navigation != nullptr)
-		*Navigation = Parms.Navigation;
-
-	if (K2Node_DynamicCast_bSuccess != nullptr)
-		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+	if (K2Node_DynamicCast_AsBPI_Page_Widgets != nullptr)
+		*K2Node_DynamicCast_AsBPI_Page_Widgets = Parms.K2Node_DynamicCast_AsBPI_Page_Widgets;
 
 	return Parms.ReturnValue;
 
@@ -995,9 +910,9 @@ class UWidget* UUI_StoreMenu_C::CloseBNavigation(enum class EUINavigation* Navig
 // Function UI_StoreMenu.UI_StoreMenu_C.OpenCurrentActivePage
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               K2Node_SwitchEnum_CmpSuccess                                     (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, SubobjectReference)
+// bool                               K2Node_SwitchEnum_CmpSuccess                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
 
-bool UUI_StoreMenu_C::OpenCurrentActivePage()
+void UUI_StoreMenu_C::OpenCurrentActivePage(bool* K2Node_SwitchEnum_CmpSuccess)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1009,7 +924,8 @@ bool UUI_StoreMenu_C::OpenCurrentActivePage()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (K2Node_SwitchEnum_CmpSuccess != nullptr)
+		*K2Node_SwitchEnum_CmpSuccess = Parms.K2Node_SwitchEnum_CmpSuccess;
 
 }
 
@@ -1017,10 +933,10 @@ bool UUI_StoreMenu_C::OpenCurrentActivePage()
 // Function UI_StoreMenu.UI_StoreMenu_C.UpdateCloseButtonSearchVisiblity
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        SearchInput                                                      (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_TextIsEmpty_ReturnValue                                 (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FText                        SearchInput                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_TextIsEmpty_ReturnValue                                 (ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-bool UUI_StoreMenu_C::UpdateCloseButtonSearchVisiblity()
+bool UUI_StoreMenu_C::UpdateCloseButtonSearchVisiblity(class FText SearchInput)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1029,6 +945,7 @@ bool UUI_StoreMenu_C::UpdateCloseButtonSearchVisiblity()
 
 	Params::UUI_StoreMenu_C_UpdateCloseButtonSearchVisiblity_Params Parms{};
 
+	Parms.SearchInput = SearchInput;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -1041,16 +958,16 @@ bool UUI_StoreMenu_C::UpdateCloseButtonSearchVisiblity()
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // class UUI_Button_Sidebar_C*        Target                                                           (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// class UUI_Button_Sidebar_C*        CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_EqualEqual_ObjectObject_ReturnValue                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// class UUI_Button_Sidebar_C*        CallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_EqualEqual_ObjectObject_ReturnValue                     (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
-bool UUI_StoreMenu_C::SelectPage(class UUI_Button_Sidebar_C* Target, int32 CallFunc_Add_IntInt_ReturnValue, int32* CallFunc_Array_Length_ReturnValue, class UUI_Button_Sidebar_C** CallFunc_Array_Get_Item, bool* CallFunc_IsValid_ReturnValue)
+bool UUI_StoreMenu_C::SelectPage(class UUI_Button_Sidebar_C* Target, int32 Temp_int_Loop_Counter_Variable, int32* CallFunc_Array_Length_ReturnValue, class UUI_Button_Sidebar_C* CallFunc_Array_Get_Item, bool CallFunc_Less_IntInt_ReturnValue, bool* CallFunc_EqualEqual_ObjectObject_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1060,18 +977,17 @@ bool UUI_StoreMenu_C::SelectPage(class UUI_Button_Sidebar_C* Target, int32 CallF
 	Params::UUI_StoreMenu_C_SelectPage_Params Parms{};
 
 	Parms.Target = Target;
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
 
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = Parms.CallFunc_Array_Get_Item;
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (CallFunc_EqualEqual_ObjectObject_ReturnValue != nullptr)
+		*CallFunc_EqualEqual_ObjectObject_ReturnValue = Parms.CallFunc_EqualEqual_ObjectObject_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -1314,9 +1230,9 @@ void UUI_StoreMenu_C::Event_Open_My_Mods_Page()
 // (HasOutParams, BlueprintEvent)
 // Parameters:
 // class FText                        Text                                                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, EditConst)
-// enum class ETextCommit             CommitMethod                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// enum class ETextCommit             CommitMethod                                                     (Edit, ConstParm, BlueprintVisible, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-enum class ETextCommit UUI_StoreMenu_C::BndEvt__StoreMenu_Searched_txt_K2Node_ComponentBoundEvent_0_OnEditableTextBoxCommittedEvent__DelegateSignature()
+class FText UUI_StoreMenu_C::BndEvt__StoreMenu_Searched_txt_K2Node_ComponentBoundEvent_0_OnEditableTextBoxCommittedEvent__DelegateSignature(enum class ETextCommit* CommitMethod)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1328,6 +1244,9 @@ enum class ETextCommit UUI_StoreMenu_C::BndEvt__StoreMenu_Searched_txt_K2Node_Co
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (CommitMethod != nullptr)
+		*CommitMethod = Parms.CommitMethod;
+
 	return Parms.ReturnValue;
 
 }
@@ -1336,9 +1255,9 @@ enum class ETextCommit UUI_StoreMenu_C::BndEvt__StoreMenu_Searched_txt_K2Node_Co
 // Function UI_StoreMenu.UI_StoreMenu_C.Event Result
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               Is_authenticated                                                 (Edit, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+// bool                               Is_authenticated                                                 (Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
 
-void UUI_StoreMenu_C::Event_Result(bool Is_authenticated)
+bool UUI_StoreMenu_C::Event_Result()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1347,9 +1266,10 @@ void UUI_StoreMenu_C::Event_Result(bool Is_authenticated)
 
 	Params::UUI_StoreMenu_C_Event_Result_Params Parms{};
 
-	Parms.Is_authenticated = Is_authenticated;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -1627,7 +1547,7 @@ void UUI_StoreMenu_C::BndEvt__UI_StoreMenu_UI_Button_MyMods_K2Node_ComponentBoun
 // Function UI_StoreMenu.UI_StoreMenu_C.SetNewTextInSearch
 // (HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        InText                                                           (Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        InText                                                           (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 class FText UUI_StoreMenu_C::SetNewTextInSearch()
 {
@@ -1784,86 +1704,86 @@ void UUI_StoreMenu_C::OnUserAuthenticated()
 // Function UI_StoreMenu.UI_StoreMenu_C.ExecuteUbergraph_UI_StoreMenu
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UTexture2DDynamic*           K2Node_CustomEvent_Texture_1                                     (BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class UTexture2DDynamic*           K2Node_CustomEvent_Texture                                       (BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// class UTexture2DDynamic*           Temp_object_Variable                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
-// class UBP_GenericErrorMsg_C*       CallFunc_Create_ReturnValue                                      (ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class UCFCoreUISubsystem*          CallFunc_GetGameInstanceSubsystem_ReturnValue                    (ConstParm, BlueprintReadOnly, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UCFCoreUISubsystem*          CallFunc_GetGameInstanceSubsystem_ReturnValue_1                  (ConstParm, BlueprintReadOnly, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// class FText                        K2Node_ComponentBoundEvent_Text_1                                (BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_2                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
-// struct FCFCoreError                K2Node_CustomEvent_error_2                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// class UBindButtonSystem*           CallFunc_GetEngineSubsystem_ReturnValue                          (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_Format_ReturnValue                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           CallFunc_GetOwningPlayer_ReturnValue                             (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// class UUI_Prompt_SignIn_C*         CallFunc_Create_ReturnValue_1                                    (ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference, Interp)
-// TArray<class UPrimalUI*>           CallFunc_GetAllWidgetsWithInterface_FoundWidgets                 (BlueprintVisible, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// class UPrimalUserWidget*           CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class FText                        K2Node_ComponentBoundEvent_Text                                  (BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// enum class ETextCommit             K2Node_ComponentBoundEvent_CommitMethod                          (Edit, ExportObject, Net, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_3                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, NonTransactional)
-// bool                               K2Node_CustomEvent_is_authenticated                              (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FCFCoreError                K2Node_CustomEvent_error_1                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// struct FMe                         K2Node_CustomEvent_me                                            (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FCFCoreSettings             CallFunc_MakeSettingsFromProjectConfig_ReturnValue               (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              Temp_int_Variable                                                (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FCFCoreError                K2Node_CustomEvent_error                                         (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// struct FKeyEvent                   K2Node_Event_KeyEvent                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FKey                        CallFunc_GetKey_ReturnValue                                      (Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_4                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, NonTransactional)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_5                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp, NonTransactional)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_6                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp, NonTransactional)
-// class UUI_ParentPage_C*            CallFunc_GetCurrentActivePage_CurrentPage                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class ENUM_SideTabs           CallFunc_GetCurrentActivePage_CurrentActiveTab                   (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UUI_ParentPage_C*            CallFunc_GetCurrentActivePage_CurrentPage_1                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// enum class ENUM_SideTabs           CallFunc_GetCurrentActivePage_CurrentActiveTab_1                 (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// class FText                        K2Node_CustomEvent_InText                                        (BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// bool                               CallFunc_NotEqual_StrStr_ReturnValue                             (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue_1                        (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// class UUI_ParentPage_C*            CallFunc_Array_Get_Item_1                                        (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// int32                              CallFunc_Array_Length_ReturnValue_1                              (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// struct FKey                        K2Node_CustomEvent_Key                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class EViewState              K2Node_CustomEvent_State                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_7                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, EditorOnly)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_8                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, EditorOnly)
-// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue_2                        (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// class UUMGSequencePlayer*          CallFunc_PlayAnimationReverse_ReturnValue                        (EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UUMGSequencePlayer*          CallFunc_PlayAnimationForward_ReturnValue                        (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_SubscribeViewToEvents_ReturnValue                       (Edit, ConstParm, BlueprintReadOnly, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_9                           (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp, EditorOnly)
-// class UAsyncTaskDownloadImage*     CallFunc_DownloadImage_ReturnValue                               (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_NotEqual_StrStr_ReturnValue_1                           (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
-// bool                               CallFunc_IsValid_ReturnValue_2                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue_1                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// int32                              CallFunc_Add_IntInt_ReturnValue_1                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               K2Node_Event_forward                                             (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// uint8                              CallFunc_Add_ByteByte_ReturnValue                                (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue_3                        (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, NonTransactional)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_10                          (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp, EditorOnly)
-// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue_4                        (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, NonTransactional)
-// uint8                              CallFunc_Subtract_ByteByte_ReturnValue                           (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// uint8                              CallFunc_GetValidValue_ReturnValue                               (EditFixedSize, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// bool                               CallFunc_IsVisible_ReturnValue                                   (Edit, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// uint8                              CallFunc_Conv_IntToByte_ReturnValue                              (BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// uint8                              CallFunc_Percent_ByteByte_ReturnValue                            (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// uint8                              CallFunc_GetValidValue_ReturnValue_1                             (EditFixedSize, ZeroConstructor, Transient, Config, EditConst, SubobjectReference, Interp)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTexture2DDynamic*           K2Node_CustomEvent_Texture_1                                     (ExportObject, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference)
+// class UTexture2DDynamic*           K2Node_CustomEvent_Texture                                       (ExportObject, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// class UTexture2DDynamic*           Temp_object_Variable                                             (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// class UBP_GenericErrorMsg_C*       CallFunc_Create_ReturnValue                                      (ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UCFCoreUISubsystem*          CallFunc_GetGameInstanceSubsystem_ReturnValue                    (ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UCFCoreUISubsystem*          CallFunc_GetGameInstanceSubsystem_ReturnValue_1                  (ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// class FText                        K2Node_ComponentBoundEvent_Text_1                                (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_2                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// struct FCFCoreError                K2Node_CustomEvent_error_2                                       (ExportObject, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// class UBindButtonSystem*           CallFunc_GetEngineSubsystem_ReturnValue                          (BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Format_ReturnValue                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// class APlayerController*           CallFunc_GetOwningPlayer_ReturnValue                             (ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// class UUI_Prompt_SignIn_C*         CallFunc_Create_ReturnValue_1                                    (ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// TArray<class UPrimalUI*>           CallFunc_GetAllWidgetsWithInterface_FoundWidgets                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// class UPrimalUserWidget*           CallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// class FText                        K2Node_ComponentBoundEvent_Text                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// enum class ETextCommit             K2Node_ComponentBoundEvent_CommitMethod                          (ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_3                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, NonTransactional)
+// bool                               K2Node_CustomEvent_is_authenticated                              (BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FCFCoreError                K2Node_CustomEvent_error_1                                       (ExportObject, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// struct FMe                         K2Node_CustomEvent_me                                            (ConstParm, BlueprintVisible, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FCFCoreSettings             CallFunc_MakeSettingsFromProjectConfig_ReturnValue               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              Temp_int_Variable                                                (Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// struct FCFCoreError                K2Node_CustomEvent_error                                         (ExportObject, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// struct FKeyEvent                   K2Node_Event_KeyEvent                                            (Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FKey                        CallFunc_GetKey_ReturnValue                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_4                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, NonTransactional)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_5                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, Interp, NonTransactional)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_6                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp, NonTransactional)
+// class UUI_ParentPage_C*            CallFunc_GetCurrentActivePage_CurrentPage                        (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class ENUM_SideTabs           CallFunc_GetCurrentActivePage_CurrentActiveTab                   (ConstParm, BlueprintVisible, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUI_ParentPage_C*            CallFunc_GetCurrentActivePage_CurrentPage_1                      (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// enum class ENUM_SideTabs           CallFunc_GetCurrentActivePage_CurrentActiveTab_1                 (ConstParm, BlueprintVisible, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// class FText                        K2Node_CustomEvent_InText                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_NotEqual_StrStr_ReturnValue                             (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, SubobjectReference)
+// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue_1                        (BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// class UUI_ParentPage_C*            CallFunc_Array_Get_Item_1                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              CallFunc_Array_Length_ReturnValue_1                              (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// struct FKey                        K2Node_CustomEvent_Key                                           (ExportObject, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class EViewState              K2Node_CustomEvent_State                                         (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_7                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, EditorOnly)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_8                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, EditorOnly)
+// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue_2                        (BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimationReverse_ReturnValue                        (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimationForward_ReturnValue                        (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_SubscribeViewToEvents_ReturnValue                       (Edit, Net, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_9                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, Interp, EditorOnly)
+// class UAsyncTaskDownloadImage*     CallFunc_DownloadImage_ReturnValue                               (Edit, BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_NotEqual_StrStr_ReturnValue_1                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue_2                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue_1                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              CallFunc_Add_IntInt_ReturnValue_1                                (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               K2Node_Event_forward                                             (Net, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// uint8                              CallFunc_Add_ByteByte_ReturnValue                                (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue_3                        (BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, NonTransactional)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (ConstParm, ExportObject, Net, DisableEditOnInstance, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_10                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp, EditorOnly)
+// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue_4                        (BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, NonTransactional)
+// uint8                              CallFunc_Subtract_ByteByte_ReturnValue                           (ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// uint8                              CallFunc_GetValidValue_ReturnValue                               (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsVisible_ReturnValue                                   (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// uint8                              CallFunc_Conv_IntToByte_ReturnValue                              (Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// uint8                              CallFunc_Percent_ByteByte_ReturnValue                            (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// uint8                              CallFunc_GetValidValue_ReturnValue_1                             (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference, Interp)
 
-bool UUI_StoreMenu_C::ExecuteUbergraph_UI_StoreMenu(class UTexture2DDynamic** K2Node_CustomEvent_Texture_1, class UTexture2DDynamic** K2Node_CustomEvent_Texture, class UTexture2DDynamic** Temp_object_Variable, bool* CallFunc_IsValid_ReturnValue, class UCFCoreUISubsystem* CallFunc_GetGameInstanceSubsystem_ReturnValue, class UCFCoreUISubsystem* CallFunc_GetGameInstanceSubsystem_ReturnValue_1, class FText CallFunc_Format_ReturnValue, const TArray<class UPrimalUI*>& CallFunc_GetAllWidgetsWithInterface_FoundWidgets, int32* CallFunc_Array_Length_ReturnValue, class UPrimalUserWidget** CallFunc_Array_Get_Item, enum class ETextCommit K2Node_ComponentBoundEvent_CommitMethod, struct FCFCoreSettings* CallFunc_MakeSettingsFromProjectConfig_ReturnValue, int32* Temp_int_Variable, int32 CallFunc_Add_IntInt_ReturnValue, class UUI_ParentPage_C** CallFunc_GetCurrentActivePage_CurrentPage, class UUI_ParentPage_C** CallFunc_GetCurrentActivePage_CurrentPage_1, class FText K2Node_CustomEvent_InText, const class FString& CallFunc_Conv_TextToString_ReturnValue, class UUI_ParentPage_C** CallFunc_Array_Get_Item_1, int32* CallFunc_Array_Length_ReturnValue_1, const struct FKey& K2Node_CustomEvent_Key, enum class EViewState K2Node_CustomEvent_State, bool* CallFunc_IsValid_ReturnValue_1, bool CallFunc_SubscribeViewToEvents_ReturnValue, class UAsyncTaskDownloadImage* CallFunc_DownloadImage_ReturnValue, bool* CallFunc_IsValid_ReturnValue_2, int32 CallFunc_Add_IntInt_ReturnValue_1, bool K2Node_Event_forward, uint8* CallFunc_Add_ByteByte_ReturnValue, uint8 CallFunc_GetValidValue_ReturnValue, uint8 CallFunc_Conv_IntToByte_ReturnValue, uint8* CallFunc_Percent_ByteByte_ReturnValue, uint8 CallFunc_GetValidValue_ReturnValue_1)
+uint8 UUI_StoreMenu_C::ExecuteUbergraph_UI_StoreMenu(int32 EntryPoint, class UTexture2DDynamic** K2Node_CustomEvent_Texture_1, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate, class UTexture2DDynamic** K2Node_CustomEvent_Texture, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_1, class UBP_GenericErrorMsg_C* CallFunc_Create_ReturnValue, class UCFCoreUISubsystem* CallFunc_GetGameInstanceSubsystem_ReturnValue, class UCFCoreUISubsystem* CallFunc_GetGameInstanceSubsystem_ReturnValue_1, class FText K2Node_ComponentBoundEvent_Text_1, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_2, const struct FCFCoreError& K2Node_CustomEvent_error_2, class UBindButtonSystem* CallFunc_GetEngineSubsystem_ReturnValue, const TArray<struct FFormatArgumentData>& K2Node_MakeArray_Array, class APlayerController* CallFunc_GetOwningPlayer_ReturnValue, class UUI_Prompt_SignIn_C* CallFunc_Create_ReturnValue_1, int32* CallFunc_Array_Length_ReturnValue, class UPrimalUserWidget* CallFunc_Array_Get_Item, class FText K2Node_ComponentBoundEvent_Text, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_3, const struct FCFCoreError& K2Node_CustomEvent_error_1, struct FMe* K2Node_CustomEvent_me, const struct FCFCoreError& K2Node_CustomEvent_error, const struct FKeyEvent& K2Node_Event_KeyEvent, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_4, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_5, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_6, enum class ENUM_SideTabs* CallFunc_GetCurrentActivePage_CurrentActiveTab, enum class ENUM_SideTabs* CallFunc_GetCurrentActivePage_CurrentActiveTab_1, bool CallFunc_NotEqual_StrStr_ReturnValue, class UCFCoreSubsystem* CallFunc_GetEngineSubsystem_ReturnValue_1, class UUI_ParentPage_C* CallFunc_Array_Get_Item_1, int32* CallFunc_Array_Length_ReturnValue_1, bool CallFunc_Less_IntInt_ReturnValue, enum class EViewState K2Node_CustomEvent_State, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_7, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_8, class UCFCoreSubsystem* CallFunc_GetEngineSubsystem_ReturnValue_2, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_9, class UAsyncTaskDownloadImage* CallFunc_DownloadImage_ReturnValue, bool CallFunc_NotEqual_StrStr_ReturnValue_1, int32 Temp_int_Loop_Counter_Variable, bool CallFunc_Less_IntInt_ReturnValue_1, class UCFCoreSubsystem* CallFunc_GetEngineSubsystem_ReturnValue_3, bool CallFunc_EqualEqual_ByteByte_ReturnValue, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_10, class UCFCoreSubsystem* CallFunc_GetEngineSubsystem_ReturnValue_4, uint8* CallFunc_Subtract_ByteByte_ReturnValue, uint8* CallFunc_GetValidValue_ReturnValue, bool* CallFunc_IsVisible_ReturnValue, bool CallFunc_EqualEqual_IntInt_ReturnValue, uint8* CallFunc_GetValidValue_ReturnValue_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1872,23 +1792,46 @@ bool UUI_StoreMenu_C::ExecuteUbergraph_UI_StoreMenu(class UTexture2DDynamic** K2
 
 	Params::UUI_StoreMenu_C_ExecuteUbergraph_UI_StoreMenu_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
+	Parms.K2Node_CreateDelegate_OutputDelegate = K2Node_CreateDelegate_OutputDelegate;
+	Parms.K2Node_CreateDelegate_OutputDelegate_1 = K2Node_CreateDelegate_OutputDelegate_1;
+	Parms.CallFunc_Create_ReturnValue = CallFunc_Create_ReturnValue;
 	Parms.CallFunc_GetGameInstanceSubsystem_ReturnValue = CallFunc_GetGameInstanceSubsystem_ReturnValue;
 	Parms.CallFunc_GetGameInstanceSubsystem_ReturnValue_1 = CallFunc_GetGameInstanceSubsystem_ReturnValue_1;
-	Parms.CallFunc_Format_ReturnValue = CallFunc_Format_ReturnValue;
-	Parms.CallFunc_GetAllWidgetsWithInterface_FoundWidgets = CallFunc_GetAllWidgetsWithInterface_FoundWidgets;
-	Parms.K2Node_ComponentBoundEvent_CommitMethod = K2Node_ComponentBoundEvent_CommitMethod;
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
-	Parms.K2Node_CustomEvent_InText = K2Node_CustomEvent_InText;
-	Parms.CallFunc_Conv_TextToString_ReturnValue = CallFunc_Conv_TextToString_ReturnValue;
-	Parms.K2Node_CustomEvent_Key = K2Node_CustomEvent_Key;
+	Parms.K2Node_ComponentBoundEvent_Text_1 = K2Node_ComponentBoundEvent_Text_1;
+	Parms.K2Node_CreateDelegate_OutputDelegate_2 = K2Node_CreateDelegate_OutputDelegate_2;
+	Parms.K2Node_CustomEvent_error_2 = K2Node_CustomEvent_error_2;
+	Parms.CallFunc_GetEngineSubsystem_ReturnValue = CallFunc_GetEngineSubsystem_ReturnValue;
+	Parms.K2Node_MakeArray_Array = K2Node_MakeArray_Array;
+	Parms.CallFunc_GetOwningPlayer_ReturnValue = CallFunc_GetOwningPlayer_ReturnValue;
+	Parms.CallFunc_Create_ReturnValue_1 = CallFunc_Create_ReturnValue_1;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.K2Node_ComponentBoundEvent_Text = K2Node_ComponentBoundEvent_Text;
+	Parms.K2Node_CreateDelegate_OutputDelegate_3 = K2Node_CreateDelegate_OutputDelegate_3;
+	Parms.K2Node_CustomEvent_error_1 = K2Node_CustomEvent_error_1;
+	Parms.K2Node_CustomEvent_error = K2Node_CustomEvent_error;
+	Parms.K2Node_Event_KeyEvent = K2Node_Event_KeyEvent;
+	Parms.K2Node_CreateDelegate_OutputDelegate_4 = K2Node_CreateDelegate_OutputDelegate_4;
+	Parms.K2Node_CreateDelegate_OutputDelegate_5 = K2Node_CreateDelegate_OutputDelegate_5;
+	Parms.K2Node_CreateDelegate_OutputDelegate_6 = K2Node_CreateDelegate_OutputDelegate_6;
+	Parms.CallFunc_NotEqual_StrStr_ReturnValue = CallFunc_NotEqual_StrStr_ReturnValue;
+	Parms.CallFunc_GetEngineSubsystem_ReturnValue_1 = CallFunc_GetEngineSubsystem_ReturnValue_1;
+	Parms.CallFunc_Array_Get_Item_1 = CallFunc_Array_Get_Item_1;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 	Parms.K2Node_CustomEvent_State = K2Node_CustomEvent_State;
-	Parms.CallFunc_SubscribeViewToEvents_ReturnValue = CallFunc_SubscribeViewToEvents_ReturnValue;
+	Parms.K2Node_CreateDelegate_OutputDelegate_7 = K2Node_CreateDelegate_OutputDelegate_7;
+	Parms.K2Node_CreateDelegate_OutputDelegate_8 = K2Node_CreateDelegate_OutputDelegate_8;
+	Parms.CallFunc_GetEngineSubsystem_ReturnValue_2 = CallFunc_GetEngineSubsystem_ReturnValue_2;
+	Parms.K2Node_CreateDelegate_OutputDelegate_9 = K2Node_CreateDelegate_OutputDelegate_9;
 	Parms.CallFunc_DownloadImage_ReturnValue = CallFunc_DownloadImage_ReturnValue;
-	Parms.CallFunc_Add_IntInt_ReturnValue_1 = CallFunc_Add_IntInt_ReturnValue_1;
-	Parms.K2Node_Event_forward = K2Node_Event_forward;
-	Parms.CallFunc_GetValidValue_ReturnValue = CallFunc_GetValidValue_ReturnValue;
-	Parms.CallFunc_Conv_IntToByte_ReturnValue = CallFunc_Conv_IntToByte_ReturnValue;
-	Parms.CallFunc_GetValidValue_ReturnValue_1 = CallFunc_GetValidValue_ReturnValue_1;
+	Parms.CallFunc_NotEqual_StrStr_ReturnValue_1 = CallFunc_NotEqual_StrStr_ReturnValue_1;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Less_IntInt_ReturnValue_1 = CallFunc_Less_IntInt_ReturnValue_1;
+	Parms.CallFunc_GetEngineSubsystem_ReturnValue_3 = CallFunc_GetEngineSubsystem_ReturnValue_3;
+	Parms.CallFunc_EqualEqual_ByteByte_ReturnValue = CallFunc_EqualEqual_ByteByte_ReturnValue;
+	Parms.K2Node_CreateDelegate_OutputDelegate_10 = K2Node_CreateDelegate_OutputDelegate_10;
+	Parms.CallFunc_GetEngineSubsystem_ReturnValue_4 = CallFunc_GetEngineSubsystem_ReturnValue_4;
+	Parms.CallFunc_EqualEqual_IntInt_ReturnValue = CallFunc_EqualEqual_IntInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -1898,47 +1841,32 @@ bool UUI_StoreMenu_C::ExecuteUbergraph_UI_StoreMenu(class UTexture2DDynamic** K2
 	if (K2Node_CustomEvent_Texture != nullptr)
 		*K2Node_CustomEvent_Texture = Parms.K2Node_CustomEvent_Texture;
 
-	if (Temp_object_Variable != nullptr)
-		*Temp_object_Variable = Parms.Temp_object_Variable;
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
 
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = Parms.CallFunc_Array_Get_Item;
+	if (K2Node_CustomEvent_me != nullptr)
+		*K2Node_CustomEvent_me = std::move(Parms.K2Node_CustomEvent_me);
 
-	if (CallFunc_MakeSettingsFromProjectConfig_ReturnValue != nullptr)
-		*CallFunc_MakeSettingsFromProjectConfig_ReturnValue = std::move(Parms.CallFunc_MakeSettingsFromProjectConfig_ReturnValue);
+	if (CallFunc_GetCurrentActivePage_CurrentActiveTab != nullptr)
+		*CallFunc_GetCurrentActivePage_CurrentActiveTab = Parms.CallFunc_GetCurrentActivePage_CurrentActiveTab;
 
-	if (Temp_int_Variable != nullptr)
-		*Temp_int_Variable = Parms.Temp_int_Variable;
-
-	if (CallFunc_GetCurrentActivePage_CurrentPage != nullptr)
-		*CallFunc_GetCurrentActivePage_CurrentPage = Parms.CallFunc_GetCurrentActivePage_CurrentPage;
-
-	if (CallFunc_GetCurrentActivePage_CurrentPage_1 != nullptr)
-		*CallFunc_GetCurrentActivePage_CurrentPage_1 = Parms.CallFunc_GetCurrentActivePage_CurrentPage_1;
-
-	if (CallFunc_Array_Get_Item_1 != nullptr)
-		*CallFunc_Array_Get_Item_1 = Parms.CallFunc_Array_Get_Item_1;
+	if (CallFunc_GetCurrentActivePage_CurrentActiveTab_1 != nullptr)
+		*CallFunc_GetCurrentActivePage_CurrentActiveTab_1 = Parms.CallFunc_GetCurrentActivePage_CurrentActiveTab_1;
 
 	if (CallFunc_Array_Length_ReturnValue_1 != nullptr)
 		*CallFunc_Array_Length_ReturnValue_1 = Parms.CallFunc_Array_Length_ReturnValue_1;
 
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+	if (CallFunc_Subtract_ByteByte_ReturnValue != nullptr)
+		*CallFunc_Subtract_ByteByte_ReturnValue = Parms.CallFunc_Subtract_ByteByte_ReturnValue;
 
-	if (CallFunc_IsValid_ReturnValue_2 != nullptr)
-		*CallFunc_IsValid_ReturnValue_2 = Parms.CallFunc_IsValid_ReturnValue_2;
+	if (CallFunc_GetValidValue_ReturnValue != nullptr)
+		*CallFunc_GetValidValue_ReturnValue = Parms.CallFunc_GetValidValue_ReturnValue;
 
-	if (CallFunc_Add_ByteByte_ReturnValue != nullptr)
-		*CallFunc_Add_ByteByte_ReturnValue = Parms.CallFunc_Add_ByteByte_ReturnValue;
+	if (CallFunc_IsVisible_ReturnValue != nullptr)
+		*CallFunc_IsVisible_ReturnValue = Parms.CallFunc_IsVisible_ReturnValue;
 
-	if (CallFunc_Percent_ByteByte_ReturnValue != nullptr)
-		*CallFunc_Percent_ByteByte_ReturnValue = Parms.CallFunc_Percent_ByteByte_ReturnValue;
+	if (CallFunc_GetValidValue_ReturnValue_1 != nullptr)
+		*CallFunc_GetValidValue_ReturnValue_1 = Parms.CallFunc_GetValidValue_ReturnValue_1;
 
 	return Parms.ReturnValue;
 
@@ -1966,7 +1894,7 @@ void UUI_StoreMenu_C::UpdateAllThemeSettings__DelegateSignature()
 // Function UI_StoreMenu.UI_StoreMenu_C.OnInputDeviceChanged__DelegateSignature
 // (Public, Delegate, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class ENUM_InputDevices       Device                                                           (ConstParm, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class ENUM_InputDevices       Device                                                           (ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 enum class ENUM_InputDevices UUI_StoreMenu_C::OnInputDeviceChanged__DelegateSignature()
 {

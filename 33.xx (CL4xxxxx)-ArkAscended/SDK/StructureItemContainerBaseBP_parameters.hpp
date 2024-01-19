@@ -18,7 +18,7 @@ namespace Params
 struct AStructureItemContainerBaseBP_C_BPOnTransferAll_Params
 {
 public:
-	class UPrimalInventoryComponent*             ToInventory;                                       // 0x0(0x8)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class UPrimalInventoryComponent*             ToInventory;                                       // 0x0(0x8)(ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 };
 
 }

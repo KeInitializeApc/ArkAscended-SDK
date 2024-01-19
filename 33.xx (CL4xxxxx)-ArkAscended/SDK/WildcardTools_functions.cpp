@@ -43,9 +43,9 @@ class UWildcardHelpers* UWildcardHelpers::GetDefaultObj()
 // Function WildcardTools.WildcardHelpers.CreateJIRABug
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Args                                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      Args                                                             (ConstParm, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UWildcardHelpers::CreateJIRABug(const class FString& Args)
+class FString UWildcardHelpers::CreateJIRABug()
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,7 +54,6 @@ void UWildcardHelpers::CreateJIRABug(const class FString& Args)
 
 	Params::UWildcardHelpers_CreateJIRABug_Params Parms{};
 
-	Parms.Args = Args;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -63,6 +62,8 @@ void UWildcardHelpers::CreateJIRABug(const class FString& Args)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

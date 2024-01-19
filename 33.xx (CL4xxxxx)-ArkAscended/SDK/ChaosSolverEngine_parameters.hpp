@@ -18,8 +18,8 @@ namespace Params
 struct UChaosSolverEngineBlueprintLibrary_ConvertPhysicsCollisionToHitResult_Params
 {
 public:
-	struct FChaosPhysicsCollisionInfo            PhysicsCollision;                                  // 0x0(0xC0)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FHitResult                            ReturnValue;                                       // 0xC0(0xF0)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FChaosPhysicsCollisionInfo            PhysicsCollision;                                  // 0x0(0xC0)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FHitResult                            ReturnValue;                                       // 0xC0(0xF0)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -27,7 +27,7 @@ public:
 struct AChaosSolverActor_SetSolverActive_Params
 {
 public:
-	bool                                         bActive;                                           // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bActive;                                           // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 }

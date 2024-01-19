@@ -43,11 +43,11 @@ class UOculusCreateSessionCallbackProxy* UOculusCreateSessionCallbackProxy::GetD
 // Function OnlineSubsystemOculus.OculusCreateSessionCallbackProxy.CreateSession
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              PublicConnections                                                (ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      OculusMatchmakingPool                                            (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOculusCreateSessionCallbackProxy*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              PublicConnections                                                (Edit, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      OculusMatchmakingPool                                            (Edit, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOculusCreateSessionCallbackProxy*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOculusCreateSessionCallbackProxy* UOculusCreateSessionCallbackProxy::CreateSession(int32 PublicConnections)
+int32 UOculusCreateSessionCallbackProxy::CreateSession(const class FString& OculusMatchmakingPool, class UOculusCreateSessionCallbackProxy* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -56,7 +56,8 @@ class UOculusCreateSessionCallbackProxy* UOculusCreateSessionCallbackProxy::Crea
 
 	Params::UOculusCreateSessionCallbackProxy_CreateSession_Params Parms{};
 
-	Parms.PublicConnections = PublicConnections;
+	Parms.OculusMatchmakingPool = OculusMatchmakingPool;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -102,9 +103,9 @@ class UOculusEntitlementCallbackProxy* UOculusEntitlementCallbackProxy::GetDefau
 // Function OnlineSubsystemOculus.OculusEntitlementCallbackProxy.VerifyEntitlement
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UOculusEntitlementCallbackProxy*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOculusEntitlementCallbackProxy*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOculusEntitlementCallbackProxy* UOculusEntitlementCallbackProxy::VerifyEntitlement()
+void UOculusEntitlementCallbackProxy::VerifyEntitlement(class UOculusEntitlementCallbackProxy* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -113,6 +114,7 @@ class UOculusEntitlementCallbackProxy* UOculusEntitlementCallbackProxy::VerifyEn
 
 	Params::UOculusEntitlementCallbackProxy_VerifyEntitlement_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -121,8 +123,6 @@ class UOculusEntitlementCallbackProxy* UOculusEntitlementCallbackProxy::VerifyEn
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -158,10 +158,10 @@ class UOculusFindSessionsCallbackProxy* UOculusFindSessionsCallbackProxy::GetDef
 // Function OnlineSubsystemOculus.OculusFindSessionsCallbackProxy.FindModeratedSessions
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              MaxResults                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOculusFindSessionsCallbackProxy*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              MaxResults                                                       (ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOculusFindSessionsCallbackProxy*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOculusFindSessionsCallbackProxy* UOculusFindSessionsCallbackProxy::FindModeratedSessions(int32 MaxResults)
+int32 UOculusFindSessionsCallbackProxy::FindModeratedSessions(class UOculusFindSessionsCallbackProxy* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -170,7 +170,7 @@ class UOculusFindSessionsCallbackProxy* UOculusFindSessionsCallbackProxy::FindMo
 
 	Params::UOculusFindSessionsCallbackProxy_FindModeratedSessions_Params Parms{};
 
-	Parms.MaxResults = MaxResults;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -188,11 +188,11 @@ class UOculusFindSessionsCallbackProxy* UOculusFindSessionsCallbackProxy::FindMo
 // Function OnlineSubsystemOculus.OculusFindSessionsCallbackProxy.FindMatchmakingSessions
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              MaxResults                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      OculusMatchmakingPool                                            (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOculusFindSessionsCallbackProxy*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              MaxResults                                                       (ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      OculusMatchmakingPool                                            (Edit, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOculusFindSessionsCallbackProxy*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOculusFindSessionsCallbackProxy* UOculusFindSessionsCallbackProxy::FindMatchmakingSessions(int32 MaxResults)
+int32 UOculusFindSessionsCallbackProxy::FindMatchmakingSessions(const class FString& OculusMatchmakingPool, class UOculusFindSessionsCallbackProxy* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -201,7 +201,8 @@ class UOculusFindSessionsCallbackProxy* UOculusFindSessionsCallbackProxy::FindMa
 
 	Params::UOculusFindSessionsCallbackProxy_FindMatchmakingSessions_Params Parms{};
 
-	Parms.MaxResults = MaxResults;
+	Parms.OculusMatchmakingPool = OculusMatchmakingPool;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -247,10 +248,10 @@ class UOculusIdentityCallbackProxy* UOculusIdentityCallbackProxy::GetDefaultObj(
 // Function OnlineSubsystemOculus.OculusIdentityCallbackProxy.GetOculusIdentity
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              LocalUserNum                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOculusIdentityCallbackProxy*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              LocalUserNum                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOculusIdentityCallbackProxy*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOculusIdentityCallbackProxy* UOculusIdentityCallbackProxy::GetOculusIdentity()
+void UOculusIdentityCallbackProxy::GetOculusIdentity(int32 LocalUserNum, class UOculusIdentityCallbackProxy* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -259,6 +260,8 @@ class UOculusIdentityCallbackProxy* UOculusIdentityCallbackProxy::GetOculusIdent
 
 	Params::UOculusIdentityCallbackProxy_GetOculusIdentity_Params Parms{};
 
+	Parms.LocalUserNum = LocalUserNum;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -267,8 +270,6 @@ class UOculusIdentityCallbackProxy* UOculusIdentityCallbackProxy::GetOculusIdent
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -360,10 +361,10 @@ class UOculusUpdateSessionCallbackProxy* UOculusUpdateSessionCallbackProxy::GetD
 // Function OnlineSubsystemOculus.OculusUpdateSessionCallbackProxy.SetSessionEnqueue
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               bShouldEnqueueInMatchmakingPool                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOculusUpdateSessionCallbackProxy*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bShouldEnqueueInMatchmakingPool                                  (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOculusUpdateSessionCallbackProxy*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOculusUpdateSessionCallbackProxy* UOculusUpdateSessionCallbackProxy::SetSessionEnqueue()
+void UOculusUpdateSessionCallbackProxy::SetSessionEnqueue(bool bShouldEnqueueInMatchmakingPool, class UOculusUpdateSessionCallbackProxy* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -372,6 +373,8 @@ class UOculusUpdateSessionCallbackProxy* UOculusUpdateSessionCallbackProxy::SetS
 
 	Params::UOculusUpdateSessionCallbackProxy_SetSessionEnqueue_Params Parms{};
 
+	Parms.bShouldEnqueueInMatchmakingPool = bShouldEnqueueInMatchmakingPool;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -380,8 +383,6 @@ class UOculusUpdateSessionCallbackProxy* UOculusUpdateSessionCallbackProxy::SetS
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 

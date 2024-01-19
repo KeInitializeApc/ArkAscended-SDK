@@ -43,12 +43,12 @@ class UASACameraFunctionLibrary_C* UASACameraFunctionLibrary_C::GetDefaultObj()
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.FinalOverridePivotLocation
 // (Static, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FVector                     CurrentPivotLocation                                             (Edit, ExportObject, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     DesiredPivotLocation                                             (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector                     CurrentPivotLocation                                             (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     DesiredPivotLocation                                             (Edit, ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
 
-void UASACameraFunctionLibrary_C::FinalOverridePivotLocation(class APrimalCharacter* CameraOwnerCharacter, const struct FVector& CurrentPivotLocation, const struct FVector& DesiredPivotLocation, class UObject** __WorldContext)
+struct FVector UASACameraFunctionLibrary_C::FinalOverridePivotLocation(struct FVector* CurrentPivotLocation, class UObject** __WorldContext)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,14 +57,16 @@ void UASACameraFunctionLibrary_C::FinalOverridePivotLocation(class APrimalCharac
 
 	Params::UASACameraFunctionLibrary_C_FinalOverridePivotLocation_Params Parms{};
 
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
-	Parms.CurrentPivotLocation = CurrentPivotLocation;
-	Parms.DesiredPivotLocation = DesiredPivotLocation;
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (CurrentPivotLocation != nullptr)
+		*CurrentPivotLocation = std::move(Parms.CurrentPivotLocation);
+
 	if (__WorldContext != nullptr)
 		*__WorldContext = Parms.__WorldContext;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -72,14 +74,14 @@ void UASACameraFunctionLibrary_C::FinalOverridePivotLocation(class APrimalCharac
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.ShouldApplyAnyPitchBasedModifier
 // (Static, Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
-// bool                               bShouldApplyAnyModifier                                          (ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_IsTargeting_ReturnValue                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               bShouldApplyAnyModifier                                          (ConstParm, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsTargeting_ReturnValue                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
 
-bool UASACameraFunctionLibrary_C::ShouldApplyAnyPitchBasedModifier(class APrimalCharacter* CameraOwnerCharacter, class UObject** __WorldContext, class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, bool* K2Node_DynamicCast_bSuccess)
+bool UASACameraFunctionLibrary_C::ShouldApplyAnyPitchBasedModifier(class UObject** __WorldContext)
 {
 	static class UFunction* Func = nullptr;
 
@@ -88,16 +90,11 @@ bool UASACameraFunctionLibrary_C::ShouldApplyAnyPitchBasedModifier(class APrimal
 
 	Params::UASACameraFunctionLibrary_C_ShouldApplyAnyPitchBasedModifier_Params Parms{};
 
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
-	Parms.K2Node_DynamicCast_AsShooter_Character = K2Node_DynamicCast_AsShooter_Character;
 
 	UObject::ProcessEvent(Func, &Parms);
 
 	if (__WorldContext != nullptr)
 		*__WorldContext = Parms.__WorldContext;
-
-	if (K2Node_DynamicCast_bSuccess != nullptr)
-		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
 
 	return Parms.ReturnValue;
 
@@ -107,57 +104,57 @@ bool UASACameraFunctionLibrary_C::ShouldApplyAnyPitchBasedModifier(class APrimal
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.ApplyPitchBasedModifierToArmLengthInterp
 // (Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraParams         CameraParams                                                     (BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// struct FPrimalCameraInterpParams   ArmLengthInterpParams                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// TArray<struct FPrimalCameraPitchBasedModifier>PitchBasedModifiers                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
-// double                             PitchModifierAlpha                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              FoundEntryIndex                                                  (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               Temp_bool_True_if_break_was_hit_Variable                         (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_ShouldApplyAnyPitchBasedModifier_bShouldApplyAnyModifier(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier      (Edit, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp               (EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha                 (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item_1                                        (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1    (Edit, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1             (EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1               (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue_1                                (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// double                             CallFunc_SelectFloat_ReturnValue                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleFloat_ReturnValue                        (Edit, ConstParm, ExportObject, ReturnParm, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_MultiplyMultiply_FloatFloat_ReturnValue                 (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleFloat_ReturnValue_1                      (Edit, ConstParm, ExportObject, ReturnParm, Transient, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Net, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Lerp_ReturnValue                                        (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// double                             CallFunc_Lerp_ReturnValue_1                                      (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Lerp_ReturnValue_2                                      (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference, RepNotify, Interp)
-// struct FPrimalCameraInterpParams   K2Node_MakeStruct_PrimalCameraInterpParams                       (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_Lerp_A_ImplicitCast                                     (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_Lerp_A_ImplicitCast_1                                   (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Lerp_A_ImplicitCast_2                                   (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference, RepNotify, Interp)
-// double                             CallFunc_SelectFloat_B_ImplicitCast                              (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_EqualEqual_DoubleDouble_A_ImplicitCast                  (ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// double                             CallFunc_Lerp_B_ImplicitCast                                     (Edit, ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_Lerp_B_ImplicitCast_1                                   (Edit, ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// double                             CallFunc_Lerp_B_ImplicitCast_2                                   (Edit, ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, EditConst, SubobjectReference)
-// float                              K2Node_MakeStruct_TargetVelocity_ImplicitCast                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              K2Node_MakeStruct_SpringStiffness_ImplicitCast                   (Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              K2Node_MakeStruct_CriticalDamping_ImplicitCast                   (ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraParams         CameraParams                                                     (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// struct FPrimalCameraInterpParams   ArmLengthInterpParams                                            (ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// TArray<struct FPrimalCameraPitchBasedModifier>PitchBasedModifiers                                              (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             PitchModifierAlpha                                               (Edit, ConstParm, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              FoundEntryIndex                                                  (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               Temp_bool_True_if_break_was_hit_Variable                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_ShouldApplyAnyPitchBasedModifier_bShouldApplyAnyModifier(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier      (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp               (BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha                 (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue                                  (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item_1                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1    (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1             (BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1               (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue_1                                (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_SelectFloat_ReturnValue                                 (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleFloat_ReturnValue                        (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_MultiplyMultiply_FloatFloat_ReturnValue                 (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleFloat_ReturnValue_1                      (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_ReturnValue                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_ReturnValue_1                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Lerp_ReturnValue_2                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// struct FPrimalCameraInterpParams   K2Node_MakeStruct_PrimalCameraInterpParams                       (ConstParm, ExportObject, BlueprintReadOnly, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_Lerp_A_ImplicitCast                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_A_ImplicitCast_1                                   (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Lerp_A_ImplicitCast_2                                   (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// double                             CallFunc_SelectFloat_B_ImplicitCast                              (Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_EqualEqual_DoubleDouble_A_ImplicitCast                  (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_B_ImplicitCast                                     (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_Lerp_B_ImplicitCast_1                                   (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// double                             CallFunc_Lerp_B_ImplicitCast_2                                   (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// float                              K2Node_MakeStruct_TargetVelocity_ImplicitCast                    (ExportObject, EditFixedSize, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              K2Node_MakeStruct_SpringStiffness_ImplicitCast                   (BlueprintReadOnly, Net, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              K2Node_MakeStruct_CriticalDamping_ImplicitCast                   (ConstParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToArmLengthInterp(class APrimalCharacter* CameraOwnerCharacter, const struct FPrimalCameraParams& CameraParams, TArray<struct FPrimalCameraPitchBasedModifier>* PitchBasedModifiers, class UObject** __WorldContext, double* PitchModifierAlpha, int32 FoundEntryIndex, int32* CallFunc_Array_Length_ReturnValue, bool CallFunc_ShouldApplyAnyPitchBasedModifier_bShouldApplyAnyModifier, bool* CallFunc_IsValid_ReturnValue, struct FPrimalCameraPitchBasedModifier* CallFunc_Array_Get_Item, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp, double* CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha, int32 CallFunc_Add_IntInt_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, bool CallFunc_Array_IsValidIndex_ReturnValue, struct FPrimalCameraPitchBasedModifier* CallFunc_Array_Get_Item_1, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1, double* CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1, bool* CallFunc_EqualEqual_DoubleDouble_ReturnValue, bool CallFunc_BooleanAND_ReturnValue_1, double CallFunc_Lerp_ReturnValue, double CallFunc_Lerp_ReturnValue_1, double CallFunc_Lerp_ReturnValue_2, struct FPrimalCameraInterpParams* K2Node_MakeStruct_PrimalCameraInterpParams, double* CallFunc_Lerp_A_ImplicitCast, double* CallFunc_Lerp_A_ImplicitCast_1, double* CallFunc_Lerp_A_ImplicitCast_2, double CallFunc_SelectFloat_B_ImplicitCast, double CallFunc_Lerp_B_ImplicitCast, double CallFunc_Lerp_B_ImplicitCast_1, double CallFunc_Lerp_B_ImplicitCast_2, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast, float* K2Node_MakeStruct_TargetVelocity_ImplicitCast, float* K2Node_MakeStruct_SpringStiffness_ImplicitCast, float* K2Node_MakeStruct_CriticalDamping_ImplicitCast)
+double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToArmLengthInterp(class UObject** __WorldContext, double PitchModifierAlpha, int32* CallFunc_Array_Length_ReturnValue, const struct FPrimalCameraPitchBasedModifier& CallFunc_Array_Get_Item, int32 Temp_int_Loop_Counter_Variable, bool CallFunc_Less_IntInt_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, const struct FPrimalCameraPitchBasedModifier& CallFunc_Array_Get_Item_1, bool CallFunc_BooleanAND_ReturnValue_1, double* CallFunc_SelectFloat_ReturnValue, double CallFunc_MultiplyMultiply_FloatFloat_ReturnValue, double* CallFunc_Divide_DoubleFloat_ReturnValue, const struct FPrimalCameraInterpParams& K2Node_MakeStruct_PrimalCameraInterpParams, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast, float K2Node_MakeStruct_TargetVelocity_ImplicitCast, float K2Node_MakeStruct_SpringStiffness_ImplicitCast, float K2Node_MakeStruct_CriticalDamping_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -166,89 +163,35 @@ double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToArmLengthInterp(cla
 
 	Params::UASACameraFunctionLibrary_C_ApplyPitchBasedModifierToArmLengthInterp_Params Parms{};
 
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
-	Parms.CameraParams = CameraParams;
-	Parms.FoundEntryIndex = FoundEntryIndex;
-	Parms.CallFunc_ShouldApplyAnyPitchBasedModifier_bShouldApplyAnyModifier = CallFunc_ShouldApplyAnyPitchBasedModifier_bShouldApplyAnyModifier;
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
+	Parms.PitchModifierAlpha = PitchModifierAlpha;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 	Parms.CallFunc_BooleanAND_ReturnValue = CallFunc_BooleanAND_ReturnValue;
-	Parms.CallFunc_Array_IsValidIndex_ReturnValue = CallFunc_Array_IsValidIndex_ReturnValue;
+	Parms.CallFunc_Array_Get_Item_1 = CallFunc_Array_Get_Item_1;
 	Parms.CallFunc_BooleanAND_ReturnValue_1 = CallFunc_BooleanAND_ReturnValue_1;
-	Parms.CallFunc_Lerp_ReturnValue = CallFunc_Lerp_ReturnValue;
-	Parms.CallFunc_Lerp_ReturnValue_1 = CallFunc_Lerp_ReturnValue_1;
-	Parms.CallFunc_Lerp_ReturnValue_2 = CallFunc_Lerp_ReturnValue_2;
-	Parms.CallFunc_SelectFloat_B_ImplicitCast = CallFunc_SelectFloat_B_ImplicitCast;
-	Parms.CallFunc_Lerp_B_ImplicitCast = CallFunc_Lerp_B_ImplicitCast;
-	Parms.CallFunc_Lerp_B_ImplicitCast_1 = CallFunc_Lerp_B_ImplicitCast_1;
-	Parms.CallFunc_Lerp_B_ImplicitCast_2 = CallFunc_Lerp_B_ImplicitCast_2;
+	Parms.CallFunc_MultiplyMultiply_FloatFloat_ReturnValue = CallFunc_MultiplyMultiply_FloatFloat_ReturnValue;
+	Parms.K2Node_MakeStruct_PrimalCameraInterpParams = K2Node_MakeStruct_PrimalCameraInterpParams;
+	Parms.K2Node_MakeStruct_TargetVelocity_ImplicitCast = K2Node_MakeStruct_TargetVelocity_ImplicitCast;
+	Parms.K2Node_MakeStruct_SpringStiffness_ImplicitCast = K2Node_MakeStruct_SpringStiffness_ImplicitCast;
+	Parms.K2Node_MakeStruct_CriticalDamping_ImplicitCast = K2Node_MakeStruct_CriticalDamping_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (PitchBasedModifiers != nullptr)
-		*PitchBasedModifiers = std::move(Parms.PitchBasedModifiers);
 
 	if (__WorldContext != nullptr)
 		*__WorldContext = Parms.__WorldContext;
 
-	if (PitchModifierAlpha != nullptr)
-		*PitchModifierAlpha = Parms.PitchModifierAlpha;
-
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (CallFunc_SelectFloat_ReturnValue != nullptr)
+		*CallFunc_SelectFloat_ReturnValue = Parms.CallFunc_SelectFloat_ReturnValue;
 
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier;
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp;
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha = Parms.CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha;
-
-	if (CallFunc_Array_Get_Item_1 != nullptr)
-		*CallFunc_Array_Get_Item_1 = std::move(Parms.CallFunc_Array_Get_Item_1);
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1 != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1 = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1;
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1 != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1 = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1;
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1 != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1 = Parms.CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1;
-
-	if (CallFunc_EqualEqual_DoubleDouble_ReturnValue != nullptr)
-		*CallFunc_EqualEqual_DoubleDouble_ReturnValue = Parms.CallFunc_EqualEqual_DoubleDouble_ReturnValue;
-
-	if (K2Node_MakeStruct_PrimalCameraInterpParams != nullptr)
-		*K2Node_MakeStruct_PrimalCameraInterpParams = std::move(Parms.K2Node_MakeStruct_PrimalCameraInterpParams);
-
-	if (CallFunc_Lerp_A_ImplicitCast != nullptr)
-		*CallFunc_Lerp_A_ImplicitCast = Parms.CallFunc_Lerp_A_ImplicitCast;
-
-	if (CallFunc_Lerp_A_ImplicitCast_1 != nullptr)
-		*CallFunc_Lerp_A_ImplicitCast_1 = Parms.CallFunc_Lerp_A_ImplicitCast_1;
-
-	if (CallFunc_Lerp_A_ImplicitCast_2 != nullptr)
-		*CallFunc_Lerp_A_ImplicitCast_2 = Parms.CallFunc_Lerp_A_ImplicitCast_2;
+	if (CallFunc_Divide_DoubleFloat_ReturnValue != nullptr)
+		*CallFunc_Divide_DoubleFloat_ReturnValue = Parms.CallFunc_Divide_DoubleFloat_ReturnValue;
 
 	if (CallFunc_Divide_DoubleFloat_B_ImplicitCast != nullptr)
 		*CallFunc_Divide_DoubleFloat_B_ImplicitCast = Parms.CallFunc_Divide_DoubleFloat_B_ImplicitCast;
-
-	if (K2Node_MakeStruct_TargetVelocity_ImplicitCast != nullptr)
-		*K2Node_MakeStruct_TargetVelocity_ImplicitCast = Parms.K2Node_MakeStruct_TargetVelocity_ImplicitCast;
-
-	if (K2Node_MakeStruct_SpringStiffness_ImplicitCast != nullptr)
-		*K2Node_MakeStruct_SpringStiffness_ImplicitCast = Parms.K2Node_MakeStruct_SpringStiffness_ImplicitCast;
-
-	if (K2Node_MakeStruct_CriticalDamping_ImplicitCast != nullptr)
-		*K2Node_MakeStruct_CriticalDamping_ImplicitCast = Parms.K2Node_MakeStruct_CriticalDamping_ImplicitCast;
 
 	return Parms.ReturnValue;
 
@@ -258,14 +201,14 @@ double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToArmLengthInterp(cla
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.DebugPitchBasedModifier
 // (Static, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraPitchBasedModifierPitchBasedModifier                                               (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              EntryIndex                                                       (Edit, EditFixedSize, Parm, GlobalConfig, InstancedReference, SubobjectReference)
-// double                             ModifierAlpha                                                    (Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraPitchBasedModifierPitchBasedModifier                                               (Edit, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              EntryIndex                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, GlobalConfig, InstancedReference, SubobjectReference)
+// double                             ModifierAlpha                                                    (Edit, ExportObject, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-void UASACameraFunctionLibrary_C::DebugPitchBasedModifier(class APrimalCharacter* CameraOwnerCharacter, struct FPrimalCameraPitchBasedModifier* PitchBasedModifier, int32 EntryIndex, double* ModifierAlpha, class UObject** __WorldContext, bool* CallFunc_IsValid_ReturnValue)
+bool UASACameraFunctionLibrary_C::DebugPitchBasedModifier(const struct FPrimalCameraPitchBasedModifier& PitchBasedModifier, int32 EntryIndex, double ModifierAlpha, class UObject** __WorldContext)
 {
 	static class UFunction* Func = nullptr;
 
@@ -274,22 +217,16 @@ void UASACameraFunctionLibrary_C::DebugPitchBasedModifier(class APrimalCharacter
 
 	Params::UASACameraFunctionLibrary_C_DebugPitchBasedModifier_Params Parms{};
 
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
+	Parms.PitchBasedModifier = PitchBasedModifier;
 	Parms.EntryIndex = EntryIndex;
+	Parms.ModifierAlpha = ModifierAlpha;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (PitchBasedModifier != nullptr)
-		*PitchBasedModifier = std::move(Parms.PitchBasedModifier);
-
-	if (ModifierAlpha != nullptr)
-		*ModifierAlpha = Parms.ModifierAlpha;
 
 	if (__WorldContext != nullptr)
 		*__WorldContext = Parms.__WorldContext;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -297,13 +234,13 @@ void UASACameraFunctionLibrary_C::DebugPitchBasedModifier(class APrimalCharacter
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.FinalOverridePivotOffset
 // (Static, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraParams         CameraParams                                                     (BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// TArray<struct FPrimalCameraPitchBasedModifier>PitchBasedModifiers                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-// struct FVector                     DesiredPivotOffset                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraParams         CameraParams                                                     (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// TArray<struct FPrimalCameraPitchBasedModifier>PitchBasedModifiers                                              (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// struct FVector                     DesiredPivotOffset                                               (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
 
-void UASACameraFunctionLibrary_C::FinalOverridePivotOffset(class APrimalCharacter* CameraOwnerCharacter, const struct FPrimalCameraParams& CameraParams, TArray<struct FPrimalCameraPitchBasedModifier>* PitchBasedModifiers, const struct FVector& DesiredPivotOffset, class UObject** __WorldContext)
+struct FVector UASACameraFunctionLibrary_C::FinalOverridePivotOffset(class UObject** __WorldContext)
 {
 	static class UFunction* Func = nullptr;
 
@@ -312,17 +249,13 @@ void UASACameraFunctionLibrary_C::FinalOverridePivotOffset(class APrimalCharacte
 
 	Params::UASACameraFunctionLibrary_C_FinalOverridePivotOffset_Params Parms{};
 
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
-	Parms.CameraParams = CameraParams;
-	Parms.DesiredPivotOffset = DesiredPivotOffset;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (PitchBasedModifiers != nullptr)
-		*PitchBasedModifiers = std::move(Parms.PitchBasedModifiers);
-
 	if (__WorldContext != nullptr)
 		*__WorldContext = Parms.__WorldContext;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -330,50 +263,50 @@ void UASACameraFunctionLibrary_C::FinalOverridePivotOffset(class APrimalCharacte
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.ApplyPitchBasedModifierToPivotOffset
 // (Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraParams         CameraParams                                                     (BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// TArray<struct FPrimalCameraPitchBasedModifier>PitchBasedModifiers                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-// struct FVector                     DesiredPivotOffset                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
-// double                             PitchModifierAlpha                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              FoundEntryIndex                                                  (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               Temp_bool_True_if_break_was_hit_Variable                         (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// struct FVector                     CallFunc_GetTPVCameraOffset_ReturnValue                          (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// struct FVector                     CallFunc_SelectVector_ReturnValue                                (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, EditConst, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier      (Edit, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp               (EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha                 (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item_1                                        (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1    (Edit, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1             (EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1               (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// struct FVector                     CallFunc_Add_VectorVector_ReturnValue                            (BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FVector                     CallFunc_Add_VectorVector_ReturnValue_1                          (BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// struct FVector                     CallFunc_SelectVector_ReturnValue_1                              (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, EditConst, SubobjectReference, Interp)
-// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue_1                                (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// double                             CallFunc_SelectFloat_ReturnValue                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleFloat_ReturnValue                        (Edit, ConstParm, ExportObject, ReturnParm, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_MultiplyMultiply_FloatFloat_ReturnValue                 (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleFloat_ReturnValue_1                      (Edit, ConstParm, ExportObject, ReturnParm, Transient, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Net, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FVector                     CallFunc_VLerp_ReturnValue                                       (ConstParm, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_SelectFloat_B_ImplicitCast                              (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_EqualEqual_DoubleDouble_A_ImplicitCast                  (ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, EditConst, SubobjectReference)
-// float                              CallFunc_VLerp_Alpha_ImplicitCast                                (BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraParams         CameraParams                                                     (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// TArray<struct FPrimalCameraPitchBasedModifier>PitchBasedModifiers                                              (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// struct FVector                     DesiredPivotOffset                                               (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             PitchModifierAlpha                                               (Edit, ConstParm, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              FoundEntryIndex                                                  (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               Temp_bool_True_if_break_was_hit_Variable                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     CallFunc_GetTPVCameraOffset_ReturnValue                          (BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     CallFunc_SelectVector_ReturnValue                                (BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier      (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp               (BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha                 (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue                                  (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item_1                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1    (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1             (BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1               (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// struct FVector                     CallFunc_Add_VectorVector_ReturnValue                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     CallFunc_Add_VectorVector_ReturnValue_1                          (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// struct FVector                     CallFunc_SelectVector_ReturnValue_1                              (BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue_1                                (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_SelectFloat_ReturnValue                                 (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleFloat_ReturnValue                        (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_MultiplyMultiply_FloatFloat_ReturnValue                 (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleFloat_ReturnValue_1                      (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     CallFunc_VLerp_ReturnValue                                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_SelectFloat_B_ImplicitCast                              (Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_EqualEqual_DoubleDouble_A_ImplicitCast                  (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// float                              CallFunc_VLerp_Alpha_ImplicitCast                                (Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToPivotOffset(class APrimalCharacter* CameraOwnerCharacter, const struct FPrimalCameraParams& CameraParams, TArray<struct FPrimalCameraPitchBasedModifier>* PitchBasedModifiers, const struct FVector& DesiredPivotOffset, class UObject** __WorldContext, double* PitchModifierAlpha, int32 FoundEntryIndex, int32* CallFunc_Array_Length_ReturnValue, const struct FVector& CallFunc_GetTPVCameraOffset_ReturnValue, bool* CallFunc_IsValid_ReturnValue, struct FPrimalCameraPitchBasedModifier* CallFunc_Array_Get_Item, const struct FVector& CallFunc_SelectVector_ReturnValue, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp, double* CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha, int32 CallFunc_Add_IntInt_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, bool CallFunc_Array_IsValidIndex_ReturnValue, struct FPrimalCameraPitchBasedModifier* CallFunc_Array_Get_Item_1, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1, double* CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1, const struct FVector& CallFunc_SelectVector_ReturnValue_1, bool* CallFunc_EqualEqual_DoubleDouble_ReturnValue, bool CallFunc_BooleanAND_ReturnValue_1, struct FVector* CallFunc_VLerp_ReturnValue, double CallFunc_SelectFloat_B_ImplicitCast, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast, float* CallFunc_VLerp_Alpha_ImplicitCast)
+float UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToPivotOffset(class UObject** __WorldContext, double PitchModifierAlpha, int32* CallFunc_Array_Length_ReturnValue, const struct FPrimalCameraPitchBasedModifier& CallFunc_Array_Get_Item, struct FVector* CallFunc_SelectVector_ReturnValue, int32 Temp_int_Loop_Counter_Variable, bool CallFunc_Less_IntInt_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, const struct FPrimalCameraPitchBasedModifier& CallFunc_Array_Get_Item_1, struct FVector* CallFunc_SelectVector_ReturnValue_1, bool CallFunc_BooleanAND_ReturnValue_1, double* CallFunc_SelectFloat_ReturnValue, double CallFunc_MultiplyMultiply_FloatFloat_ReturnValue, double* CallFunc_Divide_DoubleFloat_ReturnValue, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -382,71 +315,37 @@ double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToPivotOffset(class A
 
 	Params::UASACameraFunctionLibrary_C_ApplyPitchBasedModifierToPivotOffset_Params Parms{};
 
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
-	Parms.CameraParams = CameraParams;
-	Parms.DesiredPivotOffset = DesiredPivotOffset;
-	Parms.FoundEntryIndex = FoundEntryIndex;
-	Parms.CallFunc_GetTPVCameraOffset_ReturnValue = CallFunc_GetTPVCameraOffset_ReturnValue;
-	Parms.CallFunc_SelectVector_ReturnValue = CallFunc_SelectVector_ReturnValue;
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
+	Parms.PitchModifierAlpha = PitchModifierAlpha;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 	Parms.CallFunc_BooleanAND_ReturnValue = CallFunc_BooleanAND_ReturnValue;
-	Parms.CallFunc_Array_IsValidIndex_ReturnValue = CallFunc_Array_IsValidIndex_ReturnValue;
-	Parms.CallFunc_SelectVector_ReturnValue_1 = CallFunc_SelectVector_ReturnValue_1;
+	Parms.CallFunc_Array_Get_Item_1 = CallFunc_Array_Get_Item_1;
 	Parms.CallFunc_BooleanAND_ReturnValue_1 = CallFunc_BooleanAND_ReturnValue_1;
-	Parms.CallFunc_SelectFloat_B_ImplicitCast = CallFunc_SelectFloat_B_ImplicitCast;
+	Parms.CallFunc_MultiplyMultiply_FloatFloat_ReturnValue = CallFunc_MultiplyMultiply_FloatFloat_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (PitchBasedModifiers != nullptr)
-		*PitchBasedModifiers = std::move(Parms.PitchBasedModifiers);
 
 	if (__WorldContext != nullptr)
 		*__WorldContext = Parms.__WorldContext;
 
-	if (PitchModifierAlpha != nullptr)
-		*PitchModifierAlpha = Parms.PitchModifierAlpha;
-
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (CallFunc_SelectVector_ReturnValue != nullptr)
+		*CallFunc_SelectVector_ReturnValue = std::move(Parms.CallFunc_SelectVector_ReturnValue);
 
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
+	if (CallFunc_SelectVector_ReturnValue_1 != nullptr)
+		*CallFunc_SelectVector_ReturnValue_1 = std::move(Parms.CallFunc_SelectVector_ReturnValue_1);
 
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier;
+	if (CallFunc_SelectFloat_ReturnValue != nullptr)
+		*CallFunc_SelectFloat_ReturnValue = Parms.CallFunc_SelectFloat_ReturnValue;
 
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp;
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha = Parms.CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha;
-
-	if (CallFunc_Array_Get_Item_1 != nullptr)
-		*CallFunc_Array_Get_Item_1 = std::move(Parms.CallFunc_Array_Get_Item_1);
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1 != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1 = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1;
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1 != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1 = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1;
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1 != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1 = Parms.CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1;
-
-	if (CallFunc_EqualEqual_DoubleDouble_ReturnValue != nullptr)
-		*CallFunc_EqualEqual_DoubleDouble_ReturnValue = Parms.CallFunc_EqualEqual_DoubleDouble_ReturnValue;
-
-	if (CallFunc_VLerp_ReturnValue != nullptr)
-		*CallFunc_VLerp_ReturnValue = std::move(Parms.CallFunc_VLerp_ReturnValue);
+	if (CallFunc_Divide_DoubleFloat_ReturnValue != nullptr)
+		*CallFunc_Divide_DoubleFloat_ReturnValue = Parms.CallFunc_Divide_DoubleFloat_ReturnValue;
 
 	if (CallFunc_Divide_DoubleFloat_B_ImplicitCast != nullptr)
 		*CallFunc_Divide_DoubleFloat_B_ImplicitCast = Parms.CallFunc_Divide_DoubleFloat_B_ImplicitCast;
-
-	if (CallFunc_VLerp_Alpha_ImplicitCast != nullptr)
-		*CallFunc_VLerp_Alpha_ImplicitCast = Parms.CallFunc_VLerp_Alpha_ImplicitCast;
 
 	return Parms.ReturnValue;
 
@@ -456,53 +355,53 @@ double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToPivotOffset(class A
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.ApplyPitchBasedModifierToArmLength
 // (Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraParams         CameraParams                                                     (BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// TArray<struct FPrimalCameraPitchBasedModifier>PitchBasedModifiers                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-// double                             CurrentArmLength                                                 (ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             DesiredArmLength                                                 (ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
-// double                             PitchModifierAlpha                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              FoundEntryIndex                                                  (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               Temp_bool_True_if_break_was_hit_Variable                         (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_ShouldApplyAnyPitchBasedModifier_bShouldApplyAnyModifier(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_GreaterEqual_DoubleDouble_ReturnValue                   (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier      (Edit, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp               (EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha                 (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item_1                                        (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1    (Edit, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1             (EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1               (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// double                             K2Node_VariableGet_DesiredArmLength_ImplicitCast                 (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_SelectFloat_ReturnValue                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue_1                                (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// double                             CallFunc_SelectFloat_ReturnValue_1                               (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// double                             CallFunc_Subtract_DoubleFloat_ReturnValue                        (Edit, ConstParm, ExportObject, ReturnParm, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_MultiplyMultiply_FloatFloat_ReturnValue                 (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleFloat_ReturnValue_1                      (Edit, ConstParm, ExportObject, ReturnParm, Transient, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Net, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Lerp_ReturnValue                                        (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// double                             CallFunc_GreaterEqual_DoubleDouble_A_ImplicitCast                (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, SubobjectReference)
-// float                              K2Node_VariableSetRef_Target_ImplicitCast                        (Edit, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_SelectFloat_B_ImplicitCast                              (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_EqualEqual_DoubleDouble_A_ImplicitCast                  (ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// double                             CallFunc_SelectFloat_A_ImplicitCast                              (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_Lerp_B_ImplicitCast                                     (Edit, ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, EditConst, SubobjectReference)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraParams         CameraParams                                                     (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// TArray<struct FPrimalCameraPitchBasedModifier>PitchBasedModifiers                                              (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// double                             CurrentArmLength                                                 (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             DesiredArmLength                                                 (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             PitchModifierAlpha                                               (Edit, ConstParm, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              FoundEntryIndex                                                  (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               Temp_bool_True_if_break_was_hit_Variable                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_ShouldApplyAnyPitchBasedModifier_bShouldApplyAnyModifier(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_GreaterEqual_DoubleDouble_ReturnValue                   (ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier      (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp               (BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha                 (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue                                  (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item_1                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1    (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1             (BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1               (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// double                             K2Node_VariableGet_DesiredArmLength_ImplicitCast                 (Net, EditFixedSize, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_SelectFloat_ReturnValue                                 (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue_1                                (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_SelectFloat_ReturnValue_1                               (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Subtract_DoubleFloat_ReturnValue                        (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_MultiplyMultiply_FloatFloat_ReturnValue                 (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleFloat_ReturnValue_1                      (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_ReturnValue                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_GreaterEqual_DoubleDouble_A_ImplicitCast                (BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// float                              K2Node_VariableSetRef_Target_ImplicitCast                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_SelectFloat_B_ImplicitCast                              (Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_EqualEqual_DoubleDouble_A_ImplicitCast                  (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_SelectFloat_A_ImplicitCast                              (Edit, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_B_ImplicitCast                                     (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
-double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToArmLength(class APrimalCharacter* CameraOwnerCharacter, const struct FPrimalCameraParams& CameraParams, TArray<struct FPrimalCameraPitchBasedModifier>* PitchBasedModifiers, double CurrentArmLength, double DesiredArmLength, class UObject** __WorldContext, double* PitchModifierAlpha, int32 FoundEntryIndex, int32* CallFunc_Array_Length_ReturnValue, bool CallFunc_ShouldApplyAnyPitchBasedModifier_bShouldApplyAnyModifier, bool* CallFunc_IsValid_ReturnValue, struct FPrimalCameraPitchBasedModifier* CallFunc_Array_Get_Item, bool* CallFunc_GreaterEqual_DoubleDouble_ReturnValue, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp, double* CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha, int32 CallFunc_Add_IntInt_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, bool CallFunc_Array_IsValidIndex_ReturnValue, struct FPrimalCameraPitchBasedModifier* CallFunc_Array_Get_Item_1, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1, double* CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1, double* K2Node_VariableGet_DesiredArmLength_ImplicitCast, bool* CallFunc_EqualEqual_DoubleDouble_ReturnValue, bool CallFunc_BooleanAND_ReturnValue_1, double CallFunc_Lerp_ReturnValue, double* CallFunc_GreaterEqual_DoubleDouble_A_ImplicitCast, float* K2Node_VariableSetRef_Target_ImplicitCast, double CallFunc_SelectFloat_B_ImplicitCast, double CallFunc_Lerp_B_ImplicitCast, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast)
+double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToArmLength(class UObject** __WorldContext, double PitchModifierAlpha, int32* CallFunc_Array_Length_ReturnValue, const struct FPrimalCameraPitchBasedModifier& CallFunc_Array_Get_Item, int32 Temp_int_Loop_Counter_Variable, bool CallFunc_Less_IntInt_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, const struct FPrimalCameraPitchBasedModifier& CallFunc_Array_Get_Item_1, double K2Node_VariableGet_DesiredArmLength_ImplicitCast, double* CallFunc_SelectFloat_ReturnValue, bool CallFunc_BooleanAND_ReturnValue_1, double* CallFunc_SelectFloat_ReturnValue_1, double CallFunc_MultiplyMultiply_FloatFloat_ReturnValue, double* CallFunc_Divide_DoubleFloat_ReturnValue, float K2Node_VariableSetRef_Target_ImplicitCast, double* CallFunc_SelectFloat_A_ImplicitCast, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -511,75 +410,36 @@ double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToArmLength(class APr
 
 	Params::UASACameraFunctionLibrary_C_ApplyPitchBasedModifierToArmLength_Params Parms{};
 
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
-	Parms.CameraParams = CameraParams;
-	Parms.CurrentArmLength = CurrentArmLength;
-	Parms.DesiredArmLength = DesiredArmLength;
-	Parms.FoundEntryIndex = FoundEntryIndex;
-	Parms.CallFunc_ShouldApplyAnyPitchBasedModifier_bShouldApplyAnyModifier = CallFunc_ShouldApplyAnyPitchBasedModifier_bShouldApplyAnyModifier;
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
+	Parms.PitchModifierAlpha = PitchModifierAlpha;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 	Parms.CallFunc_BooleanAND_ReturnValue = CallFunc_BooleanAND_ReturnValue;
-	Parms.CallFunc_Array_IsValidIndex_ReturnValue = CallFunc_Array_IsValidIndex_ReturnValue;
+	Parms.CallFunc_Array_Get_Item_1 = CallFunc_Array_Get_Item_1;
+	Parms.K2Node_VariableGet_DesiredArmLength_ImplicitCast = K2Node_VariableGet_DesiredArmLength_ImplicitCast;
 	Parms.CallFunc_BooleanAND_ReturnValue_1 = CallFunc_BooleanAND_ReturnValue_1;
-	Parms.CallFunc_Lerp_ReturnValue = CallFunc_Lerp_ReturnValue;
-	Parms.CallFunc_SelectFloat_B_ImplicitCast = CallFunc_SelectFloat_B_ImplicitCast;
-	Parms.CallFunc_Lerp_B_ImplicitCast = CallFunc_Lerp_B_ImplicitCast;
+	Parms.CallFunc_MultiplyMultiply_FloatFloat_ReturnValue = CallFunc_MultiplyMultiply_FloatFloat_ReturnValue;
+	Parms.K2Node_VariableSetRef_Target_ImplicitCast = K2Node_VariableSetRef_Target_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (PitchBasedModifiers != nullptr)
-		*PitchBasedModifiers = std::move(Parms.PitchBasedModifiers);
 
 	if (__WorldContext != nullptr)
 		*__WorldContext = Parms.__WorldContext;
 
-	if (PitchModifierAlpha != nullptr)
-		*PitchModifierAlpha = Parms.PitchModifierAlpha;
-
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (CallFunc_SelectFloat_ReturnValue != nullptr)
+		*CallFunc_SelectFloat_ReturnValue = Parms.CallFunc_SelectFloat_ReturnValue;
 
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
+	if (CallFunc_SelectFloat_ReturnValue_1 != nullptr)
+		*CallFunc_SelectFloat_ReturnValue_1 = Parms.CallFunc_SelectFloat_ReturnValue_1;
 
-	if (CallFunc_GreaterEqual_DoubleDouble_ReturnValue != nullptr)
-		*CallFunc_GreaterEqual_DoubleDouble_ReturnValue = Parms.CallFunc_GreaterEqual_DoubleDouble_ReturnValue;
+	if (CallFunc_Divide_DoubleFloat_ReturnValue != nullptr)
+		*CallFunc_Divide_DoubleFloat_ReturnValue = Parms.CallFunc_Divide_DoubleFloat_ReturnValue;
 
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier;
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp;
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha = Parms.CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha;
-
-	if (CallFunc_Array_Get_Item_1 != nullptr)
-		*CallFunc_Array_Get_Item_1 = std::move(Parms.CallFunc_Array_Get_Item_1);
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1 != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1 = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier_1;
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1 != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1 = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp_1;
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1 != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1 = Parms.CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha_1;
-
-	if (K2Node_VariableGet_DesiredArmLength_ImplicitCast != nullptr)
-		*K2Node_VariableGet_DesiredArmLength_ImplicitCast = Parms.K2Node_VariableGet_DesiredArmLength_ImplicitCast;
-
-	if (CallFunc_EqualEqual_DoubleDouble_ReturnValue != nullptr)
-		*CallFunc_EqualEqual_DoubleDouble_ReturnValue = Parms.CallFunc_EqualEqual_DoubleDouble_ReturnValue;
-
-	if (CallFunc_GreaterEqual_DoubleDouble_A_ImplicitCast != nullptr)
-		*CallFunc_GreaterEqual_DoubleDouble_A_ImplicitCast = Parms.CallFunc_GreaterEqual_DoubleDouble_A_ImplicitCast;
-
-	if (K2Node_VariableSetRef_Target_ImplicitCast != nullptr)
-		*K2Node_VariableSetRef_Target_ImplicitCast = Parms.K2Node_VariableSetRef_Target_ImplicitCast;
+	if (CallFunc_SelectFloat_A_ImplicitCast != nullptr)
+		*CallFunc_SelectFloat_A_ImplicitCast = Parms.CallFunc_SelectFloat_A_ImplicitCast;
 
 	if (CallFunc_Divide_DoubleFloat_B_ImplicitCast != nullptr)
 		*CallFunc_Divide_DoubleFloat_B_ImplicitCast = Parms.CallFunc_Divide_DoubleFloat_B_ImplicitCast;
@@ -592,34 +452,34 @@ double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToArmLength(class APr
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.ShouldApplyPitchBasedModifier
 // (Static, Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraPitchBasedModifierPitchBasedModifier                                               (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
-// bool                               bShouldApplyModifier                                             (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bShouldLerp                                                      (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             LerpAlpha                                                        (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// double                             CallFunc_BreakVector2D_X                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// double                             CallFunc_BreakVector2D_Y                                         (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// double                             CallFunc_BreakVector2D_X_1                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_BreakVector2D_Y_1                                       (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_FMax_ReturnValue                                        (ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-// double                             CallFunc_FMax_ReturnValue_1                                      (ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_FMin_ReturnValue                                        (ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_FMin_ReturnValue_1                                      (ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// struct FRotator                    CallFunc_GetPrimalCameraDesiredPivotRotation_ReturnValue         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              CallFunc_BreakRotator_Roll                                       (Edit, ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// float                              CallFunc_BreakRotator_Pitch                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// float                              CallFunc_BreakRotator_Yaw                                        (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// bool                               CallFunc_InRange_FloatFloat_ReturnValue                          (Edit, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_MapRangeClamped_ReturnValue                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_InRange_FloatFloat_ReturnValue_1                        (Edit, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// double                             CallFunc_InRange_FloatFloat_Value_ImplicitCast                   (ConstParm, BlueprintVisible, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_InRange_FloatFloat_Value_ImplicitCast_1                 (ConstParm, BlueprintVisible, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// double                             CallFunc_MapRangeClamped_Value_ImplicitCast                      (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, EditConst, SubobjectReference)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraPitchBasedModifierPitchBasedModifier                                               (Edit, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               bShouldApplyModifier                                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bShouldLerp                                                      (ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             LerpAlpha                                                        (Edit, ConstParm, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// double                             CallFunc_BreakVector2D_X                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_BreakVector2D_Y                                         (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_BreakVector2D_X_1                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_BreakVector2D_Y_1                                       (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_FMax_ReturnValue                                        (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_FMax_ReturnValue_1                                      (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_FMin_ReturnValue                                        (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_FMin_ReturnValue_1                                      (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// struct FRotator                    CallFunc_GetPrimalCameraDesiredPivotRotation_ReturnValue         (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              CallFunc_BreakRotator_Roll                                       (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// float                              CallFunc_BreakRotator_Pitch                                      (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// float                              CallFunc_BreakRotator_Yaw                                        (Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_InRange_FloatFloat_ReturnValue                          (Edit, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_MapRangeClamped_ReturnValue                             (Edit, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue                                  (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_InRange_FloatFloat_ReturnValue_1                        (Edit, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// double                             CallFunc_InRange_FloatFloat_Value_ImplicitCast                   (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_InRange_FloatFloat_Value_ImplicitCast_1                 (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// double                             CallFunc_MapRangeClamped_Value_ImplicitCast                      (Edit, BlueprintVisible, ExportObject, Parm, DisableEditOnInstance, SubobjectReference)
 
-double UASACameraFunctionLibrary_C::ShouldApplyPitchBasedModifier(class APrimalCharacter* CameraOwnerCharacter, struct FPrimalCameraPitchBasedModifier* PitchBasedModifier, class UObject** __WorldContext, double* LerpAlpha, bool* CallFunc_IsValid_ReturnValue, double CallFunc_BreakVector2D_X, double CallFunc_BreakVector2D_Y, double CallFunc_BreakVector2D_X_1, double CallFunc_BreakVector2D_Y_1, double CallFunc_FMax_ReturnValue, double CallFunc_FMax_ReturnValue_1, const struct FRotator& CallFunc_GetPrimalCameraDesiredPivotRotation_ReturnValue, float* CallFunc_BreakRotator_Roll, float* CallFunc_BreakRotator_Pitch, float* CallFunc_BreakRotator_Yaw, bool CallFunc_InRange_FloatFloat_ReturnValue, double* CallFunc_MapRangeClamped_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, bool CallFunc_InRange_FloatFloat_ReturnValue_1, double CallFunc_InRange_FloatFloat_Value_ImplicitCast, double CallFunc_InRange_FloatFloat_Value_ImplicitCast_1)
+double UASACameraFunctionLibrary_C::ShouldApplyPitchBasedModifier(const struct FPrimalCameraPitchBasedModifier& PitchBasedModifier, class UObject** __WorldContext, double LerpAlpha, double CallFunc_FMin_ReturnValue, double CallFunc_FMin_ReturnValue_1, float* CallFunc_BreakRotator_Roll, float* CallFunc_BreakRotator_Pitch, float* CallFunc_BreakRotator_Yaw, bool CallFunc_BooleanAND_ReturnValue, double CallFunc_MapRangeClamped_Value_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -628,33 +488,17 @@ double UASACameraFunctionLibrary_C::ShouldApplyPitchBasedModifier(class APrimalC
 
 	Params::UASACameraFunctionLibrary_C_ShouldApplyPitchBasedModifier_Params Parms{};
 
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
-	Parms.CallFunc_BreakVector2D_X = CallFunc_BreakVector2D_X;
-	Parms.CallFunc_BreakVector2D_Y = CallFunc_BreakVector2D_Y;
-	Parms.CallFunc_BreakVector2D_X_1 = CallFunc_BreakVector2D_X_1;
-	Parms.CallFunc_BreakVector2D_Y_1 = CallFunc_BreakVector2D_Y_1;
-	Parms.CallFunc_FMax_ReturnValue = CallFunc_FMax_ReturnValue;
-	Parms.CallFunc_FMax_ReturnValue_1 = CallFunc_FMax_ReturnValue_1;
-	Parms.CallFunc_GetPrimalCameraDesiredPivotRotation_ReturnValue = CallFunc_GetPrimalCameraDesiredPivotRotation_ReturnValue;
-	Parms.CallFunc_InRange_FloatFloat_ReturnValue = CallFunc_InRange_FloatFloat_ReturnValue;
+	Parms.PitchBasedModifier = PitchBasedModifier;
+	Parms.LerpAlpha = LerpAlpha;
+	Parms.CallFunc_FMin_ReturnValue = CallFunc_FMin_ReturnValue;
+	Parms.CallFunc_FMin_ReturnValue_1 = CallFunc_FMin_ReturnValue_1;
 	Parms.CallFunc_BooleanAND_ReturnValue = CallFunc_BooleanAND_ReturnValue;
-	Parms.CallFunc_InRange_FloatFloat_ReturnValue_1 = CallFunc_InRange_FloatFloat_ReturnValue_1;
-	Parms.CallFunc_InRange_FloatFloat_Value_ImplicitCast = CallFunc_InRange_FloatFloat_Value_ImplicitCast;
-	Parms.CallFunc_InRange_FloatFloat_Value_ImplicitCast_1 = CallFunc_InRange_FloatFloat_Value_ImplicitCast_1;
+	Parms.CallFunc_MapRangeClamped_Value_ImplicitCast = CallFunc_MapRangeClamped_Value_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (PitchBasedModifier != nullptr)
-		*PitchBasedModifier = std::move(Parms.PitchBasedModifier);
-
 	if (__WorldContext != nullptr)
 		*__WorldContext = Parms.__WorldContext;
-
-	if (LerpAlpha != nullptr)
-		*LerpAlpha = Parms.LerpAlpha;
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 	if (CallFunc_BreakRotator_Roll != nullptr)
 		*CallFunc_BreakRotator_Roll = Parms.CallFunc_BreakRotator_Roll;
@@ -665,9 +509,6 @@ double UASACameraFunctionLibrary_C::ShouldApplyPitchBasedModifier(class APrimalC
 	if (CallFunc_BreakRotator_Yaw != nullptr)
 		*CallFunc_BreakRotator_Yaw = Parms.CallFunc_BreakRotator_Yaw;
 
-	if (CallFunc_MapRangeClamped_ReturnValue != nullptr)
-		*CallFunc_MapRangeClamped_ReturnValue = Parms.CallFunc_MapRangeClamped_ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -676,67 +517,67 @@ double UASACameraFunctionLibrary_C::ShouldApplyPitchBasedModifier(class APrimalC
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.ApplyPitchBasedModifierToInterpParams
 // (Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraParams         CameraParams                                                     (BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// struct FPrimalCameraInterpParams   InterpParamsX                                                    (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraInterpParams   InterpParamsY                                                    (ConstParm, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraInterpParams   InterpParamsZ                                                    (ConstParm, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// TArray<struct FPrimalCameraPitchBasedModifier>PitchBasedModifiers                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
-// double                             PitchModifierAlpha                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bOverrideInterpParams                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraInterpParams   FinalInterpParams                                                (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-// struct FPrimalCameraInterpParams   InterpParamsToModify                                             (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              FoundEntryIndex                                                  (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_NotEqual_ByteByte_ReturnValue                           (Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue_1                       (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue_2                       (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               Temp_bool_True_if_break_was_hit_Variable                         (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item_1                                        (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier      (Edit, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp               (EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha                 (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_Array_IsValidIndex_ReturnValue_1                        (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
-// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item_2                                        (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
-// bool                               CallFunc_BooleanAND_ReturnValue_1                                (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue_3                       (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, NonTransactional)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue_4                       (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, NonTransactional)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue_5                       (ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp, NonTransactional)
-// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// double                             CallFunc_SelectFloat_ReturnValue                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_MultiplyMultiply_FloatFloat_ReturnValue                 (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleFloat_ReturnValue                        (Edit, ConstParm, ExportObject, ReturnParm, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleFloat_ReturnValue_1                      (Edit, ConstParm, ExportObject, ReturnParm, Transient, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Net, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Lerp_ReturnValue                                        (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// double                             CallFunc_Lerp_ReturnValue_1                                      (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Lerp_ReturnValue_2                                      (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference, RepNotify, Interp)
-// struct FPrimalCameraInterpParams   K2Node_MakeStruct_PrimalCameraInterpParams                       (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_Lerp_A_ImplicitCast                                     (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_Lerp_A_ImplicitCast_1                                   (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Lerp_A_ImplicitCast_2                                   (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference, RepNotify, Interp)
-// double                             CallFunc_SelectFloat_B_ImplicitCast                              (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_EqualEqual_DoubleDouble_A_ImplicitCast                  (ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// double                             CallFunc_Lerp_B_ImplicitCast                                     (Edit, ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_Lerp_B_ImplicitCast_1                                   (Edit, ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// double                             CallFunc_Lerp_B_ImplicitCast_2                                   (Edit, ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, EditConst, SubobjectReference)
-// float                              K2Node_MakeStruct_SpringStiffness_ImplicitCast                   (Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              K2Node_MakeStruct_TargetVelocity_ImplicitCast                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              K2Node_MakeStruct_CriticalDamping_ImplicitCast                   (ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraParams         CameraParams                                                     (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// struct FPrimalCameraInterpParams   InterpParamsX                                                    (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraInterpParams   InterpParamsY                                                    (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraInterpParams   InterpParamsZ                                                    (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// TArray<struct FPrimalCameraPitchBasedModifier>PitchBasedModifiers                                              (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             PitchModifierAlpha                                               (Edit, ConstParm, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bOverrideInterpParams                                            (ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraInterpParams   FinalInterpParams                                                (BlueprintReadOnly, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// struct FPrimalCameraInterpParams   InterpParamsToModify                                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              FoundEntryIndex                                                  (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_NotEqual_ByteByte_ReturnValue                           (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (ConstParm, ExportObject, Net, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue_1                       (ConstParm, ExportObject, Net, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue_2                       (ConstParm, ExportObject, Net, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               Temp_bool_True_if_break_was_hit_Variable                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item_1                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier      (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp               (BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha                 (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue                                  (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Array_IsValidIndex_ReturnValue_1                        (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnInstance, SubobjectReference, Interp)
+// struct FPrimalCameraPitchBasedModifierCallFunc_Array_Get_Item_2                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// bool                               CallFunc_BooleanAND_ReturnValue_1                                (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue_3                       (ConstParm, ExportObject, Net, DisableEditOnInstance, SubobjectReference, NonTransactional)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue_4                       (ConstParm, ExportObject, Net, DisableEditOnInstance, SubobjectReference, RepNotify, NonTransactional)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue_5                       (ConstParm, ExportObject, Net, DisableEditOnInstance, SubobjectReference, Interp, NonTransactional)
+// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_SelectFloat_ReturnValue                                 (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_MultiplyMultiply_FloatFloat_ReturnValue                 (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleFloat_ReturnValue                        (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleFloat_ReturnValue_1                      (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_ReturnValue                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_ReturnValue_1                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Lerp_ReturnValue_2                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// struct FPrimalCameraInterpParams   K2Node_MakeStruct_PrimalCameraInterpParams                       (ConstParm, ExportObject, BlueprintReadOnly, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_Lerp_A_ImplicitCast                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_A_ImplicitCast_1                                   (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Lerp_A_ImplicitCast_2                                   (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// double                             CallFunc_SelectFloat_B_ImplicitCast                              (Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_EqualEqual_DoubleDouble_A_ImplicitCast                  (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_B_ImplicitCast                                     (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_Lerp_B_ImplicitCast_1                                   (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// double                             CallFunc_Lerp_B_ImplicitCast_2                                   (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// float                              K2Node_MakeStruct_SpringStiffness_ImplicitCast                   (BlueprintReadOnly, Net, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              K2Node_MakeStruct_TargetVelocity_ImplicitCast                    (ExportObject, EditFixedSize, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              K2Node_MakeStruct_CriticalDamping_ImplicitCast                   (ConstParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToInterpParams(class APrimalCharacter* CameraOwnerCharacter, const struct FPrimalCameraParams& CameraParams, struct FPrimalCameraInterpParams* InterpParamsX, struct FPrimalCameraInterpParams* InterpParamsY, struct FPrimalCameraInterpParams* InterpParamsZ, TArray<struct FPrimalCameraPitchBasedModifier>* PitchBasedModifiers, class UObject** __WorldContext, double* PitchModifierAlpha, const struct FPrimalCameraInterpParams& FinalInterpParams, struct FPrimalCameraInterpParams* InterpParamsToModify, int32 FoundEntryIndex, int32* CallFunc_Array_Length_ReturnValue, struct FPrimalCameraPitchBasedModifier* CallFunc_Array_Get_Item, bool CallFunc_NotEqual_ByteByte_ReturnValue, bool* CallFunc_IsValid_ReturnValue, struct FPrimalCameraPitchBasedModifier* CallFunc_Array_Get_Item_1, bool CallFunc_Array_IsValidIndex_ReturnValue, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier, bool* CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp, double* CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha, int32 CallFunc_Add_IntInt_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, bool CallFunc_Array_IsValidIndex_ReturnValue_1, struct FPrimalCameraPitchBasedModifier* CallFunc_Array_Get_Item_2, bool CallFunc_BooleanAND_ReturnValue_1, bool* CallFunc_EqualEqual_DoubleDouble_ReturnValue, double CallFunc_Lerp_ReturnValue, double CallFunc_Lerp_ReturnValue_1, double CallFunc_Lerp_ReturnValue_2, struct FPrimalCameraInterpParams* K2Node_MakeStruct_PrimalCameraInterpParams, double* CallFunc_Lerp_A_ImplicitCast, double* CallFunc_Lerp_A_ImplicitCast_1, double* CallFunc_Lerp_A_ImplicitCast_2, double CallFunc_SelectFloat_B_ImplicitCast, double CallFunc_Lerp_B_ImplicitCast, double CallFunc_Lerp_B_ImplicitCast_1, double CallFunc_Lerp_B_ImplicitCast_2, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast, float* K2Node_MakeStruct_SpringStiffness_ImplicitCast, float* K2Node_MakeStruct_TargetVelocity_ImplicitCast, float* K2Node_MakeStruct_CriticalDamping_ImplicitCast)
+double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToInterpParams(class UObject** __WorldContext, double PitchModifierAlpha, int32* CallFunc_Array_Length_ReturnValue, const struct FPrimalCameraPitchBasedModifier& CallFunc_Array_Get_Item, bool CallFunc_EqualEqual_ByteByte_ReturnValue, bool CallFunc_EqualEqual_ByteByte_ReturnValue_1, bool CallFunc_EqualEqual_ByteByte_ReturnValue_2, const struct FPrimalCameraPitchBasedModifier& CallFunc_Array_Get_Item_1, int32 Temp_int_Loop_Counter_Variable, bool CallFunc_Less_IntInt_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, const struct FPrimalCameraPitchBasedModifier& CallFunc_Array_Get_Item_2, bool CallFunc_BooleanAND_ReturnValue_1, bool CallFunc_EqualEqual_ByteByte_ReturnValue_3, bool CallFunc_EqualEqual_ByteByte_ReturnValue_4, bool CallFunc_EqualEqual_ByteByte_ReturnValue_5, double* CallFunc_SelectFloat_ReturnValue, double CallFunc_MultiplyMultiply_FloatFloat_ReturnValue, double* CallFunc_Divide_DoubleFloat_ReturnValue, const struct FPrimalCameraInterpParams& K2Node_MakeStruct_PrimalCameraInterpParams, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast, float K2Node_MakeStruct_SpringStiffness_ImplicitCast, float K2Node_MakeStruct_TargetVelocity_ImplicitCast, float K2Node_MakeStruct_CriticalDamping_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -745,97 +586,42 @@ double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToInterpParams(class 
 
 	Params::UASACameraFunctionLibrary_C_ApplyPitchBasedModifierToInterpParams_Params Parms{};
 
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
-	Parms.CameraParams = CameraParams;
-	Parms.FinalInterpParams = FinalInterpParams;
-	Parms.FoundEntryIndex = FoundEntryIndex;
-	Parms.CallFunc_NotEqual_ByteByte_ReturnValue = CallFunc_NotEqual_ByteByte_ReturnValue;
-	Parms.CallFunc_Array_IsValidIndex_ReturnValue = CallFunc_Array_IsValidIndex_ReturnValue;
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
+	Parms.PitchModifierAlpha = PitchModifierAlpha;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.CallFunc_EqualEqual_ByteByte_ReturnValue = CallFunc_EqualEqual_ByteByte_ReturnValue;
+	Parms.CallFunc_EqualEqual_ByteByte_ReturnValue_1 = CallFunc_EqualEqual_ByteByte_ReturnValue_1;
+	Parms.CallFunc_EqualEqual_ByteByte_ReturnValue_2 = CallFunc_EqualEqual_ByteByte_ReturnValue_2;
+	Parms.CallFunc_Array_Get_Item_1 = CallFunc_Array_Get_Item_1;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 	Parms.CallFunc_BooleanAND_ReturnValue = CallFunc_BooleanAND_ReturnValue;
-	Parms.CallFunc_Array_IsValidIndex_ReturnValue_1 = CallFunc_Array_IsValidIndex_ReturnValue_1;
+	Parms.CallFunc_Array_Get_Item_2 = CallFunc_Array_Get_Item_2;
 	Parms.CallFunc_BooleanAND_ReturnValue_1 = CallFunc_BooleanAND_ReturnValue_1;
-	Parms.CallFunc_Lerp_ReturnValue = CallFunc_Lerp_ReturnValue;
-	Parms.CallFunc_Lerp_ReturnValue_1 = CallFunc_Lerp_ReturnValue_1;
-	Parms.CallFunc_Lerp_ReturnValue_2 = CallFunc_Lerp_ReturnValue_2;
-	Parms.CallFunc_SelectFloat_B_ImplicitCast = CallFunc_SelectFloat_B_ImplicitCast;
-	Parms.CallFunc_Lerp_B_ImplicitCast = CallFunc_Lerp_B_ImplicitCast;
-	Parms.CallFunc_Lerp_B_ImplicitCast_1 = CallFunc_Lerp_B_ImplicitCast_1;
-	Parms.CallFunc_Lerp_B_ImplicitCast_2 = CallFunc_Lerp_B_ImplicitCast_2;
+	Parms.CallFunc_EqualEqual_ByteByte_ReturnValue_3 = CallFunc_EqualEqual_ByteByte_ReturnValue_3;
+	Parms.CallFunc_EqualEqual_ByteByte_ReturnValue_4 = CallFunc_EqualEqual_ByteByte_ReturnValue_4;
+	Parms.CallFunc_EqualEqual_ByteByte_ReturnValue_5 = CallFunc_EqualEqual_ByteByte_ReturnValue_5;
+	Parms.CallFunc_MultiplyMultiply_FloatFloat_ReturnValue = CallFunc_MultiplyMultiply_FloatFloat_ReturnValue;
+	Parms.K2Node_MakeStruct_PrimalCameraInterpParams = K2Node_MakeStruct_PrimalCameraInterpParams;
+	Parms.K2Node_MakeStruct_SpringStiffness_ImplicitCast = K2Node_MakeStruct_SpringStiffness_ImplicitCast;
+	Parms.K2Node_MakeStruct_TargetVelocity_ImplicitCast = K2Node_MakeStruct_TargetVelocity_ImplicitCast;
+	Parms.K2Node_MakeStruct_CriticalDamping_ImplicitCast = K2Node_MakeStruct_CriticalDamping_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (InterpParamsX != nullptr)
-		*InterpParamsX = std::move(Parms.InterpParamsX);
-
-	if (InterpParamsY != nullptr)
-		*InterpParamsY = std::move(Parms.InterpParamsY);
-
-	if (InterpParamsZ != nullptr)
-		*InterpParamsZ = std::move(Parms.InterpParamsZ);
-
-	if (PitchBasedModifiers != nullptr)
-		*PitchBasedModifiers = std::move(Parms.PitchBasedModifiers);
 
 	if (__WorldContext != nullptr)
 		*__WorldContext = Parms.__WorldContext;
 
-	if (PitchModifierAlpha != nullptr)
-		*PitchModifierAlpha = Parms.PitchModifierAlpha;
-
-	if (InterpParamsToModify != nullptr)
-		*InterpParamsToModify = std::move(Parms.InterpParamsToModify);
-
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
 
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
+	if (CallFunc_SelectFloat_ReturnValue != nullptr)
+		*CallFunc_SelectFloat_ReturnValue = Parms.CallFunc_SelectFloat_ReturnValue;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_Array_Get_Item_1 != nullptr)
-		*CallFunc_Array_Get_Item_1 = std::move(Parms.CallFunc_Array_Get_Item_1);
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldApplyModifier;
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp = Parms.CallFunc_ShouldApplyPitchBasedModifier_bShouldLerp;
-
-	if (CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha != nullptr)
-		*CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha = Parms.CallFunc_ShouldApplyPitchBasedModifier_LerpAlpha;
-
-	if (CallFunc_Array_Get_Item_2 != nullptr)
-		*CallFunc_Array_Get_Item_2 = std::move(Parms.CallFunc_Array_Get_Item_2);
-
-	if (CallFunc_EqualEqual_DoubleDouble_ReturnValue != nullptr)
-		*CallFunc_EqualEqual_DoubleDouble_ReturnValue = Parms.CallFunc_EqualEqual_DoubleDouble_ReturnValue;
-
-	if (K2Node_MakeStruct_PrimalCameraInterpParams != nullptr)
-		*K2Node_MakeStruct_PrimalCameraInterpParams = std::move(Parms.K2Node_MakeStruct_PrimalCameraInterpParams);
-
-	if (CallFunc_Lerp_A_ImplicitCast != nullptr)
-		*CallFunc_Lerp_A_ImplicitCast = Parms.CallFunc_Lerp_A_ImplicitCast;
-
-	if (CallFunc_Lerp_A_ImplicitCast_1 != nullptr)
-		*CallFunc_Lerp_A_ImplicitCast_1 = Parms.CallFunc_Lerp_A_ImplicitCast_1;
-
-	if (CallFunc_Lerp_A_ImplicitCast_2 != nullptr)
-		*CallFunc_Lerp_A_ImplicitCast_2 = Parms.CallFunc_Lerp_A_ImplicitCast_2;
+	if (CallFunc_Divide_DoubleFloat_ReturnValue != nullptr)
+		*CallFunc_Divide_DoubleFloat_ReturnValue = Parms.CallFunc_Divide_DoubleFloat_ReturnValue;
 
 	if (CallFunc_Divide_DoubleFloat_B_ImplicitCast != nullptr)
 		*CallFunc_Divide_DoubleFloat_B_ImplicitCast = Parms.CallFunc_Divide_DoubleFloat_B_ImplicitCast;
-
-	if (K2Node_MakeStruct_SpringStiffness_ImplicitCast != nullptr)
-		*K2Node_MakeStruct_SpringStiffness_ImplicitCast = Parms.K2Node_MakeStruct_SpringStiffness_ImplicitCast;
-
-	if (K2Node_MakeStruct_TargetVelocity_ImplicitCast != nullptr)
-		*K2Node_MakeStruct_TargetVelocity_ImplicitCast = Parms.K2Node_MakeStruct_TargetVelocity_ImplicitCast;
-
-	if (K2Node_MakeStruct_CriticalDamping_ImplicitCast != nullptr)
-		*K2Node_MakeStruct_CriticalDamping_ImplicitCast = Parms.K2Node_MakeStruct_CriticalDamping_ImplicitCast;
 
 	return Parms.ReturnValue;
 
@@ -845,12 +631,12 @@ double UASACameraFunctionLibrary_C::ApplyPitchBasedModifierToInterpParams(class 
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.FinalOverrideCameraArmLengthInterpParams
 // (Static, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraParams         CameraParams                                                     (BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// struct FPrimalCameraInterpParams   OutInterpParams                                                  (BlueprintReadOnly, Parm, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraParams         CameraParams                                                     (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// struct FPrimalCameraInterpParams   OutInterpParams                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
 
-struct FPrimalCameraInterpParams UASACameraFunctionLibrary_C::FinalOverrideCameraArmLengthInterpParams(class APrimalCharacter* CameraOwnerCharacter, const struct FPrimalCameraParams& CameraParams, class UObject** __WorldContext)
+struct FPrimalCameraParams UASACameraFunctionLibrary_C::FinalOverrideCameraArmLengthInterpParams(const struct FPrimalCameraInterpParams& OutInterpParams, class UObject** __WorldContext)
 {
 	static class UFunction* Func = nullptr;
 
@@ -859,8 +645,7 @@ struct FPrimalCameraInterpParams UASACameraFunctionLibrary_C::FinalOverrideCamer
 
 	Params::UASACameraFunctionLibrary_C_FinalOverrideCameraArmLengthInterpParams_Params Parms{};
 
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
-	Parms.CameraParams = CameraParams;
+	Parms.OutInterpParams = OutInterpParams;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -875,20 +660,20 @@ struct FPrimalCameraInterpParams UASACameraFunctionLibrary_C::FinalOverrideCamer
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.FinalOverrideCameraArmLength
 // (Static, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            CharacterToKeepOnScreen                                          (Edit, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraParams         CameraParams                                                     (BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CurrentCameraArmLength                                           (BlueprintVisible, Parm, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// double                             DesiredCameraArmLength                                           (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
-// double                             ScreenAreaToUse                                                  (Edit, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bStopLoop                                                        (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               VelocityIsNearlyZero                                             (Edit, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FVector                     WorldLocationToProject                                           (BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CharacterScreenAreaY                                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CharacterScreenAreaX                                             (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class APrimalCharacter*            CharacterToKeepOnScreen                                          (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraParams         CameraParams                                                     (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CurrentCameraArmLength                                           (ConstParm, ExportObject, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// double                             DesiredCameraArmLength                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             ScreenAreaToUse                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bStopLoop                                                        (Edit, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               VelocityIsNearlyZero                                             (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector                     WorldLocationToProject                                           (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CharacterScreenAreaY                                             (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CharacterScreenAreaX                                             (Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-struct FVector UASACameraFunctionLibrary_C::FinalOverrideCameraArmLength(class APrimalCharacter* CharacterToKeepOnScreen, const struct FPrimalCameraParams& CameraParams, class APrimalCharacter* CameraOwnerCharacter, class UObject** __WorldContext, double CharacterScreenAreaY, double CharacterScreenAreaX)
+double UASACameraFunctionLibrary_C::FinalOverrideCameraArmLength(double CurrentCameraArmLength, double DesiredCameraArmLength, class UObject** __WorldContext, double ScreenAreaToUse, bool* VelocityIsNearlyZero, struct FVector* WorldLocationToProject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -897,16 +682,20 @@ struct FVector UASACameraFunctionLibrary_C::FinalOverrideCameraArmLength(class A
 
 	Params::UASACameraFunctionLibrary_C_FinalOverrideCameraArmLength_Params Parms{};
 
-	Parms.CharacterToKeepOnScreen = CharacterToKeepOnScreen;
-	Parms.CameraParams = CameraParams;
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
-	Parms.CharacterScreenAreaY = CharacterScreenAreaY;
-	Parms.CharacterScreenAreaX = CharacterScreenAreaX;
+	Parms.CurrentCameraArmLength = CurrentCameraArmLength;
+	Parms.DesiredCameraArmLength = DesiredCameraArmLength;
+	Parms.ScreenAreaToUse = ScreenAreaToUse;
 
 	UObject::ProcessEvent(Func, &Parms);
 
 	if (__WorldContext != nullptr)
 		*__WorldContext = Parms.__WorldContext;
+
+	if (VelocityIsNearlyZero != nullptr)
+		*VelocityIsNearlyZero = Parms.VelocityIsNearlyZero;
+
+	if (WorldLocationToProject != nullptr)
+		*WorldLocationToProject = std::move(Parms.WorldLocationToProject);
 
 	return Parms.ReturnValue;
 
@@ -916,59 +705,59 @@ struct FVector UASACameraFunctionLibrary_C::FinalOverrideCameraArmLength(class A
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.Final Override Pivot Interp Params
 // (Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraParams         CameraParams                                                     (BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// struct FPrimalCameraPivotZInterpOverridesPivotZInterpOverrides                                            (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FPrimalCameraInterpParams   LastPivotInterpParamsX                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraInterpParams   LastPivotInterpParamsY                                           (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraInterpParams   LastPivotInterpParamsZ                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraInterpParams   PivotInterpParamsX                                               (Edit, BlueprintVisible, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraInterpParams   PivotInterpParamsY                                               (Edit, ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraInterpParams   PivotInterpParamsZ                                               (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
-// double                             PrintModifierAlpha                                               (Edit, ConstParm, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             TheScreenArea                                                    (Edit, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CharScreenAreaY                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CharScreenAreaX                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              EntryIndexForLerping                                             (ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bFoundInterpRange                                                (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             LerpAlpha                                                        (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_Less_DoubleDouble_ReturnValue                           (Edit, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_IsTimeSince_ReturnValue                                 (BlueprintVisible, EditFixedSize, Config, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue_1                               (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_IsTimeSince_ReturnValue_1                               (BlueprintVisible, EditFixedSize, Config, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_IsProneOrSitting_ReturnValue                            (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsTimeSince_ReturnValue_2                               (BlueprintVisible, EditFixedSize, Config, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
-// bool                               CallFunc_IsCrouching_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_ShouldUseLongFallCameraPivotZValues_ReturnValue         (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_BooleanOR_ReturnValue                                   (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// double                             CallFunc_GetWorldDeltaSeconds_ReturnValue                        (Edit, ConstParm, ExportObject, Parm, ZeroConstructor, EditConst, SubobjectReference)
-// double                             CallFunc_FInterpTo_ReturnValue                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// double                             CallFunc_FInterpTo_ReturnValue_1                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_FInterpTo_ReturnValue_2                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference, RepNotify, Interp)
-// struct FPrimalCameraInterpParams   K2Node_MakeStruct_PrimalCameraInterpParams                       (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_FInterpTo_Current_ImplicitCast                          (ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// double                             CallFunc_Less_DoubleDouble_A_ImplicitCast                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// double                             CallFunc_FInterpTo_Current_ImplicitCast_1                        (ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_FInterpTo_Current_ImplicitCast_2                        (ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference, RepNotify, Interp)
-// double                             CallFunc_FInterpTo_InterpSpeed_ImplicitCast                      (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_FInterpTo_InterpSpeed_ImplicitCast_1                    (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// double                             CallFunc_FInterpTo_InterpSpeed_ImplicitCast_2                    (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// double                             CallFunc_FInterpTo_Target_ImplicitCast                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_Less_DoubleDouble_B_ImplicitCast                        (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_FInterpTo_Target_ImplicitCast_1                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// double                             CallFunc_FInterpTo_Target_ImplicitCast_2                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// float                              K2Node_MakeStruct_TargetVelocity_ImplicitCast                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              K2Node_MakeStruct_CriticalDamping_ImplicitCast                   (ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              K2Node_MakeStruct_SpringStiffness_ImplicitCast                   (Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraParams         CameraParams                                                     (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// struct FPrimalCameraPivotZInterpOverridesPivotZInterpOverrides                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FPrimalCameraInterpParams   LastPivotInterpParamsX                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraInterpParams   LastPivotInterpParamsY                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraInterpParams   LastPivotInterpParamsZ                                           (Edit, ConstParm, BlueprintVisible, Net, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraInterpParams   PivotInterpParamsX                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraInterpParams   PivotInterpParamsY                                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraInterpParams   PivotInterpParamsZ                                               (Edit, ExportObject, Net, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             PrintModifierAlpha                                               (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             TheScreenArea                                                    (Edit, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CharScreenAreaY                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CharScreenAreaX                                                  (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              EntryIndexForLerping                                             (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bFoundInterpRange                                                (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             LerpAlpha                                                        (Edit, ConstParm, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Less_DoubleDouble_ReturnValue                           (ConstParm, BlueprintVisible, BlueprintReadOnly, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsTimeSince_ReturnValue                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue_1                               (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_IsTimeSince_ReturnValue_1                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_IsProneOrSitting_ReturnValue                            (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsTimeSince_ReturnValue_2                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// bool                               CallFunc_IsCrouching_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_ShouldUseLongFallCameraPivotZValues_ReturnValue         (Edit, ConstParm, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// bool                               CallFunc_BooleanOR_ReturnValue                                   (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// double                             CallFunc_GetWorldDeltaSeconds_ReturnValue                        (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_FInterpTo_ReturnValue                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_FInterpTo_ReturnValue_1                                 (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_FInterpTo_ReturnValue_2                                 (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// struct FPrimalCameraInterpParams   K2Node_MakeStruct_PrimalCameraInterpParams                       (ConstParm, ExportObject, BlueprintReadOnly, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_FInterpTo_Current_ImplicitCast                          (BlueprintVisible, ExportObject, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Less_DoubleDouble_A_ImplicitCast                        (DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_FInterpTo_Current_ImplicitCast_1                        (BlueprintVisible, ExportObject, Transient, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_FInterpTo_Current_ImplicitCast_2                        (BlueprintVisible, ExportObject, Transient, Config, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// double                             CallFunc_FInterpTo_InterpSpeed_ImplicitCast                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_FInterpTo_InterpSpeed_ImplicitCast_1                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// double                             CallFunc_FInterpTo_InterpSpeed_ImplicitCast_2                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// double                             CallFunc_FInterpTo_Target_ImplicitCast                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_Less_DoubleDouble_B_ImplicitCast                        (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+// double                             CallFunc_FInterpTo_Target_ImplicitCast_1                         (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// double                             CallFunc_FInterpTo_Target_ImplicitCast_2                         (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// float                              K2Node_MakeStruct_TargetVelocity_ImplicitCast                    (ExportObject, EditFixedSize, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              K2Node_MakeStruct_CriticalDamping_ImplicitCast                   (ConstParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              K2Node_MakeStruct_SpringStiffness_ImplicitCast                   (BlueprintReadOnly, Net, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-double UASACameraFunctionLibrary_C::Final_Override_Pivot_Interp_Params(class APrimalCharacter* CameraOwnerCharacter, const struct FPrimalCameraParams& CameraParams, struct FPrimalCameraInterpParams* LastPivotInterpParamsX, struct FPrimalCameraInterpParams* LastPivotInterpParamsY, struct FPrimalCameraInterpParams* LastPivotInterpParamsZ, class UObject** __WorldContext, double CharScreenAreaY, double CharScreenAreaX, int32 EntryIndexForLerping, double* LerpAlpha, bool* CallFunc_IsValid_ReturnValue, class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, bool* K2Node_DynamicCast_bSuccess, bool CallFunc_IsTimeSince_ReturnValue, bool CallFunc_IsTimeSince_ReturnValue_1, bool CallFunc_IsProneOrSitting_ReturnValue, bool CallFunc_IsTimeSince_ReturnValue_2, bool CallFunc_IsCrouching_ReturnValue, bool* CallFunc_ShouldUseLongFallCameraPivotZValues_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, double CallFunc_GetWorldDeltaSeconds_ReturnValue, struct FPrimalCameraInterpParams* K2Node_MakeStruct_PrimalCameraInterpParams, double* CallFunc_Less_DoubleDouble_A_ImplicitCast, float* K2Node_MakeStruct_TargetVelocity_ImplicitCast, float* K2Node_MakeStruct_CriticalDamping_ImplicitCast, float* K2Node_MakeStruct_SpringStiffness_ImplicitCast)
+double UASACameraFunctionLibrary_C::Final_Override_Pivot_Interp_Params(const struct FPrimalCameraPivotZInterpOverrides& PivotZInterpOverrides, const struct FPrimalCameraInterpParams& LastPivotInterpParamsX, const struct FPrimalCameraInterpParams& LastPivotInterpParamsY, const struct FPrimalCameraInterpParams& LastPivotInterpParamsZ, const struct FPrimalCameraInterpParams& PivotInterpParamsX, const struct FPrimalCameraInterpParams& PivotInterpParamsY, const struct FPrimalCameraInterpParams& PivotInterpParamsZ, class UObject** __WorldContext, double PrintModifierAlpha, double* TheScreenArea, double LerpAlpha, bool CallFunc_Less_DoubleDouble_ReturnValue, bool* CallFunc_BooleanOR_ReturnValue, const struct FPrimalCameraInterpParams& K2Node_MakeStruct_PrimalCameraInterpParams, double CallFunc_FInterpTo_Current_ImplicitCast, double CallFunc_Less_DoubleDouble_A_ImplicitCast, double CallFunc_FInterpTo_Current_ImplicitCast_1, double CallFunc_FInterpTo_Current_ImplicitCast_2, float K2Node_MakeStruct_TargetVelocity_ImplicitCast, float K2Node_MakeStruct_CriticalDamping_ImplicitCast, float K2Node_MakeStruct_SpringStiffness_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -977,62 +766,35 @@ double UASACameraFunctionLibrary_C::Final_Override_Pivot_Interp_Params(class APr
 
 	Params::UASACameraFunctionLibrary_C_Final_Override_Pivot_Interp_Params_Params Parms{};
 
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
-	Parms.CameraParams = CameraParams;
-	Parms.CharScreenAreaY = CharScreenAreaY;
-	Parms.CharScreenAreaX = CharScreenAreaX;
-	Parms.EntryIndexForLerping = EntryIndexForLerping;
-	Parms.K2Node_DynamicCast_AsShooter_Character = K2Node_DynamicCast_AsShooter_Character;
-	Parms.CallFunc_IsTimeSince_ReturnValue = CallFunc_IsTimeSince_ReturnValue;
-	Parms.CallFunc_IsTimeSince_ReturnValue_1 = CallFunc_IsTimeSince_ReturnValue_1;
-	Parms.CallFunc_IsProneOrSitting_ReturnValue = CallFunc_IsProneOrSitting_ReturnValue;
-	Parms.CallFunc_IsTimeSince_ReturnValue_2 = CallFunc_IsTimeSince_ReturnValue_2;
-	Parms.CallFunc_IsCrouching_ReturnValue = CallFunc_IsCrouching_ReturnValue;
-	Parms.CallFunc_GetWorldDeltaSeconds_ReturnValue = CallFunc_GetWorldDeltaSeconds_ReturnValue;
+	Parms.PivotZInterpOverrides = PivotZInterpOverrides;
+	Parms.LastPivotInterpParamsX = LastPivotInterpParamsX;
+	Parms.LastPivotInterpParamsY = LastPivotInterpParamsY;
+	Parms.LastPivotInterpParamsZ = LastPivotInterpParamsZ;
+	Parms.PivotInterpParamsX = PivotInterpParamsX;
+	Parms.PivotInterpParamsY = PivotInterpParamsY;
+	Parms.PivotInterpParamsZ = PivotInterpParamsZ;
+	Parms.PrintModifierAlpha = PrintModifierAlpha;
+	Parms.LerpAlpha = LerpAlpha;
+	Parms.CallFunc_Less_DoubleDouble_ReturnValue = CallFunc_Less_DoubleDouble_ReturnValue;
+	Parms.K2Node_MakeStruct_PrimalCameraInterpParams = K2Node_MakeStruct_PrimalCameraInterpParams;
+	Parms.CallFunc_FInterpTo_Current_ImplicitCast = CallFunc_FInterpTo_Current_ImplicitCast;
+	Parms.CallFunc_Less_DoubleDouble_A_ImplicitCast = CallFunc_Less_DoubleDouble_A_ImplicitCast;
+	Parms.CallFunc_FInterpTo_Current_ImplicitCast_1 = CallFunc_FInterpTo_Current_ImplicitCast_1;
+	Parms.CallFunc_FInterpTo_Current_ImplicitCast_2 = CallFunc_FInterpTo_Current_ImplicitCast_2;
+	Parms.K2Node_MakeStruct_TargetVelocity_ImplicitCast = K2Node_MakeStruct_TargetVelocity_ImplicitCast;
+	Parms.K2Node_MakeStruct_CriticalDamping_ImplicitCast = K2Node_MakeStruct_CriticalDamping_ImplicitCast;
+	Parms.K2Node_MakeStruct_SpringStiffness_ImplicitCast = K2Node_MakeStruct_SpringStiffness_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (LastPivotInterpParamsX != nullptr)
-		*LastPivotInterpParamsX = std::move(Parms.LastPivotInterpParamsX);
-
-	if (LastPivotInterpParamsY != nullptr)
-		*LastPivotInterpParamsY = std::move(Parms.LastPivotInterpParamsY);
-
-	if (LastPivotInterpParamsZ != nullptr)
-		*LastPivotInterpParamsZ = std::move(Parms.LastPivotInterpParamsZ);
 
 	if (__WorldContext != nullptr)
 		*__WorldContext = Parms.__WorldContext;
 
-	if (LerpAlpha != nullptr)
-		*LerpAlpha = Parms.LerpAlpha;
+	if (TheScreenArea != nullptr)
+		*TheScreenArea = Parms.TheScreenArea;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (K2Node_DynamicCast_bSuccess != nullptr)
-		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
-
-	if (CallFunc_ShouldUseLongFallCameraPivotZValues_ReturnValue != nullptr)
-		*CallFunc_ShouldUseLongFallCameraPivotZValues_ReturnValue = Parms.CallFunc_ShouldUseLongFallCameraPivotZValues_ReturnValue;
-
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
-
-	if (K2Node_MakeStruct_PrimalCameraInterpParams != nullptr)
-		*K2Node_MakeStruct_PrimalCameraInterpParams = std::move(Parms.K2Node_MakeStruct_PrimalCameraInterpParams);
-
-	if (CallFunc_Less_DoubleDouble_A_ImplicitCast != nullptr)
-		*CallFunc_Less_DoubleDouble_A_ImplicitCast = Parms.CallFunc_Less_DoubleDouble_A_ImplicitCast;
-
-	if (K2Node_MakeStruct_TargetVelocity_ImplicitCast != nullptr)
-		*K2Node_MakeStruct_TargetVelocity_ImplicitCast = Parms.K2Node_MakeStruct_TargetVelocity_ImplicitCast;
-
-	if (K2Node_MakeStruct_CriticalDamping_ImplicitCast != nullptr)
-		*K2Node_MakeStruct_CriticalDamping_ImplicitCast = Parms.K2Node_MakeStruct_CriticalDamping_ImplicitCast;
-
-	if (K2Node_MakeStruct_SpringStiffness_ImplicitCast != nullptr)
-		*K2Node_MakeStruct_SpringStiffness_ImplicitCast = Parms.K2Node_MakeStruct_SpringStiffness_ImplicitCast;
+	if (CallFunc_BooleanOR_ReturnValue != nullptr)
+		*CallFunc_BooleanOR_ReturnValue = Parms.CallFunc_BooleanOR_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -1042,85 +804,85 @@ double UASACameraFunctionLibrary_C::Final_Override_Pivot_Interp_Params(class APr
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.ApplyModifiersToInterpParams
 // (Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraParams         CameraParams                                                     (BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// struct FPrimalCameraInterpParams   InterpParams                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// TArray<struct FPrimalCameraInterpScreenAreaModifier>InterpParamsModifiers                                            (Edit, ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class FName                        DebugScreenModifierId                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
-// bool                               bIsCrouchedOrProne                                               (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPrimalCameraInterpScreenAreaModifierScreenModifierForDebug                                           (BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             PrintModifierAlpha                                               (Edit, ConstParm, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             TheScreenArea                                                    (Edit, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CharScreenAreaY                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CharScreenAreaX                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              EntryIndexForLerping                                             (ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               bFoundInterpRange                                                (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             LerpAlpha                                                        (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// struct FVector                     CallFunc_K2_GetActorLocation_ReturnValue                         (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_IsCrouching_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsProneOrSitting_ReturnValue                            (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_BooleanOR_ReturnValue                                   (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_IsTimeSince_ReturnValue                                 (BlueprintVisible, EditFixedSize, Config, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsTimeSince_ReturnValue_1                               (BlueprintVisible, EditFixedSize, Config, DisableEditOnInstance, SubobjectReference, Interp)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// struct FPrimalCameraInterpScreenAreaModifierCallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// double                             CallFunc_BreakVector2D_X                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// double                             CallFunc_BreakVector2D_Y                                         (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// double                             CallFunc_FMax_ReturnValue                                        (ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-// double                             CallFunc_FMin_ReturnValue                                        (ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_BreakVector2D_X_1                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_BreakVector2D_Y_1                                       (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_FMax_ReturnValue_1                                      (ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_FMin_ReturnValue_1                                      (ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               Temp_bool_True_if_break_was_hit_Variable                         (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_MapRangeClamped_ReturnValue                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_InRange_FloatFloat_ReturnValue                          (Edit, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_InRange_FloatFloat_ReturnValue_1                        (Edit, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// double                             CallFunc_WorldLocationToScreenArea_ScreenAreaX                   (BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_WorldLocationToScreenArea_ScreenAreaY                   (ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_WorldLocationToScreenArea_ViewportSizeX                 (ConstParm, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_WorldLocationToScreenArea_ViewportSizeY                 (Edit, ConstParm, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_WorldLocationToScreenArea_ScreenRawPosX                 (Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_WorldLocationToScreenArea_ScreenRawPosY                 (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue_1                                (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               Temp_bool_Variable                                               (ConstParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// struct FPrimalCameraInterpParams   K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// double                             CallFunc_SelectFloat_ReturnValue                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_MultiplyMultiply_FloatFloat_ReturnValue                 (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleFloat_ReturnValue                        (Edit, ConstParm, ExportObject, ReturnParm, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleFloat_ReturnValue_1                      (Edit, ConstParm, ExportObject, ReturnParm, Transient, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Net, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Lerp_ReturnValue                                        (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// double                             CallFunc_Lerp_ReturnValue_1                                      (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Lerp_ReturnValue_2                                      (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference, RepNotify, Interp)
-// struct FPrimalCameraInterpParams   K2Node_MakeStruct_PrimalCameraInterpParams                       (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_SelectFloat_B_ImplicitCast                              (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_EqualEqual_DoubleDouble_A_ImplicitCast                  (ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// double                             CallFunc_Lerp_B_ImplicitCast                                     (Edit, ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_Lerp_B_ImplicitCast_1                                   (Edit, ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// double                             CallFunc_Lerp_B_ImplicitCast_2                                   (Edit, ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// double                             CallFunc_Lerp_A_ImplicitCast                                     (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_Lerp_A_ImplicitCast_1                                   (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Lerp_A_ImplicitCast_2                                   (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference, RepNotify, Interp)
-// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, EditConst, SubobjectReference)
-// float                              K2Node_MakeStruct_SpringStiffness_ImplicitCast                   (Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              K2Node_MakeStruct_TargetVelocity_ImplicitCast                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              K2Node_MakeStruct_CriticalDamping_ImplicitCast                   (ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraParams         CameraParams                                                     (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// struct FPrimalCameraInterpParams   InterpParams                                                     (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// TArray<struct FPrimalCameraInterpScreenAreaModifier>InterpParamsModifiers                                            (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FName                        DebugScreenModifierId                                            (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               bIsCrouchedOrProne                                               (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPrimalCameraInterpScreenAreaModifierScreenModifierForDebug                                           (BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             PrintModifierAlpha                                               (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             TheScreenArea                                                    (Edit, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CharScreenAreaY                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CharScreenAreaX                                                  (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              EntryIndexForLerping                                             (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bFoundInterpRange                                                (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             LerpAlpha                                                        (Edit, ConstParm, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     CallFunc_K2_GetActorLocation_ReturnValue                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// bool                               CallFunc_IsCrouching_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsProneOrSitting_ReturnValue                            (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_BooleanOR_ReturnValue                                   (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsTimeSince_ReturnValue                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsTimeSince_ReturnValue_1                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue                                  (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// struct FPrimalCameraInterpScreenAreaModifierCallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_BreakVector2D_X                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_BreakVector2D_Y                                         (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_FMax_ReturnValue                                        (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_FMin_ReturnValue                                        (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_BreakVector2D_X_1                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_BreakVector2D_Y_1                                       (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_FMax_ReturnValue_1                                      (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_FMin_ReturnValue_1                                      (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               Temp_bool_True_if_break_was_hit_Variable                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_MapRangeClamped_ReturnValue                             (Edit, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_InRange_FloatFloat_ReturnValue                          (Edit, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_InRange_FloatFloat_ReturnValue_1                        (Edit, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// double                             CallFunc_WorldLocationToScreenArea_ScreenAreaX                   (Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_WorldLocationToScreenArea_ScreenAreaY                   (ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_WorldLocationToScreenArea_ViewportSizeX                 (ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_WorldLocationToScreenArea_ViewportSizeY                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_WorldLocationToScreenArea_ScreenRawPosX                 (BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_WorldLocationToScreenArea_ScreenRawPosY                 (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue_1                                (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// struct FPrimalCameraInterpParams   K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_SelectFloat_ReturnValue                                 (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_MultiplyMultiply_FloatFloat_ReturnValue                 (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleFloat_ReturnValue                        (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleFloat_ReturnValue_1                      (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_ReturnValue                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_ReturnValue_1                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Lerp_ReturnValue_2                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// struct FPrimalCameraInterpParams   K2Node_MakeStruct_PrimalCameraInterpParams                       (ConstParm, ExportObject, BlueprintReadOnly, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_SelectFloat_B_ImplicitCast                              (Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_EqualEqual_DoubleDouble_A_ImplicitCast                  (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_B_ImplicitCast                                     (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_Lerp_B_ImplicitCast_1                                   (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// double                             CallFunc_Lerp_B_ImplicitCast_2                                   (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// double                             CallFunc_Lerp_A_ImplicitCast                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Lerp_A_ImplicitCast_1                                   (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Lerp_A_ImplicitCast_2                                   (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// float                              K2Node_MakeStruct_SpringStiffness_ImplicitCast                   (BlueprintReadOnly, Net, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              K2Node_MakeStruct_TargetVelocity_ImplicitCast                    (ExportObject, EditFixedSize, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              K2Node_MakeStruct_CriticalDamping_ImplicitCast                   (ConstParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-double UASACameraFunctionLibrary_C::ApplyModifiersToInterpParams(class APrimalCharacter* CameraOwnerCharacter, const struct FPrimalCameraParams& CameraParams, const struct FPrimalCameraInterpParams& InterpParams, TArray<struct FPrimalCameraInterpScreenAreaModifier>* InterpParamsModifiers, class FName DebugScreenModifierId, class UObject** __WorldContext, double CharScreenAreaY, double CharScreenAreaX, int32 EntryIndexForLerping, double* LerpAlpha, int32* CallFunc_Array_Length_ReturnValue, bool* CallFunc_IsValid_ReturnValue, class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, bool* K2Node_DynamicCast_bSuccess, bool* CallFunc_IsValid_ReturnValue_1, bool CallFunc_IsCrouching_ReturnValue, bool CallFunc_IsProneOrSitting_ReturnValue, bool CallFunc_IsTimeSince_ReturnValue, bool CallFunc_IsTimeSince_ReturnValue_1, bool CallFunc_BooleanAND_ReturnValue, struct FPrimalCameraInterpScreenAreaModifier* CallFunc_Array_Get_Item, double CallFunc_BreakVector2D_X, double CallFunc_BreakVector2D_Y, double CallFunc_FMax_ReturnValue, double CallFunc_BreakVector2D_X_1, double CallFunc_BreakVector2D_Y_1, double CallFunc_FMax_ReturnValue_1, double* CallFunc_MapRangeClamped_ReturnValue, bool CallFunc_InRange_FloatFloat_ReturnValue, bool CallFunc_InRange_FloatFloat_ReturnValue_1, double* CallFunc_WorldLocationToScreenArea_ScreenAreaX, double* CallFunc_WorldLocationToScreenArea_ScreenAreaY, double CallFunc_WorldLocationToScreenArea_ViewportSizeX, double CallFunc_WorldLocationToScreenArea_ViewportSizeY, double* CallFunc_WorldLocationToScreenArea_ScreenRawPosX, double* CallFunc_WorldLocationToScreenArea_ScreenRawPosY, int32 CallFunc_Add_IntInt_ReturnValue, bool CallFunc_BooleanAND_ReturnValue_1, bool Temp_bool_Variable, bool CallFunc_Array_IsValidIndex_ReturnValue, struct FPrimalCameraInterpParams* K2Node_Select_Default, bool* CallFunc_EqualEqual_DoubleDouble_ReturnValue, double CallFunc_Lerp_ReturnValue, double CallFunc_Lerp_ReturnValue_1, double CallFunc_Lerp_ReturnValue_2, struct FPrimalCameraInterpParams* K2Node_MakeStruct_PrimalCameraInterpParams, double CallFunc_SelectFloat_B_ImplicitCast, double CallFunc_Lerp_B_ImplicitCast, double CallFunc_Lerp_B_ImplicitCast_1, double CallFunc_Lerp_B_ImplicitCast_2, double* CallFunc_Lerp_A_ImplicitCast, double* CallFunc_Lerp_A_ImplicitCast_1, double* CallFunc_Lerp_A_ImplicitCast_2, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast, float* K2Node_MakeStruct_SpringStiffness_ImplicitCast, float* K2Node_MakeStruct_TargetVelocity_ImplicitCast, float* K2Node_MakeStruct_CriticalDamping_ImplicitCast)
+double UASACameraFunctionLibrary_C::ApplyModifiersToInterpParams(class UObject** __WorldContext, struct FPrimalCameraInterpScreenAreaModifier* ScreenModifierForDebug, double PrintModifierAlpha, double* TheScreenArea, double LerpAlpha, int32* CallFunc_Array_Length_ReturnValue, bool* CallFunc_BooleanOR_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, const struct FPrimalCameraInterpScreenAreaModifier& CallFunc_Array_Get_Item, double CallFunc_FMin_ReturnValue, double CallFunc_FMin_ReturnValue_1, int32 Temp_int_Loop_Counter_Variable, bool CallFunc_Less_IntInt_ReturnValue, bool CallFunc_BooleanAND_ReturnValue_1, bool Temp_bool_Variable, const struct FPrimalCameraInterpParams& K2Node_Select_Default, double* CallFunc_SelectFloat_ReturnValue, double CallFunc_MultiplyMultiply_FloatFloat_ReturnValue, double* CallFunc_Divide_DoubleFloat_ReturnValue, const struct FPrimalCameraInterpParams& K2Node_MakeStruct_PrimalCameraInterpParams, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast, float K2Node_MakeStruct_SpringStiffness_ImplicitCast, float K2Node_MakeStruct_TargetVelocity_ImplicitCast, float K2Node_MakeStruct_CriticalDamping_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1129,111 +891,48 @@ double UASACameraFunctionLibrary_C::ApplyModifiersToInterpParams(class APrimalCh
 
 	Params::UASACameraFunctionLibrary_C_ApplyModifiersToInterpParams_Params Parms{};
 
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
-	Parms.CameraParams = CameraParams;
-	Parms.InterpParams = InterpParams;
-	Parms.DebugScreenModifierId = DebugScreenModifierId;
-	Parms.CharScreenAreaY = CharScreenAreaY;
-	Parms.CharScreenAreaX = CharScreenAreaX;
-	Parms.EntryIndexForLerping = EntryIndexForLerping;
-	Parms.K2Node_DynamicCast_AsShooter_Character = K2Node_DynamicCast_AsShooter_Character;
-	Parms.CallFunc_IsCrouching_ReturnValue = CallFunc_IsCrouching_ReturnValue;
-	Parms.CallFunc_IsProneOrSitting_ReturnValue = CallFunc_IsProneOrSitting_ReturnValue;
-	Parms.CallFunc_IsTimeSince_ReturnValue = CallFunc_IsTimeSince_ReturnValue;
-	Parms.CallFunc_IsTimeSince_ReturnValue_1 = CallFunc_IsTimeSince_ReturnValue_1;
+	Parms.PrintModifierAlpha = PrintModifierAlpha;
+	Parms.LerpAlpha = LerpAlpha;
 	Parms.CallFunc_BooleanAND_ReturnValue = CallFunc_BooleanAND_ReturnValue;
-	Parms.CallFunc_BreakVector2D_X = CallFunc_BreakVector2D_X;
-	Parms.CallFunc_BreakVector2D_Y = CallFunc_BreakVector2D_Y;
-	Parms.CallFunc_FMax_ReturnValue = CallFunc_FMax_ReturnValue;
-	Parms.CallFunc_BreakVector2D_X_1 = CallFunc_BreakVector2D_X_1;
-	Parms.CallFunc_BreakVector2D_Y_1 = CallFunc_BreakVector2D_Y_1;
-	Parms.CallFunc_FMax_ReturnValue_1 = CallFunc_FMax_ReturnValue_1;
-	Parms.CallFunc_InRange_FloatFloat_ReturnValue = CallFunc_InRange_FloatFloat_ReturnValue;
-	Parms.CallFunc_InRange_FloatFloat_ReturnValue_1 = CallFunc_InRange_FloatFloat_ReturnValue_1;
-	Parms.CallFunc_WorldLocationToScreenArea_ViewportSizeX = CallFunc_WorldLocationToScreenArea_ViewportSizeX;
-	Parms.CallFunc_WorldLocationToScreenArea_ViewportSizeY = CallFunc_WorldLocationToScreenArea_ViewportSizeY;
-	Parms.CallFunc_Add_IntInt_ReturnValue = CallFunc_Add_IntInt_ReturnValue;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.CallFunc_FMin_ReturnValue = CallFunc_FMin_ReturnValue;
+	Parms.CallFunc_FMin_ReturnValue_1 = CallFunc_FMin_ReturnValue_1;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 	Parms.CallFunc_BooleanAND_ReturnValue_1 = CallFunc_BooleanAND_ReturnValue_1;
 	Parms.Temp_bool_Variable = Temp_bool_Variable;
-	Parms.CallFunc_Array_IsValidIndex_ReturnValue = CallFunc_Array_IsValidIndex_ReturnValue;
-	Parms.CallFunc_Lerp_ReturnValue = CallFunc_Lerp_ReturnValue;
-	Parms.CallFunc_Lerp_ReturnValue_1 = CallFunc_Lerp_ReturnValue_1;
-	Parms.CallFunc_Lerp_ReturnValue_2 = CallFunc_Lerp_ReturnValue_2;
-	Parms.CallFunc_SelectFloat_B_ImplicitCast = CallFunc_SelectFloat_B_ImplicitCast;
-	Parms.CallFunc_Lerp_B_ImplicitCast = CallFunc_Lerp_B_ImplicitCast;
-	Parms.CallFunc_Lerp_B_ImplicitCast_1 = CallFunc_Lerp_B_ImplicitCast_1;
-	Parms.CallFunc_Lerp_B_ImplicitCast_2 = CallFunc_Lerp_B_ImplicitCast_2;
+	Parms.K2Node_Select_Default = K2Node_Select_Default;
+	Parms.CallFunc_MultiplyMultiply_FloatFloat_ReturnValue = CallFunc_MultiplyMultiply_FloatFloat_ReturnValue;
+	Parms.K2Node_MakeStruct_PrimalCameraInterpParams = K2Node_MakeStruct_PrimalCameraInterpParams;
+	Parms.K2Node_MakeStruct_SpringStiffness_ImplicitCast = K2Node_MakeStruct_SpringStiffness_ImplicitCast;
+	Parms.K2Node_MakeStruct_TargetVelocity_ImplicitCast = K2Node_MakeStruct_TargetVelocity_ImplicitCast;
+	Parms.K2Node_MakeStruct_CriticalDamping_ImplicitCast = K2Node_MakeStruct_CriticalDamping_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (InterpParamsModifiers != nullptr)
-		*InterpParamsModifiers = std::move(Parms.InterpParamsModifiers);
 
 	if (__WorldContext != nullptr)
 		*__WorldContext = Parms.__WorldContext;
 
-	if (LerpAlpha != nullptr)
-		*LerpAlpha = Parms.LerpAlpha;
+	if (ScreenModifierForDebug != nullptr)
+		*ScreenModifierForDebug = std::move(Parms.ScreenModifierForDebug);
+
+	if (TheScreenArea != nullptr)
+		*TheScreenArea = Parms.TheScreenArea;
 
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (CallFunc_BooleanOR_ReturnValue != nullptr)
+		*CallFunc_BooleanOR_ReturnValue = Parms.CallFunc_BooleanOR_ReturnValue;
 
-	if (K2Node_DynamicCast_bSuccess != nullptr)
-		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+	if (CallFunc_SelectFloat_ReturnValue != nullptr)
+		*CallFunc_SelectFloat_ReturnValue = Parms.CallFunc_SelectFloat_ReturnValue;
 
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
-
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = std::move(Parms.CallFunc_Array_Get_Item);
-
-	if (CallFunc_MapRangeClamped_ReturnValue != nullptr)
-		*CallFunc_MapRangeClamped_ReturnValue = Parms.CallFunc_MapRangeClamped_ReturnValue;
-
-	if (CallFunc_WorldLocationToScreenArea_ScreenAreaX != nullptr)
-		*CallFunc_WorldLocationToScreenArea_ScreenAreaX = Parms.CallFunc_WorldLocationToScreenArea_ScreenAreaX;
-
-	if (CallFunc_WorldLocationToScreenArea_ScreenAreaY != nullptr)
-		*CallFunc_WorldLocationToScreenArea_ScreenAreaY = Parms.CallFunc_WorldLocationToScreenArea_ScreenAreaY;
-
-	if (CallFunc_WorldLocationToScreenArea_ScreenRawPosX != nullptr)
-		*CallFunc_WorldLocationToScreenArea_ScreenRawPosX = Parms.CallFunc_WorldLocationToScreenArea_ScreenRawPosX;
-
-	if (CallFunc_WorldLocationToScreenArea_ScreenRawPosY != nullptr)
-		*CallFunc_WorldLocationToScreenArea_ScreenRawPosY = Parms.CallFunc_WorldLocationToScreenArea_ScreenRawPosY;
-
-	if (K2Node_Select_Default != nullptr)
-		*K2Node_Select_Default = std::move(Parms.K2Node_Select_Default);
-
-	if (CallFunc_EqualEqual_DoubleDouble_ReturnValue != nullptr)
-		*CallFunc_EqualEqual_DoubleDouble_ReturnValue = Parms.CallFunc_EqualEqual_DoubleDouble_ReturnValue;
-
-	if (K2Node_MakeStruct_PrimalCameraInterpParams != nullptr)
-		*K2Node_MakeStruct_PrimalCameraInterpParams = std::move(Parms.K2Node_MakeStruct_PrimalCameraInterpParams);
-
-	if (CallFunc_Lerp_A_ImplicitCast != nullptr)
-		*CallFunc_Lerp_A_ImplicitCast = Parms.CallFunc_Lerp_A_ImplicitCast;
-
-	if (CallFunc_Lerp_A_ImplicitCast_1 != nullptr)
-		*CallFunc_Lerp_A_ImplicitCast_1 = Parms.CallFunc_Lerp_A_ImplicitCast_1;
-
-	if (CallFunc_Lerp_A_ImplicitCast_2 != nullptr)
-		*CallFunc_Lerp_A_ImplicitCast_2 = Parms.CallFunc_Lerp_A_ImplicitCast_2;
+	if (CallFunc_Divide_DoubleFloat_ReturnValue != nullptr)
+		*CallFunc_Divide_DoubleFloat_ReturnValue = Parms.CallFunc_Divide_DoubleFloat_ReturnValue;
 
 	if (CallFunc_Divide_DoubleFloat_B_ImplicitCast != nullptr)
 		*CallFunc_Divide_DoubleFloat_B_ImplicitCast = Parms.CallFunc_Divide_DoubleFloat_B_ImplicitCast;
-
-	if (K2Node_MakeStruct_SpringStiffness_ImplicitCast != nullptr)
-		*K2Node_MakeStruct_SpringStiffness_ImplicitCast = Parms.K2Node_MakeStruct_SpringStiffness_ImplicitCast;
-
-	if (K2Node_MakeStruct_TargetVelocity_ImplicitCast != nullptr)
-		*K2Node_MakeStruct_TargetVelocity_ImplicitCast = Parms.K2Node_MakeStruct_TargetVelocity_ImplicitCast;
-
-	if (K2Node_MakeStruct_CriticalDamping_ImplicitCast != nullptr)
-		*K2Node_MakeStruct_CriticalDamping_ImplicitCast = Parms.K2Node_MakeStruct_CriticalDamping_ImplicitCast;
 
 	return Parms.ReturnValue;
 
@@ -1243,36 +942,36 @@ double UASACameraFunctionLibrary_C::ApplyModifiersToInterpParams(class APrimalCh
 // Function ASACameraFunctionLibrary.ASACameraFunctionLibrary_C.WorldLocationToScreenArea
 // (Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FVector                     WorldLocationToProject                                           (BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UObject*                     __WorldContext                                                   (ConstParm, ExportObject, Net, OutParm, Transient, EditConst, SubobjectReference)
-// double                             ScreenAreaX                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             ScreenAreaY                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             ViewportSizeX                                                    (BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             ViewportSizeY                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             ScreenRawPosX                                                    (BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             ScreenRawPosY                                                    (ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class AController*                 CallFunc_GetController_ReturnValue                               (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// class APlayerController*           CallFunc_CastToPlayerController_ReturnValue                      (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// struct FVector2D                   CallFunc_ProjectWorldToScreen_ScreenPosition                     (ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_ProjectWorldToScreen_ReturnValue                        (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FGeometry                   CallFunc_GetPlayerScreenWidgetGeometry_ReturnValue               (Edit, BlueprintVisible, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_BreakVector2D_X                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// double                             CallFunc_BreakVector2D_Y                                         (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FVector2D                   CallFunc_GetAbsoluteSize_ReturnValue                             (ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// double                             CallFunc_BreakVector2D_X_1                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_BreakVector2D_Y_1                                       (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Net, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// double                             CallFunc_Divide_DoubleFloat_ReturnValue_1                        (Net, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue_1                   (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference, Interp)
-// bool                               CallFunc_BooleanAND_ReturnValue                                  (ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, EditConst, SubobjectReference)
-// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast_1                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, EditConst, SubobjectReference, Interp)
+// class APrimalCharacter*            CameraOwnerCharacter                                             (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector                     WorldLocationToProject                                           (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UObject*                     __WorldContext                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             ScreenAreaX                                                      (ConstParm, BlueprintVisible, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             ScreenAreaY                                                      (Edit, BlueprintVisible, ExportObject, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             ViewportSizeX                                                    (BlueprintVisible, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             ViewportSizeY                                                    (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             ScreenRawPosX                                                    (Net, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             ScreenRawPosY                                                    (ExportObject, Net, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class AController*                 CallFunc_GetController_ReturnValue                               (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// class APlayerController*           CallFunc_CastToPlayerController_ReturnValue                      (ConstParm, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FVector2D                   CallFunc_ProjectWorldToScreen_ScreenPosition                     (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_ProjectWorldToScreen_ReturnValue                        (ConstParm, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FGeometry                   CallFunc_GetPlayerScreenWidgetGeometry_ReturnValue               (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_BreakVector2D_X                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_BreakVector2D_Y                                         (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// struct FVector2D                   CallFunc_GetAbsoluteSize_ReturnValue                             (ConstParm, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// double                             CallFunc_BreakVector2D_X_1                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_BreakVector2D_Y_1                                       (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Divide_DoubleFloat_ReturnValue_1                        (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue_1                   (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_BooleanAND_ReturnValue                                  (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast_1                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
 
-double UASACameraFunctionLibrary_C::WorldLocationToScreenArea(class APrimalCharacter* CameraOwnerCharacter, class UObject** __WorldContext, bool* CallFunc_IsValid_ReturnValue, class AController** CallFunc_GetController_ReturnValue, const struct FVector2D& CallFunc_ProjectWorldToScreen_ScreenPosition, bool CallFunc_ProjectWorldToScreen_ReturnValue, const struct FGeometry& CallFunc_GetPlayerScreenWidgetGeometry_ReturnValue, double CallFunc_BreakVector2D_X, double CallFunc_BreakVector2D_Y, const struct FVector2D& CallFunc_GetAbsoluteSize_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, double CallFunc_BreakVector2D_X_1, double CallFunc_BreakVector2D_Y_1, bool* CallFunc_EqualEqual_DoubleDouble_ReturnValue, bool* CallFunc_EqualEqual_DoubleDouble_ReturnValue_1, bool CallFunc_BooleanAND_ReturnValue, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast_1)
+bool UASACameraFunctionLibrary_C::WorldLocationToScreenArea(struct FVector* WorldLocationToProject, class UObject** __WorldContext, double* ScreenAreaX, double* ScreenAreaY, double* ViewportSizeX, double* ViewportSizeY, double* ScreenRawPosX, double* ScreenRawPosY, class AController** CallFunc_GetController_ReturnValue, class APlayerController** CallFunc_CastToPlayerController_ReturnValue, double* CallFunc_Divide_DoubleFloat_ReturnValue, double* CallFunc_Divide_DoubleFloat_ReturnValue_1, bool CallFunc_BooleanAND_ReturnValue, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1281,36 +980,45 @@ double UASACameraFunctionLibrary_C::WorldLocationToScreenArea(class APrimalChara
 
 	Params::UASACameraFunctionLibrary_C_WorldLocationToScreenArea_Params Parms{};
 
-	Parms.CameraOwnerCharacter = CameraOwnerCharacter;
-	Parms.CallFunc_ProjectWorldToScreen_ScreenPosition = CallFunc_ProjectWorldToScreen_ScreenPosition;
-	Parms.CallFunc_ProjectWorldToScreen_ReturnValue = CallFunc_ProjectWorldToScreen_ReturnValue;
-	Parms.CallFunc_GetPlayerScreenWidgetGeometry_ReturnValue = CallFunc_GetPlayerScreenWidgetGeometry_ReturnValue;
-	Parms.CallFunc_BreakVector2D_X = CallFunc_BreakVector2D_X;
-	Parms.CallFunc_BreakVector2D_Y = CallFunc_BreakVector2D_Y;
-	Parms.CallFunc_GetAbsoluteSize_ReturnValue = CallFunc_GetAbsoluteSize_ReturnValue;
-	Parms.CallFunc_BreakVector2D_X_1 = CallFunc_BreakVector2D_X_1;
-	Parms.CallFunc_BreakVector2D_Y_1 = CallFunc_BreakVector2D_Y_1;
 	Parms.CallFunc_BooleanAND_ReturnValue = CallFunc_BooleanAND_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (WorldLocationToProject != nullptr)
+		*WorldLocationToProject = std::move(Parms.WorldLocationToProject);
+
 	if (__WorldContext != nullptr)
 		*__WorldContext = Parms.__WorldContext;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (ScreenAreaX != nullptr)
+		*ScreenAreaX = Parms.ScreenAreaX;
+
+	if (ScreenAreaY != nullptr)
+		*ScreenAreaY = Parms.ScreenAreaY;
+
+	if (ViewportSizeX != nullptr)
+		*ViewportSizeX = Parms.ViewportSizeX;
+
+	if (ViewportSizeY != nullptr)
+		*ViewportSizeY = Parms.ViewportSizeY;
+
+	if (ScreenRawPosX != nullptr)
+		*ScreenRawPosX = Parms.ScreenRawPosX;
+
+	if (ScreenRawPosY != nullptr)
+		*ScreenRawPosY = Parms.ScreenRawPosY;
 
 	if (CallFunc_GetController_ReturnValue != nullptr)
 		*CallFunc_GetController_ReturnValue = Parms.CallFunc_GetController_ReturnValue;
 
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+	if (CallFunc_CastToPlayerController_ReturnValue != nullptr)
+		*CallFunc_CastToPlayerController_ReturnValue = Parms.CallFunc_CastToPlayerController_ReturnValue;
 
-	if (CallFunc_EqualEqual_DoubleDouble_ReturnValue != nullptr)
-		*CallFunc_EqualEqual_DoubleDouble_ReturnValue = Parms.CallFunc_EqualEqual_DoubleDouble_ReturnValue;
+	if (CallFunc_Divide_DoubleFloat_ReturnValue != nullptr)
+		*CallFunc_Divide_DoubleFloat_ReturnValue = Parms.CallFunc_Divide_DoubleFloat_ReturnValue;
 
-	if (CallFunc_EqualEqual_DoubleDouble_ReturnValue_1 != nullptr)
-		*CallFunc_EqualEqual_DoubleDouble_ReturnValue_1 = Parms.CallFunc_EqualEqual_DoubleDouble_ReturnValue_1;
+	if (CallFunc_Divide_DoubleFloat_ReturnValue_1 != nullptr)
+		*CallFunc_Divide_DoubleFloat_ReturnValue_1 = Parms.CallFunc_Divide_DoubleFloat_ReturnValue_1;
 
 	if (CallFunc_Divide_DoubleFloat_B_ImplicitCast != nullptr)
 		*CallFunc_Divide_DoubleFloat_B_ImplicitCast = Parms.CallFunc_Divide_DoubleFloat_B_ImplicitCast;

@@ -34,7 +34,7 @@ public:
 struct UUI_SubMinusCategory_C_Event_Set_Button_Style_Params
 {
 public:
-	struct FButtonStyle                          InStyle;                                           // 0x0(0x3F0)(ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+	struct FButtonStyle                          InStyle;                                           // 0x0(0x3F0)(ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x440 (0x440 - 0x0)
@@ -42,18 +42,18 @@ public:
 struct UUI_SubMinusCategory_C_ExecuteUbergraph_UI_SubMinusCategory_Params
 {
 public:
-	int32                                        EntryPoint;                                        // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	FDelegateProperty_                           K2Node_CreateDelegate_OutputDelegate;              // 0x4(0x10)(BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_4ABC[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UAsyncTaskDownloadImage*               CallFunc_DownloadImage_ReturnValue;                // 0x18(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UTexture2DDynamic*                     K2Node_CustomEvent_Texture_1;                      // 0x20(0x8)(BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-	bool                                         CallFunc_IsValid_ReturnValue;                      // 0x28(0x1)(Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-	uint8                                        Pad_4ABD[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	FDelegateProperty_                           K2Node_CreateDelegate_OutputDelegate_1;            // 0x2C(0x10)(BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-	uint8                                        Pad_4ABE[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UTexture2DDynamic*                     K2Node_CustomEvent_Texture;                        // 0x40(0x8)(BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UTexture2DDynamic*                     Temp_object_Variable;                              // 0x48(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
-	struct FButtonStyle                          K2Node_CustomEvent_InStyle;                        // 0x50(0x3F0)(ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        EntryPoint;                                        // 0x0(0x4)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	FDelegateProperty_                           K2Node_CreateDelegate_OutputDelegate;              // 0x4(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_487F[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UAsyncTaskDownloadImage*               CallFunc_DownloadImage_ReturnValue;                // 0x18(0x8)(Edit, BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UTexture2DDynamic*                     K2Node_CustomEvent_Texture_1;                      // 0x20(0x8)(ExportObject, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+	bool                                         CallFunc_IsValid_ReturnValue;                      // 0x28(0x1)(EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+	uint8                                        Pad_4880[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	FDelegateProperty_                           K2Node_CreateDelegate_OutputDelegate_1;            // 0x2C(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+	uint8                                        Pad_4881[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UTexture2DDynamic*                     K2Node_CustomEvent_Texture;                        // 0x40(0x8)(ExportObject, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UTexture2DDynamic*                     Temp_object_Variable;                              // 0x48(0x8)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+	struct FButtonStyle                          K2Node_CustomEvent_InStyle;                        // 0x50(0x3F0)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -61,8 +61,8 @@ public:
 struct UUI_SubMinusCategory_C_OnSubCategoryClicked__DelegateSignature_Params
 {
 public:
-	class FString                                SubCategory;                                       // 0x0(0x10)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int64                                        SubCategoryID;                                     // 0x10(0x8)(BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                SubCategory;                                       // 0x0(0x10)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int64                                        SubCategoryID;                                     // 0x10(0x8)(BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

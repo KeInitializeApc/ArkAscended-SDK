@@ -19,7 +19,7 @@ namespace SDK
 struct FScriptTypedElementHandle
 {
 public:
-	uint8                                        Pad_2B5C[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2BFA[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -27,7 +27,7 @@ public:
 struct FTypedElementDataStorageColumn
 {
 public:
-	uint8                                        Pad_2B5D[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2BFB[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -35,7 +35,7 @@ public:
 struct FTypedElementDataStorageTag
 {
 public:
-	uint8                                        Pad_2B5E[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2BFC[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -43,7 +43,7 @@ public:
 struct FTypedElementWidgetConstructor
 {
 public:
-	uint8                                        Pad_2B5F[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2BFE[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xF (0x10 - 0x1)
@@ -51,7 +51,7 @@ public:
 struct FTypedElementLabelColumn : public FTypedElementDataStorageColumn
 {
 public:
-	uint8                                        Pad_2B60[0xF];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2BFF[0xF];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x7 (0x8 - 0x1)
@@ -59,7 +59,7 @@ public:
 struct FTypedElementLabelHashColumn : public FTypedElementDataStorageColumn
 {
 public:
-	uint8                                        Pad_2B62[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2C00[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -67,7 +67,7 @@ public:
 struct FScriptTypedElementListProxy
 {
 public:
-	uint8                                        Pad_2B64[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2C01[0x10];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x0 (0x1 - 0x1)
@@ -82,7 +82,7 @@ public:
 struct FTypedElementPackagePathColumn : public FTypedElementDataStorageColumn
 {
 public:
-	uint8                                        Pad_2B65[0xF];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2C03[0xF];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xB (0xC - 0x1)
@@ -90,7 +90,7 @@ public:
 struct FTypedElementPackageLoadedPathColumn : public FTypedElementDataStorageColumn
 {
 public:
-	uint8                                        Pad_2B66[0xB];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2C04[0xB];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xF (0x10 - 0x1)
@@ -98,7 +98,7 @@ public:
 struct FTypedElementSlateWidgetReferenceColumn : public FTypedElementDataStorageColumn
 {
 public:
-	uint8                                        Pad_2B67[0xF];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2C05[0xF];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x0 (0x1 - 0x1)
@@ -113,7 +113,7 @@ public:
 struct FTypedElementLocalTransformColumn : public FTypedElementDataStorageColumn
 {
 public:
-	uint8                                        Pad_2B68[0x5F];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2C06[0x5F];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x3 (0x4 - 0x1)
@@ -121,7 +121,7 @@ public:
 struct FTypedElementU32IntValueCacheColumn : public FTypedElementDataStorageColumn
 {
 public:
-	uint8                                        Pad_2B69[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2C07[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x3 (0x4 - 0x1)
@@ -129,7 +129,7 @@ public:
 struct FTypedElementI32IntValueCacheColumn : public FTypedElementDataStorageColumn
 {
 public:
-	uint8                                        Pad_2B6A[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2C08[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x3 (0x4 - 0x1)
@@ -137,7 +137,7 @@ public:
 struct FTypedElementFloatValueCacheColumn : public FTypedElementDataStorageColumn
 {
 public:
-	uint8                                        Pad_2B6B[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2C09[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

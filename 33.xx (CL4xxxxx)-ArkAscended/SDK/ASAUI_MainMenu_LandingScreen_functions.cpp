@@ -115,14 +115,14 @@ void UASAUI_MainMenu_LandingScreen_C::RefreshAnim()
 // Function ASAUI_MainMenu_LandingScreen.ASAUI_MainMenu_LandingScreen_C.ExecuteUbergraph_ASAUI_MainMenu_LandingScreen
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UShooterGameViewportClient*  CallFunc_GetViewportClient_ReturnValue                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UPrimalUI*                   CallFunc_GetUISceneFromClass_ReturnValue                         (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UUI_MainMenu*                K2Node_DynamicCast_AsUI_Main_Menu                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UShooterGameViewportClient*  CallFunc_GetViewportClient_ReturnValue                           (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UPrimalUI*                   CallFunc_GetUISceneFromClass_ReturnValue                         (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUI_MainMenu*                K2Node_DynamicCast_AsUI_Main_Menu                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class UUMGSequencePlayer* UASAUI_MainMenu_LandingScreen_C::ExecuteUbergraph_ASAUI_MainMenu_LandingScreen(class UShooterGameViewportClient** CallFunc_GetViewportClient_ReturnValue, class UPrimalUI** CallFunc_GetUISceneFromClass_ReturnValue, class UUI_MainMenu* K2Node_DynamicCast_AsUI_Main_Menu, bool* K2Node_DynamicCast_bSuccess)
+bool UASAUI_MainMenu_LandingScreen_C::ExecuteUbergraph_ASAUI_MainMenu_LandingScreen(int32 EntryPoint, class UShooterGameViewportClient** CallFunc_GetViewportClient_ReturnValue, class UPrimalUI** CallFunc_GetUISceneFromClass_ReturnValue, class UUI_MainMenu** K2Node_DynamicCast_AsUI_Main_Menu, class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -131,7 +131,8 @@ class UUMGSequencePlayer* UASAUI_MainMenu_LandingScreen_C::ExecuteUbergraph_ASAU
 
 	Params::UASAUI_MainMenu_LandingScreen_C_ExecuteUbergraph_ASAUI_MainMenu_LandingScreen_Params Parms{};
 
-	Parms.K2Node_DynamicCast_AsUI_Main_Menu = K2Node_DynamicCast_AsUI_Main_Menu;
+	Parms.EntryPoint = EntryPoint;
+	Parms.CallFunc_PlayAnimation_ReturnValue = CallFunc_PlayAnimation_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -141,8 +142,8 @@ class UUMGSequencePlayer* UASAUI_MainMenu_LandingScreen_C::ExecuteUbergraph_ASAU
 	if (CallFunc_GetUISceneFromClass_ReturnValue != nullptr)
 		*CallFunc_GetUISceneFromClass_ReturnValue = Parms.CallFunc_GetUISceneFromClass_ReturnValue;
 
-	if (K2Node_DynamicCast_bSuccess != nullptr)
-		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+	if (K2Node_DynamicCast_AsUI_Main_Menu != nullptr)
+		*K2Node_DynamicCast_AsUI_Main_Menu = Parms.K2Node_DynamicCast_AsUI_Main_Menu;
 
 	return Parms.ReturnValue;
 

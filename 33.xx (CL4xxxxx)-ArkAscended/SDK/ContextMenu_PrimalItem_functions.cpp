@@ -43,10 +43,10 @@ class UContextMenu_PrimalItem_C* UContextMenu_PrimalItem_C::GetDefaultObj()
 // Function ContextMenu_PrimalItem.ContextMenu_PrimalItem_C.Tick
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              InDeltaTime                                                      (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (Edit, BlueprintVisible, Net, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InDeltaTime                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-float UContextMenu_PrimalItem_C::Tick(struct FGeometry* MyGeometry)
+float UContextMenu_PrimalItem_C::Tick(const struct FGeometry& MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,11 +55,9 @@ float UContextMenu_PrimalItem_C::Tick(struct FGeometry* MyGeometry)
 
 	Params::UContextMenu_PrimalItem_C_Tick_Params Parms{};
 
+	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (MyGeometry != nullptr)
-		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -69,11 +67,11 @@ float UContextMenu_PrimalItem_C::Tick(struct FGeometry* MyGeometry)
 // Function ContextMenu_PrimalItem.ContextMenu_PrimalItem_C.ExecuteUbergraph_ContextMenu_PrimalItem
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FGeometry                   K2Node_Event_MyGeometry                                          (Edit, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              K2Node_Event_InDeltaTime                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   K2Node_Event_MyGeometry                                          (Net, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              K2Node_Event_InDeltaTime                                         (Edit, ConstParm, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
 
-int32 UContextMenu_PrimalItem_C::ExecuteUbergraph_ContextMenu_PrimalItem(struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime)
+void UContextMenu_PrimalItem_C::ExecuteUbergraph_ContextMenu_PrimalItem(int32 EntryPoint, struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -82,6 +80,7 @@ int32 UContextMenu_PrimalItem_C::ExecuteUbergraph_ContextMenu_PrimalItem(struct 
 
 	Params::UContextMenu_PrimalItem_C_ExecuteUbergraph_ContextMenu_PrimalItem_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -90,8 +89,6 @@ int32 UContextMenu_PrimalItem_C::ExecuteUbergraph_ContextMenu_PrimalItem(struct 
 
 	if (K2Node_Event_InDeltaTime != nullptr)
 		*K2Node_Event_InDeltaTime = Parms.K2Node_Event_InDeltaTime;
-
-	return Parms.ReturnValue;
 
 }
 

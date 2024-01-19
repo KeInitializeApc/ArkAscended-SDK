@@ -25,10 +25,10 @@ public:
 class UInteractiveToolPropertySet : public UObject
 {
 public:
-	uint8                                        Pad_920[0x10];                                     // Fixing Size After Last Property  > TateDumper <
-	TMap<class FString, class UInteractiveToolPropertySet*> CachedPropertiesMap;                               // 0x38(0x50)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	bool                                         bIsPropertySetEnabled;                             // 0x88(0x1)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_921[0x1F];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_6F7[0x10];                                     // Fixing Size After Last Property  > TateDumper <
+	TMap<class FString, class UInteractiveToolPropertySet*> CachedPropertiesMap;                               // 0x38(0x50)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bIsPropertySetEnabled;                             // 0x88(0x1)(Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_6FC[0x1F];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UInteractiveToolPropertySet* GetDefaultObj();
@@ -40,10 +40,10 @@ public:
 class UInteractiveTool : public UObject
 {
 public:
-	uint8                                        Pad_923[0x38];                                     // Fixing Size After Last Property  > TateDumper <
-	class UInputBehaviorSet*                     InputBehaviors;                                    // 0x60(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<class UObject*>                       ToolPropertyObjects;                               // 0x68(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_924[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_703[0x38];                                     // Fixing Size After Last Property  > TateDumper <
+	class UInputBehaviorSet*                     InputBehaviors;                                    // 0x60(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class UObject*>                       ToolPropertyObjects;                               // 0x68(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_708[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UInteractiveTool* GetDefaultObj();
@@ -55,7 +55,7 @@ public:
 class USingleClickTool : public UInteractiveTool
 {
 public:
-	uint8                                        Pad_926[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_70C[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USingleClickTool* GetDefaultObj();
@@ -78,8 +78,8 @@ public:
 class UMultiSelectionTool : public UInteractiveTool
 {
 public:
-	uint8                                        Pad_92B[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class UToolTarget*>                   Targets;                                           // 0xA0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	uint8                                        Pad_718[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<class UToolTarget*>                   Targets;                                           // 0xA0(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMultiSelectionTool* GetDefaultObj();
@@ -102,7 +102,7 @@ public:
 class USingleSelectionTool : public UInteractiveTool
 {
 public:
-	uint8                                        Pad_92F[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_720[0x8];                                      // Fixing Size After Last Property  > TateDumper <
 	class UToolTarget*                           Target;                                            // 0xA0(0x8)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
 
 	static class UClass* StaticClass();
@@ -115,7 +115,7 @@ public:
 class UInteractionMechanic : public UObject
 {
 public:
-	uint8                                        Pad_935[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_723[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UInteractionMechanic* GetDefaultObj();
@@ -127,7 +127,7 @@ public:
 class UInteractiveCommandArguments : public UObject
 {
 public:
-	uint8                                        Pad_938[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_726[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UInteractiveCommandArguments* GetDefaultObj();
@@ -150,7 +150,7 @@ public:
 class UMeshSurfacePointToolBuilder : public UInteractiveToolWithToolTargetsBuilder
 {
 public:
-	uint8                                        Pad_93A[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_731[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMeshSurfacePointToolBuilder* GetDefaultObj();
@@ -162,8 +162,8 @@ public:
 class AInternalToolFrameworkActor : public AActor
 {
 public:
-	bool                                         bIsSelectableInEditor;                             // 0x4C8(0x1)(Edit, BlueprintVisible, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_942[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bIsSelectableInEditor;                             // 0x4C8(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_735[0x7];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class AInternalToolFrameworkActor* GetDefaultObj();
@@ -186,8 +186,8 @@ public:
 class UMeshSurfacePointTool : public USingleSelectionTool
 {
 public:
-	uint8                                        Pad_945[0x50];                                     // Fixing Size After Last Property  > TateDumper <
-	TWeakObjectPtr<class UWorld>                 TargetWorld;                                       // 0xF8(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_73B[0x50];                                     // Fixing Size After Last Property  > TateDumper <
+	TWeakObjectPtr<class UWorld>                 TargetWorld;                                       // 0xF8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMeshSurfacePointTool* GetDefaultObj();
@@ -199,14 +199,14 @@ public:
 class UBaseBrushTool : public UMeshSurfacePointTool
 {
 public:
-	class UBrushBaseProperties*                  BrushProperties;                                   // 0x100(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bInBrushStroke;                                    // 0x108(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_947[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        WorldToLocalScale;                                 // 0x10C(0x4)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	struct FBrushStampData                       LastBrushStamp;                                    // 0x110(0x130)(Edit, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_948[0x10];                                     // Fixing Size After Last Property  > TateDumper <
-	TSoftClassPtr<class UBrushBaseProperties>    PropertyClass;                                     // 0x250(0x30)(Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	class UBrushStampIndicator*                  BrushStampIndicator;                               // 0x280(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig)
+	class UBrushBaseProperties*                  BrushProperties;                                   // 0x100(0x8)(Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInBrushStroke;                                    // 0x108(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_741[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        WorldToLocalScale;                                 // 0x10C(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	struct FBrushStampData                       LastBrushStamp;                                    // 0x110(0x130)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_743[0x10];                                     // Fixing Size After Last Property  > TateDumper <
+	TSoftClassPtr<class UBrushBaseProperties>    PropertyClass;                                     // 0x250(0x30)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class UBrushStampIndicator*                  BrushStampIndicator;                               // 0x280(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UBaseBrushTool* GetDefaultObj();
@@ -230,11 +230,11 @@ class UGizmoBaseComponent : public UPrimitiveComponent
 {
 public:
 	struct FLinearColor                          Color;                                             // 0x698(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
-	float                                        HoverSizeMultiplier;                               // 0x6A8(0x4)(ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        PixelHitDistanceThreshold;                         // 0x6AC(0x4)(ConstParm, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_957[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class UGizmoViewContext*                     GizmoViewContext;                                  // 0x6B8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, EditConst, GlobalConfig)
-	uint8                                        Pad_959[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        HoverSizeMultiplier;                               // 0x6A8(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        PixelHitDistanceThreshold;                         // 0x6AC(0x4)(ExportObject, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_74C[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class UGizmoViewContext*                     GizmoViewContext;                                  // 0x6B8(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, EditConst, SubobjectReference)
+	uint8                                        Pad_74D[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoBaseComponent* GetDefaultObj();
@@ -347,7 +347,7 @@ public:
 class UGizmoBaseVec2ParameterSource : public UObject
 {
 public:
-	uint8                                        Pad_96D[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_764[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoBaseVec2ParameterSource* GetDefaultObj();
@@ -360,7 +360,7 @@ class UGizmoLocalVec2ParameterSource : public UGizmoBaseVec2ParameterSource
 {
 public:
 	struct FVector2D                             Value;                                             // 0x48(0x10)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-	struct FGizmoVec2ParameterChange             LastChange;                                        // 0x58(0x20)(Edit, ConstParm, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FGizmoVec2ParameterChange             LastChange;                                        // 0x58(0x20)(Edit, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoLocalVec2ParameterSource* GetDefaultObj();
@@ -372,7 +372,7 @@ public:
 class UGizmoBaseFloatParameterSource : public UObject
 {
 public:
-	uint8                                        Pad_972[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_768[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoBaseFloatParameterSource* GetDefaultObj();
@@ -384,15 +384,15 @@ public:
 class UGizmoAxisTranslationParameterSource : public UGizmoBaseFloatParameterSource
 {
 public:
-	uint8                                        Pad_979[0x88];                                     // Fixing Size After Last Property  > TateDumper <
-	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0xD0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_772[0x88];                                     // Fixing Size After Last Property  > TateDumper <
+	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0xD0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 	TScriptInterface<class IGizmoTransformSource> TransformSource;                                   // 0xE0(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	float                                        Parameter;                                         // 0xF0(0x4)(BlueprintVisible, ExportObject, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGizmoFloatParameterChange            LastChange;                                        // 0xF4(0x8)(Edit, ConstParm, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_97C[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               CurTranslationAxis;                                // 0x100(0x18)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurTranslationOrigin;                              // 0x118(0x18)(Edit, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FTransform                            InitialTransform;                                  // 0x130(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Parameter;                                         // 0xF0(0x4)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGizmoFloatParameterChange            LastChange;                                        // 0xF4(0x8)(Edit, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_77A[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               CurTranslationAxis;                                // 0x100(0x18)(ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurTranslationOrigin;                              // 0x118(0x18)(Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FTransform                            InitialTransform;                                  // 0x130(0x60)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoAxisTranslationParameterSource* GetDefaultObj();
@@ -404,16 +404,16 @@ public:
 class UGizmoPlaneTranslationParameterSource : public UGizmoBaseVec2ParameterSource
 {
 public:
-	uint8                                        Pad_980[0xC8];                                     // Fixing Size After Last Property  > TateDumper <
-	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x110(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_782[0xC8];                                     // Fixing Size After Last Property  > TateDumper <
+	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x110(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 	TScriptInterface<class IGizmoTransformSource> TransformSource;                                   // 0x120(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	struct FVector2D                             Parameter;                                         // 0x130(0x10)(BlueprintVisible, ExportObject, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGizmoVec2ParameterChange             LastChange;                                        // 0x140(0x20)(Edit, ConstParm, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurTranslationOrigin;                              // 0x160(0x18)(Edit, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurTranslationNormal;                              // 0x178(0x18)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurTranslationAxisX;                               // 0x190(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurTranslationAxisY;                               // 0x1A8(0x18)(BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FTransform                            InitialTransform;                                  // 0x1C0(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector2D                             Parameter;                                         // 0x130(0x10)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGizmoVec2ParameterChange             LastChange;                                        // 0x140(0x20)(Edit, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurTranslationOrigin;                              // 0x160(0x18)(Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurTranslationNormal;                              // 0x178(0x18)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurTranslationAxisX;                               // 0x190(0x18)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurTranslationAxisY;                               // 0x1A8(0x18)(ConstParm, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FTransform                            InitialTransform;                                  // 0x1C0(0x60)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoPlaneTranslationParameterSource* GetDefaultObj();
@@ -425,15 +425,15 @@ public:
 class UGizmoAxisRotationParameterSource : public UGizmoBaseFloatParameterSource
 {
 public:
-	uint8                                        Pad_984[0x88];                                     // Fixing Size After Last Property  > TateDumper <
-	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0xD0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_79B[0x88];                                     // Fixing Size After Last Property  > TateDumper <
+	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0xD0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 	TScriptInterface<class IGizmoTransformSource> TransformSource;                                   // 0xE0(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	float                                        Angle;                                             // 0xF0(0x4)(Edit, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	struct FGizmoFloatParameterChange            LastChange;                                        // 0xF4(0x8)(Edit, ConstParm, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_985[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               CurRotationAxis;                                   // 0x100(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurRotationOrigin;                                 // 0x118(0x18)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FTransform                            InitialTransform;                                  // 0x130(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Angle;                                             // 0xF0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	struct FGizmoFloatParameterChange            LastChange;                                        // 0xF4(0x8)(Edit, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_79F[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               CurRotationAxis;                                   // 0x100(0x18)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurRotationOrigin;                                 // 0x118(0x18)(Edit, ConstParm, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FTransform                            InitialTransform;                                  // 0x130(0x60)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoAxisRotationParameterSource* GetDefaultObj();
@@ -445,17 +445,17 @@ public:
 class UGizmoUniformScaleParameterSource : public UGizmoBaseVec2ParameterSource
 {
 public:
-	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x48(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x48(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 	TScriptInterface<class IGizmoTransformSource> TransformSource;                                   // 0x58(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	float                                        ScaleMultiplier;                                   // 0x68(0x4)(ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_986[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector2D                             Parameter;                                         // 0x70(0x10)(BlueprintVisible, ExportObject, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGizmoVec2ParameterChange             LastChange;                                        // 0x80(0x20)(Edit, ConstParm, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurScaleOrigin;                                    // 0xA0(0x18)(BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurScaleNormal;                                    // 0xB8(0x18)(ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurScaleAxisX;                                     // 0xD0(0x18)(Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurScaleAxisY;                                     // 0xE8(0x18)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FTransform                            InitialTransform;                                  // 0x100(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        ScaleMultiplier;                                   // 0x68(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7AB[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector2D                             Parameter;                                         // 0x70(0x10)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGizmoVec2ParameterChange             LastChange;                                        // 0x80(0x20)(Edit, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurScaleOrigin;                                    // 0xA0(0x18)(ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurScaleNormal;                                    // 0xB8(0x18)(ConstParm, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurScaleAxisX;                                     // 0xD0(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurScaleAxisY;                                     // 0xE8(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FTransform                            InitialTransform;                                  // 0x100(0x60)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoUniformScaleParameterSource* GetDefaultObj();
@@ -467,17 +467,17 @@ public:
 class UGizmoAxisScaleParameterSource : public UGizmoBaseFloatParameterSource
 {
 public:
-	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x48(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x48(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 	TScriptInterface<class IGizmoTransformSource> TransformSource;                                   // 0x58(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	float                                        ScaleMultiplier;                                   // 0x68(0x4)(ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	bool                                         bClampToZero;                                      // 0x6C(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_989[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        Parameter;                                         // 0x70(0x4)(BlueprintVisible, ExportObject, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGizmoFloatParameterChange            LastChange;                                        // 0x74(0x8)(Edit, ConstParm, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_98A[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               CurScaleAxis;                                      // 0x80(0x18)(ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurScaleOrigin;                                    // 0x98(0x18)(BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FTransform                            InitialTransform;                                  // 0xB0(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        ScaleMultiplier;                                   // 0x68(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, InstancedReference, SubobjectReference)
+	bool                                         bClampToZero;                                      // 0x6C(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7B3[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        Parameter;                                         // 0x70(0x4)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGizmoFloatParameterChange            LastChange;                                        // 0x74(0x8)(Edit, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7B4[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               CurScaleAxis;                                      // 0x80(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurScaleOrigin;                                    // 0x98(0x18)(ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FTransform                            InitialTransform;                                  // 0xB0(0x60)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoAxisScaleParameterSource* GetDefaultObj();
@@ -489,21 +489,21 @@ public:
 class UGizmoPlaneScaleParameterSource : public UGizmoBaseVec2ParameterSource
 {
 public:
-	uint8                                        Pad_98D[0x48];                                     // Fixing Size After Last Property  > TateDumper <
-	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x90(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7BA[0x48];                                     // Fixing Size After Last Property  > TateDumper <
+	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x90(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 	TScriptInterface<class IGizmoTransformSource> TransformSource;                                   // 0xA0(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	float                                        ScaleMultiplier;                                   // 0xB0(0x4)(ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	bool                                         bUseEqualScaling;                                  // 0xB4(0x1)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bClampToZero;                                      // 0xB5(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_98E[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector2D                             Parameter;                                         // 0xB8(0x10)(BlueprintVisible, ExportObject, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGizmoVec2ParameterChange             LastChange;                                        // 0xC8(0x20)(Edit, ConstParm, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurScaleOrigin;                                    // 0xE8(0x18)(BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurScaleNormal;                                    // 0x100(0x18)(ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurScaleAxisX;                                     // 0x118(0x18)(Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               CurScaleAxisY;                                     // 0x130(0x18)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_991[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            InitialTransform;                                  // 0x150(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        ScaleMultiplier;                                   // 0xB0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, InstancedReference, SubobjectReference)
+	bool                                         bUseEqualScaling;                                  // 0xB4(0x1)(BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bClampToZero;                                      // 0xB5(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7C1[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector2D                             Parameter;                                         // 0xB8(0x10)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGizmoVec2ParameterChange             LastChange;                                        // 0xC8(0x20)(Edit, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurScaleOrigin;                                    // 0xE8(0x18)(ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurScaleNormal;                                    // 0x100(0x18)(ConstParm, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurScaleAxisX;                                     // 0x118(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               CurScaleAxisY;                                     // 0x130(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7C7[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            InitialTransform;                                  // 0x150(0x60)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoPlaneScaleParameterSource* GetDefaultObj();
@@ -559,7 +559,7 @@ public:
 class UInputBehavior : public UObject
 {
 public:
-	uint8                                        Pad_997[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7D7[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UInputBehavior* GetDefaultObj();
@@ -571,7 +571,7 @@ public:
 class UAnyButtonInputBehavior : public UInputBehavior
 {
 public:
-	uint8                                        Pad_998[0x50];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7DB[0x50];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAnyButtonInputBehavior* GetDefaultObj();
@@ -583,9 +583,9 @@ public:
 class UClickDragInputBehavior : public UAnyButtonInputBehavior
 {
 public:
-	uint8                                        Pad_99A[0xA0];                                     // Fixing Size After Last Property  > TateDumper <
-	bool                                         bUpdateModifiersDuringDrag;                        // 0x120(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_99B[0x1F];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7DE[0xA0];                                     // Fixing Size After Last Property  > TateDumper <
+	bool                                         bUpdateModifiersDuringDrag;                        // 0x120(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7E0[0x1F];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UClickDragInputBehavior* GetDefaultObj();
@@ -597,7 +597,7 @@ public:
 class ULocalClickDragInputBehavior : public UClickDragInputBehavior
 {
 public:
-	uint8                                        Pad_99E[0x140];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7E4[0x140];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULocalClickDragInputBehavior* GetDefaultObj();
@@ -609,7 +609,7 @@ public:
 class UKeyAsModifierInputBehavior : public UInputBehavior
 {
 public:
-	uint8                                        Pad_9A2[0x68];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7EE[0x68];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UKeyAsModifierInputBehavior* GetDefaultObj();
@@ -621,7 +621,7 @@ public:
 class UMouseHoverBehavior : public UInputBehavior
 {
 public:
-	uint8                                        Pad_9A5[0x68];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7EF[0x68];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMouseHoverBehavior* GetDefaultObj();
@@ -633,7 +633,7 @@ public:
 class ULocalMouseHoverBehavior : public UMouseHoverBehavior
 {
 public:
-	uint8                                        Pad_9AA[0x148];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7F3[0x148];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULocalMouseHoverBehavior* GetDefaultObj();
@@ -645,7 +645,7 @@ public:
 class UMouseWheelInputBehavior : public UAnyButtonInputBehavior
 {
 public:
-	uint8                                        Pad_9AD[0xB0];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7F7[0xB0];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMouseWheelInputBehavior* GetDefaultObj();
@@ -657,7 +657,7 @@ public:
 class UMultiClickSequenceInputBehavior : public UAnyButtonInputBehavior
 {
 public:
-	uint8                                        Pad_9AF[0xB0];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7F8[0xB0];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMultiClickSequenceInputBehavior* GetDefaultObj();
@@ -669,9 +669,9 @@ public:
 class USingleClickInputBehavior : public UAnyButtonInputBehavior
 {
 public:
-	uint8                                        Pad_9B1[0x40];                                     // Fixing Size After Last Property  > TateDumper <
-	bool                                         HitTestOnRelease;                                  // 0xC0(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9B2[0x6F];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7FB[0x40];                                     // Fixing Size After Last Property  > TateDumper <
+	bool                                         HitTestOnRelease;                                  // 0xC0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_7FC[0x6F];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USingleClickInputBehavior* GetDefaultObj();
@@ -683,7 +683,7 @@ public:
 class ULocalSingleClickInputBehavior : public USingleClickInputBehavior
 {
 public:
-	uint8                                        Pad_9B5[0xD0];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7FE[0xD0];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULocalSingleClickInputBehavior* GetDefaultObj();
@@ -695,11 +695,11 @@ public:
 class USingleClickOrDragInputBehavior : public UAnyButtonInputBehavior
 {
 public:
-	uint8                                        Pad_9B6[0xA0];                                     // Fixing Size After Last Property  > TateDumper <
-	bool                                         bBeginDragIfClickTargetNotHit;                     // 0x120(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9B7[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        ClickDistanceThreshold;                            // 0x124(0x4)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9B8[0x58];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_801[0xA0];                                     // Fixing Size After Last Property  > TateDumper <
+	bool                                         bBeginDragIfClickTargetNotHit;                     // 0x120(0x1)(BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_803[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        ClickDistanceThreshold;                            // 0x124(0x4)(BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_805[0x58];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USingleClickOrDragInputBehavior* GetDefaultObj();
@@ -711,7 +711,7 @@ public:
 class USingleKeyCaptureBehavior : public UInputBehavior
 {
 public:
-	uint8                                        Pad_9B9[0xE0];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_808[0xE0];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USingleKeyCaptureBehavior* GetDefaultObj();
@@ -745,8 +745,8 @@ public:
 class UInteractiveGizmo : public UObject
 {
 public:
-	uint8                                        Pad_9BD[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class UInputBehaviorSet*                     InputBehaviors;                                    // 0x30(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_809[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class UInputBehaviorSet*                     InputBehaviors;                                    // 0x30(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UInteractiveGizmo* GetDefaultObj();
@@ -758,24 +758,24 @@ public:
 class UAxisAngleGizmo : public UInteractiveGizmo
 {
 public:
-	uint8                                        Pad_9BE[0x10];                                     // Fixing Size After Last Property  > TateDumper <
-	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x48(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TScriptInterface<class IGizmoFloatParameterSource> AngleSource;                                       // 0x58(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TScriptInterface<class IGizmoClickTarget>    HitTarget;                                         // 0x68(0x10)(BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TScriptInterface<class IGizmoStateTarget>    StateTarget;                                       // 0x78(0x10)(Edit, ConstParm, BlueprintVisible, Transient, EditConst, InstancedReference, SubobjectReference)
-	class UClickDragInputBehavior*               MouseBehavior;                                     // 0x88(0x8)(ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9C1[0x80];                                     // Fixing Size After Last Property  > TateDumper <
-	bool                                         bInInteraction;                                    // 0x110(0x1)(Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9C2[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               RotationOrigin;                                    // 0x118(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FVector                               RotationAxis;                                      // 0x130(0x18)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector                               RotationPlaneX;                                    // 0x148(0x18)(ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               RotationPlaneY;                                    // 0x160(0x18)(BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               InteractionStartPoint;                             // 0x178(0x18)(BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               InteractionCurPoint;                               // 0x190(0x18)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        InteractionStartAngle;                             // 0x1A8(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        InteractionCurAngle;                               // 0x1AC(0x4)(ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9C6[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_80A[0x10];                                     // Fixing Size After Last Property  > TateDumper <
+	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x48(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TScriptInterface<class IGizmoFloatParameterSource> AngleSource;                                       // 0x58(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TScriptInterface<class IGizmoClickTarget>    HitTarget;                                         // 0x68(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TScriptInterface<class IGizmoStateTarget>    StateTarget;                                       // 0x78(0x10)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+	class UClickDragInputBehavior*               MouseBehavior;                                     // 0x88(0x8)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_80C[0x80];                                     // Fixing Size After Last Property  > TateDumper <
+	bool                                         bInInteraction;                                    // 0x110(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_80E[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               RotationOrigin;                                    // 0x118(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FVector                               RotationAxis;                                      // 0x130(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector                               RotationPlaneX;                                    // 0x148(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               RotationPlaneY;                                    // 0x160(0x18)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               InteractionStartPoint;                             // 0x178(0x18)(ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               InteractionCurPoint;                               // 0x190(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        InteractionStartAngle;                             // 0x1A8(0x4)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        InteractionCurAngle;                               // 0x1AC(0x4)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_811[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAxisAngleGizmo* GetDefaultObj();
@@ -798,25 +798,25 @@ public:
 class UAxisPositionGizmo : public UInteractiveGizmo
 {
 public:
-	uint8                                        Pad_9CA[0x10];                                     // Fixing Size After Last Property  > TateDumper <
-	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x48(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TScriptInterface<class IGizmoFloatParameterSource> ParameterSource;                                   // 0x58(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoViewContext*                     GizmoViewContext;                                  // 0x68(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, EditConst, GlobalConfig)
-	TScriptInterface<class IGizmoClickTarget>    HitTarget;                                         // 0x70(0x10)(BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TScriptInterface<class IGizmoStateTarget>    StateTarget;                                       // 0x80(0x10)(Edit, ConstParm, BlueprintVisible, Transient, EditConst, InstancedReference, SubobjectReference)
-	class UClickDragInputBehavior*               MouseBehavior;                                     // 0x90(0x8)(ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bEnableSignedAxis;                                 // 0x98(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9CC[0x88];                                     // Fixing Size After Last Property  > TateDumper <
-	bool                                         bInInteraction;                                    // 0x121(0x1)(Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9CD[0x6];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               InteractionOrigin;                                 // 0x128(0x18)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               InteractionAxis;                                   // 0x140(0x18)(Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               InteractionStartPoint;                             // 0x158(0x18)(BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               InteractionCurPoint;                               // 0x170(0x18)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        InteractionStartParameter;                         // 0x188(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        InteractionCurParameter;                           // 0x18C(0x4)(Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        ParameterSign;                                     // 0x190(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9CF[0x2C];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_815[0x10];                                     // Fixing Size After Last Property  > TateDumper <
+	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x48(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TScriptInterface<class IGizmoFloatParameterSource> ParameterSource;                                   // 0x58(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoViewContext*                     GizmoViewContext;                                  // 0x68(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, EditConst, SubobjectReference)
+	TScriptInterface<class IGizmoClickTarget>    HitTarget;                                         // 0x70(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TScriptInterface<class IGizmoStateTarget>    StateTarget;                                       // 0x80(0x10)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+	class UClickDragInputBehavior*               MouseBehavior;                                     // 0x90(0x8)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bEnableSignedAxis;                                 // 0x98(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_819[0x88];                                     // Fixing Size After Last Property  > TateDumper <
+	bool                                         bInInteraction;                                    // 0x121(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_81A[0x6];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               InteractionOrigin;                                 // 0x128(0x18)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               InteractionAxis;                                   // 0x140(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               InteractionStartPoint;                             // 0x158(0x18)(ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               InteractionCurPoint;                               // 0x170(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        InteractionStartParameter;                         // 0x188(0x4)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        InteractionCurParameter;                           // 0x18C(0x4)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        ParameterSign;                                     // 0x190(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_81F[0x2C];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAxisPositionGizmo* GetDefaultObj();
@@ -828,9 +828,9 @@ public:
 class UGizmoConstantAxisSource : public UObject
 {
 public:
-	uint8                                        Pad_9D4[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               Origin;                                            // 0x30(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector                               Direction;                                         // 0x48(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_822[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               Origin;                                            // 0x30(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	struct FVector                               Direction;                                         // 0x48(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoConstantAxisSource* GetDefaultObj();
@@ -842,11 +842,11 @@ public:
 class UGizmoConstantFrameAxisSource : public UObject
 {
 public:
-	uint8                                        Pad_9D5[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               Origin;                                            // 0x30(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector                               Direction;                                         // 0x48(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
-	struct FVector                               TangentX;                                          // 0x60(0x18)(BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	struct FVector                               TangentY;                                          // 0x78(0x18)(ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_827[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               Origin;                                            // 0x30(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	struct FVector                               Direction;                                         // 0x48(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
+	struct FVector                               TangentX;                                          // 0x60(0x18)(Edit, BlueprintVisible, ExportObject, OutParm, Config, InstancedReference, SubobjectReference)
+	struct FVector                               TangentY;                                          // 0x78(0x18)(BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoConstantFrameAxisSource* GetDefaultObj();
@@ -858,10 +858,10 @@ public:
 class UGizmoWorldAxisSource : public UObject
 {
 public:
-	uint8                                        Pad_9D8[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               Origin;                                            // 0x30(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	int32                                        AxisIndex;                                         // 0x48(0x4)(Edit, ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9D9[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_82A[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               Origin;                                            // 0x30(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	int32                                        AxisIndex;                                         // 0x48(0x4)(Edit, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_82C[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoWorldAxisSource* GetDefaultObj();
@@ -873,11 +873,11 @@ public:
 class UGizmoComponentAxisSource : public UObject
 {
 public:
-	uint8                                        Pad_9DA[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class USceneComponent*                       Component;                                         // 0x30(0x8)(Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	int32                                        AxisIndex;                                         // 0x38(0x4)(Edit, ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bLocalAxes;                                        // 0x3C(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9DB[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_82E[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class USceneComponent*                       Component;                                         // 0x30(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        AxisIndex;                                         // 0x38(0x4)(Edit, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bLocalAxes;                                        // 0x3C(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_830[0x3];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoComponentAxisSource* GetDefaultObj();
@@ -900,27 +900,27 @@ public:
 class UBrushStampIndicator : public UInteractiveGizmo
 {
 public:
-	bool                                         bVisible;                                          // 0x38(0x1)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_9E8[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        BrushRadius;                                       // 0x3C(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        BrushFalloff;                                      // 0x40(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9E9[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               BrushPosition;                                     // 0x48(0x18)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               BrushNormal;                                       // 0x60(0x18)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bDrawIndicatorLines;                               // 0x78(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bDrawRadiusCircle;                                 // 0x79(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9ED[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        SampleStepCount;                                   // 0x7C(0x4)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FLinearColor                          LineColor;                                         // 0x80(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        LineThickness;                                     // 0x90(0x4)(BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bDepthTested;                                      // 0x94(0x1)(ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bDrawSecondaryLines;                               // 0x95(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9F1[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        SecondaryLineThickness;                            // 0x98(0x4)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FLinearColor                          SecondaryLineColor;                                // 0x9C(0x10)(Edit, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9F4[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UPrimitiveComponent*                   AttachedComponent;                                 // 0xB0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_9F6[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bVisible;                                          // 0x38(0x1)(ConstParm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_835[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        BrushRadius;                                       // 0x3C(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        BrushFalloff;                                      // 0x40(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_838[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               BrushPosition;                                     // 0x48(0x18)(BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               BrushNormal;                                       // 0x60(0x18)(Edit, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bDrawIndicatorLines;                               // 0x78(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bDrawRadiusCircle;                                 // 0x79(0x1)(BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_83D[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        SampleStepCount;                                   // 0x7C(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FLinearColor                          LineColor;                                         // 0x80(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        LineThickness;                                     // 0x90(0x4)(Edit, ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bDepthTested;                                      // 0x94(0x1)(EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bDrawSecondaryLines;                               // 0x95(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_841[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        SecondaryLineThickness;                            // 0x98(0x4)(Edit, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FLinearColor                          SecondaryLineColor;                                // 0x9C(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_847[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class UPrimitiveComponent*                   AttachedComponent;                                 // 0xB0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_849[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UBrushStampIndicator* GetDefaultObj();
@@ -943,23 +943,23 @@ public:
 class ACombinedTransformGizmoActor : public AGizmoActor
 {
 public:
-	class UPrimitiveComponent*                   TranslateX;                                        // 0x4D0(0x8)(Edit, ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   TranslateY;                                        // 0x4D8(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   TranslateZ;                                        // 0x4E0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   TranslateYZ;                                       // 0x4E8(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   TranslateXZ;                                       // 0x4F0(0x8)(Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   TranslateXY;                                       // 0x4F8(0x8)(ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   RotateX;                                           // 0x500(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   RotateY;                                           // 0x508(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   RotateZ;                                           // 0x510(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   RotationSphere;                                    // 0x518(0x8)(Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   UniformScale;                                      // 0x520(0x8)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   AxisScaleX;                                        // 0x528(0x8)(Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   AxisScaleY;                                        // 0x530(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   AxisScaleZ;                                        // 0x538(0x8)(Edit, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   PlaneScaleYZ;                                      // 0x540(0x8)(ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   PlaneScaleXZ;                                      // 0x548(0x8)(Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UPrimitiveComponent*                   PlaneScaleXY;                                      // 0x550(0x8)(BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   TranslateX;                                        // 0x4D0(0x8)(Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   TranslateY;                                        // 0x4D8(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   TranslateZ;                                        // 0x4E0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   TranslateYZ;                                       // 0x4E8(0x8)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   TranslateXZ;                                       // 0x4F0(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   TranslateXY;                                       // 0x4F8(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   RotateX;                                           // 0x500(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   RotateY;                                           // 0x508(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   RotateZ;                                           // 0x510(0x8)(Edit, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   RotationSphere;                                    // 0x518(0x8)(Edit, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   UniformScale;                                      // 0x520(0x8)(Edit, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   AxisScaleX;                                        // 0x528(0x8)(Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   AxisScaleY;                                        // 0x530(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   AxisScaleZ;                                        // 0x538(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   PlaneScaleYZ;                                      // 0x540(0x8)(BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   PlaneScaleXZ;                                      // 0x548(0x8)(Edit, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UPrimitiveComponent*                   PlaneScaleXY;                                      // 0x550(0x8)(ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ACombinedTransformGizmoActor* GetDefaultObj();
@@ -971,7 +971,7 @@ public:
 class UCombinedTransformGizmoBuilder : public UInteractiveGizmoBuilder
 {
 public:
-	uint8                                        Pad_A07[0xC8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_865[0xC8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UCombinedTransformGizmoBuilder* GetDefaultObj();
@@ -983,34 +983,34 @@ public:
 class UCombinedTransformGizmo : public UInteractiveGizmo
 {
 public:
-	class UTransformProxy*                       ActiveTarget;                                      // 0x38(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bSnapToWorldGrid;                                  // 0x40(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A09[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	bool                                         bGridSizeIsExplicit;                               // 0x44(0x1)(Edit, ConstParm, ExportObject, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A0A[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               ExplicitGridSize;                                  // 0x48(0x18)(ConstParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bRotationGridSizeIsExplicit;                       // 0x60(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A0B[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FRotator                              ExplicitRotationGridSize;                          // 0x68(0x18)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bSnapToWorldRotGrid;                               // 0x80(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bUseContextCoordinateSystem;                       // 0x81(0x1)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A10[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	enum class EToolContextCoordinateSystem      CurrentCoordinateSystem;                           // 0x84(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bUseContextGizmoMode;                              // 0x88(0x1)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EToolContextTransformGizmoMode    ActiveGizmoMode;                                   // 0x89(0x1)(Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A12[0x126];                                    // Fixing Size After Last Property  > TateDumper <
-	TArray<class UPrimitiveComponent*>           ActiveComponents;                                  // 0x1B0(0x10)(ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<class UInteractiveGizmo*>             ActiveGizmos;                                      // 0x1C0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A14[0x50];                                     // Fixing Size After Last Property  > TateDumper <
-	class UGizmoConstantFrameAxisSource*         CameraAxisSource;                                  // 0x220(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoComponentAxisSource*             AxisXSource;                                       // 0x228(0x8)(ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoComponentAxisSource*             AxisYSource;                                       // 0x230(0x8)(Edit, ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoComponentAxisSource*             AxisZSource;                                       // 0x238(0x8)(BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoComponentAxisSource*             UnitAxisXSource;                                   // 0x240(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoComponentAxisSource*             UnitAxisYSource;                                   // 0x248(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoComponentAxisSource*             UnitAxisZSource;                                   // 0x250(0x8)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoTransformChangeStateTarget*      StateTarget;                                       // 0x258(0x8)(Edit, ConstParm, BlueprintVisible, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A17[0x140];                                    // Fixing Size Of Struct > TateDumper <
+	class UTransformProxy*                       ActiveTarget;                                      // 0x38(0x8)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bSnapToWorldGrid;                                  // 0x40(0x1)(BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_86B[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	bool                                         bGridSizeIsExplicit;                               // 0x44(0x1)(Edit, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_86C[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               ExplicitGridSize;                                  // 0x48(0x18)(Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bRotationGridSizeIsExplicit;                       // 0x60(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_86E[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FRotator                              ExplicitRotationGridSize;                          // 0x68(0x18)(BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bSnapToWorldRotGrid;                               // 0x80(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bUseContextCoordinateSystem;                       // 0x81(0x1)(ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_871[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	enum class EToolContextCoordinateSystem      CurrentCoordinateSystem;                           // 0x84(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bUseContextGizmoMode;                              // 0x88(0x1)(ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EToolContextTransformGizmoMode    ActiveGizmoMode;                                   // 0x89(0x1)(Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_879[0x126];                                    // Fixing Size After Last Property  > TateDumper <
+	TArray<class UPrimitiveComponent*>           ActiveComponents;                                  // 0x1B0(0x10)(Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class UInteractiveGizmo*>             ActiveGizmos;                                      // 0x1C0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_87C[0x50];                                     // Fixing Size After Last Property  > TateDumper <
+	class UGizmoConstantFrameAxisSource*         CameraAxisSource;                                  // 0x220(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoComponentAxisSource*             AxisXSource;                                       // 0x228(0x8)(BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoComponentAxisSource*             AxisYSource;                                       // 0x230(0x8)(Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoComponentAxisSource*             AxisZSource;                                       // 0x238(0x8)(ConstParm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoComponentAxisSource*             UnitAxisXSource;                                   // 0x240(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoComponentAxisSource*             UnitAxisYSource;                                   // 0x248(0x8)(BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoComponentAxisSource*             UnitAxisZSource;                                   // 0x250(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoTransformChangeStateTarget*      StateTarget;                                       // 0x258(0x8)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_883[0x140];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UCombinedTransformGizmo* GetDefaultObj();
@@ -1022,11 +1022,11 @@ public:
 class UGizmoArrowComponent : public UGizmoBaseComponent
 {
 public:
-	struct FVector                               Direction;                                         // 0x6C8(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
-	float                                        Gap;                                               // 0x6E0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               Direction;                                         // 0x6C8(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
+	float                                        Gap;                                               // 0x6E0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 	float                                        Length;                                            // 0x6E4(0x4)(ConstParm, BlueprintVisible, Net, ReturnParm)
-	float                                        Thickness;                                         // 0x6E8(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_A1E[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        Thickness;                                         // 0x6E8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_88F[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoArrowComponent* GetDefaultObj();
@@ -1038,13 +1038,13 @@ public:
 class UGizmoBoxComponent : public UGizmoBaseComponent
 {
 public:
-	struct FVector                               Origin;                                            // 0x6C8(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector                               Origin;                                            // 0x6C8(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
 	struct FQuat                                 Rotation;                                          // 0x6E0(0x20)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	struct FVector                               Dimensions;                                        // 0x700(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, DuplicateTransient)
-	float                                        LineThickness;                                     // 0x718(0x4)(BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bRemoveHiddenLines;                                // 0x71C(0x1)(Edit, ExportObject, Net, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bEnableAxisFlip;                                   // 0x71D(0x1)(Net, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A20[0x2];                                      // Fixing Size Of Struct > TateDumper <
+	struct FVector                               Dimensions;                                        // 0x700(0x18)(Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, DuplicateTransient)
+	float                                        LineThickness;                                     // 0x718(0x4)(Edit, ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bRemoveHiddenLines;                                // 0x71C(0x1)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bEnableAxisFlip;                                   // 0x71D(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_899[0x2];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoBoxComponent* GetDefaultObj();
@@ -1057,13 +1057,13 @@ class UGizmoCircleComponent : public UGizmoBaseComponent
 {
 public:
 	struct FVector                               Normal;                                            // 0x6C8(0x18)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-	float                                        Radius;                                            // 0x6E0(0x4)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-	float                                        Thickness;                                         // 0x6E4(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	int32                                        NumSides;                                          // 0x6E8(0x4)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bViewAligned;                                      // 0x6EC(0x1)(ConstParm, ExportObject, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bDrawFullCircle;                                   // 0x6ED(0x1)(Edit, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bOnlyAllowFrontFacingHits;                         // 0x6EE(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A23[0x1];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        Radius;                                            // 0x6E0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        Thickness;                                         // 0x6E4(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        NumSides;                                          // 0x6E8(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bViewAligned;                                      // 0x6EC(0x1)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bDrawFullCircle;                                   // 0x6ED(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bOnlyAllowFrontFacingHits;                         // 0x6EE(0x1)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_8A5[0x1];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoCircleComponent* GetDefaultObj();
@@ -1075,30 +1075,30 @@ public:
 class UGizmoElementBase : public UObject
 {
 public:
-	bool                                         bEnabled;                                          // 0x28(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, Transient, EditConst, GlobalConfig)
-	bool                                         bEnabledForPerspectiveProjection;                  // 0x29(0x1)(ConstParm, ExportObject, Net, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bEnabledForOrthographicProjection;                 // 0x2A(0x1)(ExportObject, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bEnabledForDefaultState;                           // 0x2B(0x1)(Edit, ConstParm, ExportObject, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bEnabledForHoveringState;                          // 0x2C(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bEnabledForInteractingState;                       // 0x2D(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A25[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	uint32                                       PartIdentifier;                                    // 0x30(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FGizmoElementMeshRenderStateAttributes MeshRenderAttributes;                              // 0x34(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EGizmoElementState                ElementState;                                      // 0x94(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A26[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	enum class EGizmoElementInteractionState     ElementInteractionState;                           // 0x98(0x4)(ExportObject, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EGizmoElementViewDependentType    ViewDependentType;                                 // 0x9C(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               ViewDependentAxis;                                 // 0xA0(0x18)(BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        ViewDependentAngleTol;                             // 0xB8(0x4)(ExportObject, Net, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        ViewDependentAxialMaxCosAngleTol;                  // 0xBC(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        ViewDependentPlanarMinCosAngleTol;                 // 0xC0(0x4)(Edit, BlueprintVisible, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EGizmoElementViewAlignType        ViewAlignType;                                     // 0xC4(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               ViewAlignAxis;                                     // 0xC8(0x18)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               ViewAlignNormal;                                   // 0xE0(0x18)(BlueprintVisible, ExportObject, Net, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        ViewAlignAxialAngleTol;                            // 0xF8(0x4)(Net, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        ViewAlignAxialMaxCosAngleTol;                      // 0xFC(0x4)(Edit, BlueprintReadOnly, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        PixelHitDistanceThreshold;                         // 0x100(0x4)(ConstParm, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A2D[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bEnabled;                                          // 0x28(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+	bool                                         bEnabledForPerspectiveProjection;                  // 0x29(0x1)(ExportObject, Net, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bEnabledForOrthographicProjection;                 // 0x2A(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bEnabledForDefaultState;                           // 0x2B(0x1)(Edit, ExportObject, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bEnabledForHoveringState;                          // 0x2C(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bEnabledForInteractingState;                       // 0x2D(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_8B0[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	uint32                                       PartIdentifier;                                    // 0x30(0x4)(Edit, BlueprintVisible, Net, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FGizmoElementMeshRenderStateAttributes MeshRenderAttributes;                              // 0x34(0x60)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EGizmoElementState                ElementState;                                      // 0x94(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_8B4[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	enum class EGizmoElementInteractionState     ElementInteractionState;                           // 0x98(0x4)(ConstParm, BlueprintVisible, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EGizmoElementViewDependentType    ViewDependentType;                                 // 0x9C(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               ViewDependentAxis;                                 // 0xA0(0x18)(ConstParm, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        ViewDependentAngleTol;                             // 0xB8(0x4)(ConstParm, BlueprintVisible, Net, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        ViewDependentAxialMaxCosAngleTol;                  // 0xBC(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        ViewDependentPlanarMinCosAngleTol;                 // 0xC0(0x4)(Edit, ConstParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EGizmoElementViewAlignType        ViewAlignType;                                     // 0xC4(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               ViewAlignAxis;                                     // 0xC8(0x18)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               ViewAlignNormal;                                   // 0xE0(0x18)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        ViewAlignAxialAngleTol;                            // 0xF8(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        ViewAlignAxialMaxCosAngleTol;                      // 0xFC(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        PixelHitDistanceThreshold;                         // 0x100(0x4)(ExportObject, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_8BB[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoElementBase* GetDefaultObj();
@@ -1110,13 +1110,13 @@ public:
 class UGizmoElementLineBase : public UGizmoElementBase
 {
 public:
-	struct FGizmoElementLineRenderStateAttributes LineRenderAttributes;                              // 0x108(0x3C)(BlueprintVisible, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        LineThickness;                                     // 0x144(0x4)(BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bScreenSpaceLine;                                  // 0x148(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A2E[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        HoverLineThicknessMultiplier;                      // 0x14C(0x4)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        InteractLineThicknessMultiplier;                   // 0x150(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A2F[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	struct FGizmoElementLineRenderStateAttributes LineRenderAttributes;                              // 0x108(0x3C)(ConstParm, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        LineThickness;                                     // 0x144(0x4)(Edit, ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bScreenSpaceLine;                                  // 0x148(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_8C2[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        HoverLineThicknessMultiplier;                      // 0x14C(0x4)(ConstParm, ExportObject, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        InteractLineThicknessMultiplier;                   // 0x150(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_8C4[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoElementLineBase* GetDefaultObj();
@@ -1129,14 +1129,14 @@ class UGizmoElementCircleBase : public UGizmoElementLineBase
 {
 public:
 	struct FVector                               Center;                                            // 0x158(0x18)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-	struct FVector                               Axis0;                                             // 0x170(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               Axis1;                                             // 0x188(0x18)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	double                                       Radius;                                            // 0x1A0(0x8)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-	int32                                        NumSegments;                                       // 0x1A8(0x4)(Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class EGizmoElementPartialType          PartialType;                                       // 0x1AC(0x4)(ConstParm, BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	double                                       PartialStartAngle;                                 // 0x1B0(0x8)(ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	double                                       PartialEndAngle;                                   // 0x1B8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	double                                       PartialViewDependentMaxCosTol;                     // 0x1C0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               Axis0;                                             // 0x170(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               Axis1;                                             // 0x188(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	double                                       Radius;                                            // 0x1A0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        NumSegments;                                       // 0x1A8(0x4)(Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EGizmoElementPartialType          PartialType;                                       // 0x1AC(0x4)(BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	double                                       PartialStartAngle;                                 // 0x1B0(0x8)(ConstParm, BlueprintVisible, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	double                                       PartialEndAngle;                                   // 0x1B8(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	double                                       PartialViewDependentMaxCosTol;                     // 0x1C0(0x8)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoElementCircleBase* GetDefaultObj();
@@ -1148,7 +1148,7 @@ public:
 class UGizmoElementArc : public UGizmoElementCircleBase
 {
 public:
-	double                                       InnerRadius;                                       // 0x1C8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	double                                       InnerRadius;                                       // 0x1C8(0x8)(Edit, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoElementArc* GetDefaultObj();
@@ -1160,19 +1160,19 @@ public:
 class UGizmoElementArrow : public UGizmoElementBase
 {
 public:
-	uint8                                        Pad_A79[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class UGizmoElementCylinder*                 CylinderElement;                                   // 0x110(0x8)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoElementCone*                     ConeElement;                                       // 0x118(0x8)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoElementBox*                      BoxElement;                                        // 0x120(0x8)(EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               Base;                                              // 0x128(0x18)(ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, DuplicateTransient)
-	struct FVector                               Direction;                                         // 0x140(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
-	struct FVector                               SideDirection;                                     // 0x158(0x18)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        BodyLength;                                        // 0x170(0x4)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        BodyRadius;                                        // 0x174(0x4)(BlueprintVisible, ExportObject, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        HeadLength;                                        // 0x178(0x4)(ConstParm, BlueprintVisible, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        HeadRadius;                                        // 0x17C(0x4)(Edit, BlueprintVisible, Net, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	int32                                        NumSides;                                          // 0x180(0x4)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class EGizmoElementArrowHeadType        HeadType;                                          // 0x184(0x4)(Edit, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_8D4[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class UGizmoElementCylinder*                 CylinderElement;                                   // 0x110(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoElementCone*                     ConeElement;                                       // 0x118(0x8)(BlueprintVisible, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoElementBox*                      BoxElement;                                        // 0x120(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               Base;                                              // 0x128(0x18)(Edit, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	struct FVector                               Direction;                                         // 0x140(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
+	struct FVector                               SideDirection;                                     // 0x158(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        BodyLength;                                        // 0x170(0x4)(BlueprintReadOnly, Net, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        BodyRadius;                                        // 0x174(0x4)(ConstParm, ExportObject, Net, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        HeadLength;                                        // 0x178(0x4)(BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        HeadRadius;                                        // 0x17C(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        NumSides;                                          // 0x180(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EGizmoElementArrowHeadType        HeadType;                                          // 0x184(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoElementArrow* GetDefaultObj();
@@ -1185,9 +1185,9 @@ class UGizmoElementBox : public UGizmoElementBase
 {
 public:
 	struct FVector                               Center;                                            // 0x108(0x18)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-	struct FVector                               Dimensions;                                        // 0x120(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, DuplicateTransient)
-	struct FVector                               UpDirection;                                       // 0x138(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               SideDirection;                                     // 0x150(0x18)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               Dimensions;                                        // 0x120(0x18)(Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, DuplicateTransient)
+	struct FVector                               UpDirection;                                       // 0x138(0x18)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               SideDirection;                                     // 0x150(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoElementBox* GetDefaultObj();
@@ -1199,11 +1199,11 @@ public:
 class UGizmoElementCircle : public UGizmoElementCircleBase
 {
 public:
-	bool                                         bDrawMesh;                                         // 0x1C8(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bDrawLine;                                         // 0x1C9(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bHitMesh;                                          // 0x1CA(0x1)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bHitLine;                                          // 0x1CB(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A89[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bDrawMesh;                                         // 0x1C8(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bDrawLine;                                         // 0x1C9(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bHitMesh;                                          // 0x1CA(0x1)(Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bHitLine;                                          // 0x1CB(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_8E6[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoElementCircle* GetDefaultObj();
@@ -1215,12 +1215,12 @@ public:
 class UGizmoElementCone : public UGizmoElementBase
 {
 public:
-	struct FVector                               Origin;                                            // 0x108(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector                               Direction;                                         // 0x120(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+	struct FVector                               Origin;                                            // 0x108(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	struct FVector                               Direction;                                         // 0x120(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
 	float                                        Height;                                            // 0x138(0x4)(BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
-	float                                        Radius;                                            // 0x13C(0x4)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-	int32                                        NumSides;                                          // 0x140(0x4)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_A8F[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        Radius;                                            // 0x13C(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        NumSides;                                          // 0x140(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_8EB[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoElementCone* GetDefaultObj();
@@ -1232,12 +1232,12 @@ public:
 class UGizmoElementCylinder : public UGizmoElementBase
 {
 public:
-	struct FVector                               Base;                                              // 0x108(0x18)(ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, DuplicateTransient)
-	struct FVector                               Direction;                                         // 0x120(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+	struct FVector                               Base;                                              // 0x108(0x18)(Edit, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	struct FVector                               Direction;                                         // 0x120(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
 	float                                        Height;                                            // 0x138(0x4)(BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
-	float                                        Radius;                                            // 0x13C(0x4)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-	int32                                        NumSides;                                          // 0x140(0x4)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_A95[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        Radius;                                            // 0x13C(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        NumSides;                                          // 0x140(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_8F4[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoElementCylinder* GetDefaultObj();
@@ -1249,10 +1249,10 @@ public:
 class UGizmoElementGroup : public UGizmoElementLineBase
 {
 public:
-	bool                                         bConstantScale;                                    // 0x158(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bHitOwner;                                         // 0x159(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A99[0x6];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class UGizmoElementBase*>             Elements;                                          // 0x160(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bConstantScale;                                    // 0x158(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bHitOwner;                                         // 0x159(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_8F9[0x6];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<class UGizmoElementBase*>             Elements;                                          // 0x160(0x10)(ExportObject, BlueprintReadOnly, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoElementGroup* GetDefaultObj();
@@ -1264,11 +1264,11 @@ public:
 class UGizmoElementHitTarget : public UObject
 {
 public:
-	uint8                                        Pad_A9D[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class UGizmoElementBase*                     GizmoElement;                                      // 0x30(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoViewContext*                     GizmoViewContext;                                  // 0x38(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, EditConst, GlobalConfig)
-	class UTransformProxy*                       GizmoTransformProxy;                               // 0x40(0x8)(Edit, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A9E[0x48];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_900[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class UGizmoElementBase*                     GizmoElement;                                      // 0x30(0x8)(ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoViewContext*                     GizmoViewContext;                                  // 0x38(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class UTransformProxy*                       GizmoTransformProxy;                               // 0x40(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_902[0x48];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoElementHitTarget* GetDefaultObj();
@@ -1280,11 +1280,11 @@ public:
 class UGizmoElementHitMultiTarget : public UObject
 {
 public:
-	uint8                                        Pad_A9F[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class UGizmoElementBase*                     GizmoElement;                                      // 0x30(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoViewContext*                     GizmoViewContext;                                  // 0x38(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, EditConst, GlobalConfig)
-	class UTransformProxy*                       GizmoTransformProxy;                               // 0x40(0x8)(Edit, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_AA0[0x48];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_904[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class UGizmoElementBase*                     GizmoElement;                                      // 0x30(0x8)(ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoViewContext*                     GizmoViewContext;                                  // 0x38(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class UTransformProxy*                       GizmoTransformProxy;                               // 0x40(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_906[0x48];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoElementHitMultiTarget* GetDefaultObj();
@@ -1299,13 +1299,13 @@ public:
 	struct FVector                               Center;                                            // 0x158(0x18)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
 	float                                        Width;                                             // 0x170(0x4)(ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
 	float                                        Height;                                            // 0x174(0x4)(BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
-	struct FVector                               UpDirection;                                       // 0x178(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               SideDirection;                                     // 0x190(0x18)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bDrawMesh;                                         // 0x1A8(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bDrawLine;                                         // 0x1A9(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bHitMesh;                                          // 0x1AA(0x1)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bHitLine;                                          // 0x1AB(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_AA9[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	struct FVector                               UpDirection;                                       // 0x178(0x18)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               SideDirection;                                     // 0x190(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bDrawMesh;                                         // 0x1A8(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bDrawLine;                                         // 0x1A9(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bHitMesh;                                          // 0x1AA(0x1)(Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bHitLine;                                          // 0x1AB(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_90E[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoElementRectangle* GetDefaultObj();
@@ -1317,10 +1317,10 @@ public:
 class UGizmoElementTorus : public UGizmoElementCircleBase
 {
 public:
-	double                                       InnerRadius;                                       // 0x1C8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	int32                                        NumInnerSlices;                                    // 0x1D0(0x4)(ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bEndCaps;                                          // 0x1D4(0x1)(Edit, ConstParm, BlueprintReadOnly, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_AAE[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	double                                       InnerRadius;                                       // 0x1C8(0x8)(Edit, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        NumInnerSlices;                                    // 0x1D0(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bEndCaps;                                          // 0x1D4(0x1)(Edit, BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_918[0x3];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoElementTorus* GetDefaultObj();
@@ -1336,8 +1336,8 @@ public:
 	static class UClass* StaticClass();
 	static class IGizmoTransformSource* GetDefaultObj();
 
-	void SetTransform(struct FTransform* NewTransform);
-	struct FTransform GetTransform();
+	struct FTransform SetTransform();
+	void GetTransform(const struct FTransform& ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -1349,10 +1349,10 @@ public:
 	static class UClass* StaticClass();
 	static class IGizmoAxisSource* GetDefaultObj();
 
-	bool HasTangentVectors();
-	void GetTangentVectors(const struct FVector& TangentXOut, const struct FVector& TangentYOut);
-	struct FVector GetOrigin();
-	struct FVector GetDirection();
+	void HasTangentVectors(bool ReturnValue);
+	void GetTangentVectors(struct FVector* TangentXOut, struct FVector* TangentYOut);
+	void GetOrigin(const struct FVector& ReturnValue);
+	void GetDirection(const struct FVector& ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -1364,8 +1364,8 @@ public:
 	static class UClass* StaticClass();
 	static class IGizmoClickTarget* GetDefaultObj();
 
-	void UpdateInteractingState(bool bInteracting);
-	void UpdateHoverState(bool bHovering);
+	void UpdateInteractingState(bool* bInteracting);
+	void UpdateHoverState(bool* bHovering);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -1377,9 +1377,9 @@ public:
 	static class UClass* StaticClass();
 	static class IGizmoClickMultiTarget* GetDefaultObj();
 
-	void UpdateInteractingState(bool bInteracting, uint32 InPartIdentifier);
-	void UpdateHoverState(bool bHovering, uint32 InPartIdentifier);
-	void UpdateHittableState(bool bHittable, uint32 InPartIdentifier);
+	void UpdateInteractingState(bool* bInteracting, uint32* InPartIdentifier);
+	void UpdateHoverState(bool* bHovering, uint32* InPartIdentifier);
+	void UpdateHittableState(bool* bHittable, uint32* InPartIdentifier);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -1402,7 +1402,7 @@ public:
 	static class UClass* StaticClass();
 	static class IGizmoRenderMultiTarget* GetDefaultObj();
 
-	void UpdateVisibilityState(bool* bVisible, uint32 InPartIdentifier);
+	bool UpdateVisibilityState(uint32* InPartIdentifier);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -1427,8 +1427,8 @@ public:
 	static class UClass* StaticClass();
 	static class IGizmoFloatParameterSource* GetDefaultObj();
 
-	void SetParameter(float NewValue);
-	float GetParameter();
+	float SetParameter();
+	void GetParameter(float ReturnValue);
 	void EndModify();
 	void BeginModify();
 };
@@ -1442,8 +1442,8 @@ public:
 	static class UClass* StaticClass();
 	static class IGizmoVec2ParameterSource* GetDefaultObj();
 
-	void SetParameter(const struct FVector2D& NewValue);
-	struct FVector2D GetParameter();
+	struct FVector2D SetParameter();
+	void GetParameter(const struct FVector2D& ReturnValue);
 	void EndModify();
 	void BeginModify();
 };
@@ -1454,12 +1454,12 @@ class UGizmoLineHandleComponent : public UGizmoBaseComponent
 {
 public:
 	struct FVector                               Normal;                                            // 0x6C8(0x18)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-	float                                        HandleSize;                                        // 0x6E0(0x4)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        Thickness;                                         // 0x6E4(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector                               Direction;                                         // 0x6E8(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+	float                                        HandleSize;                                        // 0x6E0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        Thickness;                                         // 0x6E4(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector                               Direction;                                         // 0x6E8(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
 	float                                        Length;                                            // 0x700(0x4)(ConstParm, BlueprintVisible, Net, ReturnParm)
-	bool                                         bImageScale;                                       // 0x704(0x1)(ConstParm, ExportObject, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_AE9[0xB];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bImageScale;                                       // 0x704(0x1)(ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_973[0xB];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoLineHandleComponent* GetDefaultObj();
@@ -1471,17 +1471,17 @@ public:
 class UGizmoRectangleComponent : public UGizmoBaseComponent
 {
 public:
-	struct FVector                               DirectionX;                                        // 0x6C8(0x18)(ConstParm, BlueprintVisible, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               DirectionY;                                        // 0x6E0(0x18)(Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bOrientYAccordingToCamera;                         // 0x6F8(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_AEA[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        OffsetX;                                           // 0x6FC(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        OffsetY;                                           // 0x700(0x4)(ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        LengthX;                                           // 0x704(0x4)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        LengthY;                                           // 0x708(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        Thickness;                                         // 0x70C(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        SegmentFlags;                                      // 0x710(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_AEB[0xF];                                      // Fixing Size Of Struct > TateDumper <
+	struct FVector                               DirectionX;                                        // 0x6C8(0x18)(BlueprintVisible, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               DirectionY;                                        // 0x6E0(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bOrientYAccordingToCamera;                         // 0x6F8(0x1)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_979[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        OffsetX;                                           // 0x6FC(0x4)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        OffsetY;                                           // 0x700(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        LengthX;                                           // 0x704(0x4)(Edit, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        LengthY;                                           // 0x708(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        Thickness;                                         // 0x70C(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        SegmentFlags;                                      // 0x710(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_97C[0xF];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoRectangleComponent* GetDefaultObj();
@@ -1493,7 +1493,7 @@ public:
 class UGizmoViewContext : public UObject
 {
 public:
-	uint8                                        Pad_AEC[0x1B8];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_97E[0x1B8];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoViewContext* GetDefaultObj();
@@ -1505,7 +1505,7 @@ public:
 class UGizmoLambdaHitTarget : public UObject
 {
 public:
-	uint8                                        Pad_AED[0xC8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_981[0xC8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoLambdaHitTarget* GetDefaultObj();
@@ -1517,9 +1517,9 @@ public:
 class UGizmoComponentHitTarget : public UObject
 {
 public:
-	uint8                                        Pad_AF2[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class UPrimitiveComponent*                   Component;                                         // 0x30(0x8)(Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_AF3[0xC8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_984[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class UPrimitiveComponent*                   Component;                                         // 0x30(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_985[0xC8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoComponentHitTarget* GetDefaultObj();
@@ -1531,9 +1531,9 @@ public:
 class AIntervalGizmoActor : public AGizmoActor
 {
 public:
-	class UGizmoLineHandleComponent*             UpIntervalComponent;                               // 0x4D0(0x8)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoLineHandleComponent*             DownIntervalComponent;                             // 0x4D8(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoLineHandleComponent*             ForwardIntervalComponent;                          // 0x4E0(0x8)(BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoLineHandleComponent*             UpIntervalComponent;                               // 0x4D0(0x8)(Edit, ConstParm, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoLineHandleComponent*             DownIntervalComponent;                             // 0x4D8(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoLineHandleComponent*             ForwardIntervalComponent;                          // 0x4E0(0x8)(ConstParm, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class AIntervalGizmoActor* GetDefaultObj();
@@ -1545,7 +1545,7 @@ public:
 class UIntervalGizmoBuilder : public UInteractiveGizmoBuilder
 {
 public:
-	uint8                                        Pad_AF4[0x98];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_98A[0x98];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UIntervalGizmoBuilder* GetDefaultObj();
@@ -1557,15 +1557,15 @@ public:
 class UIntervalGizmo : public UInteractiveGizmo
 {
 public:
-	class UGizmoTransformChangeStateTarget*      StateTarget;                                       // 0x38(0x8)(Edit, ConstParm, BlueprintVisible, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_AF7[0x58];                                     // Fixing Size After Last Property  > TateDumper <
-	class UTransformProxy*                       TransformProxy;                                    // 0x98(0x8)(Edit, ConstParm, Net, EditFixedSize, OutParm, EditConst, GlobalConfig)
-	TArray<class UPrimitiveComponent*>           ActiveComponents;                                  // 0xA0(0x10)(ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<class UInteractiveGizmo*>             ActiveGizmos;                                      // 0xB0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_AF8[0x18];                                     // Fixing Size After Last Property  > TateDumper <
-	class UGizmoComponentAxisSource*             AxisYSource;                                       // 0xD8(0x8)(Edit, ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UGizmoComponentAxisSource*             AxisZSource;                                       // 0xE0(0x8)(BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_AF9[0x118];                                    // Fixing Size Of Struct > TateDumper <
+	class UGizmoTransformChangeStateTarget*      StateTarget;                                       // 0x38(0x8)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_98D[0x58];                                     // Fixing Size After Last Property  > TateDumper <
+	class UTransformProxy*                       TransformProxy;                                    // 0x98(0x8)(ExportObject, Net, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	TArray<class UPrimitiveComponent*>           ActiveComponents;                                  // 0xA0(0x10)(Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class UInteractiveGizmo*>             ActiveGizmos;                                      // 0xB0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_98F[0x18];                                     // Fixing Size After Last Property  > TateDumper <
+	class UGizmoComponentAxisSource*             AxisYSource;                                       // 0xD8(0x8)(Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGizmoComponentAxisSource*             AxisZSource;                                       // 0xE0(0x8)(ConstParm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_991[0x118];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UIntervalGizmo* GetDefaultObj();
@@ -1577,9 +1577,9 @@ public:
 class UGizmoAxisIntervalParameterSource : public UGizmoBaseFloatParameterSource
 {
 public:
-	TScriptInterface<class IGizmoFloatParameterSource> FloatParameterSource;                              // 0x48(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        MinParameter;                                      // 0x58(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        MaxParameter;                                      // 0x5C(0x4)(BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TScriptInterface<class IGizmoFloatParameterSource> FloatParameterSource;                              // 0x48(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        MinParameter;                                      // 0x58(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        MaxParameter;                                      // 0x5C(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoAxisIntervalParameterSource* GetDefaultObj();
@@ -1592,8 +1592,8 @@ class UGizmoLocalFloatParameterSource : public UGizmoBaseFloatParameterSource
 {
 public:
 	float                                        Value;                                             // 0x48(0x4)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-	struct FGizmoFloatParameterChange            LastChange;                                        // 0x4C(0x8)(Edit, ConstParm, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_AFC[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	struct FGizmoFloatParameterChange            LastChange;                                        // 0x4C(0x8)(Edit, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_999[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoLocalFloatParameterSource* GetDefaultObj();
@@ -1616,28 +1616,28 @@ public:
 class UPlanePositionGizmo : public UInteractiveGizmo
 {
 public:
-	uint8                                        Pad_AFE[0x10];                                     // Fixing Size After Last Property  > TateDumper <
-	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x48(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TScriptInterface<class IGizmoVec2ParameterSource> ParameterSource;                                   // 0x58(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TScriptInterface<class IGizmoClickTarget>    HitTarget;                                         // 0x68(0x10)(BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TScriptInterface<class IGizmoStateTarget>    StateTarget;                                       // 0x78(0x10)(Edit, ConstParm, BlueprintVisible, Transient, EditConst, InstancedReference, SubobjectReference)
-	class UClickDragInputBehavior*               MouseBehavior;                                     // 0x88(0x8)(ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bEnableSignedAxis;                                 // 0x90(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bFlipX;                                            // 0x91(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bFlipY;                                            // 0x92(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B01[0x8D];                                     // Fixing Size After Last Property  > TateDumper <
-	bool                                         bInInteraction;                                    // 0x120(0x1)(Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B03[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               InteractionOrigin;                                 // 0x128(0x18)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               InteractionNormal;                                 // 0x140(0x18)(Edit, ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               InteractionAxisX;                                  // 0x158(0x18)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               InteractionAxisY;                                  // 0x170(0x18)(Edit, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               InteractionStartPoint;                             // 0x188(0x18)(BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               InteractionCurPoint;                               // 0x1A0(0x18)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector2D                             InteractionStartParameter;                         // 0x1B8(0x10)(ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector2D                             InteractionCurParameter;                           // 0x1C8(0x10)(Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector2D                             ParameterSigns;                                    // 0x1D8(0x10)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B06[0x88];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_99E[0x10];                                     // Fixing Size After Last Property  > TateDumper <
+	TScriptInterface<class IGizmoAxisSource>     AxisSource;                                        // 0x48(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TScriptInterface<class IGizmoVec2ParameterSource> ParameterSource;                                   // 0x58(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TScriptInterface<class IGizmoClickTarget>    HitTarget;                                         // 0x68(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TScriptInterface<class IGizmoStateTarget>    StateTarget;                                       // 0x78(0x10)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+	class UClickDragInputBehavior*               MouseBehavior;                                     // 0x88(0x8)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bEnableSignedAxis;                                 // 0x90(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bFlipX;                                            // 0x91(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bFlipY;                                            // 0x92(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9A3[0x8D];                                     // Fixing Size After Last Property  > TateDumper <
+	bool                                         bInInteraction;                                    // 0x120(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9A4[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               InteractionOrigin;                                 // 0x128(0x18)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               InteractionNormal;                                 // 0x140(0x18)(Edit, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               InteractionAxisX;                                  // 0x158(0x18)(ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               InteractionAxisY;                                  // 0x170(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               InteractionStartPoint;                             // 0x188(0x18)(ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               InteractionCurPoint;                               // 0x1A0(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector2D                             InteractionStartParameter;                         // 0x1B8(0x10)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector2D                             InteractionCurParameter;                           // 0x1C8(0x10)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector2D                             ParameterSigns;                                    // 0x1D8(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9AB[0x88];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UPlanePositionGizmo* GetDefaultObj();
@@ -1660,9 +1660,9 @@ public:
 class URepositionableTransformGizmo : public UCombinedTransformGizmo
 {
 public:
-	uint8                                        Pad_B08[0x90];                                     // Fixing Size After Last Property  > TateDumper <
-	class UGizmoTransformChangeStateTarget*      RepositionStateTarget;                             // 0x430(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B09[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_9B1[0x90];                                     // Fixing Size After Last Property  > TateDumper <
+	class UGizmoTransformChangeStateTarget*      RepositionStateTarget;                             // 0x430(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9B2[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class URepositionableTransformGizmo* GetDefaultObj();
@@ -1685,20 +1685,20 @@ public:
 class UScalableSphereGizmo : public UInteractiveGizmo
 {
 public:
-	uint8                                        Pad_B0F[0x48];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        HitErrorThreshold;                                 // 0x80(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B10[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class FText                                  TransactionDescription;                            // 0x88(0x18)(Edit, ExportObject, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        Radius;                                            // 0xA0(0x4)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-	bool                                         bIsHovering;                                       // 0xA4(0x1)(ConstParm, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bIsDragging;                                       // 0xA5(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B12[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	class UTransformProxy*                       ActiveTarget;                                      // 0xA8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               ActiveAxis;                                        // 0xB0(0x18)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               DragStartWorldPosition;                            // 0xC8(0x18)(BlueprintReadOnly, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FVector                               DragCurrentPositionProjected;                      // 0xE0(0x18)(Edit, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        InteractionStartParameter;                         // 0xF8(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B13[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_9B7[0x48];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        HitErrorThreshold;                                 // 0x80(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9B8[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class FText                                  TransactionDescription;                            // 0x88(0x18)(Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        Radius;                                            // 0xA0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         bIsHovering;                                       // 0xA4(0x1)(Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bIsDragging;                                       // 0xA5(0x1)(Edit, ConstParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9B9[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	class UTransformProxy*                       ActiveTarget;                                      // 0xA8(0x8)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               ActiveAxis;                                        // 0xB0(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               DragStartWorldPosition;                            // 0xC8(0x18)(ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector                               DragCurrentPositionProjected;                      // 0xE0(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        InteractionStartParameter;                         // 0xF8(0x4)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9BB[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UScalableSphereGizmo* GetDefaultObj();
@@ -1710,7 +1710,7 @@ public:
 class UScalableSphereGizmoInputBehavior : public UAnyButtonInputBehavior
 {
 public:
-	uint8                                        Pad_B1F[0x50];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_9C0[0x50];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UScalableSphereGizmoInputBehavior* GetDefaultObj();
@@ -1722,7 +1722,7 @@ public:
 class UGizmoNilStateTarget : public UObject
 {
 public:
-	uint8                                        Pad_B25[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_9C2[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoNilStateTarget* GetDefaultObj();
@@ -1734,7 +1734,7 @@ public:
 class UGizmoLambdaStateTarget : public UObject
 {
 public:
-	uint8                                        Pad_B28[0x88];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_9C3[0x88];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoLambdaStateTarget* GetDefaultObj();
@@ -1746,8 +1746,8 @@ public:
 class UGizmoObjectModifyStateTarget : public UObject
 {
 public:
-	uint8                                        Pad_B2E[0x28];                                     // Fixing Size After Last Property  > TateDumper <
-	TScriptInterface<class IToolContextTransactionProvider> TransactionManager;                                // 0x50(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9C6[0x28];                                     // Fixing Size After Last Property  > TateDumper <
+	TScriptInterface<class IToolContextTransactionProvider> TransactionManager;                                // 0x50(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoObjectModifyStateTarget* GetDefaultObj();
@@ -1759,9 +1759,9 @@ public:
 class UGizmoTransformChangeStateTarget : public UObject
 {
 public:
-	uint8                                        Pad_B31[0x28];                                     // Fixing Size After Last Property  > TateDumper <
-	TScriptInterface<class IToolContextTransactionProvider> TransactionManager;                                // 0x50(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B32[0xE0];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_9CA[0x28];                                     // Fixing Size After Last Property  > TateDumper <
+	TScriptInterface<class IToolContextTransactionProvider> TransactionManager;                                // 0x50(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9CB[0xE0];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoTransformChangeStateTarget* GetDefaultObj();
@@ -1773,7 +1773,7 @@ public:
 class UCombinedTransformGizmoContextObject : public UObject
 {
 public:
-	uint8                                        Pad_B36[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_9CF[0x30];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UCombinedTransformGizmoContextObject* GetDefaultObj();
@@ -1785,12 +1785,12 @@ public:
 class UTransformProxy : public UObject
 {
 public:
-	uint8                                        Pad_B46[0xA8];                                     // Fixing Size After Last Property  > TateDumper <
-	bool                                         bRotatePerObject;                                  // 0xD0(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bSetPivotMode;                                     // 0xD1(0x1)(ConstParm, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B48[0x1E];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            SharedTransform;                                   // 0xF0(0x60)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FTransform                            InitialSharedTransform;                            // 0x150(0x60)(Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9D3[0xA8];                                     // Fixing Size After Last Property  > TateDumper <
+	bool                                         bRotatePerObject;                                  // 0xD0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bSetPivotMode;                                     // 0xD1(0x1)(Net, EditFixedSize, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9D4[0x1E];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            SharedTransform;                                   // 0xF0(0x60)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FTransform                            InitialSharedTransform;                            // 0x150(0x60)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UTransformProxy* GetDefaultObj();
@@ -1802,7 +1802,7 @@ public:
 class UGizmoBaseTransformSource : public UObject
 {
 public:
-	uint8                                        Pad_B4D[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_9D9[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoBaseTransformSource* GetDefaultObj();
@@ -1814,9 +1814,9 @@ public:
 class UGizmoComponentWorldTransformSource : public UGizmoBaseTransformSource
 {
 public:
-	class USceneComponent*                       Component;                                         // 0x48(0x8)(Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bModifyComponentOnTransform;                       // 0x50(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B5C[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class USceneComponent*                       Component;                                         // 0x48(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bModifyComponentOnTransform;                       // 0x50(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9DC[0x7];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoComponentWorldTransformSource* GetDefaultObj();
@@ -1828,8 +1828,8 @@ public:
 class UGizmoScaledTransformSource : public UGizmoBaseTransformSource
 {
 public:
-	TScriptInterface<class IGizmoTransformSource> ChildTransformSource;                              // 0x48(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B5F[0x88];                                     // Fixing Size Of Struct > TateDumper <
+	TScriptInterface<class IGizmoTransformSource> ChildTransformSource;                              // 0x48(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9E2[0x88];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoScaledTransformSource* GetDefaultObj();
@@ -1841,8 +1841,8 @@ public:
 class UGizmoTransformProxyTransformSource : public UGizmoBaseTransformSource
 {
 public:
-	class UTransformProxy*                       Proxy;                                             // 0x48(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B60[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	class UTransformProxy*                       Proxy;                                             // 0x48(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9E5[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGizmoTransformProxyTransformSource* GetDefaultObj();
@@ -1854,8 +1854,8 @@ public:
 class UGizmoScaledAndUnscaledTransformSources : public UGizmoBaseTransformSource
 {
 public:
-	TScriptInterface<class IGizmoTransformSource> ScaledTransformSource;                             // 0x48(0x10)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TScriptInterface<class IGizmoTransformSource> UnscaledTransformSource;                           // 0x58(0x10)(Edit, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TScriptInterface<class IGizmoTransformSource> ScaledTransformSource;                             // 0x48(0x10)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TScriptInterface<class IGizmoTransformSource> UnscaledTransformSource;                           // 0x58(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGizmoScaledAndUnscaledTransformSources* GetDefaultObj();
@@ -1867,15 +1867,15 @@ public:
 class UBrushBaseProperties : public UInteractiveToolPropertySet
 {
 public:
-	float                                        BrushSize;                                         // 0xA8(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bSpecifyRadius;                                    // 0xAC(0x1)(ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B62[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        BrushRadius;                                       // 0xB0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        BrushStrength;                                     // 0xB4(0x4)(ConstParm, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        BrushFalloffAmount;                                // 0xB8(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bShowStrength;                                     // 0xBC(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bShowFalloff;                                      // 0xBD(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B63[0x2];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        BrushSize;                                         // 0xA8(0x4)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bSpecifyRadius;                                    // 0xAC(0x1)(ExportObject, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9EB[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        BrushRadius;                                       // 0xB0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        BrushStrength;                                     // 0xB4(0x4)(Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        BrushFalloffAmount;                                // 0xB8(0x4)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bShowStrength;                                     // 0xBC(0x1)(ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bShowFalloff;                                      // 0xBD(0x1)(Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_9ED[0x2];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UBrushBaseProperties* GetDefaultObj();
@@ -1898,7 +1898,7 @@ public:
 class UClickDragTool : public UInteractiveTool
 {
 public:
-	uint8                                        Pad_B6D[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_9F1[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UClickDragTool* GetDefaultObj();
@@ -1921,7 +1921,7 @@ public:
 class UContextObjectStore : public UObject
 {
 public:
-	TArray<class UObject*>                       ContextObjects;                                    // 0x28(0x10)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class UObject*>                       ContextObjects;                                    // 0x28(0x10)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UContextObjectStore* GetDefaultObj();
@@ -1933,7 +1933,7 @@ public:
 class UInputBehaviorSet : public UObject
 {
 public:
-	TArray<struct FBehaviorInfo>                 Behaviors;                                         // 0x28(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<struct FBehaviorInfo>                 Behaviors;                                         // 0x28(0x10)(ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UInputBehaviorSet* GetDefaultObj();
@@ -1956,7 +1956,7 @@ public:
 class ULocalInputBehaviorSource : public UObject
 {
 public:
-	uint8                                        Pad_B94[0x48];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_9FA[0x48];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULocalInputBehaviorSource* GetDefaultObj();
@@ -1968,11 +1968,11 @@ public:
 class UInputRouter : public UObject
 {
 public:
-	bool                                         bAutoInvalidateOnHover;                            // 0x28(0x1)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bAutoInvalidateOnCapture;                          // 0x29(0x1)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B96[0xE];                                      // Fixing Size After Last Property  > TateDumper <
-	class UInputBehaviorSet*                     ActiveInputBehaviors;                              // 0x38(0x8)(EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B98[0x150];                                    // Fixing Size Of Struct > TateDumper <
+	bool                                         bAutoInvalidateOnHover;                            // 0x28(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bAutoInvalidateOnCapture;                          // 0x29(0x1)(Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A00[0xE];                                      // Fixing Size After Last Property  > TateDumper <
+	class UInputBehaviorSet*                     ActiveInputBehaviors;                              // 0x38(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A01[0x150];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UInputRouter* GetDefaultObj();
@@ -1984,11 +1984,11 @@ public:
 class UInteractiveGizmoManager : public UObject
 {
 public:
-	uint8                                        Pad_B9D[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FActiveGizmo>                  ActiveGizmos;                                      // 0x30(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B9E[0x18];                                     // Fixing Size After Last Property  > TateDumper <
-	TMap<class FString, class UInteractiveGizmoBuilder*> GizmoBuilders;                                     // 0x58(0x50)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B9F[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_A04[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FActiveGizmo>                  ActiveGizmos;                                      // 0x30(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A06[0x18];                                     // Fixing Size After Last Property  > TateDumper <
+	TMap<class FString, class UInteractiveGizmoBuilder*> GizmoBuilders;                                     // 0x58(0x50)(ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A08[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UInteractiveGizmoManager* GetDefaultObj();
@@ -2000,12 +2000,12 @@ public:
 class UInteractiveToolManager : public UObject
 {
 public:
-	uint8                                        Pad_BA3[0x30];                                     // Fixing Size After Last Property  > TateDumper <
-	class UInteractiveTool*                      ActiveLeftTool;                                    // 0x58(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UInteractiveTool*                      ActiveRightTool;                                   // 0x60(0x8)(ConstParm, BlueprintVisible, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_BA5[0x80];                                     // Fixing Size After Last Property  > TateDumper <
-	TMap<class FString, class UInteractiveToolBuilder*> ToolBuilders;                                      // 0xE8(0x50)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_BA6[0x60];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_A0A[0x30];                                     // Fixing Size After Last Property  > TateDumper <
+	class UInteractiveTool*                      ActiveLeftTool;                                    // 0x58(0x8)(Edit, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UInteractiveTool*                      ActiveRightTool;                                   // 0x60(0x8)(BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A0C[0x80];                                     // Fixing Size After Last Property  > TateDumper <
+	TMap<class FString, class UInteractiveToolBuilder*> ToolBuilders;                                      // 0xE8(0x50)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A0D[0x60];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UInteractiveToolManager* GetDefaultObj();
@@ -2017,14 +2017,14 @@ public:
 class UInteractiveToolsContext : public UObject
 {
 public:
-	uint8                                        Pad_BA9[0x30];                                     // Fixing Size After Last Property  > TateDumper <
-	class UInputRouter*                          InputRouter;                                       // 0x58(0x8)(Edit, ConstParm, BlueprintReadOnly, ZeroConstructor, EditConst, GlobalConfig)
-	class UToolTargetManager*                    TargetManager;                                     // 0x60(0x8)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UInteractiveToolManager*               ToolManager;                                       // 0x68(0x8)(Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UInteractiveGizmoManager*              GizmoManager;                                      // 0x70(0x8)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	class UContextObjectStore*                   ContextObjectStore;                                // 0x78(0x8)(ExportObject, Net, EditFixedSize, Parm, OutParm, EditConst, GlobalConfig)
-	uint8                                        Pad_BAE[0x280];                                    // Fixing Size After Last Property  > TateDumper <
-	TSoftClassPtr<class UInteractiveToolManager> ToolManagerClass;                                  // 0x300(0x30)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A0F[0x30];                                     // Fixing Size After Last Property  > TateDumper <
+	class UInputRouter*                          InputRouter;                                       // 0x58(0x8)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class UToolTargetManager*                    TargetManager;                                     // 0x60(0x8)(Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UInteractiveToolManager*               ToolManager;                                       // 0x68(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UInteractiveGizmoManager*              GizmoManager;                                      // 0x70(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UContextObjectStore*                   ContextObjectStore;                                // 0x78(0x8)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	uint8                                        Pad_A12[0x280];                                    // Fixing Size After Last Property  > TateDumper <
+	TSoftClassPtr<class UInteractiveToolManager> ToolManagerClass;                                  // 0x300(0x30)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UInteractiveToolsContext* GetDefaultObj();
@@ -2036,7 +2036,7 @@ public:
 class USelectionSet : public UObject
 {
 public:
-	uint8                                        Pad_BB0[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_A19[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USelectionSet* GetDefaultObj();
@@ -2063,8 +2063,8 @@ public:
 class UToolTargetManager : public UObject
 {
 public:
-	uint8                                        Pad_BB1[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class UToolTargetFactory*>            Factories;                                         // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A1E[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<class UToolTargetFactory*>            Factories;                                         // 0x30(0x10)(ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UToolTargetManager* GetDefaultObj();
@@ -2087,7 +2087,7 @@ public:
 class UPrimitiveComponentToolTarget : public UToolTarget
 {
 public:
-	uint8                                        Pad_BB2[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_A24[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UPrimitiveComponentToolTarget* GetDefaultObj();

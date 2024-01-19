@@ -14,8 +14,8 @@ namespace SDK
 class UAmbisonicsEncodingSettings : public USoundfieldEncodingSettingsBase
 {
 public:
-	int32                                        AmbisonicsOrder;                                   // 0x28(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_275D[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        AmbisonicsOrder;                                   // 0x28(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_26A0[0x4];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAmbisonicsEncodingSettings* GetDefaultObj();

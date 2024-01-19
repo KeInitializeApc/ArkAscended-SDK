@@ -351,8 +351,8 @@ enum class EDataValidationResult : uint8
 struct FTopLevelAssetPath
 {
 public:
-	class FName                                  PackageName;                                       // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig)
-	class FName                                  AssetName;                                         // 0x8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FName                                  PackageName;                                       // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	class FName                                  AssetName;                                         // 0x8(0x8)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -360,8 +360,8 @@ public:
 struct FSoftObjectPath
 {
 public:
-	struct FTopLevelAssetPath                    AssetPath;                                         // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	class FString                                SubPathString;                                     // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FTopLevelAssetPath                    AssetPath;                                         // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FString                                SubPathString;                                     // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x150 (0x150 - 0x0)
@@ -369,18 +369,18 @@ public:
 struct FARFilter
 {
 public:
-	TArray<class FName>                          PackageNames;                                      // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<class FName>                          PackagePaths;                                      // 0x10(0x10)(ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<struct FSoftObjectPath>               SoftObjectPaths;                                   // 0x20(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<class FName>                          ClassNames;                                        // 0x30(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<struct FTopLevelAssetPath>            ClassPaths;                                        // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_34[0x50];                                      // Fixing Size After Last Property  > TateDumper <
-	TSet<class FName>                            RecursiveClassesExclusionSet;                      // 0xA0(0x50)(Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	TSet<struct FTopLevelAssetPath>              RecursiveClassPathsExclusionSet;                   // 0xF0(0x50)(Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bRecursivePaths;                                   // 0x140(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bRecursiveClasses;                                 // 0x141(0x1)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bIncludeOnlyOnDiskAssets;                          // 0x142(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_35[0xD];                                       // Fixing Size Of Struct > TateDumper <
+	TArray<class FName>                          PackageNames;                                      // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<class FName>                          PackagePaths;                                      // 0x10(0x10)(Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FSoftObjectPath>               SoftObjectPaths;                                   // 0x20(0x10)(ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<class FName>                          ClassNames;                                        // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FTopLevelAssetPath>            ClassPaths;                                        // 0x40(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_3F[0x50];                                      // Fixing Size After Last Property  > TateDumper <
+	TSet<class FName>                            RecursiveClassesExclusionSet;                      // 0xA0(0x50)(ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TSet<struct FTopLevelAssetPath>              RecursiveClassPathsExclusionSet;                   // 0xF0(0x50)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bRecursivePaths;                                   // 0x140(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bRecursiveClasses;                                 // 0x141(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bIncludeOnlyOnDiskAssets;                          // 0x142(0x1)(ConstParm, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_40[0xD];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -388,8 +388,8 @@ public:
 struct FAssetBundleEntry
 {
 public:
-	class FName                                  BundleName;                                        // 0x0(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig)
-	TArray<struct FTopLevelAssetPath>            AssetPaths;                                        // 0x8(0x10)(Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FName                                  BundleName;                                        // 0x0(0x8)(BlueprintVisible, Net, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+	TArray<struct FTopLevelAssetPath>            AssetPaths;                                        // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -397,7 +397,7 @@ public:
 struct FAssetBundleData
 {
 public:
-	TArray<struct FAssetBundleEntry>             Bundles;                                           // 0x0(0x10)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FAssetBundleEntry>             Bundles;                                           // 0x0(0x10)(ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x68 (0x68 - 0x0)
@@ -405,12 +405,12 @@ public:
 struct FAssetData
 {
 public:
-	class FName                                  PackageName;                                       // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig)
-	class FName                                  PackagePath;                                       // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	class FName                                  AssetName;                                         // 0x10(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	class FName                                  AssetClass;                                        // 0x18(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FTopLevelAssetPath                    AssetClassPath;                                    // 0x20(0x10)(Edit, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_36[0x38];                                      // Fixing Size Of Struct > TateDumper <
+	class FName                                  PackageName;                                       // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	class FName                                  PackagePath;                                       // 0x8(0x8)(Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FName                                  AssetName;                                         // 0x10(0x8)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FName                                  AssetClass;                                        // 0x18(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FTopLevelAssetPath                    AssetClassPath;                                    // 0x20(0x10)(Edit, ConstParm, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_42[0x38];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -441,10 +441,10 @@ struct FAutomationEvent
 {
 public:
 	enum class EAutomationEventType              Type;                                              // 0x0(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	uint8                                        Pad_37[0x7];                                       // Fixing Size After Last Property  > TateDumper <
-	class FString                                Message;                                           // 0x8(0x10)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	class FString                                Context;                                           // 0x18(0x10)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FGuid                                 Artifact;                                          // 0x28(0x10)(ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_45[0x7];                                       // Fixing Size After Last Property  > TateDumper <
+	class FString                                Message;                                           // 0x8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FString                                Context;                                           // 0x18(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FGuid                                 Artifact;                                          // 0x28(0x10)(ConstParm, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -452,7 +452,7 @@ public:
 struct FDateTime
 {
 public:
-	uint8                                        Pad_39[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_46[0x8];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x58 (0x58 - 0x0)
@@ -460,11 +460,11 @@ public:
 struct FAutomationExecutionEntry
 {
 public:
-	struct FAutomationEvent                      Event;                                             // 0x0(0x38)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FAutomationEvent                      Event;                                             // 0x0(0x38)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 	class FString                                Filename;                                          // 0x38(0x10)(Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm)
-	int32                                        LineNumber;                                        // 0x48(0x4)(BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_3A[0x4];                                       // Fixing Size After Last Property  > TateDumper <
-	struct FDateTime                             Timestamp;                                         // 0x50(0x8)(ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        LineNumber;                                        // 0x48(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_48[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	struct FDateTime                             Timestamp;                                         // 0x50(0x8)(Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -518,7 +518,7 @@ public:
 	struct FVector                               Min;                                               // 0x0(0x18)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	struct FVector                               Max;                                               // 0x18(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	bool                                         IsValid;                                           // 0x30(0x1)(ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate)
-	uint8                                        Pad_3D[0x7];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_49[0x7];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -570,8 +570,8 @@ struct FBox2D
 public:
 	struct FVector2D                             Min;                                               // 0x0(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	struct FVector2D                             Max;                                               // 0x10(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
-	bool                                         bIsValid;                                          // 0x20(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_3E[0x7];                                       // Fixing Size Of Struct > TateDumper <
+	bool                                         bIsValid;                                          // 0x20(0x1)(ExportObject, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+	uint8                                        Pad_4D[0x7];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -590,8 +590,8 @@ struct FBox2f
 public:
 	struct FVector2f                             Min;                                               // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	struct FVector2f                             Max;                                               // 0x8(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
-	bool                                         bIsValid;                                          // 0x10(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_40[0x3];                                       // Fixing Size Of Struct > TateDumper <
+	bool                                         bIsValid;                                          // 0x10(0x1)(ExportObject, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+	uint8                                        Pad_4E[0x3];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -612,7 +612,7 @@ public:
 	struct FVector3d                             Min;                                               // 0x0(0x18)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	struct FVector3d                             Max;                                               // 0x18(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	bool                                         IsValid;                                           // 0x30(0x1)(ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate)
-	uint8                                        Pad_41[0x7];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_4F[0x7];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC (0xC - 0x0)
@@ -633,7 +633,7 @@ public:
 	struct FVector3f                             Min;                                               // 0x0(0xC)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	struct FVector3f                             Max;                                               // 0xC(0xC)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	bool                                         IsValid;                                           // 0x18(0x1)(ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate)
-	uint8                                        Pad_42[0x3];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_51[0x3];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x38 (0x38 - 0x0)
@@ -641,9 +641,9 @@ public:
 struct FBoxSphereBounds
 {
 public:
-	struct FVector                               Origin;                                            // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector                               BoxExtent;                                         // 0x18(0x18)(ExportObject, BlueprintReadOnly, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	double                                       SphereRadius;                                      // 0x30(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector                               Origin;                                            // 0x0(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	struct FVector                               BoxExtent;                                         // 0x18(0x18)(Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	double                                       SphereRadius;                                      // 0x30(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -651,9 +651,9 @@ public:
 struct FBoxSphereBounds3d
 {
 public:
-	struct FVector3d                             Origin;                                            // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector3d                             BoxExtent;                                         // 0x18(0x18)(ExportObject, BlueprintReadOnly, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	double                                       SphereRadius;                                      // 0x30(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector3d                             Origin;                                            // 0x0(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	struct FVector3d                             BoxExtent;                                         // 0x18(0x18)(Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	double                                       SphereRadius;                                      // 0x30(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1C (0x1C - 0x0)
@@ -661,9 +661,9 @@ public:
 struct FBoxSphereBounds3f
 {
 public:
-	struct FVector3f                             Origin;                                            // 0x0(0xC)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector3f                             BoxExtent;                                         // 0xC(0xC)(ExportObject, BlueprintReadOnly, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        SphereRadius;                                      // 0x18(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector3f                             Origin;                                            // 0x0(0xC)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	struct FVector3f                             BoxExtent;                                         // 0xC(0xC)(Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	float                                        SphereRadius;                                      // 0x18(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -682,7 +682,7 @@ public:
 struct FDirectoryPath
 {
 public:
-	class FString                                Path;                                              // 0x0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig)
+	class FString                                Path;                                              // 0x0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Config, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -691,7 +691,7 @@ struct FDoubleRangeBound
 {
 public:
 	enum class ERangeBoundTypes                  Type;                                              // 0x0(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	uint8                                        Pad_46[0x7];                                       // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_53[0x7];                                       // Fixing Size After Last Property  > TateDumper <
 	double                                       Value;                                             // 0x8(0x8)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 };
 
@@ -700,8 +700,8 @@ public:
 struct FDoubleRange
 {
 public:
-	struct FDoubleRangeBound                     LowerBound;                                        // 0x0(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FDoubleRangeBound                     UpperBound;                                        // 0x10(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FDoubleRangeBound                     LowerBound;                                        // 0x0(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FDoubleRangeBound                     UpperBound;                                        // 0x10(0x10)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -709,7 +709,7 @@ public:
 struct FFallbackStruct
 {
 public:
-	uint8                                        Pad_47[0x1];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_54[0x1];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -717,7 +717,7 @@ public:
 struct FFilePath
 {
 public:
-	class FString                                FilePath;                                          // 0x0(0x10)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class FString                                FilePath;                                          // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, Transient, Config, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -735,7 +735,7 @@ struct FFloatRangeBound
 {
 public:
 	enum class ERangeBoundTypes                  Type;                                              // 0x0(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	uint8                                        Pad_49[0x3];                                       // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_55[0x3];                                       // Fixing Size After Last Property  > TateDumper <
 	float                                        Value;                                             // 0x4(0x4)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 };
 
@@ -744,8 +744,8 @@ public:
 struct FFloatRange
 {
 public:
-	struct FFloatRangeBound                      LowerBound;                                        // 0x0(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FFloatRangeBound                      UpperBound;                                        // 0x8(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FFloatRangeBound                      LowerBound;                                        // 0x0(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FFloatRangeBound                      UpperBound;                                        // 0x8(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -762,7 +762,7 @@ struct FFrameNumberRangeBound
 {
 public:
 	enum class ERangeBoundTypes                  Type;                                              // 0x0(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	uint8                                        Pad_4A[0x3];                                       // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_56[0x3];                                       // Fixing Size After Last Property  > TateDumper <
 	struct FFrameNumber                          Value;                                             // 0x4(0x4)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 };
 
@@ -771,8 +771,8 @@ public:
 struct FFrameNumberRange
 {
 public:
-	struct FFrameNumberRangeBound                LowerBound;                                        // 0x0(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FFrameNumberRangeBound                UpperBound;                                        // 0x8(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FFrameNumberRangeBound                LowerBound;                                        // 0x0(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FFrameNumberRangeBound                UpperBound;                                        // 0x8(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -780,8 +780,8 @@ public:
 struct FFrameRate
 {
 public:
-	int32                                        Numerator;                                         // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	int32                                        Denominator;                                       // 0x4(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        Numerator;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        Denominator;                                       // 0x4(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -790,7 +790,7 @@ struct FFrameTime
 {
 public:
 	struct FFrameNumber                          FrameNumber;                                       // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-	float                                        SubFrame;                                          // 0x4(0x4)(EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        SubFrame;                                          // 0x4(0x4)(ConstParm, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -798,7 +798,7 @@ public:
 struct FInputDeviceId
 {
 public:
-	int32                                        InternalId;                                        // 0x0(0x4)(Edit, ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        InternalId;                                        // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -825,7 +825,7 @@ struct FInt32RangeBound
 {
 public:
 	enum class ERangeBoundTypes                  Type;                                              // 0x0(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	uint8                                        Pad_4C[0x3];                                       // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_57[0x3];                                       // Fixing Size After Last Property  > TateDumper <
 	int32                                        Value;                                             // 0x4(0x4)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 };
 
@@ -834,8 +834,8 @@ public:
 struct FInt32Range
 {
 public:
-	struct FInt32RangeBound                      LowerBound;                                        // 0x0(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FInt32RangeBound                      UpperBound;                                        // 0x8(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FInt32RangeBound                      LowerBound;                                        // 0x0(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FInt32RangeBound                      UpperBound;                                        // 0x8(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -912,12 +912,12 @@ public:
 struct FInterpCurvePointFloat
 {
 public:
-	float                                        InVal;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        OutVal;                                            // 0x4(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        ArriveTangent;                                     // 0x8(0x4)(Edit, ConstParm, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        LeaveTangent;                                      // 0xC(0x4)(BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class EInterpCurveMode                  InterpMode;                                        // 0x10(0x1)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_50[0x3];                                       // Fixing Size Of Struct > TateDumper <
+	float                                        InVal;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        OutVal;                                            // 0x4(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        ArriveTangent;                                     // 0x8(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        LeaveTangent;                                      // 0xC(0x4)(BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EInterpCurveMode                  InterpMode;                                        // 0x10(0x1)(ConstParm, ExportObject, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_5B[0x3];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -925,10 +925,10 @@ public:
 struct FInterpCurveFloat
 {
 public:
-	TArray<struct FInterpCurvePointFloat>        Points;                                            // 0x0(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bIsLooped;                                         // 0x10(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_51[0x3];                                       // Fixing Size After Last Property  > TateDumper <
-	float                                        LoopKeyOffset;                                     // 0x14(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FInterpCurvePointFloat>        Points;                                            // 0x0(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bIsLooped;                                         // 0x10(0x1)(Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_5C[0x3];                                       // Fixing Size After Last Property  > TateDumper <
+	float                                        LoopKeyOffset;                                     // 0x14(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -947,12 +947,12 @@ public:
 struct FInterpCurvePointLinearColor
 {
 public:
-	float                                        InVal;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FLinearColor                          OutVal;                                            // 0x4(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FLinearColor                          ArriveTangent;                                     // 0x14(0x10)(Edit, ConstParm, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FLinearColor                          LeaveTangent;                                      // 0x24(0x10)(BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class EInterpCurveMode                  InterpMode;                                        // 0x34(0x1)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_52[0x3];                                       // Fixing Size Of Struct > TateDumper <
+	float                                        InVal;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FLinearColor                          OutVal;                                            // 0x4(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FLinearColor                          ArriveTangent;                                     // 0x14(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FLinearColor                          LeaveTangent;                                      // 0x24(0x10)(BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EInterpCurveMode                  InterpMode;                                        // 0x34(0x1)(ConstParm, ExportObject, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_5D[0x3];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -960,10 +960,10 @@ public:
 struct FInterpCurveLinearColor
 {
 public:
-	TArray<struct FInterpCurvePointLinearColor>  Points;                                            // 0x0(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bIsLooped;                                         // 0x10(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_53[0x3];                                       // Fixing Size After Last Property  > TateDumper <
-	float                                        LoopKeyOffset;                                     // 0x14(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FInterpCurvePointLinearColor>  Points;                                            // 0x0(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bIsLooped;                                         // 0x10(0x1)(Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_5E[0x3];                                       // Fixing Size After Last Property  > TateDumper <
+	float                                        LoopKeyOffset;                                     // 0x14(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -1015,13 +1015,13 @@ public:
 struct FInterpCurvePointQuat
 {
 public:
-	float                                        InVal;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_54[0xC];                                       // Fixing Size After Last Property  > TateDumper <
-	struct FQuat                                 OutVal;                                            // 0x10(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FQuat                                 ArriveTangent;                                     // 0x30(0x20)(Edit, ConstParm, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FQuat                                 LeaveTangent;                                      // 0x50(0x20)(BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class EInterpCurveMode                  InterpMode;                                        // 0x70(0x1)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_55[0xF];                                       // Fixing Size Of Struct > TateDumper <
+	float                                        InVal;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_5F[0xC];                                       // Fixing Size After Last Property  > TateDumper <
+	struct FQuat                                 OutVal;                                            // 0x10(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FQuat                                 ArriveTangent;                                     // 0x30(0x20)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FQuat                                 LeaveTangent;                                      // 0x50(0x20)(BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EInterpCurveMode                  InterpMode;                                        // 0x70(0x1)(ConstParm, ExportObject, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_60[0xF];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -1029,8 +1029,8 @@ public:
 struct FTwoVectors
 {
 public:
-	struct FVector                               V1;                                                // 0x0(0x18)(Edit, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector                               V2;                                                // 0x18(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector                               V1;                                                // 0x0(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector                               V2;                                                // 0x18(0x18)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0xA0 (0xA0 - 0x0)
@@ -1038,13 +1038,13 @@ public:
 struct FInterpCurvePointTwoVectors
 {
 public:
-	float                                        InVal;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_56[0x4];                                       // Fixing Size After Last Property  > TateDumper <
-	struct FTwoVectors                           OutVal;                                            // 0x8(0x30)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FTwoVectors                           ArriveTangent;                                     // 0x38(0x30)(Edit, ConstParm, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FTwoVectors                           LeaveTangent;                                      // 0x68(0x30)(BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class EInterpCurveMode                  InterpMode;                                        // 0x98(0x1)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_57[0x7];                                       // Fixing Size Of Struct > TateDumper <
+	float                                        InVal;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_61[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	struct FTwoVectors                           OutVal;                                            // 0x8(0x30)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FTwoVectors                           ArriveTangent;                                     // 0x38(0x30)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FTwoVectors                           LeaveTangent;                                      // 0x68(0x30)(BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EInterpCurveMode                  InterpMode;                                        // 0x98(0x1)(ConstParm, ExportObject, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_62[0x7];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x58 (0x58 - 0x0)
@@ -1052,13 +1052,13 @@ public:
 struct FInterpCurvePointVector
 {
 public:
-	float                                        InVal;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_59[0x4];                                       // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               OutVal;                                            // 0x8(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector                               ArriveTangent;                                     // 0x20(0x18)(Edit, ConstParm, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector                               LeaveTangent;                                      // 0x38(0x18)(BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class EInterpCurveMode                  InterpMode;                                        // 0x50(0x1)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_5A[0x7];                                       // Fixing Size Of Struct > TateDumper <
+	float                                        InVal;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_63[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               OutVal;                                            // 0x8(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector                               ArriveTangent;                                     // 0x20(0x18)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector                               LeaveTangent;                                      // 0x38(0x18)(BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EInterpCurveMode                  InterpMode;                                        // 0x50(0x1)(ConstParm, ExportObject, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_64[0x7];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x40 (0x40 - 0x0)
@@ -1066,13 +1066,13 @@ public:
 struct FInterpCurvePointVector2D
 {
 public:
-	float                                        InVal;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_5B[0x4];                                       // Fixing Size After Last Property  > TateDumper <
-	struct FVector2D                             OutVal;                                            // 0x8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector2D                             ArriveTangent;                                     // 0x18(0x10)(Edit, ConstParm, BlueprintReadOnly, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector2D                             LeaveTangent;                                      // 0x28(0x10)(BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class EInterpCurveMode                  InterpMode;                                        // 0x38(0x1)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_5C[0x7];                                       // Fixing Size Of Struct > TateDumper <
+	float                                        InVal;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_66[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	struct FVector2D                             OutVal;                                            // 0x8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector2D                             ArriveTangent;                                     // 0x18(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector2D                             LeaveTangent;                                      // 0x28(0x10)(BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EInterpCurveMode                  InterpMode;                                        // 0x38(0x1)(ConstParm, ExportObject, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_67[0x7];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1080,10 +1080,10 @@ public:
 struct FInterpCurveQuat
 {
 public:
-	TArray<struct FInterpCurvePointQuat>         Points;                                            // 0x0(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bIsLooped;                                         // 0x10(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_5E[0x3];                                       // Fixing Size After Last Property  > TateDumper <
-	float                                        LoopKeyOffset;                                     // 0x14(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FInterpCurvePointQuat>         Points;                                            // 0x0(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bIsLooped;                                         // 0x10(0x1)(Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_68[0x3];                                       // Fixing Size After Last Property  > TateDumper <
+	float                                        LoopKeyOffset;                                     // 0x14(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1091,10 +1091,10 @@ public:
 struct FInterpCurveTwoVectors
 {
 public:
-	TArray<struct FInterpCurvePointTwoVectors>   Points;                                            // 0x0(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bIsLooped;                                         // 0x10(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_5F[0x3];                                       // Fixing Size After Last Property  > TateDumper <
-	float                                        LoopKeyOffset;                                     // 0x14(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FInterpCurvePointTwoVectors>   Points;                                            // 0x0(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bIsLooped;                                         // 0x10(0x1)(Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_6A[0x3];                                       // Fixing Size After Last Property  > TateDumper <
+	float                                        LoopKeyOffset;                                     // 0x14(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1102,10 +1102,10 @@ public:
 struct FInterpCurveVector
 {
 public:
-	TArray<struct FInterpCurvePointVector>       Points;                                            // 0x0(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bIsLooped;                                         // 0x10(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_60[0x3];                                       // Fixing Size After Last Property  > TateDumper <
-	float                                        LoopKeyOffset;                                     // 0x14(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FInterpCurvePointVector>       Points;                                            // 0x0(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bIsLooped;                                         // 0x10(0x1)(Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_6B[0x3];                                       // Fixing Size After Last Property  > TateDumper <
+	float                                        LoopKeyOffset;                                     // 0x14(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1113,10 +1113,10 @@ public:
 struct FInterpCurveVector2D
 {
 public:
-	TArray<struct FInterpCurvePointVector2D>     Points;                                            // 0x0(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bIsLooped;                                         // 0x10(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_61[0x3];                                       // Fixing Size After Last Property  > TateDumper <
-	float                                        LoopKeyOffset;                                     // 0x14(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FInterpCurvePointVector2D>     Points;                                            // 0x0(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bIsLooped;                                         // 0x10(0x1)(Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_6C[0x3];                                       // Fixing Size After Last Property  > TateDumper <
+	float                                        LoopKeyOffset;                                     // 0x14(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1171,10 +1171,10 @@ public:
 struct FMatrix
 {
 public:
-	struct FPlane                                XPlane;                                            // 0x0(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPlane                                YPlane;                                            // 0x20(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPlane                                ZPlane;                                            // 0x40(0x20)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPlane                                WPlane;                                            // 0x60(0x20)(Edit, ConstParm, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPlane                                XPlane;                                            // 0x0(0x20)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPlane                                YPlane;                                            // 0x20(0x20)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPlane                                ZPlane;                                            // 0x40(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPlane                                WPlane;                                            // 0x60(0x20)(Edit, ConstParm, ExportObject, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x20 - 0x18)
@@ -1190,10 +1190,10 @@ public:
 struct FMatrix44d
 {
 public:
-	struct FPlane4d                              XPlane;                                            // 0x0(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPlane4d                              YPlane;                                            // 0x20(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPlane4d                              ZPlane;                                            // 0x40(0x20)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPlane4d                              WPlane;                                            // 0x60(0x20)(Edit, ConstParm, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPlane4d                              XPlane;                                            // 0x0(0x20)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPlane4d                              YPlane;                                            // 0x20(0x20)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPlane4d                              ZPlane;                                            // 0x40(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPlane4d                              WPlane;                                            // 0x60(0x20)(Edit, ConstParm, ExportObject, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x10 - 0xC)
@@ -1209,10 +1209,10 @@ public:
 struct FMatrix44f
 {
 public:
-	struct FPlane4f                              XPlane;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPlane4f                              YPlane;                                            // 0x10(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPlane4f                              ZPlane;                                            // 0x20(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPlane4f                              WPlane;                                            // 0x30(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPlane4f                              XPlane;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPlane4f                              YPlane;                                            // 0x10(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPlane4f                              ZPlane;                                            // 0x20(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPlane4f                              WPlane;                                            // 0x30(0x10)(Edit, ConstParm, ExportObject, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x78 (0x78 - 0x0)
@@ -1221,12 +1221,12 @@ struct FOrientedBox
 {
 public:
 	struct FVector                               Center;                                            // 0x0(0x18)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-	struct FVector                               AxisX;                                             // 0x18(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	struct FVector                               AxisY;                                             // 0x30(0x18)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	struct FVector                               AxisZ;                                             // 0x48(0x18)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	double                                       ExtentX;                                           // 0x60(0x8)(Edit, Net, EditFixedSize, DisableEditOnInstance, EditConst, SubobjectReference)
-	double                                       ExtentY;                                           // 0x68(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, EditConst, SubobjectReference)
-	double                                       ExtentZ;                                           // 0x70(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector                               AxisX;                                             // 0x18(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	struct FVector                               AxisY;                                             // 0x30(0x18)(ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	struct FVector                               AxisZ;                                             // 0x48(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	double                                       ExtentX;                                           // 0x60(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	double                                       ExtentY;                                           // 0x68(0x8)(BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	double                                       ExtentZ;                                           // 0x70(0x8)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1245,7 +1245,7 @@ public:
 struct FPackedRGB10A2N
 {
 public:
-	int32                                        Packed;                                            // 0x0(0x4)(Edit, ExportObject, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        Packed;                                            // 0x0(0x4)(ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1262,7 +1262,7 @@ public:
 struct FPlatformUserId
 {
 public:
-	int32                                        InternalId;                                        // 0x0(0x4)(Edit, ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        InternalId;                                        // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1270,9 +1270,9 @@ public:
 struct FPlatformInputDeviceState
 {
 public:
-	struct FPlatformUserId                       OwningPlatformUser;                                // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class EInputDeviceConnectionState       ConnectionState;                                   // 0x4(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_63[0x3];                                       // Fixing Size Of Struct > TateDumper <
+	struct FPlatformUserId                       OwningPlatformUser;                                // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EInputDeviceConnectionState       ConnectionState;                                   // 0x4(0x1)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_6E[0x3];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xB8 (0xB8 - 0x0)
@@ -1281,15 +1281,15 @@ struct FPolyglotTextData
 {
 public:
 	enum class ELocalizedTextSourceCategory      Category;                                          // 0x0(0x1)(ConstParm, BlueprintReadOnly, OutParm, Transient)
-	uint8                                        Pad_64[0x7];                                       // Fixing Size After Last Property  > TateDumper <
-	class FString                                NativeCulture;                                     // 0x8(0x10)(Edit, ConstParm, Net, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	class FString                                Namespace;                                         // 0x18(0x10)(BlueprintReadOnly, Net, Parm, OutParm, EditConst, GlobalConfig, InstancedReference)
+	uint8                                        Pad_6F[0x7];                                       // Fixing Size After Last Property  > TateDumper <
+	class FString                                NativeCulture;                                     // 0x8(0x10)(BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FString                                Namespace;                                         // 0x18(0x10)(Edit, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference)
 	class FString                                Key;                                               // 0x28(0x10)(BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-	class FString                                NativeString;                                      // 0x38(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	TMap<class FString, class FString>           LocalizedStrings;                                  // 0x48(0x50)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bIsMinimalPatch;                                   // 0x98(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_66[0x7];                                       // Fixing Size After Last Property  > TateDumper <
-	class FText                                  CachedText;                                        // 0xA0(0x18)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FString                                NativeString;                                      // 0x38(0x10)(Edit, ExportObject, OutParm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	TMap<class FString, class FString>           LocalizedStrings;                                  // 0x48(0x50)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bIsMinimalPatch;                                   // 0x98(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_70[0x7];                                       // Fixing Size After Last Property  > TateDumper <
+	class FText                                  CachedText;                                        // 0xA0(0x18)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1314,8 +1314,8 @@ public:
 struct FQualifiedFrameTime
 {
 public:
-	struct FFrameTime                            Time;                                              // 0x0(0x8)(Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-	struct FFrameRate                            Rate;                                              // 0x8(0x8)(BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FFrameTime                            Time;                                              // 0x0(0x8)(Edit, ConstParm, Net, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+	struct FFrameRate                            Rate;                                              // 0x8(0x8)(ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -1345,8 +1345,8 @@ public:
 struct FRandomStream
 {
 public:
-	int32                                        InitialSeed;                                       // 0x0(0x4)(ConstParm, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	int32                                        Seed;                                              // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        InitialSeed;                                       // 0x0(0x4)(ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        Seed;                                              // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -1354,8 +1354,8 @@ public:
 struct FRay
 {
 public:
-	struct FVector                               Origin;                                            // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector                               Direction;                                         // 0x18(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+	struct FVector                               Origin;                                            // 0x0(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	struct FVector                               Direction;                                         // 0x18(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -1363,8 +1363,8 @@ public:
 struct FRay3d
 {
 public:
-	struct FVector3d                             Origin;                                            // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector3d                             Direction;                                         // 0x18(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+	struct FVector3d                             Origin;                                            // 0x0(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	struct FVector3d                             Direction;                                         // 0x18(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1372,8 +1372,8 @@ public:
 struct FRay3f
 {
 public:
-	struct FVector3f                             Origin;                                            // 0x0(0xC)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FVector3f                             Direction;                                         // 0xC(0xC)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+	struct FVector3f                             Origin;                                            // 0x0(0xC)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	struct FVector3f                             Direction;                                         // 0xC(0xC)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1478,7 +1478,7 @@ public:
 struct FTemplateString
 {
 public:
-	class FString                                Template;                                          // 0x0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FString                                Template;                                          // 0x0(0x10)(Edit, BlueprintVisible, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1486,10 +1486,10 @@ public:
 struct FTestUninitializedScriptStructMembersTest
 {
 public:
-	class UObject*                               UninitializedObjectReference;                      // 0x0(0x8)(ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	class UObject*                               InitializedObjectReference;                        // 0x8(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        UnusedValue;                                       // 0x10(0x4)(ConstParm, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_6A[0x4];                                       // Fixing Size Of Struct > TateDumper <
+	class UObject*                               UninitializedObjectReference;                      // 0x0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UObject*                               InitializedObjectReference;                        // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        UnusedValue;                                       // 0x10(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_74[0x4];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x14 (0x14 - 0x0)
@@ -1497,12 +1497,12 @@ public:
 struct FTimecode
 {
 public:
-	int32                                        Hours;                                             // 0x0(0x4)(BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	int32                                        Minutes;                                           // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	int32                                        Seconds;                                           // 0x8(0x4)(ConstParm, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	int32                                        Frames;                                            // 0xC(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bDropFrameFormat;                                  // 0x10(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_6B[0x3];                                       // Fixing Size Of Struct > TateDumper <
+	int32                                        Hours;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        Minutes;                                           // 0x4(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        Seconds;                                           // 0x8(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        Frames;                                            // 0xC(0x4)(BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bDropFrameFormat;                                  // 0x10(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_75[0x3];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1510,7 +1510,7 @@ public:
 struct FTimespan
 {
 public:
-	uint8                                        Pad_6D[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_76[0x8];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x60 (0x60 - 0x0)
@@ -1520,9 +1520,9 @@ struct FTransform
 public:
 	struct FQuat                                 Rotation;                                          // 0x0(0x20)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
 	struct FVector                               Translation;                                       // 0x20(0x18)(ConstParm, Parm, ZeroConstructor, Transient, Config)
-	uint8                                        Pad_6E[0x8];                                       // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               Scale3D;                                           // 0x40(0x18)(BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_6F[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_77[0x8];                                       // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               Scale3D;                                           // 0x40(0x18)(Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_78[0x8];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x60 (0x60 - 0x0)
@@ -1532,9 +1532,9 @@ struct FTransform3d
 public:
 	struct FQuat4d                               Rotation;                                          // 0x0(0x20)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
 	struct FVector3d                             Translation;                                       // 0x20(0x18)(ConstParm, Parm, ZeroConstructor, Transient, Config)
-	uint8                                        Pad_70[0x8];                                       // Fixing Size After Last Property  > TateDumper <
-	struct FVector3d                             Scale3D;                                           // 0x40(0x18)(BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_71[0x8];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_79[0x8];                                       // Fixing Size After Last Property  > TateDumper <
+	struct FVector3d                             Scale3D;                                           // 0x40(0x18)(Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_7A[0x8];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -1544,9 +1544,9 @@ struct FTransform3f
 public:
 	struct FQuat4f                               Rotation;                                          // 0x0(0x10)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
 	struct FVector3f                             Translation;                                       // 0x10(0xC)(ConstParm, Parm, ZeroConstructor, Transient, Config)
-	uint8                                        Pad_72[0x4];                                       // Fixing Size After Last Property  > TateDumper <
-	struct FVector3f                             Scale3D;                                           // 0x20(0xC)(BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_73[0x4];                                       // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_7B[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	struct FVector3f                             Scale3D;                                           // 0x20(0xC)(Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_7C[0x4];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)

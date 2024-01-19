@@ -14,13 +14,13 @@ namespace SDK
 class USeek_Srv_C : public UBTService_BlueprintBase
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x98(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x98(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class USeek_Srv_C* GetDefaultObj();
 
-	void ReceiveActivation(class AActor** OwnerActor);
-	int32 ExecuteUbergraph_Seek_Srv(class AActor* K2Node_Event_OwnerActor, class APrimalDinoAIController* K2Node_DynamicCast_AsPrimal_Dino_AIController, bool* K2Node_DynamicCast_bSuccess);
+	class AActor* ReceiveActivation();
+	bool ExecuteUbergraph_Seek_Srv(int32 EntryPoint, class AActor* K2Node_Event_OwnerActor);
 };
 
 }

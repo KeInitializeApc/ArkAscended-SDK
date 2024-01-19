@@ -14,7 +14,7 @@ namespace SDK
 class AWeapGPS_C : public APrimalWeaponGPS
 {
 public:
-	class UPointLightComponent*                  PointLight1;                                       // 0x1340(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	class UPointLightComponent*                  PointLight1;                                       // 0x1340(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class AWeapGPS_C* GetDefaultObj();

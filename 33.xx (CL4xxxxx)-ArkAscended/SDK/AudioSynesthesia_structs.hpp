@@ -69,10 +69,10 @@ enum class EMeterPeakType : uint8
 struct FLoudnessResults
 {
 public:
-	float                                        Loudness;                                          // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	float                                        NormalizedLoudness;                                // 0x4(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	float                                        PerceptualEnergy;                                  // 0x8(0x4)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	float                                        TimeSeconds;                                       // 0xC(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig)
+	float                                        Loudness;                                          // 0x0(0x4)(ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	float                                        NormalizedLoudness;                                // 0x4(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	float                                        PerceptualEnergy;                                  // 0x8(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	float                                        TimeSeconds;                                       // 0xC(0x4)(ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -80,11 +80,11 @@ public:
 struct FMeterResults
 {
 public:
-	float                                        TimeSeconds;                                       // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig)
-	float                                        MeterValue;                                        // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	float                                        PeakValue;                                         // 0x8(0x4)(Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	int32                                        NumSamplesClipping;                                // 0xC(0x4)(ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	float                                        ClippingValue;                                     // 0x10(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	float                                        TimeSeconds;                                       // 0x0(0x4)(ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	float                                        MeterValue;                                        // 0x4(0x4)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	float                                        PeakValue;                                         // 0x8(0x4)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	int32                                        NumSamplesClipping;                                // 0xC(0x4)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	float                                        ClippingValue;                                     // 0x10(0x4)(ConstParm, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -92,9 +92,9 @@ public:
 struct FSynesthesiaSpectrumResults
 {
 public:
-	float                                        TimeSeconds;                                       // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig)
-	uint8                                        Pad_268E[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<float>                                SpectrumValues;                                    // 0x8(0x10)(Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	float                                        TimeSeconds;                                       // 0x0(0x4)(ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_25E6[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<float>                                SpectrumValues;                                    // 0x8(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 }

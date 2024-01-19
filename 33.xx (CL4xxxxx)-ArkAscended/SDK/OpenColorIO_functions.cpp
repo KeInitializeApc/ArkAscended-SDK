@@ -71,13 +71,13 @@ class UOpenColorIOBlueprintLibrary* UOpenColorIOBlueprintLibrary::GetDefaultObj(
 // Function OpenColorIO.OpenColorIOBlueprintLibrary.ApplyColorSpaceTransform
 // (Final, RequiredAPI, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FOpenColorIOColorConversionSettingsConversionSettings                                               (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UTexture*                    InputTexture                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UTextureRenderTarget2D*      OutputRenderTarget                                               (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FOpenColorIOColorConversionSettingsConversionSettings                                               (BlueprintVisible, ExportObject, Parm, OutParm, Config, InstancedReference, SubobjectReference)
+// class UTexture*                    InputTexture                                                     (Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UTextureRenderTarget2D*      OutputRenderTarget                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UOpenColorIOBlueprintLibrary::ApplyColorSpaceTransform()
+void UOpenColorIOBlueprintLibrary::ApplyColorSpaceTransform(class UObject* WorldContextObject, struct FOpenColorIOColorConversionSettings* ConversionSettings, class UTexture** InputTexture, class UTextureRenderTarget2D** OutputRenderTarget, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -86,6 +86,8 @@ bool UOpenColorIOBlueprintLibrary::ApplyColorSpaceTransform()
 
 	Params::UOpenColorIOBlueprintLibrary_ApplyColorSpaceTransform_Params Parms{};
 
+	Parms.WorldContextObject = WorldContextObject;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -95,7 +97,14 @@ bool UOpenColorIOBlueprintLibrary::ApplyColorSpaceTransform()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ConversionSettings != nullptr)
+		*ConversionSettings = std::move(Parms.ConversionSettings);
+
+	if (InputTexture != nullptr)
+		*InputTexture = Parms.InputTexture;
+
+	if (OutputRenderTarget != nullptr)
+		*OutputRenderTarget = Parms.OutputRenderTarget;
 
 }
 
@@ -211,9 +220,9 @@ class UOpenColorIODisplayExtensionWrapper* UOpenColorIODisplayExtensionWrapper::
 // Function OpenColorIO.OpenColorIODisplayExtensionWrapper.SetSceneExtensionIsActiveFunctions
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FSceneViewExtensionIsActiveFunctor>IsActiveFunctions                                                (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FSceneViewExtensionIsActiveFunctor>IsActiveFunctions                                                (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<struct FSceneViewExtensionIsActiveFunctor> UOpenColorIODisplayExtensionWrapper::SetSceneExtensionIsActiveFunctions()
+void UOpenColorIODisplayExtensionWrapper::SetSceneExtensionIsActiveFunctions(TArray<struct FSceneViewExtensionIsActiveFunctor>* IsActiveFunctions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -231,7 +240,8 @@ TArray<struct FSceneViewExtensionIsActiveFunctor> UOpenColorIODisplayExtensionWr
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (IsActiveFunctions != nullptr)
+		*IsActiveFunctions = std::move(Parms.IsActiveFunctions);
 
 }
 
@@ -239,9 +249,9 @@ TArray<struct FSceneViewExtensionIsActiveFunctor> UOpenColorIODisplayExtensionWr
 // Function OpenColorIO.OpenColorIODisplayExtensionWrapper.SetSceneExtensionIsActiveFunction
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSceneViewExtensionIsActiveFunctorIsActiveFunction                                                 (Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FSceneViewExtensionIsActiveFunctorIsActiveFunction                                                 (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSceneViewExtensionIsActiveFunctor UOpenColorIODisplayExtensionWrapper::SetSceneExtensionIsActiveFunction()
+void UOpenColorIODisplayExtensionWrapper::SetSceneExtensionIsActiveFunction(struct FSceneViewExtensionIsActiveFunctor* IsActiveFunction)
 {
 	static class UFunction* Func = nullptr;
 
@@ -259,7 +269,8 @@ struct FSceneViewExtensionIsActiveFunctor UOpenColorIODisplayExtensionWrapper::S
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (IsActiveFunction != nullptr)
+		*IsActiveFunction = std::move(Parms.IsActiveFunction);
 
 }
 
@@ -267,9 +278,9 @@ struct FSceneViewExtensionIsActiveFunctor UOpenColorIODisplayExtensionWrapper::S
 // Function OpenColorIO.OpenColorIODisplayExtensionWrapper.SetOpenColorIOConfiguration
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FOpenColorIODisplayConfigurationInDisplayConfiguration                                           (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FOpenColorIODisplayConfigurationInDisplayConfiguration                                           (Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FOpenColorIODisplayConfiguration UOpenColorIODisplayExtensionWrapper::SetOpenColorIOConfiguration()
+void UOpenColorIODisplayExtensionWrapper::SetOpenColorIOConfiguration(struct FOpenColorIODisplayConfiguration* InDisplayConfiguration)
 {
 	static class UFunction* Func = nullptr;
 
@@ -287,7 +298,8 @@ struct FOpenColorIODisplayConfiguration UOpenColorIODisplayExtensionWrapper::Set
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InDisplayConfiguration != nullptr)
+		*InDisplayConfiguration = std::move(Parms.InDisplayConfiguration);
 
 }
 
@@ -319,9 +331,9 @@ void UOpenColorIODisplayExtensionWrapper::RemoveSceneExtension()
 // Function OpenColorIO.OpenColorIODisplayExtensionWrapper.GetOpenColorIOConfiguration
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FOpenColorIODisplayConfigurationReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FOpenColorIODisplayConfigurationReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FOpenColorIODisplayConfiguration UOpenColorIODisplayExtensionWrapper::GetOpenColorIOConfiguration()
+void UOpenColorIODisplayExtensionWrapper::GetOpenColorIOConfiguration(const struct FOpenColorIODisplayConfiguration& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -330,6 +342,7 @@ struct FOpenColorIODisplayConfiguration UOpenColorIODisplayExtensionWrapper::Get
 
 	Params::UOpenColorIODisplayExtensionWrapper_GetOpenColorIOConfiguration_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -339,19 +352,17 @@ struct FOpenColorIODisplayConfiguration UOpenColorIODisplayExtensionWrapper::Get
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function OpenColorIO.OpenColorIODisplayExtensionWrapper.CreateOpenColorIODisplayExtension
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FOpenColorIODisplayConfigurationInDisplayConfiguration                                           (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FSceneViewExtensionIsActiveFunctorIsActiveFunction                                                 (Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOpenColorIODisplayExtensionWrapper*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FOpenColorIODisplayConfigurationInDisplayConfiguration                                           (Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FSceneViewExtensionIsActiveFunctorIsActiveFunction                                                 (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOpenColorIODisplayExtensionWrapper*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOpenColorIODisplayExtensionWrapper* UOpenColorIODisplayExtensionWrapper::CreateOpenColorIODisplayExtension()
+void UOpenColorIODisplayExtensionWrapper::CreateOpenColorIODisplayExtension(struct FOpenColorIODisplayConfiguration* InDisplayConfiguration, struct FSceneViewExtensionIsActiveFunctor* IsActiveFunction, class UOpenColorIODisplayExtensionWrapper* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -360,6 +371,7 @@ class UOpenColorIODisplayExtensionWrapper* UOpenColorIODisplayExtensionWrapper::
 
 	Params::UOpenColorIODisplayExtensionWrapper_CreateOpenColorIODisplayExtension_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -369,7 +381,11 @@ class UOpenColorIODisplayExtensionWrapper* UOpenColorIODisplayExtensionWrapper::
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InDisplayConfiguration != nullptr)
+		*InDisplayConfiguration = std::move(Parms.InDisplayConfiguration);
+
+	if (IsActiveFunction != nullptr)
+		*IsActiveFunction = std::move(Parms.IsActiveFunction);
 
 }
 
@@ -377,10 +393,10 @@ class UOpenColorIODisplayExtensionWrapper* UOpenColorIODisplayExtensionWrapper::
 // Function OpenColorIO.OpenColorIODisplayExtensionWrapper.CreateInGameOpenColorIODisplayExtension
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FOpenColorIODisplayConfigurationInDisplayConfiguration                                           (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOpenColorIODisplayExtensionWrapper*ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FOpenColorIODisplayConfigurationInDisplayConfiguration                                           (Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UOpenColorIODisplayExtensionWrapper*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UOpenColorIODisplayExtensionWrapper* UOpenColorIODisplayExtensionWrapper::CreateInGameOpenColorIODisplayExtension()
+void UOpenColorIODisplayExtensionWrapper::CreateInGameOpenColorIODisplayExtension(struct FOpenColorIODisplayConfiguration* InDisplayConfiguration, class UOpenColorIODisplayExtensionWrapper* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -389,6 +405,7 @@ class UOpenColorIODisplayExtensionWrapper* UOpenColorIODisplayExtensionWrapper::
 
 	Params::UOpenColorIODisplayExtensionWrapper_CreateInGameOpenColorIODisplayExtension_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -398,7 +415,8 @@ class UOpenColorIODisplayExtensionWrapper* UOpenColorIODisplayExtensionWrapper::
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InDisplayConfiguration != nullptr)
+		*InDisplayConfiguration = std::move(Parms.InDisplayConfiguration);
 
 }
 

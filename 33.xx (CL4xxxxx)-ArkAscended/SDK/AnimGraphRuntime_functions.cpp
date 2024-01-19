@@ -43,10 +43,10 @@ class UBlendSpaceLibrary* UBlendSpaceLibrary::GetDefaultObj()
 // Function AnimGraphRuntime.BlendSpaceLibrary.SnapToPosition
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FBlendSpaceReference        BlendSpace                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, DisableEditOnInstance, GlobalConfig)
-// struct FVector                     NewPosition                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlendSpaceReference        BlendSpace                                                       (ExportObject, Net, EditFixedSize, OutParm, EditConst, DuplicateTransient)
+// struct FVector                     NewPosition                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UBlendSpaceLibrary::SnapToPosition(struct FBlendSpaceReference* BlendSpace, const struct FVector& NewPosition)
+struct FVector UBlendSpaceLibrary::SnapToPosition(struct FBlendSpaceReference* BlendSpace)
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,7 +55,6 @@ void UBlendSpaceLibrary::SnapToPosition(struct FBlendSpaceReference* BlendSpace,
 
 	Params::UBlendSpaceLibrary_SnapToPosition_Params Parms{};
 
-	Parms.NewPosition = NewPosition;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -68,16 +67,18 @@ void UBlendSpaceLibrary::SnapToPosition(struct FBlendSpaceReference* BlendSpace,
 	if (BlendSpace != nullptr)
 		*BlendSpace = std::move(Parms.BlendSpace);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AnimGraphRuntime.BlendSpaceLibrary.GetPosition
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FBlendSpaceReference        BlendSpace                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, DisableEditOnInstance, GlobalConfig)
-// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpaceReference        BlendSpace                                                       (ExportObject, Net, EditFixedSize, OutParm, EditConst, DuplicateTransient)
+// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector UBlendSpaceLibrary::GetPosition(struct FBlendSpaceReference* BlendSpace)
+void UBlendSpaceLibrary::GetPosition(struct FBlendSpaceReference* BlendSpace, const struct FVector& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -86,6 +87,7 @@ struct FVector UBlendSpaceLibrary::GetPosition(struct FBlendSpaceReference* Blen
 
 	Params::UBlendSpaceLibrary_GetPosition_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -98,18 +100,16 @@ struct FVector UBlendSpaceLibrary::GetPosition(struct FBlendSpaceReference* Blen
 	if (BlendSpace != nullptr)
 		*BlendSpace = std::move(Parms.BlendSpace);
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AnimGraphRuntime.BlendSpaceLibrary.GetFilteredPosition
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FBlendSpaceReference        BlendSpace                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, DisableEditOnInstance, GlobalConfig)
-// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpaceReference        BlendSpace                                                       (ExportObject, Net, EditFixedSize, OutParm, EditConst, DuplicateTransient)
+// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector UBlendSpaceLibrary::GetFilteredPosition(struct FBlendSpaceReference* BlendSpace)
+void UBlendSpaceLibrary::GetFilteredPosition(struct FBlendSpaceReference* BlendSpace, const struct FVector& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -118,6 +118,7 @@ struct FVector UBlendSpaceLibrary::GetFilteredPosition(struct FBlendSpaceReferen
 
 	Params::UBlendSpaceLibrary_GetFilteredPosition_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -130,8 +131,6 @@ struct FVector UBlendSpaceLibrary::GetFilteredPosition(struct FBlendSpaceReferen
 	if (BlendSpace != nullptr)
 		*BlendSpace = std::move(Parms.BlendSpace);
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -139,7 +138,7 @@ struct FVector UBlendSpaceLibrary::GetFilteredPosition(struct FBlendSpaceReferen
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// struct FBlendSpaceReference        BlendSpace                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, DisableEditOnInstance, GlobalConfig)
+// struct FBlendSpaceReference        BlendSpace                                                       (ExportObject, Net, EditFixedSize, OutParm, EditConst, DuplicateTransient)
 // bool                               Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
 
 struct FAnimNodeReference UBlendSpaceLibrary::ConvertToBlendSpacePure(struct FBlendSpaceReference* BlendSpace, bool* Result)
@@ -176,9 +175,9 @@ struct FAnimNodeReference UBlendSpaceLibrary::ConvertToBlendSpacePure(struct FBl
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
 // enum class EAnimNodeReferenceConversionResultResult                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FBlendSpaceReference        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpaceReference        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FBlendSpaceReference UBlendSpaceLibrary::ConvertToBlendSpace(enum class EAnimNodeReferenceConversionResult* Result)
+struct FAnimNodeReference UBlendSpaceLibrary::ConvertToBlendSpace(enum class EAnimNodeReferenceConversionResult* Result, const struct FBlendSpaceReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -187,6 +186,7 @@ struct FBlendSpaceReference UBlendSpaceLibrary::ConvertToBlendSpace(enum class E
 
 	Params::UBlendSpaceLibrary_ConvertToBlendSpace_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -235,16 +235,16 @@ class UAnimationStateMachineLibrary* UAnimationStateMachineLibrary::GetDefaultOb
 // Function AnimGraphRuntime.AnimationStateMachineLibrary.SetState
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAnimUpdateContext          UpdateContext                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FAnimUpdateContext          UpdateContext                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 // struct FAnimationStateMachineReferenceNode                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// class FName                        TargetState                                                      (Edit, ConstParm, ExportObject, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              Duration                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, DuplicateTransient)
-// enum class ETransitionLogicType    BlendType                                                        (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UBlendProfile*               BlendProfile                                                     (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig)
-// enum class EAlphaBlendOption       AlphaBlendOption                                                 (ConstParm, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UCurveFloat*                 CustomBlendCurve                                                 (Edit, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        TargetState                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              Duration                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
+// enum class ETransitionLogicType    BlendType                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UBlendProfile*               BlendProfile                                                     (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// enum class EAlphaBlendOption       AlphaBlendOption                                                 (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UCurveFloat*                 CustomBlendCurve                                                 (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UBlendProfile* UAnimationStateMachineLibrary::SetState(class FName TargetState, enum class ETransitionLogicType BlendType, enum class EAlphaBlendOption AlphaBlendOption, class UCurveFloat* CustomBlendCurve)
+class UCurveFloat* UAnimationStateMachineLibrary::SetState(const struct FAnimUpdateContext& UpdateContext, float Duration)
 {
 	static class UFunction* Func = nullptr;
 
@@ -253,10 +253,8 @@ class UBlendProfile* UAnimationStateMachineLibrary::SetState(class FName TargetS
 
 	Params::UAnimationStateMachineLibrary_SetState_Params Parms{};
 
-	Parms.TargetState = TargetState;
-	Parms.BlendType = BlendType;
-	Parms.AlphaBlendOption = AlphaBlendOption;
-	Parms.CustomBlendCurve = CustomBlendCurve;
+	Parms.UpdateContext = UpdateContext;
+	Parms.Duration = Duration;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -274,11 +272,11 @@ class UBlendProfile* UAnimationStateMachineLibrary::SetState(class FName TargetS
 // Function AnimGraphRuntime.AnimationStateMachineLibrary.IsStateBlendingOut
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAnimUpdateContext          UpdateContext                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FAnimUpdateContext          UpdateContext                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 // struct FAnimationStateResultReferenceNode                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UAnimationStateMachineLibrary::IsStateBlendingOut()
+struct FAnimationStateResultReference UAnimationStateMachineLibrary::IsStateBlendingOut(const struct FAnimUpdateContext& UpdateContext, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -287,6 +285,8 @@ bool UAnimationStateMachineLibrary::IsStateBlendingOut()
 
 	Params::UAnimationStateMachineLibrary_IsStateBlendingOut_Params Parms{};
 
+	Parms.UpdateContext = UpdateContext;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -304,11 +304,11 @@ bool UAnimationStateMachineLibrary::IsStateBlendingOut()
 // Function AnimGraphRuntime.AnimationStateMachineLibrary.IsStateBlendingIn
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAnimUpdateContext          UpdateContext                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FAnimUpdateContext          UpdateContext                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 // struct FAnimationStateResultReferenceNode                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UAnimationStateMachineLibrary::IsStateBlendingIn()
+struct FAnimationStateResultReference UAnimationStateMachineLibrary::IsStateBlendingIn(const struct FAnimUpdateContext& UpdateContext, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -317,6 +317,8 @@ bool UAnimationStateMachineLibrary::IsStateBlendingIn()
 
 	Params::UAnimationStateMachineLibrary_IsStateBlendingIn_Params Parms{};
 
+	Parms.UpdateContext = UpdateContext;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -334,11 +336,11 @@ bool UAnimationStateMachineLibrary::IsStateBlendingIn()
 // Function AnimGraphRuntime.AnimationStateMachineLibrary.GetState
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAnimUpdateContext          UpdateContext                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FAnimUpdateContext          UpdateContext                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 // struct FAnimationStateMachineReferenceNode                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// class FName                        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UAnimationStateMachineLibrary::GetState()
+struct FAnimationStateMachineReference UAnimationStateMachineLibrary::GetState(const struct FAnimUpdateContext& UpdateContext, class FName ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -347,6 +349,8 @@ class FName UAnimationStateMachineLibrary::GetState()
 
 	Params::UAnimationStateMachineLibrary_GetState_Params Parms{};
 
+	Parms.UpdateContext = UpdateContext;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -364,11 +368,11 @@ class FName UAnimationStateMachineLibrary::GetState()
 // Function AnimGraphRuntime.AnimationStateMachineLibrary.GetRelevantAnimTimeRemainingFraction
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAnimUpdateContext          UpdateContext                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FAnimUpdateContext          UpdateContext                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 // struct FAnimationStateResultReferenceNode                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UAnimationStateMachineLibrary::GetRelevantAnimTimeRemainingFraction()
+struct FAnimationStateResultReference UAnimationStateMachineLibrary::GetRelevantAnimTimeRemainingFraction(const struct FAnimUpdateContext& UpdateContext, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -377,6 +381,8 @@ float UAnimationStateMachineLibrary::GetRelevantAnimTimeRemainingFraction()
 
 	Params::UAnimationStateMachineLibrary_GetRelevantAnimTimeRemainingFraction_Params Parms{};
 
+	Parms.UpdateContext = UpdateContext;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -394,11 +400,11 @@ float UAnimationStateMachineLibrary::GetRelevantAnimTimeRemainingFraction()
 // Function AnimGraphRuntime.AnimationStateMachineLibrary.GetRelevantAnimTimeRemaining
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAnimUpdateContext          UpdateContext                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FAnimUpdateContext          UpdateContext                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 // struct FAnimationStateResultReferenceNode                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UAnimationStateMachineLibrary::GetRelevantAnimTimeRemaining()
+struct FAnimationStateResultReference UAnimationStateMachineLibrary::GetRelevantAnimTimeRemaining(const struct FAnimUpdateContext& UpdateContext, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -407,6 +413,8 @@ float UAnimationStateMachineLibrary::GetRelevantAnimTimeRemaining()
 
 	Params::UAnimationStateMachineLibrary_GetRelevantAnimTimeRemaining_Params Parms{};
 
+	Parms.UpdateContext = UpdateContext;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -588,10 +596,10 @@ class UAnimExecutionContextLibrary* UAnimExecutionContextLibrary::GetDefaultObj(
 // Function AnimGraphRuntime.AnimExecutionContextLibrary.GetDeltaTime
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAnimUpdateContext          Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimUpdateContext          Context                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UAnimExecutionContextLibrary::GetDeltaTime()
+struct FAnimUpdateContext UAnimExecutionContextLibrary::GetDeltaTime(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -600,6 +608,7 @@ float UAnimExecutionContextLibrary::GetDeltaTime()
 
 	Params::UAnimExecutionContextLibrary_GetDeltaTime_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -617,10 +626,10 @@ float UAnimExecutionContextLibrary::GetDeltaTime()
 // Function AnimGraphRuntime.AnimExecutionContextLibrary.GetCurrentWeight
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAnimUpdateContext          Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimUpdateContext          Context                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UAnimExecutionContextLibrary::GetCurrentWeight()
+struct FAnimUpdateContext UAnimExecutionContextLibrary::GetCurrentWeight(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -629,6 +638,7 @@ float UAnimExecutionContextLibrary::GetCurrentWeight()
 
 	Params::UAnimExecutionContextLibrary_GetCurrentWeight_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -646,11 +656,11 @@ float UAnimExecutionContextLibrary::GetCurrentWeight()
 // Function AnimGraphRuntime.AnimExecutionContextLibrary.GetAnimNodeReference
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UAnimInstance*               Instance                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UAnimInstance*               Instance                                                         (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FAnimNodeReference          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimNodeReference          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FAnimNodeReference UAnimExecutionContextLibrary::GetAnimNodeReference(class UAnimInstance** Instance)
+int32 UAnimExecutionContextLibrary::GetAnimNodeReference(const struct FAnimNodeReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -659,6 +669,7 @@ struct FAnimNodeReference UAnimExecutionContextLibrary::GetAnimNodeReference(cla
 
 	Params::UAnimExecutionContextLibrary_GetAnimNodeReference_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -668,9 +679,6 @@ struct FAnimNodeReference UAnimExecutionContextLibrary::GetAnimNodeReference(cla
 
 	Func->FunctionFlags = Flgs;
 
-	if (Instance != nullptr)
-		*Instance = Parms.Instance;
-
 	return Parms.ReturnValue;
 
 }
@@ -679,10 +687,10 @@ struct FAnimNodeReference UAnimExecutionContextLibrary::GetAnimNodeReference(cla
 // Function AnimGraphRuntime.AnimExecutionContextLibrary.GetAnimInstance
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAnimExecutionContext       Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UAnimInstance*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimExecutionContext       Context                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAnimInstance*               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UAnimInstance* UAnimExecutionContextLibrary::GetAnimInstance()
+struct FAnimExecutionContext UAnimExecutionContextLibrary::GetAnimInstance(class UAnimInstance* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -691,6 +699,7 @@ class UAnimInstance* UAnimExecutionContextLibrary::GetAnimInstance()
 
 	Params::UAnimExecutionContextLibrary_GetAnimInstance_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -708,11 +717,11 @@ class UAnimInstance* UAnimExecutionContextLibrary::GetAnimInstance()
 // Function AnimGraphRuntime.AnimExecutionContextLibrary.ConvertToUpdateContext
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAnimExecutionContext       Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimExecutionContext       Context                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // enum class EAnimExecutionContextConversionResultResult                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FAnimUpdateContext          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimUpdateContext          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FAnimUpdateContext UAnimExecutionContextLibrary::ConvertToUpdateContext(enum class EAnimExecutionContextConversionResult* Result)
+struct FAnimExecutionContext UAnimExecutionContextLibrary::ConvertToUpdateContext(enum class EAnimExecutionContextConversionResult* Result, const struct FAnimUpdateContext& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -721,6 +730,7 @@ struct FAnimUpdateContext UAnimExecutionContextLibrary::ConvertToUpdateContext(e
 
 	Params::UAnimExecutionContextLibrary_ConvertToUpdateContext_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -741,11 +751,11 @@ struct FAnimUpdateContext UAnimExecutionContextLibrary::ConvertToUpdateContext(e
 // Function AnimGraphRuntime.AnimExecutionContextLibrary.ConvertToPoseContext
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAnimExecutionContext       Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimExecutionContext       Context                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // enum class EAnimExecutionContextConversionResultResult                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FAnimPoseContext            ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimPoseContext            ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FAnimPoseContext UAnimExecutionContextLibrary::ConvertToPoseContext(enum class EAnimExecutionContextConversionResult* Result)
+struct FAnimExecutionContext UAnimExecutionContextLibrary::ConvertToPoseContext(enum class EAnimExecutionContextConversionResult* Result, const struct FAnimPoseContext& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -754,6 +764,7 @@ struct FAnimPoseContext UAnimExecutionContextLibrary::ConvertToPoseContext(enum 
 
 	Params::UAnimExecutionContextLibrary_ConvertToPoseContext_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -774,11 +785,11 @@ struct FAnimPoseContext UAnimExecutionContextLibrary::ConvertToPoseContext(enum 
 // Function AnimGraphRuntime.AnimExecutionContextLibrary.ConvertToInitializationContext
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAnimExecutionContext       Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimExecutionContext       Context                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // enum class EAnimExecutionContextConversionResultResult                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FAnimInitializationContext  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimInitializationContext  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FAnimInitializationContext UAnimExecutionContextLibrary::ConvertToInitializationContext(enum class EAnimExecutionContextConversionResult* Result)
+struct FAnimExecutionContext UAnimExecutionContextLibrary::ConvertToInitializationContext(enum class EAnimExecutionContextConversionResult* Result, const struct FAnimInitializationContext& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -787,6 +798,7 @@ struct FAnimInitializationContext UAnimExecutionContextLibrary::ConvertToInitial
 
 	Params::UAnimExecutionContextLibrary_ConvertToInitializationContext_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -807,11 +819,11 @@ struct FAnimInitializationContext UAnimExecutionContextLibrary::ConvertToInitial
 // Function AnimGraphRuntime.AnimExecutionContextLibrary.ConvertToComponentSpacePoseContext
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAnimExecutionContext       Context                                                          (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimExecutionContext       Context                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // enum class EAnimExecutionContextConversionResultResult                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FAnimComponentSpacePoseContextReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimComponentSpacePoseContextReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FAnimComponentSpacePoseContext UAnimExecutionContextLibrary::ConvertToComponentSpacePoseContext(enum class EAnimExecutionContextConversionResult* Result)
+struct FAnimExecutionContext UAnimExecutionContextLibrary::ConvertToComponentSpacePoseContext(enum class EAnimExecutionContextConversionResult* Result, const struct FAnimComponentSpacePoseContext& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -820,6 +832,7 @@ struct FAnimComponentSpacePoseContext UAnimExecutionContextLibrary::ConvertToCom
 
 	Params::UAnimExecutionContextLibrary_ConvertToComponentSpacePoseContext_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -952,10 +965,10 @@ class UBlendSpacePlayerLibrary* UBlendSpacePlayerLibrary::GetDefaultObj()
 // Function AnimGraphRuntime.BlendSpacePlayerLibrary.SnapToPosition
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     NewPosition                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     NewPosition                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UBlendSpacePlayerLibrary::SnapToPosition(const struct FBlendSpacePlayerReference& BlendSpacePlayer, const struct FVector& NewPosition)
+struct FVector UBlendSpacePlayerLibrary::SnapToPosition()
 {
 	static class UFunction* Func = nullptr;
 
@@ -964,8 +977,6 @@ void UBlendSpacePlayerLibrary::SnapToPosition(const struct FBlendSpacePlayerRefe
 
 	Params::UBlendSpacePlayerLibrary_SnapToPosition_Params Parms{};
 
-	Parms.BlendSpacePlayer = BlendSpacePlayer;
-	Parms.NewPosition = NewPosition;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -975,16 +986,18 @@ void UBlendSpacePlayerLibrary::SnapToPosition(const struct FBlendSpacePlayerRefe
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AnimGraphRuntime.BlendSpacePlayerLibrary.ShouldResetPlayTimeWhenBlendSpaceChanges
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UBlendSpacePlayerLibrary::ShouldResetPlayTimeWhenBlendSpaceChanges(const struct FBlendSpacePlayerReference& BlendSpacePlayer)
+struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::ShouldResetPlayTimeWhenBlendSpaceChanges(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -993,7 +1006,7 @@ bool UBlendSpacePlayerLibrary::ShouldResetPlayTimeWhenBlendSpaceChanges(const st
 
 	Params::UBlendSpacePlayerLibrary_ShouldResetPlayTimeWhenBlendSpaceChanges_Params Parms{};
 
-	Parms.BlendSpacePlayer = BlendSpacePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1011,11 +1024,11 @@ bool UBlendSpacePlayerLibrary::ShouldResetPlayTimeWhenBlendSpaceChanges(const st
 // Function AnimGraphRuntime.BlendSpacePlayerLibrary.SetResetPlayTimeWhenBlendSpaceChanges
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bReset                                                           (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FBlendSpacePlayerReference  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bReset                                                           (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetResetPlayTimeWhenBlendSpaceChanges(const struct FBlendSpacePlayerReference& BlendSpacePlayer, bool* bReset)
+bool UBlendSpacePlayerLibrary::SetResetPlayTimeWhenBlendSpaceChanges(const struct FBlendSpacePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1024,7 +1037,7 @@ struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetResetPlayTimeWhen
 
 	Params::UBlendSpacePlayerLibrary_SetResetPlayTimeWhenBlendSpaceChanges_Params Parms{};
 
-	Parms.BlendSpacePlayer = BlendSpacePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1034,9 +1047,6 @@ struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetResetPlayTimeWhen
 
 	Func->FunctionFlags = Flgs;
 
-	if (bReset != nullptr)
-		*bReset = Parms.bReset;
-
 	return Parms.ReturnValue;
 
 }
@@ -1045,11 +1055,11 @@ struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetResetPlayTimeWhen
 // Function AnimGraphRuntime.BlendSpacePlayerLibrary.SetPlayRate
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              PlayRate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FBlendSpacePlayerReference  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              PlayRate                                                         (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetPlayRate(const struct FBlendSpacePlayerReference& BlendSpacePlayer, float PlayRate)
+float UBlendSpacePlayerLibrary::SetPlayRate(const struct FBlendSpacePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1058,8 +1068,7 @@ struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetPlayRate(const st
 
 	Params::UBlendSpacePlayerLibrary_SetPlayRate_Params Parms{};
 
-	Parms.BlendSpacePlayer = BlendSpacePlayer;
-	Parms.PlayRate = PlayRate;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1077,11 +1086,11 @@ struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetPlayRate(const st
 // Function AnimGraphRuntime.BlendSpacePlayerLibrary.SetLoop
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bLoop                                                            (BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FBlendSpacePlayerReference  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bLoop                                                            (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FBlendSpacePlayerReference  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetLoop(const struct FBlendSpacePlayerReference& BlendSpacePlayer, bool bLoop)
+bool UBlendSpacePlayerLibrary::SetLoop(const struct FBlendSpacePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1090,8 +1099,7 @@ struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetLoop(const struct
 
 	Params::UBlendSpacePlayerLibrary_SetLoop_Params Parms{};
 
-	Parms.BlendSpacePlayer = BlendSpacePlayer;
-	Parms.bLoop = bLoop;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1109,13 +1117,13 @@ struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetLoop(const struct
 // Function AnimGraphRuntime.BlendSpacePlayerLibrary.SetBlendSpaceWithInertialBlending
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAnimUpdateContext          UpdateContext                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UBlendSpace*                 BlendSpace                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, DisableEditOnInstance, GlobalConfig)
-// float                              BlendTime                                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FBlendSpacePlayerReference  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimUpdateContext          UpdateContext                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UBlendSpace*                 BlendSpace                                                       (ExportObject, Net, EditFixedSize, OutParm, EditConst, DuplicateTransient)
+// float                              BlendTime                                                        (Edit, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetBlendSpaceWithInertialBlending(const struct FBlendSpacePlayerReference& BlendSpacePlayer, class UBlendSpace** BlendSpace, float* BlendTime)
+float UBlendSpacePlayerLibrary::SetBlendSpaceWithInertialBlending(const struct FAnimUpdateContext& UpdateContext, class UBlendSpace** BlendSpace, const struct FBlendSpacePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1124,7 +1132,8 @@ struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetBlendSpaceWithIne
 
 	Params::UBlendSpacePlayerLibrary_SetBlendSpaceWithInertialBlending_Params Parms{};
 
-	Parms.BlendSpacePlayer = BlendSpacePlayer;
+	Parms.UpdateContext = UpdateContext;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1137,9 +1146,6 @@ struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetBlendSpaceWithIne
 	if (BlendSpace != nullptr)
 		*BlendSpace = Parms.BlendSpace;
 
-	if (BlendTime != nullptr)
-		*BlendTime = Parms.BlendTime;
-
 	return Parms.ReturnValue;
 
 }
@@ -1148,11 +1154,11 @@ struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetBlendSpaceWithIne
 // Function AnimGraphRuntime.BlendSpacePlayerLibrary.SetBlendSpace
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UBlendSpace*                 BlendSpace                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, DisableEditOnInstance, GlobalConfig)
-// struct FBlendSpacePlayerReference  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UBlendSpace*                 BlendSpace                                                       (ExportObject, Net, EditFixedSize, OutParm, EditConst, DuplicateTransient)
+// struct FBlendSpacePlayerReference  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetBlendSpace(const struct FBlendSpacePlayerReference& BlendSpacePlayer, class UBlendSpace** BlendSpace)
+struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetBlendSpace(class UBlendSpace** BlendSpace, const struct FBlendSpacePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1161,7 +1167,7 @@ struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetBlendSpace(const 
 
 	Params::UBlendSpacePlayerLibrary_SetBlendSpace_Params Parms{};
 
-	Parms.BlendSpacePlayer = BlendSpacePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1182,10 +1188,10 @@ struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::SetBlendSpace(const 
 // Function AnimGraphRuntime.BlendSpacePlayerLibrary.GetStartPosition
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UBlendSpacePlayerLibrary::GetStartPosition(const struct FBlendSpacePlayerReference& BlendSpacePlayer)
+struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::GetStartPosition(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1194,7 +1200,7 @@ float UBlendSpacePlayerLibrary::GetStartPosition(const struct FBlendSpacePlayerR
 
 	Params::UBlendSpacePlayerLibrary_GetStartPosition_Params Parms{};
 
-	Parms.BlendSpacePlayer = BlendSpacePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1212,10 +1218,10 @@ float UBlendSpacePlayerLibrary::GetStartPosition(const struct FBlendSpacePlayerR
 // Function AnimGraphRuntime.BlendSpacePlayerLibrary.GetPosition
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector UBlendSpacePlayerLibrary::GetPosition(const struct FBlendSpacePlayerReference& BlendSpacePlayer)
+struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::GetPosition(const struct FVector& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1224,7 +1230,7 @@ struct FVector UBlendSpacePlayerLibrary::GetPosition(const struct FBlendSpacePla
 
 	Params::UBlendSpacePlayerLibrary_GetPosition_Params Parms{};
 
-	Parms.BlendSpacePlayer = BlendSpacePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1242,10 +1248,10 @@ struct FVector UBlendSpacePlayerLibrary::GetPosition(const struct FBlendSpacePla
 // Function AnimGraphRuntime.BlendSpacePlayerLibrary.GetPlayRate
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UBlendSpacePlayerLibrary::GetPlayRate(const struct FBlendSpacePlayerReference& BlendSpacePlayer)
+struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::GetPlayRate(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1254,7 +1260,7 @@ float UBlendSpacePlayerLibrary::GetPlayRate(const struct FBlendSpacePlayerRefere
 
 	Params::UBlendSpacePlayerLibrary_GetPlayRate_Params Parms{};
 
-	Parms.BlendSpacePlayer = BlendSpacePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1272,10 +1278,10 @@ float UBlendSpacePlayerLibrary::GetPlayRate(const struct FBlendSpacePlayerRefere
 // Function AnimGraphRuntime.BlendSpacePlayerLibrary.GetLoop
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UBlendSpacePlayerLibrary::GetLoop(const struct FBlendSpacePlayerReference& BlendSpacePlayer)
+struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::GetLoop(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1284,7 +1290,7 @@ bool UBlendSpacePlayerLibrary::GetLoop(const struct FBlendSpacePlayerReference& 
 
 	Params::UBlendSpacePlayerLibrary_GetLoop_Params Parms{};
 
-	Parms.BlendSpacePlayer = BlendSpacePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1302,10 +1308,10 @@ bool UBlendSpacePlayerLibrary::GetLoop(const struct FBlendSpacePlayerReference& 
 // Function AnimGraphRuntime.BlendSpacePlayerLibrary.GetBlendSpace
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UBlendSpace*                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UBlendSpace*                 ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UBlendSpace* UBlendSpacePlayerLibrary::GetBlendSpace(const struct FBlendSpacePlayerReference& BlendSpacePlayer)
+struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::GetBlendSpace(class UBlendSpace* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1314,7 +1320,7 @@ class UBlendSpace* UBlendSpacePlayerLibrary::GetBlendSpace(const struct FBlendSp
 
 	Params::UBlendSpacePlayerLibrary_GetBlendSpace_Params Parms{};
 
-	Parms.BlendSpacePlayer = BlendSpacePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1333,10 +1339,10 @@ class UBlendSpace* UBlendSpacePlayerLibrary::GetBlendSpace(const struct FBlendSp
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FBlendSpacePlayerReference  BlendSpacePlayer                                                 (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 // bool                               Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
 
-struct FAnimNodeReference UBlendSpacePlayerLibrary::ConvertToBlendSpacePlayerPure(const struct FBlendSpacePlayerReference& BlendSpacePlayer, bool* Result)
+struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::ConvertToBlendSpacePlayerPure(bool* Result)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1345,7 +1351,6 @@ struct FAnimNodeReference UBlendSpacePlayerLibrary::ConvertToBlendSpacePlayerPur
 
 	Params::UBlendSpacePlayerLibrary_ConvertToBlendSpacePlayerPure_Params Parms{};
 
-	Parms.BlendSpacePlayer = BlendSpacePlayer;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1368,9 +1373,9 @@ struct FAnimNodeReference UBlendSpacePlayerLibrary::ConvertToBlendSpacePlayerPur
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
 // enum class EAnimNodeReferenceConversionResultResult                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FBlendSpacePlayerReference  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBlendSpacePlayerReference  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::ConvertToBlendSpacePlayer(enum class EAnimNodeReferenceConversionResult* Result)
+struct FAnimNodeReference UBlendSpacePlayerLibrary::ConvertToBlendSpacePlayer(enum class EAnimNodeReferenceConversionResult* Result, const struct FBlendSpacePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1379,6 +1384,7 @@ struct FBlendSpacePlayerReference UBlendSpacePlayerLibrary::ConvertToBlendSpaceP
 
 	Params::UBlendSpacePlayerLibrary_ConvertToBlendSpacePlayer_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1427,18 +1433,18 @@ class UKismetAnimationLibrary* UKismetAnimationLibrary::GetDefaultObj()
 // Function AnimGraphRuntime.KismetAnimationLibrary.K2_TwoBoneIK
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FVector                     RootPos                                                          (ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     JointPos                                                         (Edit, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     EndPos                                                           (Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector                     JointTarget                                                      (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FVector                     Effector                                                         (ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FVector                     OutJointPos                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     OutEndPos                                                        (BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bAllowStretching                                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              StartStretchRatio                                                (ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              MaxStretchScale                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FVector                     RootPos                                                          (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     JointPos                                                         (ConstParm, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     EndPos                                                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector                     JointTarget                                                      (ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FVector                     Effector                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// struct FVector                     OutJointPos                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     OutEndPos                                                        (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bAllowStretching                                                 (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              StartStretchRatio                                                (Edit, ConstParm, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              MaxStretchScale                                                  (ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void UKismetAnimationLibrary::K2_TwoBoneIK(struct FVector* RootPos, struct FVector* JointPos, const struct FVector& EndPos, const struct FVector& JointTarget, const struct FVector& Effector, struct FVector* OutJointPos, struct FVector* OutEndPos, bool bAllowStretching, float StartStretchRatio, float MaxStretchScale)
+float UKismetAnimationLibrary::K2_TwoBoneIK(const struct FVector& RootPos, const struct FVector& JointPos, const struct FVector& OutJointPos, const struct FVector& OutEndPos)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1447,12 +1453,10 @@ void UKismetAnimationLibrary::K2_TwoBoneIK(struct FVector* RootPos, struct FVect
 
 	Params::UKismetAnimationLibrary_K2_TwoBoneIK_Params Parms{};
 
-	Parms.EndPos = EndPos;
-	Parms.JointTarget = JointTarget;
-	Parms.Effector = Effector;
-	Parms.bAllowStretching = bAllowStretching;
-	Parms.StartStretchRatio = StartStretchRatio;
-	Parms.MaxStretchScale = MaxStretchScale;
+	Parms.RootPos = RootPos;
+	Parms.JointPos = JointPos;
+	Parms.OutJointPos = OutJointPos;
+	Parms.OutEndPos = OutEndPos;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1462,17 +1466,7 @@ void UKismetAnimationLibrary::K2_TwoBoneIK(struct FVector* RootPos, struct FVect
 
 	Func->FunctionFlags = Flgs;
 
-	if (RootPos != nullptr)
-		*RootPos = std::move(Parms.RootPos);
-
-	if (JointPos != nullptr)
-		*JointPos = std::move(Parms.JointPos);
-
-	if (OutJointPos != nullptr)
-		*OutJointPos = std::move(Parms.OutJointPos);
-
-	if (OutEndPos != nullptr)
-		*OutEndPos = std::move(Parms.OutEndPos);
+	return Parms.ReturnValue;
 
 }
 
@@ -1507,15 +1501,15 @@ void UKismetAnimationLibrary::K2_StartProfilingTimer()
 // float                              X                                                                (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config)
 // float                              Y                                                                (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config)
 // float                              Z                                                                (Edit, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config)
-// float                              RangeOutMinX                                                     (Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              RangeOutMaxX                                                     (ConstParm, BlueprintVisible, Net, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              RangeOutMinY                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              RangeOutMaxY                                                     (ExportObject, BlueprintReadOnly, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              RangeOutMinZ                                                     (Edit, BlueprintReadOnly, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              RangeOutMaxZ                                                     (ConstParm, ExportObject, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              RangeOutMinX                                                     (ConstParm, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              RangeOutMaxX                                                     (Edit, ConstParm, BlueprintVisible, Net, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              RangeOutMinY                                                     (Net, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              RangeOutMaxY                                                     (Edit, ExportObject, BlueprintReadOnly, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              RangeOutMinZ                                                     (ConstParm, BlueprintReadOnly, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              RangeOutMaxZ                                                     (Edit, ConstParm, ExportObject, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector UKismetAnimationLibrary::K2_MakePerlinNoiseVectorAndRemap(float X, float Y, float Z, float* RangeOutMinX, float* RangeOutMaxX, float* RangeOutMinY, float* RangeOutMaxY, float* RangeOutMinZ, float* RangeOutMaxZ)
+void UKismetAnimationLibrary::K2_MakePerlinNoiseVectorAndRemap(float X, float Y, float Z, float RangeOutMinX, float RangeOutMaxX, float RangeOutMinY, float RangeOutMaxY, float RangeOutMinZ, float RangeOutMaxZ, const struct FVector& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1527,6 +1521,13 @@ struct FVector UKismetAnimationLibrary::K2_MakePerlinNoiseVectorAndRemap(float X
 	Parms.X = X;
 	Parms.Y = Y;
 	Parms.Z = Z;
+	Parms.RangeOutMinX = RangeOutMinX;
+	Parms.RangeOutMaxX = RangeOutMaxX;
+	Parms.RangeOutMinY = RangeOutMinY;
+	Parms.RangeOutMaxY = RangeOutMaxY;
+	Parms.RangeOutMinZ = RangeOutMinZ;
+	Parms.RangeOutMaxZ = RangeOutMaxZ;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1536,26 +1537,6 @@ struct FVector UKismetAnimationLibrary::K2_MakePerlinNoiseVectorAndRemap(float X
 
 	Func->FunctionFlags = Flgs;
 
-	if (RangeOutMinX != nullptr)
-		*RangeOutMinX = Parms.RangeOutMinX;
-
-	if (RangeOutMaxX != nullptr)
-		*RangeOutMaxX = Parms.RangeOutMaxX;
-
-	if (RangeOutMinY != nullptr)
-		*RangeOutMinY = Parms.RangeOutMinY;
-
-	if (RangeOutMaxY != nullptr)
-		*RangeOutMaxY = Parms.RangeOutMaxY;
-
-	if (RangeOutMinZ != nullptr)
-		*RangeOutMinZ = Parms.RangeOutMinZ;
-
-	if (RangeOutMaxZ != nullptr)
-		*RangeOutMaxZ = Parms.RangeOutMaxZ;
-
-	return Parms.ReturnValue;
-
 }
 
 
@@ -1563,11 +1544,11 @@ struct FVector UKismetAnimationLibrary::K2_MakePerlinNoiseVectorAndRemap(float X
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// float                              RangeOutMin                                                      (Edit, ConstParm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              RangeOutMax                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              RangeOutMin                                                      (BlueprintVisible, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              RangeOutMax                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UKismetAnimationLibrary::K2_MakePerlinNoiseAndRemap(float Value, float* RangeOutMin, float RangeOutMax)
+void UKismetAnimationLibrary::K2_MakePerlinNoiseAndRemap(float Value, float RangeOutMin, float RangeOutMax, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1577,7 +1558,9 @@ float UKismetAnimationLibrary::K2_MakePerlinNoiseAndRemap(float Value, float* Ra
 	Params::UKismetAnimationLibrary_K2_MakePerlinNoiseAndRemap_Params Parms{};
 
 	Parms.Value = Value;
+	Parms.RangeOutMin = RangeOutMin;
 	Parms.RangeOutMax = RangeOutMax;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1587,26 +1570,21 @@ float UKismetAnimationLibrary::K2_MakePerlinNoiseAndRemap(float Value, float* Ra
 
 	Func->FunctionFlags = Flgs;
 
-	if (RangeOutMin != nullptr)
-		*RangeOutMin = Parms.RangeOutMin;
-
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AnimGraphRuntime.KismetAnimationLibrary.K2_LookAt
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FTransform                  CurrentTransform                                                 (Edit, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// struct FTransform                  CurrentTransform                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FVector                     TargetPosition                                                   (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FVector                     LookAtVector                                                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bUseUpVector                                                     (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     UpVector                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-// float                              ClampConeInDegree                                                (BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     LookAtVector                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bUseUpVector                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     UpVector                                                         (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              ClampConeInDegree                                                (Edit, BlueprintVisible, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTransform UKismetAnimationLibrary::K2_LookAt(struct FTransform* CurrentTransform, const struct FVector& LookAtVector, bool bUseUpVector, struct FVector* UpVector, float ClampConeInDegree)
+struct FVector UKismetAnimationLibrary::K2_LookAt(const struct FVector& LookAtVector, bool bUseUpVector, float ClampConeInDegree, const struct FTransform& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1618,6 +1596,7 @@ struct FTransform UKismetAnimationLibrary::K2_LookAt(struct FTransform* CurrentT
 	Parms.LookAtVector = LookAtVector;
 	Parms.bUseUpVector = bUseUpVector;
 	Parms.ClampConeInDegree = ClampConeInDegree;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1627,12 +1606,6 @@ struct FTransform UKismetAnimationLibrary::K2_LookAt(struct FTransform* CurrentT
 
 	Func->FunctionFlags = Flgs;
 
-	if (CurrentTransform != nullptr)
-		*CurrentTransform = std::move(Parms.CurrentTransform);
-
-	if (UpVector != nullptr)
-		*UpVector = std::move(Parms.UpVector);
-
 	return Parms.ReturnValue;
 
 }
@@ -1641,11 +1614,11 @@ struct FTransform UKismetAnimationLibrary::K2_LookAt(struct FTransform* CurrentT
 // Function AnimGraphRuntime.KismetAnimationLibrary.K2_EndProfilingTimer
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               bLog                                                             (Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class FString                      LogPrefix                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bLog                                                             (ConstParm, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      LogPrefix                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UKismetAnimationLibrary::K2_EndProfilingTimer(bool bLog, const class FString& LogPrefix)
+void UKismetAnimationLibrary::K2_EndProfilingTimer(bool bLog, const class FString& LogPrefix, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1656,6 +1629,7 @@ float UKismetAnimationLibrary::K2_EndProfilingTimer(bool bLog, const class FStri
 
 	Parms.bLog = bLog;
 	Parms.LogPrefix = LogPrefix;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1665,27 +1639,25 @@ float UKismetAnimationLibrary::K2_EndProfilingTimer(bool bLog, const class FStri
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AnimGraphRuntime.KismetAnimationLibrary.K2_DistanceBetweenTwoSocketsAndMapRange
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class USkeletalMeshComponent*      Component                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FName                        SocketOrBoneNameA                                                (Edit, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class ERelativeTransformSpace SocketSpaceA                                                     (ConstParm, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class FName                        SocketOrBoneNameB                                                (EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class ERelativeTransformSpace SocketSpaceB                                                     (Edit, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bRemapRange                                                      (ConstParm, BlueprintReadOnly, Net, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              InRangeMin                                                       (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// float                              InRangeMax                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// float                              OutRangeMin                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// float                              OutRangeMax                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USkeletalMeshComponent*      Component                                                        (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        SocketOrBoneNameA                                                (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class ERelativeTransformSpace SocketSpaceA                                                     (Edit, ConstParm, ExportObject, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        SocketOrBoneNameB                                                (Edit, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class ERelativeTransformSpace SocketSpaceB                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bRemapRange                                                      (Edit, ConstParm, BlueprintReadOnly, Net, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InRangeMin                                                       (Edit, Net, OutParm, EditConst, InstancedReference, SubobjectReference)
+// float                              InRangeMax                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, EditConst, InstancedReference, SubobjectReference)
+// float                              OutRangeMin                                                      (BlueprintVisible, BlueprintReadOnly, OutParm, EditConst, InstancedReference, SubobjectReference)
+// float                              OutRangeMax                                                      (Edit, BlueprintVisible, ExportObject, OutParm, EditConst, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UKismetAnimationLibrary::K2_DistanceBetweenTwoSocketsAndMapRange(class FName SocketOrBoneNameA, enum class ERelativeTransformSpace SocketSpaceA, class FName SocketOrBoneNameB, enum class ERelativeTransformSpace SocketSpaceB, bool bRemapRange)
+void UKismetAnimationLibrary::K2_DistanceBetweenTwoSocketsAndMapRange(class USkeletalMeshComponent** Component, class FName SocketOrBoneNameA, enum class ERelativeTransformSpace SocketSpaceA, class FName SocketOrBoneNameB, enum class ERelativeTransformSpace SocketSpaceB, bool bRemapRange, float* InRangeMin, float* InRangeMax, float* OutRangeMin, float* OutRangeMax, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1699,6 +1671,7 @@ float UKismetAnimationLibrary::K2_DistanceBetweenTwoSocketsAndMapRange(class FNa
 	Parms.SocketOrBoneNameB = SocketOrBoneNameB;
 	Parms.SocketSpaceB = SocketSpaceB;
 	Parms.bRemapRange = bRemapRange;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1708,7 +1681,20 @@ float UKismetAnimationLibrary::K2_DistanceBetweenTwoSocketsAndMapRange(class FNa
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Component != nullptr)
+		*Component = Parms.Component;
+
+	if (InRangeMin != nullptr)
+		*InRangeMin = Parms.InRangeMin;
+
+	if (InRangeMax != nullptr)
+		*InRangeMax = Parms.InRangeMax;
+
+	if (OutRangeMin != nullptr)
+		*OutRangeMin = Parms.OutRangeMin;
+
+	if (OutRangeMax != nullptr)
+		*OutRangeMax = Parms.OutRangeMax;
 
 }
 
@@ -1716,12 +1702,12 @@ float UKismetAnimationLibrary::K2_DistanceBetweenTwoSocketsAndMapRange(class FNa
 // Function AnimGraphRuntime.KismetAnimationLibrary.K2_DirectionBetweenSockets
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class USkeletalMeshComponent*      Component                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FName                        SocketOrBoneNameFrom                                             (Edit, ConstParm, BlueprintVisible, Net, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class FName                        SocketOrBoneNameTo                                               (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USkeletalMeshComponent*      Component                                                        (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        SocketOrBoneNameFrom                                             (ExportObject, Net, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        SocketOrBoneNameTo                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector UKismetAnimationLibrary::K2_DirectionBetweenSockets(class FName SocketOrBoneNameFrom, class FName SocketOrBoneNameTo)
+void UKismetAnimationLibrary::K2_DirectionBetweenSockets(class USkeletalMeshComponent** Component, class FName SocketOrBoneNameFrom, class FName SocketOrBoneNameTo, const struct FVector& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1732,6 +1718,7 @@ struct FVector UKismetAnimationLibrary::K2_DirectionBetweenSockets(class FName S
 
 	Parms.SocketOrBoneNameFrom = SocketOrBoneNameFrom;
 	Parms.SocketOrBoneNameTo = SocketOrBoneNameTo;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1741,7 +1728,8 @@ struct FVector UKismetAnimationLibrary::K2_DirectionBetweenSockets(class FName S
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Component != nullptr)
+		*Component = Parms.Component;
 
 }
 
@@ -1749,21 +1737,21 @@ struct FVector UKismetAnimationLibrary::K2_DirectionBetweenSockets(class FName S
 // Function AnimGraphRuntime.KismetAnimationLibrary.K2_CalculateVelocityFromSockets
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// float                              DeltaSeconds                                                     (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class USkeletalMeshComponent*      Component                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FName                        SocketOrBoneName                                                 (BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class FName                        ReferenceSocketOrBone                                            (ExportObject, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class ERelativeTransformSpace SocketSpace                                                      (Edit, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     OffsetInBoneSpace                                                (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FPositionHistory            History                                                          (ConstParm, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              NumberOfSamples                                                  (Edit, ExportObject, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              VelocityMin                                                      (ConstParm, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              VelocityMax                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EEasingFuncType         EasingType                                                       (Edit, ExportObject, BlueprintReadOnly, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRuntimeFloatCurve          CustomCurve                                                      (Edit, ConstParm, ExportObject, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              DeltaSeconds                                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USkeletalMeshComponent*      Component                                                        (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        SocketOrBoneName                                                 (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        ReferenceSocketOrBone                                            (Edit, ExportObject, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class ERelativeTransformSpace SocketSpace                                                      (ConstParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     OffsetInBoneSpace                                                (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FPositionHistory            History                                                          (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              NumberOfSamples                                                  (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              VelocityMin                                                      (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              VelocityMax                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EEasingFuncType         EasingType                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FRuntimeFloatCurve          CustomCurve                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UKismetAnimationLibrary::K2_CalculateVelocityFromSockets(float DeltaSeconds, class FName SocketOrBoneName, class FName ReferenceSocketOrBone, enum class ERelativeTransformSpace SocketSpace, const struct FVector& OffsetInBoneSpace, const struct FPositionHistory& History, int32 NumberOfSamples, float VelocityMin, float VelocityMax, enum class EEasingFuncType EasingType, const struct FRuntimeFloatCurve& CustomCurve)
+enum class EEasingFuncType UKismetAnimationLibrary::K2_CalculateVelocityFromSockets(class USkeletalMeshComponent** Component, class FName SocketOrBoneName, class FName ReferenceSocketOrBone, enum class ERelativeTransformSpace SocketSpace, struct FRuntimeFloatCurve* CustomCurve, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1772,17 +1760,10 @@ float UKismetAnimationLibrary::K2_CalculateVelocityFromSockets(float DeltaSecond
 
 	Params::UKismetAnimationLibrary_K2_CalculateVelocityFromSockets_Params Parms{};
 
-	Parms.DeltaSeconds = DeltaSeconds;
 	Parms.SocketOrBoneName = SocketOrBoneName;
 	Parms.ReferenceSocketOrBone = ReferenceSocketOrBone;
 	Parms.SocketSpace = SocketSpace;
-	Parms.OffsetInBoneSpace = OffsetInBoneSpace;
-	Parms.History = History;
-	Parms.NumberOfSamples = NumberOfSamples;
-	Parms.VelocityMin = VelocityMin;
-	Parms.VelocityMax = VelocityMax;
-	Parms.EasingType = EasingType;
-	Parms.CustomCurve = CustomCurve;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1791,6 +1772,12 @@ float UKismetAnimationLibrary::K2_CalculateVelocityFromSockets(float DeltaSecond
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Component != nullptr)
+		*Component = Parms.Component;
+
+	if (CustomCurve != nullptr)
+		*CustomCurve = std::move(Parms.CustomCurve);
 
 	return Parms.ReturnValue;
 
@@ -1800,15 +1787,15 @@ float UKismetAnimationLibrary::K2_CalculateVelocityFromSockets(float DeltaSecond
 // Function AnimGraphRuntime.KismetAnimationLibrary.K2_CalculateVelocityFromPositionHistory
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// float                              DeltaSeconds                                                     (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              DeltaSeconds                                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
-// struct FPositionHistory            History                                                          (ConstParm, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              NumberOfSamples                                                  (Edit, ExportObject, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              VelocityMin                                                      (ConstParm, Net, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              VelocityMax                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPositionHistory            History                                                          (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              NumberOfSamples                                                  (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              VelocityMin                                                      (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              VelocityMax                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UKismetAnimationLibrary::K2_CalculateVelocityFromPositionHistory(float DeltaSeconds, const struct FVector& Position, const struct FPositionHistory& History, int32 NumberOfSamples, float VelocityMin, float VelocityMax)
+float UKismetAnimationLibrary::K2_CalculateVelocityFromPositionHistory(const struct FVector& Position, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1817,12 +1804,8 @@ float UKismetAnimationLibrary::K2_CalculateVelocityFromPositionHistory(float Del
 
 	Params::UKismetAnimationLibrary_K2_CalculateVelocityFromPositionHistory_Params Parms{};
 
-	Parms.DeltaSeconds = DeltaSeconds;
 	Parms.Position = Position;
-	Parms.History = History;
-	Parms.NumberOfSamples = NumberOfSamples;
-	Parms.VelocityMin = VelocityMin;
-	Parms.VelocityMax = VelocityMax;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1840,11 +1823,11 @@ float UKismetAnimationLibrary::K2_CalculateVelocityFromPositionHistory(float Del
 // Function AnimGraphRuntime.KismetAnimationLibrary.CalculateDirection
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FVector                     Velocity                                                         (ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig)
-// struct FRotator                    BaseRotation                                                     (BlueprintVisible, ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     Velocity                                                         (Edit, ReturnParm, Config, EditConst, SubobjectReference)
+// struct FRotator                    BaseRotation                                                     (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UKismetAnimationLibrary::CalculateDirection()
+struct FVector UKismetAnimationLibrary::CalculateDirection(const struct FRotator& BaseRotation, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1853,6 +1836,8 @@ float UKismetAnimationLibrary::CalculateDirection()
 
 	Params::UKismetAnimationLibrary_CalculateDirection_Params Parms{};
 
+	Parms.BaseRotation = BaseRotation;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1898,13 +1883,13 @@ class ULayeredBoneBlendLibrary* ULayeredBoneBlendLibrary::GetDefaultObj()
 // Function AnimGraphRuntime.LayeredBoneBlendLibrary.SetBlendMask
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAnimUpdateContext          UpdateContext                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FLayeredBoneBlendReference  LayeredBoneBlend                                                 (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              PoseIndex                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        BlendMaskName                                                    (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FLayeredBoneBlendReference  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimUpdateContext          UpdateContext                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FLayeredBoneBlendReference  LayeredBoneBlend                                                 (BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              PoseIndex                                                        (Edit, ConstParm, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        BlendMaskName                                                    (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FLayeredBoneBlendReference  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FLayeredBoneBlendReference ULayeredBoneBlendLibrary::SetBlendMask(struct FLayeredBoneBlendReference* LayeredBoneBlend, class FName* BlendMaskName)
+void ULayeredBoneBlendLibrary::SetBlendMask(const struct FAnimUpdateContext& UpdateContext, const struct FLayeredBoneBlendReference& LayeredBoneBlend, int32 PoseIndex, class FName BlendMaskName, const struct FLayeredBoneBlendReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1913,6 +1898,11 @@ struct FLayeredBoneBlendReference ULayeredBoneBlendLibrary::SetBlendMask(struct 
 
 	Params::ULayeredBoneBlendLibrary_SetBlendMask_Params Parms{};
 
+	Parms.UpdateContext = UpdateContext;
+	Parms.LayeredBoneBlend = LayeredBoneBlend;
+	Parms.PoseIndex = PoseIndex;
+	Parms.BlendMaskName = BlendMaskName;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1922,24 +1912,16 @@ struct FLayeredBoneBlendReference ULayeredBoneBlendLibrary::SetBlendMask(struct 
 
 	Func->FunctionFlags = Flgs;
 
-	if (LayeredBoneBlend != nullptr)
-		*LayeredBoneBlend = std::move(Parms.LayeredBoneBlend);
-
-	if (BlendMaskName != nullptr)
-		*BlendMaskName = Parms.BlendMaskName;
-
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AnimGraphRuntime.LayeredBoneBlendLibrary.GetNumPoses
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FLayeredBoneBlendReference  LayeredBoneBlend                                                 (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLayeredBoneBlendReference  LayeredBoneBlend                                                 (BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 ULayeredBoneBlendLibrary::GetNumPoses(struct FLayeredBoneBlendReference* LayeredBoneBlend)
+void ULayeredBoneBlendLibrary::GetNumPoses(const struct FLayeredBoneBlendReference& LayeredBoneBlend, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1948,6 +1930,8 @@ int32 ULayeredBoneBlendLibrary::GetNumPoses(struct FLayeredBoneBlendReference* L
 
 	Params::ULayeredBoneBlendLibrary_GetNumPoses_Params Parms{};
 
+	Parms.LayeredBoneBlend = LayeredBoneBlend;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1956,11 +1940,6 @@ int32 ULayeredBoneBlendLibrary::GetNumPoses(struct FLayeredBoneBlendReference* L
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (LayeredBoneBlend != nullptr)
-		*LayeredBoneBlend = std::move(Parms.LayeredBoneBlend);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1970,9 +1949,9 @@ int32 ULayeredBoneBlendLibrary::GetNumPoses(struct FLayeredBoneBlendReference* L
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
 // enum class EAnimNodeReferenceConversionResultResult                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FLayeredBoneBlendReference  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLayeredBoneBlendReference  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FLayeredBoneBlendReference ULayeredBoneBlendLibrary::ConvertToLayeredBoneBlend(enum class EAnimNodeReferenceConversionResult* Result)
+struct FAnimNodeReference ULayeredBoneBlendLibrary::ConvertToLayeredBoneBlend(enum class EAnimNodeReferenceConversionResult* Result, const struct FLayeredBoneBlendReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1981,6 +1960,7 @@ struct FLayeredBoneBlendReference ULayeredBoneBlendLibrary::ConvertToLayeredBone
 
 	Params::ULayeredBoneBlendLibrary_ConvertToLayeredBoneBlend_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2002,10 +1982,10 @@ struct FLayeredBoneBlendReference ULayeredBoneBlendLibrary::ConvertToLayeredBone
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// struct FLayeredBoneBlendReference  LayeredBoneBlend                                                 (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FLayeredBoneBlendReference  LayeredBoneBlend                                                 (BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 // bool                               Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
 
-struct FAnimNodeReference ULayeredBoneBlendLibrary::ConvertToLayeredBlendPerBonePure(struct FLayeredBoneBlendReference* LayeredBoneBlend, bool* Result)
+struct FAnimNodeReference ULayeredBoneBlendLibrary::ConvertToLayeredBlendPerBonePure(const struct FLayeredBoneBlendReference& LayeredBoneBlend, bool* Result)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2014,6 +1994,7 @@ struct FAnimNodeReference ULayeredBoneBlendLibrary::ConvertToLayeredBlendPerBone
 
 	Params::ULayeredBoneBlendLibrary_ConvertToLayeredBlendPerBonePure_Params Parms{};
 
+	Parms.LayeredBoneBlend = LayeredBoneBlend;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2022,9 +2003,6 @@ struct FAnimNodeReference ULayeredBoneBlendLibrary::ConvertToLayeredBlendPerBone
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (LayeredBoneBlend != nullptr)
-		*LayeredBoneBlend = std::move(Parms.LayeredBoneBlend);
 
 	if (Result != nullptr)
 		*Result = Parms.Result;
@@ -2066,9 +2044,9 @@ class ULinkedAnimGraphLibrary* ULinkedAnimGraphLibrary::GetDefaultObj()
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FLinkedAnimGraphReference   Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool ULinkedAnimGraphLibrary::HasLinkedAnimInstance()
+struct FLinkedAnimGraphReference ULinkedAnimGraphLibrary::HasLinkedAnimInstance(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2077,6 +2055,7 @@ bool ULinkedAnimGraphLibrary::HasLinkedAnimInstance()
 
 	Params::ULinkedAnimGraphLibrary_HasLinkedAnimInstance_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2095,9 +2074,9 @@ bool ULinkedAnimGraphLibrary::HasLinkedAnimInstance()
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FLinkedAnimGraphReference   Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// class UAnimInstance*               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAnimInstance*               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UAnimInstance* ULinkedAnimGraphLibrary::GetLinkedAnimInstance()
+struct FLinkedAnimGraphReference ULinkedAnimGraphLibrary::GetLinkedAnimInstance(class UAnimInstance* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2106,6 +2085,7 @@ class UAnimInstance* ULinkedAnimGraphLibrary::GetLinkedAnimInstance()
 
 	Params::ULinkedAnimGraphLibrary_GetLinkedAnimInstance_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2124,10 +2104,10 @@ class UAnimInstance* ULinkedAnimGraphLibrary::GetLinkedAnimInstance()
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// struct FLinkedAnimGraphReference   LinkedAnimGraph                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FLinkedAnimGraphReference   LinkedAnimGraph                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 // bool                               Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
 
-struct FAnimNodeReference ULinkedAnimGraphLibrary::ConvertToLinkedAnimGraphPure(struct FLinkedAnimGraphReference* LinkedAnimGraph, bool* Result)
+struct FAnimNodeReference ULinkedAnimGraphLibrary::ConvertToLinkedAnimGraphPure(const struct FLinkedAnimGraphReference& LinkedAnimGraph, bool* Result)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2136,6 +2116,7 @@ struct FAnimNodeReference ULinkedAnimGraphLibrary::ConvertToLinkedAnimGraphPure(
 
 	Params::ULinkedAnimGraphLibrary_ConvertToLinkedAnimGraphPure_Params Parms{};
 
+	Parms.LinkedAnimGraph = LinkedAnimGraph;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2144,9 +2125,6 @@ struct FAnimNodeReference ULinkedAnimGraphLibrary::ConvertToLinkedAnimGraphPure(
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (LinkedAnimGraph != nullptr)
-		*LinkedAnimGraph = std::move(Parms.LinkedAnimGraph);
 
 	if (Result != nullptr)
 		*Result = Parms.Result;
@@ -2161,9 +2139,9 @@ struct FAnimNodeReference ULinkedAnimGraphLibrary::ConvertToLinkedAnimGraphPure(
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
 // enum class EAnimNodeReferenceConversionResultResult                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FLinkedAnimGraphReference   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLinkedAnimGraphReference   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FLinkedAnimGraphReference ULinkedAnimGraphLibrary::ConvertToLinkedAnimGraph(enum class EAnimNodeReferenceConversionResult* Result)
+struct FAnimNodeReference ULinkedAnimGraphLibrary::ConvertToLinkedAnimGraph(enum class EAnimNodeReferenceConversionResult* Result, const struct FLinkedAnimGraphReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2172,6 +2150,7 @@ struct FLinkedAnimGraphReference ULinkedAnimGraphLibrary::ConvertToLinkedAnimGra
 
 	Params::ULinkedAnimGraphLibrary_ConvertToLinkedAnimGraph_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2220,10 +2199,10 @@ class UPlayMontageCallbackProxy* UPlayMontageCallbackProxy::GetDefaultObj()
 // Function AnimGraphRuntime.PlayMontageCallbackProxy.OnNotifyEndReceived
 // (Final, Native, Protected, HasOutParams)
 // Parameters:
-// class FName                        NotifyName                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        NotifyName                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FBranchingPointNotifyPayloadBranchingPointNotifyPayload                                      (BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst)
 
-void UPlayMontageCallbackProxy::OnNotifyEndReceived(class FName NotifyName, struct FBranchingPointNotifyPayload* BranchingPointNotifyPayload)
+class FName UPlayMontageCallbackProxy::OnNotifyEndReceived(struct FBranchingPointNotifyPayload* BranchingPointNotifyPayload)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2232,7 +2211,6 @@ void UPlayMontageCallbackProxy::OnNotifyEndReceived(class FName NotifyName, stru
 
 	Params::UPlayMontageCallbackProxy_OnNotifyEndReceived_Params Parms{};
 
-	Parms.NotifyName = NotifyName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2245,16 +2223,18 @@ void UPlayMontageCallbackProxy::OnNotifyEndReceived(class FName NotifyName, stru
 	if (BranchingPointNotifyPayload != nullptr)
 		*BranchingPointNotifyPayload = std::move(Parms.BranchingPointNotifyPayload);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AnimGraphRuntime.PlayMontageCallbackProxy.OnNotifyBeginReceived
 // (Final, Native, Protected, HasOutParams)
 // Parameters:
-// class FName                        NotifyName                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        NotifyName                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 // struct FBranchingPointNotifyPayloadBranchingPointNotifyPayload                                      (BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst)
 
-void UPlayMontageCallbackProxy::OnNotifyBeginReceived(class FName NotifyName, struct FBranchingPointNotifyPayload* BranchingPointNotifyPayload)
+class FName UPlayMontageCallbackProxy::OnNotifyBeginReceived(struct FBranchingPointNotifyPayload* BranchingPointNotifyPayload)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2263,7 +2243,6 @@ void UPlayMontageCallbackProxy::OnNotifyBeginReceived(class FName NotifyName, st
 
 	Params::UPlayMontageCallbackProxy_OnNotifyBeginReceived_Params Parms{};
 
-	Parms.NotifyName = NotifyName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2276,16 +2255,18 @@ void UPlayMontageCallbackProxy::OnNotifyBeginReceived(class FName NotifyName, st
 	if (BranchingPointNotifyPayload != nullptr)
 		*BranchingPointNotifyPayload = std::move(Parms.BranchingPointNotifyPayload);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AnimGraphRuntime.PlayMontageCallbackProxy.OnMontageEnded
 // (Final, Native, Protected)
 // Parameters:
-// class UAnimMontage*                Montage                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bInterrupted                                                     (BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAnimMontage*                Montage                                                          (Edit, ConstParm, Net, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bInterrupted                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPlayMontageCallbackProxy::OnMontageEnded(class UAnimMontage* Montage, bool bInterrupted)
+bool UPlayMontageCallbackProxy::OnMontageEnded()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2294,8 +2275,6 @@ void UPlayMontageCallbackProxy::OnMontageEnded(class UAnimMontage* Montage, bool
 
 	Params::UPlayMontageCallbackProxy_OnMontageEnded_Params Parms{};
 
-	Parms.Montage = Montage;
-	Parms.bInterrupted = bInterrupted;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2305,16 +2284,18 @@ void UPlayMontageCallbackProxy::OnMontageEnded(class UAnimMontage* Montage, bool
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AnimGraphRuntime.PlayMontageCallbackProxy.OnMontageBlendingOut
 // (Final, Native, Protected)
 // Parameters:
-// class UAnimMontage*                Montage                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bInterrupted                                                     (BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAnimMontage*                Montage                                                          (Edit, ConstParm, Net, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bInterrupted                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UPlayMontageCallbackProxy::OnMontageBlendingOut(class UAnimMontage* Montage, bool bInterrupted)
+bool UPlayMontageCallbackProxy::OnMontageBlendingOut()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2323,8 +2304,6 @@ void UPlayMontageCallbackProxy::OnMontageBlendingOut(class UAnimMontage* Montage
 
 	Params::UPlayMontageCallbackProxy_OnMontageBlendingOut_Params Parms{};
 
-	Parms.Montage = Montage;
-	Parms.bInterrupted = bInterrupted;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2334,20 +2313,22 @@ void UPlayMontageCallbackProxy::OnMontageBlendingOut(class UAnimMontage* Montage
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AnimGraphRuntime.PlayMontageCallbackProxy.CreateProxyObjectForPlayMontage
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class USkeletalMeshComponent*      InSkeletalMeshComponent                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UAnimMontage*                MontageToPlay                                                    (ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              PlayRate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              StartingPosition                                                 (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class FName                        StartingSection                                                  (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UPlayMontageCallbackProxy*   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USkeletalMeshComponent*      InSkeletalMeshComponent                                          (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UAnimMontage*                MontageToPlay                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              PlayRate                                                         (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+// float                              StartingPosition                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        StartingSection                                                  (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UPlayMontageCallbackProxy*   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UPlayMontageCallbackProxy* UPlayMontageCallbackProxy::CreateProxyObjectForPlayMontage(class USkeletalMeshComponent** InSkeletalMeshComponent, float PlayRate, float* StartingPosition, class FName* StartingSection)
+float UPlayMontageCallbackProxy::CreateProxyObjectForPlayMontage(class USkeletalMeshComponent* InSkeletalMeshComponent, class UAnimMontage** MontageToPlay, float StartingPosition, class FName StartingSection, class UPlayMontageCallbackProxy* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2356,7 +2337,10 @@ class UPlayMontageCallbackProxy* UPlayMontageCallbackProxy::CreateProxyObjectFor
 
 	Params::UPlayMontageCallbackProxy_CreateProxyObjectForPlayMontage_Params Parms{};
 
-	Parms.PlayRate = PlayRate;
+	Parms.InSkeletalMeshComponent = InSkeletalMeshComponent;
+	Parms.StartingPosition = StartingPosition;
+	Parms.StartingSection = StartingSection;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2366,14 +2350,8 @@ class UPlayMontageCallbackProxy* UPlayMontageCallbackProxy::CreateProxyObjectFor
 
 	Func->FunctionFlags = Flgs;
 
-	if (InSkeletalMeshComponent != nullptr)
-		*InSkeletalMeshComponent = Parms.InSkeletalMeshComponent;
-
-	if (StartingPosition != nullptr)
-		*StartingPosition = Parms.StartingPosition;
-
-	if (StartingSection != nullptr)
-		*StartingSection = Parms.StartingSection;
+	if (MontageToPlay != nullptr)
+		*MontageToPlay = Parms.MontageToPlay;
 
 	return Parms.ReturnValue;
 
@@ -2411,13 +2389,13 @@ class USequenceEvaluatorLibrary* USequenceEvaluatorLibrary::GetDefaultObj()
 // Function AnimGraphRuntime.SequenceEvaluatorLibrary.SetSequenceWithInertialBlending
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAnimUpdateContext          UpdateContext                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class UAnimSequenceBase*           Sequence                                                         (Edit, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// float                              BlendTime                                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FSequenceEvaluatorReference ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimUpdateContext          UpdateContext                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// class UAnimSequenceBase*           Sequence                                                         (BlueprintVisible, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// float                              BlendTime                                                        (Edit, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+// struct FSequenceEvaluatorReference ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::SetSequenceWithInertialBlending(float* BlendTime)
+float USequenceEvaluatorLibrary::SetSequenceWithInertialBlending(const struct FAnimUpdateContext& UpdateContext, const struct FSequenceEvaluatorReference& SequenceEvaluator, class UAnimSequenceBase** Sequence, const struct FSequenceEvaluatorReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2426,6 +2404,9 @@ struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::SetSequenceWithIne
 
 	Params::USequenceEvaluatorLibrary_SetSequenceWithInertialBlending_Params Parms{};
 
+	Parms.UpdateContext = UpdateContext;
+	Parms.SequenceEvaluator = SequenceEvaluator;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2435,8 +2416,8 @@ struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::SetSequenceWithIne
 
 	Func->FunctionFlags = Flgs;
 
-	if (BlendTime != nullptr)
-		*BlendTime = Parms.BlendTime;
+	if (Sequence != nullptr)
+		*Sequence = Parms.Sequence;
 
 	return Parms.ReturnValue;
 
@@ -2446,11 +2427,11 @@ struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::SetSequenceWithIne
 // Function AnimGraphRuntime.SequenceEvaluatorLibrary.SetSequence
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class UAnimSequenceBase*           Sequence                                                         (Edit, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// struct FSequenceEvaluatorReference ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// class UAnimSequenceBase*           Sequence                                                         (BlueprintVisible, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// struct FSequenceEvaluatorReference ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::SetSequence()
+void USequenceEvaluatorLibrary::SetSequence(const struct FSequenceEvaluatorReference& SequenceEvaluator, class UAnimSequenceBase** Sequence, const struct FSequenceEvaluatorReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2459,6 +2440,8 @@ struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::SetSequence()
 
 	Params::USequenceEvaluatorLibrary_SetSequence_Params Parms{};
 
+	Parms.SequenceEvaluator = SequenceEvaluator;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2468,7 +2451,8 @@ struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::SetSequence()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Sequence != nullptr)
+		*Sequence = Parms.Sequence;
 
 }
 
@@ -2476,11 +2460,11 @@ struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::SetSequence()
 // Function AnimGraphRuntime.SequenceEvaluatorLibrary.SetExplicitTime
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// float                              Time                                                             (Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// struct FSequenceEvaluatorReference ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// float                              Time                                                             (Edit, ConstParm, Net, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// struct FSequenceEvaluatorReference ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::SetExplicitTime(float Time)
+float USequenceEvaluatorLibrary::SetExplicitTime(const struct FSequenceEvaluatorReference& SequenceEvaluator, const struct FSequenceEvaluatorReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2489,7 +2473,8 @@ struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::SetExplicitTime(fl
 
 	Params::USequenceEvaluatorLibrary_SetExplicitTime_Params Parms{};
 
-	Parms.Time = Time;
+	Parms.SequenceEvaluator = SequenceEvaluator;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2507,10 +2492,10 @@ struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::SetExplicitTime(fl
 // Function AnimGraphRuntime.SequenceEvaluatorLibrary.GetSequence
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class UAnimSequenceBase*           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// class UAnimSequenceBase*           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UAnimSequenceBase* USequenceEvaluatorLibrary::GetSequence()
+void USequenceEvaluatorLibrary::GetSequence(const struct FSequenceEvaluatorReference& SequenceEvaluator, class UAnimSequenceBase* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2519,6 +2504,8 @@ class UAnimSequenceBase* USequenceEvaluatorLibrary::GetSequence()
 
 	Params::USequenceEvaluatorLibrary_GetSequence_Params Parms{};
 
+	Parms.SequenceEvaluator = SequenceEvaluator;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2528,18 +2515,16 @@ class UAnimSequenceBase* USequenceEvaluatorLibrary::GetSequence()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AnimGraphRuntime.SequenceEvaluatorLibrary.GetAccumulatedTime
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USequenceEvaluatorLibrary::GetAccumulatedTime()
+void USequenceEvaluatorLibrary::GetAccumulatedTime(const struct FSequenceEvaluatorReference& SequenceEvaluator, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2548,6 +2533,8 @@ float USequenceEvaluatorLibrary::GetAccumulatedTime()
 
 	Params::USequenceEvaluatorLibrary_GetAccumulatedTime_Params Parms{};
 
+	Parms.SequenceEvaluator = SequenceEvaluator;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2557,8 +2544,6 @@ float USequenceEvaluatorLibrary::GetAccumulatedTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -2566,10 +2551,10 @@ float USequenceEvaluatorLibrary::GetAccumulatedTime()
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 // bool                               Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
 
-struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::ConvertToSequenceEvaluatorPure(bool* Result)
+struct FAnimNodeReference USequenceEvaluatorLibrary::ConvertToSequenceEvaluatorPure(const struct FSequenceEvaluatorReference& SequenceEvaluator, bool* Result)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2578,6 +2563,7 @@ struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::ConvertToSequenceE
 
 	Params::USequenceEvaluatorLibrary_ConvertToSequenceEvaluatorPure_Params Parms{};
 
+	Parms.SequenceEvaluator = SequenceEvaluator;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2600,9 +2586,9 @@ struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::ConvertToSequenceE
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
 // enum class EAnimNodeReferenceConversionResultResult                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FSequenceEvaluatorReference ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequenceEvaluatorReference ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::ConvertToSequenceEvaluator(enum class EAnimNodeReferenceConversionResult* Result)
+struct FAnimNodeReference USequenceEvaluatorLibrary::ConvertToSequenceEvaluator(enum class EAnimNodeReferenceConversionResult* Result, const struct FSequenceEvaluatorReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2611,6 +2597,7 @@ struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::ConvertToSequenceE
 
 	Params::USequenceEvaluatorLibrary_ConvertToSequenceEvaluator_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2631,12 +2618,12 @@ struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::ConvertToSequenceE
 // Function AnimGraphRuntime.SequenceEvaluatorLibrary.AdvanceTime
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAnimUpdateContext          UpdateContext                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// float                              PlayRate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FSequenceEvaluatorReference ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimUpdateContext          UpdateContext                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// float                              PlayRate                                                         (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+// struct FSequenceEvaluatorReference ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::AdvanceTime(float PlayRate)
+float USequenceEvaluatorLibrary::AdvanceTime(const struct FAnimUpdateContext& UpdateContext, const struct FSequenceEvaluatorReference& SequenceEvaluator, const struct FSequenceEvaluatorReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2645,7 +2632,9 @@ struct FSequenceEvaluatorReference USequenceEvaluatorLibrary::AdvanceTime(float 
 
 	Params::USequenceEvaluatorLibrary_AdvanceTime_Params Parms{};
 
-	Parms.PlayRate = PlayRate;
+	Parms.UpdateContext = UpdateContext;
+	Parms.SequenceEvaluator = SequenceEvaluator;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2691,11 +2680,11 @@ class USequencePlayerLibrary* USequencePlayerLibrary::GetDefaultObj()
 // Function AnimGraphRuntime.SequencePlayerLibrary.SetStartPosition
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              StartPosition                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// float                              StartPosition                                                    (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSequencePlayerReference USequencePlayerLibrary::SetStartPosition(float* StartPosition)
+float USequencePlayerLibrary::SetStartPosition(const struct FSequencePlayerReference& SequencePlayer, const struct FSequencePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2704,6 +2693,8 @@ struct FSequencePlayerReference USequencePlayerLibrary::SetStartPosition(float* 
 
 	Params::USequencePlayerLibrary_SetStartPosition_Params Parms{};
 
+	Parms.SequencePlayer = SequencePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2712,9 +2703,6 @@ struct FSequencePlayerReference USequencePlayerLibrary::SetStartPosition(float* 
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (StartPosition != nullptr)
-		*StartPosition = Parms.StartPosition;
 
 	return Parms.ReturnValue;
 
@@ -2724,13 +2712,13 @@ struct FSequencePlayerReference USequencePlayerLibrary::SetStartPosition(float* 
 // Function AnimGraphRuntime.SequencePlayerLibrary.SetSequenceWithInertialBlending
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAnimUpdateContext          UpdateContext                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class UAnimSequenceBase*           Sequence                                                         (Edit, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// float                              BlendTime                                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimUpdateContext          UpdateContext                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// class UAnimSequenceBase*           Sequence                                                         (BlueprintVisible, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// float                              BlendTime                                                        (Edit, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSequencePlayerReference USequencePlayerLibrary::SetSequenceWithInertialBlending(float* BlendTime)
+float USequencePlayerLibrary::SetSequenceWithInertialBlending(const struct FAnimUpdateContext& UpdateContext, const struct FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase** Sequence, const struct FSequencePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2739,6 +2727,9 @@ struct FSequencePlayerReference USequencePlayerLibrary::SetSequenceWithInertialB
 
 	Params::USequencePlayerLibrary_SetSequenceWithInertialBlending_Params Parms{};
 
+	Parms.UpdateContext = UpdateContext;
+	Parms.SequencePlayer = SequencePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2748,8 +2739,8 @@ struct FSequencePlayerReference USequencePlayerLibrary::SetSequenceWithInertialB
 
 	Func->FunctionFlags = Flgs;
 
-	if (BlendTime != nullptr)
-		*BlendTime = Parms.BlendTime;
+	if (Sequence != nullptr)
+		*Sequence = Parms.Sequence;
 
 	return Parms.ReturnValue;
 
@@ -2759,11 +2750,11 @@ struct FSequencePlayerReference USequencePlayerLibrary::SetSequenceWithInertialB
 // Function AnimGraphRuntime.SequencePlayerLibrary.SetSequence
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class UAnimSequenceBase*           Sequence                                                         (Edit, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// class UAnimSequenceBase*           Sequence                                                         (BlueprintVisible, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSequencePlayerReference USequencePlayerLibrary::SetSequence()
+void USequencePlayerLibrary::SetSequence(const struct FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase** Sequence, const struct FSequencePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2772,6 +2763,8 @@ struct FSequencePlayerReference USequencePlayerLibrary::SetSequence()
 
 	Params::USequencePlayerLibrary_SetSequence_Params Parms{};
 
+	Parms.SequencePlayer = SequencePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2781,7 +2774,8 @@ struct FSequencePlayerReference USequencePlayerLibrary::SetSequence()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Sequence != nullptr)
+		*Sequence = Parms.Sequence;
 
 }
 
@@ -2789,11 +2783,11 @@ struct FSequencePlayerReference USequencePlayerLibrary::SetSequence()
 // Function AnimGraphRuntime.SequencePlayerLibrary.SetPlayRate
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              PlayRate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// float                              PlayRate                                                         (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSequencePlayerReference USequencePlayerLibrary::SetPlayRate(float PlayRate)
+float USequencePlayerLibrary::SetPlayRate(const struct FSequencePlayerReference& SequencePlayer, const struct FSequencePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2802,7 +2796,8 @@ struct FSequencePlayerReference USequencePlayerLibrary::SetPlayRate(float PlayRa
 
 	Params::USequencePlayerLibrary_SetPlayRate_Params Parms{};
 
-	Parms.PlayRate = PlayRate;
+	Parms.SequencePlayer = SequencePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2820,11 +2815,11 @@ struct FSequencePlayerReference USequencePlayerLibrary::SetPlayRate(float PlayRa
 // Function AnimGraphRuntime.SequencePlayerLibrary.SetAccumulatedTime
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              Time                                                             (Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// float                              Time                                                             (Edit, ConstParm, Net, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSequencePlayerReference USequencePlayerLibrary::SetAccumulatedTime(float Time)
+float USequencePlayerLibrary::SetAccumulatedTime(const struct FSequencePlayerReference& SequencePlayer, const struct FSequencePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2833,7 +2828,8 @@ struct FSequencePlayerReference USequencePlayerLibrary::SetAccumulatedTime(float
 
 	Params::USequencePlayerLibrary_SetAccumulatedTime_Params Parms{};
 
-	Parms.Time = Time;
+	Parms.SequencePlayer = SequencePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2851,10 +2847,10 @@ struct FSequencePlayerReference USequencePlayerLibrary::SetAccumulatedTime(float
 // Function AnimGraphRuntime.SequencePlayerLibrary.GetStartPosition
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USequencePlayerLibrary::GetStartPosition()
+void USequencePlayerLibrary::GetStartPosition(const struct FSequencePlayerReference& SequencePlayer, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2863,6 +2859,8 @@ float USequencePlayerLibrary::GetStartPosition()
 
 	Params::USequencePlayerLibrary_GetStartPosition_Params Parms{};
 
+	Parms.SequencePlayer = SequencePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2872,18 +2870,16 @@ float USequencePlayerLibrary::GetStartPosition()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AnimGraphRuntime.SequencePlayerLibrary.GetSequencePure
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class UAnimSequenceBase*           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// class UAnimSequenceBase*           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UAnimSequenceBase* USequencePlayerLibrary::GetSequencePure()
+void USequencePlayerLibrary::GetSequencePure(const struct FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2892,6 +2888,8 @@ class UAnimSequenceBase* USequencePlayerLibrary::GetSequencePure()
 
 	Params::USequencePlayerLibrary_GetSequencePure_Params Parms{};
 
+	Parms.SequencePlayer = SequencePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2901,19 +2899,17 @@ class UAnimSequenceBase* USequencePlayerLibrary::GetSequencePure()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AnimGraphRuntime.SequencePlayerLibrary.GetSequence
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class UAnimSequenceBase*           SequenceBase                                                     (Edit, Net, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// class UAnimSequenceBase*           SequenceBase                                                     (ConstParm, Net, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSequencePlayerReference USequencePlayerLibrary::GetSequence(class UAnimSequenceBase** SequenceBase)
+void USequencePlayerLibrary::GetSequence(const struct FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase** SequenceBase, const struct FSequencePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2922,6 +2918,8 @@ struct FSequencePlayerReference USequencePlayerLibrary::GetSequence(class UAnimS
 
 	Params::USequencePlayerLibrary_GetSequence_Params Parms{};
 
+	Parms.SequencePlayer = SequencePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2934,18 +2932,16 @@ struct FSequencePlayerReference USequencePlayerLibrary::GetSequence(class UAnimS
 	if (SequenceBase != nullptr)
 		*SequenceBase = Parms.SequenceBase;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AnimGraphRuntime.SequencePlayerLibrary.GetPlayRate
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USequencePlayerLibrary::GetPlayRate()
+void USequencePlayerLibrary::GetPlayRate(const struct FSequencePlayerReference& SequencePlayer, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2954,6 +2950,8 @@ float USequencePlayerLibrary::GetPlayRate()
 
 	Params::USequencePlayerLibrary_GetPlayRate_Params Parms{};
 
+	Parms.SequencePlayer = SequencePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2963,18 +2961,16 @@ float USequencePlayerLibrary::GetPlayRate()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AnimGraphRuntime.SequencePlayerLibrary.GetLoopAnimation
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool USequencePlayerLibrary::GetLoopAnimation()
+void USequencePlayerLibrary::GetLoopAnimation(const struct FSequencePlayerReference& SequencePlayer, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2983,6 +2979,8 @@ bool USequencePlayerLibrary::GetLoopAnimation()
 
 	Params::USequencePlayerLibrary_GetLoopAnimation_Params Parms{};
 
+	Parms.SequencePlayer = SequencePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2992,18 +2990,16 @@ bool USequencePlayerLibrary::GetLoopAnimation()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AnimGraphRuntime.SequencePlayerLibrary.GetAccumulatedTime
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USequencePlayerLibrary::GetAccumulatedTime()
+void USequencePlayerLibrary::GetAccumulatedTime(const struct FSequencePlayerReference& SequencePlayer, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3012,6 +3008,8 @@ float USequencePlayerLibrary::GetAccumulatedTime()
 
 	Params::USequencePlayerLibrary_GetAccumulatedTime_Params Parms{};
 
+	Parms.SequencePlayer = SequencePlayer;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3021,8 +3019,6 @@ float USequencePlayerLibrary::GetAccumulatedTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -3030,10 +3026,10 @@ float USequencePlayerLibrary::GetAccumulatedTime()
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
 // bool                               Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
 
-struct FSequencePlayerReference USequencePlayerLibrary::ConvertToSequencePlayerPure(bool* Result)
+struct FAnimNodeReference USequencePlayerLibrary::ConvertToSequencePlayerPure(const struct FSequencePlayerReference& SequencePlayer, bool* Result)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3042,6 +3038,7 @@ struct FSequencePlayerReference USequencePlayerLibrary::ConvertToSequencePlayerP
 
 	Params::USequencePlayerLibrary_ConvertToSequencePlayerPure_Params Parms{};
 
+	Parms.SequencePlayer = SequencePlayer;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3064,9 +3061,9 @@ struct FSequencePlayerReference USequencePlayerLibrary::ConvertToSequencePlayerP
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
 // enum class EAnimNodeReferenceConversionResultResult                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSequencePlayerReference USequencePlayerLibrary::ConvertToSequencePlayer(enum class EAnimNodeReferenceConversionResult* Result)
+struct FAnimNodeReference USequencePlayerLibrary::ConvertToSequencePlayer(enum class EAnimNodeReferenceConversionResult* Result, const struct FSequencePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3075,6 +3072,7 @@ struct FSequencePlayerReference USequencePlayerLibrary::ConvertToSequencePlayer(
 
 	Params::USequencePlayerLibrary_ConvertToSequencePlayer_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3095,11 +3093,11 @@ struct FSequencePlayerReference USequencePlayerLibrary::ConvertToSequencePlayer(
 // Function AnimGraphRuntime.SequencePlayerLibrary.ComputePlayRateFromDuration
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              Duration                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, DuplicateTransient)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// float                              Duration                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USequencePlayerLibrary::ComputePlayRateFromDuration()
+void USequencePlayerLibrary::ComputePlayRateFromDuration(const struct FSequencePlayerReference& SequencePlayer, float Duration, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3108,6 +3106,9 @@ float USequencePlayerLibrary::ComputePlayRateFromDuration()
 
 	Params::USequencePlayerLibrary_ComputePlayRateFromDuration_Params Parms{};
 
+	Parms.SequencePlayer = SequencePlayer;
+	Parms.Duration = Duration;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3116,8 +3117,6 @@ float USequencePlayerLibrary::ComputePlayRateFromDuration()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -3181,11 +3180,11 @@ class USkeletalControlLibrary* USkeletalControlLibrary::GetDefaultObj()
 // Function AnimGraphRuntime.SkeletalControlLibrary.SetAlpha
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSkeletalControlReference   SkeletalControl                                                  (ExportObject, Net, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              Alpha                                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FSkeletalControlReference   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSkeletalControlReference   SkeletalControl                                                  (Edit, ExportObject, Net, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              Alpha                                                            (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FSkeletalControlReference   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSkeletalControlReference USkeletalControlLibrary::SetAlpha(struct FSkeletalControlReference* SkeletalControl, float Alpha)
+void USkeletalControlLibrary::SetAlpha(struct FSkeletalControlReference* SkeletalControl, float* Alpha, const struct FSkeletalControlReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3194,7 +3193,7 @@ struct FSkeletalControlReference USkeletalControlLibrary::SetAlpha(struct FSkele
 
 	Params::USkeletalControlLibrary_SetAlpha_Params Parms{};
 
-	Parms.Alpha = Alpha;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3207,7 +3206,8 @@ struct FSkeletalControlReference USkeletalControlLibrary::SetAlpha(struct FSkele
 	if (SkeletalControl != nullptr)
 		*SkeletalControl = std::move(Parms.SkeletalControl);
 
-	return Parms.ReturnValue;
+	if (Alpha != nullptr)
+		*Alpha = Parms.Alpha;
 
 }
 
@@ -3215,10 +3215,10 @@ struct FSkeletalControlReference USkeletalControlLibrary::SetAlpha(struct FSkele
 // Function AnimGraphRuntime.SkeletalControlLibrary.GetAlpha
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FSkeletalControlReference   SkeletalControl                                                  (ExportObject, Net, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSkeletalControlReference   SkeletalControl                                                  (Edit, ExportObject, Net, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float USkeletalControlLibrary::GetAlpha(struct FSkeletalControlReference* SkeletalControl)
+void USkeletalControlLibrary::GetAlpha(struct FSkeletalControlReference* SkeletalControl, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3227,6 +3227,7 @@ float USkeletalControlLibrary::GetAlpha(struct FSkeletalControlReference* Skelet
 
 	Params::USkeletalControlLibrary_GetAlpha_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3239,8 +3240,6 @@ float USkeletalControlLibrary::GetAlpha(struct FSkeletalControlReference* Skelet
 	if (SkeletalControl != nullptr)
 		*SkeletalControl = std::move(Parms.SkeletalControl);
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -3248,7 +3247,7 @@ float USkeletalControlLibrary::GetAlpha(struct FSkeletalControlReference* Skelet
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// struct FSkeletalControlReference   SkeletalControl                                                  (ExportObject, Net, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FSkeletalControlReference   SkeletalControl                                                  (Edit, ExportObject, Net, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 // bool                               Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
 
 struct FAnimNodeReference USkeletalControlLibrary::ConvertToSkeletalControlPure(struct FSkeletalControlReference* SkeletalControl, bool* Result)
@@ -3285,9 +3284,9 @@ struct FAnimNodeReference USkeletalControlLibrary::ConvertToSkeletalControlPure(
 // Parameters:
 // struct FAnimNodeReference          Node                                                             (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
 // enum class EAnimNodeReferenceConversionResultResult                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FSkeletalControlReference   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSkeletalControlReference   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FSkeletalControlReference USkeletalControlLibrary::ConvertToSkeletalControl(enum class EAnimNodeReferenceConversionResult* Result)
+struct FAnimNodeReference USkeletalControlLibrary::ConvertToSkeletalControl(enum class EAnimNodeReferenceConversionResult* Result, const struct FSkeletalControlReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3296,6 +3295,7 @@ struct FSkeletalControlReference USkeletalControlLibrary::ConvertToSkeletalContr
 
 	Params::USkeletalControlLibrary_ConvertToSkeletalControl_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;

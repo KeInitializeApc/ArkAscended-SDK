@@ -15,7 +15,7 @@ class UActorSequence : public UMovieSceneSequence
 {
 public:
 	class UMovieScene*                           MovieScene;                                        // 0x68(0x8)(ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
-	struct FActorSequenceObjectReferenceMap      ObjectReferences;                                  // 0x70(0x20)(ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FActorSequenceObjectReferenceMap      ObjectReferences;                                  // 0x70(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UActorSequence* GetDefaultObj();
@@ -27,9 +27,9 @@ public:
 class UActorSequenceComponent : public UActorComponent
 {
 public:
-	struct FMovieSceneSequencePlaybackSettings   PlaybackSettings;                                  // 0xB8(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class UActorSequence*                        Sequence;                                          // 0xD8(0x8)(Edit, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	class UActorSequencePlayer*                  SequencePlayer;                                    // 0xE0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FMovieSceneSequencePlaybackSettings   PlaybackSettings;                                  // 0xB8(0x20)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+	class UActorSequence*                        Sequence;                                          // 0xD8(0x8)(BlueprintVisible, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+	class UActorSequencePlayer*                  SequencePlayer;                                    // 0xE0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UActorSequenceComponent* GetDefaultObj();

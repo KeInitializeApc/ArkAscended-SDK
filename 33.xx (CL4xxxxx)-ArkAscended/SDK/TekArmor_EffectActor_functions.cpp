@@ -43,7 +43,7 @@ class ATekArmor_EffectActor_C* ATekArmor_EffectActor_C::GetDefaultObj()
 // Function TekArmor_EffectActor.TekArmor_EffectActor_C.OnRep_ParticleScale
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
 bool ATekArmor_EffectActor_C::OnRep_ParticleScale()
 {
@@ -65,7 +65,7 @@ bool ATekArmor_EffectActor_C::OnRep_ParticleScale()
 // Function TekArmor_EffectActor.TekArmor_EffectActor_C.OnRep_bParticlesOn
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
 bool ATekArmor_EffectActor_C::OnRep_bParticlesOn()
 {
@@ -87,7 +87,7 @@ bool ATekArmor_EffectActor_C::OnRep_bParticlesOn()
 // Function TekArmor_EffectActor.TekArmor_EffectActor_C.OnRep_bSoundOn
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
 bool ATekArmor_EffectActor_C::OnRep_bSoundOn()
 {
@@ -109,7 +109,7 @@ bool ATekArmor_EffectActor_C::OnRep_bSoundOn()
 // Function TekArmor_EffectActor.TekArmor_EffectActor_C.OnRep_TekSoundRef
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
 bool ATekArmor_EffectActor_C::OnRep_TekSoundRef()
 {
@@ -131,7 +131,7 @@ bool ATekArmor_EffectActor_C::OnRep_TekSoundRef()
 // Function TekArmor_EffectActor.TekArmor_EffectActor_C.OnRep_TekParticleTemplate
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
 bool ATekArmor_EffectActor_C::OnRep_TekParticleTemplate()
 {
@@ -154,10 +154,10 @@ bool ATekArmor_EffectActor_C::OnRep_TekParticleTemplate()
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // bool                               Active                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// double                             StartTime                                                        (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              CallFunc_Play_StartTime_ImplicitCast                             (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             StartTime                                                        (BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              CallFunc_Play_StartTime_ImplicitCast                             (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, EditConst, SubobjectReference)
 
-float ATekArmor_EffectActor_C::SetSoundActive(double StartTime)
+float ATekArmor_EffectActor_C::SetSoundActive()
 {
 	static class UFunction* Func = nullptr;
 
@@ -166,7 +166,6 @@ float ATekArmor_EffectActor_C::SetSoundActive(double StartTime)
 
 	Params::ATekArmor_EffectActor_C_SetSoundActive_Params Parms{};
 
-	Parms.StartTime = StartTime;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -200,12 +199,12 @@ bool ATekArmor_EffectActor_C::Set_ParticleActive()
 // Function TekArmor_EffectActor.TekArmor_EffectActor_C.InitTekEffect
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UParticleSystem*             Particle                                                         (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FVector                     ParticleScale                                                    (BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class USoundBase*                  Sound                                                            (Edit, ConstParm, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UParticleSystem*             Particle                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, EditConst, SubobjectReference)
+// struct FVector                     ParticleScale                                                    (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// class USoundBase*                  Sound                                                            (ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
 // class APrimalCharacter*            Player                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst)
 
-class APrimalCharacter* ATekArmor_EffectActor_C::InitTekEffect(class USoundBase** Sound)
+class APrimalCharacter* ATekArmor_EffectActor_C::InitTekEffect(const struct FVector& ParticleScale)
 {
 	static class UFunction* Func = nullptr;
 
@@ -214,11 +213,9 @@ class APrimalCharacter* ATekArmor_EffectActor_C::InitTekEffect(class USoundBase*
 
 	Params::ATekArmor_EffectActor_C_InitTekEffect_Params Parms{};
 
+	Parms.ParticleScale = ParticleScale;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (Sound != nullptr)
-		*Sound = Parms.Sound;
 
 	return Parms.ReturnValue;
 
@@ -228,9 +225,9 @@ class APrimalCharacter* ATekArmor_EffectActor_C::InitTekEffect(class USoundBase*
 // Function TekArmor_EffectActor.TekArmor_EffectActor_C.PlayerDied
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            DiedCharacter                                                    (Edit, ConstParm, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class APrimalCharacter*            DiedCharacter                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class APrimalCharacter* ATekArmor_EffectActor_C::PlayerDied()
+void ATekArmor_EffectActor_C::PlayerDied(class APrimalCharacter* DiedCharacter)
 {
 	static class UFunction* Func = nullptr;
 
@@ -239,10 +236,9 @@ class APrimalCharacter* ATekArmor_EffectActor_C::PlayerDied()
 
 	Params::ATekArmor_EffectActor_C_PlayerDied_Params Parms{};
 
+	Parms.DiedCharacter = DiedCharacter;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -250,11 +246,11 @@ class APrimalCharacter* ATekArmor_EffectActor_C::PlayerDied()
 // Function TekArmor_EffectActor.TekArmor_EffectActor_C.SetTekFX
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UParticleSystem*             Particle                                                         (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FVector                     ParticleScale                                                    (BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class USoundBase*                  Sound                                                            (Edit, ConstParm, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UParticleSystem*             Particle                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, EditConst, SubobjectReference)
+// struct FVector                     ParticleScale                                                    (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// class USoundBase*                  Sound                                                            (ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
 
-struct FVector ATekArmor_EffectActor_C::SetTekFX(class USoundBase** Sound)
+class USoundBase* ATekArmor_EffectActor_C::SetTekFX(const struct FVector& ParticleScale)
 {
 	static class UFunction* Func = nullptr;
 
@@ -263,11 +259,9 @@ struct FVector ATekArmor_EffectActor_C::SetTekFX(class USoundBase** Sound)
 
 	Params::ATekArmor_EffectActor_C_SetTekFX_Params Parms{};
 
+	Parms.ParticleScale = ParticleScale;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (Sound != nullptr)
-		*Sound = Parms.Sound;
 
 	return Parms.ReturnValue;
 
@@ -321,28 +315,28 @@ bool ATekArmor_EffectActor_C::Replicate_SetParticleState()
 // Function TekArmor_EffectActor.TekArmor_EffectActor_C.ExecuteUbergraph_TekArmor_EffectActor
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     CallFunc_K2_GetComponentScale_ReturnValue                        (Edit, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class UParticleSystem*             K2Node_CustomEvent_particle_1                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// struct FVector                     K2Node_CustomEvent_particleScale_1                               (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// class USoundBase*                  K2Node_CustomEvent_sound_1                                       (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// class APrimalCharacter*            K2Node_CustomEvent_player                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_NotEqual_VectorVector_ReturnValue                       (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_2                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
-// class APrimalCharacter*            K2Node_CustomEvent_DiedCharacter                                 (Edit, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class UParticleSystem*             K2Node_CustomEvent_particle                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FVector                     K2Node_CustomEvent_particleScale                                 (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class USoundBase*                  K2Node_CustomEvent_sound                                         (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_3                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, NonTransactional)
-// bool                               CallFunc_NotEqual_VectorVector_ReturnValue_1                     (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_IsValid_ReturnValue_4                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, NonTransactional)
-// bool                               K2Node_CustomEvent_active_1                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_CustomEvent_active                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     CallFunc_K2_GetComponentScale_ReturnValue                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference)
+// class UParticleSystem*             K2Node_CustomEvent_particle_1                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, EditConst, SubobjectReference, Interp)
+// struct FVector                     K2Node_CustomEvent_particleScale_1                               (Edit, ConstParm, ExportObject, Parm, OutParm, ReturnParm, EditConst, SubobjectReference, Interp)
+// class USoundBase*                  K2Node_CustomEvent_Sound_1                                       (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// class APrimalCharacter*            K2Node_CustomEvent_player                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, EditConst, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// bool                               CallFunc_NotEqual_VectorVector_ReturnValue                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_2                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
+// class APrimalCharacter*            K2Node_CustomEvent_DiedCharacter                                 (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, EditConst, SubobjectReference)
+// class UParticleSystem*             K2Node_CustomEvent_particle                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, EditConst, SubobjectReference)
+// struct FVector                     K2Node_CustomEvent_particleScale                                 (Edit, ConstParm, ExportObject, Parm, OutParm, ReturnParm, EditConst, SubobjectReference)
+// class USoundBase*                  K2Node_CustomEvent_Sound                                         (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_3                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, NonTransactional)
+// bool                               CallFunc_NotEqual_VectorVector_ReturnValue_1                     (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue_4                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, NonTransactional)
+// bool                               K2Node_CustomEvent_active_1                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, EditConst, SubobjectReference, Interp)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_CustomEvent_active                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, EditConst, SubobjectReference)
 
-bool ATekArmor_EffectActor_C::ExecuteUbergraph_TekArmor_EffectActor(bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, bool* CallFunc_IsValid_ReturnValue_2, bool* CallFunc_IsValid_ReturnValue_3, bool* CallFunc_IsValid_ReturnValue_4)
+bool ATekArmor_EffectActor_C::ExecuteUbergraph_TekArmor_EffectActor(int32 EntryPoint, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -351,23 +345,10 @@ bool ATekArmor_EffectActor_C::ExecuteUbergraph_TekArmor_EffectActor(bool* CallFu
 
 	Params::ATekArmor_EffectActor_C_ExecuteUbergraph_TekArmor_EffectActor_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
+	Parms.K2Node_CreateDelegate_OutputDelegate = K2Node_CreateDelegate_OutputDelegate;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
-
-	if (CallFunc_IsValid_ReturnValue_2 != nullptr)
-		*CallFunc_IsValid_ReturnValue_2 = Parms.CallFunc_IsValid_ReturnValue_2;
-
-	if (CallFunc_IsValid_ReturnValue_3 != nullptr)
-		*CallFunc_IsValid_ReturnValue_3 = Parms.CallFunc_IsValid_ReturnValue_3;
-
-	if (CallFunc_IsValid_ReturnValue_4 != nullptr)
-		*CallFunc_IsValid_ReturnValue_4 = Parms.CallFunc_IsValid_ReturnValue_4;
 
 	return Parms.ReturnValue;
 

@@ -18,7 +18,7 @@ namespace Params
 struct UAudioCapture_IsCapturingAudio_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -26,9 +26,9 @@ public:
 struct UAudioCapture_GetAudioCaptureDeviceInfo_Params
 {
 public:
-	struct FAudioCaptureDeviceInfo               OutInfo;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x10(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_25CF[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	struct FAudioCaptureDeviceInfo               OutInfo;                                           // 0x0(0x10)(Edit, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x10(0x1)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_24DC[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -36,7 +36,7 @@ public:
 struct UAudioCaptureFunctionLibrary_CreateAudioCapture_Params
 {
 public:
-	class UAudioCapture*                         ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UAudioCapture*                         ReturnValue;                                       // 0x0(0x8)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -44,8 +44,8 @@ public:
 struct UAudioCaptureBlueprintLibrary_GetAvailableAudioInputDevices_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	FDelegateProperty_                           OnObtainDevicesEvent;                              // 0x8(0x10)(ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	FDelegateProperty_                           OnObtainDevicesEvent;                              // 0x8(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -54,7 +54,7 @@ struct UAudioCaptureBlueprintLibrary_Conv_AudioInputDeviceInfoToString_Params
 {
 public:
 	struct FAudioInputDeviceInfo                 Info;                                              // 0x0(0x30)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm)
-	class FString                                ReturnValue;                                       // 0x30(0x10)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FString                                ReturnValue;                                       // 0x30(0x10)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 }

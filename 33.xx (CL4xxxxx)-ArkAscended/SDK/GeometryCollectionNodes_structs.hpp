@@ -252,8 +252,8 @@ struct FGeometryCollectionTerminalDataflowNode : public FDataflowTerminalNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	TArray<class UMaterial*>                     Materials;                                         // 0x198(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	TArray<struct FGeometryCollectionAutoInstanceMesh> InstancedMeshes;                                   // 0x1A8(0x10)(Edit, ConstParm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class UMaterial*>                     Materials;                                         // 0x198(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, DuplicateTransient)
+	TArray<struct FGeometryCollectionAutoInstanceMesh> InstancedMeshes;                                   // 0x1A8(0x10)(EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0xF0 - 0xE8)
@@ -261,7 +261,7 @@ public:
 struct FGetGeometryCollectionAssetDataflowNode : public FDataflowNode
 {
 public:
-	class UGeometryCollection*                   Asset;                                             // 0xE8(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UGeometryCollection*                   Asset;                                             // 0xE8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x100 - 0xE8)
@@ -269,8 +269,8 @@ public:
 struct FGetGeometryCollectionSourcesDataflowNode : public FDataflowNode
 {
 public:
-	class UGeometryCollection*                   Asset;                                             // 0xE8(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<struct FGeometryCollectionSource>     Sources;                                           // 0xF0(0x10)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	class UGeometryCollection*                   Asset;                                             // 0xE8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FGeometryCollectionSource>     Sources;                                           // 0xF0(0x10)(Edit, ExportObject, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xE0 (0x1C8 - 0xE8)
@@ -278,10 +278,10 @@ public:
 struct FCreateGeometryCollectionFromSourcesDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FGeometryCollectionSource>     Sources;                                           // 0xE8(0x10)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FGeometryCollectionSource>     Sources;                                           // 0xE8(0x10)(Edit, ExportObject, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
 	struct FManagedArrayCollection               Collection;                                        // 0xF8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	TArray<class UMaterial*>                     Materials;                                         // 0x1A8(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	TArray<struct FGeometryCollectionAutoInstanceMesh> InstancedMeshes;                                   // 0x1B8(0x10)(Edit, ConstParm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class UMaterial*>                     Materials;                                         // 0x1A8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, DuplicateTransient)
+	TArray<struct FGeometryCollectionAutoInstanceMesh> InstancedMeshes;                                   // 0x1B8(0x10)(EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xC8 (0x1B0 - 0xE8)
@@ -289,21 +289,21 @@ public:
 struct FRadialFalloffFieldDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(Edit, ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 	struct FSphere                               Sphere;                                            // 0x118(0x20)(Edit, ConstParm, BlueprintVisible, OutParm)
 	struct FVector                               Translation;                                       // 0x138(0x18)(ConstParm, Parm, ZeroConstructor, Transient, Config)
-	float                                        Magnitude;                                         // 0x150(0x4)(ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        MinRange;                                          // 0x154(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        MaxRange;                                          // 0x158(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Magnitude;                                         // 0x150(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        MinRange;                                          // 0x154(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        MaxRange;                                          // 0x158(0x4)(Edit, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 	float                                        Default;                                           // 0x15C(0x4)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor)
-	enum class EDataflowFieldFalloffType         FalloffType;                                       // 0x160(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_300D[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<float>                                FieldFloatResult;                                  // 0x168(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0x178(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              FieldSelectionMask;                                // 0x188(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumSamplePositions;                                // 0x1A8(0x4)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_300E[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EDataflowFieldFalloffType         FalloffType;                                       // 0x160(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_33BC[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<float>                                FieldFloatResult;                                  // 0x168(0x10)(ExportObject, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0x178(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              FieldSelectionMask;                                // 0x188(0x20)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumSamplePositions;                                // 0x1A8(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33BE[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x128 (0x210 - 0xE8)
@@ -311,21 +311,21 @@ public:
 struct FBoxFalloffFieldDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(Edit, ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 	struct FBox                                  Box;                                               // 0x118(0x38)(Edit, ConstParm, ExportObject, OutParm)
 	struct FTransform                            Transform;                                         // 0x150(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-	float                                        Magnitude;                                         // 0x1B0(0x4)(ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        MinRange;                                          // 0x1B4(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        MaxRange;                                          // 0x1B8(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Magnitude;                                         // 0x1B0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        MinRange;                                          // 0x1B4(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        MaxRange;                                          // 0x1B8(0x4)(Edit, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 	float                                        Default;                                           // 0x1BC(0x4)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor)
-	enum class EDataflowFieldFalloffType         FalloffType;                                       // 0x1C0(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_3010[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<float>                                FieldFloatResult;                                  // 0x1C8(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0x1D8(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              FieldSelectionMask;                                // 0x1E8(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumSamplePositions;                                // 0x208(0x4)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3011[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EDataflowFieldFalloffType         FalloffType;                                       // 0x1C0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_33C2[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<float>                                FieldFloatResult;                                  // 0x1C8(0x10)(ExportObject, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0x1D8(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              FieldSelectionMask;                                // 0x1E8(0x20)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumSamplePositions;                                // 0x208(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33C3[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xE0 (0x1C8 - 0xE8)
@@ -333,24 +333,24 @@ public:
 struct FPlaneFalloffFieldDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(Edit, ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 	struct FVector                               Position;                                          // 0x118(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
 	struct FVector                               Normal;                                            // 0x130(0x18)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-	float                                        Distance;                                          // 0x148(0x4)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_3014[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Distance;                                          // 0x148(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_33C6[0x4];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FVector                               Translation;                                       // 0x150(0x18)(ConstParm, Parm, ZeroConstructor, Transient, Config)
-	float                                        Magnitude;                                         // 0x168(0x4)(ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        MinRange;                                          // 0x16C(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        MaxRange;                                          // 0x170(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Magnitude;                                         // 0x168(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        MinRange;                                          // 0x16C(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        MaxRange;                                          // 0x170(0x4)(Edit, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 	float                                        Default;                                           // 0x174(0x4)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor)
-	enum class EDataflowFieldFalloffType         FalloffType;                                       // 0x178(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_3023[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<float>                                FieldFloatResult;                                  // 0x180(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0x190(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              FieldSelectionMask;                                // 0x1A0(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumSamplePositions;                                // 0x1C0(0x4)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3027[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EDataflowFieldFalloffType         FalloffType;                                       // 0x178(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_33C9[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<float>                                FieldFloatResult;                                  // 0x180(0x10)(ExportObject, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0x190(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              FieldSelectionMask;                                // 0x1A0(0x20)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumSamplePositions;                                // 0x1C0(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33CA[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xA0 (0x188 - 0xE8)
@@ -358,18 +358,18 @@ public:
 struct FRadialIntMaskFieldDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(Edit, ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 	struct FSphere                               Sphere;                                            // 0x118(0x20)(Edit, ConstParm, BlueprintVisible, OutParm)
 	struct FVector                               Translation;                                       // 0x138(0x18)(ConstParm, Parm, ZeroConstructor, Transient, Config)
-	int32                                        InteriorValue;                                     // 0x150(0x4)(ConstParm, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        ExteriorValue;                                     // 0x154(0x4)(ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	enum class EDataflowSetMaskConditionType     SetMaskConditionType;                              // 0x158(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_302E[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<int32>                                FieldIntResult;                                    // 0x160(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0x170(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumSamplePositions;                                // 0x180(0x4)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3030[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        InteriorValue;                                     // 0x150(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        ExteriorValue;                                     // 0x154(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EDataflowSetMaskConditionType     SetMaskConditionType;                              // 0x158(0x1)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33CD[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<int32>                                FieldIntResult;                                    // 0x160(0x10)(BlueprintVisible, ExportObject, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0x170(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumSamplePositions;                                // 0x180(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33CE[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x60 (0x148 - 0xE8)
@@ -377,14 +377,14 @@ public:
 struct FUniformScalarFieldDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Magnitude;                                         // 0x118(0x4)(ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_3032[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<float>                                FieldFloatResult;                                  // 0x120(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0x130(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumSamplePositions;                                // 0x140(0x4)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3036[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(Edit, ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Magnitude;                                         // 0x118(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_33D0[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<float>                                FieldFloatResult;                                  // 0x120(0x10)(ExportObject, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0x130(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumSamplePositions;                                // 0x140(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33D2[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x78 (0x160 - 0xE8)
@@ -392,15 +392,15 @@ public:
 struct FUniformVectorFieldDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Magnitude;                                         // 0x118(0x4)(ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_3039[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               Direction;                                         // 0x120(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
-	TArray<struct FVector>                       FieldVectorResult;                                 // 0x138(0x10)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0x148(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumSamplePositions;                                // 0x158(0x4)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_303C[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(Edit, ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Magnitude;                                         // 0x118(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_33D3[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               Direction;                                         // 0x120(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
+	TArray<struct FVector>                       FieldVectorResult;                                 // 0x138(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0x148(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumSamplePositions;                                // 0x158(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33D4[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x78 (0x160 - 0xE8)
@@ -408,15 +408,15 @@ public:
 struct FRadialVectorFieldDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Magnitude;                                         // 0x118(0x4)(ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_303D[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(Edit, ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Magnitude;                                         // 0x118(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_33D6[0x4];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FVector                               Position;                                          // 0x120(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
-	TArray<struct FVector>                       FieldVectorResult;                                 // 0x138(0x10)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0x148(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumSamplePositions;                                // 0x158(0x4)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_303E[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<struct FVector>                       FieldVectorResult;                                 // 0x138(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0x148(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumSamplePositions;                                // 0x158(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33D7[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x60 (0x148 - 0xE8)
@@ -424,14 +424,14 @@ public:
 struct FRandomVectorFieldDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Magnitude;                                         // 0x118(0x4)(ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_303F[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FVector>                       FieldVectorResult;                                 // 0x120(0x10)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0x130(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumSamplePositions;                                // 0x140(0x4)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3040[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(Edit, ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Magnitude;                                         // 0x118(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_33DA[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FVector>                       FieldVectorResult;                                 // 0x120(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0x130(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumSamplePositions;                                // 0x140(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33DB[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC8 (0x1B0 - 0xE8)
@@ -439,15 +439,15 @@ public:
 struct FNoiseFieldDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        MinRange;                                          // 0x118(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        MaxRange;                                          // 0x11C(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(Edit, ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        MinRange;                                          // 0x118(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        MaxRange;                                          // 0x11C(0x4)(Edit, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 	struct FTransform                            Transform;                                         // 0x120(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-	TArray<float>                                FieldFloatResult;                                  // 0x180(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0x190(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumSamplePositions;                                // 0x1A0(0x4)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3043[0xC];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<float>                                FieldFloatResult;                                  // 0x180(0x10)(ExportObject, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0x190(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumSamplePositions;                                // 0x1A0(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33DD[0xC];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x60 (0x148 - 0xE8)
@@ -455,14 +455,14 @@ public:
 struct FUniformIntegerFieldDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        Magnitude;                                         // 0x118(0x4)(ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_3046[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<int32>                                FieldIntResult;                                    // 0x120(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0x130(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumSamplePositions;                                // 0x140(0x4)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3047[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(Edit, ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        Magnitude;                                         // 0x118(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_33DE[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<int32>                                FieldIntResult;                                    // 0x120(0x10)(BlueprintVisible, ExportObject, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0x130(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumSamplePositions;                                // 0x140(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33E0[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xA0 (0x188 - 0xE8)
@@ -470,21 +470,21 @@ public:
 struct FWaveScalarFieldDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Magnitude;                                         // 0x118(0x4)(ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_3050[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FVector3f>                     SamplePositions;                                   // 0xE8(0x10)(Edit, ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              SampleIndices;                                     // 0xF8(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Magnitude;                                         // 0x118(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_33E2[0x4];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FVector                               Position;                                          // 0x120(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
 	struct FVector                               Translation;                                       // 0x138(0x18)(ConstParm, Parm, ZeroConstructor, Transient, Config)
-	float                                        Wavelength;                                        // 0x150(0x4)(Edit, ConstParm, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Wavelength;                                        // 0x150(0x4)(Net, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 	float                                        Period;                                            // 0x154(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance)
-	enum class EDataflowWaveFunctionType         FunctionType;                                      // 0x158(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	enum class EDataflowFieldFalloffType         FalloffType;                                       // 0x159(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_3067[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<float>                                FieldFloatResult;                                  // 0x160(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0x170(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumSamplePositions;                                // 0x180(0x4)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3068[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EDataflowWaveFunctionType         FunctionType;                                      // 0x158(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EDataflowFieldFalloffType         FalloffType;                                       // 0x159(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_33E5[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<float>                                FieldFloatResult;                                  // 0x160(0x10)(ExportObject, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0x170(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumSamplePositions;                                // 0x180(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33E6[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x68 (0x150 - 0xE8)
@@ -492,16 +492,16 @@ public:
 struct FSumScalarFieldDataflowNode : public FDataflowNode
 {
 public:
-	TArray<float>                                FieldFloatLeft;                                    // 0xE8(0x10)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemapLeft;                                    // 0xF8(0x10)(ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<float>                                FieldFloatRight;                                   // 0x108(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemapRight;                                   // 0x118(0x10)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Magnitude;                                         // 0x128(0x4)(ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class EDataflowFloatFieldOperationType  Operation;                                         // 0x12C(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	bool                                         bSwapInputs;                                       // 0x12D(0x1)(Edit, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3069[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<float>                                FieldFloatResult;                                  // 0x130(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0x140(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<float>                                FieldFloatLeft;                                    // 0xE8(0x10)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemapLeft;                                    // 0xF8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<float>                                FieldFloatRight;                                   // 0x108(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemapRight;                                   // 0x118(0x10)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Magnitude;                                         // 0x128(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EDataflowFloatFieldOperationType  Operation;                                         // 0x12C(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bSwapInputs;                                       // 0x12D(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33E9[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<float>                                FieldFloatResult;                                  // 0x130(0x10)(ExportObject, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0x140(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x88 (0x170 - 0xE8)
@@ -509,18 +509,18 @@ public:
 struct FSumVectorFieldDataflowNode : public FDataflowNode
 {
 public:
-	TArray<float>                                FieldFloat;                                        // 0xE8(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldFloatRemap;                                   // 0xF8(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FVector>                       FieldVectorLeft;                                   // 0x108(0x10)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemapLeft;                                    // 0x118(0x10)(ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FVector>                       FieldVectorRight;                                  // 0x128(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemapRight;                                   // 0x138(0x10)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Magnitude;                                         // 0x148(0x4)(ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class EDataflowVectorFieldOperationType Operation;                                         // 0x14C(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	bool                                         bSwapVectorInputs;                                 // 0x14D(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_306B[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FVector>                       FieldVectorResult;                                 // 0x150(0x10)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0x160(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<float>                                FieldFloat;                                        // 0xE8(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldFloatRemap;                                   // 0xF8(0x10)(Edit, ConstParm, ExportObject, Net, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector>                       FieldVectorLeft;                                   // 0x108(0x10)(ConstParm, Net, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemapLeft;                                    // 0x118(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector>                       FieldVectorRight;                                  // 0x128(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemapRight;                                   // 0x138(0x10)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Magnitude;                                         // 0x148(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EDataflowVectorFieldOperationType Operation;                                         // 0x14C(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bSwapVectorInputs;                                 // 0x14D(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33EF[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FVector>                       FieldVectorResult;                                 // 0x150(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0x160(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x38 (0x120 - 0xE8)
@@ -528,11 +528,11 @@ public:
 struct FFieldMakeDenseFloatArrayDataflowNode : public FDataflowNode
 {
 public:
-	TArray<float>                                FieldFloatInput;                                   // 0xE8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                FieldRemap;                                        // 0xF8(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumSamplePositions;                                // 0x108(0x4)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<float>                                FieldFloatInput;                                   // 0xE8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                FieldRemap;                                        // 0xF8(0x10)(ConstParm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumSamplePositions;                                // 0x108(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
 	float                                        Default;                                           // 0x10C(0x4)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor)
-	TArray<float>                                FieldFloatResult;                                  // 0x110(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<float>                                FieldFloatResult;                                  // 0x110(0x10)(ExportObject, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xF8 (0x1E0 - 0xE8)
@@ -541,13 +541,13 @@ struct FAddMaterialToCollectionDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowFaceSelection                FaceSelection;                                     // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<class UMaterial*>                     Materials;                                         // 0x1B8(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	class UMaterial*                             OutsideMaterial;                                   // 0x1C8(0x8)(ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class UMaterial*                             InsideMaterial;                                    // 0x1D0(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bAssignOutsideMaterial;                            // 0x1D8(0x1)(ConstParm, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bAssignInsideMaterial;                             // 0x1D9(0x1)(ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_306C[0x6];                                     // Fixing Size Of Struct > TateDumper <
+	struct FDataflowFaceSelection                FaceSelection;                                     // 0x198(0x20)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class UMaterial*>                     Materials;                                         // 0x1B8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, DuplicateTransient)
+	class UMaterial*                             OutsideMaterial;                                   // 0x1C8(0x8)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	class UMaterial*                             InsideMaterial;                                    // 0x1D0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bAssignOutsideMaterial;                            // 0x1D8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bAssignInsideMaterial;                             // 0x1D9(0x1)(Edit, ConstParm, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33F3[0x6];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xF0 (0x1D8 - 0xE8)
@@ -556,13 +556,13 @@ struct FReAssignMaterialInCollectionDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowFaceSelection                FaceSelection;                                     // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<class UMaterial*>                     Materials;                                         // 0x1B8(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	int32                                        OutsideMaterialIdx;                                // 0x1C8(0x4)(Edit, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        InsideMaterialIdx;                                 // 0x1CC(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bAssignOutsideMaterial;                            // 0x1D0(0x1)(ConstParm, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bAssignInsideMaterial;                             // 0x1D1(0x1)(ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_306D[0x6];                                     // Fixing Size Of Struct > TateDumper <
+	struct FDataflowFaceSelection                FaceSelection;                                     // 0x198(0x20)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class UMaterial*>                     Materials;                                         // 0x1B8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, DuplicateTransient)
+	int32                                        OutsideMaterialIdx;                                // 0x1C8(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        InsideMaterialIdx;                                 // 0x1CC(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bAssignOutsideMaterial;                            // 0x1D0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bAssignInsideMaterial;                             // 0x1D1(0x1)(Edit, ConstParm, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33F5[0x6];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x108 - 0xE8)
@@ -570,8 +570,8 @@ public:
 struct FMaterialsInfoDataflowNode : public FDataflowNode
 {
 public:
-	TArray<class UMaterial*>                     Materials;                                         // 0xE8(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	class FString                                String;                                            // 0xF8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	TArray<class UMaterial*>                     Materials;                                         // 0xE8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, DuplicateTransient)
+	class FString                                String;                                            // 0xF8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x20 (0x108 - 0xE8)
@@ -579,10 +579,10 @@ public:
 struct FGetMaterialFromMaterialsArrayDataflowNode : public FDataflowNode
 {
 public:
-	TArray<class UMaterial*>                     Materials;                                         // 0xE8(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	TArray<class UMaterial*>                     Materials;                                         // 0xE8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, DuplicateTransient)
 	class UMaterial*                             Material;                                          // 0xF8(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	int32                                        MaterialIdx;                                       // 0x100(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_306F[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        MaterialIdx;                                       // 0x100(0x4)(ExportObject, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33F6[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x108 - 0xE8)
@@ -590,11 +590,11 @@ public:
 struct FSetMaterialInMaterialsArrayDataflowNode : public FDataflowNode
 {
 public:
-	TArray<class UMaterial*>                     Materials;                                         // 0xE8(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	TArray<class UMaterial*>                     Materials;                                         // 0xE8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, DuplicateTransient)
 	class UMaterial*                             Material;                                          // 0xF8(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	enum class ESetMaterialOperationTypeEnum     Operation;                                         // 0x100(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_3070[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        MaterialIdx;                                       // 0x104(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ESetMaterialOperationTypeEnum     Operation;                                         // 0x100(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_33F7[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        MaterialIdx;                                       // 0x104(0x4)(ExportObject, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0xF8 - 0xE8)
@@ -602,7 +602,7 @@ public:
 struct FMakeMaterialDataflowNode : public FDataflowNode
 {
 public:
-	class UMaterial*                             InMaterial;                                        // 0xE8(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	class UMaterial*                             InMaterial;                                        // 0xE8(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 	class UMaterial*                             Material;                                          // 0xF0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 };
 
@@ -611,7 +611,7 @@ public:
 struct FMakeMaterialsArrayDataflowNode : public FDataflowNode
 {
 public:
-	TArray<class UMaterial*>                     Materials;                                         // 0xE8(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	TArray<class UMaterial*>                     Materials;                                         // 0xE8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, DuplicateTransient)
 };
 
 // 0xB0 (0x198 - 0xE8)
@@ -627,7 +627,7 @@ public:
 struct FSkeletonToCollectionDataflowNode : public FDataflowNode
 {
 public:
-	class USkeleton*                             Skeleton;                                          // 0xE8(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig)
+	class USkeleton*                             Skeleton;                                          // 0xE8(0x8)(BlueprintVisible, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, DuplicateTransient)
 	struct FManagedArrayCollection               Collection;                                        // 0xF0(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
 };
 
@@ -637,13 +637,13 @@ struct FCreateNonOverlappingConvexHullsDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	float                                        CanRemoveFraction;                                 // 0x198(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        SimplificationDistanceThreshold;                   // 0x19C(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        CanRemoveFraction;                                 // 0x198(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        SimplificationDistanceThreshold;                   // 0x19C(0x4)(Edit, ExportObject, Net, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	float                                        CanExceedFraction;                                 // 0x1A0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	enum class EConvexOverlapRemovalMethodEnum   OverlapRemovalMethod;                              // 0x1A4(0x1)(Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3073[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        OverlapRemovalShrinkPercent;                       // 0x1A8(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3074[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EConvexOverlapRemovalMethodEnum   OverlapRemovalMethod;                              // 0x1A4(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33F8[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        OverlapRemovalShrinkPercent;                       // 0x1A8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33F9[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xE8 (0x1D0 - 0xE8)
@@ -651,16 +651,16 @@ public:
 struct FAutoClusterDataflowNode : public FDataflowNode
 {
 public:
-	enum class EClusterSizeMethodEnum            ClusterSizeMethod;                                 // 0xE8(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3076[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        ClusterSites;                                      // 0xEC(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        ClusterFraction;                                   // 0xF0(0x4)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        SiteSize;                                          // 0xF4(0x4)(Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         AutoCluster;                                       // 0xF8(0x1)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         AvoidIsolated;                                     // 0xF9(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3077[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	enum class EClusterSizeMethodEnum            ClusterSizeMethod;                                 // 0xE8(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33FA[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        ClusterSites;                                      // 0xEC(0x4)(Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        ClusterFraction;                                   // 0xF0(0x4)(ConstParm, Net, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        SiteSize;                                          // 0xF4(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         AutoCluster;                                       // 0xF8(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         AvoidIsolated;                                     // 0xF9(0x1)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33FB[0x6];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FManagedArrayCollection               Collection;                                        // 0x100(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x1B0(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x1B0(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xB0 (0x198 - 0xE8)
@@ -677,7 +677,7 @@ struct FPruneInCollectionDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xF8 (0x1E0 - 0xE8)
@@ -686,10 +686,10 @@ struct FSetVisibilityInCollectionDataflowNode : public FDataflowNode
 {
 public:
 	enum class EVisibiltyOptionsEnum             Visibility;                                        // 0xE8(0x1)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance)
-	uint8                                        Pad_3079[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_33FC[0x7];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FManagedArrayCollection               Collection;                                        // 0xF0(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A0(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowFaceSelection                FaceSelection;                                     // 0x1C0(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A0(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowFaceSelection                FaceSelection;                                     // 0x1C0(0x20)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xD0 (0x1B8 - 0xE8)
@@ -698,7 +698,7 @@ struct FMergeInCollectionDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x58 (0x140 - 0xE8)
@@ -706,12 +706,12 @@ public:
 struct FUniformScatterPointsDataflowNode : public FDataflowNode
 {
 public:
-	int32                                        MinNumberOfPoints;                                 // 0xE8(0x4)(BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        MaxNumberOfPoints;                                 // 0xEC(0x4)(ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        RandomSeed;                                        // 0xF0(0x4)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_307A[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FBox                                  BoundingBox;                                       // 0xF8(0x38)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FVector>                       Points;                                            // 0x130(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        MinNumberOfPoints;                                 // 0xE8(0x4)(Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        MaxNumberOfPoints;                                 // 0xEC(0x4)(Edit, ConstParm, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        RandomSeed;                                        // 0xF0(0x4)(Edit, BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_33FD[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FBox                                  BoundingBox;                                       // 0xF8(0x38)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector>                       Points;                                            // 0x130(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x58 (0x140 - 0xE8)
@@ -721,13 +721,13 @@ struct FRadialScatterPointsDataflowNode : public FDataflowNode
 public:
 	struct FVector                               Center;                                            // 0xE8(0x18)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
 	struct FVector                               Normal;                                            // 0x100(0x18)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-	float                                        Radius;                                            // 0x118(0x4)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-	int32                                        AngularSteps;                                      // 0x11C(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        RadialSteps;                                       // 0x120(0x4)(ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        AngleOffset;                                       // 0x124(0x4)(Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Variability;                                       // 0x128(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        RandomSeed;                                        // 0x12C(0x4)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FVector>                       Points;                                            // 0x130(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        Radius;                                            // 0x118(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        AngularSteps;                                      // 0x11C(0x4)(BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        RadialSteps;                                       // 0x120(0x4)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        AngleOffset;                                       // 0x124(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Variability;                                       // 0x128(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        RandomSeed;                                        // 0x12C(0x4)(Edit, BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FVector>                       Points;                                            // 0x130(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x110 (0x1F8 - 0xE8)
@@ -736,22 +736,22 @@ struct FVoronoiFractureDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	TArray<struct FVector>                       Points;                                            // 0x198(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        RandomSeed;                                        // 0x1C8(0x4)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        ChanceToFracture;                                  // 0x1CC(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         GroupFracture;                                     // 0x1D0(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_307D[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        Grout;                                             // 0x1D4(0x4)(Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Amplitude;                                         // 0x1D8(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Frequency;                                         // 0x1DC(0x4)(Edit, ConstParm, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        Persistence;                                       // 0x1E0(0x4)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Lacunarity;                                        // 0x1E4(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        OctaveNumber;                                      // 0x1E8(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        PointSpacing;                                      // 0x1EC(0x4)(ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         AddSamplesForCollision;                            // 0x1F0(0x1)(ConstParm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_307E[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        CollisionSampleSpacing;                            // 0x1F4(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector>                       Points;                                            // 0x198(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        RandomSeed;                                        // 0x1C8(0x4)(Edit, BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        ChanceToFracture;                                  // 0x1CC(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         GroupFracture;                                     // 0x1D0(0x1)(ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33FE[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Grout;                                             // 0x1D4(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Amplitude;                                         // 0x1D8(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	float                                        Frequency;                                         // 0x1DC(0x4)(Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Persistence;                                       // 0x1E0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Lacunarity;                                        // 0x1E4(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        OctaveNumber;                                      // 0x1E8(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        PointSpacing;                                      // 0x1EC(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         AddSamplesForCollision;                            // 0x1F0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3400[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        CollisionSampleSpacing;                            // 0x1F4(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x138 (0x220 - 0xE8)
@@ -760,21 +760,21 @@ struct FPlaneCutterDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FBox                                  BoundingBox;                                       // 0x198(0x38)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x1D0(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumPlanes;                                         // 0x1F0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        RandomSeed;                                        // 0x1F4(0x4)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        Grout;                                             // 0x1F8(0x4)(Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Amplitude;                                         // 0x1FC(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Frequency;                                         // 0x200(0x4)(Edit, ConstParm, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        Persistence;                                       // 0x204(0x4)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Lacunarity;                                        // 0x208(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        OctaveNumber;                                      // 0x20C(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        PointSpacing;                                      // 0x210(0x4)(ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         AddSamplesForCollision;                            // 0x214(0x1)(ConstParm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_307F[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        CollisionSampleSpacing;                            // 0x218(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3080[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	struct FBox                                  BoundingBox;                                       // 0x198(0x38)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x1D0(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumPlanes;                                         // 0x1F0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        RandomSeed;                                        // 0x1F4(0x4)(Edit, BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Grout;                                             // 0x1F8(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Amplitude;                                         // 0x1FC(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	float                                        Frequency;                                         // 0x200(0x4)(Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Persistence;                                       // 0x204(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Lacunarity;                                        // 0x208(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        OctaveNumber;                                      // 0x20C(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        PointSpacing;                                      // 0x210(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         AddSamplesForCollision;                            // 0x214(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3406[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        CollisionSampleSpacing;                            // 0x218(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3407[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xD0 (0x1B8 - 0xE8)
@@ -783,8 +783,8 @@ struct FExplodedViewDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	float                                        UniformScale;                                      // 0x198(0x4)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3081[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        UniformScale;                                      // 0x198(0x4)(Edit, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_340A[0x4];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FVector                               Scale;                                             // 0x1A0(0x18)(Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
 };
 
@@ -793,10 +793,10 @@ public:
 struct FPointsToMeshDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector>                       Points;                                            // 0xE8(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	class UDynamicMesh*                          Mesh;                                              // 0xF8(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        TriangleCount;                                     // 0x100(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3083[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<struct FVector>                       Points;                                            // 0xE8(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UDynamicMesh*                          Mesh;                                              // 0xF8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        TriangleCount;                                     // 0x100(0x4)(ExportObject, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_340C[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x48 (0x130 - 0xE8)
@@ -805,9 +805,9 @@ struct FBoxToMeshDataflowNode : public FDataflowNode
 {
 public:
 	struct FBox                                  Box;                                               // 0xE8(0x38)(Edit, ConstParm, ExportObject, OutParm)
-	class UDynamicMesh*                          Mesh;                                              // 0x120(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        TriangleCount;                                     // 0x128(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3084[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	class UDynamicMesh*                          Mesh;                                              // 0x120(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        TriangleCount;                                     // 0x128(0x4)(ExportObject, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_340D[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x100 - 0xE8)
@@ -815,8 +815,8 @@ public:
 struct FMeshInfoDataflowNode : public FDataflowNode
 {
 public:
-	class UDynamicMesh*                          Mesh;                                              // 0xE8(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FString                                InfoString;                                        // 0xF0(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	class UDynamicMesh*                          Mesh;                                              // 0xE8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                InfoString;                                        // 0xF0(0x10)(BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xB8 (0x1A0 - 0xE8)
@@ -824,7 +824,7 @@ public:
 struct FMeshToCollectionDataflowNode : public FDataflowNode
 {
 public:
-	class UDynamicMesh*                          Mesh;                                              // 0xE8(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UDynamicMesh*                          Mesh;                                              // 0xE8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	struct FManagedArrayCollection               Collection;                                        // 0xF0(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
 };
 
@@ -834,9 +834,9 @@ struct FCollectionToMeshDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	bool                                         bCenterPivot;                                      // 0x198(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3087[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class UDynamicMesh*                          Mesh;                                              // 0x1A0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bCenterPivot;                                      // 0x198(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_340E[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class UDynamicMesh*                          Mesh;                                              // 0x1A0(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x100 - 0xE8)
@@ -844,11 +844,11 @@ public:
 struct FStaticMeshToMeshDataflowNode : public FDataflowNode
 {
 public:
-	class UStaticMesh*                           StaticMesh;                                        // 0xE8(0x8)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig)
-	bool                                         bUseHiRes;                                         // 0xF0(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_308B[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        LODLevel;                                          // 0xF4(0x4)(Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class UDynamicMesh*                          Mesh;                                              // 0xF8(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UStaticMesh*                           StaticMesh;                                        // 0xE8(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference)
+	bool                                         bUseHiRes;                                         // 0xF0(0x1)(ConstParm, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_340F[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        LODLevel;                                          // 0xF4(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class UDynamicMesh*                          Mesh;                                              // 0xF8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x100 - 0xE8)
@@ -856,9 +856,9 @@ public:
 struct FMeshAppendDataflowNode : public FDataflowNode
 {
 public:
-	class UDynamicMesh*                          Mesh1;                                             // 0xE8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class UDynamicMesh*                          Mesh2;                                             // 0xF0(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class UDynamicMesh*                          Mesh;                                              // 0xF8(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UDynamicMesh*                          Mesh1;                                             // 0xE8(0x8)(BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class UDynamicMesh*                          Mesh2;                                             // 0xF0(0x8)(ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class UDynamicMesh*                          Mesh;                                              // 0xF8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x108 - 0xE8)
@@ -866,11 +866,11 @@ public:
 struct FMeshBooleanDataflowNode : public FDataflowNode
 {
 public:
-	enum class EMeshBooleanOperationEnum         Operation;                                         // 0xE8(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_308D[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class UDynamicMesh*                          Mesh1;                                             // 0xF0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class UDynamicMesh*                          Mesh2;                                             // 0xF8(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class UDynamicMesh*                          Mesh;                                              // 0x100(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EMeshBooleanOperationEnum         Operation;                                         // 0xE8(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_3410[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class UDynamicMesh*                          Mesh1;                                             // 0xF0(0x8)(BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class UDynamicMesh*                          Mesh2;                                             // 0xF8(0x8)(ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class UDynamicMesh*                          Mesh;                                              // 0x100(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x110 - 0xE8)
@@ -878,11 +878,11 @@ public:
 struct FMeshCopyToPointsDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector>                       Points;                                            // 0xE8(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	class UDynamicMesh*                          MeshToCopy;                                        // 0xF8(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector>                       Points;                                            // 0xE8(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UDynamicMesh*                          MeshToCopy;                                        // 0xF8(0x8)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	float                                        Scale;                                             // 0x100(0x4)(Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
-	uint8                                        Pad_308E[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UDynamicMesh*                          Mesh;                                              // 0x108(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_3411[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UDynamicMesh*                          Mesh;                                              // 0x108(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x100 - 0xE8)
@@ -890,11 +890,11 @@ public:
 struct FGetMeshDataDataflowNode : public FDataflowNode
 {
 public:
-	class UDynamicMesh*                          Mesh;                                              // 0xE8(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UDynamicMesh*                          Mesh;                                              // 0xE8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	int32                                        Vertexcount;                                       // 0xF0(0x4)(Edit, ConstParm, ExportObject, Parm, ZeroConstructor, Transient, Config)
-	int32                                        EdgeCount;                                         // 0xF4(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        TriangleCount;                                     // 0xF8(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_308F[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        EdgeCount;                                         // 0xF4(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        TriangleCount;                                     // 0xF8(0x4)(ExportObject, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3412[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xB8 (0x1A0 - 0xE8)
@@ -902,7 +902,7 @@ public:
 struct FGetCollectionFromAssetDataflowNode : public FDataflowNode
 {
 public:
-	class UGeometryCollection*                   CollectionAsset;                                   // 0xE8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	class UGeometryCollection*                   CollectionAsset;                                   // 0xE8(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	struct FManagedArrayCollection               Collection;                                        // 0xF0(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
 };
 
@@ -911,10 +911,10 @@ public:
 struct FAppendCollectionAssetsDataflowNode : public FDataflowNode
 {
 public:
-	struct FManagedArrayCollection               Collection1;                                       // 0xE8(0xB0)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FManagedArrayCollection               Collection2;                                       // 0x198(0xB0)(Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<class FString>                        GeometryGroupGuidsOut1;                            // 0x248(0x10)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<class FString>                        GeometryGroupGuidsOut2;                            // 0x258(0x10)(ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FManagedArrayCollection               Collection1;                                       // 0xE8(0xB0)(BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	struct FManagedArrayCollection               Collection2;                                       // 0x198(0xB0)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class FString>                        GeometryGroupGuidsOut1;                            // 0x248(0x10)(Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class FString>                        GeometryGroupGuidsOut2;                            // 0x258(0x10)(Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x20 (0x108 - 0xE8)
@@ -922,13 +922,13 @@ public:
 struct FPrintStringDataflowNode : public FDataflowNode
 {
 public:
-	bool                                         bPrintToScreen;                                    // 0xE8(0x1)(Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bPrintToLog;                                       // 0xE9(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_3090[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	bool                                         bPrintToScreen;                                    // 0xE8(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bPrintToLog;                                       // 0xE9(0x1)(ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_3414[0x2];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FColor                                Color;                                             // 0xEC(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
-	float                                        Duration;                                          // 0xF0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, DuplicateTransient)
-	uint8                                        Pad_3091[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                String;                                            // 0xF8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	float                                        Duration;                                          // 0xF0(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
+	uint8                                        Pad_3415[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                String;                                            // 0xF8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x100 - 0xE8)
@@ -936,9 +936,9 @@ public:
 struct FLogStringDataflowNode : public FDataflowNode
 {
 public:
-	bool                                         bPrintToLog;                                       // 0xE8(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_3092[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                String;                                            // 0xF0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	bool                                         bPrintToLog;                                       // 0xE8(0x1)(ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_3416[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                String;                                            // 0xF0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x20 (0x108 - 0xE8)
@@ -947,7 +947,7 @@ struct FMakeLiteralStringDataflowNode : public FDataflowNode
 {
 public:
 	class FString                                Value;                                             // 0xE8(0x10)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-	class FString                                String;                                            // 0xF8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class FString                                String;                                            // 0xF8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xE8 (0x1D0 - 0xE8)
@@ -956,7 +956,7 @@ struct FBoundingBoxDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FBox                                  BoundingBox;                                       // 0x198(0x38)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FBox                                  BoundingBox;                                       // 0x198(0x38)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xA0 (0x188 - 0xE8)
@@ -964,13 +964,13 @@ public:
 struct FExpandBoundingBoxDataflowNode : public FDataflowNode
 {
 public:
-	struct FBox                                  BoundingBox;                                       // 0xE8(0x38)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FBox                                  BoundingBox;                                       // 0xE8(0x38)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	struct FVector                               Min;                                               // 0x120(0x18)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	struct FVector                               Max;                                               // 0x138(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	struct FVector                               Center;                                            // 0x150(0x18)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-	struct FVector                               HalfExtents;                                       // 0x168(0x18)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector                               HalfExtents;                                       // 0x168(0x18)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	float                                        Volume;                                            // 0x180(0x4)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-	uint8                                        Pad_3093[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_341A[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x110 - 0xE8)
@@ -979,7 +979,7 @@ struct FVectorToStringDataflowNode : public FDataflowNode
 {
 public:
 	struct FVector                               Vector;                                            // 0xE8(0x18)(Edit, BlueprintVisible, Net, OutParm)
-	class FString                                String;                                            // 0x100(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class FString                                String;                                            // 0x100(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x100 - 0xE8)
@@ -988,8 +988,8 @@ struct FFloatToStringDataflowNode : public FDataflowNode
 {
 public:
 	float                                        Float;                                             // 0xE8(0x4)(ExportObject, BlueprintReadOnly, Parm, OutParm, Config)
-	uint8                                        Pad_3094[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                String;                                            // 0xF0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_341B[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                String;                                            // 0xF0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x20 (0x108 - 0xE8)
@@ -998,7 +998,7 @@ struct FMakePointsDataflowNode : public FDataflowNode
 {
 public:
 	TArray<struct FVector>                       Point;                                             // 0xE8(0x10)(ConstParm, Parm, ReturnParm)
-	TArray<struct FVector>                       Points;                                            // 0xF8(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FVector>                       Points;                                            // 0xF8(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0xA0 (0x188 - 0xE8)
@@ -1006,8 +1006,8 @@ public:
 struct FMakeBoxDataflowNode : public FDataflowNode
 {
 public:
-	enum class EMakeBoxDataTypeEnum              DataType;                                          // 0xE8(0x1)(BlueprintReadOnly, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3095[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	enum class EMakeBoxDataTypeEnum              DataType;                                          // 0xE8(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_341C[0x7];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FVector                               Min;                                               // 0xF0(0x18)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	struct FVector                               Max;                                               // 0x108(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	struct FVector                               Center;                                            // 0x120(0x18)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
@@ -1021,8 +1021,8 @@ struct FMakeSphereDataflowNode : public FDataflowNode
 {
 public:
 	struct FVector                               Center;                                            // 0xE8(0x18)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-	float                                        Radius;                                            // 0x100(0x4)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_3096[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Radius;                                            // 0x100(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_341D[0x4];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FSphere                               Sphere;                                            // 0x108(0x20)(Edit, ConstParm, BlueprintVisible, OutParm)
 };
 
@@ -1041,7 +1041,7 @@ struct FMakeLiteralIntDataflowNode : public FDataflowNode
 {
 public:
 	int32                                        Value;                                             // 0xE8(0x4)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-	int32                                        Int;                                               // 0xEC(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        Int;                                               // 0xEC(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0xF0 - 0xE8)
@@ -1051,7 +1051,7 @@ struct FMakeLiteralBoolDataflowNode : public FDataflowNode
 public:
 	bool                                         Value;                                             // 0xE8(0x1)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 	bool                                         Bool;                                              // 0xE9(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Config)
-	uint8                                        Pad_3097[0x6];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_341F[0x6];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x110 - 0xE8)
@@ -1062,7 +1062,7 @@ public:
 	float                                        X;                                                 // 0xE8(0x4)(Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config)
 	float                                        Y;                                                 // 0xEC(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config)
 	float                                        Z;                                                 // 0xF0(0x4)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config)
-	uint8                                        Pad_3098[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_3420[0x4];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FVector                               Vector;                                            // 0xF8(0x18)(Edit, BlueprintVisible, Net, OutParm)
 };
 
@@ -1071,9 +1071,9 @@ public:
 struct FIntToStringDataflowNode : public FDataflowNode
 {
 public:
-	int32                                        Int;                                               // 0xE8(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_309A[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                String;                                            // 0xF0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        Int;                                               // 0xE8(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3421[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                String;                                            // 0xF0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x100 - 0xE8)
@@ -1082,8 +1082,8 @@ struct FBoolToStringDataflowNode : public FDataflowNode
 {
 public:
 	bool                                         Bool;                                              // 0xE8(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Config)
-	uint8                                        Pad_309B[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                String;                                            // 0xF0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3422[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                String;                                            // 0xF0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x28 (0x110 - 0xE8)
@@ -1095,7 +1095,7 @@ public:
 	float                                        X;                                                 // 0x100(0x4)(Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config)
 	float                                        Y;                                                 // 0x104(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config)
 	float                                        Z;                                                 // 0x108(0x4)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config)
-	uint8                                        Pad_309C[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_3423[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0xF0 - 0xE8)
@@ -1103,7 +1103,7 @@ public:
 struct FIntToFloatDataflowNode : public FDataflowNode
 {
 public:
-	int32                                        Int;                                               // 0xE8(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        Int;                                               // 0xE8(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	float                                        Float;                                             // 0xEC(0x4)(ExportObject, BlueprintReadOnly, Parm, OutParm, Config)
 };
 
@@ -1112,9 +1112,9 @@ public:
 struct FStringAppendDataflowNode : public FDataflowNode
 {
 public:
-	class FString                                String1;                                           // 0xE8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class FString                                String2;                                           // 0xF8(0x10)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class FString                                String;                                            // 0x108(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class FString                                String1;                                           // 0xE8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                String2;                                           // 0xF8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                String;                                            // 0x108(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0xF8 - 0xE8)
@@ -1122,11 +1122,11 @@ public:
 struct FRandomFloatDataflowNode : public FDataflowNode
 {
 public:
-	bool                                         bDeterministic;                                    // 0xE8(0x1)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_309F[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        RandomSeed;                                        // 0xEC(0x4)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bDeterministic;                                    // 0xE8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3424[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        RandomSeed;                                        // 0xEC(0x4)(Edit, BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	float                                        Float;                                             // 0xF0(0x4)(ExportObject, BlueprintReadOnly, Parm, OutParm, Config)
-	uint8                                        Pad_30A0[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_3425[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x100 - 0xE8)
@@ -1134,13 +1134,13 @@ public:
 struct FRandomFloatInRangeDataflowNode : public FDataflowNode
 {
 public:
-	bool                                         bDeterministic;                                    // 0xE8(0x1)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30A1[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        RandomSeed;                                        // 0xEC(0x4)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bDeterministic;                                    // 0xE8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3426[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        RandomSeed;                                        // 0xEC(0x4)(Edit, BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	float                                        Min;                                               // 0xF0(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	float                                        Max;                                               // 0xF4(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	float                                        Float;                                             // 0xF8(0x4)(ExportObject, BlueprintReadOnly, Parm, OutParm, Config)
-	uint8                                        Pad_30A2[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_3427[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x108 - 0xE8)
@@ -1148,9 +1148,9 @@ public:
 struct FRandomUnitVectorDataflowNode : public FDataflowNode
 {
 public:
-	bool                                         bDeterministic;                                    // 0xE8(0x1)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30A3[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        RandomSeed;                                        // 0xEC(0x4)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bDeterministic;                                    // 0xE8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3428[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        RandomSeed;                                        // 0xEC(0x4)(Edit, BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	struct FVector                               Vector;                                            // 0xF0(0x18)(Edit, BlueprintVisible, Net, OutParm)
 };
 
@@ -1159,12 +1159,12 @@ public:
 struct FRandomUnitVectorInConeDataflowNode : public FDataflowNode
 {
 public:
-	bool                                         bDeterministic;                                    // 0xE8(0x1)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30A4[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        RandomSeed;                                        // 0xEC(0x4)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector                               ConeDirection;                                     // 0xF0(0x18)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        ConeHalfAngle;                                     // 0x108(0x4)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_30A5[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	bool                                         bDeterministic;                                    // 0xE8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3429[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        RandomSeed;                                        // 0xEC(0x4)(Edit, BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector                               ConeDirection;                                     // 0xF0(0x18)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        ConeHalfAngle;                                     // 0x108(0x4)(Parm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	uint8                                        Pad_342A[0x4];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FVector                               Vector;                                            // 0x110(0x18)(Edit, BlueprintVisible, Net, OutParm)
 };
 
@@ -1173,8 +1173,8 @@ public:
 struct FRadiansToDegreesDataflowNode : public FDataflowNode
 {
 public:
-	float                                        Radians;                                           // 0xE8(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Degrees;                                           // 0xEC(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Radians;                                           // 0xE8(0x4)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Degrees;                                           // 0xEC(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0xF0 - 0xE8)
@@ -1182,8 +1182,8 @@ public:
 struct FDegreesToRadiansDataflowNode : public FDataflowNode
 {
 public:
-	float                                        Degrees;                                           // 0xE8(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Radians;                                           // 0xEC(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Degrees;                                           // 0xE8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Radians;                                           // 0xEC(0x4)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x100 - 0xE8)
@@ -1191,9 +1191,9 @@ public:
 struct FHashStringDataflowNode : public FDataflowNode
 {
 public:
-	class FString                                String;                                            // 0xE8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	int32                                        Hash;                                              // 0xF8(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30A7[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	class FString                                String;                                            // 0xE8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        Hash;                                              // 0xF8(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_342B[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x108 - 0xE8)
@@ -1202,8 +1202,8 @@ struct FHashVectorDataflowNode : public FDataflowNode
 {
 public:
 	struct FVector                               Vector;                                            // 0xE8(0x18)(Edit, BlueprintVisible, Net, OutParm)
-	int32                                        Hash;                                              // 0x100(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30A8[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        Hash;                                              // 0x100(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_342C[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0xF8 - 0xE8)
@@ -1212,10 +1212,10 @@ struct FFloatToIntDataflowNode : public FDataflowNode
 {
 public:
 	enum class EFloatToIntFunctionEnum           Function;                                          // 0xE8(0x1)(Edit, ExportObject, BlueprintReadOnly, ZeroConstructor)
-	uint8                                        Pad_30A9[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_342D[0x3];                                     // Fixing Size After Last Property  > TateDumper <
 	float                                        Float;                                             // 0xEC(0x4)(ExportObject, BlueprintReadOnly, Parm, OutParm, Config)
-	int32                                        Int;                                               // 0xF0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30AA[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        Int;                                               // 0xF0(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_342E[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x110 - 0xE8)
@@ -1224,8 +1224,8 @@ struct FFloatArrayToIntArrayDataflowNode : public FDataflowNode
 {
 public:
 	enum class EFloatArrayToIntArrayFunctionEnum Function;                                          // 0xE8(0x1)(Edit, ExportObject, BlueprintReadOnly, ZeroConstructor)
-	uint8                                        Pad_30AB[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<float>                                FloatArray;                                        // 0xF0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_342F[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<float>                                FloatArray;                                        // 0xF0(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	TArray<int32>                                IntArray;                                          // 0x100(0x10)(Edit, BlueprintReadOnly, DisableEditOnTemplate)
 };
 
@@ -1235,7 +1235,7 @@ struct FMathConstantsDataflowNode : public FDataflowNode
 {
 public:
 	enum class EMathConstantsEnum                Constant;                                          // 0xE8(0x1)(OutParm, Transient, Config, EditConst)
-	uint8                                        Pad_30AC[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_3430[0x3];                                     // Fixing Size After Last Property  > TateDumper <
 	float                                        Float;                                             // 0xEC(0x4)(ExportObject, BlueprintReadOnly, Parm, OutParm, Config)
 };
 
@@ -1245,8 +1245,8 @@ struct FGetArrayElementDataflowNode : public FDataflowNode
 {
 public:
 	int32                                        Index;                                             // 0xE8(0x4)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	uint8                                        Pad_30AD[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FVector>                       Points;                                            // 0xF0(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_3431[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FVector>                       Points;                                            // 0xF0(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
 	struct FVector                               Point;                                             // 0x100(0x18)(ConstParm, Parm, ReturnParm)
 };
 
@@ -1255,10 +1255,10 @@ public:
 struct FGetNumArrayElementsDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector>                       Points;                                            // 0xE8(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<struct FVector3f>                     Vector3fArray;                                     // 0xF8(0x10)(Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumElements;                                       // 0x108(0x4)(ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30B0[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<struct FVector>                       Points;                                            // 0xE8(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FVector3f>                     Vector3fArray;                                     // 0xF8(0x10)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumElements;                                       // 0x108(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3434[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xE0 (0x1C8 - 0xE8)
@@ -1267,8 +1267,8 @@ struct FGetBoundingBoxesFromCollectionDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FBox>                          BoundingBoxes;                                     // 0x1B8(0x10)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FBox>                          BoundingBoxes;                                     // 0x1B8(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xE0 (0x1C8 - 0xE8)
@@ -1277,8 +1277,8 @@ struct FGetCentroidsFromCollectionDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FVector>                       Centroids;                                         // 0x1B8(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector>                       Centroids;                                         // 0x1B8(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x140 (0x228 - 0xE8)
@@ -1287,17 +1287,17 @@ struct FTransformCollectionDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FVector                               Translate;                                         // 0x198(0x18)(BlueprintVisible, ExportObject, BlueprintReadOnly, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ERotationOrderEnum                RotationOrder;                                     // 0x1B0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_30B2[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               Rotate;                                            // 0x1B8(0x18)(ExportObject, BlueprintReadOnly, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector                               Translate;                                         // 0x198(0x18)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ERotationOrderEnum                RotationOrder;                                     // 0x1B0(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_3437[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               Rotate;                                            // 0x1B8(0x18)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	struct FVector                               Scale;                                             // 0x1D0(0x18)(Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
-	float                                        UniformScale;                                      // 0x1E8(0x4)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30B3[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               RotatePivot;                                       // 0x1F0(0x18)(Edit, BlueprintReadOnly, Transient, Config, InstancedReference, SubobjectReference)
-	struct FVector                               ScalePivot;                                        // 0x208(0x18)(Edit, ConstParm, ExportObject, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bInvertTransformation;                             // 0x220(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30B4[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	float                                        UniformScale;                                      // 0x1E8(0x4)(Edit, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3439[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               RotatePivot;                                       // 0x1F0(0x18)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector                               ScalePivot;                                        // 0x208(0x18)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bInvertTransformation;                             // 0x220(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_343B[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xB0 (0x198 - 0xE8)
@@ -1313,18 +1313,18 @@ public:
 struct FTransformMeshDataflowNode : public FDataflowNode
 {
 public:
-	class UDynamicMesh*                          Mesh;                                              // 0xE8(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector                               Translate;                                         // 0xF0(0x18)(BlueprintVisible, ExportObject, BlueprintReadOnly, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ERotationOrderEnum                RotationOrder;                                     // 0x108(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_30B5[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               Rotate;                                            // 0x110(0x18)(ExportObject, BlueprintReadOnly, Transient, Config, InstancedReference, SubobjectReference)
+	class UDynamicMesh*                          Mesh;                                              // 0xE8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector                               Translate;                                         // 0xF0(0x18)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ERotationOrderEnum                RotationOrder;                                     // 0x108(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_343E[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               Rotate;                                            // 0x110(0x18)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	struct FVector                               Scale;                                             // 0x128(0x18)(Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
-	float                                        UniformScale;                                      // 0x140(0x4)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30B7[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               RotatePivot;                                       // 0x148(0x18)(Edit, BlueprintReadOnly, Transient, Config, InstancedReference, SubobjectReference)
-	struct FVector                               ScalePivot;                                        // 0x160(0x18)(Edit, ConstParm, ExportObject, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bInvertTransformation;                             // 0x178(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30B8[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	float                                        UniformScale;                                      // 0x140(0x4)(Edit, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_343F[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               RotatePivot;                                       // 0x148(0x18)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector                               ScalePivot;                                        // 0x160(0x18)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bInvertTransformation;                             // 0x178(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3441[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0xF8 - 0xE8)
@@ -1332,12 +1332,12 @@ public:
 struct FCompareIntDataflowNode : public FDataflowNode
 {
 public:
-	enum class ECompareOperationEnum             Operation;                                         // 0xE8(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_30B9[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        IntA;                                              // 0xEC(0x4)(Edit, BlueprintVisible, Net, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        IntB;                                              // 0xF0(0x4)(ConstParm, Net, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ECompareOperationEnum             Operation;                                         // 0xE8(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_3442[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        IntA;                                              // 0xEC(0x4)(ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        IntB;                                              // 0xF0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	bool                                         Result;                                            // 0xF4(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-	uint8                                        Pad_30BA[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_3443[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x108 - 0xE8)
@@ -1345,11 +1345,11 @@ public:
 struct FBranchDataflowNode : public FDataflowNode
 {
 public:
-	class UDynamicMesh*                          MeshA;                                             // 0xE8(0x8)(ConstParm, BlueprintReadOnly, Net, Transient, Config, InstancedReference, SubobjectReference)
-	class UDynamicMesh*                          MeshB;                                             // 0xF0(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bCondition;                                        // 0xF8(0x1)(ExportObject, Net, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30BC[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class UDynamicMesh*                          Mesh;                                              // 0x100(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UDynamicMesh*                          MeshA;                                             // 0xE8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class UDynamicMesh*                          MeshB;                                             // 0xF0(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bCondition;                                        // 0xF8(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3444[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class UDynamicMesh*                          Mesh;                                              // 0x100(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC0 (0x1A8 - 0xE8)
@@ -1358,7 +1358,7 @@ struct FGetSchemaDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	class FString                                String;                                            // 0x198(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class FString                                String;                                            // 0x198(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xE8 (0x1D0 - 0xE8)
@@ -1367,13 +1367,13 @@ struct FRemoveOnBreakDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bEnabledRemoval;                                   // 0x1B8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30BE[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector2f                             PostBreakTimer;                                    // 0x1BC(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	struct FVector2f                             RemovalTimer;                                      // 0x1C4(0x8)(EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bClusterCrumbling;                                 // 0x1CC(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30BF[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bEnabledRemoval;                                   // 0x1B8(0x1)(BlueprintVisible, ExportObject, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3448[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector2f                             PostBreakTimer;                                    // 0x1BC(0x8)(BlueprintVisible, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector2f                             RemovalTimer;                                      // 0x1C4(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bClusterCrumbling;                                 // 0x1CC(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_344A[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xD8 (0x1C0 - 0xE8)
@@ -1381,11 +1381,11 @@ public:
 struct FSetAnchorStateDataflowNode : public FDataflowNode
 {
 public:
-	enum class EAnchorStateEnum                  AnchorState;                                       // 0xE8(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bSetNotSelectedBonesToOppositeState;               // 0xE9(0x1)(ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30C0[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	enum class EAnchorStateEnum                  AnchorState;                                       // 0xE8(0x1)(ExportObject, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bSetNotSelectedBonesToOppositeState;               // 0xE9(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_344B[0x6];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FManagedArrayCollection               Collection;                                        // 0xF0(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A0(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A0(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xC0 (0x1A8 - 0xE8)
@@ -1393,12 +1393,12 @@ public:
 struct FProximityDataflowNode : public FDataflowNode
 {
 public:
-	enum class EProximityMethodEnum              ProximityMethod;                                   // 0xE8(0x1)(Edit, ConstParm, BlueprintVisible, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30C1[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	enum class EProximityMethodEnum              ProximityMethod;                                   // 0xE8(0x1)(BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_344C[0x3];                                     // Fixing Size After Last Property  > TateDumper <
 	float                                        DistanceThreshold;                                 // 0xEC(0x4)(Edit, BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	float                                        ContactThreshold;                                  // 0xF0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bUseAsConnectionGraph;                             // 0xF4(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30C3[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        ContactThreshold;                                  // 0xF0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bUseAsConnectionGraph;                             // 0xF4(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_344D[0x3];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FManagedArrayCollection               Collection;                                        // 0xF8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
 };
 
@@ -1408,7 +1408,7 @@ struct FCollectionSetPivotDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	uint8                                        Pad_30C4[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_344E[0x8];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FTransform                            Transform;                                         // 0x1A0(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
 };
 
@@ -1418,13 +1418,13 @@ struct FAddCustomCollectionAttributeDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	enum class EStandardGroupNameEnum            GroupName;                                         // 0x198(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30C5[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                CustomGroupName;                                   // 0x1A0(0x10)(Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	class FString                                AttrName;                                          // 0x1B0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ECustomAttributeTypeEnum          CustomAttributeType;                               // 0x1C0(0x1)(BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30C6[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        NumElements;                                       // 0x1C4(0x4)(ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EStandardGroupNameEnum            GroupName;                                         // 0x198(0x1)(ConstParm, ExportObject, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_344F[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                CustomGroupName;                                   // 0x1A0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                AttrName;                                          // 0x1B0(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ECustomAttributeTypeEnum          CustomAttributeType;                               // 0x1C0(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3450[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        NumElements;                                       // 0x1C4(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xD0 (0x1B8 - 0xE8)
@@ -1433,11 +1433,11 @@ struct FGetNumElementsInCollectionGroupDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	enum class EStandardGroupNameEnum            GroupName;                                         // 0x198(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30C7[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                CustomGroupName;                                   // 0x1A0(0x10)(Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        NumElements;                                       // 0x1B0(0x4)(ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30C8[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EStandardGroupNameEnum            GroupName;                                         // 0x198(0x1)(ConstParm, ExportObject, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3451[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                CustomGroupName;                                   // 0x1A0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        NumElements;                                       // 0x1B0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3452[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x148 (0x230 - 0xE8)
@@ -1446,17 +1446,17 @@ struct FGetCollectionAttributeDataTypedDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	enum class EStandardGroupNameEnum            GroupName;                                         // 0x198(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30C9[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                CustomGroupName;                                   // 0x1A0(0x10)(Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	class FString                                AttrName;                                          // 0x1B0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<bool>                                 BoolAttributeData;                                 // 0x1C0(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<float>                                FloatAttributeData;                                // 0x1D0(0x10)(Edit, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<double>                               DoubleAttributeData;                               // 0x1E0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                Int32AttributeData;                                // 0x1F0(0x10)(BlueprintVisible, ExportObject, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<class FString>                        StringAttributeData;                               // 0x200(0x10)(Edit, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FVector3f>                     Vector3fAttributeData;                             // 0x210(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FVector3d>                     Vector3dAttributeData;                             // 0x220(0x10)(Edit, ExportObject, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EStandardGroupNameEnum            GroupName;                                         // 0x198(0x1)(ConstParm, ExportObject, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3453[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                CustomGroupName;                                   // 0x1A0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                AttrName;                                          // 0x1B0(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<bool>                                 BoolAttributeData;                                 // 0x1C0(0x10)(ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<float>                                FloatAttributeData;                                // 0x1D0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<double>                               DoubleAttributeData;                               // 0x1E0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                Int32AttributeData;                                // 0x1F0(0x10)(Edit, ExportObject, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class FString>                        StringAttributeData;                               // 0x200(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector3f>                     Vector3fAttributeData;                             // 0x210(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector3d>                     Vector3dAttributeData;                             // 0x220(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x148 (0x230 - 0xE8)
@@ -1465,17 +1465,17 @@ struct FSetCollectionAttributeDataTypedDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	enum class EStandardGroupNameEnum            GroupName;                                         // 0x198(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30CA[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                CustomGroupName;                                   // 0x1A0(0x10)(Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	class FString                                AttrName;                                          // 0x1B0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<bool>                                 BoolAttributeData;                                 // 0x1C0(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<float>                                FloatAttributeData;                                // 0x1D0(0x10)(Edit, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<double>                               DoubleAttributeData;                               // 0x1E0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                Int32AttributeData;                                // 0x1F0(0x10)(BlueprintVisible, ExportObject, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<class FString>                        StringAttributeData;                               // 0x200(0x10)(Edit, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FVector3f>                     Vector3fAttributeData;                             // 0x210(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FVector3d>                     Vector3dAttributeData;                             // 0x220(0x10)(Edit, ExportObject, Net, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EStandardGroupNameEnum            GroupName;                                         // 0x198(0x1)(ConstParm, ExportObject, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3455[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                CustomGroupName;                                   // 0x1A0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                AttrName;                                          // 0x1B0(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<bool>                                 BoolAttributeData;                                 // 0x1C0(0x10)(ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<float>                                FloatAttributeData;                                // 0x1D0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<double>                               DoubleAttributeData;                               // 0x1E0(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                Int32AttributeData;                                // 0x1F0(0x10)(Edit, ExportObject, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<class FString>                        StringAttributeData;                               // 0x200(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector3f>                     Vector3fAttributeData;                             // 0x210(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector3d>                     Vector3dAttributeData;                             // 0x220(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x30 (0x118 - 0xE8)
@@ -1483,8 +1483,8 @@ public:
 struct FBoolArrayToFaceSelectionDataflowNode : public FDataflowNode
 {
 public:
-	TArray<bool>                                 BoolAttributeData;                                 // 0xE8(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowFaceSelection                FaceSelection;                                     // 0xF8(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<bool>                                 BoolAttributeData;                                 // 0xE8(0x10)(ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowFaceSelection                FaceSelection;                                     // 0xF8(0x20)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x38 (0x120 - 0xE8)
@@ -1492,11 +1492,11 @@ public:
 struct FFloatArrayToVertexSelectionDataflowNode : public FDataflowNode
 {
 public:
-	TArray<float>                                FloatArray;                                        // 0xE8(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ECompareOperationEnum             Operation;                                         // 0xF8(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_30CB[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        Threshold;                                         // 0xFC(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              VertexSelection;                                   // 0x100(0x20)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<float>                                FloatArray;                                        // 0xE8(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ECompareOperationEnum             Operation;                                         // 0xF8(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_3457[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Threshold;                                         // 0xFC(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              VertexSelection;                                   // 0x100(0x20)(ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xF0 (0x1D8 - 0xE8)
@@ -1505,9 +1505,9 @@ struct FSetVertexColorInCollectionFromVertexSelectionDataflowNode : public FData
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowVertexSelection              VertexSelection;                                   // 0x198(0x20)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              VertexSelection;                                   // 0x198(0x20)(ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 	struct FLinearColor                          SelectedColor;                                     // 0x1B8(0x10)(ExportObject, OutParm, ReturnParm, Config, DisableEditOnInstance)
-	struct FLinearColor                          NonSelectedColor;                                  // 0x1C8(0x10)(BlueprintVisible, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FLinearColor                          NonSelectedColor;                                  // 0x1C8(0x10)(Edit, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x30 (0x118 - 0xE8)
@@ -1515,8 +1515,8 @@ public:
 struct FSelectionToVertexListDataflowNode : public FDataflowNode
 {
 public:
-	struct FDataflowVertexSelection              VertexSelection;                                   // 0xE8(0x20)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                VertexList;                                        // 0x108(0x10)(Edit, BlueprintVisible, ExportObject, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              VertexSelection;                                   // 0xE8(0x20)(ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                VertexList;                                        // 0x108(0x10)(ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xA8 (0x190 - 0xE8)
@@ -1524,10 +1524,10 @@ public:
 struct FMakeTransformDataflowNode : public FDataflowNode
 {
 public:
-	struct FVector                               InTranslation;                                     // 0xE8(0x18)(EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	struct FVector                               InRotation;                                        // 0x100(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FVector                               InScale;                                           // 0x118(0x18)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FTransform                            OutTransform;                                      // 0x130(0x60)(Edit, ConstParm, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector                               InTranslation;                                     // 0xE8(0x18)(Edit, ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+	struct FVector                               InRotation;                                        // 0x100(0x18)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector                               InScale;                                           // 0x118(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FTransform                            OutTransform;                                      // 0x130(0x60)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xC8 (0x1B0 - 0xE8)
@@ -1536,9 +1536,9 @@ struct FSetVertexColorInCollectionFromFloatArrayDataflowNode : public FDataflowN
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	TArray<float>                                FloatArray;                                        // 0x198(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<float>                                FloatArray;                                        // 0x198(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	float                                        Scale;                                             // 0x1A8(0x4)(Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
-	uint8                                        Pad_30CC[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_3458[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x48 (0x130 - 0xE8)
@@ -1546,11 +1546,11 @@ public:
 struct FFloatArrayNormalizeDataflowNode : public FDataflowNode
 {
 public:
-	TArray<float>                                InFloatArray;                                      // 0xE8(0x10)(Edit, BlueprintVisible, ExportObject, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              Selection;                                         // 0xF8(0x20)(ConstParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	float                                        MinRange;                                          // 0x118(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        MaxRange;                                          // 0x11C(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<float>                                OutFloatArray;                                     // 0x120(0x10)(Edit, BlueprintVisible, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<float>                                InFloatArray;                                      // 0xE8(0x10)(ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              Selection;                                         // 0xF8(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	float                                        MinRange;                                          // 0x118(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        MaxRange;                                          // 0x11C(0x4)(Edit, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<float>                                OutFloatArray;                                     // 0x120(0x10)(ConstParm, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x48 (0x130 - 0xE8)
@@ -1558,11 +1558,11 @@ public:
 struct FVectorArrayNormalizeDataflowNode : public FDataflowNode
 {
 public:
-	TArray<struct FVector>                       InVectorArray;                                     // 0xE8(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              Selection;                                         // 0xF8(0x20)(ConstParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	float                                        Magnitude;                                         // 0x118(0x4)(ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_30CD[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FVector>                       OutVectorArray;                                    // 0x120(0x10)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector>                       InVectorArray;                                     // 0xE8(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              Selection;                                         // 0xF8(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	float                                        Magnitude;                                         // 0x118(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_345A[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FVector>                       OutVectorArray;                                    // 0x120(0x10)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x128 (0x210 - 0xE8)
@@ -1570,10 +1570,10 @@ public:
 struct FMultiplyTransformDataflowNode : public FDataflowNode
 {
 public:
-	uint8                                        Pad_30CE[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            InLeftTransform;                                   // 0xF0(0x60)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FTransform                            InRightTransform;                                  // 0x150(0x60)(BlueprintVisible, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FTransform                            OutTransform;                                      // 0x1B0(0x60)(Edit, ConstParm, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_345B[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            InLeftTransform;                                   // 0xF0(0x60)(ConstParm, ExportObject, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FTransform                            InRightTransform;                                  // 0x150(0x60)(Edit, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FTransform                            OutTransform;                                      // 0x1B0(0x60)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xC8 (0x1B0 - 0xE8)
@@ -1581,9 +1581,9 @@ public:
 struct FInvertTransformDataflowNode : public FDataflowNode
 {
 public:
-	uint8                                        Pad_30CF[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            InTransform;                                       // 0xF0(0x60)(Edit, BlueprintVisible, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	struct FTransform                            OutTransform;                                      // 0x150(0x60)(Edit, ConstParm, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_345C[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            InTransform;                                       // 0xF0(0x60)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	struct FTransform                            OutTransform;                                      // 0x150(0x60)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x30 (0x118 - 0xE8)
@@ -1591,9 +1591,9 @@ public:
 struct FUnionIntArraysDataflowNode : public FDataflowNode
 {
 public:
-	TArray<int32>                                InArray1;                                          // 0xE8(0x10)(Net, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                InArray2;                                          // 0xF8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                OutArray;                                          // 0x108(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                InArray1;                                          // 0xE8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                InArray2;                                          // 0xF8(0x10)(ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                OutArray;                                          // 0x108(0x10)(Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x38 (0x120 - 0xE8)
@@ -1605,8 +1605,8 @@ public:
 	float                                        Y;                                                 // 0xEC(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config)
 	float                                        Z;                                                 // 0xF0(0x4)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config)
 	float                                        W;                                                 // 0xF4(0x4)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config)
-	uint8                                        Pad_30D1[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FQuat                                 Quaternion;                                        // 0x100(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+	uint8                                        Pad_345E[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FQuat                                 Quaternion;                                        // 0x100(0x20)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 };
 
 // 0xD0 (0x1B8 - 0xE8)
@@ -1615,7 +1615,7 @@ struct FCollectionTransformSelectionAllDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x68 (0x150 - 0xE8)
@@ -1623,11 +1623,11 @@ public:
 struct FCollectionTransformSelectionSetOperationDataflowNode : public FDataflowNode
 {
 public:
-	enum class ESetOperationEnum                 Operation;                                         // 0xE8(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_30D4[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FDataflowTransformSelection           TransformSelectionA;                               // 0xF0(0x20)(BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowTransformSelection           TransformSelectionB;                               // 0x110(0x20)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x130(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ESetOperationEnum                 Operation;                                         // 0xE8(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_345F[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FDataflowTransformSelection           TransformSelectionA;                               // 0xF0(0x20)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelectionB;                               // 0x110(0x20)(ConstParm, Net, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x130(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xE0 (0x1C8 - 0xE8)
@@ -1635,9 +1635,9 @@ public:
 struct FCollectionTransformSelectionInfoDataflowNode : public FDataflowNode
 {
 public:
-	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	struct FManagedArrayCollection               Collection;                                        // 0x108(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	class FString                                String;                                            // 0x1B8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class FString                                String;                                            // 0x1B8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xD0 (0x1B8 - 0xE8)
@@ -1646,7 +1646,7 @@ struct FCollectionTransformSelectionNoneDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x20 (0x108 - 0xE8)
@@ -1654,7 +1654,7 @@ public:
 struct FCollectionTransformSelectionInvertDataflowNode : public FDataflowNode
 {
 public:
-	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xE0 (0x1C8 - 0xE8)
@@ -1662,13 +1662,13 @@ public:
 struct FCollectionTransformSelectionRandomDataflowNode : public FDataflowNode
 {
 public:
-	bool                                         bDeterministic;                                    // 0xE8(0x1)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30D5[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        RandomSeed;                                        // 0xEC(0x4)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        RandomThreshold;                                   // 0xF0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30D6[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	bool                                         bDeterministic;                                    // 0xE8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3461[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        RandomSeed;                                        // 0xEC(0x4)(Edit, BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        RandomThreshold;                                   // 0xF0(0x4)(ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3462[0x4];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FManagedArrayCollection               Collection;                                        // 0xF8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xD0 (0x1B8 - 0xE8)
@@ -1677,7 +1677,7 @@ struct FCollectionTransformSelectionRootDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xE0 (0x1C8 - 0xE8)
@@ -1686,8 +1686,8 @@ struct FCollectionTransformSelectionCustomDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	class FString                                BoneIndicies;                                      // 0x198(0x10)(BlueprintVisible, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                BoneIndicies;                                      // 0x198(0x10)(Edit, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xD0 (0x1B8 - 0xE8)
@@ -1695,7 +1695,7 @@ public:
 struct FCollectionTransformSelectionParentDataflowNode : public FDataflowNode
 {
 public:
-	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	struct FManagedArrayCollection               Collection;                                        // 0x108(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
 };
 
@@ -1704,12 +1704,12 @@ public:
 struct FCollectionTransformSelectionByPercentageDataflowNode : public FDataflowNode
 {
 public:
-	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        Percentage;                                        // 0x108(0x4)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bDeterministic;                                    // 0x10C(0x1)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30D7[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        RandomSeed;                                        // 0x110(0x4)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_30D8[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        Percentage;                                        // 0x108(0x4)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	bool                                         bDeterministic;                                    // 0x10C(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3466[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        RandomSeed;                                        // 0x110(0x4)(Edit, BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_3467[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xD0 (0x1B8 - 0xE8)
@@ -1717,7 +1717,7 @@ public:
 struct FCollectionTransformSelectionChildrenDataflowNode : public FDataflowNode
 {
 public:
-	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	struct FManagedArrayCollection               Collection;                                        // 0x108(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
 };
 
@@ -1726,7 +1726,7 @@ public:
 struct FCollectionTransformSelectionSiblingsDataflowNode : public FDataflowNode
 {
 public:
-	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	struct FManagedArrayCollection               Collection;                                        // 0x108(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
 };
 
@@ -1735,7 +1735,7 @@ public:
 struct FCollectionTransformSelectionLevelDataflowNode : public FDataflowNode
 {
 public:
-	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	struct FManagedArrayCollection               Collection;                                        // 0x108(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
 };
 
@@ -1744,7 +1744,7 @@ public:
 struct FCollectionTransformSelectionContactDataflowNode : public FDataflowNode
 {
 public:
-	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0xE8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	struct FManagedArrayCollection               Collection;                                        // 0x108(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
 };
 
@@ -1754,7 +1754,7 @@ struct FCollectionTransformSelectionLeafDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xD0 (0x1B8 - 0xE8)
@@ -1763,7 +1763,7 @@ struct FCollectionTransformSelectionClusterDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xE0 (0x1C8 - 0xE8)
@@ -1772,12 +1772,12 @@ struct FCollectionTransformSelectionBySizeDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	float                                        SizeMin;                                           // 0x198(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        SizeMax;                                           // 0x19C(0x4)(ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ERangeSettingEnum                 RangeSetting;                                      // 0x1A0(0x1)(Edit, BlueprintReadOnly, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bInclusive;                                        // 0x1A1(0x1)(Edit, ConstParm, ExportObject, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30D9[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        SizeMin;                                           // 0x198(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        SizeMax;                                           // 0x19C(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ERangeSettingEnum                 RangeSetting;                                      // 0x1A0(0x1)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bInclusive;                                        // 0x1A1(0x1)(ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_346A[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xE0 (0x1C8 - 0xE8)
@@ -1786,12 +1786,12 @@ struct FCollectionTransformSelectionByVolumeDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	float                                        VolumeMin;                                         // 0x198(0x4)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	float                                        VolumeMax;                                         // 0x19C(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	enum class ERangeSettingEnum                 RangeSetting;                                      // 0x1A0(0x1)(Edit, BlueprintReadOnly, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bInclusive;                                        // 0x1A1(0x1)(Edit, ConstParm, ExportObject, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30DA[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        VolumeMin;                                         // 0x198(0x4)(ConstParm, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	float                                        VolumeMax;                                         // 0x19C(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	enum class ERangeSettingEnum                 RangeSetting;                                      // 0x1A0(0x1)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bInclusive;                                        // 0x1A1(0x1)(ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_346E[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x1A8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x178 (0x260 - 0xE8)
@@ -1803,10 +1803,10 @@ public:
 	struct FBox                                  Box;                                               // 0x198(0x38)(Edit, ConstParm, ExportObject, OutParm)
 	struct FTransform                            Transform;                                         // 0x1D0(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
 	enum class ESelectSubjectTypeEnum            Type;                                              // 0x230(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	bool                                         bAllVerticesMustContainedInBox;                    // 0x231(0x1)(ConstParm, Net, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30DB[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x238(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30DC[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bAllVerticesMustContainedInBox;                    // 0x231(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3470[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x238(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3471[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x168 (0x250 - 0xE8)
@@ -1816,13 +1816,13 @@ struct FCollectionTransformSelectionInSphereDataflowNode : public FDataflowNode
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
 	struct FSphere                               Sphere;                                            // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, OutParm)
-	uint8                                        Pad_30DD[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_3472[0x8];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FTransform                            Transform;                                         // 0x1C0(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
 	enum class ESelectSubjectTypeEnum            Type;                                              // 0x220(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	bool                                         bAllVerticesMustContainedInSphere;                 // 0x221(0x1)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30DE[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x228(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30DF[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bAllVerticesMustContainedInSphere;                 // 0x221(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3474[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x228(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3475[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x100 (0x1E8 - 0xE8)
@@ -1831,14 +1831,14 @@ struct FCollectionTransformSelectionByFloatAttrDataflowNode : public FDataflowNo
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	class FString                                GroupName;                                         // 0x198(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	class FString                                AttrName;                                          // 0x1A8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                GroupName;                                         // 0x198(0x10)(ConstParm, ExportObject, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	class FString                                AttrName;                                          // 0x1A8(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 	float                                        Min;                                               // 0x1B8(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	float                                        Max;                                               // 0x1BC(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
-	enum class ERangeSettingEnum                 RangeSetting;                                      // 0x1C0(0x1)(Edit, BlueprintReadOnly, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bInclusive;                                        // 0x1C1(0x1)(Edit, ConstParm, ExportObject, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30E0[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x1C8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ERangeSettingEnum                 RangeSetting;                                      // 0x1C0(0x1)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bInclusive;                                        // 0x1C1(0x1)(ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_3478[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x1C8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x100 (0x1E8 - 0xE8)
@@ -1847,14 +1847,14 @@ struct FCollectionTransformSelectionByIntAttrDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	class FString                                GroupName;                                         // 0x198(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	class FString                                AttrName;                                          // 0x1A8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                GroupName;                                         // 0x198(0x10)(ConstParm, ExportObject, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	class FString                                AttrName;                                          // 0x1A8(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 	int32                                        Min;                                               // 0x1B8(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
 	int32                                        Max;                                               // 0x1BC(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config)
-	enum class ERangeSettingEnum                 RangeSetting;                                      // 0x1C0(0x1)(Edit, BlueprintReadOnly, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bInclusive;                                        // 0x1C1(0x1)(Edit, ConstParm, ExportObject, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30E1[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x1C8(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ERangeSettingEnum                 RangeSetting;                                      // 0x1C0(0x1)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bInclusive;                                        // 0x1C1(0x1)(ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_347A[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x1C8(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xE0 (0x1C8 - 0xE8)
@@ -1863,8 +1863,8 @@ struct FCollectionVertexSelectionCustomDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	class FString                                VertexIndicies;                                    // 0x198(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              VertexSelection;                                   // 0x1A8(0x20)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                VertexIndicies;                                    // 0x198(0x10)(Edit, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              VertexSelection;                                   // 0x1A8(0x20)(ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xE0 (0x1C8 - 0xE8)
@@ -1873,8 +1873,8 @@ struct FCollectionFaceSelectionCustomDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	class FString                                FaceIndicies;                                      // 0x198(0x10)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowFaceSelection                FaceSelection;                                     // 0x1A8(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	class FString                                FaceIndicies;                                      // 0x198(0x10)(Edit, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowFaceSelection                FaceSelection;                                     // 0x1A8(0x20)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x118 (0x200 - 0xE8)
@@ -1883,11 +1883,11 @@ struct FCollectionSelectionConvertDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowFaceSelection                FaceSelection;                                     // 0x1B8(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              VertexSelection;                                   // 0x1D8(0x20)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bAllElementsMustBeSelected;                        // 0x1F8(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30E3[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	struct FDataflowTransformSelection           TransformSelection;                                // 0x198(0x20)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowFaceSelection                FaceSelection;                                     // 0x1B8(0x20)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              VertexSelection;                                   // 0x1D8(0x20)(ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bAllElementsMustBeSelected;                        // 0x1F8(0x1)(BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_347C[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x108 - 0xE8)
@@ -1895,7 +1895,7 @@ public:
 struct FCollectionFaceSelectionInvertDataflowNode : public FDataflowNode
 {
 public:
-	struct FDataflowFaceSelection                FaceSelection;                                     // 0xE8(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowFaceSelection                FaceSelection;                                     // 0xE8(0x20)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x30 (0x118 - 0xE8)
@@ -1903,12 +1903,12 @@ public:
 struct FCollectionVertexSelectionByPercentageDataflowNode : public FDataflowNode
 {
 public:
-	struct FDataflowVertexSelection              VertexSelection;                                   // 0xE8(0x20)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        Percentage;                                        // 0x108(0x4)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bDeterministic;                                    // 0x10C(0x1)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_30E4[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        RandomSeed;                                        // 0x110(0x4)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_30E5[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	struct FDataflowVertexSelection              VertexSelection;                                   // 0xE8(0x20)(ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        Percentage;                                        // 0x108(0x4)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	bool                                         bDeterministic;                                    // 0x10C(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_347F[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        RandomSeed;                                        // 0x110(0x4)(Edit, BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_3480[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x68 (0x150 - 0xE8)
@@ -1916,11 +1916,11 @@ public:
 struct FCollectionVertexSelectionSetOperationDataflowNode : public FDataflowNode
 {
 public:
-	enum class ESetOperationEnum                 Operation;                                         // 0xE8(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_30E6[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FDataflowVertexSelection              VertexSelectionA;                                  // 0xF0(0x20)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              VertexSelectionB;                                  // 0x110(0x20)(Edit, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FDataflowVertexSelection              VertexSelection;                                   // 0x130(0x20)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ESetOperationEnum                 Operation;                                         // 0xE8(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_3481[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FDataflowVertexSelection              VertexSelectionA;                                  // 0xF0(0x20)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              VertexSelectionB;                                  // 0x110(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FDataflowVertexSelection              VertexSelection;                                   // 0x130(0x20)(ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x198 (0x280 - 0xE8)
@@ -1929,11 +1929,11 @@ struct FTransformCollectionAttributeDataflowNode : public FDataflowNode
 {
 public:
 	struct FManagedArrayCollection               Collection;                                        // 0xE8(0xB0)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	uint8                                        Pad_30E7[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FTransform                            TransformIn;                                       // 0x1A0(0x60)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FTransform                            LocalTransform;                                    // 0x200(0x60)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	class FString                                GroupName;                                         // 0x260(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	class FString                                AttributeName;                                     // 0x270(0x10)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_3483[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FTransform                            TransformIn;                                       // 0x1A0(0x60)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FTransform                            LocalTransform;                                    // 0x200(0x60)(Edit, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, EditConst, SubobjectReference)
+	class FString                                GroupName;                                         // 0x260(0x10)(ConstParm, ExportObject, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	class FString                                AttributeName;                                     // 0x270(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

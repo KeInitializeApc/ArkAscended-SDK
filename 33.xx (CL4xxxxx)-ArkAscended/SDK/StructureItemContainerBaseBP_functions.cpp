@@ -43,9 +43,9 @@ class AStructureItemContainerBaseBP_C* AStructureItemContainerBaseBP_C::GetDefau
 // Function StructureItemContainerBaseBP.StructureItemContainerBaseBP_C.BPOnTransferAll
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UPrimalInventoryComponent*   ToInventory                                                      (BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UPrimalInventoryComponent*   ToInventory                                                      (ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-class UPrimalInventoryComponent* AStructureItemContainerBaseBP_C::BPOnTransferAll()
+void AStructureItemContainerBaseBP_C::BPOnTransferAll(class UPrimalInventoryComponent** ToInventory)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,7 +57,8 @@ class UPrimalInventoryComponent* AStructureItemContainerBaseBP_C::BPOnTransferAl
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (ToInventory != nullptr)
+		*ToInventory = Parms.ToInventory;
 
 }
 

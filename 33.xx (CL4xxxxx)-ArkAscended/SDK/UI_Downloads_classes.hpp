@@ -14,8 +14,8 @@ namespace SDK
 class UUI_Downloads_C : public UPrimalUserWidget
 {
 public:
-	class UImage*                                IMG_Overlay;                                       // 0x330(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UTextBlock*                            TEXT_NumOfDownloads;                               // 0x338(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UImage*                                IMG_Overlay;                                       // 0x330(0x8)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class UTextBlock*                            TEXT_NumOfDownloads;                               // 0x338(0x8)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UUI_Downloads_C* GetDefaultObj();

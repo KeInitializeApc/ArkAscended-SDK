@@ -183,12 +183,12 @@ class UTimeManagementBlueprintLibrary* UTimeManagementBlueprintLibrary::GetDefau
 // Function TimeManagement.TimeManagementBlueprintLibrary.TransformTime
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FFrameTime                  SourceTime                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FFrameRate                  SourceRate                                                       (ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FFrameRate                  DestinationRate                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FFrameTime                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameTime                  SourceTime                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// struct FFrameRate                  SourceRate                                                       (Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FFrameRate                  DestinationRate                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FFrameTime                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FFrameTime UTimeManagementBlueprintLibrary::TransformTime()
+struct FFrameRate UTimeManagementBlueprintLibrary::TransformTime(struct FFrameTime* SourceTime, const struct FFrameTime& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -197,6 +197,7 @@ struct FFrameTime UTimeManagementBlueprintLibrary::TransformTime()
 
 	Params::UTimeManagementBlueprintLibrary_TransformTime_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -205,6 +206,9 @@ struct FFrameTime UTimeManagementBlueprintLibrary::TransformTime()
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (SourceTime != nullptr)
+		*SourceTime = std::move(Parms.SourceTime);
 
 	return Parms.ReturnValue;
 
@@ -216,9 +220,9 @@ struct FFrameTime UTimeManagementBlueprintLibrary::TransformTime()
 // Parameters:
 // struct FFrameNumber                A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
 // int32                              B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// struct FFrameNumber                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameNumber                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FFrameNumber UTimeManagementBlueprintLibrary::Subtract_FrameNumberInteger()
+int32 UTimeManagementBlueprintLibrary::Subtract_FrameNumberInteger(const struct FFrameNumber& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -227,6 +231,7 @@ struct FFrameNumber UTimeManagementBlueprintLibrary::Subtract_FrameNumberInteger
 
 	Params::UTimeManagementBlueprintLibrary_Subtract_FrameNumberInteger_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -246,9 +251,9 @@ struct FFrameNumber UTimeManagementBlueprintLibrary::Subtract_FrameNumberInteger
 // Parameters:
 // struct FFrameNumber                A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
 // struct FFrameNumber                B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// struct FFrameNumber                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameNumber                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FFrameNumber UTimeManagementBlueprintLibrary::Subtract_FrameNumberFrameNumber()
+struct FFrameNumber UTimeManagementBlueprintLibrary::Subtract_FrameNumberFrameNumber(const struct FFrameNumber& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -257,6 +262,7 @@ struct FFrameNumber UTimeManagementBlueprintLibrary::Subtract_FrameNumberFrameNu
 
 	Params::UTimeManagementBlueprintLibrary_Subtract_FrameNumberFrameNumber_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -274,12 +280,12 @@ struct FFrameNumber UTimeManagementBlueprintLibrary::Subtract_FrameNumberFrameNu
 // Function TimeManagement.TimeManagementBlueprintLibrary.SnapFrameTimeToRate
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FFrameTime                  SourceTime                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FFrameRate                  SourceRate                                                       (ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FFrameRate                  SnapToRate                                                       (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FFrameTime                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameTime                  SourceTime                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// struct FFrameRate                  SourceRate                                                       (Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FFrameRate                  SnapToRate                                                       (Edit, ConstParm, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FFrameTime                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FFrameTime UTimeManagementBlueprintLibrary::SnapFrameTimeToRate()
+struct FFrameRate UTimeManagementBlueprintLibrary::SnapFrameTimeToRate(struct FFrameTime* SourceTime, const struct FFrameTime& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -288,6 +294,7 @@ struct FFrameTime UTimeManagementBlueprintLibrary::SnapFrameTimeToRate()
 
 	Params::UTimeManagementBlueprintLibrary_SnapFrameTimeToRate_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -297,6 +304,9 @@ struct FFrameTime UTimeManagementBlueprintLibrary::SnapFrameTimeToRate()
 
 	Func->FunctionFlags = Flgs;
 
+	if (SourceTime != nullptr)
+		*SourceTime = std::move(Parms.SourceTime);
+
 	return Parms.ReturnValue;
 
 }
@@ -305,11 +315,11 @@ struct FFrameTime UTimeManagementBlueprintLibrary::SnapFrameTimeToRate()
 // Function TimeManagement.TimeManagementBlueprintLibrary.Multiply_SecondsFrameRate
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              TimeInSeconds                                                    (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              TimeInSeconds                                                    (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 // struct FFrameRate                  FrameRate                                                        (ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm)
-// struct FFrameTime                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameTime                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FFrameTime UTimeManagementBlueprintLibrary::Multiply_SecondsFrameRate(float TimeInSeconds)
+struct FFrameRate UTimeManagementBlueprintLibrary::Multiply_SecondsFrameRate(const struct FFrameTime& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -318,7 +328,7 @@ struct FFrameTime UTimeManagementBlueprintLibrary::Multiply_SecondsFrameRate(flo
 
 	Params::UTimeManagementBlueprintLibrary_Multiply_SecondsFrameRate_Params Parms{};
 
-	Parms.TimeInSeconds = TimeInSeconds;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -338,9 +348,9 @@ struct FFrameTime UTimeManagementBlueprintLibrary::Multiply_SecondsFrameRate(flo
 // Parameters:
 // struct FFrameNumber                A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
 // int32                              B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// struct FFrameNumber                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameNumber                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FFrameNumber UTimeManagementBlueprintLibrary::Multiply_FrameNumberInteger()
+int32 UTimeManagementBlueprintLibrary::Multiply_FrameNumberInteger(const struct FFrameNumber& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -349,6 +359,7 @@ struct FFrameNumber UTimeManagementBlueprintLibrary::Multiply_FrameNumberInteger
 
 	Params::UTimeManagementBlueprintLibrary_Multiply_FrameNumberInteger_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -366,11 +377,11 @@ struct FFrameNumber UTimeManagementBlueprintLibrary::Multiply_FrameNumberInteger
 // Function TimeManagement.TimeManagementBlueprintLibrary.IsValid_MultipleOf
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FFrameRate                  InFrameRate                                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FFrameRate                  OtherFramerate                                                   (ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameRate                  InFrameRate                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FFrameRate                  OtherFramerate                                                   (Edit, ConstParm, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTimeManagementBlueprintLibrary::IsValid_MultipleOf()
+struct FFrameRate UTimeManagementBlueprintLibrary::IsValid_MultipleOf(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -379,6 +390,7 @@ bool UTimeManagementBlueprintLibrary::IsValid_MultipleOf()
 
 	Params::UTimeManagementBlueprintLibrary_IsValid_MultipleOf_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -396,10 +408,10 @@ bool UTimeManagementBlueprintLibrary::IsValid_MultipleOf()
 // Function TimeManagement.TimeManagementBlueprintLibrary.IsValid_Framerate
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FFrameRate                  InFrameRate                                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameRate                  InFrameRate                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTimeManagementBlueprintLibrary::IsValid_Framerate()
+struct FFrameRate UTimeManagementBlueprintLibrary::IsValid_Framerate(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -408,6 +420,7 @@ bool UTimeManagementBlueprintLibrary::IsValid_Framerate()
 
 	Params::UTimeManagementBlueprintLibrary_IsValid_Framerate_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -425,9 +438,9 @@ bool UTimeManagementBlueprintLibrary::IsValid_Framerate()
 // Function TimeManagement.TimeManagementBlueprintLibrary.GetTimecodeFrameRate
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FFrameRate                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameRate                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FFrameRate UTimeManagementBlueprintLibrary::GetTimecodeFrameRate()
+void UTimeManagementBlueprintLibrary::GetTimecodeFrameRate(const struct FFrameRate& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -436,6 +449,7 @@ struct FFrameRate UTimeManagementBlueprintLibrary::GetTimecodeFrameRate()
 
 	Params::UTimeManagementBlueprintLibrary_GetTimecodeFrameRate_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -445,17 +459,15 @@ struct FFrameRate UTimeManagementBlueprintLibrary::GetTimecodeFrameRate()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TimeManagement.TimeManagementBlueprintLibrary.GetTimecode
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FTimecode                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTimecode                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTimecode UTimeManagementBlueprintLibrary::GetTimecode()
+void UTimeManagementBlueprintLibrary::GetTimecode(const struct FTimecode& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -464,6 +476,7 @@ struct FTimecode UTimeManagementBlueprintLibrary::GetTimecode()
 
 	Params::UTimeManagementBlueprintLibrary_GetTimecode_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -472,8 +485,6 @@ struct FTimecode UTimeManagementBlueprintLibrary::GetTimecode()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -483,9 +494,9 @@ struct FTimecode UTimeManagementBlueprintLibrary::GetTimecode()
 // Parameters:
 // struct FFrameNumber                A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
 // int32                              B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// struct FFrameNumber                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameNumber                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FFrameNumber UTimeManagementBlueprintLibrary::Divide_FrameNumberInteger()
+int32 UTimeManagementBlueprintLibrary::Divide_FrameNumberInteger(const struct FFrameNumber& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -494,6 +505,7 @@ struct FFrameNumber UTimeManagementBlueprintLibrary::Divide_FrameNumberInteger()
 
 	Params::UTimeManagementBlueprintLibrary_Divide_FrameNumberInteger_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -511,11 +523,11 @@ struct FFrameNumber UTimeManagementBlueprintLibrary::Divide_FrameNumberInteger()
 // Function TimeManagement.TimeManagementBlueprintLibrary.Conv_TimecodeToString
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FTimecode                   InTimecode                                                       (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bForceSignDisplay                                                (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTimecode                   InTimecode                                                       (Edit, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bForceSignDisplay                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UTimeManagementBlueprintLibrary::Conv_TimecodeToString()
+bool UTimeManagementBlueprintLibrary::Conv_TimecodeToString(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -524,6 +536,7 @@ class FString UTimeManagementBlueprintLibrary::Conv_TimecodeToString()
 
 	Params::UTimeManagementBlueprintLibrary_Conv_TimecodeToString_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -541,10 +554,10 @@ class FString UTimeManagementBlueprintLibrary::Conv_TimecodeToString()
 // Function TimeManagement.TimeManagementBlueprintLibrary.Conv_QualifiedFrameTimeToSeconds
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FQualifiedFrameTime         InFrameTime                                                      (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FQualifiedFrameTime         InFrameTime                                                      (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UTimeManagementBlueprintLibrary::Conv_QualifiedFrameTimeToSeconds()
+struct FQualifiedFrameTime UTimeManagementBlueprintLibrary::Conv_QualifiedFrameTimeToSeconds(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -553,6 +566,7 @@ float UTimeManagementBlueprintLibrary::Conv_QualifiedFrameTimeToSeconds()
 
 	Params::UTimeManagementBlueprintLibrary_Conv_QualifiedFrameTimeToSeconds_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -570,10 +584,10 @@ float UTimeManagementBlueprintLibrary::Conv_QualifiedFrameTimeToSeconds()
 // Function TimeManagement.TimeManagementBlueprintLibrary.Conv_FrameRateToSeconds
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FFrameRate                  InFrameRate                                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameRate                  InFrameRate                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UTimeManagementBlueprintLibrary::Conv_FrameRateToSeconds()
+struct FFrameRate UTimeManagementBlueprintLibrary::Conv_FrameRateToSeconds(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -582,6 +596,7 @@ float UTimeManagementBlueprintLibrary::Conv_FrameRateToSeconds()
 
 	Params::UTimeManagementBlueprintLibrary_Conv_FrameRateToSeconds_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -599,10 +614,10 @@ float UTimeManagementBlueprintLibrary::Conv_FrameRateToSeconds()
 // Function TimeManagement.TimeManagementBlueprintLibrary.Conv_FrameNumberToInteger
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FFrameNumber                InFrameNumber                                                    (Edit, ConstParm, ExportObject, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameNumber                InFrameNumber                                                    (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UTimeManagementBlueprintLibrary::Conv_FrameNumberToInteger(const struct FFrameNumber& InFrameNumber)
+void UTimeManagementBlueprintLibrary::Conv_FrameNumberToInteger(struct FFrameNumber* InFrameNumber, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -611,7 +626,7 @@ int32 UTimeManagementBlueprintLibrary::Conv_FrameNumberToInteger(const struct FF
 
 	Params::UTimeManagementBlueprintLibrary_Conv_FrameNumberToInteger_Params Parms{};
 
-	Parms.InFrameNumber = InFrameNumber;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -621,7 +636,8 @@ int32 UTimeManagementBlueprintLibrary::Conv_FrameNumberToInteger(const struct FF
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InFrameNumber != nullptr)
+		*InFrameNumber = std::move(Parms.InFrameNumber);
 
 }
 
@@ -631,9 +647,9 @@ int32 UTimeManagementBlueprintLibrary::Conv_FrameNumberToInteger(const struct FF
 // Parameters:
 // struct FFrameNumber                A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
 // int32                              B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// struct FFrameNumber                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameNumber                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FFrameNumber UTimeManagementBlueprintLibrary::Add_FrameNumberInteger()
+int32 UTimeManagementBlueprintLibrary::Add_FrameNumberInteger(const struct FFrameNumber& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -642,6 +658,7 @@ struct FFrameNumber UTimeManagementBlueprintLibrary::Add_FrameNumberInteger()
 
 	Params::UTimeManagementBlueprintLibrary_Add_FrameNumberInteger_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -661,9 +678,9 @@ struct FFrameNumber UTimeManagementBlueprintLibrary::Add_FrameNumberInteger()
 // Parameters:
 // struct FFrameNumber                A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
 // struct FFrameNumber                B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// struct FFrameNumber                ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FFrameNumber                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FFrameNumber UTimeManagementBlueprintLibrary::Add_FrameNumberFrameNumber()
+struct FFrameNumber UTimeManagementBlueprintLibrary::Add_FrameNumberFrameNumber(const struct FFrameNumber& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -672,6 +689,7 @@ struct FFrameNumber UTimeManagementBlueprintLibrary::Add_FrameNumberFrameNumber(
 
 	Params::UTimeManagementBlueprintLibrary_Add_FrameNumberFrameNumber_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;

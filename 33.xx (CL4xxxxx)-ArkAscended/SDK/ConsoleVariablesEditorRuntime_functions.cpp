@@ -43,9 +43,9 @@ class UConsoleVariablesAsset* UConsoleVariablesAsset::GetDefaultObj()
 // Function ConsoleVariablesEditorRuntime.ConsoleVariablesAsset.SetVariableCollectionDescription
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InVariableCollectionDescription                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class FString                      InVariableCollectionDescription                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, EditConst, InstancedReference, SubobjectReference)
 
-class FString UConsoleVariablesAsset::SetVariableCollectionDescription()
+void UConsoleVariablesAsset::SetVariableCollectionDescription(class FString* InVariableCollectionDescription)
 {
 	static class UFunction* Func = nullptr;
 
@@ -63,7 +63,8 @@ class FString UConsoleVariablesAsset::SetVariableCollectionDescription()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InVariableCollectionDescription != nullptr)
+		*InVariableCollectionDescription = std::move(Parms.InVariableCollectionDescription);
 
 }
 
@@ -71,9 +72,9 @@ class FString UConsoleVariablesAsset::SetVariableCollectionDescription()
 // Function ConsoleVariablesEditorRuntime.ConsoleVariablesAsset.ReplaceSavedCommands
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FConsoleVariablesEditorAssetSaveData>Replacement                                                      (Edit, ConstParm, EditFixedSize, Parm, OutParm, Transient, InstancedReference, SubobjectReference)
+// TArray<struct FConsoleVariablesEditorAssetSaveData>Replacement                                                      (Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
 
-void UConsoleVariablesAsset::ReplaceSavedCommands(TArray<struct FConsoleVariablesEditorAssetSaveData>* Replacement)
+TArray<struct FConsoleVariablesEditorAssetSaveData> UConsoleVariablesAsset::ReplaceSavedCommands()
 {
 	static class UFunction* Func = nullptr;
 
@@ -91,8 +92,7 @@ void UConsoleVariablesAsset::ReplaceSavedCommands(TArray<struct FConsoleVariable
 
 	Func->FunctionFlags = Flgs;
 
-	if (Replacement != nullptr)
-		*Replacement = std::move(Parms.Replacement);
+	return Parms.ReturnValue;
 
 }
 
@@ -100,10 +100,10 @@ void UConsoleVariablesAsset::ReplaceSavedCommands(TArray<struct FConsoleVariable
 // Function ConsoleVariablesEditorRuntime.ConsoleVariablesAsset.RemoveConsoleVariable
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InCommandString                                                  (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InCommandString                                                  (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UConsoleVariablesAsset::RemoveConsoleVariable()
+void UConsoleVariablesAsset::RemoveConsoleVariable(class FString* InCommandString, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -112,6 +112,7 @@ bool UConsoleVariablesAsset::RemoveConsoleVariable()
 
 	Params::UConsoleVariablesAsset_RemoveConsoleVariable_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -121,7 +122,8 @@ bool UConsoleVariablesAsset::RemoveConsoleVariable()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InCommandString != nullptr)
+		*InCommandString = std::move(Parms.InCommandString);
 
 }
 
@@ -129,9 +131,9 @@ bool UConsoleVariablesAsset::RemoveConsoleVariable()
 // Function ConsoleVariablesEditorRuntime.ConsoleVariablesAsset.GetVariableCollectionDescription
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UConsoleVariablesAsset::GetVariableCollectionDescription()
+void UConsoleVariablesAsset::GetVariableCollectionDescription(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -140,6 +142,7 @@ class FString UConsoleVariablesAsset::GetVariableCollectionDescription()
 
 	Params::UConsoleVariablesAsset_GetVariableCollectionDescription_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -149,17 +152,15 @@ class FString UConsoleVariablesAsset::GetVariableCollectionDescription()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function ConsoleVariablesEditorRuntime.ConsoleVariablesAsset.GetSavedCommandsCount
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UConsoleVariablesAsset::GetSavedCommandsCount()
+void UConsoleVariablesAsset::GetSavedCommandsCount(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -168,6 +169,7 @@ int32 UConsoleVariablesAsset::GetSavedCommandsCount()
 
 	Params::UConsoleVariablesAsset_GetSavedCommandsCount_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -177,18 +179,16 @@ int32 UConsoleVariablesAsset::GetSavedCommandsCount()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function ConsoleVariablesEditorRuntime.ConsoleVariablesAsset.GetSavedCommandsAsStringArray
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               bOnlyIncludeChecked                                              (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bOnlyIncludeChecked                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<class FString> UConsoleVariablesAsset::GetSavedCommandsAsStringArray(bool* bOnlyIncludeChecked)
+bool UConsoleVariablesAsset::GetSavedCommandsAsStringArray(const TArray<class FString>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -197,6 +197,7 @@ TArray<class FString> UConsoleVariablesAsset::GetSavedCommandsAsStringArray(bool
 
 	Params::UConsoleVariablesAsset_GetSavedCommandsAsStringArray_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -205,9 +206,6 @@ TArray<class FString> UConsoleVariablesAsset::GetSavedCommandsAsStringArray(bool
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (bOnlyIncludeChecked != nullptr)
-		*bOnlyIncludeChecked = Parms.bOnlyIncludeChecked;
 
 	return Parms.ReturnValue;
 
@@ -217,10 +215,10 @@ TArray<class FString> UConsoleVariablesAsset::GetSavedCommandsAsStringArray(bool
 // Function ConsoleVariablesEditorRuntime.ConsoleVariablesAsset.GetSavedCommandsAsCommaSeparatedString
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               bOnlyIncludeChecked                                              (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bOnlyIncludeChecked                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString UConsoleVariablesAsset::GetSavedCommandsAsCommaSeparatedString(bool* bOnlyIncludeChecked)
+bool UConsoleVariablesAsset::GetSavedCommandsAsCommaSeparatedString(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -229,6 +227,7 @@ class FString UConsoleVariablesAsset::GetSavedCommandsAsCommaSeparatedString(boo
 
 	Params::UConsoleVariablesAsset_GetSavedCommandsAsCommaSeparatedString_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -237,9 +236,6 @@ class FString UConsoleVariablesAsset::GetSavedCommandsAsCommaSeparatedString(boo
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (bOnlyIncludeChecked != nullptr)
-		*bOnlyIncludeChecked = Parms.bOnlyIncludeChecked;
 
 	return Parms.ReturnValue;
 
@@ -249,9 +245,9 @@ class FString UConsoleVariablesAsset::GetSavedCommandsAsCommaSeparatedString(boo
 // Function ConsoleVariablesEditorRuntime.ConsoleVariablesAsset.GetSavedCommands
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FConsoleVariablesEditorAssetSaveData>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FConsoleVariablesEditorAssetSaveData>ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<struct FConsoleVariablesEditorAssetSaveData> UConsoleVariablesAsset::GetSavedCommands()
+void UConsoleVariablesAsset::GetSavedCommands(const TArray<struct FConsoleVariablesEditorAssetSaveData>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -260,6 +256,7 @@ TArray<struct FConsoleVariablesEditorAssetSaveData> UConsoleVariablesAsset::GetS
 
 	Params::UConsoleVariablesAsset_GetSavedCommands_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -269,20 +266,18 @@ TArray<struct FConsoleVariablesEditorAssetSaveData> UConsoleVariablesAsset::GetS
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function ConsoleVariablesEditorRuntime.ConsoleVariablesAsset.FindSavedDataByCommandString
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      InCommandString                                                  (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// struct FConsoleVariablesEditorAssetSaveDataOutValue                                                         (EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class ESearchCase             SearchCase                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InCommandString                                                  (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, EditConst, InstancedReference, SubobjectReference)
+// struct FConsoleVariablesEditorAssetSaveDataOutValue                                                         (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ESearchCase             SearchCase                                                       (Edit, BlueprintVisible, ExportObject, Net, OutParm, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UConsoleVariablesAsset::FindSavedDataByCommandString()
+struct FConsoleVariablesEditorAssetSaveData UConsoleVariablesAsset::FindSavedDataByCommandString(class FString* InCommandString, enum class ESearchCase* SearchCase, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -291,6 +286,7 @@ bool UConsoleVariablesAsset::FindSavedDataByCommandString()
 
 	Params::UConsoleVariablesAsset_FindSavedDataByCommandString_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -299,6 +295,12 @@ bool UConsoleVariablesAsset::FindSavedDataByCommandString()
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InCommandString != nullptr)
+		*InCommandString = std::move(Parms.InCommandString);
+
+	if (SearchCase != nullptr)
+		*SearchCase = Parms.SearchCase;
 
 	return Parms.ReturnValue;
 
@@ -308,10 +310,10 @@ bool UConsoleVariablesAsset::FindSavedDataByCommandString()
 // Function ConsoleVariablesEditorRuntime.ConsoleVariablesAsset.ExecuteSavedCommands
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bOnlyIncludeChecked                                              (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bOnlyIncludeChecked                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-class UObject* UConsoleVariablesAsset::ExecuteSavedCommands(bool* bOnlyIncludeChecked)
+bool UConsoleVariablesAsset::ExecuteSavedCommands(class UObject* WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -320,6 +322,7 @@ class UObject* UConsoleVariablesAsset::ExecuteSavedCommands(bool* bOnlyIncludeCh
 
 	Params::UConsoleVariablesAsset_ExecuteSavedCommands_Params Parms{};
 
+	Parms.WorldContextObject = WorldContextObject;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -329,9 +332,6 @@ class UObject* UConsoleVariablesAsset::ExecuteSavedCommands(bool* bOnlyIncludeCh
 
 	Func->FunctionFlags = Flgs;
 
-	if (bOnlyIncludeChecked != nullptr)
-		*bOnlyIncludeChecked = Parms.bOnlyIncludeChecked;
-
 	return Parms.ReturnValue;
 
 }
@@ -340,9 +340,9 @@ class UObject* UConsoleVariablesAsset::ExecuteSavedCommands(bool* bOnlyIncludeCh
 // Function ConsoleVariablesEditorRuntime.ConsoleVariablesAsset.CopyFrom
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UConsoleVariablesAsset*      InAssetToCopy                                                    (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class UConsoleVariablesAsset*      InAssetToCopy                                                    (Edit, BlueprintVisible, Net, OutParm, EditConst, InstancedReference, SubobjectReference)
 
-class UConsoleVariablesAsset* UConsoleVariablesAsset::CopyFrom()
+void UConsoleVariablesAsset::CopyFrom(class UConsoleVariablesAsset** InAssetToCopy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -360,7 +360,8 @@ class UConsoleVariablesAsset* UConsoleVariablesAsset::CopyFrom()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InAssetToCopy != nullptr)
+		*InAssetToCopy = Parms.InAssetToCopy;
 
 }
 
@@ -368,9 +369,9 @@ class UConsoleVariablesAsset* UConsoleVariablesAsset::CopyFrom()
 // Function ConsoleVariablesEditorRuntime.ConsoleVariablesAsset.AddOrSetConsoleObjectSavedData
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FConsoleVariablesEditorAssetSaveDataInData                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// struct FConsoleVariablesEditorAssetSaveDataInData                                                           (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 
-void UConsoleVariablesAsset::AddOrSetConsoleObjectSavedData(struct FConsoleVariablesEditorAssetSaveData* InData)
+struct FConsoleVariablesEditorAssetSaveData UConsoleVariablesAsset::AddOrSetConsoleObjectSavedData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -388,8 +389,7 @@ void UConsoleVariablesAsset::AddOrSetConsoleObjectSavedData(struct FConsoleVaria
 
 	Func->FunctionFlags = Flgs;
 
-	if (InData != nullptr)
-		*InData = std::move(Parms.InData);
+	return Parms.ReturnValue;
 
 }
 

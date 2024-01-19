@@ -19,8 +19,8 @@ namespace SDK
 struct FLiveLinkPingMessage
 {
 public:
-	struct FGuid                                 PollRequest;                                       // 0x0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	int32                                        LiveLinkVersion;                                   // 0x10(0x4)(Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FGuid                                 PollRequest;                                       // 0x0(0x10)(Edit, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        LiveLinkVersion;                                   // 0x10(0x4)(ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -28,12 +28,12 @@ public:
 struct FLiveLinkPongMessage
 {
 public:
-	class FString                                ProviderName;                                      // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	class FString                                MachineName;                                       // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	struct FGuid                                 PollRequest;                                       // 0x20(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	int32                                        LiveLinkVersion;                                   // 0x30(0x4)(Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3133[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	double                                       CreationPlatformTime;                              // 0x38(0x8)(Edit, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FString                                ProviderName;                                      // 0x0(0x10)(BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class FString                                MachineName;                                       // 0x10(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
+	struct FGuid                                 PollRequest;                                       // 0x20(0x10)(Edit, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        LiveLinkVersion;                                   // 0x30(0x4)(ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_34A8[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	double                                       CreationPlatformTime;                              // 0x38(0x8)(ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -41,7 +41,7 @@ public:
 struct FLiveLinkConnectMessage
 {
 public:
-	int32                                        LiveLinkVersion;                                   // 0x0(0x4)(Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        LiveLinkVersion;                                   // 0x0(0x4)(ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -49,7 +49,7 @@ public:
 struct FLiveLinkHeartbeatMessage
 {
 public:
-	uint8                                        Pad_3135[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_34AA[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -65,7 +65,7 @@ public:
 struct FLiveLinkSubjectDataMessage
 {
 public:
-	struct FLiveLinkRefSkeleton                  RefSkeleton;                                       // 0x0(0x20)(BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FLiveLinkRefSkeleton                  RefSkeleton;                                       // 0x0(0x20)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 	class FName                                  SubjectName;                                       // 0x20(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst)
 };
 
@@ -75,10 +75,10 @@ struct FLiveLinkSubjectFrameMessage
 {
 public:
 	class FName                                  SubjectName;                                       // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnInstance, EditConst)
-	TArray<struct FTransform>                    Transforms;                                        // 0x8(0x10)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FTransform>                    Transforms;                                        // 0x8(0x10)(Edit, ConstParm, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	TArray<struct FLiveLinkCurveElement>         Curves;                                            // 0x18(0x10)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, EditConst)
-	struct FLiveLinkMetaData                     MetaData;                                          // 0x28(0x60)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, GlobalConfig)
-	double                                       Time;                                              // 0x88(0x8)(Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+	struct FLiveLinkMetaData                     MetaData;                                          // 0x28(0x60)(Edit, ConstParm, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	double                                       Time;                                              // 0x88(0x8)(Edit, ConstParm, Net, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
 };
 
 }

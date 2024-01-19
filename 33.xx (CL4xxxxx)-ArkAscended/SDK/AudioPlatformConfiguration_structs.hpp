@@ -29,11 +29,11 @@ enum class ESoundwaveSampleRateSettings : uint8
 struct FPlatformRuntimeAudioCompressionOverrides
 {
 public:
-	bool                                         bOverrideCompressionTimes;                         // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3066[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        DurationThreshold;                                 // 0x4(0x4)(BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        MaxNumRandomBranches;                              // 0x8(0x4)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        SoundCueQualityIndex;                              // 0xC(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bOverrideCompressionTimes;                         // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_33CF[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        DurationThreshold;                                 // 0x4(0x4)(Edit, BlueprintVisible, ExportObject, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        MaxNumRandomBranches;                              // 0x8(0x4)(ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        SoundCueQualityIndex;                              // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 }

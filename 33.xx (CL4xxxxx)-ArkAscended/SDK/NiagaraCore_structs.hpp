@@ -28,7 +28,7 @@ struct FNiagaraVariableCommonReference
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	class UObject*                               UnderlyingType;                                    // 0x8(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UObject*                               UnderlyingType;                                    // 0x8(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -36,7 +36,7 @@ public:
 struct FNiagaraCompileHash
 {
 public:
-	TArray<uint8>                                DataHash;                                          // 0x0(0x10)(Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint8>                                DataHash;                                          // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

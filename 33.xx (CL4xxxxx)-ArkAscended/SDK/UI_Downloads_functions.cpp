@@ -43,7 +43,7 @@ class UUI_Downloads_C* UUI_Downloads_C::GetDefaultObj()
 // Function UI_Downloads.UI_Downloads_C.SetNumberOfDownloadsText
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        InText                                                           (Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        InText                                                           (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 class FText UUI_Downloads_C::SetNumberOfDownloadsText()
 {

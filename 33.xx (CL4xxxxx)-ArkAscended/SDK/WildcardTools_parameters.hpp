@@ -18,7 +18,7 @@ namespace Params
 struct UWildcardHelpers_CreateJIRABug_Params
 {
 public:
-	class FString                                Args;                                              // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FString                                Args;                                              // 0x0(0x10)(ConstParm, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 }

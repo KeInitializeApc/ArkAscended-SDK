@@ -14,11 +14,11 @@ namespace SDK
 class UContextMenuItem_Spinner_C : public UContextMenuItem_Spinner
 {
 public:
-	class UCustomButtonWidget*                   ButtonDecrease;                                    // 0x458(0x8)(BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-	class UCustomButtonWidget*                   ButtonIncrease;                                    // 0x460(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+	class UCustomButtonWidget*                   ButtonDecrease;                                    // 0x458(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class UCustomButtonWidget*                   ButtonIncrease;                                    // 0x460(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
 	class UImage*                                Image_0;                                           // 0x468(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, RepNotify)
 	class UImage*                                Image_1;                                           // 0x470(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, Interp)
-	class UEditableText*                         TextInput;                                         // 0x478(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+	class UEditableText*                         TextInput;                                         // 0x478(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UContextMenuItem_Spinner_C* GetDefaultObj();

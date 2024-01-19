@@ -130,11 +130,11 @@ void UTraceUtilLibrary::TraceBookmark(class FString* Name)
 // Function TraceUtilities.TraceUtilLibrary.ToggleChannel
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      ChannelName                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      ChannelName                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // bool                               Enabled                                                          (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTraceUtilLibrary::ToggleChannel(bool* Enabled)
+void UTraceUtilLibrary::ToggleChannel(const class FString& ChannelName, bool* Enabled, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -143,6 +143,8 @@ bool UTraceUtilLibrary::ToggleChannel(bool* Enabled)
 
 	Params::UTraceUtilLibrary_ToggleChannel_Params Parms{};
 
+	Parms.ChannelName = ChannelName;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -155,17 +157,15 @@ bool UTraceUtilLibrary::ToggleChannel(bool* Enabled)
 	if (Enabled != nullptr)
 		*Enabled = Parms.Enabled;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TraceUtilities.TraceUtilLibrary.StopTracing
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTraceUtilLibrary::StopTracing()
+void UTraceUtilLibrary::StopTracing(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -174,6 +174,7 @@ bool UTraceUtilLibrary::StopTracing()
 
 	Params::UTraceUtilLibrary_StopTracing_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -182,8 +183,6 @@ bool UTraceUtilLibrary::StopTracing()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -192,10 +191,10 @@ bool UTraceUtilLibrary::StopTracing()
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class FString                      Filename                                                         (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm)
-// TArray<class FString>              Channels                                                         (BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              Channels                                                         (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTraceUtilLibrary::StartTraceToFile()
+class FString UTraceUtilLibrary::StartTraceToFile(TArray<class FString>* Channels, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -204,6 +203,7 @@ bool UTraceUtilLibrary::StartTraceToFile()
 
 	Params::UTraceUtilLibrary_StartTraceToFile_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -212,6 +212,9 @@ bool UTraceUtilLibrary::StartTraceToFile()
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Channels != nullptr)
+		*Channels = std::move(Parms.Channels);
 
 	return Parms.ReturnValue;
 
@@ -222,10 +225,10 @@ bool UTraceUtilLibrary::StartTraceToFile()
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class FString                      Target                                                           (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
-// TArray<class FString>              Channels                                                         (BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              Channels                                                         (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTraceUtilLibrary::StartTraceSendTo(const class FString& Target)
+void UTraceUtilLibrary::StartTraceSendTo(const class FString& Target, TArray<class FString>* Channels, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -235,6 +238,7 @@ bool UTraceUtilLibrary::StartTraceSendTo(const class FString& Target)
 	Params::UTraceUtilLibrary_StartTraceSendTo_Params Parms{};
 
 	Parms.Target = Target;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -244,7 +248,8 @@ bool UTraceUtilLibrary::StartTraceSendTo(const class FString& Target)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Channels != nullptr)
+		*Channels = std::move(Parms.Channels);
 
 }
 
@@ -252,9 +257,9 @@ bool UTraceUtilLibrary::StartTraceSendTo(const class FString& Target)
 // Function TraceUtilities.TraceUtilLibrary.ResumeTracing
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTraceUtilLibrary::ResumeTracing()
+void UTraceUtilLibrary::ResumeTracing(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -263,6 +268,7 @@ bool UTraceUtilLibrary::ResumeTracing()
 
 	Params::UTraceUtilLibrary_ResumeTracing_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -272,17 +278,15 @@ bool UTraceUtilLibrary::ResumeTracing()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TraceUtilities.TraceUtilLibrary.PauseTracing
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTraceUtilLibrary::PauseTracing()
+void UTraceUtilLibrary::PauseTracing(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -291,6 +295,7 @@ bool UTraceUtilLibrary::PauseTracing()
 
 	Params::UTraceUtilLibrary_PauseTracing_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -300,17 +305,15 @@ bool UTraceUtilLibrary::PauseTracing()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TraceUtilities.TraceUtilLibrary.IsTracing
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTraceUtilLibrary::IsTracing()
+void UTraceUtilLibrary::IsTracing(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -319,6 +322,7 @@ bool UTraceUtilLibrary::IsTracing()
 
 	Params::UTraceUtilLibrary_IsTracing_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -328,18 +332,16 @@ bool UTraceUtilLibrary::IsTracing()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TraceUtilities.TraceUtilLibrary.IsChannelEnabled
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      ChannelName                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ChannelName                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UTraceUtilLibrary::IsChannelEnabled()
+void UTraceUtilLibrary::IsChannelEnabled(const class FString& ChannelName, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -348,6 +350,8 @@ bool UTraceUtilLibrary::IsChannelEnabled()
 
 	Params::UTraceUtilLibrary_IsChannelEnabled_Params Parms{};
 
+	Parms.ChannelName = ChannelName;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -357,17 +361,15 @@ bool UTraceUtilLibrary::IsChannelEnabled()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TraceUtilities.TraceUtilLibrary.GetEnabledChannels
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<class FString> UTraceUtilLibrary::GetEnabledChannels()
+void UTraceUtilLibrary::GetEnabledChannels(const TArray<class FString>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -376,6 +378,7 @@ TArray<class FString> UTraceUtilLibrary::GetEnabledChannels()
 
 	Params::UTraceUtilLibrary_GetEnabledChannels_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -385,17 +388,15 @@ TArray<class FString> UTraceUtilLibrary::GetEnabledChannels()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function TraceUtilities.TraceUtilLibrary.GetAllChannels
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<class FString> UTraceUtilLibrary::GetAllChannels()
+void UTraceUtilLibrary::GetAllChannels(const TArray<class FString>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -404,6 +405,7 @@ TArray<class FString> UTraceUtilLibrary::GetAllChannels()
 
 	Params::UTraceUtilLibrary_GetAllChannels_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -412,8 +414,6 @@ TArray<class FString> UTraceUtilLibrary::GetAllChannels()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 

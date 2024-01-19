@@ -512,8 +512,8 @@ namespace SoftObjPathWrapper
 struct FTopLevelAssetPath
 {
 public:
-	class FName                                  PackageName;                                       // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig)
-	class FName                                  AssetName;                                         // 0x8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FName                                  PackageName;                                       // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	class FName                                  AssetName;                                         // 0x8(0x8)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -521,8 +521,8 @@ public:
 struct FSoftObjectPath
 {
 public:
-	struct FTopLevelAssetPath                    AssetPath;                                         // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	class FString                                SubPathString;                                     // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FTopLevelAssetPath                    AssetPath;                                         // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FString                                SubPathString;                                     // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 }
@@ -717,7 +717,7 @@ public:
 	uint64                                       Id;                                                // (0x08[0x08]) NOT AUTO-GENERATED PROPERTY
 	uint64                                       CastFlags;                                         // (0x10[0x08]) NOT AUTO-GENERATED PROPERTY
 	EClassFlags                                  ClassFlags;                                        // (0x18[0x04]) NOT AUTO-GENERATED PROPERTY
-	uint8                                        Pad_4C74[0x4];                                     // Fixing Size After Last (Predefined) Property  > TateDumper <
+	uint8                                        Pad_4C7A[0x4];                                     // Fixing Size After Last (Predefined) Property  > TateDumper <
 	FFieldClass*                                 SuperClass;                                        // (0x20[0x08]) NOT AUTO-GENERATED PROPERTY
 };
 #ifdef _MSC_VER
@@ -768,9 +768,9 @@ class FProperty : public FField
 {
 public:
 	uint64                                       PropertyFlags;                                     // (0x28[0x08]) NOT AUTO-GENERATED PROPERTY
-	uint8                                        Pad_4C75[0xC];                                     // Fixing Size After Last (Predefined) Property  > TateDumper <
+	uint8                                        Pad_4C7B[0xC];                                     // Fixing Size After Last (Predefined) Property  > TateDumper <
 	int32                                        ElementSize;                                       // (0x3C[0x04]) NOT AUTO-GENERATED PROPERTY
-	uint8                                        Pad_4C76[0xC];                                     // Fixing Size After Last (Predefined) Property  > TateDumper <
+	uint8                                        Pad_4C7C[0xC];                                     // Fixing Size After Last (Predefined) Property  > TateDumper <
 	int32                                        Offset;                                            // (0x4C[0x04]) NOT AUTO-GENERATED PROPERTY
 };
 #ifdef _MSC_VER
@@ -785,7 +785,7 @@ public:
 class FByteProperty : public FProperty
 {
 public:
-	uint8                                        Pad_4C77[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
+	uint8                                        Pad_4C7D[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
 	class UEnum*                                 Enum;                                              // (0x78[0x08]) NOT AUTO-GENERATED PROPERTY
 };
 #ifdef _MSC_VER
@@ -800,7 +800,7 @@ public:
 class FBoolProperty : public FProperty
 {
 public:
-	uint8                                        Pad_4C78[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
+	uint8                                        Pad_4C7E[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
 	uint8                                        FieldSize;                                         // (0x78[0x01]) NOT AUTO-GENERATED PROPERTY
 	uint8                                        ByteOffset;                                        // (0x79[0x01]) NOT AUTO-GENERATED PROPERTY
 	uint8                                        ByteMask;                                          // (0x7A[0x01]) NOT AUTO-GENERATED PROPERTY
@@ -818,7 +818,7 @@ public:
 class FObjectPropertyBase : public FProperty
 {
 public:
-	uint8                                        Pad_4C79[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
+	uint8                                        Pad_4C7F[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
 	class UClass*                                PropertyClass;                                     // (0x78[0x08]) NOT AUTO-GENERATED PROPERTY
 };
 #ifdef _MSC_VER
@@ -847,7 +847,7 @@ public:
 class FStructProperty : public FProperty
 {
 public:
-	uint8                                        Pad_4C7A[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
+	uint8                                        Pad_4C80[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
 	class UStruct*                               Struct;                                            // (0x78[0x08]) NOT AUTO-GENERATED PROPERTY
 };
 #ifdef _MSC_VER
@@ -862,7 +862,7 @@ public:
 class FArrayProperty : public FProperty
 {
 public:
-	uint8                                        Pad_4C7B[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
+	uint8                                        Pad_4C81[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
 	class FProperty*                             InnerProperty;                                     // (0x78[0x08]) NOT AUTO-GENERATED PROPERTY
 };
 #ifdef _MSC_VER
@@ -877,7 +877,7 @@ public:
 class FMapProperty : public FProperty
 {
 public:
-	uint8                                        Pad_4C7C[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
+	uint8                                        Pad_4C82[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
 	class FProperty*                             KeyProperty;                                       // (0x78[0x08]) NOT AUTO-GENERATED PROPERTY
 	class FProperty*                             ValueProperty;                                     // (0x80[0x08]) NOT AUTO-GENERATED PROPERTY
 };
@@ -893,7 +893,7 @@ public:
 class FSetProperty : public FProperty
 {
 public:
-	uint8                                        Pad_4C7D[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
+	uint8                                        Pad_4C83[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
 	class FProperty*                             ElementProperty;                                   // (0x78[0x08]) NOT AUTO-GENERATED PROPERTY
 };
 #ifdef _MSC_VER
@@ -908,7 +908,7 @@ public:
 class FEnumProperty : public FProperty
 {
 public:
-	uint8                                        Pad_4C7E[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
+	uint8                                        Pad_4C84[0x28];                                    // Fixing Size After Last (Predefined) Property  > TateDumper <
 	class FProperty*                             UnderlayingProperty;                               // (0x78[0x08]) NOT AUTO-GENERATED PROPERTY
 	class UEnum*                                 Enum;                                              // (0x80[0x08]) NOT AUTO-GENERATED PROPERTY
 };

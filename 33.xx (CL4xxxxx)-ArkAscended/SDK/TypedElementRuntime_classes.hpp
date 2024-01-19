@@ -18,11 +18,11 @@ public:
 	static class UClass* StaticClass();
 	static class UTypedElementSelectionSetLibrary* GetDefaultObj();
 
-	bool SetSelectionFromList(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ElementList);
-	bool SelectElementsFromList(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ElementList);
-	struct FScriptTypedElementListProxy GetNormalizedSelection(class UTypedElementSelectionSet* SelectionSet);
-	struct FScriptTypedElementListProxy GetNormalizedElementList(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ElementList);
-	bool DeselectElementsFromList(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ElementList);
+	struct FTypedElementSelectionOptions SetSelectionFromList(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ElementList, bool ReturnValue);
+	struct FTypedElementSelectionOptions SelectElementsFromList(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ElementList, bool ReturnValue);
+	struct FTypedElementSelectionNormalizationOptions GetNormalizedSelection(class UTypedElementSelectionSet* SelectionSet, const struct FScriptTypedElementListProxy& ReturnValue);
+	struct FTypedElementSelectionNormalizationOptions GetNormalizedElementList(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ElementList, const struct FScriptTypedElementListProxy& ReturnValue);
+	struct FTypedElementSelectionOptions DeselectElementsFromList(class UTypedElementSelectionSet* SelectionSet, struct FScriptTypedElementListProxy* ElementList, bool ReturnValue);
 };
 
 // 0x870 (0x898 - 0x28)
@@ -30,38 +30,38 @@ public:
 class UTypedElementSelectionSet : public UObject
 {
 public:
-	uint8                                        Pad_2D9A[0x800];                                   // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            OnPreSelectionChange;                              // 0x828(0x10)(Edit, BlueprintReadOnly, Net, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnSelectionChange;                                 // 0x838(0x10)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2D9B[0x50];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2E59[0x800];                                   // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            OnPreSelectionChange;                              // 0x828(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnSelectionChange;                                 // 0x838(0x10)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2E5B[0x50];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UTypedElementSelectionSet* GetDefaultObj();
 
-	bool SetSelection(TArray<struct FScriptTypedElementHandle>* InElementHandles, struct FTypedElementSelectionOptions* InSelectionOptions);
-	bool SelectElements(TArray<struct FScriptTypedElementHandle>* InElementHandles, struct FTypedElementSelectionOptions* InSelectionOptions);
-	bool SelectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions);
+	struct FTypedElementSelectionOptions SetSelection(bool ReturnValue);
+	struct FTypedElementSelectionOptions SelectElements(bool ReturnValue);
+	struct FTypedElementSelectionOptions SelectElement(bool ReturnValue);
 	struct FTypedElementSelectionSetState RestoreSelectionState();
 	void OnPreChangeDynamic__DelegateSignature(class UTypedElementSelectionSet* SelectionSet);
 	void OnChangeDynamic__DelegateSignature(class UTypedElementSelectionSet* SelectionSet);
-	TArray<struct FScriptTypedElementHandle> K2_GetSelectedElementHandles(class UClass** InBaseInterfaceType);
-	bool IsElementSelected(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementIsSelectedOptions* InSelectionOptions);
-	bool HasSelectedObjects(class UClass** InRequiredClass);
-	bool HasSelectedElements(class UClass** InBaseInterfaceType);
-	class UObject* GetTopSelectedObject(class UClass** InRequiredClass);
-	struct FScriptTypedElementHandle GetSelectionElement(const struct FScriptTypedElementHandle& InElementHandle, enum class ETypedElementSelectionMethod* InSelectionMethod);
-	TArray<class UObject*> GetSelectedObjects(class UClass** InRequiredClass);
-	int32 GetNumSelectedElements();
-	struct FTypedElementSelectionSetState GetCurrentSelectionState();
-	class UObject* GetBottomSelectedObject(class UClass** InRequiredClass);
-	bool DeselectElements(TArray<struct FScriptTypedElementHandle>* InElementHandles, struct FTypedElementSelectionOptions* InSelectionOptions);
-	bool DeselectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions);
-	int32 CountSelectedObjects(class UClass** InRequiredClass);
-	int32 CountSelectedElements(class UClass** InBaseInterfaceType);
-	bool ClearSelection(struct FTypedElementSelectionOptions* InSelectionOptions);
-	bool CanSelectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions);
-	bool CanDeselectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions);
-	bool AllowSelectionModifiers(const struct FScriptTypedElementHandle& InElementHandle);
+	class UClass* K2_GetSelectedElementHandles(const TArray<struct FScriptTypedElementHandle>& ReturnValue);
+	struct FTypedElementIsSelectedOptions IsElementSelected(bool ReturnValue);
+	class UClass* HasSelectedObjects(bool ReturnValue);
+	class UClass* HasSelectedElements(bool ReturnValue);
+	class UClass* GetTopSelectedObject(class UObject* ReturnValue);
+	enum class ETypedElementSelectionMethod GetSelectionElement(const struct FScriptTypedElementHandle& ReturnValue);
+	class UClass* GetSelectedObjects(const TArray<class UObject*>& ReturnValue);
+	void GetNumSelectedElements(int32 ReturnValue);
+	void GetCurrentSelectionState(const struct FTypedElementSelectionSetState& ReturnValue);
+	class UClass* GetBottomSelectedObject(class UObject* ReturnValue);
+	struct FTypedElementSelectionOptions DeselectElements(bool ReturnValue);
+	struct FTypedElementSelectionOptions DeselectElement(bool ReturnValue);
+	class UClass* CountSelectedObjects(int32 ReturnValue);
+	class UClass* CountSelectedElements(int32 ReturnValue);
+	struct FTypedElementSelectionOptions ClearSelection(bool ReturnValue);
+	struct FTypedElementSelectionOptions CanSelectElement(bool ReturnValue);
+	struct FTypedElementSelectionOptions CanDeselectElement(bool ReturnValue);
+	struct FScriptTypedElementHandle AllowSelectionModifiers(bool ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -73,8 +73,8 @@ public:
 	static class UClass* StaticClass();
 	static class ITypedElementAssetDataInterface* GetDefaultObj();
 
-	struct FAssetData GetAssetData(const struct FScriptTypedElementHandle& InElementHandle);
-	TArray<struct FAssetData> GetAllReferencedAssetDatas(const struct FScriptTypedElementHandle& InElementHandle);
+	struct FScriptTypedElementHandle GetAssetData(const struct FAssetData& ReturnValue);
+	struct FScriptTypedElementHandle GetAllReferencedAssetDatas(const TArray<struct FAssetData>& ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -86,8 +86,8 @@ public:
 	static class UClass* StaticClass();
 	static class ITypedElementHierarchyInterface* GetDefaultObj();
 
-	struct FScriptTypedElementHandle GetParentElement(const struct FScriptTypedElementHandle& InElementHandle);
-	bool GetChildElements(const struct FScriptTypedElementHandle& InElementHandle);
+	bool GetParentElement(const struct FScriptTypedElementHandle& ReturnValue);
+	bool GetChildElements();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -99,8 +99,8 @@ public:
 	static class UClass* StaticClass();
 	static class ITypedElementObjectInterface* GetDefaultObj();
 
-	class UClass* GetObjectClass(const struct FScriptTypedElementHandle& InElementHandle);
-	class UObject* GetObject(const struct FScriptTypedElementHandle& InElementHandle);
+	struct FScriptTypedElementHandle GetObjectClass(class UClass* ReturnValue);
+	struct FScriptTypedElementHandle GetObject(class UObject* ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -112,13 +112,13 @@ public:
 	static class UClass* StaticClass();
 	static class ITypedElementSelectionInterface* GetDefaultObj();
 
-	bool SelectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions);
-	bool IsElementSelected(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementIsSelectedOptions* InSelectionOptions);
-	struct FScriptTypedElementHandle GetSelectionElement(const struct FScriptTypedElementHandle& InElementHandle, enum class ETypedElementSelectionMethod* InSelectionMethod);
-	bool DeselectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions);
-	bool CanSelectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions);
-	bool CanDeselectElement(const struct FScriptTypedElementHandle& InElementHandle, struct FTypedElementSelectionOptions* InSelectionOptions);
-	bool AllowSelectionModifiers(const struct FScriptTypedElementHandle& InElementHandle);
+	struct FTypedElementSelectionOptions SelectElement(bool ReturnValue);
+	struct FTypedElementIsSelectedOptions IsElementSelected(bool ReturnValue);
+	enum class ETypedElementSelectionMethod GetSelectionElement(const struct FScriptTypedElementHandle& ReturnValue);
+	struct FTypedElementSelectionOptions DeselectElement(bool ReturnValue);
+	struct FTypedElementSelectionOptions CanSelectElement(bool ReturnValue);
+	struct FTypedElementSelectionOptions CanDeselectElement(bool ReturnValue);
+	struct FScriptTypedElementListProxy AllowSelectionModifiers(bool ReturnValue);
 };
 
 }

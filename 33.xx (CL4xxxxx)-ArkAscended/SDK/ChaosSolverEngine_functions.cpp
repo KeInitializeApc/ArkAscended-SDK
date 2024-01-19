@@ -155,10 +155,10 @@ class UChaosSolverEngineBlueprintLibrary* UChaosSolverEngineBlueprintLibrary::Ge
 // Function ChaosSolverEngine.ChaosSolverEngineBlueprintLibrary.ConvertPhysicsCollisionToHitResult
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FChaosPhysicsCollisionInfo  PhysicsCollision                                                 (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FHitResult                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FChaosPhysicsCollisionInfo  PhysicsCollision                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FHitResult                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FHitResult UChaosSolverEngineBlueprintLibrary::ConvertPhysicsCollisionToHitResult(struct FChaosPhysicsCollisionInfo* PhysicsCollision)
+void UChaosSolverEngineBlueprintLibrary::ConvertPhysicsCollisionToHitResult(const struct FChaosPhysicsCollisionInfo& PhysicsCollision, const struct FHitResult& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -167,6 +167,8 @@ struct FHitResult UChaosSolverEngineBlueprintLibrary::ConvertPhysicsCollisionToH
 
 	Params::UChaosSolverEngineBlueprintLibrary_ConvertPhysicsCollisionToHitResult_Params Parms{};
 
+	Parms.PhysicsCollision = PhysicsCollision;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -175,11 +177,6 @@ struct FHitResult UChaosSolverEngineBlueprintLibrary::ConvertPhysicsCollisionToH
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (PhysicsCollision != nullptr)
-		*PhysicsCollision = std::move(Parms.PhysicsCollision);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -243,7 +240,7 @@ class AChaosSolverActor* AChaosSolverActor::GetDefaultObj()
 // Function ChaosSolverEngine.ChaosSolverActor.SetSolverActive
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bActive                                                          (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bActive                                                          (Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 void AChaosSolverActor::SetSolverActive(bool* bActive)
 {

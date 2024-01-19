@@ -36,8 +36,8 @@ public:
 class USlateSettings : public UObject
 {
 public:
-	bool                                         bExplicitCanvasChildZOrder;                        // 0x28(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_20A8[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bExplicitCanvasChildZOrder;                        // 0x28(0x1)(BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1CCB[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USlateSettings* GetDefaultObj();

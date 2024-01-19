@@ -14,9 +14,9 @@ namespace SDK
 class UMovieSceneSignedObject : public UObject
 {
 public:
-	uint8                                        Pad_34B[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FGuid                                 Signature;                                         // 0x2C(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_34C[0x1C];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_203[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FGuid                                 Signature;                                         // 0x2C(0x10)(Edit, ConstParm, Net, Parm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_204[0x1C];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneSignedObject* GetDefaultObj();
@@ -28,50 +28,50 @@ public:
 class UMovieSceneSection : public UMovieSceneSignedObject
 {
 public:
-	struct FMovieSceneSectionEvalOptions         EvalOptions;                                       // 0x58(0x2)(ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_35B[0x6];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FMovieSceneEasingSettings             Easing;                                            // 0x60(0x38)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FMovieSceneFrameRange                 SectionRange;                                      // 0x98(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FFrameNumber                          PreRollFrames;                                     // 0xA8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FFrameNumber                          PostRollFrames;                                    // 0xAC(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	int32                                        RowIndex;                                          // 0xB0(0x4)(ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	int32                                        OverlapPriority;                                   // 0xB4(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        bIsActive : 1;                                     // Mask: 0x1, PropSize: 0x10xB8(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        bIsLocked : 1;                                     // Mask: 0x2, PropSize: 0x10xB8(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        BitPad_27 : 6;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_35D[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        StartTime;                                         // 0xBC(0x4)(ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        EndTime;                                           // 0xC0(0x4)(Edit, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        PrerollTime;                                       // 0xC4(0x4)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	float                                        PostrollTime;                                      // 0xC8(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        bIsInfinite : 1;                                   // Mask: 0x1, PropSize: 0x10xCC(0x1)(BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        BitPad_28 : 7;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_35E[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	bool                                         bSupportsInfiniteRange;                            // 0xD0(0x1)(Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FOptionalMovieSceneBlendType          BlendType;                                         // 0xD1(0x2)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_35F[0x1D];                                     // Fixing Size Of Struct > TateDumper <
+	struct FMovieSceneSectionEvalOptions         EvalOptions;                                       // 0x58(0x2)(Edit, ExportObject, Net, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_212[0x6];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FMovieSceneEasingSettings             Easing;                                            // 0x60(0x38)(Edit, BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FMovieSceneFrameRange                 SectionRange;                                      // 0x98(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FFrameNumber                          PreRollFrames;                                     // 0xA8(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FFrameNumber                          PostRollFrames;                                    // 0xAC(0x4)(ConstParm, BlueprintVisible, ExportObject, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        RowIndex;                                          // 0xB0(0x4)(Edit, ExportObject, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        OverlapPriority;                                   // 0xB4(0x4)(OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        bIsActive : 1;                                     // Mask: 0x1, PropSize: 0x10xB8(0x1)(ConstParm, BlueprintVisible, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        bIsLocked : 1;                                     // Mask: 0x2, PropSize: 0x10xB8(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        BitPad_12 : 6;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_214[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        StartTime;                                         // 0xBC(0x4)(BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        EndTime;                                           // 0xC0(0x4)(Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        PrerollTime;                                       // 0xC4(0x4)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	float                                        PostrollTime;                                      // 0xC8(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        bIsInfinite : 1;                                   // Mask: 0x1, PropSize: 0x10xCC(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        BitPad_13 : 7;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_216[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	bool                                         bSupportsInfiniteRange;                            // 0xD0(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FOptionalMovieSceneBlendType          BlendType;                                         // 0xD1(0x2)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_217[0x1D];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneSection* GetDefaultObj();
 
-	int32 SetRowIndex();
-	int32 SetPreRollFrames();
-	int32 SetPostRollFrames();
-	void SetOverlapPriority(int32 NewPriority);
-	bool SetIsLocked();
-	bool SetIsActive();
-	enum class EMovieSceneCompletionMode SetCompletionMode();
-	struct FColor SetColorTint();
-	enum class EMovieSceneBlendType SetBlendType();
-	bool IsLocked();
-	bool IsActive();
-	int32 GetRowIndex();
-	int32 GetPreRollFrames();
-	int32 GetPostRollFrames();
-	int32 GetOverlapPriority();
-	enum class EMovieSceneCompletionMode GetCompletionMode();
-	struct FColor GetColorTint();
-	struct FOptionalMovieSceneBlendType GetBlendType();
+	void SetRowIndex(int32 NewRowIndex);
+	void SetPreRollFrames(int32 InPreRollFrames);
+	void SetPostRollFrames(int32 InPostRollFrames);
+	int32 SetOverlapPriority();
+	void SetIsLocked(bool bInIsLocked);
+	void SetIsActive(bool bInIsActive);
+	void SetCompletionMode(enum class EMovieSceneCompletionMode InCompletionMode);
+	void SetColorTint(const struct FColor& InColorTint);
+	void SetBlendType(enum class EMovieSceneBlendType InBlendType);
+	void IsLocked(bool ReturnValue);
+	void IsActive(bool ReturnValue);
+	void GetRowIndex(int32 ReturnValue);
+	void GetPreRollFrames(int32 ReturnValue);
+	void GetPostRollFrames(int32 ReturnValue);
+	void GetOverlapPriority(int32 ReturnValue);
+	void GetCompletionMode(enum class EMovieSceneCompletionMode ReturnValue);
+	void GetColorTint(const struct FColor& ReturnValue);
+	void GetBlendType(const struct FOptionalMovieSceneBlendType& ReturnValue);
 };
 
 // 0x40 (0x98 - 0x58)
@@ -79,15 +79,15 @@ public:
 class UMovieSceneTrack : public UMovieSceneSignedObject
 {
 public:
-	struct FMovieSceneTrackEvalOptions           EvalOptions;                                       // 0x58(0x4)(ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_361[0x1];                                      // Fixing Size After Last Property  > TateDumper <
-	bool                                         bIsEvalDisabled;                                   // 0x5D(0x1)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_362[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<int32>                                RowsDisabled;                                      // 0x60(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_363[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FGuid                                 EvaluationFieldGuid;                               // 0x74(0x10)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_364[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FMovieSceneTrackEvaluationField       EvaluationField;                                   // 0x88(0x10)(Edit, ConstParm, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FMovieSceneTrackEvalOptions           EvalOptions;                                       // 0x58(0x4)(Edit, ExportObject, Net, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_219[0x1];                                      // Fixing Size After Last Property  > TateDumper <
+	bool                                         bIsEvalDisabled;                                   // 0x5D(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_21A[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<int32>                                RowsDisabled;                                      // 0x60(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_21B[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FGuid                                 EvaluationFieldGuid;                               // 0x74(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_21C[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FMovieSceneTrackEvaluationField       EvaluationField;                                   // 0x88(0x10)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneTrack* GetDefaultObj();
@@ -110,19 +110,19 @@ public:
 class UMovieSceneSequence : public UMovieSceneSignedObject
 {
 public:
-	class UMovieSceneCompiledData*               CompiledData;                                      // 0x58(0x8)(ConstParm, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	enum class EMovieSceneCompletionMode         DefaultCompletionMode;                             // 0x60(0x1)(ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference)
-	bool                                         bParentContextsAreSignificant;                     // 0x61(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	bool                                         bPlayableDirectly;                                 // 0x62(0x1)(ConstParm, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	enum class EMovieSceneSequenceFlags          SequenceFlags;                                     // 0x63(0x1)(ConstParm, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_366[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	class UMovieSceneCompiledData*               CompiledData;                                      // 0x58(0x8)(Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EMovieSceneCompletionMode         DefaultCompletionMode;                             // 0x60(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	bool                                         bParentContextsAreSignificant;                     // 0x61(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bPlayableDirectly;                                 // 0x62(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EMovieSceneSequenceFlags          SequenceFlags;                                     // 0x63(0x1)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_223[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneSequence* GetDefaultObj();
 
-	struct FMovieSceneTimecodeSource GetEarliestTimecodeSource();
-	TArray<struct FMovieSceneObjectBindingID> FindBindingsByTag(class FName InBindingName);
-	struct FMovieSceneObjectBindingID FindBindingByTag(class FName InBindingName);
+	void GetEarliestTimecodeSource(const struct FMovieSceneTimecodeSource& ReturnValue);
+	class FName FindBindingsByTag(const TArray<struct FMovieSceneObjectBindingID>& ReturnValue);
+	class FName FindBindingByTag(const struct FMovieSceneObjectBindingID& ReturnValue);
 };
 
 // 0x18 (0x40 - 0x28)
@@ -130,8 +130,8 @@ public:
 class UMovieSceneEntitySystem : public UObject
 {
 public:
-	class UMovieSceneEntitySystemLinker*         Linker;                                            // 0x28(0x8)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_367[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	class UMovieSceneEntitySystemLinker*         Linker;                                            // 0x28(0x8)(Edit, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_224[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneEntitySystem* GetDefaultObj();
@@ -154,9 +154,9 @@ public:
 class UMovieSceneEntitySystemLinker : public UObject
 {
 public:
-	uint8                                        Pad_368[0x278];                                    // Fixing Size After Last Property  > TateDumper <
-	struct FMovieSceneEntitySystemGraph          SystemGraph;                                       // 0x2A0(0x150)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_369[0x308];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_228[0x278];                                    // Fixing Size After Last Property  > TateDumper <
+	struct FMovieSceneEntitySystemGraph          SystemGraph;                                       // 0x2A0(0x150)(Edit, BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_229[0x308];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneEntitySystemLinker* GetDefaultObj();
@@ -168,20 +168,20 @@ public:
 class UMovieSceneSubSection : public UMovieSceneSection
 {
 public:
-	uint8                                        Pad_36B[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FMovieSceneSectionParameters          Parameters;                                        // 0xF8(0x24)(BlueprintVisible, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        StartOffset;                                       // 0x11C(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        TimeScale;                                         // 0x120(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        PrerollTime;                                       // 0x124(0x4)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        NetworkMask;                                       // 0x128(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_36D[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class UMovieSceneSequence*                   SubSequence;                                       // 0x130(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_22D[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FMovieSceneSectionParameters          Parameters;                                        // 0xF8(0x24)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        StartOffset;                                       // 0x11C(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        TimeScale;                                         // 0x120(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        PrerollTime;                                       // 0x124(0x4)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        NetworkMask;                                       // 0x128(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_22E[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class UMovieSceneSequence*                   SubSequence;                                       // 0x130(0x8)(BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneSubSection* GetDefaultObj();
 
-	class UMovieSceneSequence* SetSequence();
-	class UMovieSceneSequence* GetSequence();
+	void SetSequence(class UMovieSceneSequence** Sequence);
+	void GetSequence(class UMovieSceneSequence* ReturnValue);
 };
 
 // 0x4A8 (0x4D0 - 0x28)
@@ -189,79 +189,79 @@ public:
 class UMovieSceneSequencePlayer : public UObject
 {
 public:
-	uint8                                        Pad_395[0x200];                                    // Fixing Size After Last Property  > TateDumper <
-	TScriptInterface<class IMovieSceneSequencePlayerObserver> Observer;                                          // 0x228(0x10)(BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnPlay;                                            // 0x238(0x10)(ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnPlayReverse;                                     // 0x248(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnStop;                                            // 0x258(0x10)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnPause;                                           // 0x268(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnFinished;                                        // 0x278(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class EMovieScenePlayerStatus           Status;                                            // 0x288(0x1)(Edit, ConstParm, Net, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_396[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	uint8                                        bReversePlayback : 1;                              // Mask: 0x1, PropSize: 0x10x28C(0x1)(Edit, BlueprintVisible, Net, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        BitPad_32 : 7;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_397[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	class UMovieSceneSequence*                   Sequence;                                          // 0x290(0x8)(Edit, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	struct FFrameNumber                          StartTime;                                         // 0x298(0x4)(ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        DurationFrames;                                    // 0x29C(0x4)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	float                                        DurationSubFrames;                                 // 0x2A0(0x4)(Edit, ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	int32                                        CurrentNumLoops;                                   // 0x2A4(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	struct FMovieSceneSequencePlaybackSettings   PlaybackSettings;                                  // 0x2A8(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FMovieSceneRootEvaluationTemplateInstance RootTemplateInstance;                              // 0x2C8(0x88)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_398[0x90];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FMovieSceneSequenceReplProperties     NetSyncProps;                                      // 0x3E0(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	TScriptInterface<class IMovieScenePlaybackClient> PlaybackClient;                                    // 0x3F0(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	class UMovieSceneSequenceTickManager*        TickManager;                                       // 0x400(0x8)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_399[0xC8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_25D[0x200];                                    // Fixing Size After Last Property  > TateDumper <
+	TScriptInterface<class IMovieSceneSequencePlayerObserver> Observer;                                          // 0x228(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnPlay;                                            // 0x238(0x10)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnPlayReverse;                                     // 0x248(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnStop;                                            // 0x258(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnPause;                                           // 0x268(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnFinished;                                        // 0x278(0x10)(Edit, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EMovieScenePlayerStatus           Status;                                            // 0x288(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_25F[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        bReversePlayback : 1;                              // Mask: 0x1, PropSize: 0x10x28C(0x1)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        BitPad_14 : 7;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_260[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	class UMovieSceneSequence*                   Sequence;                                          // 0x290(0x8)(BlueprintVisible, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+	struct FFrameNumber                          StartTime;                                         // 0x298(0x4)(BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        DurationFrames;                                    // 0x29C(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	float                                        DurationSubFrames;                                 // 0x2A0(0x4)(Edit, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	int32                                        CurrentNumLoops;                                   // 0x2A4(0x4)(ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	struct FMovieSceneSequencePlaybackSettings   PlaybackSettings;                                  // 0x2A8(0x20)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+	struct FMovieSceneRootEvaluationTemplateInstance RootTemplateInstance;                              // 0x2C8(0x88)(Edit, ConstParm, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_264[0x90];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FMovieSceneSequenceReplProperties     NetSyncProps;                                      // 0x3E0(0x10)(Edit, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	TScriptInterface<class IMovieScenePlaybackClient> PlaybackClient;                                    // 0x3F0(0x10)(Edit, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	class UMovieSceneSequenceTickManager*        TickManager;                                       // 0x400(0x8)(ConstParm, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_265[0xC8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneSequencePlayer* GetDefaultObj();
 
 	void StopAtCurrentTime();
 	void Stop();
-	double SetWeight();
-	float SetTimeRange(float StartTime);
-	void SetPlayRate(float PlayRate);
-	void SetPlaybackPosition(const struct FMovieSceneSequencePlaybackParams& PlaybackParams);
+	void SetWeight(double InWeight);
+	float SetTimeRange(float Duration);
+	float SetPlayRate();
+	struct FMovieSceneSequencePlaybackParams SetPlaybackPosition();
 	struct FFrameRate SetFrameRate();
-	int32 SetFrameRange(int32 StartFrame, float SubFrames);
-	void SetDisableCameraCuts(bool bInDisableCameraCuts);
-	void ScrubToSeconds(float TimeInSeconds);
-	bool ScrubToMarkedFrame(const class FString& InLabel);
-	void ScrubToFrame(const struct FFrameTime& NewPosition);
+	float SetFrameRange(int32 Duration);
+	bool SetDisableCameraCuts();
+	float ScrubToSeconds();
+	void ScrubToMarkedFrame(class FString* InLabel, bool ReturnValue);
+	struct FFrameTime ScrubToFrame();
 	void Scrub();
-	void RPC_OnStopEvent(const struct FFrameTime& StoppedTime);
-	void RPC_OnFinishPlaybackEvent(const struct FFrameTime& StoppedTime);
-	enum class EUpdatePositionMethod RPC_ExplicitServerUpdateEvent(const struct FFrameTime& RelevantTime);
+	struct FFrameTime RPC_OnStopEvent();
+	struct FFrameTime RPC_OnFinishPlaybackEvent();
+	struct FFrameTime RPC_ExplicitServerUpdateEvent(enum class EUpdatePositionMethod* Method);
 	void RestoreState();
 	void RemoveWeight();
-	void PlayToSeconds(float TimeInSeconds);
-	bool PlayToMarkedFrame(const class FString& InLabel);
-	void PlayToFrame(const struct FFrameTime& NewPosition);
-	void PlayTo(const struct FMovieSceneSequencePlaybackParams& PlaybackParams, const struct FMovieSceneSequencePlayToParams& PlayToParams);
+	float PlayToSeconds();
+	void PlayToMarkedFrame(class FString* InLabel, bool ReturnValue);
+	struct FFrameTime PlayToFrame();
+	struct FMovieSceneSequencePlayToParams PlayTo();
 	void PlayReverse();
-	void PlayLooping(int32 NumLoops);
+	int32 PlayLooping();
 	void Play();
 	void Pause();
-	void JumpToSeconds(float TimeInSeconds);
-	bool JumpToMarkedFrame(const class FString& InLabel);
-	void JumpToFrame(const struct FFrameTime& NewPosition);
-	bool IsReversed();
-	bool IsPlaying();
-	bool IsPaused();
+	float JumpToSeconds();
+	void JumpToMarkedFrame(class FString* InLabel, bool ReturnValue);
+	struct FFrameTime JumpToFrame();
+	void IsReversed(bool ReturnValue);
+	void IsPlaying(bool ReturnValue);
+	void IsPaused(bool ReturnValue);
 	void GoToEndAndStop();
-	struct FQualifiedFrameTime GetStartTime();
-	class FString GetSequenceName(bool bAddClientInfo);
-	class UMovieSceneSequence* GetSequence();
-	float GetPlayRate();
-	TArray<struct FMovieSceneObjectBindingID> GetObjectBindings(class UObject* InObject);
-	struct FFrameRate GetFrameRate();
-	int32 GetFrameDuration();
-	struct FQualifiedFrameTime GetEndTime();
-	struct FQualifiedFrameTime GetDuration();
-	bool GetDisableCameraCuts();
-	struct FQualifiedFrameTime GetCurrentTime();
-	TArray<class UObject*> GetBoundObjects(struct FMovieSceneObjectBindingID* ObjectBinding);
+	void GetStartTime(const struct FQualifiedFrameTime& ReturnValue);
+	bool GetSequenceName(const class FString& ReturnValue);
+	void GetSequence(class UMovieSceneSequence* ReturnValue);
+	void GetPlayRate(float ReturnValue);
+	class UObject* GetObjectBindings(const TArray<struct FMovieSceneObjectBindingID>& ReturnValue);
+	void GetFrameRate(const struct FFrameRate& ReturnValue);
+	void GetFrameDuration(int32 ReturnValue);
+	void GetEndTime(const struct FQualifiedFrameTime& ReturnValue);
+	void GetDuration(const struct FQualifiedFrameTime& ReturnValue);
+	void GetDisableCameraCuts(bool ReturnValue);
+	void GetCurrentTime(const struct FQualifiedFrameTime& ReturnValue);
+	struct FMovieSceneObjectBindingID GetBoundObjects(const TArray<class UObject*>& ReturnValue);
 	void ChangePlaybackDirection();
 };
 
@@ -270,7 +270,7 @@ public:
 class UMovieSceneSubTrack : public UMovieSceneNameableTrack
 {
 public:
-	TArray<class UMovieSceneSection*>            Sections;                                          // 0x98(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	TArray<class UMovieSceneSection*>            Sections;                                          // 0x98(0x10)(BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneSubTrack* GetDefaultObj();
@@ -374,7 +374,7 @@ public:
 	static class UClass* StaticClass();
 	static class IMovieSceneEasingFunction* GetDefaultObj();
 
-	float OnEvaluate();
+	float OnEvaluate(float ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -438,17 +438,17 @@ public:
 class UMovieSceneCompiledData : public UObject
 {
 public:
-	struct FMovieSceneEvaluationTemplate         EvaluationTemplate;                                // 0x28(0x160)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FMovieSceneSequenceHierarchy          Hierarchy;                                         // 0x188(0x118)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig)
-	struct FMovieSceneEntityComponentField       EntityComponentField;                              // 0x2A0(0xF0)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FMovieSceneEvaluationField            TrackTemplateField;                                // 0x390(0x30)(ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<struct FFrameTime>                    DeterminismFences;                                 // 0x3C0(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FGuid                                 CompiledSignature;                                 // 0x3D0(0x10)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FGuid                                 CompilerVersion;                                   // 0x3E0(0x10)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FMovieSceneSequenceCompilerMaskStruct AccumulatedMask;                                   // 0x3F0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FMovieSceneSequenceCompilerMaskStruct AllocatedMask;                                     // 0x3F1(0x1)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EMovieSceneSequenceFlags          AccumulatedFlags;                                  // 0x3F2(0x1)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3A2[0x5];                                      // Fixing Size Of Struct > TateDumper <
+	struct FMovieSceneEvaluationTemplate         EvaluationTemplate;                                // 0x28(0x160)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FMovieSceneSequenceHierarchy          Hierarchy;                                         // 0x188(0x118)(ConstParm, ExportObject, BlueprintReadOnly, Config, EditConst, SubobjectReference)
+	struct FMovieSceneEntityComponentField       EntityComponentField;                              // 0x2A0(0xF0)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FMovieSceneEvaluationField            TrackTemplateField;                                // 0x390(0x30)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<struct FFrameTime>                    DeterminismFences;                                 // 0x3C0(0x10)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FGuid                                 CompiledSignature;                                 // 0x3D0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FGuid                                 CompilerVersion;                                   // 0x3E0(0x10)(ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FMovieSceneSequenceCompilerMaskStruct AccumulatedMask;                                   // 0x3F0(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FMovieSceneSequenceCompilerMaskStruct AllocatedMask;                                     // 0x3F1(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EMovieSceneSequenceFlags          AccumulatedFlags;                                  // 0x3F2(0x1)(BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_282[0x5];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneCompiledData* GetDefaultObj();
@@ -460,12 +460,12 @@ public:
 class UMovieSceneCompiledDataManager : public UObject
 {
 public:
-	uint8                                        Pad_3A4[0xB0];                                     // Fixing Size After Last Property  > TateDumper <
-	TMap<int32, struct FMovieSceneSequenceHierarchy> Hierarchies;                                       // 0xD8(0x50)(Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TMap<int32, struct FMovieSceneEvaluationTemplate> TrackTemplates;                                    // 0x128(0x50)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TMap<int32, struct FMovieSceneEvaluationField> TrackTemplateFields;                               // 0x178(0x50)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TMap<int32, struct FMovieSceneEntityComponentField> EntityComponentFields;                             // 0x1C8(0x50)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3A6[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_288[0xB0];                                     // Fixing Size After Last Property  > TateDumper <
+	TMap<int32, struct FMovieSceneSequenceHierarchy> Hierarchies;                                       // 0xD8(0x50)(ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TMap<int32, struct FMovieSceneEvaluationTemplate> TrackTemplates;                                    // 0x128(0x50)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TMap<int32, struct FMovieSceneEvaluationField> TrackTemplateFields;                               // 0x178(0x50)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TMap<int32, struct FMovieSceneEntityComponentField> EntityComponentFields;                             // 0x1C8(0x50)(ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_28B[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneCompiledDataManager* GetDefaultObj();
@@ -488,7 +488,7 @@ public:
 class UMovieSceneBlenderSystem : public UMovieSceneEntitySystem
 {
 public:
-	uint8                                        Pad_3A8[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_290[0x28];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneBlenderSystem* GetDefaultObj();
@@ -533,7 +533,7 @@ public:
 class UMovieSceneEvalTimeSystem : public UMovieSceneEntitySystem
 {
 public:
-	uint8                                        Pad_3AA[0x70];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_293[0x70];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneEvalTimeSystem* GetDefaultObj();
@@ -545,7 +545,7 @@ public:
 class UMovieSceneEvaluationHookSystem : public UMovieSceneEntitySystem
 {
 public:
-	TMap<struct FMovieSceneEvaluationInstanceKey, struct FMovieSceneEvaluationHookEventContainer> PendingEventsByRootInstance;                       // 0x40(0x50)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TMap<struct FMovieSceneEvaluationInstanceKey, struct FMovieSceneEvaluationHookEventContainer> PendingEventsByRootInstance;                       // 0x40(0x50)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneEvaluationHookSystem* GetDefaultObj();
@@ -579,7 +579,7 @@ public:
 class UMovieSceneRestorePreAnimatedStateSystem : public UMovieSceneEntityInstantiatorSystem
 {
 public:
-	uint8                                        Pad_3AD[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_298[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneRestorePreAnimatedStateSystem* GetDefaultObj();
@@ -602,11 +602,11 @@ public:
 class UMovieSceneTrackInstance : public UObject
 {
 public:
-	class UObject*                               AnimatedObject;                                    // 0x28(0x8)(ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bIsRootTrackInstance;                              // 0x30(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3AE[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class UMovieSceneEntitySystemLinker*         PrivateLinker;                                     // 0x38(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<struct FMovieSceneTrackInstanceInput> Inputs;                                            // 0x40(0x10)(ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UObject*                               AnimatedObject;                                    // 0x28(0x8)(Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bIsRootTrackInstance;                              // 0x30(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_29D[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class UMovieSceneEntitySystemLinker*         PrivateLinker;                                     // 0x38(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<struct FMovieSceneTrackInstanceInput> Inputs;                                            // 0x40(0x10)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneTrackInstance* GetDefaultObj();
@@ -618,7 +618,7 @@ public:
 class UMovieSceneTrackInstanceInstantiator : public UMovieSceneEntityInstantiatorSystem
 {
 public:
-	uint8                                        Pad_3B0[0xB0];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_29F[0xB0];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneTrackInstanceInstantiator* GetDefaultObj();
@@ -630,7 +630,7 @@ public:
 class UMovieSceneTrackInstanceSystem : public UMovieSceneEntitySystem
 {
 public:
-	class UMovieSceneTrackInstanceInstantiator*  Instantiator;                                      // 0x40(0x8)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class UMovieSceneTrackInstanceInstantiator*  Instantiator;                                      // 0x40(0x8)(Edit, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneTrackInstanceSystem* GetDefaultObj();
@@ -646,10 +646,10 @@ public:
 	static class UClass* StaticClass();
 	static class IMovieSceneCustomClockSource* GetDefaultObj();
 
-	float OnTick(float DeltaSeconds);
+	float OnTick(float* InPlayRate);
 	struct FQualifiedFrameTime OnStopPlaying();
-	struct FQualifiedFrameTime OnStartPlaying();
-	struct FFrameTime OnRequestCurrentTime();
+	void OnStartPlaying(const struct FQualifiedFrameTime& InStartTime);
+	struct FQualifiedFrameTime OnRequestCurrentTime(float* InPlayRate, const struct FFrameTime& ReturnValue);
 };
 
 // 0x10 (0x38 - 0x28)
@@ -657,9 +657,9 @@ public:
 class UMovieSceneBuiltInEasingFunction : public UObject
 {
 public:
-	uint8                                        Pad_3B6[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_2A4[0x8];                                      // Fixing Size After Last Property  > TateDumper <
 	enum class EMovieSceneBuiltInEasing          Type;                                              // 0x30(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	uint8                                        Pad_3B7[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2A5[0x7];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneBuiltInEasingFunction* GetDefaultObj();
@@ -671,7 +671,7 @@ public:
 class UMovieSceneEasingExternalCurve : public UObject
 {
 public:
-	uint8                                        Pad_3B8[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_2A6[0x8];                                      // Fixing Size After Last Property  > TateDumper <
 	class UCurveFloat*                           Curve;                                             // 0x30(0x8)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
 
 	static class UClass* StaticClass();
@@ -717,22 +717,22 @@ public:
 class UMovieScene : public UMovieSceneSignedObject
 {
 public:
-	uint8                                        Pad_3BA[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FMovieSceneSpawnable>          Spawnables;                                        // 0x60(0x10)(Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<struct FMovieScenePossessable>        Possessables;                                      // 0x70(0x10)(ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<struct FMovieSceneBinding>            ObjectBindings;                                    // 0x80(0x10)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	TMap<class FName, struct FMovieSceneObjectBindingIDs> BindingGroups;                                     // 0x90(0x50)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<class UMovieSceneTrack*>              Tracks;                                            // 0xE0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UMovieSceneTrack*                      CameraCutTrack;                                    // 0xF0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	struct FMovieSceneFrameRange                 SelectionRange;                                    // 0xF8(0x10)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FMovieSceneFrameRange                 PlaybackRange;                                     // 0x108(0x10)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FFrameRate                            TickResolution;                                    // 0x118(0x8)(ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FFrameRate                            DisplayRate;                                       // 0x120(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class EMovieSceneEvaluationType         EvaluationType;                                    // 0x128(0x1)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EUpdateClockSource                ClockSource;                                       // 0x129(0x1)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3BC[0x6];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FSoftObjectPath                       CustomClockSourcePath;                             // 0x130(0x20)(Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<struct FMovieSceneMarkedFrame>        MarkedFrames;                                      // 0x150(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2A9[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FMovieSceneSpawnable>          Spawnables;                                        // 0x60(0x10)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<struct FMovieScenePossessable>        Possessables;                                      // 0x70(0x10)(Edit, ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<struct FMovieSceneBinding>            ObjectBindings;                                    // 0x80(0x10)(Edit, Parm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+	TMap<class FName, struct FMovieSceneObjectBindingIDs> BindingGroups;                                     // 0x90(0x50)(Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class UMovieSceneTrack*>              Tracks;                                            // 0xE0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UMovieSceneTrack*                      CameraCutTrack;                                    // 0xF0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+	struct FMovieSceneFrameRange                 SelectionRange;                                    // 0xF8(0x10)(Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FMovieSceneFrameRange                 PlaybackRange;                                     // 0x108(0x10)(Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FFrameRate                            TickResolution;                                    // 0x118(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	struct FFrameRate                            DisplayRate;                                       // 0x120(0x8)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	enum class EMovieSceneEvaluationType         EvaluationType;                                    // 0x128(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EUpdateClockSource                ClockSource;                                       // 0x129(0x1)(ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2AB[0x6];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FSoftObjectPath                       CustomClockSourcePath;                             // 0x130(0x20)(ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<struct FMovieSceneMarkedFrame>        MarkedFrames;                                      // 0x150(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieScene* GetDefaultObj();
@@ -744,8 +744,8 @@ public:
 class UMovieSceneBindingOverrides : public UObject
 {
 public:
-	TArray<struct FMovieSceneBindingOverrideData> BindingData;                                       // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3BE[0x58];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<struct FMovieSceneBindingOverrideData> BindingData;                                       // 0x28(0x10)(BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2AC[0x58];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneBindingOverrides* GetDefaultObj();
@@ -757,13 +757,13 @@ public:
 class UMovieSceneFolder : public UObject
 {
 public:
-	uint8                                        Pad_3BF[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class FName                                  FolderName;                                        // 0x2C(0x8)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3C0[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class UMovieSceneFolder*>             ChildFolders;                                      // 0x38(0x10)(Edit, ConstParm, ExportObject, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<class UMovieSceneTrack*>              ChildTracks;                                       // 0x48(0x10)(BlueprintVisible, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<class FString>                        ChildObjectBindingStrings;                         // 0x58(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3C1[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2AE[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class FName                                  FolderName;                                        // 0x2C(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2AF[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<class UMovieSceneFolder*>             ChildFolders;                                      // 0x38(0x10)(BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class UMovieSceneTrack*>              ChildTracks;                                       // 0x48(0x10)(Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class FString>                        ChildObjectBindingStrings;                         // 0x58(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B0[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneFolder* GetDefaultObj();
@@ -775,7 +775,7 @@ public:
 class UMovieSceneSequenceTickManager : public UObject
 {
 public:
-	uint8                                        Pad_3C3[0x70];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2B1[0x70];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneSequenceTickManager* GetDefaultObj();
@@ -787,9 +787,9 @@ public:
 class UMovieSceneBoolSection : public UMovieSceneSection
 {
 public:
-	bool                                         DefaultValue;                                      // 0xF0(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_3C4[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FMovieSceneBoolChannel                BoolCurve;                                         // 0xF8(0x100)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         DefaultValue;                                      // 0xF0(0x1)(ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2B2[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FMovieSceneBoolChannel                BoolCurve;                                         // 0xF8(0x100)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneBoolSection* GetDefaultObj();
@@ -801,10 +801,10 @@ public:
 class UMovieSceneHookSection : public UMovieSceneSection
 {
 public:
-	uint8                                        Pad_3C5[0x10];                                     // Fixing Size After Last Property  > TateDumper <
-	uint8                                        bRequiresRangedHook : 1;                           // Mask: 0x1, PropSize: 0x10x100(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        bRequiresTriggerHooks : 1;                         // Mask: 0x2, PropSize: 0x10x100(0x1)(ConstParm, BlueprintReadOnly, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3C7[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2B4[0x10];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        bRequiresRangedHook : 1;                           // Mask: 0x1, PropSize: 0x10x100(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        bRequiresTriggerHooks : 1;                         // Mask: 0x2, PropSize: 0x10x100(0x1)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2B5[0x7];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneHookSection* GetDefaultObj();
@@ -816,7 +816,7 @@ public:
 class UMovieSceneSpawnSection : public UMovieSceneBoolSection
 {
 public:
-	uint8                                        Pad_3C8[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2B9[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneSpawnSection* GetDefaultObj();
@@ -828,10 +828,10 @@ public:
 class UTestMovieSceneTrack : public UMovieSceneTrack
 {
 public:
-	uint8                                        Pad_3C9[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	bool                                         bHighPassFilter;                                   // 0xA0(0x1)(BlueprintReadOnly, Net, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_3CA[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class UMovieSceneSection*>            SectionArray;                                      // 0xA8(0x10)(Edit, ExportObject, Net, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2BC[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	bool                                         bHighPassFilter;                                   // 0xA0(0x1)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2BF[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<class UMovieSceneSection*>            SectionArray;                                      // 0xA8(0x10)(ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UTestMovieSceneTrack* GetDefaultObj();
@@ -866,7 +866,7 @@ public:
 class UTestMovieSceneSubTrack : public UMovieSceneSubTrack
 {
 public:
-	TArray<class UMovieSceneSection*>            SectionArray;                                      // 0xA8(0x10)(Edit, ExportObject, Net, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class UMovieSceneSection*>            SectionArray;                                      // 0xA8(0x10)(ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UTestMovieSceneSubTrack* GetDefaultObj();
@@ -889,7 +889,7 @@ public:
 class UTestMovieSceneEvalHookTrack : public UMovieSceneTrack
 {
 public:
-	TArray<class UMovieSceneSection*>            SectionArray;                                      // 0x98(0x10)(Edit, ExportObject, Net, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class UMovieSceneSection*>            SectionArray;                                      // 0x98(0x10)(ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UTestMovieSceneEvalHookTrack* GetDefaultObj();
@@ -901,7 +901,7 @@ public:
 class UTestMovieSceneEvalHookSection : public UMovieSceneHookSection
 {
 public:
-	uint8                                        Pad_3D0[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2CB[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UTestMovieSceneEvalHookSection* GetDefaultObj();
@@ -913,8 +913,8 @@ public:
 class UMovieSceneSpawnTrack : public UMovieSceneTrack
 {
 public:
-	TArray<class UMovieSceneSection*>            Sections;                                          // 0x98(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	struct FGuid                                 ObjectGuid;                                        // 0xA8(0x10)(BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	TArray<class UMovieSceneSection*>            Sections;                                          // 0x98(0x10)(BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	struct FGuid                                 ObjectGuid;                                        // 0xA8(0x10)(Edit, Net, EditFixedSize, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneSpawnTrack* GetDefaultObj();

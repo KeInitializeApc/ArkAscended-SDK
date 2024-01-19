@@ -43,20 +43,20 @@ class UPrimalItemArmor_BasePants_C* UPrimalItemArmor_BasePants_C::GetDefaultObj(
 // Function PrimalItemArmor_BasePants.PrimalItemArmor_BasePants_C.OverrideCrouchingSound
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class USoundBase*                  InSound                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bIsProne                                                         (Edit, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              SoundState                                                       (Edit, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class USoundBase*                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class USoundBase*                  RetSound                                                         (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               Temp_bool_Variable                                               (ConstParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Variable                                                (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Variable_1                                              (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// class USoundBase*                  K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class USoundBase*                  K2Node_Select_Default_1                                          (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class USoundBase*                  K2Node_Select_Default_2                                          (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// class USoundBase*                  InSound                                                          (Edit, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               bIsProne                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              SoundState                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class USoundBase*                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USoundBase*                  RetSound                                                         (Edit, BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Variable                                                (Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Variable_1                                              (Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// class USoundBase*                  K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// class USoundBase*                  K2Node_Select_Default_1                                          (EditFixedSize, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class USoundBase*                  K2Node_Select_Default_2                                          (EditFixedSize, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
 
-class USoundBase* UPrimalItemArmor_BasePants_C::OverrideCrouchingSound(class USoundBase* InSound, int32 SoundState, class USoundBase** RetSound, bool Temp_bool_Variable, int32* Temp_int_Variable, int32* Temp_int_Variable_1, class USoundBase** K2Node_Select_Default, class USoundBase** K2Node_Select_Default_1, bool* CallFunc_IsValid_ReturnValue, class USoundBase** K2Node_Select_Default_2)
+bool UPrimalItemArmor_BasePants_C::OverrideCrouchingSound(bool* bIsProne, class USoundBase* ReturnValue, class USoundBase* RetSound, bool Temp_bool_Variable, class USoundBase* K2Node_Select_Default, class USoundBase* K2Node_Select_Default_1, class USoundBase* K2Node_Select_Default_2)
 {
 	static class UFunction* Func = nullptr;
 
@@ -65,32 +65,17 @@ class USoundBase* UPrimalItemArmor_BasePants_C::OverrideCrouchingSound(class USo
 
 	Params::UPrimalItemArmor_BasePants_C_OverrideCrouchingSound_Params Parms{};
 
-	Parms.InSound = InSound;
-	Parms.SoundState = SoundState;
+	Parms.ReturnValue = ReturnValue;
+	Parms.RetSound = RetSound;
 	Parms.Temp_bool_Variable = Temp_bool_Variable;
+	Parms.K2Node_Select_Default = K2Node_Select_Default;
+	Parms.K2Node_Select_Default_1 = K2Node_Select_Default_1;
+	Parms.K2Node_Select_Default_2 = K2Node_Select_Default_2;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (RetSound != nullptr)
-		*RetSound = Parms.RetSound;
-
-	if (Temp_int_Variable != nullptr)
-		*Temp_int_Variable = Parms.Temp_int_Variable;
-
-	if (Temp_int_Variable_1 != nullptr)
-		*Temp_int_Variable_1 = Parms.Temp_int_Variable_1;
-
-	if (K2Node_Select_Default != nullptr)
-		*K2Node_Select_Default = Parms.K2Node_Select_Default;
-
-	if (K2Node_Select_Default_1 != nullptr)
-		*K2Node_Select_Default_1 = Parms.K2Node_Select_Default_1;
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (K2Node_Select_Default_2 != nullptr)
-		*K2Node_Select_Default_2 = Parms.K2Node_Select_Default_2;
+	if (bIsProne != nullptr)
+		*bIsProne = Parms.bIsProne;
 
 	return Parms.ReturnValue;
 

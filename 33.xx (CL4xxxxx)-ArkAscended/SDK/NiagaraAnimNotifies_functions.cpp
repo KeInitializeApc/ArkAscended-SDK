@@ -43,10 +43,10 @@ class UAnimNotifyState_TimedNiagaraEffect* UAnimNotifyState_TimedNiagaraEffect::
 // Function NiagaraAnimNotifies.AnimNotifyState_TimedNiagaraEffect.GetSpawnedEffect
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class UMeshComponent*              MeshComp                                                         (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UFXSystemComponent*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMeshComponent*              MeshComp                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UFXSystemComponent*          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UFXSystemComponent* UAnimNotifyState_TimedNiagaraEffect::GetSpawnedEffect()
+void UAnimNotifyState_TimedNiagaraEffect::GetSpawnedEffect(class UMeshComponent** MeshComp, class UFXSystemComponent* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,6 +55,7 @@ class UFXSystemComponent* UAnimNotifyState_TimedNiagaraEffect::GetSpawnedEffect(
 
 	Params::UAnimNotifyState_TimedNiagaraEffect_GetSpawnedEffect_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -64,7 +65,8 @@ class UFXSystemComponent* UAnimNotifyState_TimedNiagaraEffect::GetSpawnedEffect(
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (MeshComp != nullptr)
+		*MeshComp = Parms.MeshComp;
 
 }
 
@@ -100,10 +102,10 @@ class UAnimNotifyState_TimedNiagaraEffectAdvanced* UAnimNotifyState_TimedNiagara
 // Function NiagaraAnimNotifies.AnimNotifyState_TimedNiagaraEffectAdvanced.GetNotifyProgress
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class UMeshComponent*              MeshComp                                                         (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMeshComponent*              MeshComp                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UAnimNotifyState_TimedNiagaraEffectAdvanced::GetNotifyProgress()
+void UAnimNotifyState_TimedNiagaraEffectAdvanced::GetNotifyProgress(class UMeshComponent** MeshComp, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -112,6 +114,7 @@ float UAnimNotifyState_TimedNiagaraEffectAdvanced::GetNotifyProgress()
 
 	Params::UAnimNotifyState_TimedNiagaraEffectAdvanced_GetNotifyProgress_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -121,7 +124,8 @@ float UAnimNotifyState_TimedNiagaraEffectAdvanced::GetNotifyProgress()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (MeshComp != nullptr)
+		*MeshComp = Parms.MeshComp;
 
 }
 
@@ -157,9 +161,9 @@ class UAnimNotify_PlayNiagaraEffect* UAnimNotify_PlayNiagaraEffect::GetDefaultOb
 // Function NiagaraAnimNotifies.AnimNotify_PlayNiagaraEffect.GetSpawnedEffect
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class UFXSystemComponent*          ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UFXSystemComponent*          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UFXSystemComponent* UAnimNotify_PlayNiagaraEffect::GetSpawnedEffect()
+void UAnimNotify_PlayNiagaraEffect::GetSpawnedEffect(class UFXSystemComponent* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -168,6 +172,7 @@ class UFXSystemComponent* UAnimNotify_PlayNiagaraEffect::GetSpawnedEffect()
 
 	Params::UAnimNotify_PlayNiagaraEffect_GetSpawnedEffect_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -176,8 +181,6 @@ class UFXSystemComponent* UAnimNotify_PlayNiagaraEffect::GetSpawnedEffect()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 

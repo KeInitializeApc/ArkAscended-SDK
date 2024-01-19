@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class ABuff_ASAPreventDismount_C* GetDefaultObj();
 
-	bool BPBypassPreventDinoDismount();
+	void BPBypassPreventDinoDismount(bool* FromRider, bool bCancelForceLand, bool SpawnDinoDefaultController, int32 OverrideUnboardDirection, bool bForceEvenIfBuffPreventsClear, bool bFromUse, bool ReturnValue);
 };
 
 }

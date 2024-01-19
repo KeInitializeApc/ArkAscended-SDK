@@ -224,9 +224,9 @@ class UObject* UObject::GetDefaultObj()
 // Function CoreUObject.Object.ExecuteUbergraph
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UObject::ExecuteUbergraph()
+void UObject::ExecuteUbergraph(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -235,10 +235,9 @@ int32 UObject::ExecuteUbergraph()
 
 	Params::UObject_ExecuteUbergraph_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 

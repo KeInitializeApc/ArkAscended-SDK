@@ -38,7 +38,7 @@ enum class ELiveLinkAxis : uint8
 struct FLiveLinkRetargetAssetReference
 {
 public:
-	uint8                                        Pad_C89[0x1];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_B56[0x1];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x40 (0x40 - 0x0)
@@ -46,12 +46,12 @@ public:
 struct FProviderPollResult
 {
 public:
-	uint8                                        Pad_C8B[0x10];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_B57[0x10];                                     // Fixing Size After Last Property  > TateDumper <
 	class FString                                Name;                                              // 0x10(0x10)(ConstParm, Net, OutParm)
-	class FString                                MachineName;                                       // 0x20(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	double                                       MachineTimeOffset;                                 // 0x30(0x8)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	bool                                         bIsValidProvider;                                  // 0x38(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_C8D[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class FString                                MachineName;                                       // 0x20(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
+	double                                       MachineTimeOffset;                                 // 0x30(0x8)(ConstParm, Net, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
+	bool                                         bIsValidProvider;                                  // 0x38(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_B58[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x28 - 0x0)
@@ -60,9 +60,9 @@ struct FLiveLinkRoleProjectSetting
 {
 public:
 	class UClass*                                Role;                                              // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
-	class UClass*                                SettingClass;                                      // 0x8(0x8)(EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	class UClass*                                FrameInterpolationProcessor;                       // 0x10(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	TArray<class UClass*>                        FramePreProcessors;                                // 0x18(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class UClass*                                SettingClass;                                      // 0x8(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
+	class UClass*                                FrameInterpolationProcessor;                       // 0x10(0x8)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	TArray<class UClass*>                        FramePreProcessors;                                // 0x18(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
 };
 
 }

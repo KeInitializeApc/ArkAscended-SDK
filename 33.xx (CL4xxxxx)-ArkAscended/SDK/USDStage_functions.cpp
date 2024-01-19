@@ -71,9 +71,9 @@ class AUsdStageActor* AUsdStageActor::GetDefaultObj()
 // Function USDStage.UsdStageActor.SetTime
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InTime                                                           (Edit, ExportObject, Net, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              InTime                                                           (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
 
-void AUsdStageActor::SetTime(float InTime)
+void AUsdStageActor::SetTime(float* InTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -82,7 +82,6 @@ void AUsdStageActor::SetTime(float InTime)
 
 	Params::AUsdStageActor_SetTime_Params Parms{};
 
-	Parms.InTime = InTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -92,15 +91,18 @@ void AUsdStageActor::SetTime(float InTime)
 
 	Func->FunctionFlags = Flgs;
 
+	if (InTime != nullptr)
+		*InTime = Parms.InTime;
+
 }
 
 
 // Function USDStage.UsdStageActor.SetRootMotionHandling
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EUsdRootMotionHandling  NewHandlingStrategy                                              (Edit, Net, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EUsdRootMotionHandling  NewHandlingStrategy                                              (ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void AUsdStageActor::SetRootMotionHandling(enum class EUsdRootMotionHandling NewHandlingStrategy)
+void AUsdStageActor::SetRootMotionHandling(enum class EUsdRootMotionHandling* NewHandlingStrategy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -109,7 +111,6 @@ void AUsdStageActor::SetRootMotionHandling(enum class EUsdRootMotionHandling New
 
 	Params::AUsdStageActor_SetRootMotionHandling_Params Parms{};
 
-	Parms.NewHandlingStrategy = NewHandlingStrategy;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -119,15 +120,18 @@ void AUsdStageActor::SetRootMotionHandling(enum class EUsdRootMotionHandling New
 
 	Func->FunctionFlags = Flgs;
 
+	if (NewHandlingStrategy != nullptr)
+		*NewHandlingStrategy = Parms.NewHandlingStrategy;
+
 }
 
 
 // Function USDStage.UsdStageActor.SetRootLayer
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      RootFilePath                                                     (ConstParm, ExportObject, BlueprintReadOnly, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      RootFilePath                                                     (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void AUsdStageActor::SetRootLayer(const class FString& RootFilePath)
+void AUsdStageActor::SetRootLayer(class FString* RootFilePath)
 {
 	static class UFunction* Func = nullptr;
 
@@ -136,7 +140,6 @@ void AUsdStageActor::SetRootLayer(const class FString& RootFilePath)
 
 	Params::AUsdStageActor_SetRootLayer_Params Parms{};
 
-	Parms.RootFilePath = RootFilePath;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -146,15 +149,18 @@ void AUsdStageActor::SetRootLayer(const class FString& RootFilePath)
 
 	Func->FunctionFlags = Flgs;
 
+	if (RootFilePath != nullptr)
+		*RootFilePath = std::move(Parms.RootFilePath);
+
 }
 
 
 // Function USDStage.UsdStageActor.SetRenderContext
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        NewRenderContext                                                 (Edit, BlueprintReadOnly, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        NewRenderContext                                                 (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void AUsdStageActor::SetRenderContext(class FName NewRenderContext)
+void AUsdStageActor::SetRenderContext(class FName* NewRenderContext)
 {
 	static class UFunction* Func = nullptr;
 
@@ -163,7 +169,6 @@ void AUsdStageActor::SetRenderContext(class FName NewRenderContext)
 
 	Params::AUsdStageActor_SetRenderContext_Params Parms{};
 
-	Parms.NewRenderContext = NewRenderContext;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -173,15 +178,18 @@ void AUsdStageActor::SetRenderContext(class FName NewRenderContext)
 
 	Func->FunctionFlags = Flgs;
 
+	if (NewRenderContext != nullptr)
+		*NewRenderContext = Parms.NewRenderContext;
+
 }
 
 
 // Function USDStage.UsdStageActor.SetPurposesToLoad
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NewPurposesToLoad                                                (Edit, ConstParm, BlueprintVisible, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              NewPurposesToLoad                                                (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void AUsdStageActor::SetPurposesToLoad(int32 NewPurposesToLoad)
+void AUsdStageActor::SetPurposesToLoad(int32* NewPurposesToLoad)
 {
 	static class UFunction* Func = nullptr;
 
@@ -190,7 +198,6 @@ void AUsdStageActor::SetPurposesToLoad(int32 NewPurposesToLoad)
 
 	Params::AUsdStageActor_SetPurposesToLoad_Params Parms{};
 
-	Parms.NewPurposesToLoad = NewPurposesToLoad;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -200,15 +207,18 @@ void AUsdStageActor::SetPurposesToLoad(int32 NewPurposesToLoad)
 
 	Func->FunctionFlags = Flgs;
 
+	if (NewPurposesToLoad != nullptr)
+		*NewPurposesToLoad = Parms.NewPurposesToLoad;
+
 }
 
 
 // Function USDStage.UsdStageActor.SetNaniteTriangleThreshold
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NewNaniteTriangleThreshold                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              NewNaniteTriangleThreshold                                       (EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 AUsdStageActor::SetNaniteTriangleThreshold()
+void AUsdStageActor::SetNaniteTriangleThreshold(int32* NewNaniteTriangleThreshold)
 {
 	static class UFunction* Func = nullptr;
 
@@ -226,7 +236,8 @@ int32 AUsdStageActor::SetNaniteTriangleThreshold()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewNaniteTriangleThreshold != nullptr)
+		*NewNaniteTriangleThreshold = Parms.NewNaniteTriangleThreshold;
 
 }
 
@@ -234,9 +245,9 @@ int32 AUsdStageActor::SetNaniteTriangleThreshold()
 // Function USDStage.UsdStageActor.SetMergeIdenticalMaterialSlots
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bMerge                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bMerge                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool AUsdStageActor::SetMergeIdenticalMaterialSlots()
+void AUsdStageActor::SetMergeIdenticalMaterialSlots(bool* bMerge)
 {
 	static class UFunction* Func = nullptr;
 
@@ -254,7 +265,8 @@ bool AUsdStageActor::SetMergeIdenticalMaterialSlots()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bMerge != nullptr)
+		*bMerge = Parms.bMerge;
 
 }
 
@@ -262,9 +274,9 @@ bool AUsdStageActor::SetMergeIdenticalMaterialSlots()
 // Function USDStage.UsdStageActor.SetMaterialPurpose
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        NewMaterialPurpose                                               (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        NewMaterialPurpose                                               (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class FName AUsdStageActor::SetMaterialPurpose()
+void AUsdStageActor::SetMaterialPurpose(class FName* NewMaterialPurpose)
 {
 	static class UFunction* Func = nullptr;
 
@@ -282,7 +294,8 @@ class FName AUsdStageActor::SetMaterialPurpose()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewMaterialPurpose != nullptr)
+		*NewMaterialPurpose = Parms.NewMaterialPurpose;
 
 }
 
@@ -290,9 +303,9 @@ class FName AUsdStageActor::SetMaterialPurpose()
 // Function USDStage.UsdStageActor.SetKindsToCollapse
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NewKindsToCollapse                                               (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              NewKindsToCollapse                                               (ExportObject, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-int32 AUsdStageActor::SetKindsToCollapse()
+void AUsdStageActor::SetKindsToCollapse(int32* NewKindsToCollapse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -310,7 +323,8 @@ int32 AUsdStageActor::SetKindsToCollapse()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewKindsToCollapse != nullptr)
+		*NewKindsToCollapse = Parms.NewKindsToCollapse;
 
 }
 
@@ -318,9 +332,9 @@ int32 AUsdStageActor::SetKindsToCollapse()
 // Function USDStage.UsdStageActor.SetIsolatedRootLayer
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      IsolatedStageRootLayer                                           (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      IsolatedStageRootLayer                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class FString AUsdStageActor::SetIsolatedRootLayer()
+void AUsdStageActor::SetIsolatedRootLayer(class FString* IsolatedStageRootLayer)
 {
 	static class UFunction* Func = nullptr;
 
@@ -338,7 +352,8 @@ class FString AUsdStageActor::SetIsolatedRootLayer()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (IsolatedStageRootLayer != nullptr)
+		*IsolatedStageRootLayer = std::move(Parms.IsolatedStageRootLayer);
 
 }
 
@@ -346,9 +361,9 @@ class FString AUsdStageActor::SetIsolatedRootLayer()
 // Function USDStage.UsdStageActor.SetInterpolationType
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EUsdInterpolationType   NewType                                                          (Edit, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// enum class EUsdInterpolationType   NewType                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void AUsdStageActor::SetInterpolationType(enum class EUsdInterpolationType NewType)
+void AUsdStageActor::SetInterpolationType(enum class EUsdInterpolationType* NewType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -357,7 +372,6 @@ void AUsdStageActor::SetInterpolationType(enum class EUsdInterpolationType NewTy
 
 	Params::AUsdStageActor_SetInterpolationType_Params Parms{};
 
-	Parms.NewType = NewType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -367,15 +381,18 @@ void AUsdStageActor::SetInterpolationType(enum class EUsdInterpolationType NewTy
 
 	Func->FunctionFlags = Flgs;
 
+	if (NewType != nullptr)
+		*NewType = Parms.NewType;
+
 }
 
 
 // Function USDStage.UsdStageActor.SetInitialLoadSet
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EUsdInitialLoadSet      NewLoadSet                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EUsdInitialLoadSet      NewLoadSet                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-enum class EUsdInitialLoadSet AUsdStageActor::SetInitialLoadSet()
+void AUsdStageActor::SetInitialLoadSet(enum class EUsdInitialLoadSet* NewLoadSet)
 {
 	static class UFunction* Func = nullptr;
 
@@ -393,7 +410,8 @@ enum class EUsdInitialLoadSet AUsdStageActor::SetInitialLoadSet()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewLoadSet != nullptr)
+		*NewLoadSet = Parms.NewLoadSet;
 
 }
 
@@ -401,9 +419,9 @@ enum class EUsdInitialLoadSet AUsdStageActor::SetInitialLoadSet()
 // Function USDStage.UsdStageActor.SetCollapseTopLevelPointInstancers
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bCollapse                                                        (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bCollapse                                                        (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool AUsdStageActor::SetCollapseTopLevelPointInstancers()
+void AUsdStageActor::SetCollapseTopLevelPointInstancers(bool* bCollapse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -421,7 +439,8 @@ bool AUsdStageActor::SetCollapseTopLevelPointInstancers()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bCollapse != nullptr)
+		*bCollapse = Parms.bCollapse;
 
 }
 
@@ -429,9 +448,9 @@ bool AUsdStageActor::SetCollapseTopLevelPointInstancers()
 // Function USDStage.UsdStageActor.SetAssetCache
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// class UUsdAssetCache2*             NewCache                                                         (BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UUsdAssetCache2*             NewCache                                                         (Edit, ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class UUsdAssetCache2* AUsdStageActor::SetAssetCache()
+void AUsdStageActor::SetAssetCache(class UUsdAssetCache2** NewCache)
 {
 	static class UFunction* Func = nullptr;
 
@@ -449,7 +468,8 @@ class UUsdAssetCache2* AUsdStageActor::SetAssetCache()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewCache != nullptr)
+		*NewCache = Parms.NewCache;
 
 }
 
@@ -481,9 +501,9 @@ void AUsdStageActor::NewStage()
 // Function USDStage.UsdStageActor.GetTime
 // (Final, RequiredAPI, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float AUsdStageActor::GetTime()
+void AUsdStageActor::GetTime(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -492,6 +512,7 @@ float AUsdStageActor::GetTime()
 
 	Params::AUsdStageActor_GetTime_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -501,8 +522,6 @@ float AUsdStageActor::GetTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -510,9 +529,9 @@ float AUsdStageActor::GetTime()
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
 // class UObject*                     Object                                                           (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString AUsdStageActor::GetSourcePrimPath(class UObject** Object)
+void AUsdStageActor::GetSourcePrimPath(class UObject** Object, const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -521,6 +540,7 @@ class FString AUsdStageActor::GetSourcePrimPath(class UObject** Object)
 
 	Params::AUsdStageActor_GetSourcePrimPath_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -533,17 +553,15 @@ class FString AUsdStageActor::GetSourcePrimPath(class UObject** Object)
 	if (Object != nullptr)
 		*Object = Parms.Object;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function USDStage.UsdStageActor.GetLevelSequence
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// class ULevelSequence*              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class ULevelSequence*              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class ULevelSequence* AUsdStageActor::GetLevelSequence()
+void AUsdStageActor::GetLevelSequence(class ULevelSequence* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -552,6 +570,7 @@ class ULevelSequence* AUsdStageActor::GetLevelSequence()
 
 	Params::AUsdStageActor_GetLevelSequence_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -561,17 +580,15 @@ class ULevelSequence* AUsdStageActor::GetLevelSequence()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function USDStage.UsdStageActor.GetIsolatedRootLayer
 // (Final, RequiredAPI, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FString AUsdStageActor::GetIsolatedRootLayer()
+void AUsdStageActor::GetIsolatedRootLayer(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -580,6 +597,7 @@ class FString AUsdStageActor::GetIsolatedRootLayer()
 
 	Params::AUsdStageActor_GetIsolatedRootLayer_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -589,18 +607,16 @@ class FString AUsdStageActor::GetIsolatedRootLayer()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function USDStage.UsdStageActor.GetGeneratedComponent
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      PrimPath                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class USceneComponent*             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      PrimPath                                                         (ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class USceneComponent*             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class USceneComponent* AUsdStageActor::GetGeneratedComponent()
+void AUsdStageActor::GetGeneratedComponent(class FString* PrimPath, class USceneComponent* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -609,6 +625,7 @@ class USceneComponent* AUsdStageActor::GetGeneratedComponent()
 
 	Params::AUsdStageActor_GetGeneratedComponent_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -618,7 +635,8 @@ class USceneComponent* AUsdStageActor::GetGeneratedComponent()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PrimPath != nullptr)
+		*PrimPath = std::move(Parms.PrimPath);
 
 }
 
@@ -626,10 +644,10 @@ class USceneComponent* AUsdStageActor::GetGeneratedComponent()
 // Function USDStage.UsdStageActor.GetGeneratedAssets
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      PrimPath                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<class UObject*>             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      PrimPath                                                         (ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<class UObject*>             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<class UObject*> AUsdStageActor::GetGeneratedAssets()
+void AUsdStageActor::GetGeneratedAssets(class FString* PrimPath, const TArray<class UObject*>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -638,6 +656,7 @@ TArray<class UObject*> AUsdStageActor::GetGeneratedAssets()
 
 	Params::AUsdStageActor_GetGeneratedAssets_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -647,7 +666,8 @@ TArray<class UObject*> AUsdStageActor::GetGeneratedAssets()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PrimPath != nullptr)
+		*PrimPath = std::move(Parms.PrimPath);
 
 }
 

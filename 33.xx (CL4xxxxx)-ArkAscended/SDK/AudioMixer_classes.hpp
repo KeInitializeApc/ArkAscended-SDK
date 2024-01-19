@@ -14,54 +14,54 @@ namespace SDK
 class USynthComponent : public USceneComponent
 {
 public:
-	uint8                                        bAutoDestroy : 1;                                  // Mask: 0x1, PropSize: 0x10x2C8(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        bStopWhenOwnerDestroyed : 1;                       // Mask: 0x2, PropSize: 0x10x2C8(0x1)(Edit, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        bAllowSpatialization : 1;                          // Mask: 0x4, PropSize: 0x10x2C8(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        bOverrideAttenuation : 1;                          // Mask: 0x8, PropSize: 0x10x2C8(0x1)(Edit, ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        BitPad_3C : 4;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_488[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	uint8                                        bEnableBusSends : 1;                               // Mask: 0x1, PropSize: 0x10x2CC(0x1)(ConstParm, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        bEnableBaseSubmix : 1;                             // Mask: 0x2, PropSize: 0x10x2CC(0x1)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        bEnableSubmixSends : 1;                            // Mask: 0x4, PropSize: 0x10x2CC(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        BitPad_3D : 5;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_489[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	class USoundAttenuation*                     AttenuationSettings;                               // 0x2D0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	struct FSoundAttenuationSettings             AttenuationOverrides;                              // 0x2D8(0x3C8)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	class USoundConcurrency*                     ConcurrencySettings;                               // 0x6A0(0x8)(ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TSet<class USoundConcurrency*>               ConcurrencySet;                                    // 0x6A8(0x50)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	class USoundClass*                           SoundClass;                                        // 0x6F8(0x8)(BlueprintVisible, Net, Transient, Config, DisableEditOnInstance, GlobalConfig)
-	class USoundEffectSourcePresetChain*         SourceEffectChain;                                 // 0x700(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	class USoundSubmixBase*                      SoundSubmix;                                       // 0x708(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig)
-	TArray<struct FSoundSubmixSendInfo>          SoundSubmixSends;                                  // 0x710(0x10)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<struct FSoundSourceBusSendInfo>       BusSends;                                          // 0x720(0x10)(BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<struct FSoundSourceBusSendInfo>       PreEffectBusSends;                                 // 0x730(0x10)(ConstParm, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        bIsUISound : 1;                                    // Mask: 0x1, PropSize: 0x10x740(0x1)(ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        bIsPreviewSound : 1;                               // Mask: 0x2, PropSize: 0x10x740(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        BitPad_3E : 6;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_48E[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        EnvelopeFollowerAttackTime;                        // 0x744(0x4)(Edit, ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	int32                                        EnvelopeFollowerReleaseTime;                       // 0x748(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_48F[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            OnAudioEnvelopeValue;                              // 0x750(0x10)(Edit, BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_490[0x20];                                     // Fixing Size After Last Property  > TateDumper <
-	class USynthSound*                           Synth;                                             // 0x780(0x8)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	class UAudioComponent*                       AudioComponent;                                    // 0x788(0x8)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
-	uint8                                        Pad_491[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        bAutoDestroy : 1;                                  // Mask: 0x1, PropSize: 0x10x2C8(0x1)(Edit, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        bStopWhenOwnerDestroyed : 1;                       // Mask: 0x2, PropSize: 0x10x2C8(0x1)(ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        bAllowSpatialization : 1;                          // Mask: 0x4, PropSize: 0x10x2C8(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        bOverrideAttenuation : 1;                          // Mask: 0x8, PropSize: 0x10x2C8(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        BitPad_1C : 4;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_36B[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        bEnableBusSends : 1;                               // Mask: 0x1, PropSize: 0x10x2CC(0x1)(Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        bEnableBaseSubmix : 1;                             // Mask: 0x2, PropSize: 0x10x2CC(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        bEnableSubmixSends : 1;                            // Mask: 0x4, PropSize: 0x10x2CC(0x1)(ConstParm, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        BitPad_1D : 5;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_36C[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	class USoundAttenuation*                     AttenuationSettings;                               // 0x2D0(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	struct FSoundAttenuationSettings             AttenuationOverrides;                              // 0x2D8(0x3C8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class USoundConcurrency*                     ConcurrencySettings;                               // 0x6A0(0x8)(Edit, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TSet<class USoundConcurrency*>               ConcurrencySet;                                    // 0x6A8(0x50)(Edit, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class USoundClass*                           SoundClass;                                        // 0x6F8(0x8)(ConstParm, Net, Parm, OutParm, Config, DisableEditOnInstance, GlobalConfig, InstancedReference)
+	class USoundEffectSourcePresetChain*         SourceEffectChain;                                 // 0x700(0x8)(ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class USoundSubmixBase*                      SoundSubmix;                                       // 0x708(0x8)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, DuplicateTransient)
+	TArray<struct FSoundSubmixSendInfo>          SoundSubmixSends;                                  // 0x710(0x10)(ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FSoundSourceBusSendInfo>       BusSends;                                          // 0x720(0x10)(Edit, ConstParm, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FSoundSourceBusSendInfo>       PreEffectBusSends;                                 // 0x730(0x10)(Edit, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        bIsUISound : 1;                                    // Mask: 0x1, PropSize: 0x10x740(0x1)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        bIsPreviewSound : 1;                               // Mask: 0x2, PropSize: 0x10x740(0x1)(ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        BitPad_1E : 6;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_370[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        EnvelopeFollowerAttackTime;                        // 0x744(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        EnvelopeFollowerReleaseTime;                       // 0x748(0x4)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_371[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            OnAudioEnvelopeValue;                              // 0x750(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_372[0x20];                                     // Fixing Size After Last Property  > TateDumper <
+	class USynthSound*                           Synth;                                             // 0x780(0x8)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UAudioComponent*                       AudioComponent;                                    // 0x788(0x8)(ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_373[0x30];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USynthComponent* GetDefaultObj();
 
 	void Stop();
 	void Start();
-	void SetVolumeMultiplier(float VolumeMultiplier);
-	float SetSubmixSend();
-	bool SetOutputToBusOnly();
-	float SetLowPassFilterFrequency();
-	bool SetLowPassFilterEnabled();
-	bool IsPlaying();
-	enum class EAudioFaderCurve FadeOut();
-	enum class EAudioFaderCurve FadeIn(float StartTime);
-	enum class EAudioFaderCurve AdjustVolume();
+	void SetVolumeMultiplier(float* VolumeMultiplier);
+	void SetSubmixSend(class USoundSubmixBase* Submix, float* SendLevel);
+	void SetOutputToBusOnly(bool* bInOutputToBusOnly);
+	void SetLowPassFilterFrequency(float* InLowPassFilterFrequency);
+	void SetLowPassFilterEnabled(bool* InLowPassFilterEnabled);
+	void IsPlaying(bool ReturnValue);
+	void FadeOut(float* FadeOutDuration, float* FadeVolumeLevel, enum class EAudioFaderCurve* FadeCurve);
+	float FadeIn(float* FadeInDuration, float* FadeVolumeLevel, enum class EAudioFaderCurve* FadeCurve);
+	void AdjustVolume(float* AdjustVolumeDuration, float* AdjustVolumeLevel, enum class EAudioFaderCurve* FadeCurve);
 };
 
 // 0x80 (0xA8 - 0x28)
@@ -69,7 +69,7 @@ public:
 class UAudioGenerator : public UObject
 {
 public:
-	uint8                                        Pad_492[0x80];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_377[0x80];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAudioGenerator* GetDefaultObj();
@@ -81,7 +81,7 @@ public:
 class UAudioBusSubsystem : public UAudioEngineSubsystem
 {
 public:
-	uint8                                        Pad_493[0x60];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_379[0x60];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAudioBusSubsystem* GetDefaultObj();
@@ -93,19 +93,19 @@ public:
 class UAudioDeviceNotificationSubsystem : public UEngineSubsystem
 {
 public:
-	uint8                                        Pad_495[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            DefaultCaptureDeviceChanged;                       // 0x38(0x10)(ConstParm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_496[0x18];                                     // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            DefaultRenderDeviceChanged;                        // 0x60(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_497[0x18];                                     // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            DeviceAdded;                                       // 0x88(0x10)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_498[0x18];                                     // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            DeviceRemoved;                                     // 0xB0(0x10)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_49A[0x18];                                     // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            DeviceStateChanged;                                // 0xD8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_49C[0x18];                                     // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            DeviceSwitched;                                    // 0x100(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_49D[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_37D[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            DefaultCaptureDeviceChanged;                       // 0x38(0x10)(Edit, ConstParm, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_380[0x18];                                     // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            DefaultRenderDeviceChanged;                        // 0x60(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_381[0x18];                                     // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            DeviceAdded;                                       // 0x88(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_383[0x18];                                     // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            DeviceRemoved;                                     // 0xB0(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_385[0x18];                                     // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            DeviceStateChanged;                                // 0xD8(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_386[0x18];                                     // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            DeviceSwitched;                                    // 0x100(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_387[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAudioDeviceNotificationSubsystem* GetDefaultObj();
@@ -121,44 +121,44 @@ public:
 	static class UClass* StaticClass();
 	static class UAudioMixerBlueprintLibrary* GetDefaultObj();
 
-	float TrimAudioCache(float InMegabytesToFree);
-	class UObject* SwapAudioOutputDevice(const class FString& NewDeviceId, FDelegateProperty_* OnCompletedDeviceSwap);
-	class USoundWave* StopRecordingOutput(enum class EAudioRecordingExportType* ExportType, class FString* Name, const class FString& Path, class USoundSubmix** SubmixToRecord, class USoundWave** ExistingSoundWaveToOverwrite);
-	class UObject* StopAudioBus(class UAudioBus* AudioBus);
-	class UObject* StopAnalyzingOutput(class USoundSubmix** SubmixToStopAnalyzing);
-	class UObject* StartRecordingOutput(float* ExpectedDuration, class USoundSubmix** SubmixToRecord);
-	class UObject* StartAudioBus(class UAudioBus* AudioBus);
-	class UObject* StartAnalyzingOutput(class USoundSubmix** SubmixToAnalyze, enum class EFFTSize* FFTSize, enum class EFFTPeakInterpolationMethod* InterpolationMethod, enum class EFFTWindowType* WindowType, float* HopSize, enum class EAudioSpectrumType* SpectrumType);
-	class UObject* SetSubmixEffectChainOverride(class USoundSubmix** SoundSubmix, TArray<class USoundEffectSubmixPreset*>* SubmixEffectPresetChain, float* FadeTimeSec);
-	class UObject* SetBypassSourceEffectChainEntry(class USoundEffectSourcePresetChain** PresetChain, int32 EntryIndex, bool* bBypassed);
-	class UObject* ResumeRecordingOutput(class USoundSubmix** SubmixToPause);
-	class UObject* ReplaceSubmixEffect(class USoundSubmix** InSoundSubmix, int32* SubmixChainIndex, class USoundEffectSubmixPreset** SubmixEffectPreset);
-	class UObject* ReplaceSoundEffectSubmix(class USoundSubmix** InSoundSubmix, int32* SubmixChainIndex, class USoundEffectSubmixPreset** SubmixEffectPreset);
-	class UObject* RemoveSubmixEffectPresetAtIndex(class USoundSubmix** SoundSubmix, int32* SubmixChainIndex);
-	class UObject* RemoveSubmixEffectPreset(class USoundSubmix** SoundSubmix, class USoundEffectSubmixPreset** SubmixEffectPreset);
-	class UObject* RemoveSubmixEffectAtIndex(class USoundSubmix** SoundSubmix, int32* SubmixChainIndex);
-	class UObject* RemoveSubmixEffect(class USoundSubmix** SoundSubmix, class USoundEffectSubmixPreset** SubmixEffectPreset);
-	class UObject* RemoveSourceEffectFromPresetChain(class USoundEffectSourcePresetChain** PresetChain, int32 EntryIndex);
-	class UObject* RemoveMasterSubmixEffect(class USoundEffectSubmixPreset** SubmixEffectPreset);
+	void TrimAudioCache(float* InMegabytesToFree, float ReturnValue);
+	void SwapAudioOutputDevice(class UObject* WorldContextObject, class FString* NewDeviceId, FDelegateProperty_* OnCompletedDeviceSwap);
+	void StopRecordingOutput(class UObject* WorldContextObject, enum class EAudioRecordingExportType* ExportType, class FString* Name, const class FString& Path, class USoundSubmix** SubmixToRecord, class USoundWave** ExistingSoundWaveToOverwrite, class USoundWave* ReturnValue);
+	void StopAudioBus(class UObject* WorldContextObject, class UAudioBus** AudioBus);
+	void StopAnalyzingOutput(class UObject* WorldContextObject, class USoundSubmix** SubmixToStopAnalyzing);
+	void StartRecordingOutput(class UObject* WorldContextObject, float* ExpectedDuration, class USoundSubmix** SubmixToRecord);
+	void StartAudioBus(class UObject* WorldContextObject, class UAudioBus** AudioBus);
+	enum class EAudioSpectrumType StartAnalyzingOutput(class UObject* WorldContextObject, class USoundSubmix* SubmixToAnalyze, enum class EFFTPeakInterpolationMethod* InterpolationMethod, float* HopSize);
+	void SetSubmixEffectChainOverride(class UObject* WorldContextObject, class USoundSubmix** SoundSubmix, TArray<class USoundEffectSubmixPreset*>* SubmixEffectPresetChain, float FadeTimeSec);
+	void SetBypassSourceEffectChainEntry(class UObject* WorldContextObject, class USoundEffectSourcePresetChain* PresetChain, int32 EntryIndex, bool* bBypassed);
+	void ResumeRecordingOutput(class UObject* WorldContextObject, class USoundSubmix** SubmixToPause);
+	void ReplaceSubmixEffect(class UObject* WorldContextObject, class USoundSubmix** InSoundSubmix, int32* SubmixChainIndex, class USoundEffectSubmixPreset* SubmixEffectPreset);
+	void ReplaceSoundEffectSubmix(class UObject* WorldContextObject, class USoundSubmix** InSoundSubmix, int32* SubmixChainIndex, class USoundEffectSubmixPreset* SubmixEffectPreset);
+	void RemoveSubmixEffectPresetAtIndex(class UObject* WorldContextObject, class USoundSubmix** SoundSubmix, int32* SubmixChainIndex);
+	void RemoveSubmixEffectPreset(class UObject* WorldContextObject, class USoundSubmix** SoundSubmix, class USoundEffectSubmixPreset* SubmixEffectPreset);
+	void RemoveSubmixEffectAtIndex(class UObject* WorldContextObject, class USoundSubmix** SoundSubmix, int32* SubmixChainIndex);
+	void RemoveSubmixEffect(class UObject* WorldContextObject, class USoundSubmix** SoundSubmix, class USoundEffectSubmixPreset* SubmixEffectPreset);
+	void RemoveSourceEffectFromPresetChain(class UObject* WorldContextObject, class USoundEffectSourcePresetChain* PresetChain, int32 EntryIndex);
+	void RemoveMasterSubmixEffect(class UObject* WorldContextObject, class USoundEffectSubmixPreset* SubmixEffectPreset);
 	void PrimeSoundForPlayback(class USoundWave* SoundWave, FDelegateProperty_* OnLoadCompletion);
 	class USoundCue* PrimeSoundCueForPlayback();
-	class UObject* PauseRecordingOutput(class USoundSubmix** SubmixToPause);
-	TArray<struct FSoundSubmixSpectralAnalysisBandSettings> MakePresetSpectralAnalysisBandSettings(enum class EAudioSpectrumBandPresetType* InBandPresetType, int32* InNumBands);
-	TArray<struct FSoundSubmixSpectralAnalysisBandSettings> MakeMusicalSpectralAnalysisBandSettings(int32* InNumSemitones, enum class EMusicalNoteName* InStartingMusicalNote, int32* InStartingOctave);
-	TArray<struct FSoundSubmixSpectralAnalysisBandSettings> MakeFullSpectrumSpectralAnalysisBandSettings(int32* InNumBands, float* InMinimumFrequency, float* InMaximumFrequency);
-	bool IsAudioBusActive(class UAudioBus* AudioBus);
-	TArray<float> GetPhaseForFrequencies(TArray<float>* Frequencies, class USoundSubmix** SubmixToAnalyze);
-	int32 GetNumberOfEntriesInSourceEffectChain(class USoundEffectSourcePresetChain** PresetChain);
-	TArray<float> GetMagnitudeForFrequencies(TArray<float>* Frequencies, class USoundSubmix** SubmixToAnalyze);
-	class UObject* GetCurrentAudioOutputDeviceName(FDelegateProperty_* OnObtainCurrentDeviceEvent);
-	FDelegateProperty_ GetAvailableAudioOutputDevices();
-	class FString Conv_AudioOutputDeviceInfoToString();
-	class UObject* ClearSubmixEffects(class USoundSubmix** SoundSubmix);
-	class UObject* ClearSubmixEffectChainOverride(class USoundSubmix** SoundSubmix, float* FadeTimeSec);
-	class UObject* ClearMasterSubmixEffects();
-	int32 AddSubmixEffect(class USoundSubmix** SoundSubmix, class USoundEffectSubmixPreset** SubmixEffectPreset);
-	class UObject* AddSourceEffectToPresetChain(class USoundEffectSourcePresetChain** PresetChain, const struct FSourceEffectChainEntry& Entry);
-	class UObject* AddMasterSubmixEffect(class USoundEffectSubmixPreset** SubmixEffectPreset);
+	void PauseRecordingOutput(class UObject* WorldContextObject, class USoundSubmix** SubmixToPause);
+	void MakePresetSpectralAnalysisBandSettings(enum class EAudioSpectrumBandPresetType InBandPresetType, int32 InNumBands, int32* InAttackTimeMsec, int32* InReleaseTimeMsec, const TArray<struct FSoundSubmixSpectralAnalysisBandSettings>& ReturnValue);
+	void MakeMusicalSpectralAnalysisBandSettings(int32 InNumSemitones, enum class EMusicalNoteName InStartingMusicalNote, int32 InStartingOctave, int32* InAttackTimeMsec, int32* InReleaseTimeMsec, const TArray<struct FSoundSubmixSpectralAnalysisBandSettings>& ReturnValue);
+	void MakeFullSpectrumSpectralAnalysisBandSettings(int32 InNumBands, float InMinimumFrequency, float InMaximumFrequency, int32* InAttackTimeMsec, int32* InReleaseTimeMsec, const TArray<struct FSoundSubmixSpectralAnalysisBandSettings>& ReturnValue);
+	void IsAudioBusActive(class UObject* WorldContextObject, class UAudioBus** AudioBus, bool ReturnValue);
+	void GetPhaseForFrequencies(class UObject* WorldContextObject, const TArray<float>& Frequencies, const TArray<float>& Phases, class USoundSubmix* SubmixToAnalyze);
+	void GetNumberOfEntriesInSourceEffectChain(class UObject* WorldContextObject, class USoundEffectSourcePresetChain* PresetChain, int32 ReturnValue);
+	void GetMagnitudeForFrequencies(class UObject* WorldContextObject, const TArray<float>& Frequencies, const TArray<float>& Magnitudes, class USoundSubmix* SubmixToAnalyze);
+	void GetCurrentAudioOutputDeviceName(class UObject* WorldContextObject, FDelegateProperty_ OnObtainCurrentDeviceEvent);
+	void GetAvailableAudioOutputDevices(class UObject* WorldContextObject, FDelegateProperty_* OnObtainDevicesEvent);
+	struct FAudioOutputDeviceInfo Conv_AudioOutputDeviceInfoToString(const class FString& ReturnValue);
+	void ClearSubmixEffects(class UObject* WorldContextObject, class USoundSubmix** SoundSubmix);
+	void ClearSubmixEffectChainOverride(class UObject* WorldContextObject, class USoundSubmix** SoundSubmix, float FadeTimeSec);
+	void ClearMasterSubmixEffects(class UObject* WorldContextObject);
+	void AddSubmixEffect(class UObject* WorldContextObject, class USoundSubmix** SoundSubmix, class USoundEffectSubmixPreset* SubmixEffectPreset, int32 ReturnValue);
+	struct FSourceEffectChainEntry AddSourceEffectToPresetChain(class UObject* WorldContextObject, class USoundEffectSourcePresetChain* PresetChain);
+	void AddMasterSubmixEffect(class UObject* WorldContextObject, class USoundEffectSubmixPreset* SubmixEffectPreset);
 };
 
 // 0x20 (0x4E0 - 0x4C0)
@@ -166,8 +166,8 @@ public:
 class USynthSound : public USoundWaveProcedural
 {
 public:
-	TWeakObjectPtr<class USynthComponent>        OwningSynthComponent;                              // 0x4C0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_4F9[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	TWeakObjectPtr<class USynthComponent>        OwningSynthComponent;                              // 0x4C0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_454[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USynthSound* GetDefaultObj();
@@ -179,15 +179,15 @@ public:
 class USubmixEffectDynamicsProcessorPreset : public USoundEffectSubmixPreset
 {
 public:
-	uint8                                        Pad_4FE[0x88];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FSubmixEffectDynamicsProcessorSettings Settings;                                          // 0xF0(0x60)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_469[0x88];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FSubmixEffectDynamicsProcessorSettings Settings;                                          // 0xF0(0x60)(Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class USubmixEffectDynamicsProcessorPreset* GetDefaultObj();
 
-	void SetSettings(struct FSubmixEffectDynamicsProcessorSettings* Settings);
-	class USoundSubmix* SetExternalSubmix();
-	void SetAudioBus(class UAudioBus* AudioBus);
+	struct FSubmixEffectDynamicsProcessorSettings SetSettings();
+	void SetExternalSubmix(class USoundSubmix* Submix);
+	void SetAudioBus(class UAudioBus** AudioBus);
 	void ResetKey();
 };
 
@@ -196,13 +196,13 @@ public:
 class USubmixEffectSubmixEQPreset : public USoundEffectSubmixPreset
 {
 public:
-	uint8                                        Pad_501[0x38];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FSubmixEffectSubmixEQSettings         Settings;                                          // 0xA0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_46C[0x38];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FSubmixEffectSubmixEQSettings         Settings;                                          // 0xA0(0x10)(Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class USubmixEffectSubmixEQPreset* GetDefaultObj();
 
-	struct FSubmixEffectSubmixEQSettings SetSettings();
+	void SetSettings(const struct FSubmixEffectSubmixEQSettings& InSettings);
 };
 
 // 0xA8 (0x110 - 0x68)
@@ -210,14 +210,14 @@ public:
 class USubmixEffectReverbPreset : public USoundEffectSubmixPreset
 {
 public:
-	uint8                                        Pad_503[0x68];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FSubmixEffectReverbSettings           Settings;                                          // 0xD0(0x40)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_46F[0x68];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FSubmixEffectReverbSettings           Settings;                                          // 0xD0(0x40)(Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class USubmixEffectReverbPreset* GetDefaultObj();
 
-	float SetSettingsWithReverbEffect(class UReverbEffect* InReverbEffect);
-	struct FSubmixEffectReverbSettings SetSettings();
+	void SetSettingsWithReverbEffect(class UReverbEffect** InReverbEffect, float WetLevel, float DryLevel);
+	void SetSettings(const struct FSubmixEffectReverbSettings& InSettings);
 };
 
 // 0x1C0 (0x1E8 - 0x28)
@@ -225,36 +225,36 @@ public:
 class UQuartzClockHandle : public UObject
 {
 public:
-	uint8                                        Pad_547[0x1C0];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_4C3[0x1C0];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UQuartzClockHandle* GetDefaultObj();
 
-	class UObject* UnsubscribeFromTimeDivision(enum class EQuartzCommandQuantization InQuantizationBoundary, class UQuartzClockHandle* ClockHandle);
-	class UObject* UnsubscribeFromAllTimeDivisions(class UQuartzClockHandle* ClockHandle);
-	class UObject* SubscribeToQuantizationEvent(enum class EQuartzCommandQuantization InQuantizationBoundary, FDelegateProperty_ OnQuantizationEvent, class UQuartzClockHandle* ClockHandle);
-	class UObject* SubscribeToAllQuantizationEvents(FDelegateProperty_ OnQuantizationEvent, class UQuartzClockHandle* ClockHandle);
-	class UObject* StopClock(bool CancelPendingEvents, class UQuartzClockHandle* ClockHandle);
-	class UObject* StartOtherClock(class FName OtherClockName, const struct FQuartzQuantizationBoundary& InQuantizationBoundary, FDelegateProperty_ InDelegate);
-	class UObject* StartClock(class UQuartzClockHandle* ClockHandle);
-	float SetTicksPerSecond(const struct FQuartzQuantizationBoundary& QuantizationBoundary, FDelegateProperty_ Delegate, class UQuartzClockHandle* ClockHandle);
-	class UObject* SetThirtySecondNotesPerMinute(const struct FQuartzQuantizationBoundary& QuantizationBoundary, FDelegateProperty_ Delegate, class UQuartzClockHandle* ClockHandle, float ThirtySecondsNotesPerMinute);
-	class UObject* SetSecondsPerTick(const struct FQuartzQuantizationBoundary& QuantizationBoundary, FDelegateProperty_ Delegate, class UQuartzClockHandle* ClockHandle, float SecondsPerTick);
-	class UObject* SetMillisecondsPerTick(const struct FQuartzQuantizationBoundary& QuantizationBoundary, FDelegateProperty_ Delegate, class UQuartzClockHandle* ClockHandle, float MillisecondsPerTick);
-	class UObject* SetBeatsPerMinute(const struct FQuartzQuantizationBoundary& QuantizationBoundary, FDelegateProperty_ Delegate, class UQuartzClockHandle* ClockHandle, float BeatsPerMinute);
-	class UObject* ResumeClock(class UQuartzClockHandle* ClockHandle);
-	class UObject* ResetTransportQuantized(const struct FQuartzQuantizationBoundary& InQuantizationBoundary, FDelegateProperty_ InDelegate, class UQuartzClockHandle* ClockHandle);
-	class UObject* ResetTransport(FDelegateProperty_ InDelegate);
-	class UObject* PauseClock(class UQuartzClockHandle* ClockHandle);
-	bool IsClockRunning();
-	float GetTicksPerSecond();
-	float GetThirtySecondNotesPerMinute();
-	float GetSecondsPerTick();
-	float GetMillisecondsPerTick();
-	float GetEstimatedRunTime();
-	float GetDurationOfQuantizationTypeInSeconds(float* Multiplier);
-	struct FQuartzTransportTimeStamp GetCurrentTimestamp();
-	float GetBeatsPerMinute();
+	void UnsubscribeFromTimeDivision(class UObject* WorldContextObject, enum class EQuartzCommandQuantization* InQuantizationBoundary, class UQuartzClockHandle** ClockHandle);
+	void UnsubscribeFromAllTimeDivisions(class UObject* WorldContextObject, class UQuartzClockHandle** ClockHandle);
+	void SubscribeToQuantizationEvent(class UObject* WorldContextObject, enum class EQuartzCommandQuantization* InQuantizationBoundary, FDelegateProperty_ OnQuantizationEvent, class UQuartzClockHandle** ClockHandle);
+	void SubscribeToAllQuantizationEvents(class UObject* WorldContextObject, FDelegateProperty_ OnQuantizationEvent, class UQuartzClockHandle** ClockHandle);
+	void StopClock(class UObject* WorldContextObject, bool* CancelPendingEvents, class UQuartzClockHandle** ClockHandle);
+	FDelegateProperty_ StartOtherClock(class UObject* WorldContextObject, class FName* OtherClockName, struct FQuartzQuantizationBoundary* InQuantizationBoundary);
+	void StartClock(class UObject* WorldContextObject, class UQuartzClockHandle** ClockHandle);
+	FDelegateProperty_ SetTicksPerSecond(class UObject* WorldContextObject, struct FQuartzQuantizationBoundary* QuantizationBoundary, class UQuartzClockHandle** ClockHandle, float TicksPerSecond);
+	FDelegateProperty_ SetThirtySecondNotesPerMinute(class UObject* WorldContextObject, struct FQuartzQuantizationBoundary* QuantizationBoundary, class UQuartzClockHandle** ClockHandle, float* ThirtySecondsNotesPerMinute);
+	FDelegateProperty_ SetSecondsPerTick(class UObject* WorldContextObject, struct FQuartzQuantizationBoundary* QuantizationBoundary, class UQuartzClockHandle** ClockHandle, float* SecondsPerTick);
+	FDelegateProperty_ SetMillisecondsPerTick(class UObject* WorldContextObject, struct FQuartzQuantizationBoundary* QuantizationBoundary, class UQuartzClockHandle** ClockHandle, float* MillisecondsPerTick);
+	FDelegateProperty_ SetBeatsPerMinute(class UObject* WorldContextObject, struct FQuartzQuantizationBoundary* QuantizationBoundary, class UQuartzClockHandle** ClockHandle, float* BeatsPerMinute);
+	void ResumeClock(class UObject* WorldContextObject, class UQuartzClockHandle** ClockHandle);
+	FDelegateProperty_ ResetTransportQuantized(class UObject* WorldContextObject, struct FQuartzQuantizationBoundary* InQuantizationBoundary, class UQuartzClockHandle** ClockHandle);
+	FDelegateProperty_ ResetTransport(class UObject* WorldContextObject);
+	void PauseClock(class UObject* WorldContextObject, class UQuartzClockHandle** ClockHandle);
+	void IsClockRunning(class UObject* WorldContextObject, bool ReturnValue);
+	void GetTicksPerSecond(class UObject* WorldContextObject, float ReturnValue);
+	void GetThirtySecondNotesPerMinute(class UObject* WorldContextObject, float ReturnValue);
+	void GetSecondsPerTick(class UObject* WorldContextObject, float ReturnValue);
+	void GetMillisecondsPerTick(class UObject* WorldContextObject, float ReturnValue);
+	void GetEstimatedRunTime(class UObject* WorldContextObject, float ReturnValue);
+	float GetDurationOfQuantizationTypeInSeconds(class UObject* WorldContextObject, enum class EQuartzCommandQuantization QuantizationType, float ReturnValue);
+	void GetCurrentTimestamp(class UObject* WorldContextObject, const struct FQuartzTransportTimeStamp& ReturnValue);
+	void GetBeatsPerMinute(class UObject* WorldContextObject, float ReturnValue);
 };
 
 // 0x20 (0x60 - 0x40)
@@ -262,30 +262,30 @@ public:
 class UQuartzSubsystem : public UTickableWorldSubsystem
 {
 public:
-	uint8                                        Pad_568[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_516[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UQuartzSubsystem* GetDefaultObj();
 
-	bool IsQuartzEnabled();
-	bool IsClockRunning();
-	float GetRoundTripMinLatency();
-	float GetRoundTripMaxLatency();
-	float GetRoundTripAverageLatency();
-	class UQuartzClockHandle* GetHandleForClock();
-	float GetGameThreadToAudioRenderThreadMinLatency();
-	float GetGameThreadToAudioRenderThreadMaxLatency();
-	float GetGameThreadToAudioRenderThreadAverageLatency();
-	float GetEstimatedClockRunTime(class FName InClockName);
-	float GetDurationOfQuantizationTypeInSeconds(float* Multiplier);
-	struct FQuartzTransportTimeStamp GetCurrentClockTimestamp(class FName InClockName);
-	float GetAudioRenderThreadToGameThreadMinLatency();
-	float GetAudioRenderThreadToGameThreadMaxLatency();
-	float GetAudioRenderThreadToGameThreadAverageLatency();
-	bool DoesClockExist();
-	class FName DeleteClockByName();
-	class UObject* DeleteClockByHandle(class UQuartzClockHandle* InClockHandle);
-	class UQuartzClockHandle* CreateNewClock(bool bOverrideSettingsIfClockExists, bool bUseAudioEngineClockManager);
+	void IsQuartzEnabled(bool ReturnValue);
+	void IsClockRunning(class UObject* WorldContextObject, class FName ClockName, bool ReturnValue);
+	void GetRoundTripMinLatency(class UObject* WorldContextObject, float ReturnValue);
+	void GetRoundTripMaxLatency(class UObject* WorldContextObject, float ReturnValue);
+	void GetRoundTripAverageLatency(class UObject* WorldContextObject, float ReturnValue);
+	void GetHandleForClock(class UObject* WorldContextObject, class FName ClockName, class UQuartzClockHandle* ReturnValue);
+	void GetGameThreadToAudioRenderThreadMinLatency(class UObject* WorldContextObject, float ReturnValue);
+	void GetGameThreadToAudioRenderThreadMaxLatency(class UObject* WorldContextObject, float ReturnValue);
+	void GetGameThreadToAudioRenderThreadAverageLatency(class UObject* WorldContextObject, float ReturnValue);
+	void GetEstimatedClockRunTime(class UObject* WorldContextObject, class FName InClockName, float ReturnValue);
+	float GetDurationOfQuantizationTypeInSeconds(class UObject* WorldContextObject, class FName ClockName, enum class EQuartzCommandQuantization QuantizationType, float ReturnValue);
+	void GetCurrentClockTimestamp(class UObject* WorldContextObject, class FName InClockName, const struct FQuartzTransportTimeStamp& ReturnValue);
+	void GetAudioRenderThreadToGameThreadMinLatency(float ReturnValue);
+	void GetAudioRenderThreadToGameThreadMaxLatency(float ReturnValue);
+	void GetAudioRenderThreadToGameThreadAverageLatency(float ReturnValue);
+	void DoesClockExist(class UObject* WorldContextObject, class FName ClockName, bool ReturnValue);
+	void DeleteClockByName(class UObject* WorldContextObject, class FName ClockName);
+	void DeleteClockByHandle(class UObject* WorldContextObject, class UQuartzClockHandle* InClockHandle);
+	void CreateNewClock(class UObject* WorldContextObject, class FName ClockName, const struct FQuartzClockSettings& InSettings, bool bOverrideSettingsIfClockExists, bool bUseAudioEngineClockManager, class UQuartzClockHandle* ReturnValue);
 };
 
 }

@@ -14,7 +14,7 @@ namespace SDK
 class UGamepadButtonLegend_C : public UGamepadButtonLegendWidget
 {
 public:
-	class UImage*                                MyButtonImage;                                     // 0x368(0x8)(ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
+	class UImage*                                MyButtonImage;                                     // 0x368(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGamepadButtonLegend_C* GetDefaultObj();

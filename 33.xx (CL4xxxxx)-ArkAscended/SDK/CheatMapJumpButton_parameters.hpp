@@ -19,7 +19,7 @@ struct UCheatMapJumpButton_C_SetMapJumpInfo_Params
 {
 public:
 	struct FCheatMapJumpInfo                     Info;                                              // 0x0(0x40)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm)
-	double                                       K2Node_VariableSet_Yaw_ImplicitCast;               // 0x40(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference)
+	double                                       K2Node_VariableSet_Yaw_ImplicitCast;               // 0x40(0x8)(Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x108 (0x108 - 0x0)
@@ -27,25 +27,25 @@ public:
 struct UCheatMapJumpButton_C_ExecuteUbergraph_CheatMapJumpButton_Params
 {
 public:
-	int32                                        EntryPoint;                                        // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_330C[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class FText                                  CallFunc_MakeLiteralText_ReturnValue;              // 0x8(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference)
-	class FString                                CallFunc_Conv_TextToString_ReturnValue;            // 0x20(0x10)(BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	class APlayerController*                     CallFunc_GetPlayerController_ReturnValue;          // 0x30(0x8)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-	double                                       CallFunc_BreakVector_X;                            // 0x38(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	double                                       CallFunc_BreakVector_Y;                            // 0x40(0x8)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	double                                       CallFunc_BreakVector_Z;                            // 0x48(0x8)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	class FString                                CallFunc_Concat_StrStr_ReturnValue;                // 0x50(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-	class FString                                CallFunc_Conv_DoubleToString_ReturnValue;          // 0x60(0x10)(ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	class FString                                CallFunc_Conv_DoubleToString_ReturnValue_1;        // 0x70(0x10)(ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-	class FString                                CallFunc_Conv_DoubleToString_ReturnValue_2;        // 0x80(0x10)(ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference, RepNotify, Interp)
-	class FText                                  CallFunc_MakeLiteralText_ReturnValue_1;            // 0x90(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference, Interp)
-	class FString                                CallFunc_Conv_TextToString_ReturnValue_1;          // 0xA8(0x10)(BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-	class FString                                CallFunc_Concat_StrStr_ReturnValue_1;              // 0xB8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-	class FString                                CallFunc_Concat_StrStr_ReturnValue_2;              // 0xC8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
-	class FString                                CallFunc_Concat_StrStr_ReturnValue_3;              // 0xD8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, NonTransactional)
-	class FString                                CallFunc_Concat_StrStr_ReturnValue_4;              // 0xE8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, NonTransactional)
-	class FString                                CallFunc_Concat_StrStr_ReturnValue_5;              // 0xF8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp, NonTransactional)
+	int32                                        EntryPoint;                                        // 0x0(0x4)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_2EC1[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class FText                                  CallFunc_MakeLiteralText_ReturnValue;              // 0x8(0x18)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	class FString                                CallFunc_Conv_TextToString_ReturnValue;            // 0x20(0x10)(ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+	class APlayerController*                     CallFunc_GetPlayerController_ReturnValue;          // 0x30(0x8)(BlueprintReadOnly, Net, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	double                                       CallFunc_BreakVector_X;                            // 0x38(0x8)(BlueprintVisible, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+	double                                       CallFunc_BreakVector_Y;                            // 0x40(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	double                                       CallFunc_BreakVector_Z;                            // 0x48(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+	class FString                                CallFunc_Concat_StrStr_ReturnValue;                // 0x50(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	class FString                                CallFunc_Conv_DoubleToString_ReturnValue;          // 0x60(0x10)(ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+	class FString                                CallFunc_Conv_DoubleToString_ReturnValue_1;        // 0x70(0x10)(ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+	class FString                                CallFunc_Conv_DoubleToString_ReturnValue_2;        // 0x80(0x10)(ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+	class FText                                  CallFunc_MakeLiteralText_ReturnValue_1;            // 0x90(0x18)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+	class FString                                CallFunc_Conv_TextToString_ReturnValue_1;          // 0xA8(0x10)(ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+	class FString                                CallFunc_Concat_StrStr_ReturnValue_1;              // 0xB8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+	class FString                                CallFunc_Concat_StrStr_ReturnValue_2;              // 0xC8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+	class FString                                CallFunc_Concat_StrStr_ReturnValue_3;              // 0xD8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, NonTransactional)
+	class FString                                CallFunc_Concat_StrStr_ReturnValue_4;              // 0xE8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, RepNotify, NonTransactional)
+	class FString                                CallFunc_Concat_StrStr_ReturnValue_5;              // 0xF8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp, NonTransactional)
 };
 
 }

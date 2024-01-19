@@ -61,9 +61,9 @@ void UCheatMenuMapOpenButton_C::BndEvt__SpawnButton_K2Node_ComponentBoundEvent_1
 // Function CheatMenuMapOpenButton.CheatMenuMapOpenButton_C.ExecuteUbergraph_CheatMenuMapOpenButton
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UCheatMenuMapOpenButton_C::ExecuteUbergraph_CheatMenuMapOpenButton()
+void UCheatMenuMapOpenButton_C::ExecuteUbergraph_CheatMenuMapOpenButton(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -72,10 +72,9 @@ int32 UCheatMenuMapOpenButton_C::ExecuteUbergraph_CheatMenuMapOpenButton()
 
 	Params::UCheatMenuMapOpenButton_C_ExecuteUbergraph_CheatMenuMapOpenButton_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 

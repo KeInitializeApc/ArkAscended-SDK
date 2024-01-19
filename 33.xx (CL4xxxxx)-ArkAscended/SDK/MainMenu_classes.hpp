@@ -14,10 +14,10 @@ namespace SDK
 class AMainMenu_C : public ALevelScriptActor
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x4D0(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnInstance, SubobjectReference)
-	double                                       Counter;                                           // 0x4D8(0x8)(ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
-	class USphereReflectionCaptureComponent*     CaptureComp;                                       // 0x4E0(0x8)(EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	class AShooterMatineeActor*                  MatineeActor_0_ExecuteUbergraph_MainMenu_RefProperty; // 0x4E8(0x8)(ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x4D0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	double                                       Counter;                                           // 0x4D8(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, GlobalConfig, InstancedReference, SubobjectReference)
+	class USphereReflectionCaptureComponent*     CaptureComp;                                       // 0x4E0(0x8)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	class AShooterMatineeActor*                  MatineeActor_0_ExecuteUbergraph_MainMenu_RefProperty; // 0x4E8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class AMainMenu_C* GetDefaultObj();
@@ -27,7 +27,7 @@ public:
 	void ReceiveBeginPlay();
 	void ShowVisualSettingsPP();
 	void HideVisualSettingsPP();
-	class UReMainMenuUI_ASA_C* ExecuteUbergraph_MainMenu(class UGameInstance** CallFunc_GetGameInstance_ReturnValue, class UShooterGameInstance* K2Node_DynamicCast_AsShooter_Game_Instance, bool* K2Node_DynamicCast_bSuccess);
+	bool ExecuteUbergraph_MainMenu(int32 EntryPoint, class UGameInstance** CallFunc_GetGameInstance_ReturnValue, class UReMainMenuUI_ASA_C* CallFunc_Create_ReturnValue);
 };
 
 }

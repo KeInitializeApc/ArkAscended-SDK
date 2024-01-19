@@ -43,12 +43,12 @@ class USoundscapeBPFunctionLibrary* USoundscapeBPFunctionLibrary::GetDefaultObj(
 // Function Soundscape.SoundscapeBPFunctionLibrary.SpawnSoundscapePalette
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class USoundscapePalette*          SoundscapePaletteIn                                              (Net, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-// class UActiveSoundscapePalette*    SoundscapePaletteAgentsOut                                       (ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USoundscapePalette*          SoundscapePaletteIn                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UActiveSoundscapePalette*    SoundscapePaletteAgentsOut                                       (BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool USoundscapeBPFunctionLibrary::SpawnSoundscapePalette(class USoundscapePalette** SoundscapePaletteIn, class UActiveSoundscapePalette** SoundscapePaletteAgentsOut)
+class UActiveSoundscapePalette* USoundscapeBPFunctionLibrary::SpawnSoundscapePalette(class UObject* WorldContextObject, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,6 +57,8 @@ bool USoundscapeBPFunctionLibrary::SpawnSoundscapePalette(class USoundscapePalet
 
 	Params::USoundscapeBPFunctionLibrary_SpawnSoundscapePalette_Params Parms{};
 
+	Parms.WorldContextObject = WorldContextObject;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -65,12 +67,6 @@ bool USoundscapeBPFunctionLibrary::SpawnSoundscapePalette(class USoundscapePalet
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (SoundscapePaletteIn != nullptr)
-		*SoundscapePaletteIn = Parms.SoundscapePaletteIn;
-
-	if (SoundscapePaletteAgentsOut != nullptr)
-		*SoundscapePaletteAgentsOut = Parms.SoundscapePaletteAgentsOut;
 
 	return Parms.ReturnValue;
 
@@ -80,12 +76,12 @@ bool USoundscapeBPFunctionLibrary::SpawnSoundscapePalette(class USoundscapePalet
 // Function Soundscape.SoundscapeBPFunctionLibrary.SpawnSoundscapeColor
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class USoundscapeColor*            SoundscapeColorIn                                                (ExportObject, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-// class UActiveSoundscapeColor*      ActiveSoundscapeColor                                            (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USoundscapeColor*            SoundscapeColorIn                                                (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UActiveSoundscapeColor*      ActiveSoundscapeColor                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool USoundscapeBPFunctionLibrary::SpawnSoundscapeColor(class USoundscapeColor** SoundscapeColorIn)
+class UActiveSoundscapeColor* USoundscapeBPFunctionLibrary::SpawnSoundscapeColor(class UObject* WorldContextObject, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -94,6 +90,8 @@ bool USoundscapeBPFunctionLibrary::SpawnSoundscapeColor(class USoundscapeColor**
 
 	Params::USoundscapeBPFunctionLibrary_SpawnSoundscapeColor_Params Parms{};
 
+	Parms.WorldContextObject = WorldContextObject;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -102,9 +100,6 @@ bool USoundscapeBPFunctionLibrary::SpawnSoundscapeColor(class USoundscapeColor**
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (SoundscapeColorIn != nullptr)
-		*SoundscapeColorIn = Parms.SoundscapeColorIn;
 
 	return Parms.ReturnValue;
 
@@ -170,9 +165,9 @@ class UActiveSoundscapeColorVoice* UActiveSoundscapeColorVoice::GetDefaultObj()
 // Function Soundscape.ActiveSoundscapeColorVoice.StopLimitedDurationVoice
 // (Final, Native, Public)
 // Parameters:
-// float                              FadeOutTime                                                      (ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// float                              FadeOutTime                                                      (ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-void UActiveSoundscapeColorVoice::StopLimitedDurationVoice(float FadeOutTime)
+float UActiveSoundscapeColorVoice::StopLimitedDurationVoice()
 {
 	static class UFunction* Func = nullptr;
 
@@ -181,7 +176,6 @@ void UActiveSoundscapeColorVoice::StopLimitedDurationVoice(float FadeOutTime)
 
 	Params::UActiveSoundscapeColorVoice_StopLimitedDurationVoice_Params Parms{};
 
-	Parms.FadeOutTime = FadeOutTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -190,6 +184,8 @@ void UActiveSoundscapeColorVoice::StopLimitedDurationVoice(float FadeOutTime)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -249,9 +245,9 @@ void UActiveSoundscapeColor::UpdateSoundscapeColor()
 // Function Soundscape.ActiveSoundscapeColor.Stop
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              ColorFadeOutTime                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// float                              ColorFadeOutTime                                                 (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UActiveSoundscapeColor::Stop(float* ColorFadeOutTime)
+float UActiveSoundscapeColor::Stop()
 {
 	static class UFunction* Func = nullptr;
 
@@ -269,8 +265,7 @@ void UActiveSoundscapeColor::Stop(float* ColorFadeOutTime)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ColorFadeOutTime != nullptr)
-		*ColorFadeOutTime = Parms.ColorFadeOutTime;
+	return Parms.ReturnValue;
 
 }
 
@@ -278,11 +273,11 @@ void UActiveSoundscapeColor::Stop(float* ColorFadeOutTime)
 // Function Soundscape.ActiveSoundscapeColor.Play
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              ColorVolume                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-// float                              ColorPitch                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-// float                              ColorFadeInTime                                                  (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// float                              ColorVolume                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              ColorPitch                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              ColorFadeInTime                                                  (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float UActiveSoundscapeColor::Play(float* ColorFadeInTime)
+float UActiveSoundscapeColor::Play(float* ColorVolume, float* ColorPitch)
 {
 	static class UFunction* Func = nullptr;
 
@@ -300,8 +295,11 @@ float UActiveSoundscapeColor::Play(float* ColorFadeInTime)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ColorFadeInTime != nullptr)
-		*ColorFadeInTime = Parms.ColorFadeInTime;
+	if (ColorVolume != nullptr)
+		*ColorVolume = Parms.ColorVolume;
+
+	if (ColorPitch != nullptr)
+		*ColorPitch = Parms.ColorPitch;
 
 	return Parms.ReturnValue;
 
@@ -311,9 +309,9 @@ float UActiveSoundscapeColor::Play(float* ColorFadeInTime)
 // Function Soundscape.ActiveSoundscapeColor.IsPlaying
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UActiveSoundscapeColor::IsPlaying()
+void UActiveSoundscapeColor::IsPlaying(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -322,6 +320,7 @@ bool UActiveSoundscapeColor::IsPlaying()
 
 	Params::UActiveSoundscapeColor_IsPlaying_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -330,8 +329,6 @@ bool UActiveSoundscapeColor::IsPlaying()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -585,10 +582,10 @@ void USoundscapeColorPointHashMap::SetGridCenterpoint(struct FVector* Location)
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// struct FGameplayTag                ColorPoint                                                       (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                ColorPoint                                                       (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 USoundscapeColorPointHashMap::NumColorPointsInCell(struct FVector* Location, struct FGameplayTag* ColorPoint)
+struct FGameplayTag USoundscapeColorPointHashMap::NumColorPointsInCell(struct FVector* Location, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -597,6 +594,7 @@ int32 USoundscapeColorPointHashMap::NumColorPointsInCell(struct FVector* Locatio
 
 	Params::USoundscapeColorPointHashMap_NumColorPointsInCell_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -609,9 +607,6 @@ int32 USoundscapeColorPointHashMap::NumColorPointsInCell(struct FVector* Locatio
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
 
-	if (ColorPoint != nullptr)
-		*ColorPoint = std::move(Parms.ColorPoint);
-
 	return Parms.ReturnValue;
 
 }
@@ -620,10 +615,10 @@ int32 USoundscapeColorPointHashMap::NumColorPointsInCell(struct FVector* Locatio
 // Function Soundscape.SoundscapeColorPointHashMap.InitializeHash
 // (Final, Native, Public, HasDefaults)
 // Parameters:
-// float                              HashCellSizeIn                                                   (Net, Parm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     GridCenterIn                                                     (Edit, ExportObject, BlueprintReadOnly, Parm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// float                              HashCellSizeIn                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector                     GridCenterIn                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FVector USoundscapeColorPointHashMap::InitializeHash()
+void USoundscapeColorPointHashMap::InitializeHash(float HashCellSizeIn, const struct FVector& GridCenterIn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -632,6 +627,8 @@ struct FVector USoundscapeColorPointHashMap::InitializeHash()
 
 	Params::USoundscapeColorPointHashMap_InitializeHash_Params Parms{};
 
+	Parms.HashCellSizeIn = HashCellSizeIn;
+	Parms.GridCenterIn = GridCenterIn;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -640,8 +637,6 @@ struct FVector USoundscapeColorPointHashMap::InitializeHash()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -674,9 +669,9 @@ void USoundscapeColorPointHashMap::ClearHash()
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// uint64                             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// uint64                             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-uint64 USoundscapeColorPointHashMap::CalculateHashIndex(struct FVector* Location)
+void USoundscapeColorPointHashMap::CalculateHashIndex(struct FVector* Location, uint64 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -685,6 +680,7 @@ uint64 USoundscapeColorPointHashMap::CalculateHashIndex(struct FVector* Location
 
 	Params::USoundscapeColorPointHashMap_CalculateHashIndex_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -696,8 +692,6 @@ uint64 USoundscapeColorPointHashMap::CalculateHashIndex(struct FVector* Location
 
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -706,10 +700,10 @@ uint64 USoundscapeColorPointHashMap::CalculateHashIndex(struct FVector* Location
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// struct FGameplayTag                ColorPoint                                                       (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                ColorPoint                                                       (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool USoundscapeColorPointHashMap::AddColorPointToHash(struct FVector* Location, struct FGameplayTag* ColorPoint)
+struct FGameplayTag USoundscapeColorPointHashMap::AddColorPointToHash(struct FVector* Location, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -718,6 +712,7 @@ bool USoundscapeColorPointHashMap::AddColorPointToHash(struct FVector* Location,
 
 	Params::USoundscapeColorPointHashMap_AddColorPointToHash_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -729,9 +724,6 @@ bool USoundscapeColorPointHashMap::AddColorPointToHash(struct FVector* Location,
 
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
-
-	if (ColorPoint != nullptr)
-		*ColorPoint = std::move(Parms.ColorPoint);
 
 	return Parms.ReturnValue;
 
@@ -741,10 +733,10 @@ bool USoundscapeColorPointHashMap::AddColorPointToHash(struct FVector* Location,
 // Function Soundscape.SoundscapeColorPointHashMap.AddColorPointArrayToHash
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// TArray<struct FVector>             Locations                                                        (BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-// struct FGameplayTag                ColorPoint                                                       (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             Locations                                                        (Edit, Net, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FGameplayTag                ColorPoint                                                       (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-TArray<struct FVector> USoundscapeColorPointHashMap::AddColorPointArrayToHash(struct FGameplayTag* ColorPoint)
+struct FGameplayTag USoundscapeColorPointHashMap::AddColorPointArrayToHash(TArray<struct FVector>* Locations)
 {
 	static class UFunction* Func = nullptr;
 
@@ -762,8 +754,8 @@ TArray<struct FVector> USoundscapeColorPointHashMap::AddColorPointArrayToHash(st
 
 	Func->FunctionFlags = Flgs;
 
-	if (ColorPoint != nullptr)
-		*ColorPoint = std::move(Parms.ColorPoint);
+	if (Locations != nullptr)
+		*Locations = std::move(Parms.Locations);
 
 	return Parms.ReturnValue;
 
@@ -829,9 +821,9 @@ class USoundscapeSubsystem* USoundscapeSubsystem::GetDefaultObj()
 // Function Soundscape.SoundscapeSubsystem.SetState
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FGameplayTag                SoundscapeState                                                  (Edit, ExportObject, Net, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// struct FGameplayTag                SoundscapeState                                                  (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FGameplayTag USoundscapeSubsystem::SetState()
+void USoundscapeSubsystem::SetState(const struct FGameplayTag& SoundscapeState)
 {
 	static class UFunction* Func = nullptr;
 
@@ -840,6 +832,7 @@ struct FGameplayTag USoundscapeSubsystem::SetState()
 
 	Params::USoundscapeSubsystem_SetState_Params Parms{};
 
+	Parms.SoundscapeState = SoundscapeState;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -848,8 +841,6 @@ struct FGameplayTag USoundscapeSubsystem::SetState()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -881,10 +872,10 @@ void USoundscapeSubsystem::RestartSoundscape()
 // Function Soundscape.SoundscapeSubsystem.RemovePaletteCollection
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        PaletteCollectionName                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        PaletteCollectionName                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool USoundscapeSubsystem::RemovePaletteCollection()
+void USoundscapeSubsystem::RemovePaletteCollection(class FName PaletteCollectionName, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -893,6 +884,8 @@ bool USoundscapeSubsystem::RemovePaletteCollection()
 
 	Params::USoundscapeSubsystem_RemovePaletteCollection_Params Parms{};
 
+	Parms.PaletteCollectionName = PaletteCollectionName;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -902,18 +895,16 @@ bool USoundscapeSubsystem::RemovePaletteCollection()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Soundscape.SoundscapeSubsystem.RemoveColorPointCollection
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ColorPointCollectionName                                         (ConstParm, BlueprintVisible, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ColorPointCollectionName                                         (BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool USoundscapeSubsystem::RemoveColorPointCollection()
+void USoundscapeSubsystem::RemoveColorPointCollection(class FName ColorPointCollectionName, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -922,6 +913,8 @@ bool USoundscapeSubsystem::RemoveColorPointCollection()
 
 	Params::USoundscapeSubsystem_RemoveColorPointCollection_Params Parms{};
 
+	Parms.ColorPointCollectionName = ColorPointCollectionName;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -931,17 +924,15 @@ bool USoundscapeSubsystem::RemoveColorPointCollection()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Soundscape.SoundscapeSubsystem.ClearState
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FGameplayTag                SoundscapeState                                                  (Edit, ExportObject, Net, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// struct FGameplayTag                SoundscapeState                                                  (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FGameplayTag USoundscapeSubsystem::ClearState()
+void USoundscapeSubsystem::ClearState(const struct FGameplayTag& SoundscapeState)
 {
 	static class UFunction* Func = nullptr;
 
@@ -950,6 +941,7 @@ struct FGameplayTag USoundscapeSubsystem::ClearState()
 
 	Params::USoundscapeSubsystem_ClearState_Params Parms{};
 
+	Parms.SoundscapeState = SoundscapeState;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -959,8 +951,6 @@ struct FGameplayTag USoundscapeSubsystem::ClearState()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -968,10 +958,10 @@ struct FGameplayTag USoundscapeSubsystem::ClearState()
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// struct FGameplayTag                ColorPoint                                                       (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                ColorPoint                                                       (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 USoundscapeSubsystem::CheckColorPointDensity(struct FVector* Location, struct FGameplayTag* ColorPoint)
+struct FGameplayTag USoundscapeSubsystem::CheckColorPointDensity(struct FVector* Location, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -980,6 +970,7 @@ int32 USoundscapeSubsystem::CheckColorPointDensity(struct FVector* Location, str
 
 	Params::USoundscapeSubsystem_CheckColorPointDensity_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -992,9 +983,6 @@ int32 USoundscapeSubsystem::CheckColorPointDensity(struct FVector* Location, str
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
 
-	if (ColorPoint != nullptr)
-		*ColorPoint = std::move(Parms.ColorPoint);
-
 	return Parms.ReturnValue;
 
 }
@@ -1003,11 +991,11 @@ int32 USoundscapeSubsystem::CheckColorPointDensity(struct FVector* Location, str
 // Function Soundscape.SoundscapeSubsystem.AddPaletteCollection
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        PaletteCollectionName                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// struct FSoundscapePaletteCollectionPaletteCollection                                                (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        PaletteCollectionName                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FSoundscapePaletteCollectionPaletteCollection                                                (Edit, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool USoundscapeSubsystem::AddPaletteCollection()
+void USoundscapeSubsystem::AddPaletteCollection(class FName PaletteCollectionName, const struct FSoundscapePaletteCollection& PaletteCollection, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1016,6 +1004,9 @@ bool USoundscapeSubsystem::AddPaletteCollection()
 
 	Params::USoundscapeSubsystem_AddPaletteCollection_Params Parms{};
 
+	Parms.PaletteCollectionName = PaletteCollectionName;
+	Parms.PaletteCollection = PaletteCollection;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1025,18 +1016,16 @@ bool USoundscapeSubsystem::AddPaletteCollection()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Soundscape.SoundscapeSubsystem.AddColorPointCollection
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ColorPointCollectionName                                         (ConstParm, BlueprintVisible, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// struct FSoundscapeColorPointCollectionColorPointCollection                                             (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FName                        ColorPointCollectionName                                         (BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FSoundscapeColorPointCollectionColorPointCollection                                             (ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-struct FSoundscapeColorPointCollection USoundscapeSubsystem::AddColorPointCollection()
+void USoundscapeSubsystem::AddColorPointCollection(class FName ColorPointCollectionName, struct FSoundscapeColorPointCollection* ColorPointCollection)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1045,6 +1034,7 @@ struct FSoundscapeColorPointCollection USoundscapeSubsystem::AddColorPointCollec
 
 	Params::USoundscapeSubsystem_AddColorPointCollection_Params Parms{};
 
+	Parms.ColorPointCollectionName = ColorPointCollectionName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1054,7 +1044,8 @@ struct FSoundscapeColorPointCollection USoundscapeSubsystem::AddColorPointCollec
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ColorPointCollection != nullptr)
+		*ColorPointCollection = std::move(Parms.ColorPointCollection);
 
 }
 

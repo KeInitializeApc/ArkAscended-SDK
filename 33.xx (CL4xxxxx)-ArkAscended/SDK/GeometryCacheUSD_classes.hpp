@@ -14,7 +14,7 @@ namespace SDK
 class UGeometryCacheTrackUsd : public UGeometryCacheTrack
 {
 public:
-	uint8                                        Pad_2EFB[0x178];                                   // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_323E[0x178];                                   // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGeometryCacheTrackUsd* GetDefaultObj();

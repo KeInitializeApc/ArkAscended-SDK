@@ -19,7 +19,7 @@ public:
 	static class UClass* StaticClass();
 	static class AStructureItemContainerBaseBP_C* GetDefaultObj();
 
-	class UPrimalInventoryComponent* BPOnTransferAll();
+	void BPOnTransferAll(class UPrimalInventoryComponent** ToInventory);
 };
 
 }

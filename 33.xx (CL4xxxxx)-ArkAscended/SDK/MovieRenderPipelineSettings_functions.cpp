@@ -43,9 +43,9 @@ class UMoviePipelineBurnInWidget* UMoviePipelineBurnInWidget::GetDefaultObj()
 // Function MovieRenderPipelineSettings.MoviePipelineBurnInWidget.OnOutputFrameStarted
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class UMoviePipeline*              ForPipeline                                                      (BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// class UMoviePipeline*              ForPipeline                                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class UMoviePipeline* UMoviePipelineBurnInWidget::OnOutputFrameStarted()
+void UMoviePipelineBurnInWidget::OnOutputFrameStarted(class UMoviePipeline* ForPipeline)
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,10 +54,9 @@ class UMoviePipeline* UMoviePipelineBurnInWidget::OnOutputFrameStarted()
 
 	Params::UMoviePipelineBurnInWidget_OnOutputFrameStarted_Params Parms{};
 
+	Parms.ForPipeline = ForPipeline;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -123,9 +122,9 @@ class UMoviePipelineConsoleVariableSetting* UMoviePipelineConsoleVariableSetting
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
 // bool                               bIsEnabled                                                       (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMoviePipelineConsoleVariableSetting::UpdateConsoleVariableEnableState(class FString* Name)
+bool UMoviePipelineConsoleVariableSetting::UpdateConsoleVariableEnableState(class FString* Name, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -134,6 +133,7 @@ bool UMoviePipelineConsoleVariableSetting::UpdateConsoleVariableEnableState(clas
 
 	Params::UMoviePipelineConsoleVariableSetting_UpdateConsoleVariableEnableState_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -155,10 +155,10 @@ bool UMoviePipelineConsoleVariableSetting::UpdateConsoleVariableEnableState(clas
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// bool                               bRemoveAllInstances                                              (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bRemoveAllInstances                                              (Edit, ExportObject, Net, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMoviePipelineConsoleVariableSetting::RemoveConsoleVariable(class FString* Name)
+void UMoviePipelineConsoleVariableSetting::RemoveConsoleVariable(class FString* Name, bool bRemoveAllInstances, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -167,6 +167,8 @@ bool UMoviePipelineConsoleVariableSetting::RemoveConsoleVariable(class FString* 
 
 	Params::UMoviePipelineConsoleVariableSetting_RemoveConsoleVariable_Params Parms{};
 
+	Parms.bRemoveAllInstances = bRemoveAllInstances;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -179,17 +181,15 @@ bool UMoviePipelineConsoleVariableSetting::RemoveConsoleVariable(class FString* 
 	if (Name != nullptr)
 		*Name = std::move(Parms.Name);
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MovieRenderPipelineSettings.MoviePipelineConsoleVariableSetting.GetConsoleVariables
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FMoviePipelineConsoleVariableEntry>ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FMoviePipelineConsoleVariableEntry>ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-TArray<struct FMoviePipelineConsoleVariableEntry> UMoviePipelineConsoleVariableSetting::GetConsoleVariables()
+void UMoviePipelineConsoleVariableSetting::GetConsoleVariables(const TArray<struct FMoviePipelineConsoleVariableEntry>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -198,6 +198,7 @@ TArray<struct FMoviePipelineConsoleVariableEntry> UMoviePipelineConsoleVariableS
 
 	Params::UMoviePipelineConsoleVariableSetting_GetConsoleVariables_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -206,8 +207,6 @@ TArray<struct FMoviePipelineConsoleVariableEntry> UMoviePipelineConsoleVariableS
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -217,9 +216,9 @@ TArray<struct FMoviePipelineConsoleVariableEntry> UMoviePipelineConsoleVariableS
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
 // float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMoviePipelineConsoleVariableSetting::AddOrUpdateConsoleVariable(class FString* Name, float Value)
+void UMoviePipelineConsoleVariableSetting::AddOrUpdateConsoleVariable(class FString* Name, float Value, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -229,6 +228,7 @@ bool UMoviePipelineConsoleVariableSetting::AddOrUpdateConsoleVariable(class FStr
 	Params::UMoviePipelineConsoleVariableSetting_AddOrUpdateConsoleVariable_Params Parms{};
 
 	Parms.Value = Value;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -240,8 +240,6 @@ bool UMoviePipelineConsoleVariableSetting::AddOrUpdateConsoleVariable(class FStr
 
 	if (Name != nullptr)
 		*Name = std::move(Parms.Name);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -251,9 +249,9 @@ bool UMoviePipelineConsoleVariableSetting::AddOrUpdateConsoleVariable(class FStr
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
 // float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMoviePipelineConsoleVariableSetting::AddConsoleVariable(class FString* Name, float Value)
+void UMoviePipelineConsoleVariableSetting::AddConsoleVariable(class FString* Name, float Value, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -263,6 +261,7 @@ bool UMoviePipelineConsoleVariableSetting::AddConsoleVariable(class FString* Nam
 	Params::UMoviePipelineConsoleVariableSetting_AddConsoleVariable_Params Parms{};
 
 	Parms.Value = Value;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -274,8 +273,6 @@ bool UMoviePipelineConsoleVariableSetting::AddConsoleVariable(class FString* Nam
 
 	if (Name != nullptr)
 		*Name = std::move(Parms.Name);
-
-	return Parms.ReturnValue;
 
 }
 

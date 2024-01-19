@@ -43,10 +43,10 @@ class UUI_Button_InstallSwitcher_C* UUI_Button_InstallSwitcher_C::GetDefaultObj(
 // Function UI_Button_InstallSwitcher.UI_Button_InstallSwitcher_C.UpdateButtonSwitcherStatus
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class EInstallStatus          Selection                                                        (ConstParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// bool                               K2Node_SwitchEnum_CmpSuccess                                     (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, SubobjectReference)
+// enum class EInstallStatus          Selection                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               K2Node_SwitchEnum_CmpSuccess                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
 
-bool UUI_Button_InstallSwitcher_C::UpdateButtonSwitcherStatus(enum class EInstallStatus Selection)
+void UUI_Button_InstallSwitcher_C::UpdateButtonSwitcherStatus(enum class EInstallStatus* Selection, bool* K2Node_SwitchEnum_CmpSuccess)
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,11 +55,14 @@ bool UUI_Button_InstallSwitcher_C::UpdateButtonSwitcherStatus(enum class EInstal
 
 	Params::UUI_Button_InstallSwitcher_C_UpdateButtonSwitcherStatus_Params Parms{};
 
-	Parms.Selection = Selection;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (Selection != nullptr)
+		*Selection = Parms.Selection;
+
+	if (K2Node_SwitchEnum_CmpSuccess != nullptr)
+		*K2Node_SwitchEnum_CmpSuccess = Parms.K2Node_SwitchEnum_CmpSuccess;
 
 }
 
@@ -67,9 +70,9 @@ bool UUI_Button_InstallSwitcher_C::UpdateButtonSwitcherStatus(enum class EInstal
 // Function UI_Button_InstallSwitcher.UI_Button_InstallSwitcher_C.UpdateButtonCollor
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// enum class ENUM_Install            ButtonStatus                                                     (Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class ENUM_Install            ButtonStatus                                                     (ConstParm, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UUI_Button_InstallSwitcher_C::UpdateButtonCollor(enum class ENUM_Install ButtonStatus)
+enum class ENUM_Install UUI_Button_InstallSwitcher_C::UpdateButtonCollor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -78,9 +81,10 @@ void UUI_Button_InstallSwitcher_C::UpdateButtonCollor(enum class ENUM_Install Bu
 
 	Params::UUI_Button_InstallSwitcher_C_UpdateButtonCollor_Params Parms{};
 
-	Parms.ButtonStatus = ButtonStatus;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -106,10 +110,10 @@ void UUI_Button_InstallSwitcher_C::Update_All_Theme_Settings()
 // Function UI_Button_InstallSwitcher.UI_Button_InstallSwitcher_C.SetProgress
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              Amount                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// enum class ELibraryProgressState   InstalationState                                                 (BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              Amount                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// enum class ELibraryProgressState   InstalationState                                                 (EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UUI_Button_InstallSwitcher_C::SetProgress(int32* Amount, enum class ELibraryProgressState InstalationState)
+enum class ELibraryProgressState UUI_Button_InstallSwitcher_C::SetProgress()
 {
 	static class UFunction* Func = nullptr;
 
@@ -118,12 +122,10 @@ void UUI_Button_InstallSwitcher_C::SetProgress(int32* Amount, enum class ELibrar
 
 	Params::UUI_Button_InstallSwitcher_C_SetProgress_Params Parms{};
 
-	Parms.InstalationState = InstalationState;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Amount != nullptr)
-		*Amount = Parms.Amount;
+	return Parms.ReturnValue;
 
 }
 
@@ -167,17 +169,17 @@ void UUI_Button_InstallSwitcher_C::BndEvt__UI_Button_InstallSwitcher_UI_Button_A
 // Function UI_Button_InstallSwitcher.UI_Button_InstallSwitcher_C.ExecuteUbergraph_UI_Button_InstallSwitcher
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              K2Node_CustomEvent_Amount                                        (Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class ELibraryProgressState   K2Node_CustomEvent_InstalationState                              (Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// double                             CallFunc_GetProcessedBarProgress_ReturnValue                     (Edit, ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_GetProcessedBarProgress_MaintainPreviousValue           (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// float                              CallFunc_SetPercent_InPercent_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              CallFunc_SetPercent_InPercent_ImplicitCast_1                     (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              K2Node_CustomEvent_Amount                                        (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class ELibraryProgressState   K2Node_CustomEvent_InstalationState                              (Edit, ConstParm, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// double                             CallFunc_GetProcessedBarProgress_ReturnValue                     (Edit, BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_GetProcessedBarProgress_MaintainPreviousValue           (Edit, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// float                              CallFunc_SetPercent_InPercent_ImplicitCast                       (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              CallFunc_SetPercent_InPercent_ImplicitCast_1                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
 
-float UUI_Button_InstallSwitcher_C::ExecuteUbergraph_UI_Button_InstallSwitcher(bool* CallFunc_IsValid_ReturnValue, int32 K2Node_CustomEvent_Amount, enum class ELibraryProgressState K2Node_CustomEvent_InstalationState, double CallFunc_GetProcessedBarProgress_ReturnValue, bool CallFunc_GetProcessedBarProgress_MaintainPreviousValue, bool* CallFunc_IsValid_ReturnValue_1)
+float UUI_Button_InstallSwitcher_C::ExecuteUbergraph_UI_Button_InstallSwitcher(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -186,18 +188,9 @@ float UUI_Button_InstallSwitcher_C::ExecuteUbergraph_UI_Button_InstallSwitcher(b
 
 	Params::UUI_Button_InstallSwitcher_C_ExecuteUbergraph_UI_Button_InstallSwitcher_Params Parms{};
 
-	Parms.K2Node_CustomEvent_Amount = K2Node_CustomEvent_Amount;
-	Parms.K2Node_CustomEvent_InstalationState = K2Node_CustomEvent_InstalationState;
-	Parms.CallFunc_GetProcessedBarProgress_ReturnValue = CallFunc_GetProcessedBarProgress_ReturnValue;
-	Parms.CallFunc_GetProcessedBarProgress_MaintainPreviousValue = CallFunc_GetProcessedBarProgress_MaintainPreviousValue;
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
 
 	return Parms.ReturnValue;
 

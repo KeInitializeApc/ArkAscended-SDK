@@ -72,7 +72,7 @@ struct FMoviePipelinePassIdentifier
 {
 public:
 	class FString                                Name;                                              // 0x0(0x10)(ConstParm, Net, OutParm)
-	class FString                                CameraName;                                        // 0x10(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	class FString                                CameraName;                                        // 0x10(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -80,7 +80,7 @@ public:
 struct FMoviePipelineRenderPassOutputData
 {
 public:
-	TArray<class FString>                        FilePaths;                                         // 0x0(0x10)(ConstParm, ExportObject, Net, EditFixedSize, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	TArray<class FString>                        FilePaths;                                         // 0x0(0x10)(Edit, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -88,8 +88,8 @@ public:
 struct FMoviePipelineShotOutputData
 {
 public:
-	TWeakObjectPtr<class UMoviePipelineExecutorShot> Shot;                                              // 0x0(0x8)(BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, GlobalConfig, SubobjectReference)
-	TMap<struct FMoviePipelinePassIdentifier, struct FMoviePipelineRenderPassOutputData> RenderPassData;                                    // 0x8(0x50)(ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	TWeakObjectPtr<class UMoviePipelineExecutorShot> Shot;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	TMap<struct FMoviePipelinePassIdentifier, struct FMoviePipelineRenderPassOutputData> RenderPassData;                                    // 0x8(0x50)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -97,11 +97,11 @@ public:
 struct FMoviePipelineOutputData
 {
 public:
-	class UMoviePipeline*                        Pipeline;                                          // 0x0(0x8)(ConstParm, BlueprintVisible, Parm, ReturnParm, Config, GlobalConfig, SubobjectReference)
-	class UMoviePipelineExecutorJob*             Job;                                               // 0x8(0x8)(Edit, ConstParm, Parm, ReturnParm, Config, GlobalConfig, SubobjectReference)
-	bool                                         bSuccess;                                          // 0x10(0x1)(ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_A5[0x7];                                       // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FMoviePipelineShotOutputData>  ShotData;                                          // 0x18(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	class UMoviePipeline*                        Pipeline;                                          // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	class UMoviePipelineExecutorJob*             Job;                                               // 0x8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	bool                                         bSuccess;                                          // 0x10(0x1)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_FC[0x7];                                       // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FMoviePipelineShotOutputData>  ShotData;                                          // 0x18(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -109,8 +109,8 @@ public:
 struct FMoviePipelineSidecarCamera
 {
 public:
-	struct FGuid                                 BindingId;                                         // 0x0(0x10)(BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A9[0x8];                                       // Fixing Size After Last Property  > TateDumper <
+	struct FGuid                                 BindingId;                                         // 0x0(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_FF[0x8];                                       // Fixing Size After Last Property  > TateDumper <
 	class FString                                Name;                                              // 0x18(0x10)(ConstParm, Net, OutParm)
 };
 
@@ -119,13 +119,13 @@ public:
 struct FMoviePipelineSegmentWorkMetrics
 {
 public:
-	class FString                                SegmentName;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        OutputFrameIndex;                                  // 0x10(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        TotalOutputFrameCount;                             // 0x14(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        OutputSubSampleIndex;                              // 0x18(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        TotalSubSampleCount;                               // 0x1C(0x4)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        EngineWarmUpFrameIndex;                            // 0x20(0x4)(Edit, BlueprintVisible, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        TotalEngineWarmUpFrameCount;                       // 0x24(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class FString                                SegmentName;                                       // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        OutputFrameIndex;                                  // 0x10(0x4)(BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        TotalOutputFrameCount;                             // 0x14(0x4)(BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        OutputSubSampleIndex;                              // 0x18(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        TotalSubSampleCount;                               // 0x1C(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        EngineWarmUpFrameIndex;                            // 0x20(0x4)(ConstParm, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        TotalEngineWarmUpFrameCount;                       // 0x24(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0xA8 (0xA8 - 0x0)
@@ -133,7 +133,7 @@ public:
 struct FMoviePipelineCameraCutInfo
 {
 public:
-	uint8                                        Pad_AD[0xA8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_102[0xA8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xA8 (0xA8 - 0x0)
@@ -141,9 +141,9 @@ public:
 struct FMoviePipelineFormatArgs
 {
 public:
-	TMap<class FString, class FString>           FilenameArguments;                                 // 0x0(0x50)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	TMap<class FString, class FString>           FileMetadata;                                      // 0x50(0x50)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	class UMoviePipelineExecutorJob*             InJob;                                             // 0xA0(0x8)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	TMap<class FString, class FString>           FilenameArguments;                                 // 0x0(0x50)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	TMap<class FString, class FString>           FileMetadata;                                      // 0x50(0x50)(BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class UMoviePipelineExecutorJob*             InJob;                                             // 0xA0(0x8)(Net, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x118 (0x118 - 0x0)
@@ -152,25 +152,25 @@ struct FMoviePipelineFilenameResolveParams
 {
 public:
 	int32                                        FrameNumber;                                       // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-	int32                                        FrameNumberShot;                                   // 0x4(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        FrameNumberRel;                                    // 0x8(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        FrameNumberShotRel;                                // 0xC(0x4)(BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	class FString                                CameraNameOverride;                                // 0x10(0x10)(ConstParm, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	class FString                                ShotNameOverride;                                  // 0x20(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        ZeroPadFrameNumberCount;                           // 0x30(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	bool                                         bForceRelativeFrameNumbers;                        // 0x34(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B6[0x3];                                       // Fixing Size After Last Property  > TateDumper <
-	class FString                                FileNameOverride;                                  // 0x38(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	TMap<class FString, class FString>           FileNameFormatOverrides;                           // 0x48(0x50)(Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	TMap<class FString, class FString>           FileMetadata;                                      // 0x98(0x50)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	struct FDateTime                             InitializationTime;                                // 0xE8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        InitializationVersion;                             // 0xF0(0x4)(Edit, ConstParm, Net, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_BB[0x4];                                       // Fixing Size After Last Property  > TateDumper <
-	class UMoviePipelineExecutorJob*             Job;                                               // 0xF8(0x8)(Edit, ConstParm, Parm, ReturnParm, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_BD[0x8];                                       // Fixing Size After Last Property  > TateDumper <
-	class UMoviePipelineExecutorShot*            ShotOverride;                                      // 0x108(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        AdditionalFrameNumberOffset;                       // 0x110(0x4)(Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_BE[0x4];                                       // Fixing Size Of Struct > TateDumper <
+	int32                                        FrameNumberShot;                                   // 0x4(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        FrameNumberRel;                                    // 0x8(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        FrameNumberShotRel;                                // 0xC(0x4)(Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class FString                                CameraNameOverride;                                // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class FString                                ShotNameOverride;                                  // 0x20(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        ZeroPadFrameNumberCount;                           // 0x30(0x4)(Edit, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	bool                                         bForceRelativeFrameNumbers;                        // 0x34(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_108[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	class FString                                FileNameOverride;                                  // 0x38(0x10)(ConstParm, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	TMap<class FString, class FString>           FileNameFormatOverrides;                           // 0x48(0x50)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	TMap<class FString, class FString>           FileMetadata;                                      // 0x98(0x50)(BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FDateTime                             InitializationTime;                                // 0xE8(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        InitializationVersion;                             // 0xF0(0x4)(Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_10A[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class UMoviePipelineExecutorJob*             Job;                                               // 0xF8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_10D[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class UMoviePipelineExecutorShot*            ShotOverride;                                      // 0x108(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        AdditionalFrameNumberOffset;                       // 0x110(0x4)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_10F[0x4];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 }

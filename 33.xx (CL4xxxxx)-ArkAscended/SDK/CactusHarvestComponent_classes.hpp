@@ -14,14 +14,14 @@ namespace SDK
 class UCactusHarvestComponent_C : public UAttackHarvestComponent_Base_C
 {
 public:
-	double                                       PlayerGiveWaterAmount;                             // 0x210(0x8)(ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	double                                       PlayerGiveWaterSpeed;                              // 0x218(0x8)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	double                                       MorellatopsGiveWaterAmount;                        // 0x220(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	double                                       PlayerGiveWaterAmount;                             // 0x210(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	double                                       PlayerGiveWaterSpeed;                              // 0x218(0x8)(ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	double                                       MorellatopsGiveWaterAmount;                        // 0x220(0x8)(BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UCactusHarvestComponent_C* GetDefaultObj();
 
-	float BPCustomHarvestResource(class UPrimalInventoryComponent** InvComp, int32* NumToGive, class UClass* DamageTypeClass, bool* K2Node_DynamicCast_bSuccess, class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, bool* K2Node_DynamicCast_bSuccess_1);
+	bool BPCustomHarvestResource(class AActor** ToActor, int32 ReturnValue, double* CallFunc_AddWater_NewWaterAmount, class UPrimalCharacterStatusComponent** CallFunc_GetCharacterStatusComponent_ReturnValue, float* CallFunc_AddStatusValueModifier_Speed_ImplicitCast, float* CallFunc_AddStatusValueModifier_Amount_ImplicitCast);
 };
 
 }

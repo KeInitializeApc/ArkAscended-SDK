@@ -43,9 +43,9 @@ class UASAUI_NewsCarouselTemplate_Entry_CTA_C* UASAUI_NewsCarouselTemplate_Entry
 // Function ASAUI_NewsCarouselTemplate_Entry_CTA.ASAUI_NewsCarouselTemplate_Entry_CTA_C.BlueprintInit
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class FString                      RawExtraData                                                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      RawExtraData                                                     (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UASAUI_NewsCarouselTemplate_Entry_CTA_C::BlueprintInit(class FString* RawExtraData)
+void UASAUI_NewsCarouselTemplate_Entry_CTA_C::BlueprintInit(const class FString& RawExtraData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,11 +54,9 @@ void UASAUI_NewsCarouselTemplate_Entry_CTA_C::BlueprintInit(class FString* RawEx
 
 	Params::UASAUI_NewsCarouselTemplate_Entry_CTA_C_BlueprintInit_Params Parms{};
 
+	Parms.RawExtraData = RawExtraData;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (RawExtraData != nullptr)
-		*RawExtraData = std::move(Parms.RawExtraData);
 
 }
 
@@ -66,9 +64,9 @@ void UASAUI_NewsCarouselTemplate_Entry_CTA_C::BlueprintInit(class FString* RawEx
 // Function ASAUI_NewsCarouselTemplate_Entry_CTA.ASAUI_NewsCarouselTemplate_Entry_CTA_C.EntryFocusStart
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               bInstigatedByAutoRollover                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInstigatedByAutoRollover                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UASAUI_NewsCarouselTemplate_Entry_CTA_C::EntryFocusStart(bool* bInstigatedByAutoRollover)
+void UASAUI_NewsCarouselTemplate_Entry_CTA_C::EntryFocusStart(bool bInstigatedByAutoRollover)
 {
 	static class UFunction* Func = nullptr;
 
@@ -77,11 +75,9 @@ void UASAUI_NewsCarouselTemplate_Entry_CTA_C::EntryFocusStart(bool* bInstigatedB
 
 	Params::UASAUI_NewsCarouselTemplate_Entry_CTA_C_EntryFocusStart_Params Parms{};
 
+	Parms.bInstigatedByAutoRollover = bInstigatedByAutoRollover;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (bInstigatedByAutoRollover != nullptr)
-		*bInstigatedByAutoRollover = Parms.bInstigatedByAutoRollover;
 
 }
 
@@ -89,9 +85,9 @@ void UASAUI_NewsCarouselTemplate_Entry_CTA_C::EntryFocusStart(bool* bInstigatedB
 // Function ASAUI_NewsCarouselTemplate_Entry_CTA.ASAUI_NewsCarouselTemplate_Entry_CTA_C.EntryFocusEnd
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               bInstigatedByAutoRollover                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInstigatedByAutoRollover                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UASAUI_NewsCarouselTemplate_Entry_CTA_C::EntryFocusEnd(bool* bInstigatedByAutoRollover)
+void UASAUI_NewsCarouselTemplate_Entry_CTA_C::EntryFocusEnd(bool bInstigatedByAutoRollover)
 {
 	static class UFunction* Func = nullptr;
 
@@ -100,11 +96,9 @@ void UASAUI_NewsCarouselTemplate_Entry_CTA_C::EntryFocusEnd(bool* bInstigatedByA
 
 	Params::UASAUI_NewsCarouselTemplate_Entry_CTA_C_EntryFocusEnd_Params Parms{};
 
+	Parms.bInstigatedByAutoRollover = bInstigatedByAutoRollover;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (bInstigatedByAutoRollover != nullptr)
-		*bInstigatedByAutoRollover = Parms.bInstigatedByAutoRollover;
 
 }
 
@@ -112,9 +106,9 @@ void UASAUI_NewsCarouselTemplate_Entry_CTA_C::EntryFocusEnd(bool* bInstigatedByA
 // Function ASAUI_NewsCarouselTemplate_Entry_CTA.ASAUI_NewsCarouselTemplate_Entry_CTA_C.EntryFocusTick
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UASAUI_NewsCarouselTemplate_Entry_CTA_C::EntryFocusTick(float* DeltaTime)
+float UASAUI_NewsCarouselTemplate_Entry_CTA_C::EntryFocusTick()
 {
 	static class UFunction* Func = nullptr;
 
@@ -126,8 +120,7 @@ void UASAUI_NewsCarouselTemplate_Entry_CTA_C::EntryFocusTick(float* DeltaTime)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (DeltaTime != nullptr)
-		*DeltaTime = Parms.DeltaTime;
+	return Parms.ReturnValue;
 
 }
 
@@ -135,13 +128,13 @@ void UASAUI_NewsCarouselTemplate_Entry_CTA_C::EntryFocusTick(float* DeltaTime)
 // Function ASAUI_NewsCarouselTemplate_Entry_CTA.ASAUI_NewsCarouselTemplate_Entry_CTA_C.ExecuteUbergraph_ASAUI_NewsCarouselTemplate_Entry_CTA
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FString                      K2Node_Event_RawExtraData                                        (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_Event_bInstigatedByAutoRollover_1                         (Edit, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// bool                               K2Node_Event_bInstigatedByAutoRollover                           (Edit, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              K2Node_Event_DeltaTime                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      K2Node_Event_RawExtraData                                        (ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// bool                               K2Node_Event_bInstigatedByAutoRollover_1                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               K2Node_Event_bInstigatedByAutoRollover                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              K2Node_Event_DeltaTime                                           (Edit, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
 
-float UASAUI_NewsCarouselTemplate_Entry_CTA_C::ExecuteUbergraph_ASAUI_NewsCarouselTemplate_Entry_CTA()
+class FString UASAUI_NewsCarouselTemplate_Entry_CTA_C::ExecuteUbergraph_ASAUI_NewsCarouselTemplate_Entry_CTA(int32 EntryPoint, bool K2Node_Event_bInstigatedByAutoRollover_1, bool K2Node_Event_bInstigatedByAutoRollover, float K2Node_Event_DeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -150,6 +143,10 @@ float UASAUI_NewsCarouselTemplate_Entry_CTA_C::ExecuteUbergraph_ASAUI_NewsCarous
 
 	Params::UASAUI_NewsCarouselTemplate_Entry_CTA_C_ExecuteUbergraph_ASAUI_NewsCarouselTemplate_Entry_CTA_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
+	Parms.K2Node_Event_bInstigatedByAutoRollover_1 = K2Node_Event_bInstigatedByAutoRollover_1;
+	Parms.K2Node_Event_bInstigatedByAutoRollover = K2Node_Event_bInstigatedByAutoRollover;
+	Parms.K2Node_Event_DeltaTime = K2Node_Event_DeltaTime;
 
 	UObject::ProcessEvent(Func, &Parms);
 

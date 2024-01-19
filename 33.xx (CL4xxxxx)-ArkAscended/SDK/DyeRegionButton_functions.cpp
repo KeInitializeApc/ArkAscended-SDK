@@ -43,14 +43,14 @@ class UDyeRegionButton_C* UDyeRegionButton_C::GetDefaultObj()
 // Function DyeRegionButton.DyeRegionButton_C.GetVisibility_0
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// enum class ESlateVisibility        ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               Temp_bool_Variable                                               (ConstParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable                                               (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable_1                                             (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_GetIsEnabled_ReturnValue                                (Edit, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// enum class ESlateVisibility        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable                                               (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable_1                                             (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_GetIsEnabled_ReturnValue                                (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// enum class ESlateVisibility        K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
 
-enum class ESlateVisibility UDyeRegionButton_C::GetVisibility_0(bool Temp_bool_Variable, enum class ESlateVisibility Temp_byte_Variable, enum class ESlateVisibility Temp_byte_Variable_1, bool* CallFunc_GetIsEnabled_ReturnValue, enum class ESlateVisibility* K2Node_Select_Default)
+enum class ESlateVisibility UDyeRegionButton_C::GetVisibility_0(enum class ESlateVisibility ReturnValue, bool Temp_bool_Variable, bool CallFunc_GetIsEnabled_ReturnValue, enum class ESlateVisibility K2Node_Select_Default)
 {
 	static class UFunction* Func = nullptr;
 
@@ -59,17 +59,12 @@ enum class ESlateVisibility UDyeRegionButton_C::GetVisibility_0(bool Temp_bool_V
 
 	Params::UDyeRegionButton_C_GetVisibility_0_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 	Parms.Temp_bool_Variable = Temp_bool_Variable;
-	Parms.Temp_byte_Variable = Temp_byte_Variable;
-	Parms.Temp_byte_Variable_1 = Temp_byte_Variable_1;
+	Parms.CallFunc_GetIsEnabled_ReturnValue = CallFunc_GetIsEnabled_ReturnValue;
+	Parms.K2Node_Select_Default = K2Node_Select_Default;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_GetIsEnabled_ReturnValue != nullptr)
-		*CallFunc_GetIsEnabled_ReturnValue = Parms.CallFunc_GetIsEnabled_ReturnValue;
-
-	if (K2Node_Select_Default != nullptr)
-		*K2Node_Select_Default = Parms.K2Node_Select_Default;
 
 	return Parms.ReturnValue;
 
@@ -97,9 +92,9 @@ void UDyeRegionButton_C::BndEvt__DyeRegionButton_Button_25_K2Node_ComponentBound
 // Function DyeRegionButton.DyeRegionButton_C.ExecuteUbergraph_DyeRegionButton
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UDyeRegionButton_C::ExecuteUbergraph_DyeRegionButton()
+void UDyeRegionButton_C::ExecuteUbergraph_DyeRegionButton(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -108,10 +103,9 @@ int32 UDyeRegionButton_C::ExecuteUbergraph_DyeRegionButton()
 
 	Params::UDyeRegionButton_C_ExecuteUbergraph_DyeRegionButton_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 

@@ -18,7 +18,7 @@ namespace Params
 struct UUI_DownloadSize_C_SetSizeText_Params
 {
 public:
-	class FText                                  InText;                                            // 0x0(0x18)(Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FText                                  InText;                                            // 0x0(0x18)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 }

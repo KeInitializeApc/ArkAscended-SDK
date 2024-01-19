@@ -18,8 +18,8 @@ namespace Params
 struct UAnimationBudgetBlueprintLibrary_SetAnimationBudgetParameters_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FAnimationBudgetAllocatorParameters   InParameters;                                      // 0x8(0x58)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FAnimationBudgetAllocatorParameters   InParameters;                                      // 0x8(0x58)(Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -27,9 +27,9 @@ public:
 struct UAnimationBudgetBlueprintLibrary_EnableAnimationBudget_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bEnabled;                                          // 0x8(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, Transient, EditConst, GlobalConfig)
-	uint8                                        Pad_1C8[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bEnabled;                                          // 0x8(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_D1[0x7];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -37,7 +37,7 @@ public:
 struct USkeletalMeshComponentBudgeted_SetAutoRegisterWithBudgetAllocator_Params
 {
 public:
-	bool                                         bInAutoRegisterWithBudgetAllocator;                // 0x0(0x1)(Edit, ConstParm, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInAutoRegisterWithBudgetAllocator;                // 0x0(0x1)(Edit, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
 };
 
 }

@@ -22,7 +22,7 @@ public:
 	class FString                                Name;                                              // 0x0(0x10)(ConstParm, Net, OutParm)
 	float                                        Value;                                             // 0x10(0x4)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 	bool                                         bIsEnabled;                                        // 0x14(0x1)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, EditConst)
-	uint8                                        Pad_144A[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_111A[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

@@ -71,10 +71,10 @@ class ITurnBasedMatchInterface* ITurnBasedMatchInterface::GetDefaultObj()
 // Function OnlineSubsystem.TurnBasedMatchInterface.OnMatchReceivedTurn
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class FString                      Match                                                            (BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bDidBecomeActive                                                 (ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      Match                                                            (Edit, ConstParm, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bDidBecomeActive                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void ITurnBasedMatchInterface::OnMatchReceivedTurn(class FString* Match, bool* bDidBecomeActive)
+bool ITurnBasedMatchInterface::OnMatchReceivedTurn()
 {
 	static class UFunction* Func = nullptr;
 
@@ -86,11 +86,7 @@ void ITurnBasedMatchInterface::OnMatchReceivedTurn(class FString* Match, bool* b
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Match != nullptr)
-		*Match = std::move(Parms.Match);
-
-	if (bDidBecomeActive != nullptr)
-		*bDidBecomeActive = Parms.bDidBecomeActive;
+	return Parms.ReturnValue;
 
 }
 
@@ -98,9 +94,9 @@ void ITurnBasedMatchInterface::OnMatchReceivedTurn(class FString* Match, bool* b
 // Function OnlineSubsystem.TurnBasedMatchInterface.OnMatchEnded
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class FString                      Match                                                            (BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      Match                                                            (Edit, ConstParm, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void ITurnBasedMatchInterface::OnMatchEnded(class FString* Match)
+class FString ITurnBasedMatchInterface::OnMatchEnded()
 {
 	static class UFunction* Func = nullptr;
 
@@ -112,8 +108,7 @@ void ITurnBasedMatchInterface::OnMatchEnded(class FString* Match)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Match != nullptr)
-		*Match = std::move(Parms.Match);
+	return Parms.ReturnValue;
 
 }
 

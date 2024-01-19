@@ -43,10 +43,10 @@ class UASAUI_MainMenuWidget_Card_C* UASAUI_MainMenuWidget_Card_C::GetDefaultObj(
 // Function ASAUI_MainMenuWidget_Card.ASAUI_MainMenuWidget_Card_C.OnMouseEnterFunc
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue_1                             (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue_1                             (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
 
-class UUMGSequencePlayer* UASAUI_MainMenuWidget_Card_C::OnMouseEnterFunc()
+void UASAUI_MainMenuWidget_Card_C::OnMouseEnterFunc(class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue, class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,10 +55,10 @@ class UUMGSequencePlayer* UASAUI_MainMenuWidget_Card_C::OnMouseEnterFunc()
 
 	Params::UASAUI_MainMenuWidget_Card_C_OnMouseEnterFunc_Params Parms{};
 
+	Parms.CallFunc_PlayAnimation_ReturnValue = CallFunc_PlayAnimation_ReturnValue;
+	Parms.CallFunc_PlayAnimation_ReturnValue_1 = CallFunc_PlayAnimation_ReturnValue_1;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -84,10 +84,10 @@ void UASAUI_MainMenuWidget_Card_C::StopAnims()
 // Function ASAUI_MainMenuWidget_Card.ASAUI_MainMenuWidget_Card_C.OnMouseLeaveFunc
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue_1                             (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue_1                             (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
 
-class UUMGSequencePlayer* UASAUI_MainMenuWidget_Card_C::OnMouseLeaveFunc()
+void UASAUI_MainMenuWidget_Card_C::OnMouseLeaveFunc(class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue, class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -96,10 +96,10 @@ class UUMGSequencePlayer* UASAUI_MainMenuWidget_Card_C::OnMouseLeaveFunc()
 
 	Params::UASAUI_MainMenuWidget_Card_C_OnMouseLeaveFunc_Params Parms{};
 
+	Parms.CallFunc_PlayAnimation_ReturnValue = CallFunc_PlayAnimation_ReturnValue;
+	Parms.CallFunc_PlayAnimation_ReturnValue_1 = CallFunc_PlayAnimation_ReturnValue_1;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -107,9 +107,9 @@ class UUMGSequencePlayer* UASAUI_MainMenuWidget_Card_C::OnMouseLeaveFunc()
 // Function ASAUI_MainMenuWidget_Card.ASAUI_MainMenuWidget_Card_C.OnMouseLeave
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FPointerEvent               MouseEvent                                                       (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               MouseEvent                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UASAUI_MainMenuWidget_Card_C::OnMouseLeave(struct FPointerEvent* MouseEvent)
+void UASAUI_MainMenuWidget_Card_C::OnMouseLeave(const struct FPointerEvent& MouseEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -118,11 +118,9 @@ void UASAUI_MainMenuWidget_Card_C::OnMouseLeave(struct FPointerEvent* MouseEvent
 
 	Params::UASAUI_MainMenuWidget_Card_C_OnMouseLeave_Params Parms{};
 
+	Parms.MouseEvent = MouseEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (MouseEvent != nullptr)
-		*MouseEvent = std::move(Parms.MouseEvent);
 
 }
 
@@ -130,10 +128,10 @@ void UASAUI_MainMenuWidget_Card_C::OnMouseLeave(struct FPointerEvent* MouseEvent
 // Function ASAUI_MainMenuWidget_Card.ASAUI_MainMenuWidget_Card_C.OnMouseEnter
 // (BlueprintCosmetic, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FPointerEvent               MouseEvent                                                       (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (Edit, BlueprintVisible, Net, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FPointerEvent               MouseEvent                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UASAUI_MainMenuWidget_Card_C::OnMouseEnter(struct FGeometry* MyGeometry, struct FPointerEvent* MouseEvent)
+void UASAUI_MainMenuWidget_Card_C::OnMouseEnter(const struct FGeometry& MyGeometry, const struct FPointerEvent& MouseEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -142,14 +140,10 @@ void UASAUI_MainMenuWidget_Card_C::OnMouseEnter(struct FGeometry* MyGeometry, st
 
 	Params::UASAUI_MainMenuWidget_Card_C_OnMouseEnter_Params Parms{};
 
+	Parms.MyGeometry = MyGeometry;
+	Parms.MouseEvent = MouseEvent;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (MyGeometry != nullptr)
-		*MyGeometry = std::move(Parms.MyGeometry);
-
-	if (MouseEvent != nullptr)
-		*MouseEvent = std::move(Parms.MouseEvent);
 
 }
 
@@ -175,9 +169,9 @@ void UASAUI_MainMenuWidget_Card_C::BndEvt__ASAUI_MainMenuWidget_Card_Button_99_K
 // Function ASAUI_MainMenuWidget_Card.ASAUI_MainMenuWidget_Card_C.PreConstruct
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               IsDesignTime                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               IsDesignTime                                                     (ConstParm, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UASAUI_MainMenuWidget_Card_C::PreConstruct(bool IsDesignTime)
+bool UASAUI_MainMenuWidget_Card_C::PreConstruct()
 {
 	static class UFunction* Func = nullptr;
 
@@ -186,9 +180,10 @@ void UASAUI_MainMenuWidget_Card_C::PreConstruct(bool IsDesignTime)
 
 	Params::UASAUI_MainMenuWidget_Card_C_PreConstruct_Params Parms{};
 
-	Parms.IsDesignTime = IsDesignTime;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -250,13 +245,13 @@ void UASAUI_MainMenuWidget_Card_C::Refresh()
 // Function ASAUI_MainMenuWidget_Card.ASAUI_MainMenuWidget_Card_C.ExecuteUbergraph_ASAUI_MainMenuWidget_Card
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FPointerEvent               K2Node_Event_MouseEvent_1                                        (ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// struct FGeometry                   K2Node_Event_MyGeometry                                          (Edit, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FPointerEvent               K2Node_Event_MouseEvent                                          (ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_Event_IsDesignTime                                        (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPointerEvent               K2Node_Event_MouseEvent_1                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// struct FGeometry                   K2Node_Event_MyGeometry                                          (Net, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FPointerEvent               K2Node_Event_MouseEvent                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_Event_IsDesignTime                                        (Edit, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-bool UASAUI_MainMenuWidget_Card_C::ExecuteUbergraph_ASAUI_MainMenuWidget_Card(struct FGeometry* K2Node_Event_MyGeometry)
+bool UASAUI_MainMenuWidget_Card_C::ExecuteUbergraph_ASAUI_MainMenuWidget_Card(int32 EntryPoint, struct FPointerEvent* K2Node_Event_MouseEvent_1, struct FGeometry* K2Node_Event_MyGeometry, struct FPointerEvent* K2Node_Event_MouseEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -265,11 +260,18 @@ bool UASAUI_MainMenuWidget_Card_C::ExecuteUbergraph_ASAUI_MainMenuWidget_Card(st
 
 	Params::UASAUI_MainMenuWidget_Card_C_ExecuteUbergraph_ASAUI_MainMenuWidget_Card_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (K2Node_Event_MouseEvent_1 != nullptr)
+		*K2Node_Event_MouseEvent_1 = std::move(Parms.K2Node_Event_MouseEvent_1);
+
 	if (K2Node_Event_MyGeometry != nullptr)
 		*K2Node_Event_MyGeometry = std::move(Parms.K2Node_Event_MyGeometry);
+
+	if (K2Node_Event_MouseEvent != nullptr)
+		*K2Node_Event_MouseEvent = std::move(Parms.K2Node_Event_MouseEvent);
 
 	return Parms.ReturnValue;
 

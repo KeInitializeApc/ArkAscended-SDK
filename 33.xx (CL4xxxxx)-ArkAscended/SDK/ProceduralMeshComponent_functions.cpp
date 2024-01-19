@@ -43,15 +43,15 @@ class UKismetProceduralMeshLibrary* UKismetProceduralMeshLibrary::GetDefaultObj(
 // Function ProceduralMeshComponent.KismetProceduralMeshLibrary.SliceProceduralMesh
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UProceduralMeshComponent*    InProcMesh                                                       (ConstParm, Net, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     PlanePosition                                                    (Edit, ExportObject, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     PlaneNormal                                                      (ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bCreateOtherHalf                                                 (OutParm, Config, EditConst, InstancedReference, SubobjectReference)
-// class UProceduralMeshComponent*    OutOtherHalfProcMesh                                             (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class EProcMeshSliceCapOption CapOption                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// class UMaterialInterface*          CapMaterial                                                      (ExportObject, Net, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
+// class UProceduralMeshComponent*    InProcMesh                                                       (Net, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     PlanePosition                                                    (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     PlaneNormal                                                      (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bCreateOtherHalf                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class UProceduralMeshComponent*    OutOtherHalfProcMesh                                             (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EProcMeshSliceCapOption CapOption                                                        (Edit, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class UMaterialInterface*          CapMaterial                                                      (ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UKismetProceduralMeshLibrary::SliceProceduralMesh(class UProceduralMeshComponent* InProcMesh, struct FVector* PlanePosition, const struct FVector& PlaneNormal, bool* bCreateOtherHalf, class UProceduralMeshComponent* OutOtherHalfProcMesh, enum class EProcMeshSliceCapOption CapOption, class UMaterialInterface* CapMaterial)
+class UMaterialInterface* UKismetProceduralMeshLibrary::SliceProceduralMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -60,11 +60,6 @@ void UKismetProceduralMeshLibrary::SliceProceduralMesh(class UProceduralMeshComp
 
 	Params::UKismetProceduralMeshLibrary_SliceProceduralMesh_Params Parms{};
 
-	Parms.InProcMesh = InProcMesh;
-	Parms.PlaneNormal = PlaneNormal;
-	Parms.OutOtherHalfProcMesh = OutOtherHalfProcMesh;
-	Parms.CapOption = CapOption;
-	Parms.CapMaterial = CapMaterial;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -74,11 +69,7 @@ void UKismetProceduralMeshLibrary::SliceProceduralMesh(class UProceduralMeshComp
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlanePosition != nullptr)
-		*PlanePosition = std::move(Parms.PlanePosition);
-
-	if (bCreateOtherHalf != nullptr)
-		*bCreateOtherHalf = Parms.bCreateOtherHalf;
+	return Parms.ReturnValue;
 
 }
 
@@ -86,16 +77,16 @@ void UKismetProceduralMeshLibrary::SliceProceduralMesh(class UProceduralMeshComp
 // Function ProceduralMeshComponent.KismetProceduralMeshLibrary.GetSectionFromStaticMesh
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UStaticMesh*                 InMesh                                                           (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              LODIndex                                                         (Edit, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UStaticMesh*                 InMesh                                                           (ConstParm, ExportObject, Parm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              LODIndex                                                         (Edit, ConstParm, BlueprintVisible, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 // TArray<struct FVector>             Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // TArray<int32>                      Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVector>             Normals                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector>             Normals                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 // TArray<struct FVector2D>           UVs                                                              (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FProcMeshTangent>    Tangents                                                         (Edit, BlueprintVisible, ExportObject, Net, InstancedReference, SubobjectReference)
+// TArray<struct FProcMeshTangent>    Tangents                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-TArray<struct FVector2D> UKismetProceduralMeshLibrary::GetSectionFromStaticMesh(TArray<struct FVector>* Normals, const TArray<struct FProcMeshTangent>& Tangents)
+TArray<struct FVector2D> UKismetProceduralMeshLibrary::GetSectionFromStaticMesh(class UStaticMesh* InMesh, int32 LODIndex, int32* SectionIndex, TArray<struct FProcMeshTangent>* Tangents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -104,7 +95,8 @@ TArray<struct FVector2D> UKismetProceduralMeshLibrary::GetSectionFromStaticMesh(
 
 	Params::UKismetProceduralMeshLibrary_GetSectionFromStaticMesh_Params Parms{};
 
-	Parms.Tangents = Tangents;
+	Parms.InMesh = InMesh;
+	Parms.LODIndex = LODIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -114,8 +106,11 @@ TArray<struct FVector2D> UKismetProceduralMeshLibrary::GetSectionFromStaticMesh(
 
 	Func->FunctionFlags = Flgs;
 
-	if (Normals != nullptr)
-		*Normals = std::move(Parms.Normals);
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
+
+	if (Tangents != nullptr)
+		*Tangents = std::move(Parms.Tangents);
 
 	return Parms.ReturnValue;
 
@@ -125,15 +120,15 @@ TArray<struct FVector2D> UKismetProceduralMeshLibrary::GetSectionFromStaticMesh(
 // Function ProceduralMeshComponent.KismetProceduralMeshLibrary.GetSectionFromProceduralMesh
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UProceduralMeshComponent*    InProcMesh                                                       (ConstParm, Net, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UProceduralMeshComponent*    InProcMesh                                                       (Net, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 // TArray<struct FVector>             Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // TArray<int32>                      Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVector>             Normals                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector>             Normals                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 // TArray<struct FVector2D>           UVs                                                              (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FProcMeshTangent>    Tangents                                                         (Edit, BlueprintVisible, ExportObject, Net, InstancedReference, SubobjectReference)
+// TArray<struct FProcMeshTangent>    Tangents                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-TArray<struct FVector2D> UKismetProceduralMeshLibrary::GetSectionFromProceduralMesh(class UProceduralMeshComponent* InProcMesh, TArray<struct FVector>* Normals, const TArray<struct FProcMeshTangent>& Tangents)
+TArray<struct FVector2D> UKismetProceduralMeshLibrary::GetSectionFromProceduralMesh(int32* SectionIndex, TArray<struct FProcMeshTangent>* Tangents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -142,8 +137,6 @@ TArray<struct FVector2D> UKismetProceduralMeshLibrary::GetSectionFromProceduralM
 
 	Params::UKismetProceduralMeshLibrary_GetSectionFromProceduralMesh_Params Parms{};
 
-	Parms.InProcMesh = InProcMesh;
-	Parms.Tangents = Tangents;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -153,8 +146,11 @@ TArray<struct FVector2D> UKismetProceduralMeshLibrary::GetSectionFromProceduralM
 
 	Func->FunctionFlags = Flgs;
 
-	if (Normals != nullptr)
-		*Normals = std::move(Parms.Normals);
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
+
+	if (Tangents != nullptr)
+		*Tangents = std::move(Parms.Tangents);
 
 	return Parms.ReturnValue;
 
@@ -164,14 +160,14 @@ TArray<struct FVector2D> UKismetProceduralMeshLibrary::GetSectionFromProceduralM
 // Function ProceduralMeshComponent.KismetProceduralMeshLibrary.GenerateBoxMesh
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     BoxRadius                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     BoxRadius                                                        (ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 // TArray<struct FVector>             Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // TArray<int32>                      Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVector>             Normals                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector>             Normals                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 // TArray<struct FVector2D>           UVs                                                              (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FProcMeshTangent>    Tangents                                                         (Edit, BlueprintVisible, ExportObject, Net, InstancedReference, SubobjectReference)
+// TArray<struct FProcMeshTangent>    Tangents                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-TArray<struct FVector2D> UKismetProceduralMeshLibrary::GenerateBoxMesh(const struct FVector& BoxRadius, TArray<struct FVector>* Normals, const TArray<struct FProcMeshTangent>& Tangents)
+TArray<struct FVector2D> UKismetProceduralMeshLibrary::GenerateBoxMesh(TArray<struct FProcMeshTangent>* Tangents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -180,8 +176,6 @@ TArray<struct FVector2D> UKismetProceduralMeshLibrary::GenerateBoxMesh(const str
 
 	Params::UKismetProceduralMeshLibrary_GenerateBoxMesh_Params Parms{};
 
-	Parms.BoxRadius = BoxRadius;
-	Parms.Tangents = Tangents;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -191,8 +185,8 @@ TArray<struct FVector2D> UKismetProceduralMeshLibrary::GenerateBoxMesh(const str
 
 	Func->FunctionFlags = Flgs;
 
-	if (Normals != nullptr)
-		*Normals = std::move(Parms.Normals);
+	if (Tangents != nullptr)
+		*Tangents = std::move(Parms.Tangents);
 
 	return Parms.ReturnValue;
 
@@ -202,14 +196,14 @@ TArray<struct FVector2D> UKismetProceduralMeshLibrary::GenerateBoxMesh(const str
 // Function ProceduralMeshComponent.KismetProceduralMeshLibrary.CreateGridMeshWelded
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              NumX                                                             (BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              NumY                                                             (Edit, ExportObject, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              NumX                                                             (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              NumY                                                             (BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // TArray<int32>                      Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
 // TArray<struct FVector>             Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // TArray<struct FVector2D>           UVs                                                              (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// float                              GridSpacing                                                      (Edit, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              GridSpacing                                                      (ExportObject, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float UKismetProceduralMeshLibrary::CreateGridMeshWelded(int32 NumX, int32 NumY)
+TArray<struct FVector2D> UKismetProceduralMeshLibrary::CreateGridMeshWelded(float* GridSpacing)
 {
 	static class UFunction* Func = nullptr;
 
@@ -218,8 +212,6 @@ float UKismetProceduralMeshLibrary::CreateGridMeshWelded(int32 NumX, int32 NumY)
 
 	Params::UKismetProceduralMeshLibrary_CreateGridMeshWelded_Params Parms{};
 
-	Parms.NumX = NumX;
-	Parms.NumY = NumY;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -229,6 +221,9 @@ float UKismetProceduralMeshLibrary::CreateGridMeshWelded(int32 NumX, int32 NumY)
 
 	Func->FunctionFlags = Flgs;
 
+	if (GridSpacing != nullptr)
+		*GridSpacing = Parms.GridSpacing;
+
 	return Parms.ReturnValue;
 
 }
@@ -237,12 +232,12 @@ float UKismetProceduralMeshLibrary::CreateGridMeshWelded(int32 NumX, int32 NumY)
 // Function ProceduralMeshComponent.KismetProceduralMeshLibrary.CreateGridMeshTriangles
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              NumX                                                             (BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              NumY                                                             (Edit, ExportObject, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bWinding                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              NumX                                                             (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              NumY                                                             (BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bWinding                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 // TArray<int32>                      Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
 
-TArray<int32> UKismetProceduralMeshLibrary::CreateGridMeshTriangles(int32 NumX, int32 NumY, bool bWinding)
+TArray<int32> UKismetProceduralMeshLibrary::CreateGridMeshTriangles()
 {
 	static class UFunction* Func = nullptr;
 
@@ -251,9 +246,6 @@ TArray<int32> UKismetProceduralMeshLibrary::CreateGridMeshTriangles(int32 NumX, 
 
 	Params::UKismetProceduralMeshLibrary_CreateGridMeshTriangles_Params Parms{};
 
-	Parms.NumX = NumX;
-	Parms.NumY = NumY;
-	Parms.bWinding = bWinding;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -271,15 +263,15 @@ TArray<int32> UKismetProceduralMeshLibrary::CreateGridMeshTriangles(int32 NumX, 
 // Function ProceduralMeshComponent.KismetProceduralMeshLibrary.CreateGridMeshSplit
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              NumX                                                             (BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              NumY                                                             (Edit, ExportObject, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              NumX                                                             (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              NumY                                                             (BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // TArray<int32>                      Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
 // TArray<struct FVector>             Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // TArray<struct FVector2D>           UVs                                                              (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVector2D>           UV1s                                                             (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              GridSpacing                                                      (Edit, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FVector2D>           UV1s                                                             (ConstParm, BlueprintReadOnly, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              GridSpacing                                                      (ExportObject, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float UKismetProceduralMeshLibrary::CreateGridMeshSplit(int32 NumX, int32 NumY, const TArray<struct FVector2D>& UV1s)
+TArray<struct FVector2D> UKismetProceduralMeshLibrary::CreateGridMeshSplit(float* GridSpacing)
 {
 	static class UFunction* Func = nullptr;
 
@@ -288,9 +280,6 @@ float UKismetProceduralMeshLibrary::CreateGridMeshSplit(int32 NumX, int32 NumY, 
 
 	Params::UKismetProceduralMeshLibrary_CreateGridMeshSplit_Params Parms{};
 
-	Parms.NumX = NumX;
-	Parms.NumY = NumY;
-	Parms.UV1s = UV1s;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -299,6 +288,9 @@ float UKismetProceduralMeshLibrary::CreateGridMeshSplit(int32 NumX, int32 NumY, 
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (GridSpacing != nullptr)
+		*GridSpacing = Parms.GridSpacing;
 
 	return Parms.ReturnValue;
 
@@ -309,11 +301,11 @@ float UKismetProceduralMeshLibrary::CreateGridMeshSplit(int32 NumX, int32 NumY, 
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UStaticMeshComponent*        StaticMeshComponent                                              (Edit, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-// int32                              LODIndex                                                         (Edit, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UProceduralMeshComponent*    ProcMeshComponent                                                (ConstParm, ExportObject, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bCreateCollision                                                 (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              LODIndex                                                         (Edit, ConstParm, BlueprintVisible, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UProceduralMeshComponent*    ProcMeshComponent                                                (ExportObject, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bCreateCollision                                                 (BlueprintVisible, BlueprintReadOnly, Parm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UKismetProceduralMeshLibrary::CopyProceduralMeshFromStaticMeshComponent(class UProceduralMeshComponent* ProcMeshComponent)
+class UProceduralMeshComponent* UKismetProceduralMeshLibrary::CopyProceduralMeshFromStaticMeshComponent(int32 LODIndex, bool bCreateCollision)
 {
 	static class UFunction* Func = nullptr;
 
@@ -322,7 +314,8 @@ bool UKismetProceduralMeshLibrary::CopyProceduralMeshFromStaticMeshComponent(cla
 
 	Params::UKismetProceduralMeshLibrary_CopyProceduralMeshFromStaticMeshComponent_Params Parms{};
 
-	Parms.ProcMeshComponent = ProcMeshComponent;
+	Parms.LODIndex = LODIndex;
+	Parms.bCreateCollision = bCreateCollision;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -341,12 +334,12 @@ bool UKismetProceduralMeshLibrary::CopyProceduralMeshFromStaticMeshComponent(cla
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // TArray<int32>                      Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// int32                              Vert0                                                            (ConstParm, BlueprintVisible, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              Vert1                                                            (ConstParm, EditFixedSize, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              Vert2                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              Vert3                                                            (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              Vert0                                                            (BlueprintVisible, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              Vert1                                                            (Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              Vert2                                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              Vert3                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 
-TArray<int32> UKismetProceduralMeshLibrary::ConvertQuadToTriangles(int32 Vert0, int32 Vert1, int32 Vert2, int32 Vert3)
+int32 UKismetProceduralMeshLibrary::ConvertQuadToTriangles()
 {
 	static class UFunction* Func = nullptr;
 
@@ -355,10 +348,6 @@ TArray<int32> UKismetProceduralMeshLibrary::ConvertQuadToTriangles(int32 Vert0, 
 
 	Params::UKismetProceduralMeshLibrary_ConvertQuadToTriangles_Params Parms{};
 
-	Parms.Vert0 = Vert0;
-	Parms.Vert1 = Vert1;
-	Parms.Vert2 = Vert2;
-	Parms.Vert3 = Vert3;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -379,10 +368,10 @@ TArray<int32> UKismetProceduralMeshLibrary::ConvertQuadToTriangles(int32 Vert0, 
 // TArray<struct FVector>             Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // TArray<int32>                      Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
 // TArray<struct FVector2D>           UVs                                                              (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVector>             Normals                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FProcMeshTangent>    Tangents                                                         (Edit, BlueprintVisible, ExportObject, Net, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             Normals                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FProcMeshTangent>    Tangents                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-TArray<struct FVector2D> UKismetProceduralMeshLibrary::CalculateTangentsForMesh(TArray<struct FVector>* Normals, const TArray<struct FProcMeshTangent>& Tangents)
+TArray<struct FVector> UKismetProceduralMeshLibrary::CalculateTangentsForMesh(TArray<struct FProcMeshTangent>* Tangents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -391,7 +380,6 @@ TArray<struct FVector2D> UKismetProceduralMeshLibrary::CalculateTangentsForMesh(
 
 	Params::UKismetProceduralMeshLibrary_CalculateTangentsForMesh_Params Parms{};
 
-	Parms.Tangents = Tangents;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -401,8 +389,8 @@ TArray<struct FVector2D> UKismetProceduralMeshLibrary::CalculateTangentsForMesh(
 
 	Func->FunctionFlags = Flgs;
 
-	if (Normals != nullptr)
-		*Normals = std::move(Parms.Normals);
+	if (Tangents != nullptr)
+		*Tangents = std::move(Parms.Tangents);
 
 	return Parms.ReturnValue;
 
@@ -440,18 +428,18 @@ class UProceduralMeshComponent* UProceduralMeshComponent::GetDefaultObj()
 // Function ProceduralMeshComponent.ProceduralMeshComponent.UpdateMeshSection_LinearColor
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 // TArray<struct FVector>             Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// TArray<struct FVector>             Normals                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2D>           UV0                                                              (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2D>           UV1                                                              (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2D>           UV2                                                              (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2D>           UV3                                                              (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FLinearColor>        VertexColors                                                     (ConstParm, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FProcMeshTangent>    Tangents                                                         (Edit, BlueprintVisible, ExportObject, Net, InstancedReference, SubobjectReference)
-// bool                               bSRGBConversion                                                  (Edit, BlueprintReadOnly, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             Normals                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2D>           UV0                                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2D>           UV1                                                              (Edit, ConstParm, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2D>           UV2                                                              (BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2D>           UV3                                                              (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FLinearColor>        VertexColors                                                     (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FProcMeshTangent>    Tangents                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bSRGBConversion                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 
-TArray<struct FVector2D> UProceduralMeshComponent::UpdateMeshSection_LinearColor(TArray<struct FVector>* Normals, const TArray<struct FVector2D>& UV3, const TArray<struct FLinearColor>& VertexColors, const TArray<struct FProcMeshTangent>& Tangents, bool* bSRGBConversion)
+bool UProceduralMeshComponent::UpdateMeshSection_LinearColor(int32* SectionIndex, const TArray<struct FVector2D>& UV0, const TArray<struct FVector2D>& UV1, const TArray<struct FVector2D>& UV2, TArray<struct FProcMeshTangent>* Tangents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -460,9 +448,9 @@ TArray<struct FVector2D> UProceduralMeshComponent::UpdateMeshSection_LinearColor
 
 	Params::UProceduralMeshComponent_UpdateMeshSection_LinearColor_Params Parms{};
 
-	Parms.UV3 = UV3;
-	Parms.VertexColors = VertexColors;
-	Parms.Tangents = Tangents;
+	Parms.UV0 = UV0;
+	Parms.UV1 = UV1;
+	Parms.UV2 = UV2;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -472,11 +460,11 @@ TArray<struct FVector2D> UProceduralMeshComponent::UpdateMeshSection_LinearColor
 
 	Func->FunctionFlags = Flgs;
 
-	if (Normals != nullptr)
-		*Normals = std::move(Parms.Normals);
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
 
-	if (bSRGBConversion != nullptr)
-		*bSRGBConversion = Parms.bSRGBConversion;
+	if (Tangents != nullptr)
+		*Tangents = std::move(Parms.Tangents);
 
 	return Parms.ReturnValue;
 
@@ -486,14 +474,14 @@ TArray<struct FVector2D> UProceduralMeshComponent::UpdateMeshSection_LinearColor
 // Function ProceduralMeshComponent.ProceduralMeshComponent.UpdateMeshSection
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 // TArray<struct FVector>             Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// TArray<struct FVector>             Normals                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2D>           UV0                                                              (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FColor>              VertexColors                                                     (ConstParm, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FProcMeshTangent>    Tangents                                                         (Edit, BlueprintVisible, ExportObject, Net, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             Normals                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2D>           UV0                                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FColor>              VertexColors                                                     (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FProcMeshTangent>    Tangents                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-TArray<struct FVector2D> UProceduralMeshComponent::UpdateMeshSection(TArray<struct FVector>* Normals, const TArray<struct FColor>& VertexColors, const TArray<struct FProcMeshTangent>& Tangents)
+TArray<struct FColor> UProceduralMeshComponent::UpdateMeshSection(int32* SectionIndex, const TArray<struct FVector2D>& UV0, TArray<struct FProcMeshTangent>* Tangents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -502,8 +490,7 @@ TArray<struct FVector2D> UProceduralMeshComponent::UpdateMeshSection(TArray<stru
 
 	Params::UProceduralMeshComponent_UpdateMeshSection_Params Parms{};
 
-	Parms.VertexColors = VertexColors;
-	Parms.Tangents = Tangents;
+	Parms.UV0 = UV0;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -513,8 +500,11 @@ TArray<struct FVector2D> UProceduralMeshComponent::UpdateMeshSection(TArray<stru
 
 	Func->FunctionFlags = Flgs;
 
-	if (Normals != nullptr)
-		*Normals = std::move(Parms.Normals);
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
+
+	if (Tangents != nullptr)
+		*Tangents = std::move(Parms.Tangents);
 
 	return Parms.ReturnValue;
 
@@ -524,10 +514,10 @@ TArray<struct FVector2D> UProceduralMeshComponent::UpdateMeshSection(TArray<stru
 // Function ProceduralMeshComponent.ProceduralMeshComponent.SetMeshSectionVisible
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bNewVisibility                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bNewVisibility                                                   (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UProceduralMeshComponent::SetMeshSectionVisible(bool bNewVisibility)
+bool UProceduralMeshComponent::SetMeshSectionVisible(int32* SectionIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -536,7 +526,6 @@ int32 UProceduralMeshComponent::SetMeshSectionVisible(bool bNewVisibility)
 
 	Params::UProceduralMeshComponent_SetMeshSectionVisible_Params Parms{};
 
-	Parms.bNewVisibility = bNewVisibility;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -545,6 +534,9 @@ int32 UProceduralMeshComponent::SetMeshSectionVisible(bool bNewVisibility)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
 
 	return Parms.ReturnValue;
 
@@ -554,10 +546,10 @@ int32 UProceduralMeshComponent::SetMeshSectionVisible(bool bNewVisibility)
 // Function ProceduralMeshComponent.ProceduralMeshComponent.IsMeshSectionVisible
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UProceduralMeshComponent::IsMeshSectionVisible()
+void UProceduralMeshComponent::IsMeshSectionVisible(int32* SectionIndex, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -566,6 +558,7 @@ bool UProceduralMeshComponent::IsMeshSectionVisible()
 
 	Params::UProceduralMeshComponent_IsMeshSectionVisible_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -575,7 +568,8 @@ bool UProceduralMeshComponent::IsMeshSectionVisible()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
 
 }
 
@@ -583,9 +577,9 @@ bool UProceduralMeshComponent::IsMeshSectionVisible()
 // Function ProceduralMeshComponent.ProceduralMeshComponent.GetNumSections
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UProceduralMeshComponent::GetNumSections()
+void UProceduralMeshComponent::GetNumSections(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -594,6 +588,7 @@ int32 UProceduralMeshComponent::GetNumSections()
 
 	Params::UProceduralMeshComponent_GetNumSections_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -603,28 +598,26 @@ int32 UProceduralMeshComponent::GetNumSections()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function ProceduralMeshComponent.ProceduralMeshComponent.CreateMeshSection_LinearColor
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 // TArray<struct FVector>             Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // TArray<int32>                      Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVector>             Normals                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2D>           UV0                                                              (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2D>           UV1                                                              (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2D>           UV2                                                              (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2D>           UV3                                                              (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FLinearColor>        VertexColors                                                     (ConstParm, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FProcMeshTangent>    Tangents                                                         (Edit, BlueprintVisible, ExportObject, Net, InstancedReference, SubobjectReference)
-// bool                               bCreateCollision                                                 (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bSRGBConversion                                                  (Edit, BlueprintReadOnly, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             Normals                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2D>           UV0                                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2D>           UV1                                                              (Edit, ConstParm, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2D>           UV2                                                              (BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2D>           UV3                                                              (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FLinearColor>        VertexColors                                                     (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FProcMeshTangent>    Tangents                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bCreateCollision                                                 (BlueprintVisible, BlueprintReadOnly, Parm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSRGBConversion                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
 
-bool UProceduralMeshComponent::CreateMeshSection_LinearColor(TArray<struct FVector>* Normals, const TArray<struct FVector2D>& UV3, const TArray<struct FLinearColor>& VertexColors, const TArray<struct FProcMeshTangent>& Tangents, bool* bSRGBConversion)
+bool UProceduralMeshComponent::CreateMeshSection_LinearColor(int32* SectionIndex, const TArray<struct FVector2D>& UV0, const TArray<struct FVector2D>& UV1, const TArray<struct FVector2D>& UV2, TArray<struct FProcMeshTangent>* Tangents, bool bCreateCollision)
 {
 	static class UFunction* Func = nullptr;
 
@@ -633,9 +626,10 @@ bool UProceduralMeshComponent::CreateMeshSection_LinearColor(TArray<struct FVect
 
 	Params::UProceduralMeshComponent_CreateMeshSection_LinearColor_Params Parms{};
 
-	Parms.UV3 = UV3;
-	Parms.VertexColors = VertexColors;
-	Parms.Tangents = Tangents;
+	Parms.UV0 = UV0;
+	Parms.UV1 = UV1;
+	Parms.UV2 = UV2;
+	Parms.bCreateCollision = bCreateCollision;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -645,11 +639,11 @@ bool UProceduralMeshComponent::CreateMeshSection_LinearColor(TArray<struct FVect
 
 	Func->FunctionFlags = Flgs;
 
-	if (Normals != nullptr)
-		*Normals = std::move(Parms.Normals);
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
 
-	if (bSRGBConversion != nullptr)
-		*bSRGBConversion = Parms.bSRGBConversion;
+	if (Tangents != nullptr)
+		*Tangents = std::move(Parms.Tangents);
 
 	return Parms.ReturnValue;
 
@@ -659,16 +653,16 @@ bool UProceduralMeshComponent::CreateMeshSection_LinearColor(TArray<struct FVect
 // Function ProceduralMeshComponent.ProceduralMeshComponent.CreateMeshSection
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 // TArray<struct FVector>             Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // TArray<int32>                      Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVector>             Normals                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2D>           UV0                                                              (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FColor>              VertexColors                                                     (ConstParm, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FProcMeshTangent>    Tangents                                                         (Edit, BlueprintVisible, ExportObject, Net, InstancedReference, SubobjectReference)
-// bool                               bCreateCollision                                                 (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             Normals                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2D>           UV0                                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FColor>              VertexColors                                                     (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FProcMeshTangent>    Tangents                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bCreateCollision                                                 (BlueprintVisible, BlueprintReadOnly, Parm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UProceduralMeshComponent::CreateMeshSection(TArray<struct FVector>* Normals, const TArray<struct FColor>& VertexColors, const TArray<struct FProcMeshTangent>& Tangents)
+TArray<struct FColor> UProceduralMeshComponent::CreateMeshSection(int32* SectionIndex, const TArray<struct FVector2D>& UV0, TArray<struct FProcMeshTangent>* Tangents, bool bCreateCollision)
 {
 	static class UFunction* Func = nullptr;
 
@@ -677,8 +671,8 @@ bool UProceduralMeshComponent::CreateMeshSection(TArray<struct FVector>* Normals
 
 	Params::UProceduralMeshComponent_CreateMeshSection_Params Parms{};
 
-	Parms.VertexColors = VertexColors;
-	Parms.Tangents = Tangents;
+	Parms.UV0 = UV0;
+	Parms.bCreateCollision = bCreateCollision;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -688,8 +682,11 @@ bool UProceduralMeshComponent::CreateMeshSection(TArray<struct FVector>* Normals
 
 	Func->FunctionFlags = Flgs;
 
-	if (Normals != nullptr)
-		*Normals = std::move(Parms.Normals);
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
+
+	if (Tangents != nullptr)
+		*Tangents = std::move(Parms.Tangents);
 
 	return Parms.ReturnValue;
 
@@ -699,9 +696,9 @@ bool UProceduralMeshComponent::CreateMeshSection(TArray<struct FVector>* Normals
 // Function ProceduralMeshComponent.ProceduralMeshComponent.ClearMeshSection
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UProceduralMeshComponent::ClearMeshSection()
+void UProceduralMeshComponent::ClearMeshSection(int32* SectionIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -719,7 +716,8 @@ int32 UProceduralMeshComponent::ClearMeshSection()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
 
 }
 
@@ -775,9 +773,9 @@ void UProceduralMeshComponent::ClearAllMeshSections()
 // Function ProceduralMeshComponent.ProceduralMeshComponent.AddCollisionConvexMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<struct FVector>             ConvexVerts                                                      (ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             ConvexVerts                                                      (ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-TArray<struct FVector> UProceduralMeshComponent::AddCollisionConvexMesh()
+void UProceduralMeshComponent::AddCollisionConvexMesh(const TArray<struct FVector>& ConvexVerts)
 {
 	static class UFunction* Func = nullptr;
 
@@ -786,6 +784,7 @@ TArray<struct FVector> UProceduralMeshComponent::AddCollisionConvexMesh()
 
 	Params::UProceduralMeshComponent_AddCollisionConvexMesh_Params Parms{};
 
+	Parms.ConvexVerts = ConvexVerts;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -794,8 +793,6 @@ TArray<struct FVector> UProceduralMeshComponent::AddCollisionConvexMesh()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 

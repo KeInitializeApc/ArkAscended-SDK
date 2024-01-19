@@ -14,13 +14,13 @@ namespace SDK
 class ULiveLinkInstance : public UAnimInstance
 {
 public:
-	class ULiveLinkRetargetAsset*                CurrentRetargetAsset;                              // 0x348(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class ULiveLinkRetargetAsset*                CurrentRetargetAsset;                              // 0x348(0x8)(Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ULiveLinkInstance* GetDefaultObj();
 
 	void SetSubject(const struct FLiveLinkSubjectName& SubjectName);
-	void SetRetargetAsset(class UClass* RetargetAsset);
+	class UClass* SetRetargetAsset();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -39,14 +39,14 @@ public:
 class ULiveLinkRemapAsset : public ULiveLinkRetargetAsset
 {
 public:
-	uint8                                        Pad_2ECF[0xA0];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_31E2[0xA0];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULiveLinkRemapAsset* GetDefaultObj();
 
 	TMap<class FName, float> RemapCurveElements();
-	class FName GetRemappedCurveName(class FName CurveName);
-	class FName GetRemappedBoneName(class FName BoneName);
+	class FName GetRemappedCurveName(class FName ReturnValue);
+	void GetRemappedBoneName(class FName BoneName, class FName ReturnValue);
 };
 
 }

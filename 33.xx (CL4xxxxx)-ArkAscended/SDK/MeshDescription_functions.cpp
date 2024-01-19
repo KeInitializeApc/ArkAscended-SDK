@@ -74,7 +74,7 @@ struct FVertexID UMeshDescriptionBase::SetVertexPosition(const struct FVector& P
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexInstanceID>   VertexInstanceIDs                                                (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexInstanceID>   VertexInstanceIDs                                                (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FPolygonID UMeshDescriptionBase::SetPolygonVertexInstances(TArray<struct FVertexInstanceID>* VertexInstanceIDs)
 {
@@ -162,7 +162,7 @@ struct FPolygonID UMeshDescriptionBase::ReversePolygonFacing()
 // Function MeshDescription.MeshDescriptionBase.ReserveNewVertices
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NumberOfNewVertices                                              (BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              NumberOfNewVertices                                              (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UMeshDescriptionBase::ReserveNewVertices(int32 NumberOfNewVertices)
 {
@@ -189,7 +189,7 @@ void UMeshDescriptionBase::ReserveNewVertices(int32 NumberOfNewVertices)
 // Function MeshDescription.MeshDescriptionBase.ReserveNewVertexInstances
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NumberOfNewVertexInstances                                       (ConstParm, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              NumberOfNewVertexInstances                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UMeshDescriptionBase::ReserveNewVertexInstances(int32 NumberOfNewVertexInstances)
 {
@@ -216,7 +216,7 @@ void UMeshDescriptionBase::ReserveNewVertexInstances(int32 NumberOfNewVertexInst
 // Function MeshDescription.MeshDescriptionBase.ReserveNewTriangles
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NumberOfNewTriangles                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              NumberOfNewTriangles                                             (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UMeshDescriptionBase::ReserveNewTriangles(int32 NumberOfNewTriangles)
 {
@@ -243,7 +243,7 @@ void UMeshDescriptionBase::ReserveNewTriangles(int32 NumberOfNewTriangles)
 // Function MeshDescription.MeshDescriptionBase.ReserveNewPolygons
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NumberOfNewPolygons                                              (BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              NumberOfNewPolygons                                              (Edit, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UMeshDescriptionBase::ReserveNewPolygons(int32 NumberOfNewPolygons)
 {
@@ -270,9 +270,9 @@ void UMeshDescriptionBase::ReserveNewPolygons(int32 NumberOfNewPolygons)
 // Function MeshDescription.MeshDescriptionBase.ReserveNewPolygonGroups
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NumberOfNewPolygonGroups                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              NumberOfNewPolygonGroups                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UMeshDescriptionBase::ReserveNewPolygonGroups(int32 NumberOfNewPolygonGroups)
+void UMeshDescriptionBase::ReserveNewPolygonGroups(int32* NumberOfNewPolygonGroups)
 {
 	static class UFunction* Func = nullptr;
 
@@ -281,7 +281,6 @@ void UMeshDescriptionBase::ReserveNewPolygonGroups(int32 NumberOfNewPolygonGroup
 
 	Params::UMeshDescriptionBase_ReserveNewPolygonGroups_Params Parms{};
 
-	Parms.NumberOfNewPolygonGroups = NumberOfNewPolygonGroups;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -291,15 +290,18 @@ void UMeshDescriptionBase::ReserveNewPolygonGroups(int32 NumberOfNewPolygonGroup
 
 	Func->FunctionFlags = Flgs;
 
+	if (NumberOfNewPolygonGroups != nullptr)
+		*NumberOfNewPolygonGroups = Parms.NumberOfNewPolygonGroups;
+
 }
 
 
 // Function MeshDescription.MeshDescriptionBase.ReserveNewEdges
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NumberOfNewEdges                                                 (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              NumberOfNewEdges                                                 (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UMeshDescriptionBase::ReserveNewEdges(int32 NumberOfNewEdges)
+void UMeshDescriptionBase::ReserveNewEdges(int32* NumberOfNewEdges)
 {
 	static class UFunction* Func = nullptr;
 
@@ -308,7 +310,6 @@ void UMeshDescriptionBase::ReserveNewEdges(int32 NumberOfNewEdges)
 
 	Params::UMeshDescriptionBase_ReserveNewEdges_Params Parms{};
 
-	Parms.NumberOfNewEdges = NumberOfNewEdges;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -318,6 +319,9 @@ void UMeshDescriptionBase::ReserveNewEdges(int32 NumberOfNewEdges)
 
 	Func->FunctionFlags = Flgs;
 
+	if (NumberOfNewEdges != nullptr)
+		*NumberOfNewEdges = Parms.NumberOfNewEdges;
+
 }
 
 
@@ -325,9 +329,9 @@ void UMeshDescriptionBase::ReserveNewEdges(int32 NumberOfNewEdges)
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMeshDescriptionBase::IsVertexValid()
+struct FVertexID UMeshDescriptionBase::IsVertexValid(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -336,6 +340,7 @@ bool UMeshDescriptionBase::IsVertexValid()
 
 	Params::UMeshDescriptionBase_IsVertexValid_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -354,9 +359,9 @@ bool UMeshDescriptionBase::IsVertexValid()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMeshDescriptionBase::IsVertexOrphaned()
+struct FVertexID UMeshDescriptionBase::IsVertexOrphaned(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -365,6 +370,7 @@ bool UMeshDescriptionBase::IsVertexOrphaned()
 
 	Params::UMeshDescriptionBase_IsVertexOrphaned_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -383,9 +389,9 @@ bool UMeshDescriptionBase::IsVertexOrphaned()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexInstanceID           VertexInstanceID                                                 (Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMeshDescriptionBase::IsVertexInstanceValid()
+struct FVertexInstanceID UMeshDescriptionBase::IsVertexInstanceValid(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -394,6 +400,7 @@ bool UMeshDescriptionBase::IsVertexInstanceValid()
 
 	Params::UMeshDescriptionBase_IsVertexInstanceValid_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -412,9 +419,9 @@ bool UMeshDescriptionBase::IsVertexInstanceValid()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FTriangleID                 TriangleID                                                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMeshDescriptionBase::IsTriangleValid()
+struct FTriangleID UMeshDescriptionBase::IsTriangleValid(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -423,6 +430,7 @@ bool UMeshDescriptionBase::IsTriangleValid()
 
 	Params::UMeshDescriptionBase_IsTriangleValid_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -441,9 +449,9 @@ bool UMeshDescriptionBase::IsTriangleValid()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FTriangleID                 TriangleID                                                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMeshDescriptionBase::IsTrianglePartOfNgon()
+struct FTriangleID UMeshDescriptionBase::IsTrianglePartOfNgon(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -452,6 +460,7 @@ bool UMeshDescriptionBase::IsTrianglePartOfNgon()
 
 	Params::UMeshDescriptionBase_IsTrianglePartOfNgon_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -470,9 +479,9 @@ bool UMeshDescriptionBase::IsTrianglePartOfNgon()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMeshDescriptionBase::IsPolygonValid()
+struct FPolygonID UMeshDescriptionBase::IsPolygonValid(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -481,6 +490,7 @@ bool UMeshDescriptionBase::IsPolygonValid()
 
 	Params::UMeshDescriptionBase_IsPolygonValid_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -499,9 +509,9 @@ bool UMeshDescriptionBase::IsPolygonValid()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonGroupID             PolygonGroupID                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMeshDescriptionBase::IsPolygonGroupValid()
+struct FPolygonGroupID UMeshDescriptionBase::IsPolygonGroupValid(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -510,6 +520,7 @@ bool UMeshDescriptionBase::IsPolygonGroupValid()
 
 	Params::UMeshDescriptionBase_IsPolygonGroupValid_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -527,9 +538,9 @@ bool UMeshDescriptionBase::IsPolygonGroupValid()
 // Function MeshDescription.MeshDescriptionBase.IsEmpty
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMeshDescriptionBase::IsEmpty()
+void UMeshDescriptionBase::IsEmpty(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -538,6 +549,7 @@ bool UMeshDescriptionBase::IsEmpty()
 
 	Params::UMeshDescriptionBase_IsEmpty_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -547,8 +559,6 @@ bool UMeshDescriptionBase::IsEmpty()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -556,9 +566,9 @@ bool UMeshDescriptionBase::IsEmpty()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FEdgeID                     EdgeID                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMeshDescriptionBase::IsEdgeValid()
+struct FEdgeID UMeshDescriptionBase::IsEdgeValid(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -567,6 +577,7 @@ bool UMeshDescriptionBase::IsEdgeValid()
 
 	Params::UMeshDescriptionBase_IsEdgeValid_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -586,9 +597,9 @@ bool UMeshDescriptionBase::IsEdgeValid()
 // Parameters:
 // struct FEdgeID                     EdgeID                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMeshDescriptionBase::IsEdgeInternalToPolygon()
+struct FPolygonID UMeshDescriptionBase::IsEdgeInternalToPolygon(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -597,6 +608,7 @@ bool UMeshDescriptionBase::IsEdgeInternalToPolygon()
 
 	Params::UMeshDescriptionBase_IsEdgeInternalToPolygon_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -615,9 +627,9 @@ bool UMeshDescriptionBase::IsEdgeInternalToPolygon()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FEdgeID                     EdgeID                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMeshDescriptionBase::IsEdgeInternal()
+struct FEdgeID UMeshDescriptionBase::IsEdgeInternal(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -626,6 +638,7 @@ bool UMeshDescriptionBase::IsEdgeInternal()
 
 	Params::UMeshDescriptionBase_IsEdgeInternal_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -644,9 +657,9 @@ bool UMeshDescriptionBase::IsEdgeInternal()
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexInstanceID>   OutVertexInstanceIDs                                             (BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexInstanceID>   OutVertexInstanceIDs                                             (Edit, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVertexID UMeshDescriptionBase::GetVertexVertexInstances(const TArray<struct FVertexInstanceID>& OutVertexInstanceIDs)
+struct FVertexID UMeshDescriptionBase::GetVertexVertexInstances(TArray<struct FVertexInstanceID>* OutVertexInstanceIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -655,7 +668,6 @@ struct FVertexID UMeshDescriptionBase::GetVertexVertexInstances(const TArray<str
 
 	Params::UMeshDescriptionBase_GetVertexVertexInstances_Params Parms{};
 
-	Parms.OutVertexInstanceIDs = OutVertexInstanceIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -664,6 +676,9 @@ struct FVertexID UMeshDescriptionBase::GetVertexVertexInstances(const TArray<str
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutVertexInstanceIDs != nullptr)
+		*OutVertexInstanceIDs = std::move(Parms.OutVertexInstanceIDs);
 
 	return Parms.ReturnValue;
 
@@ -674,9 +689,9 @@ struct FVertexID UMeshDescriptionBase::GetVertexVertexInstances(const TArray<str
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector UMeshDescriptionBase::GetVertexPosition()
+struct FVertexID UMeshDescriptionBase::GetVertexPosition(const struct FVector& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -685,6 +700,7 @@ struct FVector UMeshDescriptionBase::GetVertexPosition()
 
 	Params::UMeshDescriptionBase_GetVertexPosition_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -702,11 +718,11 @@ struct FVector UMeshDescriptionBase::GetVertexPosition()
 // Function MeshDescription.MeshDescriptionBase.GetVertexPairEdge
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVertexID                   VertexID0                                                        (ConstParm, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVertexID                   VertexID1                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FEdgeID                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVertexID                   VertexID0                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVertexID                   VertexID1                                                        (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FEdgeID                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FEdgeID UMeshDescriptionBase::GetVertexPairEdge(struct FVertexID* VertexID0, struct FVertexID* VertexID1)
+void UMeshDescriptionBase::GetVertexPairEdge(struct FVertexID* VertexID0, struct FVertexID* VertexID1, const struct FEdgeID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -715,6 +731,7 @@ struct FEdgeID UMeshDescriptionBase::GetVertexPairEdge(struct FVertexID* VertexI
 
 	Params::UMeshDescriptionBase_GetVertexPairEdge_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -730,8 +747,6 @@ struct FEdgeID UMeshDescriptionBase::GetVertexPairEdge(struct FVertexID* VertexI
 	if (VertexID1 != nullptr)
 		*VertexID1 = std::move(Parms.VertexID1);
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -739,9 +754,9 @@ struct FEdgeID UMeshDescriptionBase::GetVertexPairEdge(struct FVertexID* VertexI
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexInstanceID           VertexInstanceID                                                 (Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// struct FVertexID                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVertexID                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVertexID UMeshDescriptionBase::GetVertexInstanceVertex()
+struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceVertex(const struct FVertexID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -750,6 +765,7 @@ struct FVertexID UMeshDescriptionBase::GetVertexInstanceVertex()
 
 	Params::UMeshDescriptionBase_GetVertexInstanceVertex_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -767,11 +783,11 @@ struct FVertexID UMeshDescriptionBase::GetVertexInstanceVertex()
 // Function MeshDescription.MeshDescriptionBase.GetVertexInstancePairEdge
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVertexInstanceID           VertexInstanceID0                                                (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVertexInstanceID           VertexInstanceID1                                                (ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FEdgeID                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVertexInstanceID           VertexInstanceID0                                                (Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVertexInstanceID           VertexInstanceID1                                                (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FEdgeID                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FEdgeID UMeshDescriptionBase::GetVertexInstancePairEdge(const struct FVertexInstanceID& VertexInstanceID0, const struct FVertexInstanceID& VertexInstanceID1)
+void UMeshDescriptionBase::GetVertexInstancePairEdge(struct FVertexInstanceID* VertexInstanceID0, struct FVertexInstanceID* VertexInstanceID1, const struct FEdgeID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -780,8 +796,7 @@ struct FEdgeID UMeshDescriptionBase::GetVertexInstancePairEdge(const struct FVer
 
 	Params::UMeshDescriptionBase_GetVertexInstancePairEdge_Params Parms{};
 
-	Parms.VertexInstanceID0 = VertexInstanceID0;
-	Parms.VertexInstanceID1 = VertexInstanceID1;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -791,7 +806,11 @@ struct FEdgeID UMeshDescriptionBase::GetVertexInstancePairEdge(const struct FVer
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (VertexInstanceID0 != nullptr)
+		*VertexInstanceID0 = std::move(Parms.VertexInstanceID0);
+
+	if (VertexInstanceID1 != nullptr)
+		*VertexInstanceID1 = std::move(Parms.VertexInstanceID1);
 
 }
 
@@ -801,9 +820,9 @@ struct FEdgeID UMeshDescriptionBase::GetVertexInstancePairEdge(const struct FVer
 // Parameters:
 // struct FTriangleID                 TriangleID                                                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// struct FVertexInstanceID           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVertexInstanceID           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceForTriangleVertex()
+struct FVertexID UMeshDescriptionBase::GetVertexInstanceForTriangleVertex(const struct FVertexInstanceID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -812,6 +831,7 @@ struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceForTriangleVerte
 
 	Params::UMeshDescriptionBase_GetVertexInstanceForTriangleVertex_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -831,9 +851,9 @@ struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceForTriangleVerte
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// struct FVertexInstanceID           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVertexInstanceID           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceForPolygonVertex()
+struct FVertexID UMeshDescriptionBase::GetVertexInstanceForPolygonVertex(const struct FVertexInstanceID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -842,6 +862,7 @@ struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceForPolygonVertex
 
 	Params::UMeshDescriptionBase_GetVertexInstanceForPolygonVertex_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -859,9 +880,9 @@ struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceForPolygonVertex
 // Function MeshDescription.MeshDescriptionBase.GetVertexInstanceCount
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetVertexInstanceCount()
+void UMeshDescriptionBase::GetVertexInstanceCount(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -870,6 +891,7 @@ int32 UMeshDescriptionBase::GetVertexInstanceCount()
 
 	Params::UMeshDescriptionBase_GetVertexInstanceCount_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -878,8 +900,6 @@ int32 UMeshDescriptionBase::GetVertexInstanceCount()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -888,9 +908,9 @@ int32 UMeshDescriptionBase::GetVertexInstanceCount()
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexInstanceID           VertexInstanceID                                                 (Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FTriangleID>         OutConnectedTriangleIDs                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FTriangleID>         OutConnectedTriangleIDs                                          (ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceConnectedTriangles(const TArray<struct FTriangleID>& OutConnectedTriangleIDs)
+struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceConnectedTriangles(TArray<struct FTriangleID>* OutConnectedTriangleIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -899,7 +919,6 @@ struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceConnectedTriangl
 
 	Params::UMeshDescriptionBase_GetVertexInstanceConnectedTriangles_Params Parms{};
 
-	Parms.OutConnectedTriangleIDs = OutConnectedTriangleIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -908,6 +927,9 @@ struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceConnectedTriangl
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutConnectedTriangleIDs != nullptr)
+		*OutConnectedTriangleIDs = std::move(Parms.OutConnectedTriangleIDs);
 
 	return Parms.ReturnValue;
 
@@ -918,9 +940,9 @@ struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceConnectedTriangl
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexInstanceID           VertexInstanceID                                                 (Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FPolygonID>          OutConnectedPolygonIDs                                           (Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FPolygonID>          OutConnectedPolygonIDs                                           (BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceConnectedPolygons(const TArray<struct FPolygonID>& OutConnectedPolygonIDs)
+struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceConnectedPolygons(TArray<struct FPolygonID>* OutConnectedPolygonIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -929,7 +951,6 @@ struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceConnectedPolygon
 
 	Params::UMeshDescriptionBase_GetVertexInstanceConnectedPolygons_Params Parms{};
 
-	Parms.OutConnectedPolygonIDs = OutConnectedPolygonIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -938,6 +959,9 @@ struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceConnectedPolygon
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutConnectedPolygonIDs != nullptr)
+		*OutConnectedPolygonIDs = std::move(Parms.OutConnectedPolygonIDs);
 
 	return Parms.ReturnValue;
 
@@ -947,9 +971,9 @@ struct FVertexInstanceID UMeshDescriptionBase::GetVertexInstanceConnectedPolygon
 // Function MeshDescription.MeshDescriptionBase.GetVertexCount
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetVertexCount()
+void UMeshDescriptionBase::GetVertexCount(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -958,6 +982,7 @@ int32 UMeshDescriptionBase::GetVertexCount()
 
 	Params::UMeshDescriptionBase_GetVertexCount_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -966,8 +991,6 @@ int32 UMeshDescriptionBase::GetVertexCount()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -976,9 +999,9 @@ int32 UMeshDescriptionBase::GetVertexCount()
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FTriangleID>         OutConnectedTriangleIDs                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FTriangleID>         OutConnectedTriangleIDs                                          (ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVertexID UMeshDescriptionBase::GetVertexConnectedTriangles(const TArray<struct FTriangleID>& OutConnectedTriangleIDs)
+struct FVertexID UMeshDescriptionBase::GetVertexConnectedTriangles(TArray<struct FTriangleID>* OutConnectedTriangleIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -987,7 +1010,6 @@ struct FVertexID UMeshDescriptionBase::GetVertexConnectedTriangles(const TArray<
 
 	Params::UMeshDescriptionBase_GetVertexConnectedTriangles_Params Parms{};
 
-	Parms.OutConnectedTriangleIDs = OutConnectedTriangleIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -996,6 +1018,9 @@ struct FVertexID UMeshDescriptionBase::GetVertexConnectedTriangles(const TArray<
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutConnectedTriangleIDs != nullptr)
+		*OutConnectedTriangleIDs = std::move(Parms.OutConnectedTriangleIDs);
 
 	return Parms.ReturnValue;
 
@@ -1006,9 +1031,9 @@ struct FVertexID UMeshDescriptionBase::GetVertexConnectedTriangles(const TArray<
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FPolygonID>          OutConnectedPolygonIDs                                           (Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FPolygonID>          OutConnectedPolygonIDs                                           (BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVertexID UMeshDescriptionBase::GetVertexConnectedPolygons(const TArray<struct FPolygonID>& OutConnectedPolygonIDs)
+struct FVertexID UMeshDescriptionBase::GetVertexConnectedPolygons(TArray<struct FPolygonID>* OutConnectedPolygonIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1017,7 +1042,6 @@ struct FVertexID UMeshDescriptionBase::GetVertexConnectedPolygons(const TArray<s
 
 	Params::UMeshDescriptionBase_GetVertexConnectedPolygons_Params Parms{};
 
-	Parms.OutConnectedPolygonIDs = OutConnectedPolygonIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1026,6 +1050,9 @@ struct FVertexID UMeshDescriptionBase::GetVertexConnectedPolygons(const TArray<s
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutConnectedPolygonIDs != nullptr)
+		*OutConnectedPolygonIDs = std::move(Parms.OutConnectedPolygonIDs);
 
 	return Parms.ReturnValue;
 
@@ -1036,9 +1063,9 @@ struct FVertexID UMeshDescriptionBase::GetVertexConnectedPolygons(const TArray<s
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FEdgeID>             OutEdgeIDs                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FEdgeID>             OutEdgeIDs                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVertexID UMeshDescriptionBase::GetVertexConnectedEdges(const TArray<struct FEdgeID>& OutEdgeIDs)
+struct FVertexID UMeshDescriptionBase::GetVertexConnectedEdges(TArray<struct FEdgeID>* OutEdgeIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1047,7 +1074,6 @@ struct FVertexID UMeshDescriptionBase::GetVertexConnectedEdges(const TArray<stru
 
 	Params::UMeshDescriptionBase_GetVertexConnectedEdges_Params Parms{};
 
-	Parms.OutEdgeIDs = OutEdgeIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1056,6 +1082,9 @@ struct FVertexID UMeshDescriptionBase::GetVertexConnectedEdges(const TArray<stru
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutEdgeIDs != nullptr)
+		*OutEdgeIDs = std::move(Parms.OutEdgeIDs);
 
 	return Parms.ReturnValue;
 
@@ -1066,9 +1095,9 @@ struct FVertexID UMeshDescriptionBase::GetVertexConnectedEdges(const TArray<stru
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexID>           OutAdjacentVertexIDs                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexID>           OutAdjacentVertexIDs                                             (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FVertexID UMeshDescriptionBase::GetVertexAdjacentVertices(const TArray<struct FVertexID>& OutAdjacentVertexIDs)
+struct FVertexID UMeshDescriptionBase::GetVertexAdjacentVertices(TArray<struct FVertexID>* OutAdjacentVertexIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1077,7 +1106,6 @@ struct FVertexID UMeshDescriptionBase::GetVertexAdjacentVertices(const TArray<st
 
 	Params::UMeshDescriptionBase_GetVertexAdjacentVertices_Params Parms{};
 
-	Parms.OutAdjacentVertexIDs = OutAdjacentVertexIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1086,6 +1114,9 @@ struct FVertexID UMeshDescriptionBase::GetVertexAdjacentVertices(const TArray<st
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutAdjacentVertexIDs != nullptr)
+		*OutAdjacentVertexIDs = std::move(Parms.OutAdjacentVertexIDs);
 
 	return Parms.ReturnValue;
 
@@ -1096,9 +1127,9 @@ struct FVertexID UMeshDescriptionBase::GetVertexAdjacentVertices(const TArray<st
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FTriangleID                 TriangleID                                                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexID>           OutVertexIDs                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexID>           OutVertexIDs                                                     (BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FTriangleID UMeshDescriptionBase::GetTriangleVertices(const TArray<struct FVertexID>& OutVertexIDs)
+struct FTriangleID UMeshDescriptionBase::GetTriangleVertices(TArray<struct FVertexID>* OutVertexIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1107,7 +1138,6 @@ struct FTriangleID UMeshDescriptionBase::GetTriangleVertices(const TArray<struct
 
 	Params::UMeshDescriptionBase_GetTriangleVertices_Params Parms{};
 
-	Parms.OutVertexIDs = OutVertexIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1116,6 +1146,9 @@ struct FTriangleID UMeshDescriptionBase::GetTriangleVertices(const TArray<struct
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutVertexIDs != nullptr)
+		*OutVertexIDs = std::move(Parms.OutVertexIDs);
 
 	return Parms.ReturnValue;
 
@@ -1126,9 +1159,9 @@ struct FTriangleID UMeshDescriptionBase::GetTriangleVertices(const TArray<struct
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FTriangleID                 TriangleID                                                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexInstanceID>   OutVertexInstanceIDs                                             (BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexInstanceID>   OutVertexInstanceIDs                                             (Edit, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FTriangleID UMeshDescriptionBase::GetTriangleVertexInstances(const TArray<struct FVertexInstanceID>& OutVertexInstanceIDs)
+struct FTriangleID UMeshDescriptionBase::GetTriangleVertexInstances(TArray<struct FVertexInstanceID>* OutVertexInstanceIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1137,7 +1170,6 @@ struct FTriangleID UMeshDescriptionBase::GetTriangleVertexInstances(const TArray
 
 	Params::UMeshDescriptionBase_GetTriangleVertexInstances_Params Parms{};
 
-	Parms.OutVertexInstanceIDs = OutVertexInstanceIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1146,6 +1178,9 @@ struct FTriangleID UMeshDescriptionBase::GetTriangleVertexInstances(const TArray
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutVertexInstanceIDs != nullptr)
+		*OutVertexInstanceIDs = std::move(Parms.OutVertexInstanceIDs);
 
 	return Parms.ReturnValue;
 
@@ -1157,9 +1192,9 @@ struct FTriangleID UMeshDescriptionBase::GetTriangleVertexInstances(const TArray
 // Parameters:
 // struct FTriangleID                 TriangleID                                                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
 // int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// struct FVertexInstanceID           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVertexInstanceID           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVertexInstanceID UMeshDescriptionBase::GetTriangleVertexInstance()
+int32 UMeshDescriptionBase::GetTriangleVertexInstance(const struct FVertexInstanceID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1168,6 +1203,7 @@ struct FVertexInstanceID UMeshDescriptionBase::GetTriangleVertexInstance()
 
 	Params::UMeshDescriptionBase_GetTriangleVertexInstance_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1186,9 +1222,9 @@ struct FVertexInstanceID UMeshDescriptionBase::GetTriangleVertexInstance()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FTriangleID                 TriangleID                                                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// struct FPolygonGroupID             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPolygonGroupID             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPolygonGroupID UMeshDescriptionBase::GetTrianglePolygonGroup()
+struct FTriangleID UMeshDescriptionBase::GetTrianglePolygonGroup(const struct FPolygonGroupID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1197,6 +1233,7 @@ struct FPolygonGroupID UMeshDescriptionBase::GetTrianglePolygonGroup()
 
 	Params::UMeshDescriptionBase_GetTrianglePolygonGroup_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1215,9 +1252,9 @@ struct FPolygonGroupID UMeshDescriptionBase::GetTrianglePolygonGroup()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FTriangleID                 TriangleID                                                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// struct FPolygonID                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPolygonID                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPolygonID UMeshDescriptionBase::GetTrianglePolygon()
+struct FTriangleID UMeshDescriptionBase::GetTrianglePolygon(const struct FPolygonID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1226,6 +1263,7 @@ struct FPolygonID UMeshDescriptionBase::GetTrianglePolygon()
 
 	Params::UMeshDescriptionBase_GetTrianglePolygon_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1244,9 +1282,9 @@ struct FPolygonID UMeshDescriptionBase::GetTrianglePolygon()
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FTriangleID                 TriangleID                                                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FEdgeID>             OutEdgeIDs                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FEdgeID>             OutEdgeIDs                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FTriangleID UMeshDescriptionBase::GetTriangleEdges(const TArray<struct FEdgeID>& OutEdgeIDs)
+struct FTriangleID UMeshDescriptionBase::GetTriangleEdges(TArray<struct FEdgeID>* OutEdgeIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1255,7 +1293,6 @@ struct FTriangleID UMeshDescriptionBase::GetTriangleEdges(const TArray<struct FE
 
 	Params::UMeshDescriptionBase_GetTriangleEdges_Params Parms{};
 
-	Parms.OutEdgeIDs = OutEdgeIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1264,6 +1301,9 @@ struct FTriangleID UMeshDescriptionBase::GetTriangleEdges(const TArray<struct FE
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutEdgeIDs != nullptr)
+		*OutEdgeIDs = std::move(Parms.OutEdgeIDs);
 
 	return Parms.ReturnValue;
 
@@ -1273,9 +1313,9 @@ struct FTriangleID UMeshDescriptionBase::GetTriangleEdges(const TArray<struct FE
 // Function MeshDescription.MeshDescriptionBase.GetTriangleCount
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetTriangleCount()
+void UMeshDescriptionBase::GetTriangleCount(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1284,6 +1324,7 @@ int32 UMeshDescriptionBase::GetTriangleCount()
 
 	Params::UMeshDescriptionBase_GetTriangleCount_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1292,8 +1333,6 @@ int32 UMeshDescriptionBase::GetTriangleCount()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1302,9 +1341,9 @@ int32 UMeshDescriptionBase::GetTriangleCount()
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FTriangleID                 TriangleID                                                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FTriangleID>         OutTriangleIDs                                                   (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FTriangleID>         OutTriangleIDs                                                   (Edit, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FTriangleID UMeshDescriptionBase::GetTriangleAdjacentTriangles(const TArray<struct FTriangleID>& OutTriangleIDs)
+struct FTriangleID UMeshDescriptionBase::GetTriangleAdjacentTriangles(TArray<struct FTriangleID>* OutTriangleIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1313,7 +1352,6 @@ struct FTriangleID UMeshDescriptionBase::GetTriangleAdjacentTriangles(const TArr
 
 	Params::UMeshDescriptionBase_GetTriangleAdjacentTriangles_Params Parms{};
 
-	Parms.OutTriangleIDs = OutTriangleIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1322,6 +1360,9 @@ struct FTriangleID UMeshDescriptionBase::GetTriangleAdjacentTriangles(const TArr
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutTriangleIDs != nullptr)
+		*OutTriangleIDs = std::move(Parms.OutTriangleIDs);
 
 	return Parms.ReturnValue;
 
@@ -1332,9 +1373,9 @@ struct FTriangleID UMeshDescriptionBase::GetTriangleAdjacentTriangles(const TArr
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexID>           OutVertexIDs                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexID>           OutVertexIDs                                                     (BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FPolygonID UMeshDescriptionBase::GetPolygonVertices(const TArray<struct FVertexID>& OutVertexIDs)
+struct FPolygonID UMeshDescriptionBase::GetPolygonVertices(TArray<struct FVertexID>* OutVertexIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1343,7 +1384,6 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonVertices(const TArray<struct F
 
 	Params::UMeshDescriptionBase_GetPolygonVertices_Params Parms{};
 
-	Parms.OutVertexIDs = OutVertexIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1352,6 +1392,9 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonVertices(const TArray<struct F
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutVertexIDs != nullptr)
+		*OutVertexIDs = std::move(Parms.OutVertexIDs);
 
 	return Parms.ReturnValue;
 
@@ -1362,9 +1405,9 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonVertices(const TArray<struct F
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexInstanceID>   OutVertexInstanceIDs                                             (BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexInstanceID>   OutVertexInstanceIDs                                             (Edit, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FPolygonID UMeshDescriptionBase::GetPolygonVertexInstances(const TArray<struct FVertexInstanceID>& OutVertexInstanceIDs)
+struct FPolygonID UMeshDescriptionBase::GetPolygonVertexInstances(TArray<struct FVertexInstanceID>* OutVertexInstanceIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1373,7 +1416,6 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonVertexInstances(const TArray<s
 
 	Params::UMeshDescriptionBase_GetPolygonVertexInstances_Params Parms{};
 
-	Parms.OutVertexInstanceIDs = OutVertexInstanceIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1382,6 +1424,9 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonVertexInstances(const TArray<s
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutVertexInstanceIDs != nullptr)
+		*OutVertexInstanceIDs = std::move(Parms.OutVertexInstanceIDs);
 
 	return Parms.ReturnValue;
 
@@ -1392,9 +1437,9 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonVertexInstances(const TArray<s
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FTriangleID>         OutTriangleIDs                                                   (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FTriangleID>         OutTriangleIDs                                                   (Edit, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FPolygonID UMeshDescriptionBase::GetPolygonTriangles(const TArray<struct FTriangleID>& OutTriangleIDs)
+struct FPolygonID UMeshDescriptionBase::GetPolygonTriangles(TArray<struct FTriangleID>* OutTriangleIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1403,7 +1448,6 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonTriangles(const TArray<struct 
 
 	Params::UMeshDescriptionBase_GetPolygonTriangles_Params Parms{};
 
-	Parms.OutTriangleIDs = OutTriangleIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1412,6 +1456,9 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonTriangles(const TArray<struct 
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutTriangleIDs != nullptr)
+		*OutTriangleIDs = std::move(Parms.OutTriangleIDs);
 
 	return Parms.ReturnValue;
 
@@ -1422,9 +1469,9 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonTriangles(const TArray<struct 
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// struct FPolygonGroupID             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPolygonGroupID             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPolygonGroupID UMeshDescriptionBase::GetPolygonPolygonGroup()
+struct FPolygonID UMeshDescriptionBase::GetPolygonPolygonGroup(const struct FPolygonGroupID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1433,6 +1480,7 @@ struct FPolygonGroupID UMeshDescriptionBase::GetPolygonPolygonGroup()
 
 	Params::UMeshDescriptionBase_GetPolygonPolygonGroup_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1451,9 +1499,9 @@ struct FPolygonGroupID UMeshDescriptionBase::GetPolygonPolygonGroup()
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FEdgeID>             OutEdgeIDs                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FEdgeID>             OutEdgeIDs                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FPolygonID UMeshDescriptionBase::GetPolygonPerimeterEdges(const TArray<struct FEdgeID>& OutEdgeIDs)
+struct FPolygonID UMeshDescriptionBase::GetPolygonPerimeterEdges(TArray<struct FEdgeID>* OutEdgeIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1462,7 +1510,6 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonPerimeterEdges(const TArray<st
 
 	Params::UMeshDescriptionBase_GetPolygonPerimeterEdges_Params Parms{};
 
-	Parms.OutEdgeIDs = OutEdgeIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1471,6 +1518,9 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonPerimeterEdges(const TArray<st
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutEdgeIDs != nullptr)
+		*OutEdgeIDs = std::move(Parms.OutEdgeIDs);
 
 	return Parms.ReturnValue;
 
@@ -1481,9 +1531,9 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonPerimeterEdges(const TArray<st
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FEdgeID>             OutEdgeIDs                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FEdgeID>             OutEdgeIDs                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FPolygonID UMeshDescriptionBase::GetPolygonInternalEdges(const TArray<struct FEdgeID>& OutEdgeIDs)
+struct FPolygonID UMeshDescriptionBase::GetPolygonInternalEdges(TArray<struct FEdgeID>* OutEdgeIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1492,7 +1542,6 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonInternalEdges(const TArray<str
 
 	Params::UMeshDescriptionBase_GetPolygonInternalEdges_Params Parms{};
 
-	Parms.OutEdgeIDs = OutEdgeIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1501,6 +1550,9 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonInternalEdges(const TArray<str
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutEdgeIDs != nullptr)
+		*OutEdgeIDs = std::move(Parms.OutEdgeIDs);
 
 	return Parms.ReturnValue;
 
@@ -1511,9 +1563,9 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonInternalEdges(const TArray<str
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonGroupID             PolygonGroupID                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FPolygonID>          OutPolygonIDs                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FPolygonID>          OutPolygonIDs                                                    (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FPolygonGroupID UMeshDescriptionBase::GetPolygonGroupPolygons(const TArray<struct FPolygonID>& OutPolygonIDs)
+struct FPolygonGroupID UMeshDescriptionBase::GetPolygonGroupPolygons(TArray<struct FPolygonID>* OutPolygonIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1522,7 +1574,6 @@ struct FPolygonGroupID UMeshDescriptionBase::GetPolygonGroupPolygons(const TArra
 
 	Params::UMeshDescriptionBase_GetPolygonGroupPolygons_Params Parms{};
 
-	Parms.OutPolygonIDs = OutPolygonIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1531,6 +1582,9 @@ struct FPolygonGroupID UMeshDescriptionBase::GetPolygonGroupPolygons(const TArra
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutPolygonIDs != nullptr)
+		*OutPolygonIDs = std::move(Parms.OutPolygonIDs);
 
 	return Parms.ReturnValue;
 
@@ -1540,9 +1594,9 @@ struct FPolygonGroupID UMeshDescriptionBase::GetPolygonGroupPolygons(const TArra
 // Function MeshDescription.MeshDescriptionBase.GetPolygonGroupCount
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetPolygonGroupCount()
+void UMeshDescriptionBase::GetPolygonGroupCount(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1551,6 +1605,7 @@ int32 UMeshDescriptionBase::GetPolygonGroupCount()
 
 	Params::UMeshDescriptionBase_GetPolygonGroupCount_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1560,17 +1615,15 @@ int32 UMeshDescriptionBase::GetPolygonGroupCount()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MeshDescription.MeshDescriptionBase.GetPolygonCount
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetPolygonCount()
+void UMeshDescriptionBase::GetPolygonCount(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1579,6 +1632,7 @@ int32 UMeshDescriptionBase::GetPolygonCount()
 
 	Params::UMeshDescriptionBase_GetPolygonCount_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1587,8 +1641,6 @@ int32 UMeshDescriptionBase::GetPolygonCount()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1597,9 +1649,9 @@ int32 UMeshDescriptionBase::GetPolygonCount()
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FPolygonID>          OutPolygonIDs                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FPolygonID>          OutPolygonIDs                                                    (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FPolygonID UMeshDescriptionBase::GetPolygonAdjacentPolygons(const TArray<struct FPolygonID>& OutPolygonIDs)
+struct FPolygonID UMeshDescriptionBase::GetPolygonAdjacentPolygons(TArray<struct FPolygonID>* OutPolygonIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1608,7 +1660,6 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonAdjacentPolygons(const TArray<
 
 	Params::UMeshDescriptionBase_GetPolygonAdjacentPolygons_Params Parms{};
 
-	Parms.OutPolygonIDs = OutPolygonIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1617,6 +1668,9 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonAdjacentPolygons(const TArray<
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutPolygonIDs != nullptr)
+		*OutPolygonIDs = std::move(Parms.OutPolygonIDs);
 
 	return Parms.ReturnValue;
 
@@ -1627,9 +1681,9 @@ struct FPolygonID UMeshDescriptionBase::GetPolygonAdjacentPolygons(const TArray<
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetNumVertexVertexInstances()
+struct FVertexID UMeshDescriptionBase::GetNumVertexVertexInstances(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1638,6 +1692,7 @@ int32 UMeshDescriptionBase::GetNumVertexVertexInstances()
 
 	Params::UMeshDescriptionBase_GetNumVertexVertexInstances_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1656,9 +1711,9 @@ int32 UMeshDescriptionBase::GetNumVertexVertexInstances()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexInstanceID           VertexInstanceID                                                 (Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetNumVertexInstanceConnectedTriangles()
+struct FVertexInstanceID UMeshDescriptionBase::GetNumVertexInstanceConnectedTriangles(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1667,6 +1722,7 @@ int32 UMeshDescriptionBase::GetNumVertexInstanceConnectedTriangles()
 
 	Params::UMeshDescriptionBase_GetNumVertexInstanceConnectedTriangles_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1685,9 +1741,9 @@ int32 UMeshDescriptionBase::GetNumVertexInstanceConnectedTriangles()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexInstanceID           VertexInstanceID                                                 (Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetNumVertexInstanceConnectedPolygons()
+struct FVertexInstanceID UMeshDescriptionBase::GetNumVertexInstanceConnectedPolygons(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1696,6 +1752,7 @@ int32 UMeshDescriptionBase::GetNumVertexInstanceConnectedPolygons()
 
 	Params::UMeshDescriptionBase_GetNumVertexInstanceConnectedPolygons_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1714,9 +1771,9 @@ int32 UMeshDescriptionBase::GetNumVertexInstanceConnectedPolygons()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetNumVertexConnectedTriangles()
+struct FVertexID UMeshDescriptionBase::GetNumVertexConnectedTriangles(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1725,6 +1782,7 @@ int32 UMeshDescriptionBase::GetNumVertexConnectedTriangles()
 
 	Params::UMeshDescriptionBase_GetNumVertexConnectedTriangles_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1743,9 +1801,9 @@ int32 UMeshDescriptionBase::GetNumVertexConnectedTriangles()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetNumVertexConnectedPolygons()
+struct FVertexID UMeshDescriptionBase::GetNumVertexConnectedPolygons(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1754,6 +1812,7 @@ int32 UMeshDescriptionBase::GetNumVertexConnectedPolygons()
 
 	Params::UMeshDescriptionBase_GetNumVertexConnectedPolygons_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1772,9 +1831,9 @@ int32 UMeshDescriptionBase::GetNumVertexConnectedPolygons()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetNumVertexConnectedEdges()
+struct FVertexID UMeshDescriptionBase::GetNumVertexConnectedEdges(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1783,6 +1842,7 @@ int32 UMeshDescriptionBase::GetNumVertexConnectedEdges()
 
 	Params::UMeshDescriptionBase_GetNumVertexConnectedEdges_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1801,9 +1861,9 @@ int32 UMeshDescriptionBase::GetNumVertexConnectedEdges()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetNumPolygonVertices()
+struct FPolygonID UMeshDescriptionBase::GetNumPolygonVertices(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1812,6 +1872,7 @@ int32 UMeshDescriptionBase::GetNumPolygonVertices()
 
 	Params::UMeshDescriptionBase_GetNumPolygonVertices_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1830,9 +1891,9 @@ int32 UMeshDescriptionBase::GetNumPolygonVertices()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetNumPolygonTriangles()
+struct FPolygonID UMeshDescriptionBase::GetNumPolygonTriangles(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1841,6 +1902,7 @@ int32 UMeshDescriptionBase::GetNumPolygonTriangles()
 
 	Params::UMeshDescriptionBase_GetNumPolygonTriangles_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1859,9 +1921,9 @@ int32 UMeshDescriptionBase::GetNumPolygonTriangles()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetNumPolygonInternalEdges()
+struct FPolygonID UMeshDescriptionBase::GetNumPolygonInternalEdges(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1870,6 +1932,7 @@ int32 UMeshDescriptionBase::GetNumPolygonInternalEdges()
 
 	Params::UMeshDescriptionBase_GetNumPolygonInternalEdges_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1888,9 +1951,9 @@ int32 UMeshDescriptionBase::GetNumPolygonInternalEdges()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FPolygonGroupID             PolygonGroupID                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetNumPolygonGroupPolygons()
+struct FPolygonGroupID UMeshDescriptionBase::GetNumPolygonGroupPolygons(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1899,6 +1962,7 @@ int32 UMeshDescriptionBase::GetNumPolygonGroupPolygons()
 
 	Params::UMeshDescriptionBase_GetNumPolygonGroupPolygons_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1917,9 +1981,9 @@ int32 UMeshDescriptionBase::GetNumPolygonGroupPolygons()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FEdgeID                     EdgeID                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetNumEdgeConnectedTriangles()
+struct FEdgeID UMeshDescriptionBase::GetNumEdgeConnectedTriangles(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1928,6 +1992,7 @@ int32 UMeshDescriptionBase::GetNumEdgeConnectedTriangles()
 
 	Params::UMeshDescriptionBase_GetNumEdgeConnectedTriangles_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1946,9 +2011,9 @@ int32 UMeshDescriptionBase::GetNumEdgeConnectedTriangles()
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FEdgeID                     EdgeID                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetNumEdgeConnectedPolygons()
+struct FEdgeID UMeshDescriptionBase::GetNumEdgeConnectedPolygons(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1957,6 +2022,7 @@ int32 UMeshDescriptionBase::GetNumEdgeConnectedPolygons()
 
 	Params::UMeshDescriptionBase_GetNumEdgeConnectedPolygons_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1975,9 +2041,9 @@ int32 UMeshDescriptionBase::GetNumEdgeConnectedPolygons()
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FEdgeID                     EdgeID                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexID>           OutVertexIDs                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexID>           OutVertexIDs                                                     (BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FEdgeID UMeshDescriptionBase::GetEdgeVertices(const TArray<struct FVertexID>& OutVertexIDs)
+struct FEdgeID UMeshDescriptionBase::GetEdgeVertices(TArray<struct FVertexID>* OutVertexIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1986,7 +2052,6 @@ struct FEdgeID UMeshDescriptionBase::GetEdgeVertices(const TArray<struct FVertex
 
 	Params::UMeshDescriptionBase_GetEdgeVertices_Params Parms{};
 
-	Parms.OutVertexIDs = OutVertexIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1995,6 +2060,9 @@ struct FEdgeID UMeshDescriptionBase::GetEdgeVertices(const TArray<struct FVertex
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutVertexIDs != nullptr)
+		*OutVertexIDs = std::move(Parms.OutVertexIDs);
 
 	return Parms.ReturnValue;
 
@@ -2005,10 +2073,10 @@ struct FEdgeID UMeshDescriptionBase::GetEdgeVertices(const TArray<struct FVertex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FEdgeID                     EdgeID                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// int32                              VertexNumber                                                     (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVertexID                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              VertexNumber                                                     (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVertexID                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVertexID UMeshDescriptionBase::GetEdgeVertex(int32 VertexNumber)
+struct FEdgeID UMeshDescriptionBase::GetEdgeVertex(int32* VertexNumber, const struct FVertexID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2017,7 +2085,7 @@ struct FVertexID UMeshDescriptionBase::GetEdgeVertex(int32 VertexNumber)
 
 	Params::UMeshDescriptionBase_GetEdgeVertex_Params Parms{};
 
-	Parms.VertexNumber = VertexNumber;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2026,6 +2094,9 @@ struct FVertexID UMeshDescriptionBase::GetEdgeVertex(int32 VertexNumber)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (VertexNumber != nullptr)
+		*VertexNumber = Parms.VertexNumber;
 
 	return Parms.ReturnValue;
 
@@ -2035,9 +2106,9 @@ struct FVertexID UMeshDescriptionBase::GetEdgeVertex(int32 VertexNumber)
 // Function MeshDescription.MeshDescriptionBase.GetEdgeCount
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UMeshDescriptionBase::GetEdgeCount()
+void UMeshDescriptionBase::GetEdgeCount(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2046,6 +2117,7 @@ int32 UMeshDescriptionBase::GetEdgeCount()
 
 	Params::UMeshDescriptionBase_GetEdgeCount_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2054,8 +2126,6 @@ int32 UMeshDescriptionBase::GetEdgeCount()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -2064,9 +2134,9 @@ int32 UMeshDescriptionBase::GetEdgeCount()
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FEdgeID                     EdgeID                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FTriangleID>         OutConnectedTriangleIDs                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FTriangleID>         OutConnectedTriangleIDs                                          (ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FEdgeID UMeshDescriptionBase::GetEdgeConnectedTriangles(const TArray<struct FTriangleID>& OutConnectedTriangleIDs)
+struct FEdgeID UMeshDescriptionBase::GetEdgeConnectedTriangles(TArray<struct FTriangleID>* OutConnectedTriangleIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2075,7 +2145,6 @@ struct FEdgeID UMeshDescriptionBase::GetEdgeConnectedTriangles(const TArray<stru
 
 	Params::UMeshDescriptionBase_GetEdgeConnectedTriangles_Params Parms{};
 
-	Parms.OutConnectedTriangleIDs = OutConnectedTriangleIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2084,6 +2153,9 @@ struct FEdgeID UMeshDescriptionBase::GetEdgeConnectedTriangles(const TArray<stru
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutConnectedTriangleIDs != nullptr)
+		*OutConnectedTriangleIDs = std::move(Parms.OutConnectedTriangleIDs);
 
 	return Parms.ReturnValue;
 
@@ -2094,9 +2166,9 @@ struct FEdgeID UMeshDescriptionBase::GetEdgeConnectedTriangles(const TArray<stru
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // struct FEdgeID                     EdgeID                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FPolygonID>          OutConnectedPolygonIDs                                           (Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FPolygonID>          OutConnectedPolygonIDs                                           (BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FEdgeID UMeshDescriptionBase::GetEdgeConnectedPolygons(const TArray<struct FPolygonID>& OutConnectedPolygonIDs)
+struct FEdgeID UMeshDescriptionBase::GetEdgeConnectedPolygons(TArray<struct FPolygonID>* OutConnectedPolygonIDs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2105,7 +2177,6 @@ struct FEdgeID UMeshDescriptionBase::GetEdgeConnectedPolygons(const TArray<struc
 
 	Params::UMeshDescriptionBase_GetEdgeConnectedPolygons_Params Parms{};
 
-	Parms.OutConnectedPolygonIDs = OutConnectedPolygonIDs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2114,6 +2185,9 @@ struct FEdgeID UMeshDescriptionBase::GetEdgeConnectedPolygons(const TArray<struc
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutConnectedPolygonIDs != nullptr)
+		*OutConnectedPolygonIDs = std::move(Parms.OutConnectedPolygonIDs);
 
 	return Parms.ReturnValue;
 
@@ -2148,7 +2222,7 @@ void UMeshDescriptionBase::Empty()
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // struct FVertexInstanceID           VertexInstanceID                                                 (Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexID>           OrphanedVertices                                                 (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexID>           OrphanedVertices                                                 (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FVertexInstanceID UMeshDescriptionBase::DeleteVertexInstance(TArray<struct FVertexID>* OrphanedVertices)
 {
@@ -2208,11 +2282,11 @@ struct FVertexID UMeshDescriptionBase::DeleteVertex()
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // struct FTriangleID                 TriangleID                                                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FEdgeID>             OrphanedEdges                                                    (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FVertexInstanceID>   OrphanedVertexInstances                                          (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FPolygonGroupID>     OrphanedPolygonGroupsPtr                                         (ConstParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FEdgeID>             OrphanedEdges                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexInstanceID>   OrphanedVertexInstances                                          (ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FPolygonGroupID>     OrphanedPolygonGroupsPtr                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FTriangleID UMeshDescriptionBase::DeleteTriangle(TArray<struct FEdgeID>* OrphanedEdges, TArray<struct FVertexInstanceID>* OrphanedVertexInstances, const TArray<struct FPolygonGroupID>& OrphanedPolygonGroupsPtr)
+struct FTriangleID UMeshDescriptionBase::DeleteTriangle(TArray<struct FEdgeID>* OrphanedEdges, TArray<struct FVertexInstanceID>* OrphanedVertexInstances, TArray<struct FPolygonGroupID>* OrphanedPolygonGroupsPtr)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2221,7 +2295,6 @@ struct FTriangleID UMeshDescriptionBase::DeleteTriangle(TArray<struct FEdgeID>* 
 
 	Params::UMeshDescriptionBase_DeleteTriangle_Params Parms{};
 
-	Parms.OrphanedPolygonGroupsPtr = OrphanedPolygonGroupsPtr;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2236,6 +2309,9 @@ struct FTriangleID UMeshDescriptionBase::DeleteTriangle(TArray<struct FEdgeID>* 
 
 	if (OrphanedVertexInstances != nullptr)
 		*OrphanedVertexInstances = std::move(Parms.OrphanedVertexInstances);
+
+	if (OrphanedPolygonGroupsPtr != nullptr)
+		*OrphanedPolygonGroupsPtr = std::move(Parms.OrphanedPolygonGroupsPtr);
 
 	return Parms.ReturnValue;
 
@@ -2274,9 +2350,9 @@ struct FPolygonGroupID UMeshDescriptionBase::DeletePolygonGroup()
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FEdgeID>             OrphanedEdges                                                    (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FVertexInstanceID>   OrphanedVertexInstances                                          (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FPolygonGroupID>     OrphanedPolygonGroups                                            (Edit, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FEdgeID>             OrphanedEdges                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexInstanceID>   OrphanedVertexInstances                                          (ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FPolygonGroupID>     OrphanedPolygonGroups                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FPolygonID UMeshDescriptionBase::DeletePolygon(TArray<struct FEdgeID>* OrphanedEdges, TArray<struct FVertexInstanceID>* OrphanedVertexInstances, TArray<struct FPolygonGroupID>* OrphanedPolygonGroups)
 {
@@ -2314,7 +2390,7 @@ struct FPolygonID UMeshDescriptionBase::DeletePolygon(TArray<struct FEdgeID>* Or
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // struct FEdgeID                     EdgeID                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexID>           OrphanedVertices                                                 (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexID>           OrphanedVertices                                                 (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FEdgeID UMeshDescriptionBase::DeleteEdge(TArray<struct FVertexID>* OrphanedVertices)
 {
@@ -2403,9 +2479,9 @@ struct FVertexID UMeshDescriptionBase::CreateVertexInstanceWithID()
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // struct FVertexID                   VertexID                                                         (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// struct FVertexInstanceID           ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVertexInstanceID           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVertexInstanceID UMeshDescriptionBase::CreateVertexInstance()
+struct FVertexID UMeshDescriptionBase::CreateVertexInstance(const struct FVertexInstanceID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2414,6 +2490,7 @@ struct FVertexInstanceID UMeshDescriptionBase::CreateVertexInstance()
 
 	Params::UMeshDescriptionBase_CreateVertexInstance_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2431,9 +2508,9 @@ struct FVertexInstanceID UMeshDescriptionBase::CreateVertexInstance()
 // Function MeshDescription.MeshDescriptionBase.CreateVertex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FVertexID                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVertexID                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVertexID UMeshDescriptionBase::CreateVertex()
+void UMeshDescriptionBase::CreateVertex(const struct FVertexID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2442,6 +2519,7 @@ struct FVertexID UMeshDescriptionBase::CreateVertex()
 
 	Params::UMeshDescriptionBase_CreateVertex_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2451,8 +2529,6 @@ struct FVertexID UMeshDescriptionBase::CreateVertex()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -2461,8 +2537,8 @@ struct FVertexID UMeshDescriptionBase::CreateVertex()
 // Parameters:
 // struct FTriangleID                 TriangleID                                                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
 // struct FPolygonGroupID             PolygonGroupID                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexInstanceID>   VertexInstanceIDs                                                (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FEdgeID>             NewEdgeIDs                                                       (ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexInstanceID>   VertexInstanceIDs                                                (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FEdgeID>             NewEdgeIDs                                                       (Edit, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FPolygonGroupID UMeshDescriptionBase::CreateTriangleWithID(TArray<struct FVertexInstanceID>* VertexInstanceIDs, TArray<struct FEdgeID>* NewEdgeIDs)
 {
@@ -2497,11 +2573,11 @@ struct FPolygonGroupID UMeshDescriptionBase::CreateTriangleWithID(TArray<struct 
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // struct FPolygonGroupID             PolygonGroupID                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexInstanceID>   VertexInstanceIDs                                                (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FEdgeID>             NewEdgeIDs                                                       (ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTriangleID                 ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVertexInstanceID>   VertexInstanceIDs                                                (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FEdgeID>             NewEdgeIDs                                                       (Edit, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTriangleID                 ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTriangleID UMeshDescriptionBase::CreateTriangle(TArray<struct FVertexInstanceID>* VertexInstanceIDs, TArray<struct FEdgeID>* NewEdgeIDs)
+struct FPolygonGroupID UMeshDescriptionBase::CreateTriangle(TArray<struct FVertexInstanceID>* VertexInstanceIDs, TArray<struct FEdgeID>* NewEdgeIDs, const struct FTriangleID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2510,6 +2586,7 @@ struct FTriangleID UMeshDescriptionBase::CreateTriangle(TArray<struct FVertexIns
 
 	Params::UMeshDescriptionBase_CreateTriangle_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2535,8 +2612,8 @@ struct FTriangleID UMeshDescriptionBase::CreateTriangle(TArray<struct FVertexIns
 // Parameters:
 // struct FPolygonID                  PolygonID                                                        (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
 // struct FPolygonGroupID             PolygonGroupID                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexInstanceID>   VertexInstanceIDs                                                (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FEdgeID>             NewEdgeIDs                                                       (ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVertexInstanceID>   VertexInstanceIDs                                                (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FEdgeID>             NewEdgeIDs                                                       (Edit, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FPolygonGroupID UMeshDescriptionBase::CreatePolygonWithID(TArray<struct FVertexInstanceID>* VertexInstanceIDs, TArray<struct FEdgeID>* NewEdgeIDs)
 {
@@ -2598,9 +2675,9 @@ struct FPolygonGroupID UMeshDescriptionBase::CreatePolygonGroupWithID()
 // Function MeshDescription.MeshDescriptionBase.CreatePolygonGroup
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FPolygonGroupID             ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FPolygonGroupID             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPolygonGroupID UMeshDescriptionBase::CreatePolygonGroup()
+void UMeshDescriptionBase::CreatePolygonGroup(const struct FPolygonGroupID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2609,6 +2686,7 @@ struct FPolygonGroupID UMeshDescriptionBase::CreatePolygonGroup()
 
 	Params::UMeshDescriptionBase_CreatePolygonGroup_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2618,8 +2696,6 @@ struct FPolygonGroupID UMeshDescriptionBase::CreatePolygonGroup()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
@@ -2627,11 +2703,11 @@ struct FPolygonGroupID UMeshDescriptionBase::CreatePolygonGroup()
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // struct FPolygonGroupID             PolygonGroupID                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVertexInstanceID>   VertexInstanceIDs                                                (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FEdgeID>             NewEdgeIDs                                                       (ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FPolygonID                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVertexInstanceID>   VertexInstanceIDs                                                (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FEdgeID>             NewEdgeIDs                                                       (Edit, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FPolygonID                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FPolygonID UMeshDescriptionBase::CreatePolygon(TArray<struct FVertexInstanceID>* VertexInstanceIDs, TArray<struct FEdgeID>* NewEdgeIDs)
+struct FPolygonGroupID UMeshDescriptionBase::CreatePolygon(TArray<struct FVertexInstanceID>* VertexInstanceIDs, TArray<struct FEdgeID>* NewEdgeIDs, const struct FPolygonID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2640,6 +2716,7 @@ struct FPolygonID UMeshDescriptionBase::CreatePolygon(TArray<struct FVertexInsta
 
 	Params::UMeshDescriptionBase_CreatePolygon_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2664,8 +2741,8 @@ struct FPolygonID UMeshDescriptionBase::CreatePolygon(TArray<struct FVertexInsta
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // struct FEdgeID                     EdgeID                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-// struct FVertexID                   VertexID0                                                        (ConstParm, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVertexID                   VertexID1                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVertexID                   VertexID0                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVertexID                   VertexID1                                                        (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FEdgeID UMeshDescriptionBase::CreateEdgeWithID(struct FVertexID* VertexID0, struct FVertexID* VertexID1)
 {
@@ -2699,11 +2776,11 @@ struct FEdgeID UMeshDescriptionBase::CreateEdgeWithID(struct FVertexID* VertexID
 // Function MeshDescription.MeshDescriptionBase.CreateEdge
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FVertexID                   VertexID0                                                        (ConstParm, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVertexID                   VertexID1                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FEdgeID                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVertexID                   VertexID0                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVertexID                   VertexID1                                                        (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FEdgeID                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FEdgeID UMeshDescriptionBase::CreateEdge(struct FVertexID* VertexID0, struct FVertexID* VertexID1)
+void UMeshDescriptionBase::CreateEdge(struct FVertexID* VertexID0, struct FVertexID* VertexID1, const struct FEdgeID& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2712,6 +2789,7 @@ struct FEdgeID UMeshDescriptionBase::CreateEdge(struct FVertexID* VertexID0, str
 
 	Params::UMeshDescriptionBase_CreateEdge_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2726,8 +2804,6 @@ struct FEdgeID UMeshDescriptionBase::CreateEdge(struct FVertexID* VertexID0, str
 
 	if (VertexID1 != nullptr)
 		*VertexID1 = std::move(Parms.VertexID1);
-
-	return Parms.ReturnValue;
 
 }
 

@@ -882,19 +882,19 @@ enum class EVolumeCacheType : uint8
 struct FNiagaraSimCacheCreateParameters
 {
 public:
-	enum class ENiagaraSimCacheAttributeCaptureMode AttributeCaptureMode;                              // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_72F[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	uint8                                        bAllowRebasing : 1;                                // Mask: 0x1, PropSize: 0x10x4(0x1)(ConstParm, BlueprintVisible, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        bAllowDataInterfaceCaching : 1;                    // Mask: 0x2, PropSize: 0x10x4(0x1)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        bAllowInterpolation : 1;                           // Mask: 0x4, PropSize: 0x10x4(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        bAllowVelocityExtrapolation : 1;                   // Mask: 0x8, PropSize: 0x10x4(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        BitPad_75 : 4;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_731[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class FName>                          RebaseIncludeAttributes;                           // 0x8(0x10)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<class FName>                          RebaseExcludeAttributes;                           // 0x18(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<class FName>                          InterpolationIncludeAttributes;                    // 0x28(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<class FName>                          InterpolationExcludeAttributes;                    // 0x38(0x10)(BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<class FName>                          ExplicitCaptureAttributes;                         // 0x48(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class ENiagaraSimCacheAttributeCaptureMode AttributeCaptureMode;                              // 0x0(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_6B1[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        bAllowRebasing : 1;                                // Mask: 0x1, PropSize: 0x10x4(0x1)(ConstParm, ExportObject, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        bAllowDataInterfaceCaching : 1;                    // Mask: 0x2, PropSize: 0x10x4(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        bAllowInterpolation : 1;                           // Mask: 0x4, PropSize: 0x10x4(0x1)(Edit, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        bAllowVelocityExtrapolation : 1;                   // Mask: 0x8, PropSize: 0x10x4(0x1)(ConstParm, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        BitPad_57 : 4;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_6B3[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<class FName>                          RebaseIncludeAttributes;                           // 0x8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<class FName>                          RebaseExcludeAttributes;                           // 0x18(0x10)(ExportObject, Net, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<class FName>                          InterpolationIncludeAttributes;                    // 0x28(0x10)(ExportObject, BlueprintReadOnly, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<class FName>                          InterpolationExcludeAttributes;                    // 0x38(0x10)(ExportObject, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<class FName>                          ExplicitCaptureAttributes;                         // 0x48(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x48 (0x48 - 0x0)
@@ -904,10 +904,10 @@ struct FNDIRenderTargetVolumeSimCacheFrame
 public:
 	struct FIntVector                            Size;                                              // 0x0(0xC)(Edit, ExportObject, EditFixedSize, ReturnParm, Transient, Config)
 	enum class EPixelFormat                      Format;                                            // 0xC(0x1)(BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, EditConst)
-	uint8                                        Pad_740[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        UncompressedSize;                                  // 0x10(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        CompressedSize;                                    // 0x14(0x4)(ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_741[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_6BD[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        UncompressedSize;                                  // 0x10(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        CompressedSize;                                    // 0x14(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6BE[0x30];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC (0xC - 0x0)
@@ -917,7 +917,7 @@ struct FNiagaraDataSetID
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
 	enum class ENiagaraDataSetType               Type;                                              // 0x8(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	uint8                                        Pad_742[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_6C0[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x4 (0x4 - 0x0)
@@ -925,7 +925,7 @@ public:
 struct FNiagaraTypeDefinitionHandle
 {
 public:
-	int32                                        RegisteredTypeIndex;                               // 0x0(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        RegisteredTypeIndex;                               // 0x0(0x4)(Edit, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -934,7 +934,7 @@ struct FNiagaraVariableBase
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	struct FNiagaraTypeDefinitionHandle          TypeDefHandle;                                     // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraTypeDefinitionHandle          TypeDefHandle;                                     // 0x8(0x4)(BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x14 (0x20 - 0xC)
@@ -942,8 +942,8 @@ public:
 struct FNiagaraVariable : public FNiagaraVariableBase
 {
 public:
-	uint8                                        Pad_746[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<uint8>                                VarData;                                           // 0x10(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6C2[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<uint8>                                VarData;                                           // 0x10(0x10)(ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -952,7 +952,7 @@ struct FNiagaraDataSetProperties
 {
 public:
 	struct FNiagaraDataSetID                     ID;                                                // 0x0(0xC)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	uint8                                        Pad_747[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_6C3[0x4];                                      // Fixing Size After Last Property  > TateDumper <
 	TArray<struct FNiagaraVariable>              Variables;                                         // 0x10(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
 };
 
@@ -961,7 +961,7 @@ public:
 struct FNiagaraScriptDataUsageInfo
 {
 public:
-	bool                                         bReadsAttributeData;                               // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bReadsAttributeData;                               // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x90 (0x90 - 0x0)
@@ -970,27 +970,27 @@ struct FNiagaraFunctionSignature
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	TArray<struct FNiagaraVariable>              Inputs;                                            // 0x8(0x10)(ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraVariable>              Outputs;                                           // 0x18(0x10)(Edit, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  OwnerName;                                         // 0x28(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bRequiresContext : 1;                              // Mask: 0x1, PropSize: 0x10x30(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bRequiresExecPin : 1;                              // Mask: 0x2, PropSize: 0x10x30(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bMemberFunction : 1;                               // Mask: 0x4, PropSize: 0x10x30(0x1)(Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bExperimental : 1;                                 // Mask: 0x8, PropSize: 0x10x30(0x1)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bSupportsCPU : 1;                                  // Mask: 0x10, PropSize: 0x10x30(0x1)(Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bSupportsGPU : 1;                                  // Mask: 0x20, PropSize: 0x10x30(0x1)(ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bWriteFunction : 1;                                // Mask: 0x40, PropSize: 0x10x30(0x1)(ConstParm, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bReadFunction : 1;                                 // Mask: 0x80, PropSize: 0x10x30(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bSoftDeprecatedFunction : 1;                       // Mask: 0x1, PropSize: 0x10x31(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bIsCompileTagGenerator : 1;                        // Mask: 0x2, PropSize: 0x10x31(0x1)(Edit, Net, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraVariable>              Inputs;                                            // 0x8(0x10)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraVariable>              Outputs;                                           // 0x18(0x10)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  OwnerName;                                         // 0x28(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bRequiresContext : 1;                              // Mask: 0x1, PropSize: 0x10x30(0x1)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bRequiresExecPin : 1;                              // Mask: 0x2, PropSize: 0x10x30(0x1)(Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bMemberFunction : 1;                               // Mask: 0x4, PropSize: 0x10x30(0x1)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bExperimental : 1;                                 // Mask: 0x8, PropSize: 0x10x30(0x1)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bSupportsCPU : 1;                                  // Mask: 0x10, PropSize: 0x10x30(0x1)(Edit, ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bSupportsGPU : 1;                                  // Mask: 0x20, PropSize: 0x10x30(0x1)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bWriteFunction : 1;                                // Mask: 0x40, PropSize: 0x10x30(0x1)(BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bReadFunction : 1;                                 // Mask: 0x80, PropSize: 0x10x30(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bSoftDeprecatedFunction : 1;                       // Mask: 0x1, PropSize: 0x10x31(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bIsCompileTagGenerator : 1;                        // Mask: 0x2, PropSize: 0x10x31(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	uint8                                        bHidden : 1;                                       // Mask: 0x4, PropSize: 0x10x31(0x1)(ConstParm, ExportObject, OutParm, Config)
-	uint8                                        BitPad_79 : 5;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_749[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        ModuleUsageBitmask;                                // 0x34(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        ContextStageIndex;                                 // 0x38(0x4)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int16                                        RequiredInputs;                                    // 0x3C(0x2)(Edit, BlueprintVisible, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int16                                        RequiredOutputs;                                   // 0x3E(0x2)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TMap<class FName, class FName>               FunctionSpecifiers;                                // 0x40(0x50)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_58 : 5;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_6C5[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        ModuleUsageBitmask;                                // 0x34(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        ContextStageIndex;                                 // 0x38(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int16                                        RequiredInputs;                                    // 0x3C(0x2)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int16                                        RequiredOutputs;                                   // 0x3E(0x2)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TMap<class FName, class FName>               FunctionSpecifiers;                                // 0x40(0x50)(ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -998,10 +998,10 @@ public:
 struct FNiagaraTypeDefinition
 {
 public:
-	class UObject*                               ClassStructOrEnum;                                 // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint16                                       UnderlyingType;                                    // 0x8(0x2)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UObject*                               ClassStructOrEnum;                                 // 0x0(0x8)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       UnderlyingType;                                    // 0x8(0x2)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 	uint8                                        Flags;                                             // 0xA(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance)
-	uint8                                        Pad_74C[0x5];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_6C7[0x5];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x38 (0x38 - 0x0)
@@ -1009,13 +1009,13 @@ public:
 struct FNiagaraScriptDataInterfaceInfo
 {
 public:
-	class UNiagaraDataInterface*                 DataInterface;                                     // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	class UNiagaraDataInterface*                 DataInterface;                                     // 0x0(0x8)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 	class FName                                  Name;                                              // 0x8(0x8)(ConstParm, Net, OutParm)
-	int32                                        UserPtrIdx;                                        // 0x10(0x4)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_74D[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        UserPtrIdx;                                        // 0x10(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6C8[0x4];                                      // Fixing Size After Last Property  > TateDumper <
 	struct FNiagaraTypeDefinition                Type;                                              // 0x18(0x10)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	class FName                                  RegisteredParameterMapRead;                        // 0x28(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  RegisteredParameterMapWrite;                       // 0x30(0x8)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  RegisteredParameterMapRead;                        // 0x28(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  RegisteredParameterMapWrite;                       // 0x30(0x8)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -1024,13 +1024,13 @@ struct FNiagaraScriptDataInterfaceCompileInfo
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	int32                                        UserPtrIdx;                                        // 0x8(0x4)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_74E[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        UserPtrIdx;                                        // 0x8(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6C9[0x4];                                      // Fixing Size After Last Property  > TateDumper <
 	struct FNiagaraTypeDefinition                Type;                                              // 0x10(0x10)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	class FName                                  RegisteredParameterMapRead;                        // 0x20(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  RegisteredParameterMapWrite;                       // 0x28(0x8)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bIsPlaceholder;                                    // 0x30(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_750[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class FName                                  RegisteredParameterMapRead;                        // 0x20(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  RegisteredParameterMapWrite;                       // 0x28(0x8)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bIsPlaceholder;                                    // 0x30(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6CA[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1038,7 +1038,7 @@ public:
 struct FNiagaraStatScope
 {
 public:
-	class FName                                  FullName;                                          // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  FullName;                                          // 0x0(0x8)(Edit, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	class FName                                  FriendlyName;                                      // 0x8(0x8)(Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
 };
 
@@ -1057,13 +1057,13 @@ struct FVMExternalFunctionBindingInfo
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	class FName                                  OwnerName;                                         // 0x8(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<bool>                                 InputParamLocations;                               // 0x10(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        NumOutputs;                                        // 0x20(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_756[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FVMFunctionSpecifier>          FunctionSpecifiers;                                // 0x28(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraVariableBase>          VariadicInputs;                                    // 0x38(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraVariableBase>          VariadicOutputs;                                   // 0x48(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  OwnerName;                                         // 0x8(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<bool>                                 InputParamLocations;                               // 0x10(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        NumOutputs;                                        // 0x20(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6CC[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FVMFunctionSpecifier>          FunctionSpecifiers;                                // 0x28(0x10)(ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraVariableBase>          VariadicInputs;                                    // 0x38(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraVariableBase>          VariadicOutputs;                                   // 0x48(0x10)(ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x78 (0x78 - 0x0)
@@ -1071,12 +1071,12 @@ public:
 struct FNiagaraSystemUpdateContext
 {
 public:
-	TArray<class UNiagaraComponent*>             ComponentsToReset;                                 // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class UNiagaraComponent*>             ComponentsToReInit;                                // 0x10(0x10)(Edit, ConstParm, ExportObject, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class UNiagaraComponent*>             ComponentsToNotifySimDestroy;                      // 0x20(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class UNiagaraSystem*>                SystemSimsToDestroy;                               // 0x30(0x10)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class UNiagaraSystem*>                SystemSimsToRecache;                               // 0x40(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_758[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<class UNiagaraComponent*>             ComponentsToReset;                                 // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class UNiagaraComponent*>             ComponentsToReInit;                                // 0x10(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class UNiagaraComponent*>             ComponentsToNotifySimDestroy;                      // 0x20(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class UNiagaraSystem*>                SystemSimsToDestroy;                               // 0x30(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class UNiagaraSystem*>                SystemSimsToRecache;                               // 0x40(0x10)(ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6CE[0x28];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x40 (0x40 - 0x0)
@@ -1085,8 +1085,8 @@ struct FNiagaraVariableInfo
 {
 public:
 	struct FNiagaraVariable                      Variable;                                          // 0x0(0x20)(Edit, BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	class FText                                  Definition;                                        // 0x20(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UNiagaraDataInterface*                 DataInterface;                                     // 0x38(0x8)(Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	class FText                                  Definition;                                        // 0x20(0x18)(Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UNiagaraDataInterface*                 DataInterface;                                     // 0x38(0x8)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -1094,15 +1094,15 @@ public:
 struct FNiagaraVariableAttributeBinding
 {
 public:
-	struct FNiagaraVariableBase                  ParamMapVariable;                                  // 0x0(0xC)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_75A[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FNiagaraVariable                      DataSetVariable;                                   // 0x10(0x20)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraVariable                      RootVariable;                                      // 0x30(0x20)(Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraBindingSource             BindingSourceMode;                                 // 0x50(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_75B[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	uint8                                        bBindingExistsOnSource : 1;                        // Mask: 0x1, PropSize: 0x10x54(0x1)(Edit, BlueprintReadOnly, Net, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bIsCachedParticleValue : 1;                        // Mask: 0x2, PropSize: 0x10x54(0x1)(Edit, BlueprintVisible, Net, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_75C[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	struct FNiagaraVariableBase                  ParamMapVariable;                                  // 0x0(0xC)(Edit, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6D1[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FNiagaraVariable                      DataSetVariable;                                   // 0x10(0x20)(BlueprintReadOnly, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariable                      RootVariable;                                      // 0x30(0x20)(Edit, ExportObject, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraBindingSource             BindingSourceMode;                                 // 0x50(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6D2[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        bBindingExistsOnSource : 1;                        // Mask: 0x1, PropSize: 0x10x54(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bIsCachedParticleValue : 1;                        // Mask: 0x2, PropSize: 0x10x54(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6D3[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x2C (0x2C - 0x0)
@@ -1110,10 +1110,10 @@ public:
 struct FNiagaraMaterialAttributeBinding
 {
 public:
-	class FName                                  MaterialParameterName;                             // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  MaterialParameterName;                             // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	struct FNiagaraVariableBase                  NiagaraVariable;                                   // 0x8(0xC)(Edit, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient)
-	struct FNiagaraVariableBase                  ResolvedNiagaraVariable;                           // 0x14(0xC)(Edit, ConstParm, ExportObject, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraVariableBase                  NiagaraChildVariable;                              // 0x20(0xC)(Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariableBase                  ResolvedNiagaraVariable;                           // 0x14(0xC)(Edit, BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariableBase                  NiagaraChildVariable;                              // 0x20(0xC)(ConstParm, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -1121,7 +1121,7 @@ public:
 struct FNiagaraVariableDataInterfaceBinding
 {
 public:
-	struct FNiagaraVariable                      BoundVariable;                                     // 0x0(0x20)(BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariable                      BoundVariable;                                     // 0x0(0x20)(ConstParm, BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1137,7 +1137,7 @@ public:
 struct FNiagaraUserParameterBinding
 {
 public:
-	struct FNiagaraVariable                      Parameter;                                         // 0x0(0x20)(BlueprintVisible, ExportObject, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariable                      Parameter;                                         // 0x0(0x20)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -1145,13 +1145,13 @@ public:
 struct FNiagaraCompileDependency
 {
 public:
-	class FString                                LinkerErrorMessage;                                // 0x0(0x10)(BlueprintVisible, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGuid                                 NodeGuid;                                          // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGuid                                 PinGuid;                                           // 0x20(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FGuid>                         StackGuids;                                        // 0x30(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraVariableBase                  DependentVariable;                                 // 0x40(0xC)(ConstParm, ExportObject, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bDependentVariableFromCustomIterationNamespace;    // 0x4C(0x1)(ConstParm, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_75F[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	class FString                                LinkerErrorMessage;                                // 0x0(0x10)(ConstParm, BlueprintVisible, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 NodeGuid;                                          // 0x10(0x10)(Edit, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 PinGuid;                                           // 0x20(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FGuid>                         StackGuids;                                        // 0x30(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariableBase                  DependentVariable;                                 // 0x40(0xC)(BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bDependentVariableFromCustomIterationNamespace;    // 0x4C(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6D7[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -1160,8 +1160,8 @@ struct FNiagaraCompileHashVisitorDebugInfo
 {
 public:
 	class FString                                Object;                                            // 0x0(0x10)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-	TArray<class FString>                        PropertyKeys;                                      // 0x10(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class FString>                        PropertyValues;                                    // 0x20(0x10)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FString>                        PropertyKeys;                                      // 0x10(0x10)(ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FString>                        PropertyValues;                                    // 0x20(0x10)(BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1169,7 +1169,7 @@ public:
 struct FNiagaraDataChannelReference
 {
 public:
-	class FName                                  ChannelName;                                       // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  ChannelName;                                       // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -1177,9 +1177,9 @@ public:
 struct FNDIDataChannelFunctionInfo
 {
 public:
-	class FName                                  FunctionName;                                      // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<struct FNiagaraVariableBase>          Inputs;                                            // 0x8(0x10)(ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraVariableBase>          Outputs;                                           // 0x18(0x10)(Edit, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  FunctionName;                                      // 0x0(0x8)(Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FNiagaraVariableBase>          Inputs;                                            // 0x8(0x10)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraVariableBase>          Outputs;                                           // 0x18(0x10)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1187,7 +1187,7 @@ public:
 struct FNDIDataChannel_GPUScriptParameterAccessInfo
 {
 public:
-	TArray<struct FNiagaraVariableBase>          SortedParameters;                                  // 0x0(0x10)(BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraVariableBase>          SortedParameters;                                  // 0x0(0x10)(ConstParm, BlueprintVisible, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x68 (0x68 - 0x0)
@@ -1195,12 +1195,12 @@ public:
 struct FNDIDataChannelCompiledData
 {
 public:
-	TArray<struct FNDIDataChannelFunctionInfo>   FunctionInfo;                                      // 0x0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TMap<struct FNiagaraCompileHash, struct FNDIDataChannel_GPUScriptParameterAccessInfo> GPUScriptParameterInfos;                           // 0x10(0x50)(OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint32                                       TotalParams;                                       // 0x60(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUsedByCPU;                                        // 0x64(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUsedByGPU;                                        // 0x65(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_760[0x2];                                      // Fixing Size Of Struct > TateDumper <
+	TArray<struct FNDIDataChannelFunctionInfo>   FunctionInfo;                                      // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TMap<struct FNiagaraCompileHash, struct FNDIDataChannel_GPUScriptParameterAccessInfo> GPUScriptParameterInfos;                           // 0x10(0x50)(ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       TotalParams;                                       // 0x60(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUsedByCPU;                                        // 0x64(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUsedByGPU;                                        // 0x65(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6D8[0x2];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x60 (0x60 - 0x0)
@@ -1208,12 +1208,12 @@ public:
 struct FNiagaraTypeLayoutInfo
 {
 public:
-	TArray<uint32>                               FloatComponentByteOffsets;                         // 0x0(0x10)(Edit, ExportObject, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<uint32>                               FloatComponentRegisterOffsets;                     // 0x10(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<uint32>                               Int32ComponentByteOffsets;                         // 0x20(0x10)(Edit, ConstParm, ExportObject, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<uint32>                               Int32ComponentRegisterOffsets;                     // 0x30(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<uint32>                               HalfComponentByteOffsets;                          // 0x40(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<uint32>                               HalfComponentRegisterOffsets;                      // 0x50(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint32>                               FloatComponentByteOffsets;                         // 0x0(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint32>                               FloatComponentRegisterOffsets;                     // 0x10(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint32>                               Int32ComponentByteOffsets;                         // 0x20(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint32>                               Int32ComponentRegisterOffsets;                     // 0x30(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint32>                               HalfComponentByteOffsets;                          // 0x40(0x10)(BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint32>                               HalfComponentRegisterOffsets;                      // 0x50(0x10)(Edit, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x70 (0x70 - 0x0)
@@ -1221,11 +1221,11 @@ public:
 struct FNiagaraVariableLayoutInfo
 {
 public:
-	uint32                                       FloatComponentStart;                               // 0x0(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint32                                       Int32ComponentStart;                               // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint32                                       HalfComponentStart;                                // 0x8(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_761[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FNiagaraTypeLayoutInfo                LayoutInfo;                                        // 0x10(0x60)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       FloatComponentStart;                               // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       Int32ComponentStart;                               // 0x4(0x4)(Edit, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       HalfComponentStart;                                // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6DC[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FNiagaraTypeLayoutInfo                LayoutInfo;                                        // 0x10(0x60)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x48 (0x48 - 0x0)
@@ -1234,16 +1234,16 @@ struct FNiagaraDataSetCompiledData
 {
 public:
 	TArray<struct FNiagaraVariable>              Variables;                                         // 0x0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	TArray<struct FNiagaraVariableLayoutInfo>    VariableLayouts;                                   // 0x10(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraVariableLayoutInfo>    VariableLayouts;                                   // 0x10(0x10)(ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	struct FNiagaraDataSetID                     ID;                                                // 0x20(0xC)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	uint32                                       TotalFloatComponents;                              // 0x2C(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint32                                       TotalInt32Components;                              // 0x30(0x4)(EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint32                                       TotalHalfComponents;                               // 0x34(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bRequiresPersistentIDs : 1;                        // Mask: 0x1, PropSize: 0x10x38(0x1)(Edit, ExportObject, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        BitPad_7A : 7;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_764[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	enum class ENiagaraSimTarget                 SimTarget;                                         // 0x3C(0x1)(Edit, ConstParm, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_765[0xB];                                      // Fixing Size Of Struct > TateDumper <
+	uint32                                       TotalFloatComponents;                              // 0x2C(0x4)(Edit, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       TotalInt32Components;                              // 0x30(0x4)(ConstParm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       TotalHalfComponents;                               // 0x34(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bRequiresPersistentIDs : 1;                        // Mask: 0x1, PropSize: 0x10x38(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_59 : 7;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_6DF[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	enum class ENiagaraSimTarget                 SimTarget;                                         // 0x3C(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6E1[0xB];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x48 (0xB0 - 0x68)
@@ -1251,7 +1251,7 @@ public:
 struct FNDIDataChannelWriteCompiledData : public FNDIDataChannelCompiledData
 {
 public:
-	struct FNiagaraDataSetCompiledData           DataLayout;                                        // 0x68(0x48)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraDataSetCompiledData           DataLayout;                                        // 0x68(0x48)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -1259,7 +1259,7 @@ public:
 struct FNiagaraParameterBinding
 {
 public:
-	struct FNiagaraVariableBase                  Parameter;                                         // 0x0(0xC)(BlueprintVisible, ExportObject, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariableBase                  Parameter;                                         // 0x0(0xC)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -1267,16 +1267,16 @@ public:
 struct FNiagaraScalabilityState
 {
 public:
-	float                                        Significance;                                      // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        LastVisibleTime;                                   // 0x4(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_767[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	uint8                                        bCulled : 1;                                       // Mask: 0x1, PropSize: 0x10xA(0x1)(Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bPreviousCulled : 1;                               // Mask: 0x2, PropSize: 0x10xA(0x1)(BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bCulledByDistance : 1;                             // Mask: 0x4, PropSize: 0x10xA(0x1)(ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bCulledByInstanceCount : 1;                        // Mask: 0x8, PropSize: 0x10xA(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bCulledByVisibility : 1;                           // Mask: 0x10, PropSize: 0x10xA(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bCulledByGlobalBudget : 1;                         // Mask: 0x20, PropSize: 0x10xA(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_768[0x1];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        Significance;                                      // 0x0(0x4)(Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        LastVisibleTime;                                   // 0x4(0x4)(Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6E3[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        bCulled : 1;                                       // Mask: 0x1, PropSize: 0x10xA(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bPreviousCulled : 1;                               // Mask: 0x2, PropSize: 0x10xA(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bCulledByDistance : 1;                             // Mask: 0x4, PropSize: 0x10xA(0x1)(ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bCulledByInstanceCount : 1;                        // Mask: 0x8, PropSize: 0x10xA(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bCulledByVisibility : 1;                           // Mask: 0x10, PropSize: 0x10xA(0x1)(Edit, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bCulledByGlobalBudget : 1;                         // Mask: 0x20, PropSize: 0x10xA(0x1)(Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6E6[0x1];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1284,11 +1284,11 @@ public:
 struct FNiagaraSimCacheCaptureParameters
 {
 public:
-	int32                                        NumFrames;                                         // 0x0(0x4)(ConstParm, ExportObject, EditFixedSize, DisableEditOnInstance, DuplicateTransient)
-	int32                                        CaptureRate;                                       // 0x4(0x4)(ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bManuallyAdvanceSimulation;                        // 0x8(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_769[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        AdvanceDeltaTime;                                  // 0xC(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        NumFrames;                                         // 0x0(0x4)(Edit, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	int32                                        CaptureRate;                                       // 0x4(0x4)(Edit, BlueprintReadOnly, EditFixedSize, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bManuallyAdvanceSimulation;                        // 0x8(0x1)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6E8[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        AdvanceDeltaTime;                                  // 0xC(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -1296,11 +1296,11 @@ public:
 struct FNiagaraStackSection
 {
 public:
-	class FName                                  SectionIdentifier;                                 // 0x0(0x8)(ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FText                                  SectionDisplayName;                                // 0x8(0x18)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  SectionIdentifier;                                 // 0x0(0x8)(ExportObject, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FText                                  SectionDisplayName;                                // 0x8(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	TArray<class FText>                          Categories;                                        // 0x20(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst)
-	bool                                         bEnabled;                                          // 0x30(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, Transient, EditConst, GlobalConfig)
-	uint8                                        Pad_76B[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bEnabled;                                          // 0x30(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_6ED[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1308,8 +1308,8 @@ public:
 struct FNiagaraDynamicMeshSection
 {
 public:
-	int32                                        NumTriangles;                                      // 0x0(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        MaterialIndex;                                     // 0x4(0x4)(BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        NumTriangles;                                      // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        MaterialIndex;                                     // 0x4(0x4)(ConstParm, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -1318,7 +1318,7 @@ struct FNiagaraDynamicMeshMaterial
 {
 public:
 	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	struct FNiagaraUserParameterBinding          MaterialUserParamBinding;                          // 0x8(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraUserParameterBinding          MaterialUserParamBinding;                          // 0x8(0x20)(Edit, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1326,7 +1326,7 @@ public:
 struct FNDIStaticMeshSectionFilter
 {
 public:
-	TArray<int32>                                AllowedMaterialSlots;                              // 0x0(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<int32>                                AllowedMaterialSlots;                              // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1334,8 +1334,8 @@ public:
 struct FNiagaraUObjectPropertyReaderRemap
 {
 public:
-	class FName                                  GraphName;                                         // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  RemapName;                                         // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  GraphName;                                         // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  RemapName;                                         // 0x8(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x0 (0x20 - 0x20)
@@ -1350,14 +1350,14 @@ public:
 struct FMovieSceneNiagaraSystemTrackImplementation : public FMovieSceneTrackImplementation
 {
 public:
-	struct FFrameNumber                          SpawnSectionStartFrame;                            // 0x10(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FFrameNumber                          SpawnSectionEndFrame;                              // 0x14(0x4)(BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraSystemSpawnSectionStartBehavior SpawnSectionStartBehavior;                         // 0x18(0x4)(ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraSystemSpawnSectionEvaluateBehavior SpawnSectionEvaluateBehavior;                      // 0x1C(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraSystemSpawnSectionEndBehavior SpawnSectionEndBehavior;                           // 0x20(0x4)(ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraAgeUpdateMode             AgeUpdateMode;                                     // 0x24(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bAllowScalability;                                 // 0x25(0x1)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_76E[0x2];                                      // Fixing Size Of Struct > TateDumper <
+	struct FFrameNumber                          SpawnSectionStartFrame;                            // 0x10(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FFrameNumber                          SpawnSectionEndFrame;                              // 0x14(0x4)(ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraSystemSpawnSectionStartBehavior SpawnSectionStartBehavior;                         // 0x18(0x4)(BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraSystemSpawnSectionEvaluateBehavior SpawnSectionEvaluateBehavior;                      // 0x1C(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraSystemSpawnSectionEndBehavior SpawnSectionEndBehavior;                           // 0x20(0x4)(ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraAgeUpdateMode             AgeUpdateMode;                                     // 0x24(0x1)(Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bAllowScalability;                                 // 0x25(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6F3[0x2];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x40 - 0x20)
@@ -1365,7 +1365,7 @@ public:
 struct FMovieSceneNiagaraParameterSectionTemplate : public FMovieSceneEvalTemplate
 {
 public:
-	struct FNiagaraVariable                      Parameter;                                         // 0x20(0x20)(BlueprintVisible, ExportObject, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariable                      Parameter;                                         // 0x20(0x20)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x100 (0x140 - 0x40)
@@ -1373,7 +1373,7 @@ public:
 struct FMovieSceneNiagaraBoolParameterSectionTemplate : public FMovieSceneNiagaraParameterSectionTemplate
 {
 public:
-	struct FMovieSceneBoolChannel                BoolChannel;                                       // 0x40(0x100)(Edit, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FMovieSceneBoolChannel                BoolChannel;                                       // 0x40(0x100)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x440 (0x480 - 0x40)
@@ -1381,10 +1381,10 @@ public:
 struct FMovieSceneNiagaraColorParameterSectionTemplate : public FMovieSceneNiagaraParameterSectionTemplate
 {
 public:
-	struct FMovieSceneFloatChannel               RedChannel;                                        // 0x40(0x110)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FMovieSceneFloatChannel               GreenChannel;                                      // 0x150(0x110)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FMovieSceneFloatChannel               BlueChannel;                                       // 0x260(0x110)(BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FMovieSceneFloatChannel               AlphaChannel;                                      // 0x370(0x110)(Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FMovieSceneFloatChannel               RedChannel;                                        // 0x40(0x110)(Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FMovieSceneFloatChannel               GreenChannel;                                      // 0x150(0x110)(Edit, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FMovieSceneFloatChannel               BlueChannel;                                       // 0x260(0x110)(ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FMovieSceneFloatChannel               AlphaChannel;                                      // 0x370(0x110)(Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x110 (0x150 - 0x40)
@@ -1392,7 +1392,7 @@ public:
 struct FMovieSceneNiagaraFloatParameterSectionTemplate : public FMovieSceneNiagaraParameterSectionTemplate
 {
 public:
-	struct FMovieSceneFloatChannel               FloatChannel;                                      // 0x40(0x110)(BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FMovieSceneFloatChannel               FloatChannel;                                      // 0x40(0x110)(ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x100 (0x140 - 0x40)
@@ -1400,7 +1400,7 @@ public:
 struct FMovieSceneNiagaraIntegerParameterSectionTemplate : public FMovieSceneNiagaraParameterSectionTemplate
 {
 public:
-	struct FMovieSceneIntegerChannel             IntegerChannel;                                    // 0x40(0x100)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FMovieSceneIntegerChannel             IntegerChannel;                                    // 0x40(0x100)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x448 (0x488 - 0x40)
@@ -1408,9 +1408,9 @@ public:
 struct FMovieSceneNiagaraVectorParameterSectionTemplate : public FMovieSceneNiagaraParameterSectionTemplate
 {
 public:
-	struct FMovieSceneFloatChannel               VectorChannels[0x4];                               // 0x40(0x440)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        ChannelsUsed;                                      // 0x480(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_770[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	struct FMovieSceneFloatChannel               VectorChannels[0x4];                               // 0x40(0x440)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        ChannelsUsed;                                      // 0x480(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_6F8[0x4];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xA0 (0xA0 - 0x0)
@@ -1418,7 +1418,7 @@ public:
 struct FEmitterCompiledScriptPair
 {
 public:
-	uint8                                        Pad_771[0xA0];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_6FA[0xA0];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1426,7 +1426,7 @@ public:
 struct FNiagaraBakerTextureSource
 {
 public:
-	class FString                                DisplayString;                                     // 0x0(0x10)(ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                DisplayString;                                     // 0x0(0x10)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	class FName                                  SourceName;                                        // 0x10(0x8)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 };
 
@@ -1435,17 +1435,17 @@ public:
 struct FNiagaraBakerCameraSettings
 {
 public:
-	enum class ENiagaraBakerViewMode             ViewMode;                                          // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_773[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               ViewportLocation;                                  // 0x8(0x18)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FRotator                              ViewportRotation;                                  // 0x20(0x18)(ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        OrbitDistance;                                     // 0x38(0x4)(Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        FOV;                                               // 0x3C(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, GlobalConfig)
-	float                                        OrthoWidth;                                        // 0x40(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseAspectRatio;                                   // 0x44(0x1)(Edit, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_775[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        AspectRatio;                                       // 0x48(0x4)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_776[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	enum class ENiagaraBakerViewMode             ViewMode;                                          // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_700[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               ViewportLocation;                                  // 0x8(0x18)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FRotator                              ViewportRotation;                                  // 0x20(0x18)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        OrbitDistance;                                     // 0x38(0x4)(ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        FOV;                                               // 0x3C(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, DuplicateTransient)
+	float                                        OrthoWidth;                                        // 0x40(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseAspectRatio;                                   // 0x44(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_70A[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        AspectRatio;                                       // 0x48(0x4)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_70B[0x4];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x40 (0x40 - 0x0)
@@ -1453,15 +1453,15 @@ public:
 struct FNiagaraBakerTextureSettings
 {
 public:
-	class FName                                  OutputName;                                        // 0x0(0x8)(ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FNiagaraBakerTextureSource            SourceBinding;                                     // 0x8(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bUseFrameSize : 1;                                 // Mask: 0x1, PropSize: 0x10x20(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        BitPad_7F : 7;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_777[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FIntPoint                             FrameSize;                                         // 0x24(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FIntPoint                             TextureSize;                                       // 0x2C(0x8)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_778[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UTexture2D*                            GeneratedTexture;                                  // 0x38(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  OutputName;                                        // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FNiagaraBakerTextureSource            SourceBinding;                                     // 0x8(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bUseFrameSize : 1;                                 // Mask: 0x1, PropSize: 0x10x20(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_5A : 7;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_70F[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FIntPoint                             FrameSize;                                         // 0x24(0x8)(Edit, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FIntPoint                             TextureSize;                                       // 0x2C(0x8)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_710[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class UTexture2D*                            GeneratedTexture;                                  // 0x38(0x8)(Edit, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1469,8 +1469,8 @@ public:
 struct FNCPoolElement
 {
 public:
-	class UNiagaraComponent*                     Component;                                         // 0x0(0x8)(Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_77A[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	class UNiagaraComponent*                     Component;                                         // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_713[0x8];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1478,7 +1478,7 @@ public:
 struct FNCPool
 {
 public:
-	TArray<struct FNCPoolElement>                FreeElements;                                      // 0x0(0x10)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNCPoolElement>                FreeElements;                                      // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC8 (0xC8 - 0x0)
@@ -1486,11 +1486,11 @@ public:
 struct FNiagaraComponentPropertyBinding
 {
 public:
-	struct FNiagaraVariableAttributeBinding      AttributeBinding;                                  // 0x0(0x58)(Edit, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  PropertyName;                                      // 0x58(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FNiagaraTypeDefinition                PropertyType;                                      // 0x60(0x10)(ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  MetadataSetterName;                                // 0x70(0x8)(BlueprintReadOnly, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TMap<class FString, class FString>           PropertySetterParameterDefaults;                   // 0x78(0x50)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariableAttributeBinding      AttributeBinding;                                  // 0x0(0x58)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  PropertyName;                                      // 0x58(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FNiagaraTypeDefinition                PropertyType;                                      // 0x60(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  MetadataSetterName;                                // 0x70(0x8)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TMap<class FString, class FString>           PropertySetterParameterDefaults;                   // 0x78(0x50)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1498,7 +1498,7 @@ public:
 struct FNiagaraCulledComponentInfo
 {
 public:
-	uint8                                        Pad_780[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_71A[0x8];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x14 (0x14 - 0x0)
@@ -1506,12 +1506,12 @@ public:
 struct FNiagaraStructConversionStep
 {
 public:
-	int32                                        LWCBytes;                                          // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        LWCOffset;                                         // 0x4(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        SimulationBytes;                                   // 0x8(0x4)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        SimulationOffset;                                  // 0xC(0x4)(Edit, ConstParm, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraStructConversionType      ConversionType;                                    // 0x10(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_785[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	int32                                        LWCBytes;                                          // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        LWCOffset;                                         // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        SimulationBytes;                                   // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        SimulationOffset;                                  // 0xC(0x4)(Edit, BlueprintVisible, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraStructConversionType      ConversionType;                                    // 0x10(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_71F[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1519,9 +1519,9 @@ public:
 struct FNiagaraLwcStructConverter
 {
 public:
-	int32                                        LWCSize;                                           // 0x0(0x4)(Edit, BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        SWCSize;                                           // 0x4(0x4)(Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraStructConversionStep>  ConversionSteps;                                   // 0x8(0x10)(ConstParm, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        LWCSize;                                           // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        SWCSize;                                           // 0x4(0x4)(ConstParm, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraStructConversionStep>  ConversionSteps;                                   // 0x8(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x60 (0x60 - 0x0)
@@ -1529,8 +1529,8 @@ public:
 struct FNiagaraDataChannelGameDataLayout
 {
 public:
-	TMap<struct FNiagaraVariableBase, int32>     VariableIndices;                                   // 0x0(0x50)(ConstParm, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraLwcStructConverter>    LwcConverters;                                     // 0x50(0x10)(ConstParm, ExportObject, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TMap<struct FNiagaraVariableBase, int32>     VariableIndices;                                   // 0x0(0x50)(BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraLwcStructConverter>    LwcConverters;                                     // 0x50(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -1538,8 +1538,8 @@ public:
 struct FNiagaraDataInterfaceEmitterBinding
 {
 public:
-	enum class ENiagaraDataInterfaceEmitterBindingMode BindingMode;                                       // 0x0(0x4)(Edit, BlueprintVisible, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  EmitterName;                                       // 0x4(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraDataInterfaceEmitterBindingMode BindingMode;                                       // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  EmitterName;                                       // 0x4(0x8)(EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -1549,8 +1549,8 @@ struct FBasicParticleData
 public:
 	struct FVector                               Position;                                          // 0x0(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
 	float                                        Size;                                              // 0x18(0x4)(Edit, ExportObject, EditFixedSize, ReturnParm, Transient, Config)
-	uint8                                        Pad_788[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               Velocity;                                          // 0x20(0x18)(ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig)
+	uint8                                        Pad_725[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               Velocity;                                          // 0x20(0x18)(Edit, ReturnParm, Config, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1558,8 +1558,8 @@ public:
 struct FMeshTriCoordinate
 {
 public:
-	int32                                        Tri;                                               // 0x0(0x4)(ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector3f                             BaryCoord;                                         // 0x4(0xC)(BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        Tri;                                               // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector3f                             BaryCoord;                                         // 0x4(0xC)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -1567,13 +1567,13 @@ public:
 struct FNiagaraDataInterfaceSplineLUT
 {
 public:
-	TArray<struct FVector>                       Positions;                                         // 0x0(0x10)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	TArray<struct FVector>                       Scales;                                            // 0x10(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FQuat>                         Rotations;                                         // 0x20(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        SplineLength;                                      // 0x30(0x4)(BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        SplineDistanceStep;                                // 0x34(0x4)(ConstParm, BlueprintVisible, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        InvSplineDistanceStep;                             // 0x38(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        MaxIndex;                                          // 0x3C(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FVector>                       Positions;                                         // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	TArray<struct FVector>                       Scales;                                            // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FQuat>                         Rotations;                                         // 0x20(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        SplineLength;                                      // 0x30(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        SplineDistanceStep;                                // 0x34(0x4)(ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        InvSplineDistanceStep;                             // 0x38(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        MaxIndex;                                          // 0x3C(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1590,13 +1590,13 @@ public:
 struct FNiagaraOutlinerEmitterInstanceData
 {
 public:
-	class FString                                EmitterName;                                       // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraSimTarget                 SimTarget;                                         // 0x10(0x1)(Edit, ConstParm, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_78D[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	enum class ENiagaraExecutionState            ExecState;                                         // 0x14(0x4)(ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        NumParticles;                                      // 0x18(0x4)(Edit, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bRequiresPersistentIDs : 1;                        // Mask: 0x1, PropSize: 0x10x1C(0x1)(Edit, ExportObject, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_78E[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	class FString                                EmitterName;                                       // 0x0(0x10)(EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraSimTarget                 SimTarget;                                         // 0x10(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_72E[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	enum class ENiagaraExecutionState            ExecState;                                         // 0x14(0x4)(ConstParm, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        NumParticles;                                      // 0x18(0x4)(Edit, ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bRequiresPersistentIDs : 1;                        // Mask: 0x1, PropSize: 0x10x1C(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_730[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x68 (0x68 - 0x0)
@@ -1604,31 +1604,31 @@ public:
 struct FNiagaraOutlinerSystemInstanceData
 {
 public:
-	class FString                                ComponentName;                                     // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector3f                             LWCTile;                                           // 0x10(0xC)(ConstParm, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_791[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FNiagaraOutlinerEmitterInstanceData> Emitters;                                          // 0x20(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraExecutionState            ActualExecutionState;                              // 0x30(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraExecutionState            RequestedExecutionState;                           // 0x34(0x4)(Edit, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraScalabilityState              ScalabilityState;                                  // 0x38(0xC)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bPendingKill : 1;                                  // Mask: 0x1, PropSize: 0x10x44(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bUsingCullProxy : 1;                               // Mask: 0x2, PropSize: 0x10x44(0x1)(BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        BitPad_86 : 6;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_794[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	enum class ENCPoolMethod                     PoolMethod;                                        // 0x48(0x1)(ConstParm, BlueprintVisible, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_795[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FNiagaraOutlinerTimingData            AverageTime;                                       // 0x4C(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraOutlinerTimingData            MaxTime;                                           // 0x54(0x8)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ETickingGroup                     TickGroup;                                         // 0x5C(0x1)(Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class ENiagaraGpuComputeTickStage       GpuTickStage;                                      // 0x5D(0x1)(Edit, ConstParm, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_796[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	uint8                                        bIsSolo : 1;                                       // Mask: 0x1, PropSize: 0x10x60(0x1)(ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bRequiresDistanceFieldData : 1;                    // Mask: 0x2, PropSize: 0x10x60(0x1)(OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bRequiresDepthBuffer : 1;                          // Mask: 0x4, PropSize: 0x10x60(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bRequiresEarlyViewData : 1;                        // Mask: 0x8, PropSize: 0x10x60(0x1)(Edit, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bRequiresViewUniformBuffer : 1;                    // Mask: 0x10, PropSize: 0x10x60(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bRequiresRayTracingScene : 1;                      // Mask: 0x20, PropSize: 0x10x60(0x1)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_799[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class FString                                ComponentName;                                     // 0x0(0x10)(Edit, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector3f                             LWCTile;                                           // 0x10(0xC)(BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_733[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FNiagaraOutlinerEmitterInstanceData> Emitters;                                          // 0x20(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraExecutionState            ActualExecutionState;                              // 0x30(0x4)(BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraExecutionState            RequestedExecutionState;                           // 0x34(0x4)(Edit, ConstParm, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraScalabilityState              ScalabilityState;                                  // 0x38(0xC)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bPendingKill : 1;                                  // Mask: 0x1, PropSize: 0x10x44(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bUsingCullProxy : 1;                               // Mask: 0x2, PropSize: 0x10x44(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_5D : 6;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_737[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	enum class ENCPoolMethod                     PoolMethod;                                        // 0x48(0x1)(ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_738[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FNiagaraOutlinerTimingData            AverageTime;                                       // 0x4C(0x8)(Edit, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraOutlinerTimingData            MaxTime;                                           // 0x54(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ETickingGroup                     TickGroup;                                         // 0x5C(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class ENiagaraGpuComputeTickStage       GpuTickStage;                                      // 0x5D(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_73A[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        bIsSolo : 1;                                       // Mask: 0x1, PropSize: 0x10x60(0x1)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bRequiresDistanceFieldData : 1;                    // Mask: 0x2, PropSize: 0x10x60(0x1)(ConstParm, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bRequiresDepthBuffer : 1;                          // Mask: 0x4, PropSize: 0x10x60(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bRequiresEarlyViewData : 1;                        // Mask: 0x8, PropSize: 0x10x60(0x1)(Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bRequiresViewUniformBuffer : 1;                    // Mask: 0x10, PropSize: 0x10x60(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bRequiresRayTracingScene : 1;                      // Mask: 0x20, PropSize: 0x10x60(0x1)(BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_73F[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -1636,11 +1636,11 @@ public:
 struct FNiagaraOutlinerSystemData
 {
 public:
-	TArray<struct FNiagaraOutlinerSystemInstanceData> SystemInstances;                                   // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraOutlinerTimingData            AveragePerFrameTime;                               // 0x10(0x8)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraOutlinerTimingData            MaxPerFrameTime;                                   // 0x18(0x8)(Edit, BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraOutlinerTimingData            AveragePerInstanceTime;                            // 0x20(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraOutlinerTimingData            MaxPerInstanceTime;                                // 0x28(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraOutlinerSystemInstanceData> SystemInstances;                                   // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraOutlinerTimingData            AveragePerFrameTime;                               // 0x10(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraOutlinerTimingData            MaxPerFrameTime;                                   // 0x18(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraOutlinerTimingData            AveragePerInstanceTime;                            // 0x20(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraOutlinerTimingData            MaxPerInstanceTime;                                // 0x28(0x8)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x68 (0x68 - 0x0)
@@ -1648,14 +1648,14 @@ public:
 struct FNiagaraOutlinerWorldData
 {
 public:
-	TMap<class FString, struct FNiagaraOutlinerSystemData> Systems;                                           // 0x0(0x50)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bHasBegunPlay;                                     // 0x50(0x1)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        WorldType;                                         // 0x51(0x1)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        NetMode;                                           // 0x52(0x1)(ConstParm, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_79A[0x1];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FNiagaraOutlinerTimingData            AveragePerFrameTime;                               // 0x54(0x8)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraOutlinerTimingData            MaxPerFrameTime;                                   // 0x5C(0x8)(Edit, BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_79B[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	TMap<class FString, struct FNiagaraOutlinerSystemData> Systems;                                           // 0x0(0x50)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bHasBegunPlay;                                     // 0x50(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        WorldType;                                         // 0x51(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        NetMode;                                           // 0x52(0x1)(BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_747[0x1];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FNiagaraOutlinerTimingData            AveragePerFrameTime;                               // 0x54(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraOutlinerTimingData            MaxPerFrameTime;                                   // 0x5C(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_748[0x4];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x50 (0x50 - 0x0)
@@ -1663,7 +1663,7 @@ public:
 struct FNiagaraOutlinerData
 {
 public:
-	TMap<class FString, struct FNiagaraOutlinerWorldData> WorldData;                                         // 0x0(0x50)(Edit, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TMap<class FString, struct FNiagaraOutlinerWorldData> WorldData;                                         // 0x0(0x50)(Edit, ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -1671,8 +1671,8 @@ public:
 struct FNiagaraDebuggerRequestConnection
 {
 public:
-	struct FGuid                                 SessionId;                                         // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGuid                                 InstanceId;                                        // 0x10(0x10)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FGuid                                 SessionId;                                         // 0x0(0x10)(Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 InstanceId;                                        // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -1680,8 +1680,8 @@ public:
 struct FNiagaraDebuggerAcceptConnection
 {
 public:
-	struct FGuid                                 SessionId;                                         // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGuid                                 InstanceId;                                        // 0x10(0x10)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FGuid                                 SessionId;                                         // 0x0(0x10)(Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 InstanceId;                                        // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -1689,8 +1689,8 @@ public:
 struct FNiagaraDebuggerConnectionClosed
 {
 public:
-	struct FGuid                                 SessionId;                                         // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGuid                                 InstanceId;                                        // 0x10(0x10)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FGuid                                 SessionId;                                         // 0x0(0x10)(Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 InstanceId;                                        // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1698,9 +1698,9 @@ public:
 struct FNiagaraDebuggerExecuteConsoleCommand
 {
 public:
-	class FString                                Command;                                           // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bRequiresWorld;                                    // 0x10(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7A2[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class FString                                Command;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bRequiresWorld;                                    // 0x10(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_74A[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x50 (0x50 - 0x0)
@@ -1708,7 +1708,7 @@ public:
 struct FNiagaraDebuggerOutlinerUpdate
 {
 public:
-	struct FNiagaraOutlinerData                  OutlinerData;                                      // 0x0(0x50)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraOutlinerData                  OutlinerData;                                      // 0x0(0x50)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1717,10 +1717,10 @@ struct FNiagaraDebugHudTextOptions
 {
 public:
 	enum class ENiagaraDebugHudFont              Font;                                              // 0x0(0x4)(Edit, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	enum class ENiagaraDebugHudHAlign            HorizontalAlignment;                               // 0x4(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraDebugHudVAlign            VerticalAlignment;                                 // 0x5(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7A4[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector2D                             ScreenOffset;                                      // 0x8(0x10)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraDebugHudHAlign            HorizontalAlignment;                               // 0x4(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraDebugHudVAlign            VerticalAlignment;                                 // 0x5(0x1)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_74E[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector2D                             ScreenOffset;                                      // 0x8(0x10)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1728,8 +1728,8 @@ public:
 struct FNiagaraDebugHUDVariable
 {
 public:
-	bool                                         bEnabled;                                          // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, Transient, EditConst, GlobalConfig)
-	uint8                                        Pad_7A5[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	bool                                         bEnabled;                                          // 0x0(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_751[0x7];                                      // Fixing Size After Last Property  > TateDumper <
 	class FString                                Name;                                              // 0x8(0x10)(ConstParm, Net, OutParm)
 };
 
@@ -1738,89 +1738,89 @@ public:
 struct FNiagaraDebugHUDSettingsData
 {
 public:
-	bool                                         bHudEnabled;                                       // 0x0(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bHudRenderingEnabled;                              // 0x1(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bValidateSystemSimulationDataBuffers;              // 0x2(0x1)(ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bValidateParticleDataBuffers;                      // 0x3(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bOverviewEnabled;                                  // 0x4(0x1)(BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7A7[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	enum class ENiagaraDebugHUDOverviewMode      OverviewMode;                                      // 0x8(0x4)(Edit, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraDebugHudFont              OverviewFont;                                      // 0xC(0x4)(ConstParm, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector2D                             OverviewLocation;                                  // 0x10(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bShowRegisteredComponents;                         // 0x20(0x1)(Edit, ConstParm, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bOverviewShowFilteredSystemOnly;                   // 0x21(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7AA[0x6];                                      // Fixing Size After Last Property  > TateDumper <
-	class FString                                ActorFilter;                                       // 0x28(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bComponentFilterEnabled;                           // 0x38(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7AB[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class FString                                ComponentFilter;                                   // 0x40(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bSystemFilterEnabled;                              // 0x50(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7AC[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class FString                                SystemFilter;                                      // 0x58(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bEmitterFilterEnabled;                             // 0x68(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7DC[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class FString                                EmitterFilter;                                     // 0x70(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bActorFilterEnabled;                               // 0x80(0x1)(BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7DD[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	enum class ENiagaraDebugHudVerbosity         SystemDebugVerbosity;                              // 0x84(0x4)(Edit, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraDebugHudVerbosity         SystemEmitterVerbosity;                            // 0x88(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraDebugHudVerbosity         DataInterfaceVerbosity;                            // 0x8C(0x4)(Edit, ExportObject, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bSystemShowBounds;                                 // 0x90(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7DE[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        SystemBoundsSolidBoxAlpha;                         // 0x94(0x4)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bSystemShowActiveOnlyInWorld;                      // 0x98(0x1)(ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bShowSystemVariables;                              // 0x99(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7DF[0x6];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FNiagaraDebugHUDVariable>      SystemVariables;                                   // 0xA0(0x10)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraDebugHudTextOptions           SystemTextOptions;                                 // 0xB0(0x18)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bShowParticleVariables;                            // 0xC8(0x1)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bEnableGpuParticleReadback;                        // 0xC9(0x1)(ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bShowParticleIndex;                                // 0xCA(0x1)(Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7E0[0x5];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FNiagaraDebugHUDVariable>      ParticlesVariables;                                // 0xD0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraDebugHudTextOptions           ParticleTextOptions;                               // 0xE0(0x18)(Edit, ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bShowParticlesVariablesWithSystem;                 // 0xF8(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bShowParticleVariablesVertical;                    // 0xF9(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseMaxParticlesToDisplay;                         // 0xFA(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseParticleDisplayClip;                           // 0xFB(0x1)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7E4[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector2D                             ParticleDisplayClip;                               // 0x100(0x10)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseParticleDisplayCenterRadius;                   // 0x110(0x1)(ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7E8[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        ParticleDisplayCenterRadius;                       // 0x114(0x4)(Edit, ConstParm, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        MaxParticlesToDisplay;                             // 0x118(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        PerfReportFrames;                                  // 0x11C(0x4)(ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraDebugHUDPerfSampleMode    PerfSampleMode;                                    // 0x120(0x4)(ConstParm, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraDebugHUDPerfGraphMode     PerfGraphMode;                                     // 0x124(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        PerfHistoryFrames;                                 // 0x128(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        PerfGraphTimeRange;                                // 0x12C(0x4)(ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector2D                             PerfGraphSize;                                     // 0x130(0x10)(ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          PerfGraphAxisColor;                                // 0x140(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bEnableSmoothing;                                  // 0x150(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7EE[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        SmoothingWidth;                                    // 0x154(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          DefaultBackgroundColor;                            // 0x158(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          OverviewHeadingColor;                              // 0x168(0x10)(BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          OverviewDetailColor;                               // 0x178(0x10)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          OverviewDetailHighlightColor;                      // 0x188(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          InWorldErrorTextColor;                             // 0x198(0x10)(ConstParm, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          InWorldTextColor;                                  // 0x1A8(0x10)(Edit, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          MessageInfoTextColor;                              // 0x1B8(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          MessageWarningTextColor;                           // 0x1C8(0x10)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          MessageErrorTextColor;                             // 0x1D8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        SystemColorTableOpacity;                           // 0x1E8(0x4)(BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint32                                       SystemColorSeed;                                   // 0x1EC(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector                               SystemColorHSVMin;                                 // 0x1F0(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector                               SystemColorHSVMax;                                 // 0x208(0x18)(Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraDebugPlaybackMode         PlaybackMode;                                      // 0x220(0x1)(BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bPlaybackRateEnabled;                              // 0x221(0x1)(Edit, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7F6[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        PlaybackRate;                                      // 0x224(0x4)(ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bLoopTimeEnabled;                                  // 0x228(0x1)(Edit, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7FA[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        LoopTime;                                          // 0x22C(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bShowGlobalBudgetInfo;                             // 0x230(0x1)(ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7FC[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bHudEnabled;                                       // 0x0(0x1)(ExportObject, Net, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bHudRenderingEnabled;                              // 0x1(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bValidateSystemSimulationDataBuffers;              // 0x2(0x1)(ConstParm, ExportObject, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bValidateParticleDataBuffers;                      // 0x3(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bOverviewEnabled;                                  // 0x4(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_757[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	enum class ENiagaraDebugHUDOverviewMode      OverviewMode;                                      // 0x8(0x4)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraDebugHudFont              OverviewFont;                                      // 0xC(0x4)(BlueprintVisible, Net, EditFixedSize, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector2D                             OverviewLocation;                                  // 0x10(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bShowRegisteredComponents;                         // 0x20(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bOverviewShowFilteredSystemOnly;                   // 0x21(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_75B[0x6];                                      // Fixing Size After Last Property  > TateDumper <
+	class FString                                ActorFilter;                                       // 0x28(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bComponentFilterEnabled;                           // 0x38(0x1)(ExportObject, Net, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_75C[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class FString                                ComponentFilter;                                   // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bSystemFilterEnabled;                              // 0x50(0x1)(BlueprintVisible, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_75D[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class FString                                SystemFilter;                                      // 0x58(0x10)(Edit, BlueprintVisible, ExportObject, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEmitterFilterEnabled;                             // 0x68(0x1)(Edit, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_75E[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class FString                                EmitterFilter;                                     // 0x70(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bActorFilterEnabled;                               // 0x80(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_75F[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	enum class ENiagaraDebugHudVerbosity         SystemDebugVerbosity;                              // 0x84(0x4)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraDebugHudVerbosity         SystemEmitterVerbosity;                            // 0x88(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraDebugHudVerbosity         DataInterfaceVerbosity;                            // 0x8C(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bSystemShowBounds;                                 // 0x90(0x1)(Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_760[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        SystemBoundsSolidBoxAlpha;                         // 0x94(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bSystemShowActiveOnlyInWorld;                      // 0x98(0x1)(BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bShowSystemVariables;                              // 0x99(0x1)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_761[0x6];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FNiagaraDebugHUDVariable>      SystemVariables;                                   // 0xA0(0x10)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraDebugHudTextOptions           SystemTextOptions;                                 // 0xB0(0x18)(ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bShowParticleVariables;                            // 0xC8(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnableGpuParticleReadback;                        // 0xC9(0x1)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bShowParticleIndex;                                // 0xCA(0x1)(ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_763[0x5];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FNiagaraDebugHUDVariable>      ParticlesVariables;                                // 0xD0(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraDebugHudTextOptions           ParticleTextOptions;                               // 0xE0(0x18)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bShowParticlesVariablesWithSystem;                 // 0xF8(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bShowParticleVariablesVertical;                    // 0xF9(0x1)(Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseMaxParticlesToDisplay;                         // 0xFA(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseParticleDisplayClip;                           // 0xFB(0x1)(BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_765[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector2D                             ParticleDisplayClip;                               // 0x100(0x10)(Edit, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseParticleDisplayCenterRadius;                   // 0x110(0x1)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_766[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        ParticleDisplayCenterRadius;                       // 0x114(0x4)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        MaxParticlesToDisplay;                             // 0x118(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        PerfReportFrames;                                  // 0x11C(0x4)(BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraDebugHUDPerfSampleMode    PerfSampleMode;                                    // 0x120(0x4)(ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraDebugHUDPerfGraphMode     PerfGraphMode;                                     // 0x124(0x4)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        PerfHistoryFrames;                                 // 0x128(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        PerfGraphTimeRange;                                // 0x12C(0x4)(BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector2D                             PerfGraphSize;                                     // 0x130(0x10)(BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          PerfGraphAxisColor;                                // 0x140(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnableSmoothing;                                  // 0x150(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_76F[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        SmoothingWidth;                                    // 0x154(0x4)(Edit, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          DefaultBackgroundColor;                            // 0x158(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          OverviewHeadingColor;                              // 0x168(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          OverviewDetailColor;                               // 0x178(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          OverviewDetailHighlightColor;                      // 0x188(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InWorldErrorTextColor;                             // 0x198(0x10)(BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InWorldTextColor;                                  // 0x1A8(0x10)(Edit, ConstParm, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          MessageInfoTextColor;                              // 0x1B8(0x10)(ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          MessageWarningTextColor;                           // 0x1C8(0x10)(Edit, ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          MessageErrorTextColor;                             // 0x1D8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        SystemColorTableOpacity;                           // 0x1E8(0x4)(ConstParm, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       SystemColorSeed;                                   // 0x1EC(0x4)(Edit, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector                               SystemColorHSVMin;                                 // 0x1F0(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector                               SystemColorHSVMax;                                 // 0x208(0x18)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraDebugPlaybackMode         PlaybackMode;                                      // 0x220(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bPlaybackRateEnabled;                              // 0x221(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_777[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        PlaybackRate;                                      // 0x224(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bLoopTimeEnabled;                                  // 0x228(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_77B[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        LoopTime;                                          // 0x22C(0x4)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bShowGlobalBudgetInfo;                             // 0x230(0x1)(ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_77C[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1828,7 +1828,7 @@ public:
 struct FNiagaraRequestSimpleClientInfoMessage
 {
 public:
-	uint8                                        Pad_7FE[0x1];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_77D[0x1];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1836,12 +1836,12 @@ public:
 struct FNiagaraOutlinerCaptureSettings
 {
 public:
-	bool                                         bTriggerCapture;                                   // 0x0(0x1)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_801[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	uint32                                       CaptureDelayFrames;                                // 0x4(0x4)(ConstParm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bGatherPerfData;                                   // 0x8(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_802[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	uint32                                       SimCacheCaptureFrames;                             // 0xC(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bTriggerCapture;                                   // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_77F[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	uint32                                       CaptureDelayFrames;                                // 0x4(0x4)(BlueprintVisible, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bGatherPerfData;                                   // 0x8(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_781[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	uint32                                       SimCacheCaptureFrames;                             // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -1849,10 +1849,10 @@ public:
 struct FNiagaraSimpleClientInfo
 {
 public:
-	TArray<class FString>                        Systems;                                           // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class FString>                        Actors;                                            // 0x10(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FString>                        Systems;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FString>                        Actors;                                            // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	TArray<class FString>                        Components;                                        // 0x20(0x10)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor)
-	TArray<class FString>                        Emitters;                                          // 0x30(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FString>                        Emitters;                                          // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1860,9 +1860,9 @@ public:
 struct FNiagaraSystemSimCacheCaptureRequest
 {
 public:
-	class FName                                  ComponentName;                                     // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint32                                       CaptureDelayFrames;                                // 0x8(0x4)(ConstParm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint32                                       CaptureFrames;                                     // 0xC(0x4)(Edit, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  ComponentName;                                     // 0x0(0x8)(Edit, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       CaptureDelayFrames;                                // 0x8(0x4)(BlueprintVisible, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       CaptureFrames;                                     // 0xC(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1870,8 +1870,8 @@ public:
 struct FNiagaraSystemSimCacheCaptureReply
 {
 public:
-	class FName                                  ComponentName;                                     // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<uint8>                                SimCacheData;                                      // 0x8(0x10)(Edit, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  ComponentName;                                     // 0x0(0x8)(Edit, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint8>                                SimCacheData;                                      // 0x8(0x10)(Edit, ConstParm, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1880,9 +1880,9 @@ struct FNiagaraGraphViewSettings
 {
 public:
 	struct FVector2D                             Location;                                          // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	float                                        Zoom;                                              // 0x10(0x4)(ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bIsValid;                                          // 0x14(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_808[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        Zoom;                                              // 0x10(0x4)(ConstParm, ExportObject, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bIsValid;                                          // 0x14(0x1)(ExportObject, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+	uint8                                        Pad_78C[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1890,10 +1890,10 @@ public:
 struct FNiagaraLinearRamp
 {
 public:
-	float                                        StartX;                                            // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        StartY;                                            // 0x4(0x4)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        EndX;                                              // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        EndY;                                              // 0xC(0x4)(Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        StartX;                                            // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        StartY;                                            // 0x4(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        EndX;                                              // 0x8(0x4)(BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        EndY;                                              // 0xC(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -1901,16 +1901,16 @@ public:
 struct FNiagaraGlobalBudgetScaling
 {
 public:
-	uint8                                        bCullByGlobalBudget : 1;                           // Mask: 0x1, PropSize: 0x10x0(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bScaleMaxDistanceByGlobalBudgetUse : 1;            // Mask: 0x2, PropSize: 0x10x0(0x1)(BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bScaleMaxInstanceCountByGlobalBudgetUse : 1;       // Mask: 0x4, PropSize: 0x10x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bScaleSystemInstanceCountByGlobalBudgetUse : 1;    // Mask: 0x8, PropSize: 0x10x0(0x1)(Edit, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        BitPad_89 : 4;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_80C[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        MaxGlobalBudgetUsage;                              // 0x4(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraLinearRamp                    MaxDistanceScaleByGlobalBudgetUse;                 // 0x8(0x10)(BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraLinearRamp                    MaxInstanceCountScaleByGlobalBudgetUse;            // 0x18(0x10)(BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraLinearRamp                    MaxSystemInstanceCountScaleByGlobalBudgetUse;      // 0x28(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bCullByGlobalBudget : 1;                           // Mask: 0x1, PropSize: 0x10x0(0x1)(Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bScaleMaxDistanceByGlobalBudgetUse : 1;            // Mask: 0x2, PropSize: 0x10x0(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bScaleMaxInstanceCountByGlobalBudgetUse : 1;       // Mask: 0x4, PropSize: 0x10x0(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bScaleSystemInstanceCountByGlobalBudgetUse : 1;    // Mask: 0x8, PropSize: 0x10x0(0x1)(Edit, ConstParm, EditFixedSize, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_5F : 4;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_78F[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        MaxGlobalBudgetUsage;                              // 0x4(0x4)(ExportObject, BlueprintReadOnly, Net, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraLinearRamp                    MaxDistanceScaleByGlobalBudgetUse;                 // 0x8(0x10)(ConstParm, BlueprintVisible, Net, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraLinearRamp                    MaxInstanceCountScaleByGlobalBudgetUse;            // 0x18(0x10)(ConstParm, BlueprintReadOnly, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraLinearRamp                    MaxSystemInstanceCountScaleByGlobalBudgetUse;      // 0x28(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -1918,13 +1918,13 @@ public:
 struct FNiagaraSystemVisibilityCullingSettings
 {
 public:
-	uint8                                        bCullWhenNotRendered : 1;                          // Mask: 0x1, PropSize: 0x10x0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bCullByViewFrustum : 1;                            // Mask: 0x2, PropSize: 0x10x0(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bAllowPreCullingByViewFrustum : 1;                 // Mask: 0x4, PropSize: 0x10x0(0x1)(ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        BitPad_8A : 5;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_810[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        MaxTimeOutsideViewFrustum;                         // 0x4(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        MaxTimeWithoutRender;                              // 0x8(0x4)(Edit, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bCullWhenNotRendered : 1;                          // Mask: 0x1, PropSize: 0x10x0(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bCullByViewFrustum : 1;                            // Mask: 0x2, PropSize: 0x10x0(0x1)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bAllowPreCullingByViewFrustum : 1;                 // Mask: 0x4, PropSize: 0x10x0(0x1)(BlueprintVisible, Net, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_60 : 5;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_794[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        MaxTimeOutsideViewFrustum;                         // 0x4(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        MaxTimeWithoutRender;                              // 0x8(0x4)(Edit, ConstParm, ExportObject, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1932,9 +1932,9 @@ public:
 struct FNiagaraDeviceProfileStateEntry
 {
 public:
-	class FName                                  ProfileName;                                       // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint32                                       QualityLevelMask;                                  // 0x8(0x4)(ConstParm, ExportObject, Net, EditFixedSize, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-	uint32                                       SetQualityLevelMask;                               // 0xC(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	class FName                                  ProfileName;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint32                                       QualityLevelMask;                                  // 0x8(0x4)(Edit, BlueprintVisible, ExportObject, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	uint32                                       SetQualityLevelMask;                               // 0xC(0x4)(Net, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -1942,20 +1942,20 @@ public:
 struct FNiagaraPlatformSetCVarCondition
 {
 public:
-	class FName                                  CVarName;                                          // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class ENiagaraCVarConditionResponse     PassResponse;                                      // 0x8(0x1)(ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraCVarConditionResponse     FailResponse;                                      // 0x9(0x1)(Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  CVarName;                                          // 0x0(0x8)(BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class ENiagaraCVarConditionResponse     PassResponse;                                      // 0x8(0x1)(BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraCVarConditionResponse     FailResponse;                                      // 0x9(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	bool                                         Value;                                             // 0xA(0x1)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-	uint8                                        Pad_814[0x1];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        MinInt;                                            // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        MaxInt;                                            // 0x10(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        MinFloat;                                          // 0x14(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        MaxFloat;                                          // 0x18(0x4)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bUseMinInt : 1;                                    // Mask: 0x1, PropSize: 0x10x1C(0x1)(Edit, ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bUseMaxInt : 1;                                    // Mask: 0x2, PropSize: 0x10x1C(0x1)(Edit, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bUseMinFloat : 1;                                  // Mask: 0x4, PropSize: 0x10x1C(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bUseMaxFloat : 1;                                  // Mask: 0x8, PropSize: 0x10x1C(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_817[0x13];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_799[0x1];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        MinInt;                                            // 0xC(0x4)(Edit, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        MaxInt;                                            // 0x10(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        MinFloat;                                          // 0x14(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        MaxFloat;                                          // 0x18(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bUseMinInt : 1;                                    // Mask: 0x1, PropSize: 0x10x1C(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bUseMaxInt : 1;                                    // Mask: 0x2, PropSize: 0x10x1C(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bUseMinFloat : 1;                                  // Mask: 0x4, PropSize: 0x10x1C(0x1)(EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bUseMaxFloat : 1;                                  // Mask: 0x8, PropSize: 0x10x1C(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7A1[0x13];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -1963,11 +1963,11 @@ public:
 struct FNiagaraPlatformSet
 {
 public:
-	int32                                        QualityLevelMask;                                  // 0x0(0x4)(ConstParm, ExportObject, Net, EditFixedSize, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_818[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FNiagaraDeviceProfileStateEntry> DeviceProfileStates;                               // 0x8(0x10)(Edit, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraPlatformSetCVarCondition> CVarConditions;                                    // 0x18(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_819[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	int32                                        QualityLevelMask;                                  // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	uint8                                        Pad_7A2[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FNiagaraDeviceProfileStateEntry> DeviceProfileStates;                               // 0x8(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraPlatformSetCVarCondition> CVarConditions;                                    // 0x18(0x10)(Edit, BlueprintReadOnly, Net, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7A3[0x8];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x98 (0x98 - 0x0)
@@ -1975,24 +1975,24 @@ public:
 struct FNiagaraSystemScalabilitySettings
 {
 public:
-	struct FNiagaraPlatformSet                   Platforms;                                         // 0x0(0x30)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bCullByDistance : 1;                               // Mask: 0x1, PropSize: 0x10x30(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bCullMaxInstanceCount : 1;                         // Mask: 0x2, PropSize: 0x10x30(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bCullPerSystemMaxInstanceCount : 1;                // Mask: 0x4, PropSize: 0x10x30(0x1)(ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        BitPad_8B : 5;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_81E[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FNiagaraPlatformSet                   Platforms;                                         // 0x0(0x30)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bCullByDistance : 1;                               // Mask: 0x1, PropSize: 0x10x30(0x1)(ExportObject, Net, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bCullMaxInstanceCount : 1;                         // Mask: 0x2, PropSize: 0x10x30(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bCullPerSystemMaxInstanceCount : 1;                // Mask: 0x4, PropSize: 0x10x30(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_61 : 5;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_7A7[0x3];                                      // Fixing Size After Last Property  > TateDumper <
 	float                                        MaxDistance;                                       // 0x34(0x4)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance)
-	uint8                                        bCullByMaxTimeWithoutRender : 1;                   // Mask: 0x1, PropSize: 0x10x38(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        BitPad_8C : 7;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_81F[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        MaxInstances;                                      // 0x3C(0x4)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        MaxSystemInstances;                                // 0x40(0x4)(ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        MaxTimeWithoutRender;                              // 0x44(0x4)(Edit, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraCullProxyMode             CullProxyMode;                                     // 0x48(0x4)(ConstParm, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        MaxSystemProxies;                                  // 0x4C(0x4)(Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraSystemVisibilityCullingSettings VisibilityCulling;                                 // 0x50(0xC)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraGlobalBudgetScaling           BudgetScaling;                                     // 0x5C(0x38)(Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_821[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        bCullByMaxTimeWithoutRender : 1;                   // Mask: 0x1, PropSize: 0x10x38(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_62 : 7;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_7A9[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        MaxInstances;                                      // 0x3C(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        MaxSystemInstances;                                // 0x40(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        MaxTimeWithoutRender;                              // 0x44(0x4)(Edit, ConstParm, ExportObject, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraCullProxyMode             CullProxyMode;                                     // 0x48(0x4)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        MaxSystemProxies;                                  // 0x4C(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraSystemVisibilityCullingSettings VisibilityCulling;                                 // 0x50(0xC)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraGlobalBudgetScaling           BudgetScaling;                                     // 0x5C(0x38)(Edit, ExportObject, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7AC[0x4];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2000,7 +2000,7 @@ public:
 struct FNiagaraSystemScalabilitySettingsArray
 {
 public:
-	TArray<struct FNiagaraSystemScalabilitySettings> Settings;                                          // 0x0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FNiagaraSystemScalabilitySettings> Settings;                                          // 0x0(0x10)(Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
 };
 
 // 0x8 (0xA0 - 0x98)
@@ -2008,13 +2008,13 @@ public:
 struct FNiagaraSystemScalabilityOverride : public FNiagaraSystemScalabilitySettings
 {
 public:
-	uint8                                        bOverrideDistanceSettings : 1;                     // Mask: 0x1, PropSize: 0x10x98(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bOverrideInstanceCountSettings : 1;                // Mask: 0x2, PropSize: 0x10x98(0x1)(Edit, ConstParm, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bOverridePerSystemInstanceCountSettings : 1;       // Mask: 0x4, PropSize: 0x10x98(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bOverrideVisibilitySettings : 1;                   // Mask: 0x8, PropSize: 0x10x98(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bOverrideGlobalBudgetScalingSettings : 1;          // Mask: 0x10, PropSize: 0x10x98(0x1)(BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bOverrideCullProxySettings : 1;                    // Mask: 0x20, PropSize: 0x10x98(0x1)(ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_838[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        bOverrideDistanceSettings : 1;                     // Mask: 0x1, PropSize: 0x10x98(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bOverrideInstanceCountSettings : 1;                // Mask: 0x2, PropSize: 0x10x98(0x1)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bOverridePerSystemInstanceCountSettings : 1;       // Mask: 0x4, PropSize: 0x10x98(0x1)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bOverrideVisibilitySettings : 1;                   // Mask: 0x8, PropSize: 0x10x98(0x1)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bOverrideGlobalBudgetScalingSettings : 1;          // Mask: 0x10, PropSize: 0x10x98(0x1)(ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bOverrideCullProxySettings : 1;                    // Mask: 0x20, PropSize: 0x10x98(0x1)(BlueprintVisible, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7B0[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x38 (0x38 - 0x0)
@@ -2022,11 +2022,11 @@ public:
 struct FNiagaraEmitterScalabilitySettings
 {
 public:
-	struct FNiagaraPlatformSet                   Platforms;                                         // 0x0(0x30)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bScaleSpawnCount : 1;                              // Mask: 0x1, PropSize: 0x10x30(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        BitPad_8D : 7;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_83A[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        SpawnCountScale;                                   // 0x34(0x4)(Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraPlatformSet                   Platforms;                                         // 0x0(0x30)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bScaleSpawnCount : 1;                              // Mask: 0x1, PropSize: 0x10x30(0x1)(BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_63 : 7;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_7B2[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        SpawnCountScale;                                   // 0x34(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2034,7 +2034,7 @@ public:
 struct FNiagaraEmitterScalabilitySettingsArray
 {
 public:
-	TArray<struct FNiagaraEmitterScalabilitySettings> Settings;                                          // 0x0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FNiagaraEmitterScalabilitySettings> Settings;                                          // 0x0(0x10)(Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x40 - 0x38)
@@ -2042,8 +2042,8 @@ public:
 struct FNiagaraEmitterScalabilityOverride : public FNiagaraEmitterScalabilitySettings
 {
 public:
-	uint8                                        bOverrideSpawnCountScale : 1;                      // Mask: 0x1, PropSize: 0x10x38(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_83D[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        bOverrideSpawnCountScale : 1;                      // Mask: 0x1, PropSize: 0x10x38(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7B5[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2060,8 +2060,8 @@ struct FNiagaraEventReceiverProperties
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	class FName                                  SourceEventGenerator;                              // 0x8(0x8)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  SourceEmitter;                                     // 0x10(0x8)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  SourceEventGenerator;                              // 0x8(0x8)(ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  SourceEmitter;                                     // 0x10(0x8)(ConstParm, BlueprintVisible, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -2069,10 +2069,10 @@ public:
 struct FNiagaraEventGeneratorProperties
 {
 public:
-	int32                                        MaxEventsPerFrame;                                 // 0x0(0x4)(ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        MaxEventsPerFrame;                                 // 0x0(0x4)(BlueprintVisible, Net, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	class FName                                  ID;                                                // 0x4(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	uint8                                        Pad_841[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FNiagaraDataSetCompiledData           DataSetCompiledData;                               // 0x10(0x48)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7BC[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FNiagaraDataSetCompiledData           DataSetCompiledData;                               // 0x10(0x48)(Edit, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -2080,9 +2080,9 @@ public:
 struct FNiagaraEmitterScriptProperties
 {
 public:
-	class UNiagaraScript*                        Script;                                            // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraEventReceiverProperties> EventReceivers;                                    // 0x8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraEventGeneratorProperties> EventGenerators;                                   // 0x18(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UNiagaraScript*                        Script;                                            // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraEventReceiverProperties> EventReceivers;                                    // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraEventGeneratorProperties> EventGenerators;                                   // 0x18(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x30 (0x58 - 0x28)
@@ -2090,17 +2090,17 @@ public:
 struct FNiagaraEventScriptProperties : public FNiagaraEmitterScriptProperties
 {
 public:
-	enum class EScriptExecutionMode              ExecutionMode;                                     // 0x28(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_845[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	uint32                                       SpawnNumber;                                       // 0x2C(0x4)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint32                                       MaxEventsPerFrame;                                 // 0x30(0x4)(ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGuid                                 SourceEmitterID;                                   // 0x34(0x10)(Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  SourceEventName;                                   // 0x44(0x8)(ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bRandomSpawnNumber;                                // 0x4C(0x1)(ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_847[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	uint32                                       MinSpawnNumber;                                    // 0x50(0x4)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         UpdateAttributeInitialValues;                      // 0x54(0x1)(Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_848[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	enum class EScriptExecutionMode              ExecutionMode;                                     // 0x28(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7C6[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	uint32                                       SpawnNumber;                                       // 0x2C(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       MaxEventsPerFrame;                                 // 0x30(0x4)(BlueprintVisible, Net, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 SourceEmitterID;                                   // 0x34(0x10)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  SourceEventName;                                   // 0x44(0x8)(BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bRandomSpawnNumber;                                // 0x4C(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7C8[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	uint32                                       MinSpawnNumber;                                    // 0x50(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         UpdateAttributeInitialValues;                      // 0x54(0x1)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7CA[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x14 (0x14 - 0x0)
@@ -2112,7 +2112,7 @@ public:
 	float                                        Medium;                                            // 0x4(0x4)(BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Config, EditConst)
 	float                                        High;                                              // 0x8(0x4)(BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor)
 	float                                        Epic;                                              // 0xC(0x4)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient)
-	float                                        Cine;                                              // 0x10(0x4)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Cine;                                              // 0x10(0x4)(Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1C (0x1C - 0x0)
@@ -2120,11 +2120,11 @@ public:
 struct FNiagaraAssetVersion
 {
 public:
-	int32                                        MajorVersion;                                      // 0x0(0x4)(Edit, BlueprintVisible, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        MinorVersion;                                      // 0x4(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGuid                                 VersionGuid;                                       // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bIsVisibleInVersionSelector;                       // 0x18(0x1)(ExportObject, Net, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_84D[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	int32                                        MajorVersion;                                      // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        MinorVersion;                                      // 0x4(0x4)(EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 VersionGuid;                                       // 0x8(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bIsVisibleInVersionSelector;                       // 0x18(0x1)(ConstParm, ExportObject, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7CE[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1C (0x28 - 0xC)
@@ -2133,7 +2133,7 @@ struct FNiagaraVariableWithOffset : public FNiagaraVariableBase
 {
 public:
 	int32                                        Offset;                                            // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
-	struct FNiagaraLwcStructConverter            StructConverter;                                   // 0x10(0x18)(Edit, ExportObject, Net, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraLwcStructConverter            StructConverter;                                   // 0x10(0x18)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -2150,14 +2150,14 @@ public:
 struct FNiagaraParameterStore
 {
 public:
-	uint8                                        Pad_850[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_7D5[0x8];                                      // Fixing Size After Last Property  > TateDumper <
 	TWeakObjectPtr<class UObject>                Owner;                                             // 0x8(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor)
-	TArray<struct FNiagaraVariableWithOffset>    SortedParameterOffsets;                            // 0x10(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<uint8>                                ParameterData;                                     // 0x20(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class UNiagaraDataInterface*>         DataInterfaces;                                    // 0x30(0x10)(Edit, BlueprintVisible, ExportObject, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class UObject*>                       UObjects;                                          // 0x40(0x10)(ExportObject, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraPositionSource>        OriginalPositionData;                              // 0x50(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_854[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<struct FNiagaraVariableWithOffset>    SortedParameterOffsets;                            // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint8>                                ParameterData;                                     // 0x20(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class UNiagaraDataInterface*>         DataInterfaces;                                    // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class UObject*>                       UObjects;                                          // 0x40(0x10)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraPositionSource>        OriginalPositionData;                              // 0x50(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7DC[0x28];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x2E8 (0x2E8 - 0x0)
@@ -2166,45 +2166,45 @@ struct FVersionedNiagaraEmitterData
 {
 public:
 	struct FNiagaraAssetVersion                  Version;                                           // 0x0(0x1C)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnInstance)
-	bool                                         bDeprecated;                                       // 0x1C(0x1)(Edit, Net, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_856[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	class FText                                  DeprecationMessage;                                // 0x20(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bLocalSpace;                                       // 0x38(0x1)(BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bDeterminism;                                      // 0x39(0x1)(Edit, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_859[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        RandomSeed;                                        // 0x3C(0x4)(Edit, ConstParm, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bInterpolatedSpawning : 1;                         // Mask: 0x1, PropSize: 0x10x40(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        BitPad_8E : 7;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_85A[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	enum class ENiagaraSimTarget                 SimTarget;                                         // 0x44(0x1)(Edit, ConstParm, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraEmitterCalculateBoundMode CalculateBoundsMode;                               // 0x45(0x1)(BlueprintVisible, ExportObject, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_85C[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FBox                                  FixedBounds;                                       // 0x48(0x38)(Edit, BlueprintVisible, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bRequiresPersistentIDs : 1;                        // Mask: 0x1, PropSize: 0x10x80(0x1)(Edit, ExportObject, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bCombineEventSpawn : 1;                            // Mask: 0x2, PropSize: 0x10x80(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        BitPad_8F : 6;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_860[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FNiagaraEventScriptProperties> EventHandlerScriptProps;                           // 0x88(0x10)(ConstParm, BlueprintVisible, ExportObject, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraPlatformSet                   Platforms;                                         // 0x98(0x30)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraEmitterScalabilityOverrides   ScalabilityOverrides;                              // 0xC8(0x10)(Edit, ConstParm, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bLimitDeltaTime : 1;                               // Mask: 0x1, PropSize: 0x10xD8(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        BitPad_90 : 7;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_867[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        MaxGPUParticlesSpawnPerFrame;                      // 0xDC(0x4)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        MaxDeltaTimePerTick;                               // 0xE0(0x4)(Net, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class EParticleAllocationMode           AllocationMode;                                    // 0xE4(0x1)(ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_869[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        PreAllocationCount;                                // 0xE8(0x4)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_86A[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FNiagaraEmitterScriptProperties       UpdateScriptProps;                                 // 0xF0(0x28)(BlueprintVisible, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraEmitterScriptProperties       SpawnScriptProps;                                  // 0x118(0x28)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraParameterStore                RendererBindings;                                  // 0x140(0x88)(ConstParm, BlueprintReadOnly, Net, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class UNiagaraRendererProperties*>    RendererProperties;                                // 0x1C8(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class UNiagaraSimulationStageBase*>   SimulationStages;                                  // 0x1D8(0x10)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UNiagaraScript*                        GPUComputeScript;                                  // 0x1E8(0x8)(Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class FName>                          SharedEventGeneratorIds;                           // 0x1F0(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraEmitterScalabilitySettings    CurrentScalabilitySettings;                        // 0x200(0x38)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_873[0xB0];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bDeprecated;                                       // 0x1C(0x1)(Edit, ConstParm, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7DD[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	class FText                                  DeprecationMessage;                                // 0x20(0x18)(Edit, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bLocalSpace;                                       // 0x38(0x1)(ConstParm, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bDeterminism;                                      // 0x39(0x1)(Edit, ConstParm, ExportObject, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7E2[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        RandomSeed;                                        // 0x3C(0x4)(Edit, BlueprintVisible, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bInterpolatedSpawning : 1;                         // Mask: 0x1, PropSize: 0x10x40(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_67 : 7;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_7E5[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	enum class ENiagaraSimTarget                 SimTarget;                                         // 0x44(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraEmitterCalculateBoundMode CalculateBoundsMode;                               // 0x45(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7E7[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FBox                                  FixedBounds;                                       // 0x48(0x38)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bRequiresPersistentIDs : 1;                        // Mask: 0x1, PropSize: 0x10x80(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bCombineEventSpawn : 1;                            // Mask: 0x2, PropSize: 0x10x80(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_68 : 6;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_7E9[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FNiagaraEventScriptProperties> EventHandlerScriptProps;                           // 0x88(0x10)(BlueprintReadOnly, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraPlatformSet                   Platforms;                                         // 0x98(0x30)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraEmitterScalabilityOverrides   ScalabilityOverrides;                              // 0xC8(0x10)(Edit, BlueprintVisible, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bLimitDeltaTime : 1;                               // Mask: 0x1, PropSize: 0x10xD8(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_69 : 7;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_7EB[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        MaxGPUParticlesSpawnPerFrame;                      // 0xDC(0x4)(Edit, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        MaxDeltaTimePerTick;                               // 0xE0(0x4)(ConstParm, Net, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EParticleAllocationMode           AllocationMode;                                    // 0xE4(0x1)(ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7EC[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        PreAllocationCount;                                // 0xE8(0x4)(BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7ED[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FNiagaraEmitterScriptProperties       UpdateScriptProps;                                 // 0xF0(0x28)(ConstParm, BlueprintVisible, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraEmitterScriptProperties       SpawnScriptProps;                                  // 0x118(0x28)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraParameterStore                RendererBindings;                                  // 0x140(0x88)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class UNiagaraRendererProperties*>    RendererProperties;                                // 0x1C8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class UNiagaraSimulationStageBase*>   SimulationStages;                                  // 0x1D8(0x10)(BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UNiagaraScript*                        GPUComputeScript;                                  // 0x1E8(0x8)(Edit, ConstParm, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FName>                          SharedEventGeneratorIds;                           // 0x1F0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraEmitterScalabilitySettings    CurrentScalabilitySettings;                        // 0x200(0x38)(ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7F0[0xB0];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2222,13 +2222,13 @@ struct FNiagaraEmitterHandle
 {
 public:
 	struct FGuid                                 ID;                                                // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	class FName                                  IdName;                                            // 0x10(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  IdName;                                            // 0x10(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	bool                                         bIsEnabled;                                        // 0x18(0x1)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, EditConst)
-	uint8                                        Pad_877[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_7F5[0x3];                                      // Fixing Size After Last Property  > TateDumper <
 	class FName                                  Name;                                              // 0x1C(0x8)(ConstParm, Net, OutParm)
-	uint8                                        Pad_879[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UNiagaraEmitter*                       Instance;                                          // 0x28(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVersionedNiagaraEmitter              VersionedInstance;                                 // 0x30(0x18)(BlueprintVisible, ExportObject, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7F6[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class UNiagaraEmitter*                       Instance;                                          // 0x28(0x8)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVersionedNiagaraEmitter              VersionedInstance;                                 // 0x30(0x18)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -2236,11 +2236,11 @@ public:
 struct FNiagaraCollisionEventPayload
 {
 public:
-	struct FVector                               CollisionPos;                                      // 0x0(0x18)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector                               CollisionNormal;                                   // 0x18(0x18)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector                               CollisionVelocity;                                 // 0x30(0x18)(Edit, ConstParm, ExportObject, Net, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        ParticleIndex;                                     // 0x48(0x4)(Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        PhysicalMaterialIndex;                             // 0x4C(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector                               CollisionPos;                                      // 0x0(0x18)(OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector                               CollisionNormal;                                   // 0x18(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector                               CollisionVelocity;                                 // 0x30(0x18)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        ParticleIndex;                                     // 0x48(0x4)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        PhysicalMaterialIndex;                             // 0x4C(0x4)(Edit, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2248,8 +2248,8 @@ public:
 struct FNiagaraMeshMICOverride
 {
 public:
-	class UMaterialInterface*                    OriginalMaterial;                                  // 0x0(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UMaterialInstanceConstant*             ReplacementMaterial;                               // 0x8(0x8)(Edit, BlueprintVisible, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    OriginalMaterial;                                  // 0x0(0x8)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UMaterialInstanceConstant*             ReplacementMaterial;                               // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -2257,8 +2257,8 @@ public:
 struct FNiagaraMeshMaterialOverride
 {
 public:
-	class UMaterialInterface*                    ExplicitMat;                                       // 0x0(0x8)(ConstParm, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraUserParameterBinding          UserParamBinding;                                  // 0x8(0x20)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    ExplicitMat;                                       // 0x0(0x8)(BlueprintVisible, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraUserParameterBinding          UserParamBinding;                                  // 0x8(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x68 (0x68 - 0x0)
@@ -2266,14 +2266,14 @@ public:
 struct FNiagaraMeshRendererMeshProperties
 {
 public:
-	class UStaticMesh*                           Mesh;                                              // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraParameterBinding              MeshParameterBinding;                              // 0x8(0xC)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_87E[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class UStaticMesh*                           Mesh;                                              // 0x0(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraParameterBinding              MeshParameterBinding;                              // 0x8(0xC)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_7FF[0x4];                                      // Fixing Size After Last Property  > TateDumper <
 	struct FVector                               Scale;                                             // 0x18(0x18)(Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
 	struct FRotator                              Rotation;                                          // 0x30(0x18)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	struct FVector                               PivotOffset;                                       // 0x48(0x18)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraMeshPivotOffsetSpace      PivotOffsetSpace;                                  // 0x60(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_87F[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	struct FVector                               PivotOffset;                                       // 0x48(0x18)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraMeshPivotOffsetSpace      PivotOffsetSpace;                                  // 0x60(0x1)(Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_802[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2281,7 +2281,7 @@ public:
 struct FParameterDefinitionsSubscription
 {
 public:
-	uint8                                        Pad_880[0x1];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_806[0x1];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2289,7 +2289,7 @@ public:
 struct FNiagaraParameters
 {
 public:
-	TArray<struct FNiagaraVariable>              Parameters;                                        // 0x0(0x10)(BlueprintVisible, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraVariable>              Parameters;                                        // 0x0(0x10)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -2297,9 +2297,9 @@ public:
 struct FNiagaraBoundParameter
 {
 public:
-	struct FNiagaraVariable                      Parameter;                                         // 0x0(0x20)(BlueprintVisible, ExportObject, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        SrcOffset;                                         // 0x20(0x4)(BlueprintReadOnly, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        DestOffset;                                        // 0x24(0x4)(ConstParm, ExportObject, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariable                      Parameter;                                         // 0x0(0x20)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        SrcOffset;                                         // 0x20(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        DestOffset;                                        // 0x24(0x4)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2307,10 +2307,10 @@ public:
 struct FNiagaraPerfBaselineStats
 {
 public:
-	float                                        PerInstanceAvg_GT;                                 // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        PerInstanceAvg_RT;                                 // 0x4(0x4)(ConstParm, ExportObject, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        PerInstanceMax_GT;                                 // 0x8(0x4)(Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        PerInstanceMax_RT;                                 // 0xC(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        PerInstanceAvg_GT;                                 // 0x0(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        PerInstanceAvg_RT;                                 // 0x4(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        PerInstanceMax_GT;                                 // 0x8(0x4)(ConstParm, Net, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        PerInstanceMax_RT;                                 // 0xC(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -2318,8 +2318,8 @@ public:
 struct FNiagaraPlatformSetConflictEntry
 {
 public:
-	class FName                                  ProfileName;                                       // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	int32                                        QualityLevelMask;                                  // 0x8(0x4)(ConstParm, ExportObject, Net, EditFixedSize, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	class FName                                  ProfileName;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        QualityLevelMask;                                  // 0x8(0x4)(Edit, BlueprintVisible, ExportObject, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2327,9 +2327,9 @@ public:
 struct FNiagaraPlatformSetConflictInfo
 {
 public:
-	int32                                        SetAIndex;                                         // 0x0(0x4)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        SetBIndex;                                         // 0x4(0x4)(BlueprintVisible, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraPlatformSetConflictEntry> Conflicts;                                         // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        SetAIndex;                                         // 0x0(0x4)(BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        SetBIndex;                                         // 0x4(0x4)(ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraPlatformSetConflictEntry> Conflicts;                                         // 0x8(0x10)(Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x80 (0x80 - 0x0)
@@ -2337,13 +2337,13 @@ public:
 struct FNiagaraPlatformSetRedirect
 {
 public:
-	TArray<class FName>                          ProfileNames;                                      // 0x0(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraDeviceProfileRedirectMode Mode;                                              // 0x10(0x1)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_888[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	class FName                                  RedirectProfileName;                               // 0x14(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_889[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FNiagaraPlatformSetCVarCondition      CVarConditionEnabled;                              // 0x20(0x30)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraPlatformSetCVarCondition      CVarConditionDisabled;                             // 0x50(0x30)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FName>                          ProfileNames;                                      // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraDeviceProfileRedirectMode Mode;                                              // 0x10(0x1)(EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	uint8                                        Pad_80B[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	class FName                                  RedirectProfileName;                               // 0x14(0x8)(Edit, ExportObject, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_80F[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FNiagaraPlatformSetCVarCondition      CVarConditionEnabled;                              // 0x20(0x30)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraPlatformSetCVarCondition      CVarConditionDisabled;                             // 0x50(0x30)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -2351,7 +2351,7 @@ public:
 struct FNiagaraRendererMaterialScalarParameter
 {
 public:
-	class FName                                  MaterialParameterName;                             // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  MaterialParameterName;                             // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	float                                        Value;                                             // 0x8(0x4)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 };
 
@@ -2360,7 +2360,7 @@ public:
 struct FNiagaraRendererMaterialVectorParameter
 {
 public:
-	class FName                                  MaterialParameterName;                             // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  MaterialParameterName;                             // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	struct FLinearColor                          Value;                                             // 0x8(0x10)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
 };
 
@@ -2369,7 +2369,7 @@ public:
 struct FNiagaraRendererMaterialTextureParameter
 {
 public:
-	class FName                                  MaterialParameterName;                             // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  MaterialParameterName;                             // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	class UTexture*                              Texture;                                           // 0x8(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
 };
 
@@ -2378,8 +2378,8 @@ public:
 struct FNiagaraRendererMaterialStaticBoolParameter
 {
 public:
-	class FName                                  MaterialParameterName;                             // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  StaticVariableName;                                // 0x8(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  MaterialParameterName;                             // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  StaticVariableName;                                // 0x8(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -2387,11 +2387,11 @@ public:
 struct FNiagaraRendererMaterialParameters
 {
 public:
-	TArray<struct FNiagaraMaterialAttributeBinding> AttributeBindings;                                 // 0x0(0x10)(ConstParm, ExportObject, Net, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraRendererMaterialScalarParameter> ScalarParameters;                                  // 0x10(0x10)(Edit, Net, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraRendererMaterialVectorParameter> VectorParameters;                                  // 0x20(0x10)(ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraRendererMaterialTextureParameter> TextureParameters;                                 // 0x30(0x10)(ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraRendererMaterialStaticBoolParameter> StaticBoolParameters;                              // 0x40(0x10)(Edit, ConstParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraMaterialAttributeBinding> AttributeBindings;                                 // 0x0(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraRendererMaterialScalarParameter> ScalarParameters;                                  // 0x10(0x10)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraRendererMaterialVectorParameter> VectorParameters;                                  // 0x20(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraRendererMaterialTextureParameter> TextureParameters;                                 // 0x30(0x10)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraRendererMaterialStaticBoolParameter> StaticBoolParameters;                              // 0x40(0x10)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -2401,7 +2401,7 @@ struct FNiagaraRibbonShapeCustomVertex
 public:
 	struct FVector2f                             Position;                                          // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
 	struct FVector2f                             Normal;                                            // 0x8(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-	float                                        TextureV;                                          // 0x10(0x4)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        TextureV;                                          // 0x10(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -2409,15 +2409,15 @@ public:
 struct FNiagaraRibbonUVSettings
 {
 public:
-	enum class ENiagaraRibbonUVDistributionMode  DistributionMode;                                  // 0x0(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraRibbonUVEdgeMode          LeadingEdgeMode;                                   // 0x4(0x4)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraRibbonUVEdgeMode          TrailingEdgeMode;                                  // 0x8(0x4)(Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        TilingLength;                                      // 0xC(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraRibbonUVDistributionMode  DistributionMode;                                  // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraRibbonUVEdgeMode          LeadingEdgeMode;                                   // 0x4(0x4)(Edit, ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraRibbonUVEdgeMode          TrailingEdgeMode;                                  // 0x8(0x4)(ConstParm, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        TilingLength;                                      // 0xC(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	struct FVector2D                             Offset;                                            // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
 	struct FVector2D                             Scale;                                             // 0x20(0x10)(Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
-	bool                                         bEnablePerParticleUOverride;                       // 0x30(0x1)(ConstParm, ExportObject, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bEnablePerParticleVRangeOverride;                  // 0x31(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_88F[0x6];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bEnablePerParticleUOverride;                       // 0x30(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnablePerParticleVRangeOverride;                  // 0x31(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_83B[0x6];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xE0 (0xE0 - 0x0)
@@ -2425,9 +2425,9 @@ public:
 struct FNiagaraScalabilityManager
 {
 public:
-	class UNiagaraEffectType*                    EffectType;                                        // 0x0(0x8)(BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference)
-	TArray<class UNiagaraComponent*>             ManagedComponents;                                 // 0x8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_892[0xC8];                                     // Fixing Size Of Struct > TateDumper <
+	class UNiagaraEffectType*                    EffectType;                                        // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
+	TArray<class UNiagaraComponent*>             ManagedComponents;                                 // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_83E[0xC8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x68 (0x68 - 0x0)
@@ -2437,13 +2437,13 @@ struct FNiagaraModuleDependency
 public:
 	class FName                                  ID;                                                // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
 	enum class ENiagaraModuleDependencyType      Type;                                              // 0x8(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	enum class ENiagaraModuleDependencyScriptConstraint ScriptConstraint;                                  // 0x9(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_895[0x6];                                      // Fixing Size After Last Property  > TateDumper <
-	class FString                                RequiredVersion;                                   // 0x10(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        OnlyEvaluateInScriptUsage;                         // 0x20(0x4)(Edit, BlueprintVisible, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_896[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class FText                                  Description;                                       // 0x28(0x18)(ConstParm, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	uint8                                        Pad_897[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	enum class ENiagaraModuleDependencyScriptConstraint ScriptConstraint;                                  // 0x9(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_840[0x6];                                      // Fixing Size After Last Property  > TateDumper <
+	class FString                                RequiredVersion;                                   // 0x10(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        OnlyEvaluateInScriptUsage;                         // 0x20(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_844[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class FText                                  Description;                                       // 0x28(0x18)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, DuplicateTransient)
+	uint8                                        Pad_845[0x28];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -2460,19 +2460,19 @@ public:
 struct FNiagaraVMExecutableDataId
 {
 public:
-	struct FGuid                                 CompilerVersionID;                                 // 0x0(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraScriptUsage               ScriptUsageType;                                   // 0x10(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_89B[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FGuid                                 ScriptUsageTypeID;                                 // 0x14(0x10)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bUsesRapidIterationParams : 1;                     // Mask: 0x1, PropSize: 0x10x24(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bDisableDebugSwitches : 1;                         // Mask: 0x2, PropSize: 0x10x24(0x1)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bInterpolatedSpawn : 1;                            // Mask: 0x4, PropSize: 0x10x24(0x1)(Edit, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bRequiresPersistentIDs : 1;                        // Mask: 0x8, PropSize: 0x10x24(0x1)(Edit, ExportObject, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        BitPad_92 : 4;                                     // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_89F[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FGuid                                 BaseScriptID;                                      // 0x28(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraCompileHash                   BaseScriptCompileHash;                             // 0x38(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGuid                                 ScriptVersionID;                                   // 0x48(0x10)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 CompilerVersionID;                                 // 0x0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraScriptUsage               ScriptUsageType;                                   // 0x10(0x1)(Edit, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_850[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FGuid                                 ScriptUsageTypeID;                                 // 0x14(0x10)(Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bUsesRapidIterationParams : 1;                     // Mask: 0x1, PropSize: 0x10x24(0x1)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bDisableDebugSwitches : 1;                         // Mask: 0x2, PropSize: 0x10x24(0x1)(Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bInterpolatedSpawn : 1;                            // Mask: 0x4, PropSize: 0x10x24(0x1)(Edit, ConstParm, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bRequiresPersistentIDs : 1;                        // Mask: 0x8, PropSize: 0x10x24(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_6A : 4;                                     // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_853[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FGuid                                 BaseScriptID;                                      // 0x28(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraCompileHash                   BaseScriptCompileHash;                             // 0x38(0x10)(BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 ScriptVersionID;                                   // 0x48(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2480,9 +2480,9 @@ public:
 struct FNiagaraVMExecutableByteCode
 {
 public:
-	TArray<uint8>                                Data;                                              // 0x0(0x10)(ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	int32                                        UncompressedSize;                                  // 0x10(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8A0[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	TArray<uint8>                                Data;                                              // 0x0(0x10)(ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        UncompressedSize;                                  // 0x10(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_85A[0x4];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x190 (0x190 - 0x0)
@@ -2490,30 +2490,30 @@ public:
 struct FNiagaraVMExecutableData
 {
 public:
-	struct FNiagaraVMExecutableByteCode          ByteCode;                                          // 0x0(0x18)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraVMExecutableByteCode          OptimizedByteCode;                                 // 0x18(0x18)(ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8A1[0x38];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        NumTempRegisters;                                  // 0x68(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        NumUserPtrs;                                       // 0x6C(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraCompilerTag>           CompileTags;                                       // 0x70(0x10)(Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<uint8>                                ScriptLiterals;                                    // 0x80(0x10)(Edit, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVMExecutableByteCode          ByteCode;                                          // 0x0(0x18)(BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVMExecutableByteCode          OptimizedByteCode;                                 // 0x18(0x18)(ConstParm, ExportObject, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_85D[0x38];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        NumTempRegisters;                                  // 0x68(0x4)(Edit, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        NumUserPtrs;                                       // 0x6C(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraCompilerTag>           CompileTags;                                       // 0x70(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint8>                                ScriptLiterals;                                    // 0x80(0x10)(Edit, ConstParm, ExportObject, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	TArray<struct FNiagaraVariable>              Attributes;                                        // 0x90(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
-	struct FNiagaraScriptDataUsageInfo           DataUsage;                                         // 0xA0(0x1)(Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8A2[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FNiagaraScriptDataInterfaceCompileInfo> DataInterfaceInfo;                                 // 0xA8(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FVMExternalFunctionBindingInfo> CalledVMExternalFunctions;                         // 0xB8(0x10)(Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8A3[0x10];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FNiagaraDataSetID>             ReadDataSets;                                      // 0xD8(0x10)(BlueprintVisible, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraDataSetProperties>     WriteDataSets;                                     // 0xE8(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraStatScope>             StatScopes;                                        // 0xF8(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraShaderScriptParametersMetadata ShaderScriptParametersMetadata;                    // 0x108(0x58)(ConstParm, BlueprintVisible, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraScriptCompileStatus       LastCompileStatus;                                 // 0x160(0x1)(ConstParm, Net, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8A4[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FNiagaraScriptDataUsageInfo           DataUsage;                                         // 0xA0(0x1)(Edit, BlueprintVisible, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_863[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FNiagaraScriptDataInterfaceCompileInfo> DataInterfaceInfo;                                 // 0xA8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FVMExternalFunctionBindingInfo> CalledVMExternalFunctions;                         // 0xB8(0x10)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_867[0x10];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FNiagaraDataSetID>             ReadDataSets;                                      // 0xD8(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraDataSetProperties>     WriteDataSets;                                     // 0xE8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraStatScope>             StatScopes;                                        // 0xF8(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraShaderScriptParametersMetadata ShaderScriptParametersMetadata;                    // 0x108(0x58)(ExportObject, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraScriptCompileStatus       LastCompileStatus;                                 // 0x160(0x1)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_86F[0x7];                                      // Fixing Size After Last Property  > TateDumper <
 	TArray<struct FSimulationStageMetaData>      SimulationStageMetaData;                           // 0x168(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient)
-	TArray<uint8>                                ExperimentalContextData;                           // 0x178(0x10)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bReadsSignificanceIndex : 1;                       // Mask: 0x1, PropSize: 0x10x188(0x1)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bNeedsGPUContextInit : 1;                          // Mask: 0x2, PropSize: 0x10x188(0x1)(ConstParm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8A5[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	TArray<uint8>                                ExperimentalContextData;                           // 0x178(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bReadsSignificanceIndex : 1;                       // Mask: 0x1, PropSize: 0x10x188(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bNeedsGPUContextInit : 1;                          // Mask: 0x2, PropSize: 0x10x188(0x1)(BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_876[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2521,7 +2521,7 @@ public:
 struct FVersionedNiagaraScriptData
 {
 public:
-	uint8                                        Pad_8A6[0x1];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_878[0x1];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2529,10 +2529,10 @@ public:
 struct FNiagaraScriptExecutionPaddingInfo
 {
 public:
-	uint16                                       SrcOffset;                                         // 0x0(0x2)(BlueprintReadOnly, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint16                                       DestOffset;                                        // 0x2(0x2)(ConstParm, ExportObject, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint16                                       SrcSize;                                           // 0x4(0x2)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint16                                       DestSize;                                          // 0x6(0x2)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       SrcOffset;                                         // 0x0(0x2)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       DestOffset;                                        // 0x2(0x2)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       SrcSize;                                           // 0x4(0x2)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       DestSize;                                          // 0x6(0x2)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0xA8 - 0x88)
@@ -2540,11 +2540,11 @@ public:
 struct FNiagaraScriptExecutionParameterStore : public FNiagaraParameterStore
 {
 public:
-	int32                                        ParameterSize;                                     // 0x88(0x4)(Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint32                                       PaddedParameterSize;                               // 0x8C(0x4)(ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraScriptExecutionPaddingInfo> PaddingInfo;                                       // 0x90(0x10)(Edit, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        bInitialized : 1;                                  // Mask: 0x1, PropSize: 0x10xA0(0x1)(ConstParm, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8A9[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	int32                                        ParameterSize;                                     // 0x88(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       PaddedParameterSize;                               // 0x8C(0x4)(ConstParm, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraScriptExecutionPaddingInfo> PaddingInfo;                                       // 0x90(0x10)(Edit, ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        bInitialized : 1;                                  // Mask: 0x1, PropSize: 0x10xA0(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_882[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x98 - 0x88)
@@ -2552,7 +2552,7 @@ public:
 struct FNiagaraScriptInstanceParameterStore : public FNiagaraParameterStore
 {
 public:
-	uint8                                        Pad_8AA[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_886[0x10];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x28 - 0x0)
@@ -2569,15 +2569,15 @@ public:
 struct FNiagaraSimCacheDataBuffers
 {
 public:
-	uint32                                       NumInstances;                                      // 0x0(0x4)(Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8AD[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<uint8>                                FloatData;                                         // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<uint8>                                HalfData;                                          // 0x18(0x10)(ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<uint8>                                Int32Data;                                         // 0x28(0x10)(ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<int32>                                IDToIndexTable;                                    // 0x38(0x10)(ConstParm, ExportObject, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint32                                       IDAcquireTag;                                      // 0x48(0x4)(Edit, ConstParm, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8AE[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<uint32>                               InterpMapping;                                     // 0x50(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       NumInstances;                                      // 0x0(0x4)(Edit, BlueprintVisible, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_88C[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<uint8>                                FloatData;                                         // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint8>                                HalfData;                                          // 0x18(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint8>                                Int32Data;                                         // 0x28(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<int32>                                IDToIndexTable;                                    // 0x38(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint32                                       IDAcquireTag;                                      // 0x48(0x4)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_891[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<uint32>                               InterpMapping;                                     // 0x50(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xA0 (0xA0 - 0x0)
@@ -2585,10 +2585,10 @@ public:
 struct FNiagaraSimCacheEmitterFrame
 {
 public:
-	struct FBox                                  LocalBounds;                                       // 0x0(0x38)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        TotalSpawnedParticles;                             // 0x38(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8B1[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FNiagaraSimCacheDataBuffers           ParticleDataBuffers;                               // 0x40(0x60)(ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FBox                                  LocalBounds;                                       // 0x0(0x38)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        TotalSpawnedParticles;                             // 0x38(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_892[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FNiagaraSimCacheDataBuffers           ParticleDataBuffers;                               // 0x40(0x60)(BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x98 (0x98 - 0x0)
@@ -2596,8 +2596,8 @@ public:
 struct FNiagaraSimCacheSystemFrame
 {
 public:
-	struct FBox                                  LocalBounds;                                       // 0x0(0x38)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraSimCacheDataBuffers           SystemDataBuffers;                                 // 0x38(0x60)(Edit, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FBox                                  LocalBounds;                                       // 0x0(0x38)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraSimCacheDataBuffers           SystemDataBuffers;                                 // 0x38(0x60)(Edit, ConstParm, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x120 (0x120 - 0x0)
@@ -2605,12 +2605,12 @@ public:
 struct FNiagaraSimCacheFrame
 {
 public:
-	struct FTransform                            LocalToWorld;                                      // 0x0(0x60)(Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector3f                             LWCTile;                                           // 0x60(0xC)(ConstParm, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        SimulationAge;                                     // 0x6C(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraSimCacheSystemFrame           SystemData;                                        // 0x70(0x98)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraSimCacheEmitterFrame>  EmitterData;                                       // 0x108(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8B4[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	struct FTransform                            LocalToWorld;                                      // 0x0(0x60)(ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector3f                             LWCTile;                                           // 0x60(0xC)(BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        SimulationAge;                                     // 0x6C(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraSimCacheSystemFrame           SystemData;                                        // 0x70(0x98)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraSimCacheEmitterFrame>  EmitterData;                                       // 0x108(0x10)(Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_8A1[0x8];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2619,12 +2619,12 @@ struct FNiagaraSimCacheVariable
 {
 public:
 	struct FNiagaraVariableBase                  Variable;                                          // 0x0(0xC)(Edit, BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	uint16                                       FloatOffset;                                       // 0xC(0x2)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint16                                       FloatCount;                                        // 0xE(0x2)(Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint16                                       HalfOffset;                                        // 0x10(0x2)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint16                                       HalfCount;                                         // 0x12(0x2)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint16                                       Int32Offset;                                       // 0x14(0x2)(Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint16                                       Int32Count;                                        // 0x16(0x2)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       FloatOffset;                                       // 0xC(0x2)(ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       FloatCount;                                        // 0xE(0x2)(ConstParm, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       HalfOffset;                                        // 0x10(0x2)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       HalfCount;                                         // 0x12(0x2)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       Int32Offset;                                       // 0x14(0x2)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       Int32Count;                                        // 0x16(0x2)(Edit, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xB8 (0xB8 - 0x0)
@@ -2632,21 +2632,21 @@ public:
 struct FNiagaraSimCacheDataBuffersLayout
 {
 public:
-	class FName                                  LayoutName;                                        // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ENiagaraSimTarget                 SimTarget;                                         // 0x8(0x1)(Edit, ConstParm, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8B7[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class FName                                  LayoutName;                                        // 0x0(0x8)(Edit, BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraSimTarget                 SimTarget;                                         // 0x8(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_8AB[0x7];                                      // Fixing Size After Last Property  > TateDumper <
 	TArray<struct FNiagaraSimCacheVariable>      Variables;                                         // 0x10(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	uint16                                       FloatCount;                                        // 0x20(0x2)(Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint16                                       HalfCount;                                         // 0x22(0x2)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint16                                       Int32Count;                                        // 0x24(0x2)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bLocalSpace;                                       // 0x26(0x1)(BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bAllowInterpolation;                               // 0x27(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bAllowVelocityExtrapolation;                       // 0x28(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_8B8[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class FName>                          RebaseVariableNames;                               // 0x30(0x10)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class FName>                          InterpVariableNames;                               // 0x40(0x10)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint16                                       ComponentVelocity;                                 // 0x50(0x2)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8B9[0x66];                                     // Fixing Size Of Struct > TateDumper <
+	uint16                                       FloatCount;                                        // 0x20(0x2)(ConstParm, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       HalfCount;                                         // 0x22(0x2)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       Int32Count;                                        // 0x24(0x2)(Edit, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bLocalSpace;                                       // 0x26(0x1)(ConstParm, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bAllowInterpolation;                               // 0x27(0x1)(Edit, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bAllowVelocityExtrapolation;                       // 0x28(0x1)(ConstParm, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_8AE[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<class FName>                          RebaseVariableNames;                               // 0x30(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FName>                          InterpVariableNames;                               // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint16                                       ComponentVelocity;                                 // 0x50(0x2)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_8B1[0x66];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC8 (0xC8 - 0x0)
@@ -2654,8 +2654,8 @@ public:
 struct FNiagaraSimCacheLayout
 {
 public:
-	struct FNiagaraSimCacheDataBuffersLayout     SystemLayout;                                      // 0x0(0xB8)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraSimCacheDataBuffersLayout> EmitterLayouts;                                    // 0xB8(0x10)(Edit, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraSimCacheDataBuffersLayout     SystemLayout;                                      // 0x0(0xB8)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraSimCacheDataBuffersLayout> EmitterLayouts;                                    // 0xB8(0x10)(Edit, ConstParm, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x138 (0x138 - 0x0)
@@ -2663,15 +2663,15 @@ public:
 struct FNiagaraEmitterCompiledData
 {
 public:
-	TArray<class FName>                          SpawnAttributes;                                   // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraVariable                      EmitterSpawnIntervalVar;                           // 0x10(0x20)(ConstParm, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraVariable                      EmitterInterpSpawnStartDTVar;                      // 0x30(0x20)(Edit, ConstParm, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraVariable                      EmitterSpawnGroupVar;                              // 0x50(0x20)(ExportObject, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraVariable                      EmitterAgeVar;                                     // 0x70(0x20)(ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraVariable                      EmitterRandomSeedVar;                              // 0x90(0x20)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraVariable                      EmitterInstanceSeedVar;                            // 0xB0(0x20)(Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraVariable                      EmitterTotalSpawnedParticlesVar;                   // 0xD0(0x20)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraDataSetCompiledData           DataSetCompiledData;                               // 0xF0(0x48)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FName>                          SpawnAttributes;                                   // 0x0(0x10)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariable                      EmitterSpawnIntervalVar;                           // 0x10(0x20)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariable                      EmitterInterpSpawnStartDTVar;                      // 0x30(0x20)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariable                      EmitterSpawnGroupVar;                              // 0x50(0x20)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariable                      EmitterAgeVar;                                     // 0x70(0x20)(ConstParm, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariable                      EmitterRandomSeedVar;                              // 0x90(0x20)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariable                      EmitterInstanceSeedVar;                            // 0xB0(0x20)(Edit, ConstParm, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariable                      EmitterTotalSpawnedParticlesVar;                   // 0xD0(0x20)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraDataSetCompiledData           DataSetCompiledData;                               // 0xF0(0x48)(Edit, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2679,8 +2679,8 @@ public:
 struct FNiagaraParameterDataSetBinding
 {
 public:
-	int32                                        ParameterOffset;                                   // 0x0(0x4)(BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        DataSetComponentOffset;                            // 0x4(0x4)(ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        ParameterOffset;                                   // 0x0(0x4)(ConstParm, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        DataSetComponentOffset;                            // 0x4(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -2688,8 +2688,8 @@ public:
 struct FNiagaraParameterDataSetBindingCollection
 {
 public:
-	TArray<struct FNiagaraParameterDataSetBinding> FloatOffsets;                                      // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraParameterDataSetBinding> Int32Offsets;                                      // 0x10(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraParameterDataSetBinding> FloatOffsets;                                      // 0x0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraParameterDataSetBinding> Int32Offsets;                                      // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x240 (0x240 - 0x0)
@@ -2697,18 +2697,18 @@ public:
 struct FNiagaraSystemCompiledData
 {
 public:
-	struct FNiagaraParameterStore                InstanceParamStore;                                // 0x0(0x88)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraDataSetCompiledData           DataSetCompiledData;                               // 0x88(0x48)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraDataSetCompiledData           SpawnInstanceParamsDataSetCompiledData;            // 0xD0(0x48)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraDataSetCompiledData           UpdateInstanceParamsDataSetCompiledData;           // 0x118(0x48)(BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraParameterDataSetBindingCollection SpawnInstanceGlobalBinding;                        // 0x160(0x20)(ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraParameterDataSetBindingCollection SpawnInstanceSystemBinding;                        // 0x180(0x20)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraParameterDataSetBindingCollection SpawnInstanceOwnerBinding;                         // 0x1A0(0x20)(ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraParameterDataSetBindingCollection> SpawnInstanceEmitterBindings;                      // 0x1C0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraParameterDataSetBindingCollection UpdateInstanceGlobalBinding;                       // 0x1D0(0x20)(ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraParameterDataSetBindingCollection UpdateInstanceSystemBinding;                       // 0x1F0(0x20)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraParameterDataSetBindingCollection UpdateInstanceOwnerBinding;                        // 0x210(0x20)(Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FNiagaraParameterDataSetBindingCollection> UpdateInstanceEmitterBindings;                     // 0x230(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraParameterStore                InstanceParamStore;                                // 0x0(0x88)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraDataSetCompiledData           DataSetCompiledData;                               // 0x88(0x48)(Edit, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraDataSetCompiledData           SpawnInstanceParamsDataSetCompiledData;            // 0xD0(0x48)(Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraDataSetCompiledData           UpdateInstanceParamsDataSetCompiledData;           // 0x118(0x48)(ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraParameterDataSetBindingCollection SpawnInstanceGlobalBinding;                        // 0x160(0x20)(BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraParameterDataSetBindingCollection SpawnInstanceSystemBinding;                        // 0x180(0x20)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraParameterDataSetBindingCollection SpawnInstanceOwnerBinding;                         // 0x1A0(0x20)(ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraParameterDataSetBindingCollection> SpawnInstanceEmitterBindings;                      // 0x1C0(0x10)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraParameterDataSetBindingCollection UpdateInstanceGlobalBinding;                       // 0x1D0(0x20)(ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraParameterDataSetBindingCollection UpdateInstanceSystemBinding;                       // 0x1F0(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraParameterDataSetBindingCollection UpdateInstanceOwnerBinding;                        // 0x210(0x20)(Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FNiagaraParameterDataSetBindingCollection> UpdateInstanceEmitterBindings;                     // 0x230(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2716,8 +2716,8 @@ public:
 struct FNiagaraSystemCompileRequest
 {
 public:
-	uint8                                        Pad_8C5[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class UObject*>                       RootObjects;                                       // 0x8(0x10)(Edit, ConstParm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_8CE[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<class UObject*>                       RootObjects;                                       // 0x8(0x10)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2733,7 +2733,7 @@ public:
 struct FNiagaraWildcard
 {
 public:
-	uint8                                        Pad_8C7[0x1];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_8D1[0x1];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2810,7 +2810,7 @@ public:
 struct FNiagaraNumeric
 {
 public:
-	uint8                                        Pad_8D0[0x1];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_8DA[0x1];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2818,7 +2818,7 @@ public:
 struct FNiagaraParameterMap
 {
 public:
-	uint8                                        Pad_8D1[0x1];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_8DB[0x1];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2834,10 +2834,10 @@ public:
 struct FNiagaraMatrix
 {
 public:
-	struct FVector4f                             Row0;                                              // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector4f                             Row1;                                              // 0x10(0x10)(BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector4f                             Row2;                                              // 0x20(0x10)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector4f                             Row3;                                              // 0x30(0x10)(ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector4f                             Row0;                                              // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector4f                             Row1;                                              // 0x10(0x10)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector4f                             Row2;                                              // 0x20(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector4f                             Row3;                                              // 0x30(0x10)(BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2846,9 +2846,9 @@ struct FNiagaraSpawnInfo
 {
 public:
 	int32                                        Count;                                             // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, EditConst)
-	float                                        InterpStartDt;                                     // 0x4(0x4)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        IntervalDt;                                        // 0x8(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        SpawnGroup;                                        // 0xC(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        InterpStartDt;                                     // 0x4(0x4)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        IntervalDt;                                        // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        SpawnGroup;                                        // 0xC(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2857,7 +2857,7 @@ struct FNiagaraID
 {
 public:
 	int32                                        Index;                                             // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	int32                                        AcquireTag;                                        // 0x4(0x4)(ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        AcquireTag;                                        // 0x4(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -2865,9 +2865,9 @@ public:
 struct FNiagaraRandInfo
 {
 public:
-	int32                                        Seed1;                                             // 0x0(0x4)(ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        Seed2;                                             // 0x4(0x4)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        Seed3;                                             // 0x8(0x4)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        Seed1;                                             // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        Seed2;                                             // 0x4(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        Seed3;                                             // 0x8(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2875,8 +2875,8 @@ public:
 struct FNiagaraInputConditionMetadata
 {
 public:
-	class FName                                  InputName;                                         // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<class FString>                        TargetValues;                                      // 0x8(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  InputName;                                         // 0x0(0x8)(ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<class FString>                        TargetValues;                                      // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -2884,12 +2884,12 @@ public:
 struct FNiagaraEnumParameterMetaData
 {
 public:
-	class FName                                  OverrideName;                                      // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UTexture2D*                            IconOverride;                                      // 0x8(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseColorOverride;                                 // 0x10(0x1)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8E3[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FLinearColor                          ColorOverride;                                     // 0x14(0x10)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8E4[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	class FName                                  OverrideName;                                      // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UTexture2D*                            IconOverride;                                      // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseColorOverride;                                 // 0x10(0x1)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_8F1[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FLinearColor                          ColorOverride;                                     // 0x14(0x10)(Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_8F2[0x4];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x28 - 0x0)
@@ -2897,13 +2897,13 @@ public:
 struct FNiagaraBoolParameterMetaData
 {
 public:
-	enum class ENiagaraBoolDisplayMode           DisplayMode;                                       // 0x0(0x1)(Edit, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8E6[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	class FName                                  OverrideNameTrue;                                  // 0x4(0x8)(Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  OverrideNameFalse;                                 // 0xC(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8E8[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UTexture2D*                            IconOverrideTrue;                                  // 0x18(0x8)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UTexture2D*                            IconOverrideFalse;                                 // 0x20(0x8)(Edit, ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ENiagaraBoolDisplayMode           DisplayMode;                                       // 0x0(0x1)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_8F3[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	class FName                                  OverrideNameTrue;                                  // 0x4(0x8)(ConstParm, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  OverrideNameFalse;                                 // 0xC(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_8F5[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class UTexture2D*                            IconOverrideTrue;                                  // 0x18(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UTexture2D*                            IconOverrideFalse;                                 // 0x20(0x8)(Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x148 (0x148 - 0x0)
@@ -2911,32 +2911,32 @@ public:
 struct FNiagaraVariableMetaData
 {
 public:
-	class FText                                  Description;                                       // 0x0(0x18)(ConstParm, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	class FText                                  CategoryName;                                      // 0x18(0x18)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bAdvancedDisplay;                                  // 0x30(0x1)(Edit, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bDisplayInOverviewStack;                           // 0x31(0x1)(BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8EA[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        InlineParameterSortPriority;                       // 0x34(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bOverrideColor;                                    // 0x38(0x1)(Edit, BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8EB[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FLinearColor                          InlineParameterColorOverride;                      // 0x3C(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8ED[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FNiagaraEnumParameterMetaData> InlineParameterEnumOverrides;                      // 0x50(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bEnableBoolOverride;                               // 0x60(0x1)(BlueprintVisible, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8EE[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FNiagaraBoolParameterMetaData         InlineParameterBoolOverride;                       // 0x68(0x28)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        EditorSortPriority;                                // 0x90(0x4)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bInlineEditConditionToggle;                        // 0x94(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8EF[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FNiagaraInputConditionMetadata        EditCondition;                                     // 0x98(0x18)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraInputConditionMetadata        VisibleCondition;                                  // 0xB0(0x18)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TMap<class FName, class FString>             PropertyMetaData;                                  // 0xC8(0x50)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  ParentAttribute;                                   // 0x118(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class FName>                          AlternateAliases;                                  // 0x120(0x10)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGuid                                 VariableGuid;                                      // 0x130(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	bool                                         bIsStaticSwitch;                                   // 0x140(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8F2[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        StaticSwitchDefaultValue;                          // 0x144(0x4)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FText                                  Description;                                       // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, DuplicateTransient)
+	class FText                                  CategoryName;                                      // 0x18(0x18)(Edit, BlueprintVisible, ExportObject, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bAdvancedDisplay;                                  // 0x30(0x1)(Edit, ConstParm, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bDisplayInOverviewStack;                           // 0x31(0x1)(ConstParm, BlueprintVisible, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_8FD[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        InlineParameterSortPriority;                       // 0x34(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bOverrideColor;                                    // 0x38(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_8FF[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FLinearColor                          InlineParameterColorOverride;                      // 0x3C(0x10)(Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_901[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FNiagaraEnumParameterMetaData> InlineParameterEnumOverrides;                      // 0x50(0x10)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnableBoolOverride;                               // 0x60(0x1)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_903[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FNiagaraBoolParameterMetaData         InlineParameterBoolOverride;                       // 0x68(0x28)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        EditorSortPriority;                                // 0x90(0x4)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bInlineEditConditionToggle;                        // 0x94(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_905[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FNiagaraInputConditionMetadata        EditCondition;                                     // 0x98(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraInputConditionMetadata        VisibleCondition;                                  // 0xB0(0x18)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TMap<class FName, class FString>             PropertyMetaData;                                  // 0xC8(0x50)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  ParentAttribute;                                   // 0x118(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FName>                          AlternateAliases;                                  // 0x120(0x10)(ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 VariableGuid;                                      // 0x130(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
+	bool                                         bIsStaticSwitch;                                   // 0x140(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_909[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        StaticSwitchDefaultValue;                          // 0x144(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x50 (0xD8 - 0x88)
@@ -2944,7 +2944,7 @@ public:
 struct FNiagaraUserRedirectionParameterStore : public FNiagaraParameterStore
 {
 public:
-	TMap<struct FNiagaraVariable, struct FNiagaraVariable> UserParameterRedirects;                            // 0x88(0x50)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TMap<struct FNiagaraVariable, struct FNiagaraVariable> UserParameterRedirects;                            // 0x88(0x50)(BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -2953,10 +2953,10 @@ struct FNiagaraVariant
 {
 public:
 	class UObject*                               Object;                                            // 0x0(0x8)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-	class UNiagaraDataInterface*                 DataInterface;                                     // 0x8(0x8)(Edit, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	TArray<uint8>                                Bytes;                                             // 0x10(0x10)(Net, Parm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	enum class ENiagaraVariantMode               CurrentMode;                                       // 0x20(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8F4[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	class UNiagaraDataInterface*                 DataInterface;                                     // 0x8(0x8)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	TArray<uint8>                                Bytes;                                             // 0x10(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	enum class ENiagaraVariantMode               CurrentMode;                                       // 0x20(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_90F[0x4];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x30 - 0x28)
@@ -2964,7 +2964,7 @@ public:
 struct FNiagaraWorldManagerTickFunction : public FTickFunction
 {
 public:
-	uint8                                        Pad_8F5[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_910[0x8];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 }

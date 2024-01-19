@@ -43,14 +43,14 @@ class ACamelsaurus_Character_Base_BP_C* ACamelsaurus_Character_Base_BP_C::GetDef
 // Function camelsaurus_Character_Base_BP.camelsaurus_Character_Base_BP_C.AddWater
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// double                             Amount                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// double                             NewWaterAmount                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-// double                             OldWaterAmount                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleDouble_ReturnValue                       (ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Add_DoubleDouble_ReturnValue                            (ExportObject, BlueprintReadOnly, Parm, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_FClamp_ReturnValue                                      (Edit, BlueprintVisible, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
+// double                             Amount                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// double                             NewWaterAmount                                                   (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             OldWaterAmount                                                   (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleDouble_ReturnValue                       (ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Add_DoubleDouble_ReturnValue                            (Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_FClamp_ReturnValue                                      (Edit, ConstParm, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
 
-double ACamelsaurus_Character_Base_BP_C::AddWater(double* Amount, double CallFunc_Add_DoubleDouble_ReturnValue, double* CallFunc_FClamp_ReturnValue)
+double ACamelsaurus_Character_Base_BP_C::AddWater(double* CallFunc_Subtract_DoubleDouble_ReturnValue, double* CallFunc_FClamp_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -59,12 +59,11 @@ double ACamelsaurus_Character_Base_BP_C::AddWater(double* Amount, double CallFun
 
 	Params::ACamelsaurus_Character_Base_BP_C_AddWater_Params Parms{};
 
-	Parms.CallFunc_Add_DoubleDouble_ReturnValue = CallFunc_Add_DoubleDouble_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Amount != nullptr)
-		*Amount = Parms.Amount;
+	if (CallFunc_Subtract_DoubleDouble_ReturnValue != nullptr)
+		*CallFunc_Subtract_DoubleDouble_ReturnValue = Parms.CallFunc_Subtract_DoubleDouble_ReturnValue;
 
 	if (CallFunc_FClamp_ReturnValue != nullptr)
 		*CallFunc_FClamp_ReturnValue = Parms.CallFunc_FClamp_ReturnValue;

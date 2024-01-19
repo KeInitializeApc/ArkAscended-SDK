@@ -43,16 +43,16 @@ class UUpdatingModsToast_C* UUpdatingModsToast_C::GetDefaultObj()
 // Function UpdatingModsToast.UpdatingModsToast_C.UpdateProgressBar
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// double                             CallFunc_Conv_IntToDouble_ReturnValue                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Net, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Conv_IntToDouble_ReturnValue_1                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// double                             CallFunc_Conv_IntToDouble_ReturnValue_2                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
-// double                             CallFunc_Divide_DoubleFloat_ReturnValue_1                        (Net, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// double                             CallFunc_SelectFloat_ReturnValue                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, EditConst, SubobjectReference)
-// float                              CallFunc_SetScalarParameterValue_Value_ImplicitCast              (Edit, BlueprintVisible, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             CallFunc_Conv_IntToDouble_ReturnValue                            (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Conv_IntToDouble_ReturnValue_1                          (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Conv_IntToDouble_ReturnValue_2                          (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// double                             CallFunc_Divide_DoubleFloat_ReturnValue_1                        (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_SelectFloat_ReturnValue                                 (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              CallFunc_Divide_DoubleFloat_B_ImplicitCast                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// float                              CallFunc_SetScalarParameterValue_Value_ImplicitCast              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-double UUpdatingModsToast_C::UpdateProgressBar(float* CallFunc_Divide_DoubleFloat_B_ImplicitCast, float CallFunc_SetScalarParameterValue_Value_ImplicitCast)
+double UUpdatingModsToast_C::UpdateProgressBar(double* CallFunc_Divide_DoubleFloat_ReturnValue, double* CallFunc_Divide_DoubleFloat_ReturnValue_1, double* CallFunc_SelectFloat_ReturnValue, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast, float* CallFunc_SetScalarParameterValue_Value_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -61,12 +61,23 @@ double UUpdatingModsToast_C::UpdateProgressBar(float* CallFunc_Divide_DoubleFloa
 
 	Params::UUpdatingModsToast_C_UpdateProgressBar_Params Parms{};
 
-	Parms.CallFunc_SetScalarParameterValue_Value_ImplicitCast = CallFunc_SetScalarParameterValue_Value_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (CallFunc_Divide_DoubleFloat_ReturnValue != nullptr)
+		*CallFunc_Divide_DoubleFloat_ReturnValue = Parms.CallFunc_Divide_DoubleFloat_ReturnValue;
+
+	if (CallFunc_Divide_DoubleFloat_ReturnValue_1 != nullptr)
+		*CallFunc_Divide_DoubleFloat_ReturnValue_1 = Parms.CallFunc_Divide_DoubleFloat_ReturnValue_1;
+
+	if (CallFunc_SelectFloat_ReturnValue != nullptr)
+		*CallFunc_SelectFloat_ReturnValue = Parms.CallFunc_SelectFloat_ReturnValue;
+
 	if (CallFunc_Divide_DoubleFloat_B_ImplicitCast != nullptr)
 		*CallFunc_Divide_DoubleFloat_B_ImplicitCast = Parms.CallFunc_Divide_DoubleFloat_B_ImplicitCast;
+
+	if (CallFunc_SetScalarParameterValue_Value_ImplicitCast != nullptr)
+		*CallFunc_SetScalarParameterValue_Value_ImplicitCast = Parms.CallFunc_SetScalarParameterValue_Value_ImplicitCast;
 
 	return Parms.ReturnValue;
 
@@ -76,18 +87,18 @@ double UUpdatingModsToast_C::UpdateProgressBar(float* CallFunc_Divide_DoubleFloa
 // Function UpdatingModsToast.UpdatingModsToast_C.UpdateMainText
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               Temp_bool_Variable                                               (ConstParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_MakeLiteralText_ReturnValue                             (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_TextIsEmpty_ReturnValue                                 (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int64                              CallFunc_Conv_IntToInt64_ReturnValue                             (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData                             (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FText                        K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// int64                              CallFunc_Conv_IntToInt64_ReturnValue_1                           (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_1                           (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference, Interp)
-// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_Format_ReturnValue                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_MakeLiteralText_ReturnValue                             (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_TextIsEmpty_ReturnValue                                 (ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int64                              CallFunc_Conv_IntToInt64_ReturnValue                             (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData                             (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// class FText                        K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int64                              CallFunc_Conv_IntToInt64_ReturnValue_1                           (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// struct FFormatArgumentData         K2Node_MakeStruct_FormatArgumentData_1                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Format_ReturnValue                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
 
-TArray<struct FFormatArgumentData> UUpdatingModsToast_C::UpdateMainText(bool Temp_bool_Variable, class FText* K2Node_Select_Default, class FText CallFunc_Format_ReturnValue)
+class FText UUpdatingModsToast_C::UpdateMainText(bool Temp_bool_Variable, int64* CallFunc_Conv_IntToInt64_ReturnValue, class FText K2Node_Select_Default, int64* CallFunc_Conv_IntToInt64_ReturnValue_1, const TArray<struct FFormatArgumentData>& K2Node_MakeArray_Array)
 {
 	static class UFunction* Func = nullptr;
 
@@ -97,12 +108,16 @@ TArray<struct FFormatArgumentData> UUpdatingModsToast_C::UpdateMainText(bool Tem
 	Params::UUpdatingModsToast_C_UpdateMainText_Params Parms{};
 
 	Parms.Temp_bool_Variable = Temp_bool_Variable;
-	Parms.CallFunc_Format_ReturnValue = CallFunc_Format_ReturnValue;
+	Parms.K2Node_Select_Default = K2Node_Select_Default;
+	Parms.K2Node_MakeArray_Array = K2Node_MakeArray_Array;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (K2Node_Select_Default != nullptr)
-		*K2Node_Select_Default = Parms.K2Node_Select_Default;
+	if (CallFunc_Conv_IntToInt64_ReturnValue != nullptr)
+		*CallFunc_Conv_IntToInt64_ReturnValue = Parms.CallFunc_Conv_IntToInt64_ReturnValue;
+
+	if (CallFunc_Conv_IntToInt64_ReturnValue_1 != nullptr)
+		*CallFunc_Conv_IntToInt64_ReturnValue_1 = Parms.CallFunc_Conv_IntToInt64_ReturnValue_1;
 
 	return Parms.ReturnValue;
 
@@ -112,10 +127,10 @@ TArray<struct FFormatArgumentData> UUpdatingModsToast_C::UpdateMainText(bool Tem
 // Function UpdatingModsToast.UpdatingModsToast_C.InitCounter
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// int32                              NewCounterMax                                                    (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bInWillSetCounter                                                (ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              NewCounterMax                                                    (ExportObject, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInWillSetCounter                                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UUpdatingModsToast_C::InitCounter()
+bool UUpdatingModsToast_C::InitCounter(int32 NewCounterMax)
 {
 	static class UFunction* Func = nullptr;
 
@@ -124,6 +139,7 @@ bool UUpdatingModsToast_C::InitCounter()
 
 	Params::UUpdatingModsToast_C_InitCounter_Params Parms{};
 
+	Parms.NewCounterMax = NewCounterMax;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -153,10 +169,10 @@ void UUpdatingModsToast_C::IncrementCounter()
 // Function UpdatingModsToast.UpdatingModsToast_C.OverrideTextValueWithString
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class FString                      NewText                                                          (Edit, BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               HideProgressBar                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      NewText                                                          (Edit, ExportObject, BlueprintReadOnly, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               HideProgressBar                                                  (BlueprintReadOnly, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UUpdatingModsToast_C::OverrideTextValueWithString()
+void UUpdatingModsToast_C::OverrideTextValueWithString(const class FString& NewText, bool HideProgressBar)
 {
 	static class UFunction* Func = nullptr;
 
@@ -165,10 +181,10 @@ bool UUpdatingModsToast_C::OverrideTextValueWithString()
 
 	Params::UUpdatingModsToast_C_OverrideTextValueWithString_Params Parms{};
 
+	Parms.NewText = NewText;
+	Parms.HideProgressBar = HideProgressBar;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -176,10 +192,10 @@ bool UUpdatingModsToast_C::OverrideTextValueWithString()
 // Function UpdatingModsToast.UpdatingModsToast_C.OverrideTextValue
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// class FText                        NewText                                                          (Edit, BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               HideProgressBar                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// class FText                        NewText                                                          (Edit, ExportObject, BlueprintReadOnly, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               HideProgressBar                                                  (BlueprintReadOnly, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UUpdatingModsToast_C::OverrideTextValue()
+void UUpdatingModsToast_C::OverrideTextValue(class FText NewText, bool HideProgressBar)
 {
 	static class UFunction* Func = nullptr;
 
@@ -188,10 +204,10 @@ bool UUpdatingModsToast_C::OverrideTextValue()
 
 	Params::UUpdatingModsToast_C_OverrideTextValue_Params Parms{};
 
+	Parms.NewText = NewText;
+	Parms.HideProgressBar = HideProgressBar;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -217,9 +233,9 @@ void UUpdatingModsToast_C::Construct()
 // Function UpdatingModsToast.UpdatingModsToast_C.SetCounter
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// int32                              NewCounter                                                       (ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              NewCounter                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 UUpdatingModsToast_C::SetCounter()
+void UUpdatingModsToast_C::SetCounter(int32 NewCounter)
 {
 	static class UFunction* Func = nullptr;
 
@@ -228,10 +244,9 @@ int32 UUpdatingModsToast_C::SetCounter()
 
 	Params::UUpdatingModsToast_C_SetCounter_Params Parms{};
 
+	Parms.NewCounter = NewCounter;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -239,26 +254,26 @@ int32 UUpdatingModsToast_C::SetCounter()
 // Function UpdatingModsToast.UpdatingModsToast_C.ExecuteUbergraph_UpdatingModsToast
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               Temp_bool_Variable                                               (ConstParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable                                               (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable_1                                             (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// int32                              K2Node_Event_NewCounterMax                                       (ConstParm, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_Event_bInWillSetCounter                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      K2Node_Event_NewText_1                                           (BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// bool                               K2Node_Event_HideProgressBar_1                                   (ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// class FText                        K2Node_Event_NewText                                             (BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_Event_HideProgressBar                                     (ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class ESlateVisibility        K2Node_Select_Default                                            (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UMaterialInstanceDynamic*    CallFunc_CreateDynamicMaterialInstance_ReturnValue               (EditFixedSize, ReturnParm, EditConst, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable_2                                             (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
-// enum class ESlateVisibility        Temp_byte_Variable_3                                             (BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, NonTransactional)
-// bool                               Temp_bool_Variable_1                                             (ConstParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// int32                              K2Node_Event_NewCounter                                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class ESlateVisibility        K2Node_Select_Default_1                                          (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable                                               (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable_1                                             (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              K2Node_Event_NewCounterMax                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_Event_bInWillSetCounter                                   (Edit, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      K2Node_Event_NewText_1                                           (Edit, ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               K2Node_Event_HideProgressBar_1                                   (Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// class FText                        K2Node_Event_NewText                                             (Edit, ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_Event_HideProgressBar                                     (Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class ESlateVisibility        K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// class UMaterialInstanceDynamic*    CallFunc_CreateDynamicMaterialInstance_ReturnValue               (BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable_2                                             (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// enum class ESlateVisibility        Temp_byte_Variable_3                                             (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, NonTransactional)
+// bool                               Temp_bool_Variable_1                                             (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              K2Node_Event_NewCounter                                          (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class ESlateVisibility        K2Node_Select_Default_1                                          (EditFixedSize, DisableEditOnInstance, SubobjectReference, Interp)
 
-int32 UUpdatingModsToast_C::ExecuteUbergraph_UpdatingModsToast(bool Temp_bool_Variable, enum class ESlateVisibility Temp_byte_Variable, enum class ESlateVisibility Temp_byte_Variable_1, enum class ESlateVisibility* K2Node_Select_Default, class FText CallFunc_Conv_StringToText_ReturnValue, enum class ESlateVisibility Temp_byte_Variable_2, enum class ESlateVisibility Temp_byte_Variable_3, bool Temp_bool_Variable_1, enum class ESlateVisibility* K2Node_Select_Default_1)
+enum class ESlateVisibility UUpdatingModsToast_C::ExecuteUbergraph_UpdatingModsToast(int32 EntryPoint, bool Temp_bool_Variable, int32 K2Node_Event_NewCounterMax, bool K2Node_Event_bInWillSetCounter, const class FString& K2Node_Event_NewText_1, bool K2Node_Event_HideProgressBar_1, class FText K2Node_Event_NewText, bool K2Node_Event_HideProgressBar, enum class ESlateVisibility K2Node_Select_Default, bool Temp_bool_Variable_1, int32 K2Node_Event_NewCounter, enum class ESlateVisibility K2Node_Select_Default_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -267,21 +282,20 @@ int32 UUpdatingModsToast_C::ExecuteUbergraph_UpdatingModsToast(bool Temp_bool_Va
 
 	Params::UUpdatingModsToast_C_ExecuteUbergraph_UpdatingModsToast_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
 	Parms.Temp_bool_Variable = Temp_bool_Variable;
-	Parms.Temp_byte_Variable = Temp_byte_Variable;
-	Parms.Temp_byte_Variable_1 = Temp_byte_Variable_1;
-	Parms.CallFunc_Conv_StringToText_ReturnValue = CallFunc_Conv_StringToText_ReturnValue;
-	Parms.Temp_byte_Variable_2 = Temp_byte_Variable_2;
-	Parms.Temp_byte_Variable_3 = Temp_byte_Variable_3;
+	Parms.K2Node_Event_NewCounterMax = K2Node_Event_NewCounterMax;
+	Parms.K2Node_Event_bInWillSetCounter = K2Node_Event_bInWillSetCounter;
+	Parms.K2Node_Event_NewText_1 = K2Node_Event_NewText_1;
+	Parms.K2Node_Event_HideProgressBar_1 = K2Node_Event_HideProgressBar_1;
+	Parms.K2Node_Event_NewText = K2Node_Event_NewText;
+	Parms.K2Node_Event_HideProgressBar = K2Node_Event_HideProgressBar;
+	Parms.K2Node_Select_Default = K2Node_Select_Default;
 	Parms.Temp_bool_Variable_1 = Temp_bool_Variable_1;
+	Parms.K2Node_Event_NewCounter = K2Node_Event_NewCounter;
+	Parms.K2Node_Select_Default_1 = K2Node_Select_Default_1;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (K2Node_Select_Default != nullptr)
-		*K2Node_Select_Default = Parms.K2Node_Select_Default;
-
-	if (K2Node_Select_Default_1 != nullptr)
-		*K2Node_Select_Default_1 = Parms.K2Node_Select_Default_1;
 
 	return Parms.ReturnValue;
 

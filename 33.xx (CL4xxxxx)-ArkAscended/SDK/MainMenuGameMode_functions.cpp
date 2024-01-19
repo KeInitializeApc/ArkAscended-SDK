@@ -43,9 +43,9 @@ class AMainMenuGameMode_C* AMainMenuGameMode_C::GetDefaultObj()
 // Function MainMenuGameMode.MainMenuGameMode_C.ExecuteUbergraph_MainMenuGameMode
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 AMainMenuGameMode_C::ExecuteUbergraph_MainMenuGameMode()
+void AMainMenuGameMode_C::ExecuteUbergraph_MainMenuGameMode(int32 EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,10 +54,9 @@ int32 AMainMenuGameMode_C::ExecuteUbergraph_MainMenuGameMode()
 
 	Params::AMainMenuGameMode_C_ExecuteUbergraph_MainMenuGameMode_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 

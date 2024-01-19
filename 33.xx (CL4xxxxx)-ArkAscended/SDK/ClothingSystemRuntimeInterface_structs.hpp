@@ -20,8 +20,8 @@ struct FClothCollisionPrim_Sphere
 {
 public:
 	int32                                        BoneIndex;                                         // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	float                                        Radius;                                            // 0x4(0x4)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-	struct FVector                               LocalPosition;                                     // 0x8(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnInstance, InstancedReference)
+	float                                        Radius;                                            // 0x4(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector                               LocalPosition;                                     // 0x8(0x18)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -29,7 +29,7 @@ public:
 struct FClothCollisionPrim_SphereConnection
 {
 public:
-	int32                                        SphereIndices[0x2];                                // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        SphereIndices[0x2];                                // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -38,7 +38,7 @@ struct FClothCollisionPrim_ConvexFace
 {
 public:
 	struct FPlane                                Plane;                                             // 0x0(0x20)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm)
-	TArray<int32>                                Indices;                                           // 0x20(0x10)(ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                Indices;                                           // 0x20(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -47,9 +47,9 @@ struct FClothCollisionPrim_Convex
 {
 public:
 	TArray<struct FClothCollisionPrim_ConvexFace> Faces;                                             // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	TArray<struct FVector>                       SurfacePoints;                                     // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FVector>                       SurfacePoints;                                     // 0x10(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	int32                                        BoneIndex;                                         // 0x20(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	uint8                                        Pad_2E54[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2F33[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x60 (0x60 - 0x0)
@@ -57,12 +57,12 @@ public:
 struct FClothCollisionPrim_Box
 {
 public:
-	struct FVector                               LocalPosition;                                     // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnInstance, InstancedReference)
-	uint8                                        Pad_2E56[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FQuat                                 LocalRotation;                                     // 0x20(0x20)(Edit, ConstParm, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FVector                               HalfExtents;                                       // 0x40(0x18)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector                               LocalPosition;                                     // 0x0(0x18)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig)
+	uint8                                        Pad_2F35[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FQuat                                 LocalRotation;                                     // 0x20(0x20)(BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector                               HalfExtents;                                       // 0x40(0x18)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 	int32                                        BoneIndex;                                         // 0x58(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	uint8                                        Pad_2E57[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2F36[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x4C (0x4C - 0x0)
@@ -70,8 +70,8 @@ public:
 struct FClothVertBoneData
 {
 public:
-	int32                                        NumInfluences;                                     // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint16                                       BoneIndices[0xC];                                  // 0x4(0x18)(ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	int32                                        NumInfluences;                                     // 0x0(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint16                                       BoneIndices[0xC];                                  // 0x4(0x18)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 	float                                        BoneWeights[0xC];                                  // 0x1C(0x30)(BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 };
 
@@ -80,10 +80,10 @@ public:
 struct FClothCollisionData
 {
 public:
-	TArray<struct FClothCollisionPrim_Sphere>    Spheres;                                           // 0x0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference)
-	TArray<struct FClothCollisionPrim_SphereConnection> SphereConnections;                                 // 0x10(0x10)(Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FClothCollisionPrim_Convex>    Convexes;                                          // 0x20(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FClothCollisionPrim_Box>       Boxes;                                             // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FClothCollisionPrim_Sphere>    Spheres;                                           // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig)
+	TArray<struct FClothCollisionPrim_SphereConnection> SphereConnections;                                 // 0x10(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FClothCollisionPrim_Convex>    Convexes;                                          // 0x20(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FClothCollisionPrim_Box>       Boxes;                                             // 0x30(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 }

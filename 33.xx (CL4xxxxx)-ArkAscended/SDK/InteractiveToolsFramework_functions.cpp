@@ -519,7 +519,7 @@ class UGizmoBaseComponent* UGizmoBaseComponent::GetDefaultObj()
 // Function InteractiveToolsFramework.GizmoBaseComponent.UpdateWorldLocalState
 // (Final, Native, Public)
 // Parameters:
-// bool                               bWorldIn                                                         (Edit, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bWorldIn                                                         (Edit, ConstParm, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 bool UGizmoBaseComponent::UpdateWorldLocalState()
 {
@@ -547,7 +547,7 @@ bool UGizmoBaseComponent::UpdateWorldLocalState()
 // Function InteractiveToolsFramework.GizmoBaseComponent.UpdateHoverState
 // (Final, Native, Public)
 // Parameters:
-// bool                               bHoveringIn                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bHoveringIn                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 bool UGizmoBaseComponent::UpdateHoverState()
 {
@@ -2507,9 +2507,9 @@ class IGizmoTransformSource* IGizmoTransformSource::GetDefaultObj()
 // Function InteractiveToolsFramework.GizmoTransformSource.SetTransform
 // (Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// struct FTransform                  NewTransform                                                     (Edit, BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  NewTransform                                                     (Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-void IGizmoTransformSource::SetTransform(struct FTransform* NewTransform)
+struct FTransform IGizmoTransformSource::SetTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2527,8 +2527,7 @@ void IGizmoTransformSource::SetTransform(struct FTransform* NewTransform)
 
 	Func->FunctionFlags = Flgs;
 
-	if (NewTransform != nullptr)
-		*NewTransform = std::move(Parms.NewTransform);
+	return Parms.ReturnValue;
 
 }
 
@@ -2536,9 +2535,9 @@ void IGizmoTransformSource::SetTransform(struct FTransform* NewTransform)
 // Function InteractiveToolsFramework.GizmoTransformSource.GetTransform
 // (Native, Public, HasDefaults, Const)
 // Parameters:
-// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FTransform IGizmoTransformSource::GetTransform()
+void IGizmoTransformSource::GetTransform(const struct FTransform& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2547,6 +2546,7 @@ struct FTransform IGizmoTransformSource::GetTransform()
 
 	Params::IGizmoTransformSource_GetTransform_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2555,8 +2555,6 @@ struct FTransform IGizmoTransformSource::GetTransform()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -2592,9 +2590,9 @@ class IGizmoAxisSource* IGizmoAxisSource::GetDefaultObj()
 // Function InteractiveToolsFramework.GizmoAxisSource.HasTangentVectors
 // (Native, Public, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool IGizmoAxisSource::HasTangentVectors()
+void IGizmoAxisSource::HasTangentVectors(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2603,6 +2601,7 @@ bool IGizmoAxisSource::HasTangentVectors()
 
 	Params::IGizmoAxisSource_HasTangentVectors_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2612,18 +2611,16 @@ bool IGizmoAxisSource::HasTangentVectors()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function InteractiveToolsFramework.GizmoAxisSource.GetTangentVectors
 // (Native, Public, HasOutParams, HasDefaults, Const)
 // Parameters:
-// struct FVector                     TangentXOut                                                      (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     TangentYOut                                                      (Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     TangentXOut                                                      (Edit, BlueprintVisible, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     TangentYOut                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IGizmoAxisSource::GetTangentVectors(const struct FVector& TangentXOut, const struct FVector& TangentYOut)
+void IGizmoAxisSource::GetTangentVectors(struct FVector* TangentXOut, struct FVector* TangentYOut)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2632,8 +2629,6 @@ void IGizmoAxisSource::GetTangentVectors(const struct FVector& TangentXOut, cons
 
 	Params::IGizmoAxisSource_GetTangentVectors_Params Parms{};
 
-	Parms.TangentXOut = TangentXOut;
-	Parms.TangentYOut = TangentYOut;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2643,15 +2638,21 @@ void IGizmoAxisSource::GetTangentVectors(const struct FVector& TangentXOut, cons
 
 	Func->FunctionFlags = Flgs;
 
+	if (TangentXOut != nullptr)
+		*TangentXOut = std::move(Parms.TangentXOut);
+
+	if (TangentYOut != nullptr)
+		*TangentYOut = std::move(Parms.TangentYOut);
+
 }
 
 
 // Function InteractiveToolsFramework.GizmoAxisSource.GetOrigin
 // (Native, Public, HasDefaults, Const)
 // Parameters:
-// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector IGizmoAxisSource::GetOrigin()
+void IGizmoAxisSource::GetOrigin(const struct FVector& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2660,6 +2661,7 @@ struct FVector IGizmoAxisSource::GetOrigin()
 
 	Params::IGizmoAxisSource_GetOrigin_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2669,17 +2671,15 @@ struct FVector IGizmoAxisSource::GetOrigin()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function InteractiveToolsFramework.GizmoAxisSource.GetDirection
 // (Native, Public, HasDefaults, Const)
 // Parameters:
-// struct FVector                     ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-struct FVector IGizmoAxisSource::GetDirection()
+void IGizmoAxisSource::GetDirection(const struct FVector& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2688,6 +2688,7 @@ struct FVector IGizmoAxisSource::GetDirection()
 
 	Params::IGizmoAxisSource_GetDirection_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2696,8 +2697,6 @@ struct FVector IGizmoAxisSource::GetDirection()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -2733,9 +2732,9 @@ class IGizmoClickTarget* IGizmoClickTarget::GetDefaultObj()
 // Function InteractiveToolsFramework.GizmoClickTarget.UpdateInteractingState
 // (Native, Public)
 // Parameters:
-// bool                               bInteracting                                                     (BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInteracting                                                     (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IGizmoClickTarget::UpdateInteractingState(bool bInteracting)
+void IGizmoClickTarget::UpdateInteractingState(bool* bInteracting)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2744,7 +2743,6 @@ void IGizmoClickTarget::UpdateInteractingState(bool bInteracting)
 
 	Params::IGizmoClickTarget_UpdateInteractingState_Params Parms{};
 
-	Parms.bInteracting = bInteracting;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2754,15 +2752,18 @@ void IGizmoClickTarget::UpdateInteractingState(bool bInteracting)
 
 	Func->FunctionFlags = Flgs;
 
+	if (bInteracting != nullptr)
+		*bInteracting = Parms.bInteracting;
+
 }
 
 
 // Function InteractiveToolsFramework.GizmoClickTarget.UpdateHoverState
 // (Native, Public)
 // Parameters:
-// bool                               bHovering                                                        (ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bHovering                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IGizmoClickTarget::UpdateHoverState(bool bHovering)
+void IGizmoClickTarget::UpdateHoverState(bool* bHovering)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2771,7 +2772,6 @@ void IGizmoClickTarget::UpdateHoverState(bool bHovering)
 
 	Params::IGizmoClickTarget_UpdateHoverState_Params Parms{};
 
-	Parms.bHovering = bHovering;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2780,6 +2780,9 @@ void IGizmoClickTarget::UpdateHoverState(bool bHovering)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (bHovering != nullptr)
+		*bHovering = Parms.bHovering;
 
 }
 
@@ -2815,10 +2818,10 @@ class IGizmoClickMultiTarget* IGizmoClickMultiTarget::GetDefaultObj()
 // Function InteractiveToolsFramework.GizmoClickMultiTarget.UpdateInteractingState
 // (Native, Public)
 // Parameters:
-// bool                               bInteracting                                                     (BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// uint32                             InPartIdentifier                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInteracting                                                     (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// uint32                             InPartIdentifier                                                 (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IGizmoClickMultiTarget::UpdateInteractingState(bool bInteracting, uint32 InPartIdentifier)
+void IGizmoClickMultiTarget::UpdateInteractingState(bool* bInteracting, uint32* InPartIdentifier)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2827,8 +2830,6 @@ void IGizmoClickMultiTarget::UpdateInteractingState(bool bInteracting, uint32 In
 
 	Params::IGizmoClickMultiTarget_UpdateInteractingState_Params Parms{};
 
-	Parms.bInteracting = bInteracting;
-	Parms.InPartIdentifier = InPartIdentifier;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2838,16 +2839,22 @@ void IGizmoClickMultiTarget::UpdateInteractingState(bool bInteracting, uint32 In
 
 	Func->FunctionFlags = Flgs;
 
+	if (bInteracting != nullptr)
+		*bInteracting = Parms.bInteracting;
+
+	if (InPartIdentifier != nullptr)
+		*InPartIdentifier = Parms.InPartIdentifier;
+
 }
 
 
 // Function InteractiveToolsFramework.GizmoClickMultiTarget.UpdateHoverState
 // (Native, Public)
 // Parameters:
-// bool                               bHovering                                                        (ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// uint32                             InPartIdentifier                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bHovering                                                        (BlueprintVisible, ExportObject, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// uint32                             InPartIdentifier                                                 (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IGizmoClickMultiTarget::UpdateHoverState(bool bHovering, uint32 InPartIdentifier)
+void IGizmoClickMultiTarget::UpdateHoverState(bool* bHovering, uint32* InPartIdentifier)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2856,8 +2863,6 @@ void IGizmoClickMultiTarget::UpdateHoverState(bool bHovering, uint32 InPartIdent
 
 	Params::IGizmoClickMultiTarget_UpdateHoverState_Params Parms{};
 
-	Parms.bHovering = bHovering;
-	Parms.InPartIdentifier = InPartIdentifier;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2867,16 +2872,22 @@ void IGizmoClickMultiTarget::UpdateHoverState(bool bHovering, uint32 InPartIdent
 
 	Func->FunctionFlags = Flgs;
 
+	if (bHovering != nullptr)
+		*bHovering = Parms.bHovering;
+
+	if (InPartIdentifier != nullptr)
+		*InPartIdentifier = Parms.InPartIdentifier;
+
 }
 
 
 // Function InteractiveToolsFramework.GizmoClickMultiTarget.UpdateHittableState
 // (Native, Public)
 // Parameters:
-// bool                               bHittable                                                        (BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// uint32                             InPartIdentifier                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bHittable                                                        (ConstParm, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// uint32                             InPartIdentifier                                                 (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IGizmoClickMultiTarget::UpdateHittableState(bool bHittable, uint32 InPartIdentifier)
+void IGizmoClickMultiTarget::UpdateHittableState(bool* bHittable, uint32* InPartIdentifier)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2885,8 +2896,6 @@ void IGizmoClickMultiTarget::UpdateHittableState(bool bHittable, uint32 InPartId
 
 	Params::IGizmoClickMultiTarget_UpdateHittableState_Params Parms{};
 
-	Parms.bHittable = bHittable;
-	Parms.InPartIdentifier = InPartIdentifier;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2895,6 +2904,12 @@ void IGizmoClickMultiTarget::UpdateHittableState(bool bHittable, uint32 InPartId
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (bHittable != nullptr)
+		*bHittable = Parms.bHittable;
+
+	if (InPartIdentifier != nullptr)
+		*InPartIdentifier = Parms.InPartIdentifier;
 
 }
 
@@ -2958,10 +2973,10 @@ class IGizmoRenderMultiTarget* IGizmoRenderMultiTarget::GetDefaultObj()
 // Function InteractiveToolsFramework.GizmoRenderMultiTarget.UpdateVisibilityState
 // (Native, Public)
 // Parameters:
-// bool                               bVisible                                                         (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// uint32                             InPartIdentifier                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bVisible                                                         (ConstParm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// uint32                             InPartIdentifier                                                 (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IGizmoRenderMultiTarget::UpdateVisibilityState(bool* bVisible, uint32 InPartIdentifier)
+bool IGizmoRenderMultiTarget::UpdateVisibilityState(uint32* InPartIdentifier)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2970,7 +2985,6 @@ void IGizmoRenderMultiTarget::UpdateVisibilityState(bool* bVisible, uint32 InPar
 
 	Params::IGizmoRenderMultiTarget_UpdateVisibilityState_Params Parms{};
 
-	Parms.InPartIdentifier = InPartIdentifier;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2980,8 +2994,10 @@ void IGizmoRenderMultiTarget::UpdateVisibilityState(bool* bVisible, uint32 InPar
 
 	Func->FunctionFlags = Flgs;
 
-	if (bVisible != nullptr)
-		*bVisible = Parms.bVisible;
+	if (InPartIdentifier != nullptr)
+		*InPartIdentifier = Parms.InPartIdentifier;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3093,9 +3109,9 @@ class IGizmoFloatParameterSource* IGizmoFloatParameterSource::GetDefaultObj()
 // Function InteractiveToolsFramework.GizmoFloatParameterSource.SetParameter
 // (Native, Public)
 // Parameters:
-// float                              NewValue                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              NewValue                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
 
-void IGizmoFloatParameterSource::SetParameter(float NewValue)
+float IGizmoFloatParameterSource::SetParameter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3103,33 +3119,6 @@ void IGizmoFloatParameterSource::SetParameter(float NewValue)
 		Func = Class->GetFunction("GizmoFloatParameterSource", "SetParameter");
 
 	Params::IGizmoFloatParameterSource_SetParameter_Params Parms{};
-
-	Parms.NewValue = NewValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function InteractiveToolsFramework.GizmoFloatParameterSource.GetParameter
-// (Native, Public, Const)
-// Parameters:
-// float                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-
-float IGizmoFloatParameterSource::GetParameter()
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("GizmoFloatParameterSource", "GetParameter");
-
-	Params::IGizmoFloatParameterSource_GetParameter_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -3141,6 +3130,33 @@ float IGizmoFloatParameterSource::GetParameter()
 	Func->FunctionFlags = Flgs;
 
 	return Parms.ReturnValue;
+
+}
+
+
+// Function InteractiveToolsFramework.GizmoFloatParameterSource.GetParameter
+// (Native, Public, Const)
+// Parameters:
+// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+
+void IGizmoFloatParameterSource::GetParameter(float ReturnValue)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("GizmoFloatParameterSource", "GetParameter");
+
+	Params::IGizmoFloatParameterSource_GetParameter_Params Parms{};
+
+	Parms.ReturnValue = ReturnValue;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
 
 }
 
@@ -3224,9 +3240,9 @@ class IGizmoVec2ParameterSource* IGizmoVec2ParameterSource::GetDefaultObj()
 // Function InteractiveToolsFramework.GizmoVec2ParameterSource.SetParameter
 // (Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// struct FVector2D                   NewValue                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   NewValue                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
 
-void IGizmoVec2ParameterSource::SetParameter(const struct FVector2D& NewValue)
+struct FVector2D IGizmoVec2ParameterSource::SetParameter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3234,33 +3250,6 @@ void IGizmoVec2ParameterSource::SetParameter(const struct FVector2D& NewValue)
 		Func = Class->GetFunction("GizmoVec2ParameterSource", "SetParameter");
 
 	Params::IGizmoVec2ParameterSource_SetParameter_Params Parms{};
-
-	Parms.NewValue = NewValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function InteractiveToolsFramework.GizmoVec2ParameterSource.GetParameter
-// (Native, Public, HasDefaults, Const)
-// Parameters:
-// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-
-struct FVector2D IGizmoVec2ParameterSource::GetParameter()
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("GizmoVec2ParameterSource", "GetParameter");
-
-	Params::IGizmoVec2ParameterSource_GetParameter_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -3272,6 +3261,33 @@ struct FVector2D IGizmoVec2ParameterSource::GetParameter()
 	Func->FunctionFlags = Flgs;
 
 	return Parms.ReturnValue;
+
+}
+
+
+// Function InteractiveToolsFramework.GizmoVec2ParameterSource.GetParameter
+// (Native, Public, HasDefaults, Const)
+// Parameters:
+// struct FVector2D                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+
+void IGizmoVec2ParameterSource::GetParameter(const struct FVector2D& ReturnValue)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("GizmoVec2ParameterSource", "GetParameter");
+
+	Params::IGizmoVec2ParameterSource_GetParameter_Params Parms{};
+
+	Parms.ReturnValue = ReturnValue;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
 
 }
 

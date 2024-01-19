@@ -14,22 +14,22 @@ namespace SDK
 class USlider_ASA_Widget_C : public UPrimalUserWidget
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x330(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnInstance, SubobjectReference)
-	class UOverlay*                              OverlayCapsLimit;                                  // 0x338(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UOverlay*                              OverlaySlider;                                     // 0x340(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UProgressBar*                          ProgressBar;                                       // 0x348(0x8)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig)
-	class USlider*                               SliderFloatValue;                                  // 0x350(0x8)(Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        LastValue;                                         // 0x358(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x330(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	class UOverlay*                              OverlayCapsLimit;                                  // 0x338(0x8)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	class UOverlay*                              OverlaySlider;                                     // 0x340(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	class UProgressBar*                          ProgressBar;                                       // 0x348(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+	class USlider*                               SliderFloatValue;                                  // 0x350(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	float                                        LastValue;                                         // 0x358(0x4)(OutParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class USlider_ASA_Widget_C* GetDefaultObj();
 
-	class UWidget* GetOverrideHighligteableWidgetBP();
-	float SetupSetPercent(float* InputPin, const class FString& CallFunc_Conv_DoubleToString_ReturnValue, bool* K2Node_DynamicCast_bSuccess, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast);
+	void GetOverrideHighligteableWidgetBP(class UWidget* ReturnValue);
+	float SetupSetPercent(float* InputPin, const struct FBPNetExecParams& K2Node_MakeStruct_BPNetExecParams, class UObject** CallFunc_GetOuterObject_ReturnValue, class UObject** CallFunc_GetOuterObject_ReturnValue_1, double* CallFunc_Divide_DoubleFloat_ReturnValue, float* CallFunc_Divide_DoubleFloat_B_ImplicitCast);
 	bool SetupValue(double* Float);
-	void BPExecutedCommandForPrimalUI(class FName CommandName, const struct FBPNetExecParams& ExecParams);
-	float Tick(struct FGeometry* MyGeometry);
-	float ExecuteUbergraph_Slider_ASA_Widget(struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime, float CallFunc_GetValue_ReturnValue, bool* CallFunc_EqualEqual_DoubleDouble_ReturnValue, double CallFunc_Conv_StringToDouble_ReturnValue, bool CallFunc_EqualEqual_NameName_ReturnValue, float CallFunc_GetValue_ReturnValue_1);
+	struct FBPNetExecParams BPExecutedCommandForPrimalUI();
+	float Tick(const struct FGeometry& MyGeometry);
+	float ExecuteUbergraph_Slider_ASA_Widget(int32 EntryPoint, struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime, bool* CallFunc_IsVisible_ReturnValue);
 };
 
 }

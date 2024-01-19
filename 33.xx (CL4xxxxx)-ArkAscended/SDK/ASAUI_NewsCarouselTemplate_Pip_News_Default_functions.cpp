@@ -43,9 +43,9 @@ class UASAUI_NewsCarouselTemplate_Pip_News_Default_C* UASAUI_NewsCarouselTemplat
 // Function ASAUI_NewsCarouselTemplate_Pip_News_Default.ASAUI_NewsCarouselTemplate_Pip_News_Default_C.EntryFocusStart
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               bInstigatedByAutoRollover                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInstigatedByAutoRollover                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UASAUI_NewsCarouselTemplate_Pip_News_Default_C::EntryFocusStart(bool* bInstigatedByAutoRollover)
+void UASAUI_NewsCarouselTemplate_Pip_News_Default_C::EntryFocusStart(bool bInstigatedByAutoRollover)
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,11 +54,9 @@ void UASAUI_NewsCarouselTemplate_Pip_News_Default_C::EntryFocusStart(bool* bInst
 
 	Params::UASAUI_NewsCarouselTemplate_Pip_News_Default_C_EntryFocusStart_Params Parms{};
 
+	Parms.bInstigatedByAutoRollover = bInstigatedByAutoRollover;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (bInstigatedByAutoRollover != nullptr)
-		*bInstigatedByAutoRollover = Parms.bInstigatedByAutoRollover;
 
 }
 
@@ -66,9 +64,9 @@ void UASAUI_NewsCarouselTemplate_Pip_News_Default_C::EntryFocusStart(bool* bInst
 // Function ASAUI_NewsCarouselTemplate_Pip_News_Default.ASAUI_NewsCarouselTemplate_Pip_News_Default_C.EntryFocusEnd
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               bInstigatedByAutoRollover                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInstigatedByAutoRollover                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UASAUI_NewsCarouselTemplate_Pip_News_Default_C::EntryFocusEnd(bool* bInstigatedByAutoRollover)
+void UASAUI_NewsCarouselTemplate_Pip_News_Default_C::EntryFocusEnd(bool bInstigatedByAutoRollover)
 {
 	static class UFunction* Func = nullptr;
 
@@ -77,11 +75,9 @@ void UASAUI_NewsCarouselTemplate_Pip_News_Default_C::EntryFocusEnd(bool* bInstig
 
 	Params::UASAUI_NewsCarouselTemplate_Pip_News_Default_C_EntryFocusEnd_Params Parms{};
 
+	Parms.bInstigatedByAutoRollover = bInstigatedByAutoRollover;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (bInstigatedByAutoRollover != nullptr)
-		*bInstigatedByAutoRollover = Parms.bInstigatedByAutoRollover;
 
 }
 
@@ -89,13 +85,13 @@ void UASAUI_NewsCarouselTemplate_Pip_News_Default_C::EntryFocusEnd(bool* bInstig
 // Function ASAUI_NewsCarouselTemplate_Pip_News_Default.ASAUI_NewsCarouselTemplate_Pip_News_Default_C.ExecuteUbergraph_ASAUI_NewsCarouselTemplate_Pip_News_Default
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               K2Node_Event_bInstigatedByAutoRollover_1                         (Edit, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// class UUMGSequencePlayer*          CallFunc_PlayAnimationReverse_ReturnValue                        (EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_Event_bInstigatedByAutoRollover                           (Edit, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UUMGSequencePlayer*          CallFunc_PlayAnimationForward_ReturnValue                        (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               K2Node_Event_bInstigatedByAutoRollover_1                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimationReverse_ReturnValue                        (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_Event_bInstigatedByAutoRollover                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimationForward_ReturnValue                        (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class UUMGSequencePlayer* UASAUI_NewsCarouselTemplate_Pip_News_Default_C::ExecuteUbergraph_ASAUI_NewsCarouselTemplate_Pip_News_Default()
+class UUMGSequencePlayer* UASAUI_NewsCarouselTemplate_Pip_News_Default_C::ExecuteUbergraph_ASAUI_NewsCarouselTemplate_Pip_News_Default(int32 EntryPoint, bool K2Node_Event_bInstigatedByAutoRollover_1, bool K2Node_Event_bInstigatedByAutoRollover)
 {
 	static class UFunction* Func = nullptr;
 
@@ -104,6 +100,9 @@ class UUMGSequencePlayer* UASAUI_NewsCarouselTemplate_Pip_News_Default_C::Execut
 
 	Params::UASAUI_NewsCarouselTemplate_Pip_News_Default_C_ExecuteUbergraph_ASAUI_NewsCarouselTemplate_Pip_News_Default_Params Parms{};
 
+	Parms.EntryPoint = EntryPoint;
+	Parms.K2Node_Event_bInstigatedByAutoRollover_1 = K2Node_Event_bInstigatedByAutoRollover_1;
+	Parms.K2Node_Event_bInstigatedByAutoRollover = K2Node_Event_bInstigatedByAutoRollover;
 
 	UObject::ProcessEvent(Func, &Parms);
 

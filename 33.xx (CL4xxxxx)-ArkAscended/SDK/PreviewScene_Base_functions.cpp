@@ -43,7 +43,7 @@ class APreviewScene_Base_C* APreviewScene_Base_C::GetDefaultObj()
 // Function PreviewScene_Base.PreviewScene_Base_C.SetDebugLightIntensity
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// double                             NewIntensity                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// double                             NewIntensity                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 double APreviewScene_Base_C::SetDebugLightIntensity()
 {
@@ -65,9 +65,9 @@ double APreviewScene_Base_C::SetDebugLightIntensity()
 // Function PreviewScene_Base.PreviewScene_Base_C.SetDebugLightRotation
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FRotator                    NewRotation                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRotator                    NewRotation                                                      (Edit, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void APreviewScene_Base_C::SetDebugLightRotation(const struct FRotator& NewRotation)
+struct FRotator APreviewScene_Base_C::SetDebugLightRotation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -76,9 +76,10 @@ void APreviewScene_Base_C::SetDebugLightRotation(const struct FRotator& NewRotat
 
 	Params::APreviewScene_Base_C_SetDebugLightRotation_Params Parms{};
 
-	Parms.NewRotation = NewRotation;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -104,7 +105,7 @@ void APreviewScene_Base_C::DebugLights()
 // Function PreviewScene_Base.PreviewScene_Base_C.UpdateFloorLocation
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               IsFemale                                                         (BlueprintVisible, Parm, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               IsFemale                                                         (Edit, ZeroConstructor, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void APreviewScene_Base_C::UpdateFloorLocation(bool IsFemale)
 {
@@ -125,11 +126,11 @@ void APreviewScene_Base_C::UpdateFloorLocation(bool IsFemale)
 // Function PreviewScene_Base.PreviewScene_Base_C.NotifySetupPreviewScene
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// class UMeshComponent*              ForMeshComp                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// TArray<class USceneComponent*>     ForChildComps                                                    (BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class AShooterPlayerController*    ForPC                                                            (ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UMeshComponent*              ForMeshComp                                                      (ConstParm, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// TArray<class USceneComponent*>     ForChildComps                                                    (ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class AShooterPlayerController*    ForPC                                                            (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-class AShooterPlayerController* APreviewScene_Base_C::NotifySetupPreviewScene(class UMeshComponent* ForMeshComp, const TArray<class USceneComponent*>& ForChildComps)
+TArray<class USceneComponent*> APreviewScene_Base_C::NotifySetupPreviewScene(class AShooterPlayerController** ForPC)
 {
 	static class UFunction* Func = nullptr;
 
@@ -138,10 +139,11 @@ class AShooterPlayerController* APreviewScene_Base_C::NotifySetupPreviewScene(cl
 
 	Params::APreviewScene_Base_C_NotifySetupPreviewScene_Params Parms{};
 
-	Parms.ForMeshComp = ForMeshComp;
-	Parms.ForChildComps = ForChildComps;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (ForPC != nullptr)
+		*ForPC = Parms.ForPC;
 
 	return Parms.ReturnValue;
 
@@ -151,9 +153,9 @@ class AShooterPlayerController* APreviewScene_Base_C::NotifySetupPreviewScene(cl
 // Function PreviewScene_Base.PreviewScene_Base_C.NotifyPreviewSceneUpdated
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void APreviewScene_Base_C::NotifyPreviewSceneUpdated(float* DeltaTime)
+float APreviewScene_Base_C::NotifyPreviewSceneUpdated()
 {
 	static class UFunction* Func = nullptr;
 
@@ -165,8 +167,7 @@ void APreviewScene_Base_C::NotifyPreviewSceneUpdated(float* DeltaTime)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (DeltaTime != nullptr)
-		*DeltaTime = Parms.DeltaTime;
+	return Parms.ReturnValue;
 
 }
 
@@ -174,34 +175,34 @@ void APreviewScene_Base_C::NotifyPreviewSceneUpdated(float* DeltaTime)
 // Function PreviewScene_Base.PreviewScene_Base_C.ExecuteUbergraph_PreviewScene_Base
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     CallFunc_BreakTransform_Location                                 (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-// struct FRotator                    CallFunc_BreakTransform_Rotation                                 (BlueprintVisible, Net, Parm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// struct FVector                     CallFunc_BreakTransform_Scale                                    (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_Subtract_IntInt_ReturnValue                             (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_GreaterEqual_IntInt_ReturnValue                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class UMeshComponent*              K2Node_Event_ForMeshComp                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// TArray<class USceneComponent*>     K2Node_Event_ForChildComps                                       (Edit, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// class AShooterPlayerController*    K2Node_Event_ForPC                                               (ConstParm, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// class USceneComponent*             CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// int32                              CallFunc_Subtract_IntInt_ReturnValue_1                           (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference, Interp)
-// int32                              CallFunc_Max_ReturnValue                                         (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// bool                               CallFunc_IsValid_ReturnValue_2                                   (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
-// struct FTransform                  CallFunc_GetRelativeTransform_ReturnValue                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// struct FVector                     CallFunc_BreakTransform_Location_1                               (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
-// struct FRotator                    CallFunc_BreakTransform_Rotation_1                               (BlueprintVisible, Net, Parm, DisableEditOnTemplate, EditConst, SubobjectReference, Interp)
-// struct FVector                     CallFunc_BreakTransform_Scale_1                                  (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, SubobjectReference, Interp)
-// double                             CallFunc_Vector_Distance_ReturnValue                             (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// float                              K2Node_Event_DeltaTime                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, EditConst, SubobjectReference)
-// float                              K2Node_SetFieldsInStruct_DepthOfFieldFocalDistance_ImplicitCast  (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// float                              K2Node_SetFieldsInStruct_DepthOfFieldFstop_ImplicitCast          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     CallFunc_BreakTransform_Location                                 (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// struct FRotator                    CallFunc_BreakTransform_Rotation                                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     CallFunc_BreakTransform_Scale                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Subtract_IntInt_ReturnValue                             (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_GreaterEqual_IntInt_ReturnValue                         (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// class UMeshComponent*              K2Node_Event_ForMeshComp                                         (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class USceneComponent*>     K2Node_Event_ForChildComps                                       (Edit, BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class AShooterPlayerController*    K2Node_Event_ForPC                                               (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class USceneComponent*             CallFunc_Array_Get_Item                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              CallFunc_Subtract_IntInt_ReturnValue_1                           (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              CallFunc_Max_ReturnValue                                         (Edit, ExportObject, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue_2                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, RepNotify, Interp)
+// struct FTransform                  CallFunc_GetRelativeTransform_ReturnValue                        (ConstParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector                     CallFunc_BreakTransform_Location_1                               (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// struct FRotator                    CallFunc_BreakTransform_Rotation_1                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// struct FVector                     CallFunc_BreakTransform_Scale_1                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// double                             CallFunc_Vector_Distance_ReturnValue                             (ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// float                              K2Node_Event_DeltaTime                                           (Edit, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// float                              K2Node_SetFieldsInStruct_DepthOfFieldFocalDistance_ImplicitCast  (Parm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// float                              K2Node_SetFieldsInStruct_DepthOfFieldFstop_ImplicitCast          (Edit, Net, Parm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-float APreviewScene_Base_C::ExecuteUbergraph_PreviewScene_Base(struct FVector* CallFunc_BreakTransform_Location, const struct FRotator& CallFunc_BreakTransform_Rotation, class UMeshComponent** K2Node_Event_ForMeshComp, TArray<class USceneComponent*>* K2Node_Event_ForChildComps, class USceneComponent** CallFunc_Array_Get_Item, int32* CallFunc_Array_Length_ReturnValue, bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, bool* CallFunc_IsValid_ReturnValue_2, const struct FTransform& CallFunc_GetRelativeTransform_ReturnValue, struct FVector* CallFunc_BreakTransform_Location_1, const struct FRotator& CallFunc_BreakTransform_Rotation_1, double CallFunc_Vector_Distance_ReturnValue, float* K2Node_SetFieldsInStruct_DepthOfFieldFocalDistance_ImplicitCast, float* K2Node_SetFieldsInStruct_DepthOfFieldFstop_ImplicitCast)
+struct FRotator APreviewScene_Base_C::ExecuteUbergraph_PreviewScene_Base(int32 EntryPoint, struct FVector* CallFunc_BreakTransform_Scale, int32 Temp_int_Loop_Counter_Variable, int32* CallFunc_Subtract_IntInt_ReturnValue, bool* CallFunc_GreaterEqual_IntInt_ReturnValue, class UMeshComponent* K2Node_Event_ForMeshComp, const TArray<class USceneComponent*>& K2Node_Event_ForChildComps, class AShooterPlayerController* K2Node_Event_ForPC, class USceneComponent* CallFunc_Array_Get_Item, int32* CallFunc_Array_Length_ReturnValue, int32* CallFunc_Subtract_IntInt_ReturnValue_1, int32 CallFunc_Max_ReturnValue, const struct FTransform& CallFunc_GetRelativeTransform_ReturnValue, struct FVector* CallFunc_BreakTransform_Scale_1, double CallFunc_Vector_Distance_ReturnValue, float K2Node_Event_DeltaTime, float K2Node_SetFieldsInStruct_DepthOfFieldFocalDistance_ImplicitCast, float K2Node_SetFieldsInStruct_DepthOfFieldFstop_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -210,45 +211,38 @@ float APreviewScene_Base_C::ExecuteUbergraph_PreviewScene_Base(struct FVector* C
 
 	Params::APreviewScene_Base_C_ExecuteUbergraph_PreviewScene_Base_Params Parms{};
 
-	Parms.CallFunc_BreakTransform_Rotation = CallFunc_BreakTransform_Rotation;
+	Parms.EntryPoint = EntryPoint;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.K2Node_Event_ForMeshComp = K2Node_Event_ForMeshComp;
+	Parms.K2Node_Event_ForChildComps = K2Node_Event_ForChildComps;
+	Parms.K2Node_Event_ForPC = K2Node_Event_ForPC;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.CallFunc_Max_ReturnValue = CallFunc_Max_ReturnValue;
 	Parms.CallFunc_GetRelativeTransform_ReturnValue = CallFunc_GetRelativeTransform_ReturnValue;
-	Parms.CallFunc_BreakTransform_Rotation_1 = CallFunc_BreakTransform_Rotation_1;
 	Parms.CallFunc_Vector_Distance_ReturnValue = CallFunc_Vector_Distance_ReturnValue;
+	Parms.K2Node_Event_DeltaTime = K2Node_Event_DeltaTime;
+	Parms.K2Node_SetFieldsInStruct_DepthOfFieldFocalDistance_ImplicitCast = K2Node_SetFieldsInStruct_DepthOfFieldFocalDistance_ImplicitCast;
+	Parms.K2Node_SetFieldsInStruct_DepthOfFieldFstop_ImplicitCast = K2Node_SetFieldsInStruct_DepthOfFieldFstop_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_BreakTransform_Location != nullptr)
-		*CallFunc_BreakTransform_Location = std::move(Parms.CallFunc_BreakTransform_Location);
+	if (CallFunc_BreakTransform_Scale != nullptr)
+		*CallFunc_BreakTransform_Scale = std::move(Parms.CallFunc_BreakTransform_Scale);
 
-	if (K2Node_Event_ForMeshComp != nullptr)
-		*K2Node_Event_ForMeshComp = Parms.K2Node_Event_ForMeshComp;
+	if (CallFunc_Subtract_IntInt_ReturnValue != nullptr)
+		*CallFunc_Subtract_IntInt_ReturnValue = Parms.CallFunc_Subtract_IntInt_ReturnValue;
 
-	if (K2Node_Event_ForChildComps != nullptr)
-		*K2Node_Event_ForChildComps = std::move(Parms.K2Node_Event_ForChildComps);
-
-	if (CallFunc_Array_Get_Item != nullptr)
-		*CallFunc_Array_Get_Item = Parms.CallFunc_Array_Get_Item;
+	if (CallFunc_GreaterEqual_IntInt_ReturnValue != nullptr)
+		*CallFunc_GreaterEqual_IntInt_ReturnValue = Parms.CallFunc_GreaterEqual_IntInt_ReturnValue;
 
 	if (CallFunc_Array_Length_ReturnValue != nullptr)
 		*CallFunc_Array_Length_ReturnValue = Parms.CallFunc_Array_Length_ReturnValue;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (CallFunc_Subtract_IntInt_ReturnValue_1 != nullptr)
+		*CallFunc_Subtract_IntInt_ReturnValue_1 = Parms.CallFunc_Subtract_IntInt_ReturnValue_1;
 
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
-
-	if (CallFunc_IsValid_ReturnValue_2 != nullptr)
-		*CallFunc_IsValid_ReturnValue_2 = Parms.CallFunc_IsValid_ReturnValue_2;
-
-	if (CallFunc_BreakTransform_Location_1 != nullptr)
-		*CallFunc_BreakTransform_Location_1 = std::move(Parms.CallFunc_BreakTransform_Location_1);
-
-	if (K2Node_SetFieldsInStruct_DepthOfFieldFocalDistance_ImplicitCast != nullptr)
-		*K2Node_SetFieldsInStruct_DepthOfFieldFocalDistance_ImplicitCast = Parms.K2Node_SetFieldsInStruct_DepthOfFieldFocalDistance_ImplicitCast;
-
-	if (K2Node_SetFieldsInStruct_DepthOfFieldFstop_ImplicitCast != nullptr)
-		*K2Node_SetFieldsInStruct_DepthOfFieldFstop_ImplicitCast = Parms.K2Node_SetFieldsInStruct_DepthOfFieldFstop_ImplicitCast;
+	if (CallFunc_BreakTransform_Scale_1 != nullptr)
+		*CallFunc_BreakTransform_Scale_1 = std::move(Parms.CallFunc_BreakTransform_Scale_1);
 
 	return Parms.ReturnValue;
 

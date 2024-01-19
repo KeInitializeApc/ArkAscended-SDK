@@ -14,14 +14,14 @@ namespace SDK
 class UConfirmationDialogGeneric_C : public UUI_GenericConfirmationDialog
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x7D0(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnInstance, SubobjectReference)
-	class UImage*                                AcceptImage;                                       // 0x7D8(0x8)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	class UBorder*                               BackgroundBorder;                                  // 0x7E0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	class UCustomButtonWidget*                   ButtonAccept;                                      // 0x7E8(0x8)(BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	class UCustomButtonWidget*                   ButtonDeny;                                        // 0x7F0(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	class UImage*                                DenyImage;                                         // 0x7F8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	class UTextBlock*                            DenyImageF;                                        // 0x800(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	class UTextBlock*                            Refresh;                                           // 0x808(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x7D0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	class UImage*                                AcceptImage;                                       // 0x7D8(0x8)(Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class UBorder*                               BackgroundBorder;                                  // 0x7E0(0x8)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class UCustomButtonWidget*                   ButtonAccept;                                      // 0x7E8(0x8)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class UCustomButtonWidget*                   ButtonDeny;                                        // 0x7F0(0x8)(ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class UImage*                                DenyImage;                                         // 0x7F8(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class UTextBlock*                            DenyImageF;                                        // 0x800(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class UTextBlock*                            Refresh;                                           // 0x808(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
 
 	static class UClass* StaticClass();
 	static class UConfirmationDialogGeneric_C* GetDefaultObj();
@@ -29,7 +29,7 @@ public:
 	void Construct();
 	class FText OverrideCancelButtonText();
 	class FText OverrideAcceptButtonText();
-	class UTexture2D* ExecuteUbergraph_ConfirmationDialogGeneric(bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, bool* CallFunc_IsValid_ReturnValue_2, bool* CallFunc_IsValid_ReturnValue_3);
+	bool ExecuteUbergraph_ConfirmationDialogGeneric(int32 EntryPoint, class UCanvasPanelSlot** CallFunc_SlotAsCanvasSlot_ReturnValue, bool* CallFunc_BPGetGlobalUIData_bIsPsOrXbUi, class UPrimalGlobalUIData** CallFunc_BPGetGlobalUIData_ReturnValue, class UTexture2D** CallFunc_GetIconForKeyName_ReturnValue, int32* CallFunc_GetNumLocalPlayerControllers_ReturnValue, int32* CallFunc_GetSplitscreenLocalPlayerIndex_ReturnValue, bool CallFunc_EqualEqual_IntInt_ReturnValue, class UCanvasPanelSlot** CallFunc_SlotAsCanvasSlot_ReturnValue_1, class UTexture2D** CallFunc_GetIconForKeyName_ReturnValue_1);
 };
 
 }

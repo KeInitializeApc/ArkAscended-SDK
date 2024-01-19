@@ -18,36 +18,36 @@ public:
 	static class UClass* StaticClass();
 	static class UBlueprintGameplayTagLibrary* GetDefaultObj();
 
-	bool RemoveGameplayTag(struct FGameplayTag* Tag);
-	bool NotEqual_TagTag();
-	bool NotEqual_TagContainerTagContainer();
-	bool NotEqual_GameplayTagContainer();
-	bool NotEqual_GameplayTag();
-	bool MatchesTag(struct FGameplayTag* TagOne, struct FGameplayTag* TagTwo);
-	bool MatchesAnyTags(struct FGameplayTag* TagOne);
-	struct FGameplayTagContainer MakeLiteralGameplayTagContainer(const struct FGameplayTagContainer& Value);
-	struct FGameplayTag MakeLiteralGameplayTag(const struct FGameplayTag& Value);
-	struct FGameplayTagQuery MakeGameplayTagQuery(struct FGameplayTagQuery* TagQuery);
-	struct FGameplayTagContainer MakeGameplayTagContainerFromTag(struct FGameplayTag* SingleTag);
-	struct FGameplayTagContainer MakeGameplayTagContainerFromArray();
-	bool IsTagQueryEmpty(struct FGameplayTagQuery* TagQuery);
-	bool IsGameplayTagValid(const struct FGameplayTag& GameplayTag);
-	bool HasTag(struct FGameplayTag* Tag);
-	bool HasAnyTags();
-	bool HasAllTags();
-	bool HasAllMatchingGameplayTags(TScriptInterface<class IGameplayTagAssetInterface>* TagContainerInterface);
-	class FName GetTagName(const struct FGameplayTag& GameplayTag);
-	int32 GetNumGameplayTagsInContainer();
-	class FString GetDebugStringFromGameplayTagContainer();
-	class FString GetDebugStringFromGameplayTag(const struct FGameplayTag& GameplayTag);
-	TArray<class AActor*> GetAllActorsOfClassMatchingTagQuery(class UClass* ActorClass, const struct FGameplayTagQuery& GameplayTagQuery);
-	bool EqualEqual_GameplayTagContainer();
-	bool EqualEqual_GameplayTag();
-	bool DoesTagAssetInterfaceHaveTag(TScriptInterface<class IGameplayTagAssetInterface>* TagContainerInterface, struct FGameplayTag* Tag);
-	bool DoesContainerMatchTagQuery(struct FGameplayTagQuery* TagQuery);
+	struct FGameplayTag RemoveGameplayTag(struct FGameplayTagContainer* TagContainer, bool ReturnValue);
+	class FString NotEqual_TagTag(bool ReturnValue);
+	class FString NotEqual_TagContainerTagContainer(bool ReturnValue);
+	struct FGameplayTagContainer NotEqual_GameplayTagContainer(bool ReturnValue);
+	struct FGameplayTag NotEqual_GameplayTag(bool ReturnValue);
+	void MatchesTag(struct FGameplayTag* TagOne, struct FGameplayTag* TagTwo, bool bExactMatch, bool ReturnValue);
+	void MatchesAnyTags(struct FGameplayTag* TagOne, const struct FGameplayTagContainer& OtherContainer, bool bExactMatch, bool ReturnValue);
+	void MakeLiteralGameplayTagContainer(const struct FGameplayTagContainer& Value, const struct FGameplayTagContainer& ReturnValue);
+	void MakeLiteralGameplayTag(const struct FGameplayTag& Value, const struct FGameplayTag& ReturnValue);
+	void MakeGameplayTagQuery(struct FGameplayTagQuery* TagQuery, const struct FGameplayTagQuery& ReturnValue);
+	void MakeGameplayTagContainerFromTag(struct FGameplayTag* SingleTag, const struct FGameplayTagContainer& ReturnValue);
+	TArray<struct FGameplayTag> MakeGameplayTagContainerFromArray(const struct FGameplayTagContainer& ReturnValue);
+	void IsTagQueryEmpty(struct FGameplayTagQuery* TagQuery, bool ReturnValue);
+	void IsGameplayTagValid(const struct FGameplayTag& GameplayTag, bool ReturnValue);
+	struct FGameplayTag HasTag(struct FGameplayTagContainer* TagContainer, bool bExactMatch, bool ReturnValue);
+	void HasAnyTags(struct FGameplayTagContainer* TagContainer, const struct FGameplayTagContainer& OtherContainer, bool bExactMatch, bool ReturnValue);
+	void HasAllTags(struct FGameplayTagContainer* TagContainer, const struct FGameplayTagContainer& OtherContainer, bool bExactMatch, bool ReturnValue);
+	void HasAllMatchingGameplayTags(TScriptInterface<class IGameplayTagAssetInterface>* TagContainerInterface, const struct FGameplayTagContainer& OtherContainer, bool ReturnValue);
+	void GetTagName(const struct FGameplayTag& GameplayTag, class FName ReturnValue);
+	void GetNumGameplayTagsInContainer(struct FGameplayTagContainer* TagContainer, int32 ReturnValue);
+	void GetDebugStringFromGameplayTagContainer(struct FGameplayTagContainer* TagContainer, const class FString& ReturnValue);
+	void GetDebugStringFromGameplayTag(const struct FGameplayTag& GameplayTag, const class FString& ReturnValue);
+	TArray<class AActor*> GetAllActorsOfClassMatchingTagQuery(class UObject* WorldContextObject, const struct FGameplayTagQuery& GameplayTagQuery);
+	struct FGameplayTagContainer EqualEqual_GameplayTagContainer(bool ReturnValue);
+	struct FGameplayTag EqualEqual_GameplayTag(bool ReturnValue);
+	struct FGameplayTag DoesTagAssetInterfaceHaveTag(TScriptInterface<class IGameplayTagAssetInterface>* TagContainerInterface, bool ReturnValue);
+	void DoesContainerMatchTagQuery(struct FGameplayTagContainer* TagContainer, struct FGameplayTagQuery* TagQuery, bool ReturnValue);
 	TArray<struct FGameplayTag> BreakGameplayTagContainer(const struct FGameplayTagContainer& GameplayTagContainer);
-	void AppendGameplayTagContainers(const struct FGameplayTagContainer& InOutTagContainer, struct FGameplayTagContainer* InTagContainer);
-	struct FGameplayTagContainer AddGameplayTag(struct FGameplayTag* Tag);
+	void AppendGameplayTagContainers(struct FGameplayTagContainer* InOutTagContainer, struct FGameplayTagContainer* InTagContainer);
+	struct FGameplayTag AddGameplayTag(struct FGameplayTagContainer* TagContainer);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -59,10 +59,10 @@ public:
 	static class UClass* StaticClass();
 	static class IGameplayTagAssetInterface* GetDefaultObj();
 
-	bool HasMatchingGameplayTag(struct FGameplayTag* TagToCheck);
-	bool HasAnyMatchingGameplayTags();
-	bool HasAllMatchingGameplayTags();
-	struct FGameplayTagContainer GetOwnedGameplayTags();
+	void HasMatchingGameplayTag(struct FGameplayTag* TagToCheck, bool ReturnValue);
+	void HasAnyMatchingGameplayTags(struct FGameplayTagContainer* TagContainer, bool ReturnValue);
+	void HasAllMatchingGameplayTags(struct FGameplayTagContainer* TagContainer, bool ReturnValue);
+	void GetOwnedGameplayTags(struct FGameplayTagContainer* TagContainer);
 };
 
 // 0x70 (0x98 - 0x28)
@@ -70,10 +70,10 @@ public:
 class UEditableGameplayTagQuery : public UObject
 {
 public:
-	class FString                                UserDescription;                                   // 0x28(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2E4E[0x10];                                    // Fixing Size After Last Property  > TateDumper <
-	class UEditableGameplayTagQueryExpression*   RootExpression;                                    // 0x48(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FGameplayTagQuery                     TagQueryExportText_Helper;                         // 0x50(0x48)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class FString                                UserDescription;                                   // 0x28(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2F7D[0x10];                                    // Fixing Size After Last Property  > TateDumper <
+	class UEditableGameplayTagQueryExpression*   RootExpression;                                    // 0x48(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FGameplayTagQuery                     TagQueryExportText_Helper;                         // 0x50(0x48)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UEditableGameplayTagQuery* GetDefaultObj();
@@ -132,7 +132,7 @@ public:
 class UEditableGameplayTagQueryExpression_AnyExprMatch : public UEditableGameplayTagQueryExpression
 {
 public:
-	TArray<class UEditableGameplayTagQueryExpression*> Expressions;                                       // 0x28(0x10)(OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class UEditableGameplayTagQueryExpression*> Expressions;                                       // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UEditableGameplayTagQueryExpression_AnyExprMatch* GetDefaultObj();
@@ -144,7 +144,7 @@ public:
 class UEditableGameplayTagQueryExpression_AllExprMatch : public UEditableGameplayTagQueryExpression
 {
 public:
-	TArray<class UEditableGameplayTagQueryExpression*> Expressions;                                       // 0x28(0x10)(OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class UEditableGameplayTagQueryExpression*> Expressions;                                       // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UEditableGameplayTagQueryExpression_AllExprMatch* GetDefaultObj();
@@ -156,7 +156,7 @@ public:
 class UEditableGameplayTagQueryExpression_NoExprMatch : public UEditableGameplayTagQueryExpression
 {
 public:
-	TArray<class UEditableGameplayTagQueryExpression*> Expressions;                                       // 0x28(0x10)(OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class UEditableGameplayTagQueryExpression*> Expressions;                                       // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UEditableGameplayTagQueryExpression_NoExprMatch* GetDefaultObj();
@@ -168,10 +168,10 @@ public:
 class UGameplayTagsManager : public UObject
 {
 public:
-	uint8                                        Pad_2E53[0x138];                                   // Fixing Size After Last Property  > TateDumper <
-	TMap<class FName, struct FGameplayTagSource> TagSources;                                        // 0x160(0x50)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2E55[0x88];                                    // Fixing Size After Last Property  > TateDumper <
-	TArray<class UDataTable*>                    GameplayTagTables;                                 // 0x238(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2F96[0x138];                                   // Fixing Size After Last Property  > TateDumper <
+	TMap<class FName, struct FGameplayTagSource> TagSources;                                        // 0x160(0x50)(ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2F98[0x88];                                    // Fixing Size After Last Property  > TateDumper <
+	TArray<class UDataTable*>                    GameplayTagTables;                                 // 0x238(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGameplayTagsManager* GetDefaultObj();
@@ -183,8 +183,8 @@ public:
 class UGameplayTagsList : public UObject
 {
 public:
-	class FString                                ConfigFileName;                                    // 0x28(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<struct FGameplayTagTableRow>          GameplayTagList;                                   // 0x38(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class FString                                ConfigFileName;                                    // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<struct FGameplayTagTableRow>          GameplayTagList;                                   // 0x38(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGameplayTagsList* GetDefaultObj();
@@ -196,8 +196,8 @@ public:
 class URestrictedGameplayTagsList : public UObject
 {
 public:
-	class FString                                ConfigFileName;                                    // 0x28(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<struct FRestrictedGameplayTagTableRow> RestrictedGameplayTagList;                         // 0x38(0x10)(ConstParm, BlueprintVisible, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class FString                                ConfigFileName;                                    // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<struct FRestrictedGameplayTagTableRow> RestrictedGameplayTagList;                         // 0x38(0x10)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class URestrictedGameplayTagsList* GetDefaultObj();
@@ -209,21 +209,21 @@ public:
 class UGameplayTagsSettings : public UGameplayTagsList
 {
 public:
-	bool                                         ImportTagsFromConfig;                              // 0x48(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-	bool                                         WarnOnInvalidTags;                                 // 0x49(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-	bool                                         ClearInvalidTags;                                  // 0x4A(0x1)(ConstParm, BlueprintVisible, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-	bool                                         AllowEditorTagUnloading;                           // 0x4B(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-	bool                                         AllowGameTagUnloading;                             // 0x4C(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-	bool                                         FastReplication;                                   // 0x4D(0x1)(ExportObject, Net, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-	uint8                                        Pad_2E5B[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                InvalidTagCharacters;                              // 0x50(0x10)(Edit, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-	TArray<struct FGameplayTagCategoryRemap>     CategoryRemapping;                                 // 0x60(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<struct FSoftObjectPath>               GameplayTagTableList;                              // 0x70(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-	TArray<struct FGameplayTagRedirect>          GameplayTagRedirects;                              // 0x80(0x10)(BlueprintVisible, ExportObject, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<class FName>                          CommonlyReplicatedTags;                            // 0x90(0x10)(Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	int32                                        NumBitsForContainerSize;                           // 0xA0(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-	int32                                        NetIndexFirstBitSegment;                           // 0xA4(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-	TArray<struct FRestrictedConfigInfo>         RestrictedConfigFiles;                             // 0xA8(0x10)(BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         ImportTagsFromConfig;                              // 0x48(0x1)(ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	bool                                         WarnOnInvalidTags;                                 // 0x49(0x1)(Edit, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	bool                                         ClearInvalidTags;                                  // 0x4A(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	bool                                         AllowEditorTagUnloading;                           // 0x4B(0x1)(Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	bool                                         AllowGameTagUnloading;                             // 0x4C(0x1)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	bool                                         FastReplication;                                   // 0x4D(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	uint8                                        Pad_2F9C[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                InvalidTagCharacters;                              // 0x50(0x10)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	TArray<struct FGameplayTagCategoryRemap>     CategoryRemapping;                                 // 0x60(0x10)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<struct FSoftObjectPath>               GameplayTagTableList;                              // 0x70(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	TArray<struct FGameplayTagRedirect>          GameplayTagRedirects;                              // 0x80(0x10)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class FName>                          CommonlyReplicatedTags;                            // 0x90(0x10)(Edit, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	int32                                        NumBitsForContainerSize;                           // 0xA0(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	int32                                        NetIndexFirstBitSegment;                           // 0xA4(0x4)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	TArray<struct FRestrictedConfigInfo>         RestrictedConfigFiles;                             // 0xA8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGameplayTagsSettings* GetDefaultObj();
@@ -235,8 +235,8 @@ public:
 class UGameplayTagsDeveloperSettings : public UDeveloperSettings
 {
 public:
-	class FString                                DeveloperConfigName;                               // 0x38(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class FName                                  FavoriteTagSource;                                 // 0x48(0x8)(Edit, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class FString                                DeveloperConfigName;                               // 0x38(0x10)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	class FName                                  FavoriteTagSource;                                 // 0x48(0x8)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGameplayTagsDeveloperSettings* GetDefaultObj();

@@ -18,11 +18,11 @@ public:
 	static class UClass* StaticClass();
 	static class UEyeTrackerFunctionLibrary* GetDefaultObj();
 
-	void SetEyeTrackedPlayer(class APlayerController** PlayerController);
-	bool IsStereoGazeDataAvailable();
-	bool IsEyeTrackerConnected();
-	bool GetStereoGazeData(struct FEyeTrackerStereoGazeData* OutGazeData);
-	bool GetGazeData(struct FEyeTrackerGazeData* OutGazeData);
+	class APlayerController* SetEyeTrackedPlayer();
+	void IsStereoGazeDataAvailable(bool ReturnValue);
+	void IsEyeTrackerConnected(bool ReturnValue);
+	void GetStereoGazeData(const struct FEyeTrackerStereoGazeData& OutGazeData, bool ReturnValue);
+	void GetGazeData(const struct FEyeTrackerGazeData& OutGazeData, bool ReturnValue);
 };
 
 }

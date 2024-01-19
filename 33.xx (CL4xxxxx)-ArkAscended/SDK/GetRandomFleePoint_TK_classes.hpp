@@ -14,16 +14,16 @@ namespace SDK
 class UGetRandomFleePoint_TK_C : public UBTTask_BlueprintBase
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA8(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnInstance, SubobjectReference)
-	double                                       FixedDistance;                                     // 0xB0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-	double                                       RandomDistance;                                    // 0xB8(0x8)(Edit, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-	struct FBlackboardKeySelector                NavigationTargetKey;                               // 0xC0(0x28)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	double                                       FixedDistance;                                     // 0xB0(0x8)(ExportObject, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+	double                                       RandomDistance;                                    // 0xB8(0x8)(BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+	struct FBlackboardKeySelector                NavigationTargetKey;                               // 0xC0(0x28)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, Config, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGetRandomFleePoint_TK_C* GetDefaultObj();
 
-	void ReceiveExecute(class AActor** OwnerActor);
-	bool ExecuteUbergraph_GetRandomFleePoint_TK(class AActor* K2Node_Event_OwnerActor, double* CallFunc_Multiply_DoubleDouble_ReturnValue, class APrimalDinoAIController* K2Node_DynamicCast_AsPrimal_Dino_AIController, bool* K2Node_DynamicCast_bSuccess, double CallFunc_Add_DoubleDouble_ReturnValue, class AActor** CallFunc_GetTarget_ReturnValue, struct FVector* CallFunc_Multiply_VectorFloat_ReturnValue, struct FVector* CallFunc_Multiply_VectorFloat_ReturnValue_1, struct FVector* CallFunc_Multiply_VectorFloat_ReturnValue_2);
+	class AActor* ReceiveExecute();
+	double ExecuteUbergraph_GetRandomFleePoint_TK(int32 EntryPoint, double* CallFunc_RandomFloat_ReturnValue, class AActor* K2Node_Event_OwnerActor, double CallFunc_Multiply_DoubleDouble_ReturnValue, class APawn* CallFunc_K2_GetPawn_ReturnValue, const struct FVector& CallFunc_Normal_ReturnValue, const struct FVector& CallFunc_Normal_ReturnValue_1, struct FRotator* CallFunc_Conv_VectorToRotator_ReturnValue, struct FRotator* CallFunc_Conv_VectorToRotator_ReturnValue_1, bool CallFunc_Less_DoubleDouble_ReturnValue, bool CallFunc_Less_DoubleDouble_ReturnValue_1);
 };
 
 }

@@ -45,7 +45,7 @@ class UImageWriteBlueprintLibrary* UImageWriteBlueprintLibrary::GetDefaultObj()
 // Parameters:
 // class UTexture*                    Texture                                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
 // class FString                      Filename                                                         (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm)
-// struct FImageWriteOptions          Options                                                          (ConstParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FImageWriteOptions          Options                                                          (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 struct FImageWriteOptions UImageWriteBlueprintLibrary::ExportToDisk()
 {

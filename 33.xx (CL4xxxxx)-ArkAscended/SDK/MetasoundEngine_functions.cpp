@@ -43,10 +43,10 @@ class UMetasoundGeneratorHandle* UMetasoundGeneratorHandle::GetDefaultObj()
 // Function MetasoundEngine.MetasoundGeneratorHandle.CreateMetaSoundGeneratorHandle
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UAudioComponent*             OnComponent                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// class UMetasoundGeneratorHandle*   ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAudioComponent*             OnComponent                                                      (Edit, ConstParm, ExportObject, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// class UMetasoundGeneratorHandle*   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UMetasoundGeneratorHandle* UMetasoundGeneratorHandle::CreateMetaSoundGeneratorHandle()
+void UMetasoundGeneratorHandle::CreateMetaSoundGeneratorHandle(class UAudioComponent* OnComponent, class UMetasoundGeneratorHandle* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,6 +55,8 @@ class UMetasoundGeneratorHandle* UMetasoundGeneratorHandle::CreateMetaSoundGener
 
 	Params::UMetasoundGeneratorHandle_CreateMetaSoundGeneratorHandle_Params Parms{};
 
+	Parms.OnComponent = OnComponent;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -64,18 +66,16 @@ class UMetasoundGeneratorHandle* UMetasoundGeneratorHandle::CreateMetaSoundGener
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MetasoundEngine.MetasoundGeneratorHandle.ApplyParameterPack
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMetasoundParameterPack*     Pack                                                             (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMetasoundParameterPack*     Pack                                                             (ExportObject, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UMetasoundGeneratorHandle::ApplyParameterPack()
+void UMetasoundGeneratorHandle::ApplyParameterPack(class UMetasoundParameterPack* Pack, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -84,6 +84,8 @@ bool UMetasoundGeneratorHandle::ApplyParameterPack()
 
 	Params::UMetasoundGeneratorHandle_ApplyParameterPack_Params Parms{};
 
+	Parms.Pack = Pack;
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -92,8 +94,6 @@ bool UMetasoundGeneratorHandle::ApplyParameterPack()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -213,9 +213,9 @@ class UMetaSoundAssetSubsystem* UMetaSoundAssetSubsystem::GetDefaultObj()
 // Function MetasoundEngine.MetaSoundAssetSubsystem.UnregisterAssetClassesInDirectories
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FMetaSoundAssetDirectory>Directories                                                      (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FMetaSoundAssetDirectory>Directories                                                      (Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<struct FMetaSoundAssetDirectory> UMetaSoundAssetSubsystem::UnregisterAssetClassesInDirectories()
+void UMetaSoundAssetSubsystem::UnregisterAssetClassesInDirectories(TArray<struct FMetaSoundAssetDirectory>* Directories)
 {
 	static class UFunction* Func = nullptr;
 
@@ -233,7 +233,8 @@ TArray<struct FMetaSoundAssetDirectory> UMetaSoundAssetSubsystem::UnregisterAsse
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Directories != nullptr)
+		*Directories = std::move(Parms.Directories);
 
 }
 
@@ -241,9 +242,9 @@ TArray<struct FMetaSoundAssetDirectory> UMetaSoundAssetSubsystem::UnregisterAsse
 // Function MetasoundEngine.MetaSoundAssetSubsystem.RegisterAssetClassesInDirectories
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FMetaSoundAssetDirectory>Directories                                                      (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FMetaSoundAssetDirectory>Directories                                                      (Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TArray<struct FMetaSoundAssetDirectory> UMetaSoundAssetSubsystem::RegisterAssetClassesInDirectories()
+void UMetaSoundAssetSubsystem::RegisterAssetClassesInDirectories(TArray<struct FMetaSoundAssetDirectory>* Directories)
 {
 	static class UFunction* Func = nullptr;
 
@@ -261,7 +262,8 @@ TArray<struct FMetaSoundAssetDirectory> UMetaSoundAssetSubsystem::RegisterAssetC
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Directories != nullptr)
+		*Directories = std::move(Parms.Directories);
 
 }
 

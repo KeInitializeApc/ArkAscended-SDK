@@ -14,12 +14,12 @@ namespace SDK
 class UPrimalItemConsumable_Honey_C : public UPrimalItemConsumableEatable_C
 {
 public:
-	class UClass*                                WasThrownBuffToAdd;                                // 0xEB0(0x8)(BlueprintReadOnly, Net, Config, EditConst, SubobjectReference)
+	class UClass*                                WasThrownBuffToAdd;                                // 0xEB0(0x8)(Edit, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UPrimalItemConsumable_Honey_C* GetDefaultObj();
 
-	void BPNotifyDropped(class APrimalCharacter** FromCharacter, bool bWasThrown, class APrimalBuff* CallFunc_StaticAddBuff_ReturnValue, bool* CallFunc_IsValid_ReturnValue);
+	bool BPNotifyDropped();
 };
 
 }

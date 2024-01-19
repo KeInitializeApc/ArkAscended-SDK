@@ -43,9 +43,9 @@ class IBPI_PageWidgets_C* IBPI_PageWidgets_C::GetDefaultObj()
 // Function BPI_PageWidgets.BPI_PageWidgets_C.UpdateSearch
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        SearchInput                                                      (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FText                        SearchInput                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class FText IBPI_PageWidgets_C::UpdateSearch()
+void IBPI_PageWidgets_C::UpdateSearch(class FText SearchInput)
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,10 +54,9 @@ class FText IBPI_PageWidgets_C::UpdateSearch()
 
 	Params::IBPI_PageWidgets_C_UpdateSearch_Params Parms{};
 
+	Parms.SearchInput = SearchInput;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -65,9 +64,9 @@ class FText IBPI_PageWidgets_C::UpdateSearch()
 // Function BPI_PageWidgets.BPI_PageWidgets_C.GetClose_B
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UWidget*                     Widget                                                           (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+// class UWidget*                     Widget                                                           (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, DisableEditOnInstance, EditConst)
 
-class UWidget* IBPI_PageWidgets_C::GetClose_B()
+void IBPI_PageWidgets_C::GetClose_B(class UWidget* Widget)
 {
 	static class UFunction* Func = nullptr;
 
@@ -76,10 +75,9 @@ class UWidget* IBPI_PageWidgets_C::GetClose_B()
 
 	Params::IBPI_PageWidgets_C_GetClose_B_Params Parms{};
 
+	Parms.Widget = Widget;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -87,7 +85,7 @@ class UWidget* IBPI_PageWidgets_C::GetClose_B()
 // Function BPI_PageWidgets.BPI_PageWidgets_C.OnSearch
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        Search_Input                                                     (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FText                        Search_Input                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 class FText IBPI_PageWidgets_C::OnSearch()
 {

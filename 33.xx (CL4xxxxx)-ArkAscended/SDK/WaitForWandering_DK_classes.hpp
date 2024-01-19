@@ -14,13 +14,13 @@ namespace SDK
 class UWaitForWandering_DK_C : public UBTDecorator_BlueprintBase
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA0(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UWaitForWandering_DK_C* GetDefaultObj();
 
-	void ReceiveConditionCheck(class AActor** OwnerActor);
-	bool ExecuteUbergraph_WaitForWandering_DK(class AActor* K2Node_Event_OwnerActor, class APrimalDinoAIController* K2Node_DynamicCast_AsPrimal_Dino_AIController, bool* K2Node_DynamicCast_bSuccess, class APrimalDinoCharacter* K2Node_DynamicCast_AsPrimal_Dino_Character, bool* K2Node_DynamicCast_bSuccess_1);
+	class AActor* ReceiveConditionCheck();
+	bool ExecuteUbergraph_WaitForWandering_DK(int32 EntryPoint, class AActor* K2Node_Event_OwnerActor, class APawn* CallFunc_K2_GetPawn_ReturnValue, class APrimalDinoCharacter* K2Node_DynamicCast_AsPrimal_Dino_Character, bool* CallFunc_EqualEqual_ObjectObject_ReturnValue);
 };
 
 }

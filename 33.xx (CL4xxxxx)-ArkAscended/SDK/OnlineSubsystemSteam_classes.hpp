@@ -25,8 +25,8 @@ public:
 class USteamNetConnection : public UIpConnection
 {
 public:
-	bool                                         bIsPassthrough;                                    // 0x1EB8(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_641[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bIsPassthrough;                                    // 0x1EB8(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_4FE[0x7];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USteamNetConnection* GetDefaultObj();
@@ -38,7 +38,7 @@ public:
 class USteamNetDriver : public UIpNetDriver
 {
 public:
-	uint8                                        Pad_642[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_500[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USteamNetDriver* GetDefaultObj();

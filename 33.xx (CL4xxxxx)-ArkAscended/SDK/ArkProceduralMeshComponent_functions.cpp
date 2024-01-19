@@ -43,17 +43,17 @@ class UArkProceduralMeshComponent* UArkProceduralMeshComponent::GetDefaultObj()
 // Function ArkProceduralMeshComponent.ArkProceduralMeshComponent.UpdateMeshSection_LinearColor
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 // TArray<struct FVector3f>           Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// TArray<struct FVector3f>           Normals                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2f>           UV0                                                              (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2f>           UV1                                                              (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2f>           UV2                                                              (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2f>           UV3                                                              (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FLinearColor>        VertexColors                                                     (ConstParm, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FArkProcMeshTangent> Tangents                                                         (Edit, BlueprintVisible, ExportObject, Net, InstancedReference, SubobjectReference)
+// TArray<struct FVector3f>           Normals                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2f>           UV0                                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2f>           UV1                                                              (Edit, ConstParm, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2f>           UV2                                                              (BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2f>           UV3                                                              (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FLinearColor>        VertexColors                                                     (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FArkProcMeshTangent> Tangents                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-TArray<struct FVector2f> UArkProceduralMeshComponent::UpdateMeshSection_LinearColor(TArray<struct FVector3f>* Normals, const TArray<struct FVector2f>& UV3, const TArray<struct FLinearColor>& VertexColors, const TArray<struct FArkProcMeshTangent>& Tangents)
+TArray<struct FLinearColor> UArkProceduralMeshComponent::UpdateMeshSection_LinearColor(int32* SectionIndex, const TArray<struct FVector2f>& UV0, const TArray<struct FVector2f>& UV1, const TArray<struct FVector2f>& UV2, TArray<struct FArkProcMeshTangent>* Tangents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -62,9 +62,9 @@ TArray<struct FVector2f> UArkProceduralMeshComponent::UpdateMeshSection_LinearCo
 
 	Params::UArkProceduralMeshComponent_UpdateMeshSection_LinearColor_Params Parms{};
 
-	Parms.UV3 = UV3;
-	Parms.VertexColors = VertexColors;
-	Parms.Tangents = Tangents;
+	Parms.UV0 = UV0;
+	Parms.UV1 = UV1;
+	Parms.UV2 = UV2;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -74,8 +74,11 @@ TArray<struct FVector2f> UArkProceduralMeshComponent::UpdateMeshSection_LinearCo
 
 	Func->FunctionFlags = Flgs;
 
-	if (Normals != nullptr)
-		*Normals = std::move(Parms.Normals);
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
+
+	if (Tangents != nullptr)
+		*Tangents = std::move(Parms.Tangents);
 
 	return Parms.ReturnValue;
 
@@ -85,14 +88,14 @@ TArray<struct FVector2f> UArkProceduralMeshComponent::UpdateMeshSection_LinearCo
 // Function ArkProceduralMeshComponent.ArkProceduralMeshComponent.UpdateMeshSection
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 // TArray<struct FVector3f>           Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// TArray<struct FVector3f>           Normals                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2f>           UV0                                                              (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FColor>              VertexColors                                                     (ConstParm, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FArkProcMeshTangent> Tangents                                                         (Edit, BlueprintVisible, ExportObject, Net, InstancedReference, SubobjectReference)
+// TArray<struct FVector3f>           Normals                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2f>           UV0                                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FColor>              VertexColors                                                     (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FArkProcMeshTangent> Tangents                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-TArray<struct FVector2f> UArkProceduralMeshComponent::UpdateMeshSection(TArray<struct FVector3f>* Normals, const TArray<struct FColor>& VertexColors, const TArray<struct FArkProcMeshTangent>& Tangents)
+TArray<struct FColor> UArkProceduralMeshComponent::UpdateMeshSection(int32* SectionIndex, const TArray<struct FVector2f>& UV0, TArray<struct FArkProcMeshTangent>* Tangents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -101,8 +104,7 @@ TArray<struct FVector2f> UArkProceduralMeshComponent::UpdateMeshSection(TArray<s
 
 	Params::UArkProceduralMeshComponent_UpdateMeshSection_Params Parms{};
 
-	Parms.VertexColors = VertexColors;
-	Parms.Tangents = Tangents;
+	Parms.UV0 = UV0;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -112,8 +114,11 @@ TArray<struct FVector2f> UArkProceduralMeshComponent::UpdateMeshSection(TArray<s
 
 	Func->FunctionFlags = Flgs;
 
-	if (Normals != nullptr)
-		*Normals = std::move(Parms.Normals);
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
+
+	if (Tangents != nullptr)
+		*Tangents = std::move(Parms.Tangents);
 
 	return Parms.ReturnValue;
 
@@ -123,10 +128,10 @@ TArray<struct FVector2f> UArkProceduralMeshComponent::UpdateMeshSection(TArray<s
 // Function ArkProceduralMeshComponent.ArkProceduralMeshComponent.SetMeshSectionVisible
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bNewVisibility                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bNewVisibility                                                   (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UArkProceduralMeshComponent::SetMeshSectionVisible(bool bNewVisibility)
+bool UArkProceduralMeshComponent::SetMeshSectionVisible(int32* SectionIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -135,7 +140,6 @@ int32 UArkProceduralMeshComponent::SetMeshSectionVisible(bool bNewVisibility)
 
 	Params::UArkProceduralMeshComponent_SetMeshSectionVisible_Params Parms{};
 
-	Parms.bNewVisibility = bNewVisibility;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -144,6 +148,9 @@ int32 UArkProceduralMeshComponent::SetMeshSectionVisible(bool bNewVisibility)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
 
 	return Parms.ReturnValue;
 
@@ -153,10 +160,10 @@ int32 UArkProceduralMeshComponent::SetMeshSectionVisible(bool bNewVisibility)
 // Function ArkProceduralMeshComponent.ArkProceduralMeshComponent.IsMeshSectionVisible
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UArkProceduralMeshComponent::IsMeshSectionVisible()
+void UArkProceduralMeshComponent::IsMeshSectionVisible(int32* SectionIndex, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -165,6 +172,7 @@ bool UArkProceduralMeshComponent::IsMeshSectionVisible()
 
 	Params::UArkProceduralMeshComponent_IsMeshSectionVisible_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -174,7 +182,8 @@ bool UArkProceduralMeshComponent::IsMeshSectionVisible()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
 
 }
 
@@ -182,9 +191,9 @@ bool UArkProceduralMeshComponent::IsMeshSectionVisible()
 // Function ArkProceduralMeshComponent.ArkProceduralMeshComponent.GetNumSections
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-int32 UArkProceduralMeshComponent::GetNumSections()
+void UArkProceduralMeshComponent::GetNumSections(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -193,6 +202,7 @@ int32 UArkProceduralMeshComponent::GetNumSections()
 
 	Params::UArkProceduralMeshComponent_GetNumSections_Params Parms{};
 
+	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -202,27 +212,25 @@ int32 UArkProceduralMeshComponent::GetNumSections()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function ArkProceduralMeshComponent.ArkProceduralMeshComponent.CreateMeshSection_LinearColor
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 // TArray<struct FVector3f>           Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // TArray<int32>                      Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVector3f>           Normals                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2f>           UV0                                                              (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2f>           UV1                                                              (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2f>           UV2                                                              (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2f>           UV3                                                              (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FLinearColor>        VertexColors                                                     (ConstParm, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FArkProcMeshTangent> Tangents                                                         (Edit, BlueprintVisible, ExportObject, Net, InstancedReference, SubobjectReference)
-// bool                               bCreateCollision                                                 (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FVector3f>           Normals                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2f>           UV0                                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2f>           UV1                                                              (Edit, ConstParm, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2f>           UV2                                                              (BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2f>           UV3                                                              (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FLinearColor>        VertexColors                                                     (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FArkProcMeshTangent> Tangents                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bCreateCollision                                                 (BlueprintVisible, BlueprintReadOnly, Parm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UArkProceduralMeshComponent::CreateMeshSection_LinearColor(TArray<struct FVector3f>* Normals, const TArray<struct FVector2f>& UV3, const TArray<struct FLinearColor>& VertexColors, const TArray<struct FArkProcMeshTangent>& Tangents)
+TArray<struct FLinearColor> UArkProceduralMeshComponent::CreateMeshSection_LinearColor(int32* SectionIndex, const TArray<struct FVector2f>& UV0, const TArray<struct FVector2f>& UV1, const TArray<struct FVector2f>& UV2, TArray<struct FArkProcMeshTangent>* Tangents, bool bCreateCollision)
 {
 	static class UFunction* Func = nullptr;
 
@@ -231,9 +239,10 @@ bool UArkProceduralMeshComponent::CreateMeshSection_LinearColor(TArray<struct FV
 
 	Params::UArkProceduralMeshComponent_CreateMeshSection_LinearColor_Params Parms{};
 
-	Parms.UV3 = UV3;
-	Parms.VertexColors = VertexColors;
-	Parms.Tangents = Tangents;
+	Parms.UV0 = UV0;
+	Parms.UV1 = UV1;
+	Parms.UV2 = UV2;
+	Parms.bCreateCollision = bCreateCollision;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -243,8 +252,11 @@ bool UArkProceduralMeshComponent::CreateMeshSection_LinearColor(TArray<struct FV
 
 	Func->FunctionFlags = Flgs;
 
-	if (Normals != nullptr)
-		*Normals = std::move(Parms.Normals);
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
+
+	if (Tangents != nullptr)
+		*Tangents = std::move(Parms.Tangents);
 
 	return Parms.ReturnValue;
 
@@ -254,16 +266,16 @@ bool UArkProceduralMeshComponent::CreateMeshSection_LinearColor(TArray<struct FV
 // Function ArkProceduralMeshComponent.ArkProceduralMeshComponent.CreateMeshSection
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 // TArray<struct FVector3f>           Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 // TArray<int32>                      Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVector3f>           Normals                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FVector2f>           UV0                                                              (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FColor>              VertexColors                                                     (ConstParm, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FArkProcMeshTangent> Tangents                                                         (Edit, BlueprintVisible, ExportObject, Net, InstancedReference, SubobjectReference)
-// bool                               bCreateCollision                                                 (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FVector3f>           Normals                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector2f>           UV0                                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FColor>              VertexColors                                                     (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FArkProcMeshTangent> Tangents                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bCreateCollision                                                 (BlueprintVisible, BlueprintReadOnly, Parm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UArkProceduralMeshComponent::CreateMeshSection(TArray<struct FVector3f>* Normals, const TArray<struct FColor>& VertexColors, const TArray<struct FArkProcMeshTangent>& Tangents)
+TArray<struct FColor> UArkProceduralMeshComponent::CreateMeshSection(int32* SectionIndex, const TArray<struct FVector2f>& UV0, TArray<struct FArkProcMeshTangent>* Tangents, bool bCreateCollision)
 {
 	static class UFunction* Func = nullptr;
 
@@ -272,8 +284,8 @@ bool UArkProceduralMeshComponent::CreateMeshSection(TArray<struct FVector3f>* No
 
 	Params::UArkProceduralMeshComponent_CreateMeshSection_Params Parms{};
 
-	Parms.VertexColors = VertexColors;
-	Parms.Tangents = Tangents;
+	Parms.UV0 = UV0;
+	Parms.bCreateCollision = bCreateCollision;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -283,8 +295,11 @@ bool UArkProceduralMeshComponent::CreateMeshSection(TArray<struct FVector3f>* No
 
 	Func->FunctionFlags = Flgs;
 
-	if (Normals != nullptr)
-		*Normals = std::move(Parms.Normals);
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
+
+	if (Tangents != nullptr)
+		*Tangents = std::move(Parms.Tangents);
 
 	return Parms.ReturnValue;
 
@@ -294,9 +309,9 @@ bool UArkProceduralMeshComponent::CreateMeshSection(TArray<struct FVector3f>* No
 // Function ArkProceduralMeshComponent.ArkProceduralMeshComponent.ClearMeshSection
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              SectionIndex                                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              SectionIndex                                                     (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UArkProceduralMeshComponent::ClearMeshSection()
+void UArkProceduralMeshComponent::ClearMeshSection(int32* SectionIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -314,7 +329,8 @@ int32 UArkProceduralMeshComponent::ClearMeshSection()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (SectionIndex != nullptr)
+		*SectionIndex = Parms.SectionIndex;
 
 }
 
@@ -370,9 +386,9 @@ void UArkProceduralMeshComponent::ClearAllMeshSections()
 // Function ArkProceduralMeshComponent.ArkProceduralMeshComponent.AddCollisionConvexMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<struct FVector>             ConvexVerts                                                      (ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             ConvexVerts                                                      (ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
 
-TArray<struct FVector> UArkProceduralMeshComponent::AddCollisionConvexMesh()
+void UArkProceduralMeshComponent::AddCollisionConvexMesh(const TArray<struct FVector>& ConvexVerts)
 {
 	static class UFunction* Func = nullptr;
 
@@ -381,6 +397,7 @@ TArray<struct FVector> UArkProceduralMeshComponent::AddCollisionConvexMesh()
 
 	Params::UArkProceduralMeshComponent_AddCollisionConvexMesh_Params Parms{};
 
+	Parms.ConvexVerts = ConvexVerts;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -389,8 +406,6 @@ TArray<struct FVector> UArkProceduralMeshComponent::AddCollisionConvexMesh()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 

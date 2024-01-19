@@ -19,8 +19,8 @@ struct AReplicationGraphDebugActor_ServerSetPeriodFrameForClass_Params
 {
 public:
 	class UClass*                                Class;                                             // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, ZeroConstructor)
-	int32                                        PeriodFrame;                                       // 0x8(0x4)(Edit, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1C2[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	int32                                        PeriodFrame;                                       // 0x8(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_D5[0x4];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -29,8 +29,8 @@ struct AReplicationGraphDebugActor_ServerSetCullDistanceForClass_Params
 {
 public:
 	class UClass*                                Class;                                             // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, ZeroConstructor)
-	float                                        CullDistance;                                      // 0x8(0x4)(ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1C4[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        CullDistance;                                      // 0x8(0x4)(ConstParm, ExportObject, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_D9[0x4];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -46,7 +46,7 @@ public:
 struct AReplicationGraphDebugActor_ServerPrintAllActorInfo_Params
 {
 public:
-	class FString                                Str;                                               // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FString                                Str;                                               // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -54,9 +54,9 @@ public:
 struct AReplicationGraphDebugActor_ClientCellInfo_Params
 {
 public:
-	struct FVector                               CellLocation;                                      // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FVector                               CellExtent;                                        // 0x18(0x18)(Edit, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<class AActor*>                        Actors;                                            // 0x30(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector                               CellLocation;                                      // 0x0(0x18)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FVector                               CellExtent;                                        // 0x18(0x18)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class AActor*>                        Actors;                                            // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

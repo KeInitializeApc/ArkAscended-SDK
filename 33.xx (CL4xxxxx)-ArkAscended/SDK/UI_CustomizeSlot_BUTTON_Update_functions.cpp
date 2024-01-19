@@ -44,9 +44,9 @@ class UUI_CustomizeSlot_BUTTON_Update_C* UUI_CustomizeSlot_BUTTON_Update_C::GetD
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // struct FLinearColor                Color                                                            (Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
-// bool                               CallFunc_IsValid_ReturnValue                                     (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-void UUI_CustomizeSlot_BUTTON_Update_C::SetColor(struct FLinearColor* Color, bool* CallFunc_IsValid_ReturnValue)
+bool UUI_CustomizeSlot_BUTTON_Update_C::SetColor(struct FLinearColor* Color)
 {
 	static class UFunction* Func = nullptr;
 
@@ -61,8 +61,7 @@ void UUI_CustomizeSlot_BUTTON_Update_C::SetColor(struct FLinearColor* Color, boo
 	if (Color != nullptr)
 		*Color = std::move(Parms.Color);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -71,7 +70,7 @@ void UUI_CustomizeSlot_BUTTON_Update_C::SetColor(struct FLinearColor* Color, boo
 // (Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
 // struct FLinearColor                Color                                                            (Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
-// struct FCFCoreThemeRowData         CallFunc_GetCurrentTheme_CurrentTheme                            (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, InstancedReference, SubobjectReference)
+// struct FCFCoreThemeRowData         CallFunc_GetCurrentTheme_CurrentTheme                            (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void UUI_CustomizeSlot_BUTTON_Update_C::GetColor(struct FLinearColor* Color, struct FCFCoreThemeRowData* CallFunc_GetCurrentTheme_CurrentTheme)
 {

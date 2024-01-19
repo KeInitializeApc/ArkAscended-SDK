@@ -47,8 +47,8 @@ enum class EMPMatchOutcome : uint8
 struct FNamedInterface
 {
 public:
-	class FName                                  InterfaceName;                                     // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UObject*                               InterfaceObject;                                   // 0x8(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  InterfaceName;                                     // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UObject*                               InterfaceObject;                                   // 0x8(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -56,8 +56,8 @@ public:
 struct FNamedInterfaceDef
 {
 public:
-	class FName                                  InterfaceName;                                     // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FString                                InterfaceClassName;                                // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  InterfaceName;                                     // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                InterfaceClassName;                                // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }
