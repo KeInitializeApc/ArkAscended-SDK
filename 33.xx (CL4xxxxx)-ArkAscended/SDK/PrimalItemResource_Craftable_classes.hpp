@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xEB0 - 0xEB0)
+// 0x0 (0xED0 - 0xED0)
 // BlueprintGeneratedClass PrimalItemResource_Craftable.PrimalItemResource_Craftable_C
 class UPrimalItemResource_Craftable_C : public UPrimalItemResourceGeneric_C
 {

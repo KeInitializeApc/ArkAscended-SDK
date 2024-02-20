@@ -43,10 +43,10 @@ class UAnimNotifyState_TimedNiagaraEffect* UAnimNotifyState_TimedNiagaraEffect::
 // Function NiagaraAnimNotifies.AnimNotifyState_TimedNiagaraEffect.GetSpawnedEffect
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class UMeshComponent*              MeshComp                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UFXSystemComponent*          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMeshComponent*              MeshComp                                                         (ConstParm, ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UFXSystemComponent*          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAnimNotifyState_TimedNiagaraEffect::GetSpawnedEffect(class UMeshComponent** MeshComp, class UFXSystemComponent* ReturnValue)
+class UMeshComponent* UAnimNotifyState_TimedNiagaraEffect::GetSpawnedEffect(class UFXSystemComponent* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -65,8 +65,7 @@ void UAnimNotifyState_TimedNiagaraEffect::GetSpawnedEffect(class UMeshComponent*
 
 	Func->FunctionFlags = Flgs;
 
-	if (MeshComp != nullptr)
-		*MeshComp = Parms.MeshComp;
+	return Parms.ReturnValue;
 
 }
 
@@ -102,10 +101,10 @@ class UAnimNotifyState_TimedNiagaraEffectAdvanced* UAnimNotifyState_TimedNiagara
 // Function NiagaraAnimNotifies.AnimNotifyState_TimedNiagaraEffectAdvanced.GetNotifyProgress
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class UMeshComponent*              MeshComp                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMeshComponent*              MeshComp                                                         (ConstParm, ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAnimNotifyState_TimedNiagaraEffectAdvanced::GetNotifyProgress(class UMeshComponent** MeshComp, float ReturnValue)
+class UMeshComponent* UAnimNotifyState_TimedNiagaraEffectAdvanced::GetNotifyProgress(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -124,8 +123,7 @@ void UAnimNotifyState_TimedNiagaraEffectAdvanced::GetNotifyProgress(class UMeshC
 
 	Func->FunctionFlags = Flgs;
 
-	if (MeshComp != nullptr)
-		*MeshComp = Parms.MeshComp;
+	return Parms.ReturnValue;
 
 }
 
@@ -161,7 +159,7 @@ class UAnimNotify_PlayNiagaraEffect* UAnimNotify_PlayNiagaraEffect::GetDefaultOb
 // Function NiagaraAnimNotifies.AnimNotify_PlayNiagaraEffect.GetSpawnedEffect
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class UFXSystemComponent*          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UFXSystemComponent*          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UAnimNotify_PlayNiagaraEffect::GetSpawnedEffect(class UFXSystemComponent* ReturnValue)
 {

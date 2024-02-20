@@ -14,7 +14,7 @@ namespace SDK
 class UAudioLinkSettingsAbstract : public UObject
 {
 public:
-	uint8                                        Pad_58F[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1F63[0x10];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAudioLinkSettingsAbstract* GetDefaultObj();

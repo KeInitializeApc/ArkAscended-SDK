@@ -407,7 +407,7 @@ class ATemplateSequenceActor* ATemplateSequenceActor::GetDefaultObj()
 // Function TemplateSequence.TemplateSequenceActor.SetSequence
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UTemplateSequence*           InSequence                                                       (Edit, ExportObject, Transient, Config, InstancedReference, SubobjectReference)
+// class UTemplateSequence*           InSequence                                                       (BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void ATemplateSequenceActor::SetSequence(class UTemplateSequence* InSequence)
 {
@@ -435,7 +435,7 @@ void ATemplateSequenceActor::SetSequence(class UTemplateSequence* InSequence)
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// bool                               bOverridesDefault                                                (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               bOverridesDefault                                                (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
 bool ATemplateSequenceActor::SetBinding(class AActor** Actor)
 {
@@ -466,7 +466,7 @@ bool ATemplateSequenceActor::SetBinding(class AActor** Actor)
 // Function TemplateSequence.TemplateSequenceActor.LoadSequence
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UTemplateSequence*           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTemplateSequence*           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ATemplateSequenceActor::LoadSequence(class UTemplateSequence* ReturnValue)
 {
@@ -493,7 +493,7 @@ void ATemplateSequenceActor::LoadSequence(class UTemplateSequence* ReturnValue)
 // Function TemplateSequence.TemplateSequenceActor.GetSequencePlayer
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UTemplateSequencePlayer*     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTemplateSequencePlayer*     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ATemplateSequenceActor::GetSequencePlayer(class UTemplateSequencePlayer* ReturnValue)
 {
@@ -520,7 +520,7 @@ void ATemplateSequenceActor::GetSequencePlayer(class UTemplateSequencePlayer* Re
 // Function TemplateSequence.TemplateSequenceActor.GetSequence
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UTemplateSequence*           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTemplateSequence*           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ATemplateSequenceActor::GetSequence(class UTemplateSequence* ReturnValue)
 {
@@ -575,13 +575,13 @@ class UTemplateSequencePlayer* UTemplateSequencePlayer::GetDefaultObj()
 // Function TemplateSequence.TemplateSequencePlayer.CreateTemplateSequencePlayer
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UTemplateSequence*           TemplateSequence                                                 (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
-// struct FMovieSceneSequencePlaybackSettingsSettings                                                         (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// class ATemplateSequenceActor*      OutActor                                                         (ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class UTemplateSequencePlayer*     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UTemplateSequence*           TemplateSequence                                                 (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+// struct FMovieSceneSequencePlaybackSettingsSettings                                                         (Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// class ATemplateSequenceActor*      OutActor                                                         (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// class UTemplateSequencePlayer*     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class ATemplateSequenceActor* UTemplateSequencePlayer::CreateTemplateSequencePlayer(class UObject* WorldContextObject, class UTemplateSequence** TemplateSequence, class UTemplateSequencePlayer* ReturnValue)
+class UTemplateSequence* UTemplateSequencePlayer::CreateTemplateSequencePlayer(const struct FMovieSceneSequencePlaybackSettings& Settings, class ATemplateSequenceActor** OutActor, class UTemplateSequencePlayer* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -590,7 +590,7 @@ class ATemplateSequenceActor* UTemplateSequencePlayer::CreateTemplateSequencePla
 
 	Params::UTemplateSequencePlayer_CreateTemplateSequencePlayer_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
+	Parms.Settings = Settings;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -601,8 +601,8 @@ class ATemplateSequenceActor* UTemplateSequencePlayer::CreateTemplateSequencePla
 
 	Func->FunctionFlags = Flgs;
 
-	if (TemplateSequence != nullptr)
-		*TemplateSequence = Parms.TemplateSequence;
+	if (OutActor != nullptr)
+		*OutActor = Parms.OutActor;
 
 	return Parms.ReturnValue;
 
@@ -640,13 +640,13 @@ class USequenceCameraShakeTestUtil* USequenceCameraShakeTestUtil::GetDefaultObj(
 // Function TemplateSequence.SequenceCameraShakeTestUtil.GetPostProcessBlendCache
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// int32                              PPIndex                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// struct FPostProcessSettings        OutPPSettings                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// float                              OutPPBlendWeight                                                 (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// int32                              PPIndex                                                          (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// struct FPostProcessSettings        OutPPSettings                                                    (Edit, ConstParm, Net, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// float                              OutPPBlendWeight                                                 (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float USequenceCameraShakeTestUtil::GetPostProcessBlendCache(bool ReturnValue)
+void USequenceCameraShakeTestUtil::GetPostProcessBlendCache(class APlayerController** PlayerController, int32* PPIndex, struct FPostProcessSettings* OutPPSettings, float* OutPPBlendWeight, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -665,7 +665,17 @@ float USequenceCameraShakeTestUtil::GetPostProcessBlendCache(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PlayerController != nullptr)
+		*PlayerController = Parms.PlayerController;
+
+	if (PPIndex != nullptr)
+		*PPIndex = Parms.PPIndex;
+
+	if (OutPPSettings != nullptr)
+		*OutPPSettings = std::move(Parms.OutPPSettings);
+
+	if (OutPPBlendWeight != nullptr)
+		*OutPPBlendWeight = Parms.OutPPBlendWeight;
 
 }
 
@@ -673,10 +683,10 @@ float USequenceCameraShakeTestUtil::GetPostProcessBlendCache(bool ReturnValue)
 // Function TemplateSequence.SequenceCameraShakeTestUtil.GetLastFrameCameraCachePOV
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// struct FMinimalViewInfo            ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// struct FMinimalViewInfo            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class APlayerController* USequenceCameraShakeTestUtil::GetLastFrameCameraCachePOV(const struct FMinimalViewInfo& ReturnValue)
+void USequenceCameraShakeTestUtil::GetLastFrameCameraCachePOV(class APlayerController** PlayerController, const struct FMinimalViewInfo& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -695,7 +705,8 @@ class APlayerController* USequenceCameraShakeTestUtil::GetLastFrameCameraCachePO
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PlayerController != nullptr)
+		*PlayerController = Parms.PlayerController;
 
 }
 
@@ -703,10 +714,10 @@ class APlayerController* USequenceCameraShakeTestUtil::GetLastFrameCameraCachePO
 // Function TemplateSequence.SequenceCameraShakeTestUtil.GetCameraCachePOV
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// struct FMinimalViewInfo            ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// struct FMinimalViewInfo            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class APlayerController* USequenceCameraShakeTestUtil::GetCameraCachePOV(const struct FMinimalViewInfo& ReturnValue)
+void USequenceCameraShakeTestUtil::GetCameraCachePOV(class APlayerController** PlayerController, const struct FMinimalViewInfo& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -725,7 +736,8 @@ class APlayerController* USequenceCameraShakeTestUtil::GetCameraCachePOV(const s
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PlayerController != nullptr)
+		*PlayerController = Parms.PlayerController;
 
 }
 

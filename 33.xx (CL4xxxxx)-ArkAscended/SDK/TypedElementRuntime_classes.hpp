@@ -30,10 +30,10 @@ public:
 class UTypedElementSelectionSet : public UObject
 {
 public:
-	uint8                                        Pad_2E59[0x800];                                   // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            OnPreSelectionChange;                              // 0x828(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnSelectionChange;                                 // 0x838(0x10)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2E5B[0x50];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_20EB[0x800];                                   // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            OnPreSelectionChange;                              // 0x828(0x10)(BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnSelectionChange;                                 // 0x838(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_20ED[0x50];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UTypedElementSelectionSet* GetDefaultObj();

@@ -19,8 +19,8 @@ namespace SDK
 struct FStringValuePair
 {
 public:
-	class FString                                Key;                                               // 0x0(0x10)(BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-	class FString                                Value;                                             // 0x10(0x10)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+	class FString                                Key;                                               // 0x0(0x10)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+	class FString                                Value;                                             // 0x10(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 };
 
 }

@@ -18,10 +18,10 @@ public:
 	static class UClass* StaticClass();
 	static class UStreamlineLibrary* GetDefaultObj();
 
-	void QueryStreamlineFeatureSupport(enum class EUStreamlineFeature Feature, enum class EUStreamlineFeatureSupport ReturnValue);
-	void IsStreamlineFeatureSupported(enum class EUStreamlineFeature Feature, bool ReturnValue);
-	void GetStreamlineFeatureInformation(enum class EUStreamlineFeature Feature, const struct FStreamlineFeatureRequirements& ReturnValue);
-	void BreakStreamlineFeatureRequirements(enum class EUStreamlineFeatureRequirementsFlags Requirements, bool* D3D11Supported, bool* D3D12Supported, bool* VulkanSupported, bool* VSyncOffRequired, bool* HardwareSchedulingRequired);
+	enum class EUStreamlineFeature QueryStreamlineFeatureSupport(enum class EUStreamlineFeatureSupport ReturnValue);
+	enum class EUStreamlineFeature IsStreamlineFeatureSupported(bool ReturnValue);
+	enum class EUStreamlineFeature GetStreamlineFeatureInformation(const struct FStreamlineFeatureRequirements& ReturnValue);
+	bool BreakStreamlineFeatureRequirements(enum class EUStreamlineFeatureRequirementsFlags* Requirements);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -33,13 +33,13 @@ public:
 	static class UClass* StaticClass();
 	static class UStreamlineLibraryDLSSG* GetDefaultObj();
 
-	void SetDLSSGMode(enum class EUStreamlineDLSSGMode DLSSGMode);
+	enum class EUStreamlineDLSSGMode SetDLSSGMode();
 	void QueryDLSSGSupport(enum class EUStreamlineFeatureSupport ReturnValue);
 	void IsDLSSGSupported(bool ReturnValue);
-	void IsDLSSGModeSupported(enum class EUStreamlineDLSSGMode DLSSGMode, bool ReturnValue);
+	enum class EUStreamlineDLSSGMode IsDLSSGModeSupported(bool ReturnValue);
 	void GetSupportedDLSSGModes(const TArray<enum class EUStreamlineDLSSGMode>& ReturnValue);
 	void GetDLSSGMode(enum class EUStreamlineDLSSGMode ReturnValue);
-	void GetDLSSGFrameTiming(float FrameRateInHertz, int32 FramesPresented);
+	int32 GetDLSSGFrameTiming();
 	void GetDefaultDLSSGMode(enum class EUStreamlineDLSSGMode ReturnValue);
 };
 
@@ -52,7 +52,7 @@ public:
 	static class UClass* StaticClass();
 	static class UStreamlineLibraryReflex* GetDefaultObj();
 
-	enum class EUStreamlineReflexMode SetReflexMode();
+	void SetReflexMode(enum class EUStreamlineReflexMode Mode);
 	void QueryReflexSupport(enum class EUStreamlineFeatureSupport ReturnValue);
 	void IsReflexSupported(bool ReturnValue);
 	void GetRenderLatencyInMs(float ReturnValue);

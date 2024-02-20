@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xEB0 - 0xEB0)
+// 0x0 (0xED0 - 0xED0)
 // BlueprintGeneratedClass PrimalItem_WeaponBasePick.PrimalItem_WeaponBasePick_C
 class UPrimalItem_WeaponBasePick_C : public UPrimalItemWeaponGenericAmmoless_C
 {

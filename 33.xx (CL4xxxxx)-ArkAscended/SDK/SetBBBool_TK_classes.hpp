@@ -14,15 +14,15 @@ namespace SDK
 class USetBBBool_TK_C : public UBTTask_BlueprintBase
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-	struct FBlackboardKeySelector                BlackboardKey;                                     // 0xB0(0x28)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-	bool                                         Value;                                             // 0xD8(0x1)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA8(0x8)(BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FBlackboardKeySelector                BlackboardKey;                                     // 0xB0(0x28)(ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         Value;                                             // 0xD8(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
 	static class UClass* StaticClass();
 	static class USetBBBool_TK_C* GetDefaultObj();
 
-	class AActor* ReceiveExecute();
-	void ExecuteUbergraph_SetBBBool_TK(int32 EntryPoint, class AActor* K2Node_Event_OwnerActor);
+	void ReceiveExecute(class AActor** OwnerActor);
+	int32 ExecuteUbergraph_SetBBBool_TK(class AActor** K2Node_Event_OwnerActor);
 };
 
 }

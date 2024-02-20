@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xEB0 - 0xEB0)
+// 0x0 (0xED0 - 0xED0)
 // BlueprintGeneratedClass PrimalItemAmmo_Flamethrower.PrimalItemAmmo_Flamethrower_C
 class UPrimalItemAmmo_Flamethrower_C : public UPrimalItemAmmo_Base_C
 {

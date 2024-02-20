@@ -43,7 +43,7 @@ class UListSessions_OLD_C* UListSessions_OLD_C::GetDefaultObj()
 // Function ListSessions_OLD.ListSessions_OLD_C.GetSizeboxForExtraHandheldScaling
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class USizeBox*                    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USizeBox*                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UListSessions_OLD_C::GetSizeboxForExtraHandheldScaling(class USizeBox* ReturnValue)
 {
@@ -64,7 +64,7 @@ void UListSessions_OLD_C::GetSizeboxForExtraHandheldScaling(class USizeBox* Retu
 // Function ListSessions_OLD.ListSessions_OLD_C.GetWidgetToScaleForHandheld
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UWidget*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UListSessions_OLD_C::GetWidgetToScaleForHandheld(class UWidget* ReturnValue)
 {
@@ -85,9 +85,9 @@ void UListSessions_OLD_C::GetWidgetToScaleForHandheld(class UWidget* ReturnValue
 // Function ListSessions_OLD.ListSessions_OLD_C.BndEvt__ShowOfficialServersCheckBox_K2Node_ComponentBoundEvent_78_OnCheckBoxComponentStateChanged__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
-// bool                               bIsChecked                                                       (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bIsChecked                                                       (Edit, ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void UListSessions_OLD_C::BndEvt__ShowOfficialServersCheckBox_K2Node_ComponentBoundEvent_78_OnCheckBoxComponentStateChanged__DelegateSignature(bool* bIsChecked)
+bool UListSessions_OLD_C::BndEvt__ShowOfficialServersCheckBox_K2Node_ComponentBoundEvent_78_OnCheckBoxComponentStateChanged__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -99,8 +99,7 @@ void UListSessions_OLD_C::BndEvt__ShowOfficialServersCheckBox_K2Node_ComponentBo
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (bIsChecked != nullptr)
-		*bIsChecked = Parms.bIsChecked;
+	return Parms.ReturnValue;
 
 }
 
@@ -108,9 +107,9 @@ void UListSessions_OLD_C::BndEvt__ShowOfficialServersCheckBox_K2Node_ComponentBo
 // Function ListSessions_OLD.ListSessions_OLD_C.BndEvt__ShowUnOfficialServersCheckBox_K2Node_ComponentBoundEvent_84_OnCheckBoxComponentStateChanged__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
-// bool                               bIsChecked                                                       (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bIsChecked                                                       (Edit, ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void UListSessions_OLD_C::BndEvt__ShowUnOfficialServersCheckBox_K2Node_ComponentBoundEvent_84_OnCheckBoxComponentStateChanged__DelegateSignature(bool* bIsChecked)
+bool UListSessions_OLD_C::BndEvt__ShowUnOfficialServersCheckBox_K2Node_ComponentBoundEvent_84_OnCheckBoxComponentStateChanged__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -122,8 +121,7 @@ void UListSessions_OLD_C::BndEvt__ShowUnOfficialServersCheckBox_K2Node_Component
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (bIsChecked != nullptr)
-		*bIsChecked = Parms.bIsChecked;
+	return Parms.ReturnValue;
 
 }
 
@@ -131,9 +129,9 @@ void UListSessions_OLD_C::BndEvt__ShowUnOfficialServersCheckBox_K2Node_Component
 // Function ListSessions_OLD.ListSessions_OLD_C.BndEvt__ShowProtectedServersCheckBox_K2Node_ComponentBoundEvent_88_OnCheckBoxComponentStateChanged__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
-// bool                               bIsChecked                                                       (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bIsChecked                                                       (Edit, ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void UListSessions_OLD_C::BndEvt__ShowProtectedServersCheckBox_K2Node_ComponentBoundEvent_88_OnCheckBoxComponentStateChanged__DelegateSignature(bool* bIsChecked)
+bool UListSessions_OLD_C::BndEvt__ShowProtectedServersCheckBox_K2Node_ComponentBoundEvent_88_OnCheckBoxComponentStateChanged__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -145,8 +143,7 @@ void UListSessions_OLD_C::BndEvt__ShowProtectedServersCheckBox_K2Node_ComponentB
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (bIsChecked != nullptr)
-		*bIsChecked = Parms.bIsChecked;
+	return Parms.ReturnValue;
 
 }
 
@@ -154,12 +151,12 @@ void UListSessions_OLD_C::BndEvt__ShowProtectedServersCheckBox_K2Node_ComponentB
 // Function ListSessions_OLD.ListSessions_OLD_C.ExecuteUbergraph_ListSessions_OLD
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               K2Node_ComponentBoundEvent_bIsChecked                            (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_ComponentBoundEvent_bIsChecked_2                          (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
-// bool                               K2Node_ComponentBoundEvent_bIsChecked_1                          (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// bool                               K2Node_ComponentBoundEvent_bIsChecked                            (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_ComponentBoundEvent_bIsChecked_2                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
+// bool                               K2Node_ComponentBoundEvent_bIsChecked_1                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference, Interp)
 
-void UListSessions_OLD_C::ExecuteUbergraph_ListSessions_OLD(int32 EntryPoint, bool K2Node_ComponentBoundEvent_bIsChecked, bool K2Node_ComponentBoundEvent_bIsChecked_2, bool K2Node_ComponentBoundEvent_bIsChecked_1)
+int32 UListSessions_OLD_C::ExecuteUbergraph_ListSessions_OLD(bool* K2Node_ComponentBoundEvent_bIsChecked, bool* K2Node_ComponentBoundEvent_bIsChecked_2, bool* K2Node_ComponentBoundEvent_bIsChecked_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -168,12 +165,19 @@ void UListSessions_OLD_C::ExecuteUbergraph_ListSessions_OLD(int32 EntryPoint, bo
 
 	Params::UListSessions_OLD_C_ExecuteUbergraph_ListSessions_OLD_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
-	Parms.K2Node_ComponentBoundEvent_bIsChecked = K2Node_ComponentBoundEvent_bIsChecked;
-	Parms.K2Node_ComponentBoundEvent_bIsChecked_2 = K2Node_ComponentBoundEvent_bIsChecked_2;
-	Parms.K2Node_ComponentBoundEvent_bIsChecked_1 = K2Node_ComponentBoundEvent_bIsChecked_1;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (K2Node_ComponentBoundEvent_bIsChecked != nullptr)
+		*K2Node_ComponentBoundEvent_bIsChecked = Parms.K2Node_ComponentBoundEvent_bIsChecked;
+
+	if (K2Node_ComponentBoundEvent_bIsChecked_2 != nullptr)
+		*K2Node_ComponentBoundEvent_bIsChecked_2 = Parms.K2Node_ComponentBoundEvent_bIsChecked_2;
+
+	if (K2Node_ComponentBoundEvent_bIsChecked_1 != nullptr)
+		*K2Node_ComponentBoundEvent_bIsChecked_1 = Parms.K2Node_ComponentBoundEvent_bIsChecked_1;
+
+	return Parms.ReturnValue;
 
 }
 

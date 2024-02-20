@@ -43,9 +43,9 @@ class UCheatMenuCheatButton_C* UCheatMenuCheatButton_C::GetDefaultObj()
 // Function CheatMenuCheatButton.CheatMenuCheatButton_C.CloseConfirmation
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-class FText UCheatMenuCheatButton_C::CloseConfirmation()
+void UCheatMenuCheatButton_C::CloseConfirmation(class FText* CallFunc_Conv_StringToText_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,7 +57,8 @@ class FText UCheatMenuCheatButton_C::CloseConfirmation()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (CallFunc_Conv_StringToText_ReturnValue != nullptr)
+		*CallFunc_Conv_StringToText_ReturnValue = Parms.CallFunc_Conv_StringToText_ReturnValue;
 
 }
 
@@ -65,10 +66,10 @@ class FText UCheatMenuCheatButton_C::CloseConfirmation()
 // Function CheatMenuCheatButton.CheatMenuCheatButton_C.ShowConfirmation
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_Format_ReturnValue                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// TArray<struct FFormatArgumentData> K2Node_MakeArray_Array                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// class FText                        CallFunc_Format_ReturnValue                                      (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-class FText UCheatMenuCheatButton_C::ShowConfirmation(const TArray<struct FFormatArgumentData>& K2Node_MakeArray_Array)
+TArray<struct FFormatArgumentData> UCheatMenuCheatButton_C::ShowConfirmation(class FText* CallFunc_Format_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -77,9 +78,11 @@ class FText UCheatMenuCheatButton_C::ShowConfirmation(const TArray<struct FForma
 
 	Params::UCheatMenuCheatButton_C_ShowConfirmation_Params Parms{};
 
-	Parms.K2Node_MakeArray_Array = K2Node_MakeArray_Array;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (CallFunc_Format_ReturnValue != nullptr)
+		*CallFunc_Format_ReturnValue = Parms.CallFunc_Format_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -107,16 +110,16 @@ void UCheatMenuCheatButton_C::BndEvt__SpawnButton_K2Node_ComponentBoundEvent_160
 // Function CheatMenuCheatButton.CheatMenuCheatButton_C.ExecuteUbergraph_CheatMenuCheatButton
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
-// class APlayerController*           CallFunc_GetPlayerController_ReturnValue                         (BlueprintReadOnly, Net, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_GetText_ReturnValue                                     (Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// class FString                      CallFunc_Concat_StrStr_ReturnValue                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// class FString                      CallFunc_Concat_StrStr_ReturnValue_1                             (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// class FString                      K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// bool                               Temp_bool_Variable                                               (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, SubobjectReference)
+// class APlayerController*           CallFunc_GetPlayerController_ReturnValue                         (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, SubobjectReference)
+// class FText                        CallFunc_GetText_ReturnValue                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// class FString                      CallFunc_Concat_StrStr_ReturnValue                               (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class FString                      CallFunc_Concat_StrStr_ReturnValue_1                             (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
+// class FString                      K2Node_Select_Default                                            (ConstParm, Net, Parm, OutParm, Config, SubobjectReference)
 
-class FString UCheatMenuCheatButton_C::ExecuteUbergraph_CheatMenuCheatButton(int32 EntryPoint, bool Temp_bool_Variable, class APlayerController* CallFunc_GetPlayerController_ReturnValue, const class FString& K2Node_Select_Default)
+class FString UCheatMenuCheatButton_C::ExecuteUbergraph_CheatMenuCheatButton(bool* Temp_bool_Variable, class APlayerController* CallFunc_GetPlayerController_ReturnValue, class FText CallFunc_GetText_ReturnValue, class FString* CallFunc_Conv_TextToString_ReturnValue, class FString* K2Node_Select_Default)
 {
 	static class UFunction* Func = nullptr;
 
@@ -125,12 +128,19 @@ class FString UCheatMenuCheatButton_C::ExecuteUbergraph_CheatMenuCheatButton(int
 
 	Params::UCheatMenuCheatButton_C_ExecuteUbergraph_CheatMenuCheatButton_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
-	Parms.Temp_bool_Variable = Temp_bool_Variable;
 	Parms.CallFunc_GetPlayerController_ReturnValue = CallFunc_GetPlayerController_ReturnValue;
-	Parms.K2Node_Select_Default = K2Node_Select_Default;
+	Parms.CallFunc_GetText_ReturnValue = CallFunc_GetText_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Temp_bool_Variable != nullptr)
+		*Temp_bool_Variable = Parms.Temp_bool_Variable;
+
+	if (CallFunc_Conv_TextToString_ReturnValue != nullptr)
+		*CallFunc_Conv_TextToString_ReturnValue = std::move(Parms.CallFunc_Conv_TextToString_ReturnValue);
+
+	if (K2Node_Select_Default != nullptr)
+		*K2Node_Select_Default = std::move(Parms.K2Node_Select_Default);
 
 	return Parms.ReturnValue;
 

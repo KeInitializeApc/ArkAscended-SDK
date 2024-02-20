@@ -14,9 +14,9 @@ namespace SDK
 class UCactusHarvestComponent_C : public UAttackHarvestComponent_Base_C
 {
 public:
-	double                                       PlayerGiveWaterAmount;                             // 0x210(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	double                                       PlayerGiveWaterSpeed;                              // 0x218(0x8)(ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	double                                       MorellatopsGiveWaterAmount;                        // 0x220(0x8)(BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	double                                       PlayerGiveWaterAmount;                             // 0x210(0x8)(Edit, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+	double                                       PlayerGiveWaterSpeed;                              // 0x218(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+	double                                       MorellatopsGiveWaterAmount;                        // 0x220(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UCactusHarvestComponent_C* GetDefaultObj();

@@ -43,10 +43,10 @@ class IEggIncubatorInterface_C* IEggIncubatorInterface_C::GetDefaultObj()
 // Function EggIncubatorInterface.EggIncubatorInterface_C.IsEggItemAllowed
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UPrimalItemConsumable_Egg_C* EggItem                                                          (ConstParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
-// bool                               IsAllowed                                                        (ConstParm, ExportObject, Net, Parm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UPrimalItemConsumable_Egg_C* EggItem                                                          (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               IsAllowed                                                        (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void IEggIncubatorInterface_C::IsEggItemAllowed(class UPrimalItemConsumable_Egg_C* EggItem, bool IsAllowed)
+bool IEggIncubatorInterface_C::IsEggItemAllowed(class UPrimalItemConsumable_Egg_C** EggItem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,10 +55,13 @@ void IEggIncubatorInterface_C::IsEggItemAllowed(class UPrimalItemConsumable_Egg_
 
 	Params::IEggIncubatorInterface_C_IsEggItemAllowed_Params Parms{};
 
-	Parms.EggItem = EggItem;
-	Parms.IsAllowed = IsAllowed;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (EggItem != nullptr)
+		*EggItem = Parms.EggItem;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -66,11 +69,11 @@ void IEggIncubatorInterface_C::IsEggItemAllowed(class UPrimalItemConsumable_Egg_
 // Function EggIncubatorInterface.EggIncubatorInterface_C.GetItemDisplaySlot
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UPrimalItem*                 ForItem                                                          (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// int32                              InSlot                                                           (Edit, BlueprintReadOnly, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
-// bool                               SlotFound                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// class UPrimalItem*                 ForItem                                                          (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              InSlot                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               SlotFound                                                        (ConstParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UPrimalItem* IEggIncubatorInterface_C::GetItemDisplaySlot(int32 InSlot, bool SlotFound)
+bool IEggIncubatorInterface_C::GetItemDisplaySlot(int32* InSlot)
 {
 	static class UFunction* Func = nullptr;
 
@@ -79,10 +82,11 @@ class UPrimalItem* IEggIncubatorInterface_C::GetItemDisplaySlot(int32 InSlot, bo
 
 	Params::IEggIncubatorInterface_C_GetItemDisplaySlot_Params Parms{};
 
-	Parms.InSlot = InSlot;
-	Parms.SlotFound = SlotFound;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (InSlot != nullptr)
+		*InSlot = Parms.InSlot;
 
 	return Parms.ReturnValue;
 

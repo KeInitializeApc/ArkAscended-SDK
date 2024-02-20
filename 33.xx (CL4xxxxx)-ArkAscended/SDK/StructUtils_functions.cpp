@@ -99,10 +99,10 @@ class UStructUtilsFunctionLibrary* UStructUtilsFunctionLibrary::GetDefaultObj()
 // Function StructUtils.StructUtilsFunctionLibrary.SetInstancedStructValue
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FInstancedStruct            InstancedStruct                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config)
-// int32                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// struct FInstancedStruct            InstancedStruct                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config)
+// int32                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-struct FInstancedStruct UStructUtilsFunctionLibrary::SetInstancedStructValue(int32 Value)
+struct FInstancedStruct UStructUtilsFunctionLibrary::SetInstancedStructValue(int32* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -111,7 +111,6 @@ struct FInstancedStruct UStructUtilsFunctionLibrary::SetInstancedStructValue(int
 
 	Params::UStructUtilsFunctionLibrary_SetInstancedStructValue_Params Parms{};
 
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -121,6 +120,9 @@ struct FInstancedStruct UStructUtilsFunctionLibrary::SetInstancedStructValue(int
 
 	Func->FunctionFlags = Flgs;
 
+	if (Value != nullptr)
+		*Value = Parms.Value;
+
 	return Parms.ReturnValue;
 
 }
@@ -129,10 +131,10 @@ struct FInstancedStruct UStructUtilsFunctionLibrary::SetInstancedStructValue(int
 // Function StructUtils.StructUtilsFunctionLibrary.Reset
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FInstancedStruct            InstancedStruct                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config)
-// class UScriptStruct*               StructType                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// struct FInstancedStruct            InstancedStruct                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config)
+// class UScriptStruct*               StructType                                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
-class UScriptStruct* UStructUtilsFunctionLibrary::Reset()
+struct FInstancedStruct UStructUtilsFunctionLibrary::Reset(class UScriptStruct** StructType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -150,6 +152,9 @@ class UScriptStruct* UStructUtilsFunctionLibrary::Reset()
 
 	Func->FunctionFlags = Flgs;
 
+	if (StructType != nullptr)
+		*StructType = Parms.StructType;
+
 	return Parms.ReturnValue;
 
 }
@@ -158,9 +163,9 @@ class UScriptStruct* UStructUtilsFunctionLibrary::Reset()
 // Function StructUtils.StructUtilsFunctionLibrary.NotEqual_InstancedStruct
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FInstancedStruct            A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// struct FInstancedStruct            B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInstancedStruct            A                                                                (Edit, Parm, OutParm, ReturnParm, Transient, Config)
+// struct FInstancedStruct            B                                                                (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FInstancedStruct UStructUtilsFunctionLibrary::NotEqual_InstancedStruct(bool ReturnValue)
 {
@@ -189,10 +194,10 @@ struct FInstancedStruct UStructUtilsFunctionLibrary::NotEqual_InstancedStruct(bo
 // Function StructUtils.StructUtilsFunctionLibrary.MakeInstancedStruct
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// struct FInstancedStruct            ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// struct FInstancedStruct            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UStructUtilsFunctionLibrary::MakeInstancedStruct(int32 Value, const struct FInstancedStruct& ReturnValue)
+void UStructUtilsFunctionLibrary::MakeInstancedStruct(int32* Value, const struct FInstancedStruct& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -201,7 +206,6 @@ void UStructUtilsFunctionLibrary::MakeInstancedStruct(int32 Value, const struct 
 
 	Params::UStructUtilsFunctionLibrary_MakeInstancedStruct_Params Parms{};
 
-	Parms.Value = Value;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -212,14 +216,17 @@ void UStructUtilsFunctionLibrary::MakeInstancedStruct(int32 Value, const struct 
 
 	Func->FunctionFlags = Flgs;
 
+	if (Value != nullptr)
+		*Value = Parms.Value;
+
 }
 
 
 // Function StructUtils.StructUtilsFunctionLibrary.IsValid_InstancedStruct
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FInstancedStruct            InstancedStruct                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInstancedStruct            InstancedStruct                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FInstancedStruct UStructUtilsFunctionLibrary::IsValid_InstancedStruct(bool ReturnValue)
 {
@@ -248,8 +255,8 @@ struct FInstancedStruct UStructUtilsFunctionLibrary::IsValid_InstancedStruct(boo
 // Function StructUtils.StructUtilsFunctionLibrary.IsInstancedStructValid
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FInstancedStruct            InstancedStruct                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config)
-// enum class EStructUtilsResult      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInstancedStruct            InstancedStruct                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config)
+// enum class EStructUtilsResult      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FInstancedStruct UStructUtilsFunctionLibrary::IsInstancedStructValid(enum class EStructUtilsResult ReturnValue)
 {
@@ -278,11 +285,11 @@ struct FInstancedStruct UStructUtilsFunctionLibrary::IsInstancedStructValid(enum
 // Function StructUtils.StructUtilsFunctionLibrary.GetInstancedStructValue
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// enum class EStructUtilsResult      ExecResult                                                       (Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// struct FInstancedStruct            InstancedStruct                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config)
-// int32                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// enum class EStructUtilsResult      ExecResult                                                       (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// struct FInstancedStruct            InstancedStruct                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config)
+// int32                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-struct FInstancedStruct UStructUtilsFunctionLibrary::GetInstancedStructValue(int32 Value)
+struct FInstancedStruct UStructUtilsFunctionLibrary::GetInstancedStructValue(enum class EStructUtilsResult* ExecResult, int32* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -291,7 +298,6 @@ struct FInstancedStruct UStructUtilsFunctionLibrary::GetInstancedStructValue(int
 
 	Params::UStructUtilsFunctionLibrary_GetInstancedStructValue_Params Parms{};
 
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -301,6 +307,12 @@ struct FInstancedStruct UStructUtilsFunctionLibrary::GetInstancedStructValue(int
 
 	Func->FunctionFlags = Flgs;
 
+	if (ExecResult != nullptr)
+		*ExecResult = Parms.ExecResult;
+
+	if (Value != nullptr)
+		*Value = Parms.Value;
+
 	return Parms.ReturnValue;
 
 }
@@ -309,9 +321,9 @@ struct FInstancedStruct UStructUtilsFunctionLibrary::GetInstancedStructValue(int
 // Function StructUtils.StructUtilsFunctionLibrary.EqualEqual_InstancedStruct
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FInstancedStruct            A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// struct FInstancedStruct            B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FInstancedStruct            A                                                                (Edit, Parm, OutParm, ReturnParm, Transient, Config)
+// struct FInstancedStruct            B                                                                (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FInstancedStruct UStructUtilsFunctionLibrary::EqualEqual_InstancedStruct(bool ReturnValue)
 {

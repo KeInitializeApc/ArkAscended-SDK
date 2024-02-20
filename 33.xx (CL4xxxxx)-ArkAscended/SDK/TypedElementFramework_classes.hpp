@@ -51,10 +51,10 @@ public:
 	static class UClass* StaticClass();
 	static class UTypedElementHandleLibrary* GetDefaultObj();
 
-	void Release(const struct FScriptTypedElementHandle& ElementHandle);
-	void NotEqual(const struct FScriptTypedElementHandle& LHS, const struct FScriptTypedElementHandle& RHS, bool ReturnValue);
-	void IsSet(const struct FScriptTypedElementHandle& ElementHandle, bool ReturnValue);
-	void Equal(const struct FScriptTypedElementHandle& LHS, const struct FScriptTypedElementHandle& RHS, bool ReturnValue);
+	void Release(struct FScriptTypedElementHandle* ElementHandle);
+	void NotEqual(struct FScriptTypedElementHandle* LHS, struct FScriptTypedElementHandle* RHS, bool ReturnValue);
+	void IsSet(struct FScriptTypedElementHandle* ElementHandle, bool ReturnValue);
+	void Equal(struct FScriptTypedElementHandle* LHS, struct FScriptTypedElementHandle* RHS, bool ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -69,23 +69,23 @@ public:
 	void Shrink(struct FScriptTypedElementListProxy* ElementList);
 	void Reset(struct FScriptTypedElementListProxy* ElementList);
 	int32 Reserve(struct FScriptTypedElementListProxy* ElementList);
-	void Remove(struct FScriptTypedElementListProxy* ElementList, const struct FScriptTypedElementHandle& ElementHandle, bool ReturnValue);
+	void Remove(struct FScriptTypedElementListProxy* ElementList, struct FScriptTypedElementHandle* ElementHandle, bool ReturnValue);
 	void Num(struct FScriptTypedElementListProxy* ElementList, int32 ReturnValue);
-	int32 IsValidIndex(struct FScriptTypedElementListProxy* ElementList, bool ReturnValue);
+	void IsValidIndex(struct FScriptTypedElementListProxy* ElementList, int32* Index, bool ReturnValue);
 	void HasElementsOfType(struct FScriptTypedElementListProxy* ElementList, class FName* ElementTypeName, bool ReturnValue);
 	void HasElements(struct FScriptTypedElementListProxy* ElementList, class UClass** BaseInterfaceType, bool ReturnValue);
-	void GetElementInterface(struct FScriptTypedElementListProxy* ElementList, const struct FScriptTypedElementHandle& ElementHandle, class UClass** BaseInterfaceType, class UObject* ReturnValue);
+	void GetElementInterface(struct FScriptTypedElementListProxy* ElementList, struct FScriptTypedElementHandle* ElementHandle, class UClass** BaseInterfaceType, class UObject* ReturnValue);
 	void GetElementHandles(struct FScriptTypedElementListProxy* ElementList, class UClass** BaseInterfaceType, const TArray<struct FScriptTypedElementHandle>& ReturnValue);
-	int32 GetElementHandleAt(struct FScriptTypedElementListProxy* ElementList, const struct FScriptTypedElementHandle& ReturnValue);
+	void GetElementHandleAt(struct FScriptTypedElementListProxy* ElementList, int32* Index, const struct FScriptTypedElementHandle& ReturnValue);
 	void Empty(struct FScriptTypedElementListProxy* ElementList, int32* Slack);
 	void CreateScriptElementList(class UTypedElementRegistry** Registry, const struct FScriptTypedElementListProxy& ReturnValue);
 	void CountElementsOfType(struct FScriptTypedElementListProxy* ElementList, class FName* ElementTypeName, int32 ReturnValue);
 	void CountElements(struct FScriptTypedElementListProxy* ElementList, class UClass** BaseInterfaceType, int32 ReturnValue);
-	void Contains(struct FScriptTypedElementListProxy* ElementList, const struct FScriptTypedElementHandle& ElementHandle, bool ReturnValue);
+	void Contains(struct FScriptTypedElementListProxy* ElementList, struct FScriptTypedElementHandle* ElementHandle, bool ReturnValue);
 	void Clone(struct FScriptTypedElementListProxy* ElementList, const struct FScriptTypedElementListProxy& ReturnValue);
 	void AppendList(struct FScriptTypedElementListProxy* ElementList, struct FScriptTypedElementListProxy* OtherElementList);
 	void Append(struct FScriptTypedElementListProxy* ElementList, TArray<struct FScriptTypedElementHandle>* ElementHandles);
-	void Add(struct FScriptTypedElementListProxy* ElementList, const struct FScriptTypedElementHandle& ElementHandle, bool ReturnValue);
+	void Add(struct FScriptTypedElementListProxy* ElementList, struct FScriptTypedElementHandle* ElementHandle, bool ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -104,7 +104,7 @@ public:
 class UTypedElementRegistry : public UObject
 {
 public:
-	uint8                                        Pad_2BEC[0x950];                                   // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_11FA[0x950];                                   // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UTypedElementRegistry* GetDefaultObj();
@@ -122,7 +122,7 @@ public:
 	static class UClass* StaticClass();
 	static class ITestTypedElementInterfaceA* GetDefaultObj();
 
-	class FText SetDisplayName(bool* bNotify, bool ReturnValue);
+	struct FScriptTypedElementHandle SetDisplayName(class FText InNewName, bool* bNotify, bool ReturnValue);
 	struct FScriptTypedElementHandle GetDisplayName(class FText ReturnValue);
 };
 
@@ -155,7 +155,7 @@ public:
 class UTestTypedElementInterfaceA_ImplTyped : public UObject
 {
 public:
-	uint8                                        Pad_2BF7[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_121B[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UTestTypedElementInterfaceA_ImplTyped* GetDefaultObj();
@@ -167,7 +167,7 @@ public:
 class UTestTypedElementInterfaceA_ImplUntyped : public UObject
 {
 public:
-	uint8                                        Pad_2BF8[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_121C[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UTestTypedElementInterfaceA_ImplUntyped* GetDefaultObj();
@@ -179,7 +179,7 @@ public:
 class UTestTypedElementInterfaceBAndC_Typed : public UObject
 {
 public:
-	uint8                                        Pad_2BF9[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_121E[0x10];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UTestTypedElementInterfaceBAndC_Typed* GetDefaultObj();

@@ -58,24 +58,24 @@ enum class EInstallStatus : uint8
 struct FCFCoreThemeRowData : public FTableRowBase
 {
 public:
-	bool                                         RoundedMode;                                       // 0x8(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1DBC[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FLinearColor                          MainFont;                                          // 0xC(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          SecondaryFont;                                     // 0x1C(0x10)(Edit, BlueprintReadOnly, Parm, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          BackgroundColor;                                   // 0x2C(0x10)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          ClassUnderline;                                    // 0x3C(0x10)(Edit, ExportObject, Parm, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          Button_SignIn;                                     // 0x4C(0x10)(Edit, Parm, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          SideBar;                                           // 0x5C(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          Button_SideMenu;                                   // 0x6C(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          Search_SideMenu;                                   // 0x7C(0x10)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          ModWindow;                                         // 0x8C(0x10)(BlueprintVisible, Net, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          Button_Install;                                    // 0x9C(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          Button_Uninstall;                                  // 0xAC(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          Button_Update;                                     // 0xBC(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          ExamineBackground;                                 // 0xCC(0x10)(Edit, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          InfoBackground;                                    // 0xDC(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FLinearColor                          NotificationBackground;                            // 0xEC(0x10)(Edit, BlueprintVisible, ExportObject, Net, OutParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1DBE[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         RoundedMode;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_129F[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FLinearColor                          MainFont;                                          // 0xC(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          SecondaryFont;                                     // 0x1C(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          BackgroundColor;                                   // 0x2C(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          ClassUnderline;                                    // 0x3C(0x10)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          Button_SignIn;                                     // 0x4C(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          SideBar;                                           // 0x5C(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          Button_SideMenu;                                   // 0x6C(0x10)(Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          Search_SideMenu;                                   // 0x7C(0x10)(ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          ModWindow;                                         // 0x8C(0x10)(ConstParm, Net, EditFixedSize, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          Button_Install;                                    // 0x9C(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          Button_Uninstall;                                  // 0xAC(0x10)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          Button_Update;                                     // 0xBC(0x10)(Edit, ExportObject, EditFixedSize, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          ExamineBackground;                                 // 0xCC(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InfoBackground;                                    // 0xDC(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          NotificationBackground;                            // 0xEC(0x10)(Edit, ConstParm, ExportObject, Net, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_12A4[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -84,7 +84,7 @@ struct FModIdentification
 {
 public:
 	int64                                        ID;                                                // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	int64                                        MainFileId;                                        // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	int64                                        MainFileId;                                        // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -92,25 +92,25 @@ public:
 struct FScreenshotInfo
 {
 public:
-	TArray<class UTexture2DDynamic*>             Screenshots;                                       // 0x0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-	TArray<class FString>                        Descriptions;                                      // 0x10(0x10)(Edit, BlueprintVisible, Net, Parm, OutParm, Config, InstancedReference, SubobjectReference)
+	TArray<class UTexture2DDynamic*>             Screenshots;                                       // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TArray<class FString>                        Descriptions;                                      // 0x10(0x10)(Edit, ConstParm, Net, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
-// 0x480 (0x480 - 0x0)
+// 0x498 (0x498 - 0x0)
 // ScriptStruct cfcore_ui.InstallProgressMod
 struct FInstallProgressMod
 {
 public:
-	struct FInstalledMod                         Mod;                                               // 0x0(0x3A8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, Transient, GlobalConfig, SubobjectReference)
-	struct FLibraryProgress                      Progress;                                          // 0x3A8(0x40)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1DC2[0x1];                                     // Fixing Size After Last Property  > TateDumper <
-	enum class EInstallStatus                    InstallStatus;                                     // 0x3E9(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1DC4[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	class UTexture2DDynamic*                     DynamicImage;                                      // 0x3F0(0x8)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Config, InstancedReference, SubobjectReference)
-	TMap<class UTexture2D*, class FText>         ShowcaseImages;                                    // 0x3F8(0x50)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FScreenshotInfo                       Screenshots_Info;                                  // 0x448(0x20)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, InstancedReference, SubobjectReference)
-	TArray<struct FCategory>                     Categories;                                        // 0x468(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst)
-	class UWidget*                               ModSlotRef;                                        // 0x478(0x8)(BlueprintVisible, ExportObject, Net, Parm, OutParm, Config, InstancedReference, SubobjectReference)
+	struct FInstalledMod                         Mod;                                               // 0x0(0x3C0)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FLibraryProgress                      Progress;                                          // 0x3C0(0x40)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Config, EditConst, SubobjectReference)
+	uint8                                        Pad_12A6[0x1];                                     // Fixing Size After Last Property  > TateDumper <
+	enum class EInstallStatus                    InstallStatus;                                     // 0x401(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_12A8[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	class UTexture2DDynamic*                     DynamicImage;                                      // 0x408(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TMap<class UTexture2D*, class FText>         ShowcaseImages;                                    // 0x410(0x50)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FScreenshotInfo                       Screenshots_Info;                                  // 0x460(0x20)(BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FCategory>                     Categories;                                        // 0x480(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	class UWidget*                               ModSlotRef;                                        // 0x490(0x8)(ConstParm, ExportObject, Net, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

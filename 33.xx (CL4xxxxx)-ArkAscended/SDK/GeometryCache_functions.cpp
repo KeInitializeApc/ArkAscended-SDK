@@ -71,7 +71,7 @@ class AGeometryCacheActor* AGeometryCacheActor::GetDefaultObj()
 // Function GeometryCache.GeometryCacheActor.GetGeometryCacheComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UGeometryCacheComponent*     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UGeometryCacheComponent*     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void AGeometryCacheActor::GetGeometryCacheComponent(class UGeometryCacheComponent* ReturnValue)
 {
@@ -210,12 +210,12 @@ class UGeometryCacheComponent* UGeometryCacheComponent::GetDefaultObj()
 // Function GeometryCache.GeometryCacheComponent.TickAtThisTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Time                                                             (Edit, ConstParm, Net, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-// bool                               bInIsRunning                                                     (ConstParm, BlueprintReadOnly, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bInBackwards                                                     (Edit, ConstParm, ExportObject, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bInIsLooping                                                     (BlueprintVisible, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              Time                                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               bInIsRunning                                                     (ExportObject, BlueprintReadOnly, ReturnParm, InstancedReference, SubobjectReference)
+// bool                               bInBackwards                                                     (Edit, BlueprintReadOnly, ReturnParm, InstancedReference, SubobjectReference)
+// bool                               bInIsLooping                                                     (ConstParm, ExportObject, ReturnParm, InstancedReference, SubobjectReference)
 
-float UGeometryCacheComponent::TickAtThisTime(bool bInIsRunning, bool bInBackwards, bool bInIsLooping)
+bool UGeometryCacheComponent::TickAtThisTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -224,9 +224,6 @@ float UGeometryCacheComponent::TickAtThisTime(bool bInIsRunning, bool bInBackwar
 
 	Params::UGeometryCacheComponent_TickAtThisTime_Params Parms{};
 
-	Parms.bInIsRunning = bInIsRunning;
-	Parms.bInBackwards = bInBackwards;
-	Parms.bInIsLooping = bInIsLooping;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -297,7 +294,7 @@ void UGeometryCacheComponent::SetWireframeOverrideColor(struct FLinearColor* Col
 // Function GeometryCache.GeometryCacheComponent.SetStartTimeOffset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewStartTimeOffset                                               (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              NewStartTimeOffset                                               (ReturnParm, InstancedReference, SubobjectReference)
 
 float UGeometryCacheComponent::SetStartTimeOffset()
 {
@@ -325,9 +322,9 @@ float UGeometryCacheComponent::SetStartTimeOffset()
 // Function GeometryCache.GeometryCacheComponent.SetPlaybackSpeed
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewPlaybackSpeed                                                 (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              NewPlaybackSpeed                                                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-float UGeometryCacheComponent::SetPlaybackSpeed()
+void UGeometryCacheComponent::SetPlaybackSpeed(float* NewPlaybackSpeed)
 {
 	static class UFunction* Func = nullptr;
 
@@ -345,7 +342,8 @@ float UGeometryCacheComponent::SetPlaybackSpeed()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewPlaybackSpeed != nullptr)
+		*NewPlaybackSpeed = Parms.NewPlaybackSpeed;
 
 }
 
@@ -353,9 +351,9 @@ float UGeometryCacheComponent::SetPlaybackSpeed()
 // Function GeometryCache.GeometryCacheComponent.SetOverrideWireframeColor
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bOverride                                                        (ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bOverride                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UGeometryCacheComponent::SetOverrideWireframeColor(bool* bOverride)
+bool UGeometryCacheComponent::SetOverrideWireframeColor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -373,8 +371,7 @@ void UGeometryCacheComponent::SetOverrideWireframeColor(bool* bOverride)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bOverride != nullptr)
-		*bOverride = Parms.bOverride;
+	return Parms.ReturnValue;
 
 }
 
@@ -382,9 +379,9 @@ void UGeometryCacheComponent::SetOverrideWireframeColor(bool* bOverride)
 // Function GeometryCache.GeometryCacheComponent.SetMotionVectorScale
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewMotionVectorScale                                             (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              NewMotionVectorScale                                             (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-float UGeometryCacheComponent::SetMotionVectorScale()
+void UGeometryCacheComponent::SetMotionVectorScale(float* NewMotionVectorScale)
 {
 	static class UFunction* Func = nullptr;
 
@@ -402,7 +399,8 @@ float UGeometryCacheComponent::SetMotionVectorScale()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewMotionVectorScale != nullptr)
+		*NewMotionVectorScale = Parms.NewMotionVectorScale;
 
 }
 
@@ -410,9 +408,9 @@ float UGeometryCacheComponent::SetMotionVectorScale()
 // Function GeometryCache.GeometryCacheComponent.SetLooping
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bNewLooping                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bNewLooping                                                      (Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-bool UGeometryCacheComponent::SetLooping()
+void UGeometryCacheComponent::SetLooping(bool* bNewLooping)
 {
 	static class UFunction* Func = nullptr;
 
@@ -430,7 +428,8 @@ bool UGeometryCacheComponent::SetLooping()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bNewLooping != nullptr)
+		*bNewLooping = Parms.bNewLooping;
 
 }
 
@@ -438,10 +437,10 @@ bool UGeometryCacheComponent::SetLooping()
 // Function GeometryCache.GeometryCacheComponent.SetGeometryCache
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UGeometryCache*              NewGeomCache                                                     (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UGeometryCache*              NewGeomCache                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UGeometryCache* UGeometryCacheComponent::SetGeometryCache(bool ReturnValue)
+void UGeometryCacheComponent::SetGeometryCache(class UGeometryCache** NewGeomCache, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -460,7 +459,8 @@ class UGeometryCache* UGeometryCacheComponent::SetGeometryCache(bool ReturnValue
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewGeomCache != nullptr)
+		*NewGeomCache = Parms.NewGeomCache;
 
 }
 
@@ -468,9 +468,9 @@ class UGeometryCache* UGeometryCacheComponent::SetGeometryCache(bool ReturnValue
 // Function GeometryCache.GeometryCacheComponent.SetExtrapolateFrames
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bNewExtrapolating                                                (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bNewExtrapolating                                                (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-bool UGeometryCacheComponent::SetExtrapolateFrames()
+void UGeometryCacheComponent::SetExtrapolateFrames(bool* bNewExtrapolating)
 {
 	static class UFunction* Func = nullptr;
 
@@ -488,7 +488,8 @@ bool UGeometryCacheComponent::SetExtrapolateFrames()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bNewExtrapolating != nullptr)
+		*bNewExtrapolating = Parms.bNewExtrapolating;
 
 }
 
@@ -616,7 +617,7 @@ void UGeometryCacheComponent::Pause()
 // Function GeometryCache.GeometryCacheComponent.IsPlayingReversed
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGeometryCacheComponent::IsPlayingReversed(bool ReturnValue)
 {
@@ -643,7 +644,7 @@ void UGeometryCacheComponent::IsPlayingReversed(bool ReturnValue)
 // Function GeometryCache.GeometryCacheComponent.IsPlaying
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGeometryCacheComponent::IsPlaying(bool ReturnValue)
 {
@@ -670,7 +671,7 @@ void UGeometryCacheComponent::IsPlaying(bool ReturnValue)
 // Function GeometryCache.GeometryCacheComponent.IsLooping
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGeometryCacheComponent::IsLooping(bool ReturnValue)
 {
@@ -697,7 +698,7 @@ void UGeometryCacheComponent::IsLooping(bool ReturnValue)
 // Function GeometryCache.GeometryCacheComponent.IsExtrapolatingFrames
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGeometryCacheComponent::IsExtrapolatingFrames(bool ReturnValue)
 {
@@ -724,7 +725,7 @@ void UGeometryCacheComponent::IsExtrapolatingFrames(bool ReturnValue)
 // Function GeometryCache.GeometryCacheComponent.GetWireframeOverrideColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FLinearColor                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGeometryCacheComponent::GetWireframeOverrideColor(const struct FLinearColor& ReturnValue)
 {
@@ -751,7 +752,7 @@ void UGeometryCacheComponent::GetWireframeOverrideColor(const struct FLinearColo
 // Function GeometryCache.GeometryCacheComponent.GetStartTimeOffset
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGeometryCacheComponent::GetStartTimeOffset(float ReturnValue)
 {
@@ -778,7 +779,7 @@ void UGeometryCacheComponent::GetStartTimeOffset(float ReturnValue)
 // Function GeometryCache.GeometryCacheComponent.GetPlaybackSpeed
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGeometryCacheComponent::GetPlaybackSpeed(float ReturnValue)
 {
@@ -805,7 +806,7 @@ void UGeometryCacheComponent::GetPlaybackSpeed(float ReturnValue)
 // Function GeometryCache.GeometryCacheComponent.GetPlaybackDirection
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGeometryCacheComponent::GetPlaybackDirection(float ReturnValue)
 {
@@ -832,7 +833,7 @@ void UGeometryCacheComponent::GetPlaybackDirection(float ReturnValue)
 // Function GeometryCache.GeometryCacheComponent.GetOverrideWireframeColor
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGeometryCacheComponent::GetOverrideWireframeColor(bool ReturnValue)
 {
@@ -859,7 +860,7 @@ void UGeometryCacheComponent::GetOverrideWireframeColor(bool ReturnValue)
 // Function GeometryCache.GeometryCacheComponent.GetNumberOfFrames
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGeometryCacheComponent::GetNumberOfFrames(int32 ReturnValue)
 {
@@ -886,7 +887,7 @@ void UGeometryCacheComponent::GetNumberOfFrames(int32 ReturnValue)
 // Function GeometryCache.GeometryCacheComponent.GetMotionVectorScale
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGeometryCacheComponent::GetMotionVectorScale(float ReturnValue)
 {
@@ -913,7 +914,7 @@ void UGeometryCacheComponent::GetMotionVectorScale(float ReturnValue)
 // Function GeometryCache.GeometryCacheComponent.GetDuration
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGeometryCacheComponent::GetDuration(float ReturnValue)
 {
@@ -940,7 +941,7 @@ void UGeometryCacheComponent::GetDuration(float ReturnValue)
 // Function GeometryCache.GeometryCacheComponent.GetAnimationTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGeometryCacheComponent::GetAnimationTime(float ReturnValue)
 {
@@ -1023,10 +1024,10 @@ class UGeometryCacheTrack_FlipbookAnimation* UGeometryCacheTrack_FlipbookAnimati
 // Function GeometryCache.GeometryCacheTrack_FlipbookAnimation.AddMeshSample
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// struct FGeometryCacheMeshData      MeshData                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              SampleTime                                                       (Edit, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FGeometryCacheMeshData      MeshData                                                         (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, InstancedReference, SubobjectReference)
+// float                              SampleTime                                                       (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, InstancedReference, SubobjectReference)
 
-void UGeometryCacheTrack_FlipbookAnimation::AddMeshSample(const struct FGeometryCacheMeshData& MeshData, float SampleTime)
+float UGeometryCacheTrack_FlipbookAnimation::AddMeshSample()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1035,8 +1036,6 @@ void UGeometryCacheTrack_FlipbookAnimation::AddMeshSample(const struct FGeometry
 
 	Params::UGeometryCacheTrack_FlipbookAnimation_AddMeshSample_Params Parms{};
 
-	Parms.MeshData = MeshData;
-	Parms.SampleTime = SampleTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1045,6 +1044,8 @@ void UGeometryCacheTrack_FlipbookAnimation::AddMeshSample(const struct FGeometry
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -1108,9 +1109,9 @@ class UGeometryCacheTrack_TransformAnimation* UGeometryCacheTrack_TransformAnima
 // Function GeometryCache.GeometryCacheTrack_TransformAnimation.SetMesh
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// struct FGeometryCacheMeshData      NewMeshData                                                      (Edit, Parm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FGeometryCacheMeshData      NewMeshData                                                      (Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, InstancedReference, SubobjectReference)
 
-void UGeometryCacheTrack_TransformAnimation::SetMesh(const struct FGeometryCacheMeshData& NewMeshData)
+struct FGeometryCacheMeshData UGeometryCacheTrack_TransformAnimation::SetMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1119,7 +1120,6 @@ void UGeometryCacheTrack_TransformAnimation::SetMesh(const struct FGeometryCache
 
 	Params::UGeometryCacheTrack_TransformAnimation_SetMesh_Params Parms{};
 
-	Parms.NewMeshData = NewMeshData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1128,6 +1128,8 @@ void UGeometryCacheTrack_TransformAnimation::SetMesh(const struct FGeometryCache
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -1163,9 +1165,9 @@ class UGeometryCacheTrack_TransformGroupAnimation* UGeometryCacheTrack_Transform
 // Function GeometryCache.GeometryCacheTrack_TransformGroupAnimation.SetMesh
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// struct FGeometryCacheMeshData      NewMeshData                                                      (Edit, Parm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FGeometryCacheMeshData      NewMeshData                                                      (Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, InstancedReference, SubobjectReference)
 
-void UGeometryCacheTrack_TransformGroupAnimation::SetMesh(const struct FGeometryCacheMeshData& NewMeshData)
+struct FGeometryCacheMeshData UGeometryCacheTrack_TransformGroupAnimation::SetMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1174,7 +1176,6 @@ void UGeometryCacheTrack_TransformGroupAnimation::SetMesh(const struct FGeometry
 
 	Params::UGeometryCacheTrack_TransformGroupAnimation_SetMesh_Params Parms{};
 
-	Parms.NewMeshData = NewMeshData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1183,6 +1184,8 @@ void UGeometryCacheTrack_TransformGroupAnimation::SetMesh(const struct FGeometry
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

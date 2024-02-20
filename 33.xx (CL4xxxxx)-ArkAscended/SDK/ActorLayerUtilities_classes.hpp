@@ -18,9 +18,9 @@ public:
 	static class UClass* StaticClass();
 	static class ULayersBlueprintLibrary* GetDefaultObj();
 
-	struct FActorLayer RemoveActorFromLayer(class AActor** InActor);
-	void GetActors(class UObject* WorldContextObject, const struct FActorLayer& ActorLayer, const TArray<class AActor*>& ReturnValue);
-	struct FActorLayer AddActorToLayer(class AActor** InActor);
+	struct FActorLayer RemoveActorFromLayer();
+	class UObject* GetActors(const struct FActorLayer& ActorLayer, const TArray<class AActor*>& ReturnValue);
+	struct FActorLayer AddActorToLayer();
 };
 
 }

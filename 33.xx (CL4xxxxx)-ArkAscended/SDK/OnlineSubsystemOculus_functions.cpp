@@ -43,11 +43,11 @@ class UOculusCreateSessionCallbackProxy* UOculusCreateSessionCallbackProxy::GetD
 // Function OnlineSubsystemOculus.OculusCreateSessionCallbackProxy.CreateSession
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              PublicConnections                                                (Edit, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      OculusMatchmakingPool                                            (Edit, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOculusCreateSessionCallbackProxy*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              PublicConnections                                                (BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FString                      OculusMatchmakingPool                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UOculusCreateSessionCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UOculusCreateSessionCallbackProxy::CreateSession(const class FString& OculusMatchmakingPool, class UOculusCreateSessionCallbackProxy* ReturnValue)
+class FString UOculusCreateSessionCallbackProxy::CreateSession(int32 PublicConnections, class UOculusCreateSessionCallbackProxy* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -56,7 +56,7 @@ int32 UOculusCreateSessionCallbackProxy::CreateSession(const class FString& Ocul
 
 	Params::UOculusCreateSessionCallbackProxy_CreateSession_Params Parms{};
 
-	Parms.OculusMatchmakingPool = OculusMatchmakingPool;
+	Parms.PublicConnections = PublicConnections;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -103,7 +103,7 @@ class UOculusEntitlementCallbackProxy* UOculusEntitlementCallbackProxy::GetDefau
 // Function OnlineSubsystemOculus.OculusEntitlementCallbackProxy.VerifyEntitlement
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UOculusEntitlementCallbackProxy*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UOculusEntitlementCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UOculusEntitlementCallbackProxy::VerifyEntitlement(class UOculusEntitlementCallbackProxy* ReturnValue)
 {
@@ -158,10 +158,10 @@ class UOculusFindSessionsCallbackProxy* UOculusFindSessionsCallbackProxy::GetDef
 // Function OnlineSubsystemOculus.OculusFindSessionsCallbackProxy.FindModeratedSessions
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              MaxResults                                                       (ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOculusFindSessionsCallbackProxy*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              MaxResults                                                       (Edit, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UOculusFindSessionsCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UOculusFindSessionsCallbackProxy::FindModeratedSessions(class UOculusFindSessionsCallbackProxy* ReturnValue)
+void UOculusFindSessionsCallbackProxy::FindModeratedSessions(int32 MaxResults, class UOculusFindSessionsCallbackProxy* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -170,6 +170,7 @@ int32 UOculusFindSessionsCallbackProxy::FindModeratedSessions(class UOculusFindS
 
 	Params::UOculusFindSessionsCallbackProxy_FindModeratedSessions_Params Parms{};
 
+	Parms.MaxResults = MaxResults;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -180,19 +181,17 @@ int32 UOculusFindSessionsCallbackProxy::FindModeratedSessions(class UOculusFindS
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function OnlineSubsystemOculus.OculusFindSessionsCallbackProxy.FindMatchmakingSessions
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              MaxResults                                                       (ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      OculusMatchmakingPool                                            (Edit, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOculusFindSessionsCallbackProxy*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              MaxResults                                                       (Edit, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FString                      OculusMatchmakingPool                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UOculusFindSessionsCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UOculusFindSessionsCallbackProxy::FindMatchmakingSessions(const class FString& OculusMatchmakingPool, class UOculusFindSessionsCallbackProxy* ReturnValue)
+class FString UOculusFindSessionsCallbackProxy::FindMatchmakingSessions(int32 MaxResults, class UOculusFindSessionsCallbackProxy* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -201,7 +200,7 @@ int32 UOculusFindSessionsCallbackProxy::FindMatchmakingSessions(const class FStr
 
 	Params::UOculusFindSessionsCallbackProxy_FindMatchmakingSessions_Params Parms{};
 
-	Parms.OculusMatchmakingPool = OculusMatchmakingPool;
+	Parms.MaxResults = MaxResults;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -248,10 +247,10 @@ class UOculusIdentityCallbackProxy* UOculusIdentityCallbackProxy::GetDefaultObj(
 // Function OnlineSubsystemOculus.OculusIdentityCallbackProxy.GetOculusIdentity
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              LocalUserNum                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOculusIdentityCallbackProxy*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              LocalUserNum                                                     (Edit, ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UOculusIdentityCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UOculusIdentityCallbackProxy::GetOculusIdentity(int32 LocalUserNum, class UOculusIdentityCallbackProxy* ReturnValue)
+int32 UOculusIdentityCallbackProxy::GetOculusIdentity(class UOculusIdentityCallbackProxy* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -260,7 +259,6 @@ void UOculusIdentityCallbackProxy::GetOculusIdentity(int32 LocalUserNum, class U
 
 	Params::UOculusIdentityCallbackProxy_GetOculusIdentity_Params Parms{};
 
-	Parms.LocalUserNum = LocalUserNum;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -270,6 +268,8 @@ void UOculusIdentityCallbackProxy::GetOculusIdentity(int32 LocalUserNum, class U
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -361,10 +361,10 @@ class UOculusUpdateSessionCallbackProxy* UOculusUpdateSessionCallbackProxy::GetD
 // Function OnlineSubsystemOculus.OculusUpdateSessionCallbackProxy.SetSessionEnqueue
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               bShouldEnqueueInMatchmakingPool                                  (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UOculusUpdateSessionCallbackProxy*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bShouldEnqueueInMatchmakingPool                                  (ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UOculusUpdateSessionCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UOculusUpdateSessionCallbackProxy::SetSessionEnqueue(bool bShouldEnqueueInMatchmakingPool, class UOculusUpdateSessionCallbackProxy* ReturnValue)
+bool UOculusUpdateSessionCallbackProxy::SetSessionEnqueue(class UOculusUpdateSessionCallbackProxy* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -373,7 +373,6 @@ void UOculusUpdateSessionCallbackProxy::SetSessionEnqueue(bool bShouldEnqueueInM
 
 	Params::UOculusUpdateSessionCallbackProxy_SetSessionEnqueue_Params Parms{};
 
-	Parms.bShouldEnqueueInMatchmakingPool = bShouldEnqueueInMatchmakingPool;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -383,6 +382,8 @@ void UOculusUpdateSessionCallbackProxy::SetSessionEnqueue(bool bShouldEnqueueInM
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

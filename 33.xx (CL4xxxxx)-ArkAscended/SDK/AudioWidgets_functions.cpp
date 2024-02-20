@@ -43,7 +43,7 @@ class UAudioMeter* UAudioMeter::GetDefaultObj()
 // Function AudioWidgets.AudioMeter.SetMeterValueColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioMeter::SetMeterValueColor()
 {
@@ -71,7 +71,7 @@ struct FLinearColor UAudioMeter::SetMeterValueColor()
 // Function AudioWidgets.AudioMeter.SetMeterScaleLabelColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioMeter::SetMeterScaleLabelColor()
 {
@@ -99,7 +99,7 @@ struct FLinearColor UAudioMeter::SetMeterScaleLabelColor()
 // Function AudioWidgets.AudioMeter.SetMeterScaleColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioMeter::SetMeterScaleColor()
 {
@@ -127,7 +127,7 @@ struct FLinearColor UAudioMeter::SetMeterScaleColor()
 // Function AudioWidgets.AudioMeter.SetMeterPeakColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioMeter::SetMeterPeakColor()
 {
@@ -155,7 +155,7 @@ struct FLinearColor UAudioMeter::SetMeterPeakColor()
 // Function AudioWidgets.AudioMeter.SetMeterClippingColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioMeter::SetMeterClippingColor()
 {
@@ -183,9 +183,9 @@ struct FLinearColor UAudioMeter::SetMeterClippingColor()
 // Function AudioWidgets.AudioMeter.SetMeterChannelInfo
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FMeterChannelInfo>   InMeterChannelInfo                                               (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// TArray<struct FMeterChannelInfo>   InMeterChannelInfo                                               (Edit, Net, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void UAudioMeter::SetMeterChannelInfo(TArray<struct FMeterChannelInfo>* InMeterChannelInfo)
+void UAudioMeter::SetMeterChannelInfo(const TArray<struct FMeterChannelInfo>& InMeterChannelInfo)
 {
 	static class UFunction* Func = nullptr;
 
@@ -194,6 +194,7 @@ void UAudioMeter::SetMeterChannelInfo(TArray<struct FMeterChannelInfo>* InMeterC
 
 	Params::UAudioMeter_SetMeterChannelInfo_Params Parms{};
 
+	Parms.InMeterChannelInfo = InMeterChannelInfo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -203,16 +204,13 @@ void UAudioMeter::SetMeterChannelInfo(TArray<struct FMeterChannelInfo>* InMeterC
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMeterChannelInfo != nullptr)
-		*InMeterChannelInfo = std::move(Parms.InMeterChannelInfo);
-
 }
 
 
 // Function AudioWidgets.AudioMeter.SetMeterBackgroundColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioMeter::SetMeterBackgroundColor()
 {
@@ -240,7 +238,7 @@ struct FLinearColor UAudioMeter::SetMeterBackgroundColor()
 // Function AudioWidgets.AudioMeter.SetBackgroundColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioMeter::SetBackgroundColor()
 {
@@ -268,7 +266,7 @@ struct FLinearColor UAudioMeter::SetBackgroundColor()
 // DelegateFunction AudioWidgets.AudioMeter.GetMeterChannelInfo__DelegateSignature
 // (Public, Delegate)
 // Parameters:
-// TArray<struct FMeterChannelInfo>   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FMeterChannelInfo>   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UAudioMeter::GetMeterChannelInfo__DelegateSignature(const TArray<struct FMeterChannelInfo>& ReturnValue)
 {
@@ -289,7 +287,7 @@ void UAudioMeter::GetMeterChannelInfo__DelegateSignature(const TArray<struct FMe
 // Function AudioWidgets.AudioMeter.GetMeterChannelInfo
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FMeterChannelInfo>   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FMeterChannelInfo>   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UAudioMeter::GetMeterChannelInfo(const TArray<struct FMeterChannelInfo>& ReturnValue)
 {
@@ -344,9 +342,9 @@ class UAudioRadialSlider* UAudioRadialSlider::GetDefaultObj()
 // Function AudioWidgets.AudioRadialSlider.SetWidgetLayout
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EAudioRadialSliderLayoutInLayout                                                         (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class EAudioRadialSliderLayoutInLayout                                                         (Edit, BlueprintVisible, Net, Transient, Config, InstancedReference, SubobjectReference)
 
-void UAudioRadialSlider::SetWidgetLayout(enum class EAudioRadialSliderLayout* InLayout)
+void UAudioRadialSlider::SetWidgetLayout(enum class EAudioRadialSliderLayout InLayout)
 {
 	static class UFunction* Func = nullptr;
 
@@ -355,6 +353,7 @@ void UAudioRadialSlider::SetWidgetLayout(enum class EAudioRadialSliderLayout* In
 
 	Params::UAudioRadialSlider_SetWidgetLayout_Params Parms{};
 
+	Parms.InLayout = InLayout;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -364,18 +363,15 @@ void UAudioRadialSlider::SetWidgetLayout(enum class EAudioRadialSliderLayout* In
 
 	Func->FunctionFlags = Flgs;
 
-	if (InLayout != nullptr)
-		*InLayout = Parms.InLayout;
-
 }
 
 
 // Function AudioWidgets.AudioRadialSlider.SetValueTextReadOnly
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bIsReadOnly                                                      (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bIsReadOnly                                                      (ExportObject, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
 
-bool UAudioRadialSlider::SetValueTextReadOnly()
+void UAudioRadialSlider::SetValueTextReadOnly(bool* bIsReadOnly)
 {
 	static class UFunction* Func = nullptr;
 
@@ -393,7 +389,8 @@ bool UAudioRadialSlider::SetValueTextReadOnly()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bIsReadOnly != nullptr)
+		*bIsReadOnly = Parms.bIsReadOnly;
 
 }
 
@@ -401,9 +398,9 @@ bool UAudioRadialSlider::SetValueTextReadOnly()
 // Function AudioWidgets.AudioRadialSlider.SetUnitsTextReadOnly
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bIsReadOnly                                                      (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bIsReadOnly                                                      (ExportObject, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
 
-bool UAudioRadialSlider::SetUnitsTextReadOnly()
+void UAudioRadialSlider::SetUnitsTextReadOnly(bool* bIsReadOnly)
 {
 	static class UFunction* Func = nullptr;
 
@@ -421,7 +418,8 @@ bool UAudioRadialSlider::SetUnitsTextReadOnly()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bIsReadOnly != nullptr)
+		*bIsReadOnly = Parms.bIsReadOnly;
 
 }
 
@@ -429,9 +427,9 @@ bool UAudioRadialSlider::SetUnitsTextReadOnly()
 // Function AudioWidgets.AudioRadialSlider.SetUnitsText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        Units                                                            (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// class FText                        Units                                                            (Edit, Net, Transient, Config, InstancedReference, SubobjectReference)
 
-void UAudioRadialSlider::SetUnitsText(class FText* Units)
+void UAudioRadialSlider::SetUnitsText(class FText Units)
 {
 	static class UFunction* Func = nullptr;
 
@@ -440,6 +438,7 @@ void UAudioRadialSlider::SetUnitsText(class FText* Units)
 
 	Params::UAudioRadialSlider_SetUnitsText_Params Parms{};
 
+	Parms.Units = Units;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -449,18 +448,15 @@ void UAudioRadialSlider::SetUnitsText(class FText* Units)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Units != nullptr)
-		*Units = Parms.Units;
-
 }
 
 
 // Function AudioWidgets.AudioRadialSlider.SetTextLabelBackgroundColor
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FSlateColor                 InColor                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FSlateColor                 InColor                                                          (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FSlateColor UAudioRadialSlider::SetTextLabelBackgroundColor()
+void UAudioRadialSlider::SetTextLabelBackgroundColor(struct FSlateColor* InColor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -478,7 +474,8 @@ struct FSlateColor UAudioRadialSlider::SetTextLabelBackgroundColor()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InColor != nullptr)
+		*InColor = std::move(Parms.InColor);
 
 }
 
@@ -486,9 +483,9 @@ struct FSlateColor UAudioRadialSlider::SetTextLabelBackgroundColor()
 // Function AudioWidgets.AudioRadialSlider.SetSliderThickness
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InThickness                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InThickness                                                      (ConstParm, ExportObject, BlueprintReadOnly, Transient, Config, InstancedReference, SubobjectReference)
 
-void UAudioRadialSlider::SetSliderThickness(float* InThickness)
+void UAudioRadialSlider::SetSliderThickness(float InThickness)
 {
 	static class UFunction* Func = nullptr;
 
@@ -497,6 +494,7 @@ void UAudioRadialSlider::SetSliderThickness(float* InThickness)
 
 	Params::UAudioRadialSlider_SetSliderThickness_Params Parms{};
 
+	Parms.InThickness = InThickness;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -506,16 +504,13 @@ void UAudioRadialSlider::SetSliderThickness(float* InThickness)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InThickness != nullptr)
-		*InThickness = Parms.InThickness;
-
 }
 
 
 // Function AudioWidgets.AudioRadialSlider.SetSliderProgressColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioRadialSlider::SetSliderProgressColor()
 {
@@ -543,7 +538,7 @@ struct FLinearColor UAudioRadialSlider::SetSliderProgressColor()
 // Function AudioWidgets.AudioRadialSlider.SetSliderBarColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioRadialSlider::SetSliderBarColor()
 {
@@ -571,9 +566,9 @@ struct FLinearColor UAudioRadialSlider::SetSliderBarColor()
 // Function AudioWidgets.AudioRadialSlider.SetShowUnitsText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bShowUnitsText                                                   (Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bShowUnitsText                                                   (ConstParm, BlueprintReadOnly, Transient, Config, InstancedReference, SubobjectReference)
 
-void UAudioRadialSlider::SetShowUnitsText(bool* bShowUnitsText)
+void UAudioRadialSlider::SetShowUnitsText(bool bShowUnitsText)
 {
 	static class UFunction* Func = nullptr;
 
@@ -582,6 +577,7 @@ void UAudioRadialSlider::SetShowUnitsText(bool* bShowUnitsText)
 
 	Params::UAudioRadialSlider_SetShowUnitsText_Params Parms{};
 
+	Parms.bShowUnitsText = bShowUnitsText;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -591,18 +587,15 @@ void UAudioRadialSlider::SetShowUnitsText(bool* bShowUnitsText)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bShowUnitsText != nullptr)
-		*bShowUnitsText = Parms.bShowUnitsText;
-
 }
 
 
 // Function AudioWidgets.AudioRadialSlider.SetShowLabelOnlyOnHover
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bShowLabelOnlyOnHover                                            (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bShowLabelOnlyOnHover                                            (ConstParm, BlueprintVisible, Transient, Config, InstancedReference, SubobjectReference)
 
-void UAudioRadialSlider::SetShowLabelOnlyOnHover(bool* bShowLabelOnlyOnHover)
+void UAudioRadialSlider::SetShowLabelOnlyOnHover(bool bShowLabelOnlyOnHover)
 {
 	static class UFunction* Func = nullptr;
 
@@ -611,6 +604,7 @@ void UAudioRadialSlider::SetShowLabelOnlyOnHover(bool* bShowLabelOnlyOnHover)
 
 	Params::UAudioRadialSlider_SetShowLabelOnlyOnHover_Params Parms{};
 
+	Parms.bShowLabelOnlyOnHover = bShowLabelOnlyOnHover;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -620,18 +614,15 @@ void UAudioRadialSlider::SetShowLabelOnlyOnHover(bool* bShowLabelOnlyOnHover)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bShowLabelOnlyOnHover != nullptr)
-		*bShowLabelOnlyOnHover = Parms.bShowLabelOnlyOnHover;
-
 }
 
 
 // Function AudioWidgets.AudioRadialSlider.SetOutputRange
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InOutputRange                                                    (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InOutputRange                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void UAudioRadialSlider::SetOutputRange(struct FVector2D* InOutputRange)
+struct FVector2D UAudioRadialSlider::SetOutputRange()
 {
 	static class UFunction* Func = nullptr;
 
@@ -649,8 +640,7 @@ void UAudioRadialSlider::SetOutputRange(struct FVector2D* InOutputRange)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InOutputRange != nullptr)
-		*InOutputRange = std::move(Parms.InOutputRange);
+	return Parms.ReturnValue;
 
 }
 
@@ -658,9 +648,9 @@ void UAudioRadialSlider::SetOutputRange(struct FVector2D* InOutputRange)
 // Function AudioWidgets.AudioRadialSlider.SetHandStartEndRatio
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InHandStartEndRatio                                              (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   InHandStartEndRatio                                              (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void UAudioRadialSlider::SetHandStartEndRatio(struct FVector2D* InHandStartEndRatio)
+struct FVector2D UAudioRadialSlider::SetHandStartEndRatio()
 {
 	static class UFunction* Func = nullptr;
 
@@ -678,8 +668,7 @@ void UAudioRadialSlider::SetHandStartEndRatio(struct FVector2D* InHandStartEndRa
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHandStartEndRatio != nullptr)
-		*InHandStartEndRatio = std::move(Parms.InHandStartEndRatio);
+	return Parms.ReturnValue;
 
 }
 
@@ -687,7 +676,7 @@ void UAudioRadialSlider::SetHandStartEndRatio(struct FVector2D* InHandStartEndRa
 // Function AudioWidgets.AudioRadialSlider.SetCenterBackgroundColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioRadialSlider::SetCenterBackgroundColor()
 {
@@ -715,10 +704,10 @@ struct FLinearColor UAudioRadialSlider::SetCenterBackgroundColor()
 // Function AudioWidgets.AudioRadialSlider.GetSliderValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              OutputValue                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              OutputValue                                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAudioRadialSlider::GetSliderValue(float* OutputValue, float ReturnValue)
+float UAudioRadialSlider::GetSliderValue(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -737,8 +726,7 @@ void UAudioRadialSlider::GetSliderValue(float* OutputValue, float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (OutputValue != nullptr)
-		*OutputValue = Parms.OutputValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -746,10 +734,10 @@ void UAudioRadialSlider::GetSliderValue(float* OutputValue, float ReturnValue)
 // Function AudioWidgets.AudioRadialSlider.GetOutputValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InSliderValue                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              InSliderValue                                                    (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAudioRadialSlider::GetOutputValue(float* InSliderValue, float ReturnValue)
+float UAudioRadialSlider::GetOutputValue(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -768,8 +756,7 @@ void UAudioRadialSlider::GetOutputValue(float* InSliderValue, float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InSliderValue != nullptr)
-		*InSliderValue = Parms.InSliderValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -861,7 +848,7 @@ class UAudioSliderBase* UAudioSliderBase::GetDefaultObj()
 // Function AudioWidgets.AudioSliderBase.SetWidgetBackgroundColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioSliderBase::SetWidgetBackgroundColor()
 {
@@ -889,9 +876,9 @@ struct FLinearColor UAudioSliderBase::SetWidgetBackgroundColor()
 // Function AudioWidgets.AudioSliderBase.SetValueTextReadOnly
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bIsReadOnly                                                      (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bIsReadOnly                                                      (ExportObject, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
 
-bool UAudioSliderBase::SetValueTextReadOnly()
+void UAudioSliderBase::SetValueTextReadOnly(bool* bIsReadOnly)
 {
 	static class UFunction* Func = nullptr;
 
@@ -909,7 +896,8 @@ bool UAudioSliderBase::SetValueTextReadOnly()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bIsReadOnly != nullptr)
+		*bIsReadOnly = Parms.bIsReadOnly;
 
 }
 
@@ -917,9 +905,9 @@ bool UAudioSliderBase::SetValueTextReadOnly()
 // Function AudioWidgets.AudioSliderBase.SetUnitsTextReadOnly
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bIsReadOnly                                                      (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bIsReadOnly                                                      (ExportObject, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
 
-bool UAudioSliderBase::SetUnitsTextReadOnly()
+void UAudioSliderBase::SetUnitsTextReadOnly(bool* bIsReadOnly)
 {
 	static class UFunction* Func = nullptr;
 
@@ -937,7 +925,8 @@ bool UAudioSliderBase::SetUnitsTextReadOnly()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bIsReadOnly != nullptr)
+		*bIsReadOnly = Parms.bIsReadOnly;
 
 }
 
@@ -945,9 +934,9 @@ bool UAudioSliderBase::SetUnitsTextReadOnly()
 // Function AudioWidgets.AudioSliderBase.SetUnitsText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FText                        Units                                                            (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// class FText                        Units                                                            (Edit, Net, Transient, Config, InstancedReference, SubobjectReference)
 
-void UAudioSliderBase::SetUnitsText(class FText* Units)
+void UAudioSliderBase::SetUnitsText(class FText Units)
 {
 	static class UFunction* Func = nullptr;
 
@@ -956,6 +945,7 @@ void UAudioSliderBase::SetUnitsText(class FText* Units)
 
 	Params::UAudioSliderBase_SetUnitsText_Params Parms{};
 
+	Parms.Units = Units;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -965,18 +955,15 @@ void UAudioSliderBase::SetUnitsText(class FText* Units)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Units != nullptr)
-		*Units = Parms.Units;
-
 }
 
 
 // Function AudioWidgets.AudioSliderBase.SetTextLabelBackgroundColor
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FSlateColor                 InColor                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FSlateColor                 InColor                                                          (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FSlateColor UAudioSliderBase::SetTextLabelBackgroundColor()
+void UAudioSliderBase::SetTextLabelBackgroundColor(struct FSlateColor* InColor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -994,7 +981,8 @@ struct FSlateColor UAudioSliderBase::SetTextLabelBackgroundColor()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InColor != nullptr)
+		*InColor = std::move(Parms.InColor);
 
 }
 
@@ -1002,7 +990,7 @@ struct FSlateColor UAudioSliderBase::SetTextLabelBackgroundColor()
 // Function AudioWidgets.AudioSliderBase.SetSliderThumbColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioSliderBase::SetSliderThumbColor()
 {
@@ -1030,7 +1018,7 @@ struct FLinearColor UAudioSliderBase::SetSliderThumbColor()
 // Function AudioWidgets.AudioSliderBase.SetSliderBarColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioSliderBase::SetSliderBarColor()
 {
@@ -1058,7 +1046,7 @@ struct FLinearColor UAudioSliderBase::SetSliderBarColor()
 // Function AudioWidgets.AudioSliderBase.SetSliderBackgroundColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor UAudioSliderBase::SetSliderBackgroundColor()
 {
@@ -1086,9 +1074,9 @@ struct FLinearColor UAudioSliderBase::SetSliderBackgroundColor()
 // Function AudioWidgets.AudioSliderBase.SetShowUnitsText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bShowUnitsText                                                   (Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bShowUnitsText                                                   (ConstParm, BlueprintReadOnly, Transient, Config, InstancedReference, SubobjectReference)
 
-void UAudioSliderBase::SetShowUnitsText(bool* bShowUnitsText)
+void UAudioSliderBase::SetShowUnitsText(bool bShowUnitsText)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1097,6 +1085,7 @@ void UAudioSliderBase::SetShowUnitsText(bool* bShowUnitsText)
 
 	Params::UAudioSliderBase_SetShowUnitsText_Params Parms{};
 
+	Parms.bShowUnitsText = bShowUnitsText;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1106,18 +1095,15 @@ void UAudioSliderBase::SetShowUnitsText(bool* bShowUnitsText)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bShowUnitsText != nullptr)
-		*bShowUnitsText = Parms.bShowUnitsText;
-
 }
 
 
 // Function AudioWidgets.AudioSliderBase.SetShowLabelOnlyOnHover
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bShowLabelOnlyOnHover                                            (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bShowLabelOnlyOnHover                                            (ConstParm, BlueprintVisible, Transient, Config, InstancedReference, SubobjectReference)
 
-void UAudioSliderBase::SetShowLabelOnlyOnHover(bool* bShowLabelOnlyOnHover)
+void UAudioSliderBase::SetShowLabelOnlyOnHover(bool bShowLabelOnlyOnHover)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1126,6 +1112,7 @@ void UAudioSliderBase::SetShowLabelOnlyOnHover(bool* bShowLabelOnlyOnHover)
 
 	Params::UAudioSliderBase_SetShowLabelOnlyOnHover_Params Parms{};
 
+	Parms.bShowLabelOnlyOnHover = bShowLabelOnlyOnHover;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1135,19 +1122,16 @@ void UAudioSliderBase::SetShowLabelOnlyOnHover(bool* bShowLabelOnlyOnHover)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bShowLabelOnlyOnHover != nullptr)
-		*bShowLabelOnlyOnHover = Parms.bShowLabelOnlyOnHover;
-
 }
 
 
 // Function AudioWidgets.AudioSliderBase.GetSliderValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              OutputValue                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              OutputValue                                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAudioSliderBase::GetSliderValue(float* OutputValue, float ReturnValue)
+float UAudioSliderBase::GetSliderValue(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1166,8 +1150,7 @@ void UAudioSliderBase::GetSliderValue(float* OutputValue, float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (OutputValue != nullptr)
-		*OutputValue = Parms.OutputValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1175,10 +1158,10 @@ void UAudioSliderBase::GetSliderValue(float* OutputValue, float ReturnValue)
 // Function AudioWidgets.AudioSliderBase.GetOutputValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InSliderValue                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              InSliderValue                                                    (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAudioSliderBase::GetOutputValue(float* InSliderValue, float ReturnValue)
+float UAudioSliderBase::GetOutputValue(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1197,8 +1180,7 @@ void UAudioSliderBase::GetOutputValue(float* InSliderValue, float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InSliderValue != nullptr)
-		*InSliderValue = Parms.InSliderValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -1206,10 +1188,10 @@ void UAudioSliderBase::GetOutputValue(float* InSliderValue, float ReturnValue)
 // Function AudioWidgets.AudioSliderBase.GetLinValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              OutputValue                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              OutputValue                                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAudioSliderBase::GetLinValue(float* OutputValue, float ReturnValue)
+float UAudioSliderBase::GetLinValue(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1228,8 +1210,7 @@ void UAudioSliderBase::GetLinValue(float* OutputValue, float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (OutputValue != nullptr)
-		*OutputValue = Parms.OutputValue;
+	return Parms.ReturnValue;
 
 }
 

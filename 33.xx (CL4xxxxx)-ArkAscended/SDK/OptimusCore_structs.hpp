@@ -112,8 +112,8 @@ public:
 struct FOptimusDataTypeRef
 {
 public:
-	class FName                                  TypeName;                                          // 0x0(0x8)(ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	TWeakObjectPtr<class UObject>                TypeObject;                                        // 0x8(0x8)(ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class FName                                  TypeName;                                          // 0x0(0x8)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	TWeakObjectPtr<class UObject>                TypeObject;                                        // 0x8(0x8)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -122,7 +122,7 @@ struct FOptimus_ShaderBinding
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	struct FOptimusDataTypeRef                   DataType;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	struct FOptimusDataTypeRef                   DataType;                                          // 0x8(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -138,13 +138,13 @@ public:
 struct FOptimusDataDomain
 {
 public:
-	enum class EOptimusDataDomainType            Type;                                              // 0x0(0x4)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	uint8                                        Pad_AF9[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class FName>                          DimensionNames;                                    // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        Multiplier;                                        // 0x18(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_AFA[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class FString                                Expression;                                        // 0x20(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<class FName>                          LevelNames;                                        // 0x30(0x10)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	enum class EOptimusDataDomainType            Type;                                              // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config)
+	uint8                                        Pad_C0[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	TArray<class FName>                          DimensionNames;                                    // 0x8(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        Multiplier;                                        // 0x18(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_C1[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	class FString                                Expression;                                        // 0x20(0x10)(ExportObject, Net, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+	TArray<class FName>                          LevelNames;                                        // 0x30(0x10)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -153,8 +153,8 @@ struct FOptimusParameterBinding
 {
 public:
 	struct FOptimusValidatedName                 Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	struct FOptimusDataTypeRef                   DataType;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	struct FOptimusDataDomain                    DataDomain;                                        // 0x18(0x40)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	struct FOptimusDataTypeRef                   DataType;                                          // 0x8(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FOptimusDataDomain                    DataDomain;                                        // 0x18(0x40)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -162,7 +162,7 @@ public:
 struct FOptimusParameterBindingArray
 {
 public:
-	TArray<struct FOptimusParameterBinding>      InnerArray;                                        // 0x0(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	TArray<struct FOptimusParameterBinding>      InnerArray;                                        // 0x0(0x10)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -170,8 +170,8 @@ public:
 struct FOptimusShaderText
 {
 public:
-	class FString                                Declarations;                                      // 0x0(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	class FString                                ShaderText;                                        // 0x10(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class FString                                Declarations;                                      // 0x0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                ShaderText;                                        // 0x10(0x10)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -179,7 +179,7 @@ public:
 struct FOptimusAction
 {
 public:
-	uint8                                        Pad_AFF[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_C2[0x18];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x28 - 0x18)
@@ -187,7 +187,7 @@ public:
 struct FOptimusCompoundAction : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B00[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_C3[0x10];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x30 - 0x18)
@@ -195,7 +195,7 @@ public:
 struct FOptimusComponentBindingAction_AddBinding : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B01[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_C4[0x18];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x40 - 0x18)
@@ -203,7 +203,7 @@ public:
 struct FOptimusComponentBindingAction_RemoveBinding : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B03[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_C5[0x28];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x28 - 0x18)
@@ -211,7 +211,7 @@ public:
 struct FOptimusComponentBindingAction_RenameBinding : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B04[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_C6[0x10];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x40 - 0x18)
@@ -219,7 +219,7 @@ public:
 struct FOptimusComponentBindingAction_SetComponentSource : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B05[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_C7[0x28];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x40 (0x58 - 0x18)
@@ -227,7 +227,7 @@ public:
 struct FOptimusNodeAction_RenameNode : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B06[0x40];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_C8[0x40];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x48 - 0x18)
@@ -235,7 +235,7 @@ public:
 struct FOptimusNodeAction_MoveNode : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B08[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_C9[0x30];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x48 - 0x18)
@@ -243,7 +243,7 @@ public:
 struct FOptimusNodeAction_SetPinValue : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B09[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_CA[0x30];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x38 - 0x18)
@@ -251,7 +251,7 @@ public:
 struct FOptimusNodeAction_SetPinName : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B0A[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_CB[0x20];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x38 - 0x18)
@@ -259,7 +259,7 @@ public:
 struct FOptimusNodeAction_SetPinType : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B0D[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_CC[0x20];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x90 (0xA8 - 0x18)
@@ -267,7 +267,7 @@ public:
 struct FOptimusNodeAction_SetPinDataDomain : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B0E[0x90];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_CE[0x90];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x38 (0x50 - 0x18)
@@ -275,7 +275,7 @@ public:
 struct FOptimusNodeAction_ConnectAdderPin : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B0F[0x38];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_CF[0x38];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xA0 (0xB8 - 0x18)
@@ -283,7 +283,7 @@ public:
 struct FOptimusNodeAction_AddRemovePin : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B10[0xA0];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_D0[0xA0];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x0 (0xB8 - 0xB8)
@@ -312,7 +312,7 @@ public:
 struct FOptimusNodeAction_MovePin : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B12[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_D1[0x30];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x78 (0x90 - 0x18)
@@ -320,7 +320,7 @@ public:
 struct FOptimusNodeGraphAction_AddGraph : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B13[0x78];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_D2[0x78];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x40 (0x58 - 0x18)
@@ -328,7 +328,7 @@ public:
 struct FOptimusNodeGraphAction_RemoveGraph : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B14[0x40];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_D3[0x40];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x38 - 0x18)
@@ -336,7 +336,7 @@ public:
 struct FOptimusNodeGraphAction_RenameGraph : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B15[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_D4[0x20];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x88 (0xA0 - 0x18)
@@ -344,7 +344,7 @@ public:
 struct FOptimusNodeGraphAction_AddNode : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B16[0x88];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_D5[0x88];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x88 (0xA0 - 0x18)
@@ -352,7 +352,7 @@ public:
 struct FOptimusNodeGraphAction_DuplicateNode : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B18[0x88];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_D6[0x88];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x48 (0x60 - 0x18)
@@ -360,7 +360,7 @@ public:
 struct FOptimusNodeGraphAction_RemoveNode : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B19[0x48];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_D7[0x48];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x40 - 0x18)
@@ -368,7 +368,7 @@ public:
 struct FOptimusNodeGraphAction_AddRemoveLink : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B1A[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_D8[0x28];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x0 (0x40 - 0x40)
@@ -390,7 +390,7 @@ public:
 struct FOptimusNodeGraphAction_PackageKernelFunction : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B1B[0x98];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_DA[0x98];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x48 (0x60 - 0x18)
@@ -398,7 +398,7 @@ public:
 struct FOptimusNodeGraphAction_UnpackageKernelFunction : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B1D[0x48];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_DB[0x48];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x58 (0x70 - 0x18)
@@ -406,7 +406,7 @@ public:
 struct FOptimusResourceAction_AddResource : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B20[0x58];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_DC[0x58];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x40 - 0x18)
@@ -414,7 +414,7 @@ public:
 struct FOptimusResourceAction_RemoveResource : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B22[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_DD[0x28];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x28 - 0x18)
@@ -422,7 +422,7 @@ public:
 struct FOptimusResourceAction_RenameResource : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B23[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_DE[0x10];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x40 - 0x18)
@@ -430,7 +430,7 @@ public:
 struct FOptimusResourceAction_SetDataType : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B24[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_E0[0x28];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x88 (0xA0 - 0x18)
@@ -438,7 +438,7 @@ public:
 struct FOptimusResourceAction_SetDataDomain : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B25[0x88];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_E1[0x88];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x30 - 0x18)
@@ -446,7 +446,7 @@ public:
 struct FOptimusVariableAction_AddVariable : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B27[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_E2[0x18];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x40 - 0x18)
@@ -454,7 +454,7 @@ public:
 struct FOptimusVariableAction_RemoveVariable : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B28[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_E3[0x28];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x28 - 0x18)
@@ -462,7 +462,7 @@ public:
 struct FOptimusVariableAction_RenameVariable : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B2B[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_E4[0x10];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x40 - 0x18)
@@ -470,7 +470,7 @@ public:
 struct FOptimusVariableAction_SetDataType : public FOptimusAction
 {
 public:
-	uint8                                        Pad_B2C[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_E5[0x28];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x48 (0x48 - 0x0)
@@ -479,11 +479,11 @@ struct FOptimusAnimAttributeDescription
 {
 public:
 	class FString                                Name;                                              // 0x0(0x10)(ConstParm, Net, OutParm)
-	class FName                                  BoneName;                                          // 0x10(0x8)(ConstParm, Net, DisableEditOnTemplate, Config)
-	struct FOptimusDataTypeRef                   DataType;                                          // 0x18(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	class UOptimusValueContainer*                DefaultValue;                                      // 0x28(0x8)(ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FString                                HlslId;                                            // 0x30(0x10)(BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	class FName                                  PinName;                                           // 0x40(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class FName                                  BoneName;                                          // 0x10(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+	struct FOptimusDataTypeRef                   DataType;                                          // 0x18(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UOptimusValueContainer*                DefaultValue;                                      // 0x28(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                HlslId;                                            // 0x30(0x10)(ConstParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  PinName;                                           // 0x40(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -491,7 +491,7 @@ public:
 struct FOptimusAnimAttributeArray
 {
 public:
-	TArray<struct FOptimusAnimAttributeDescription> InnerArray;                                        // 0x0(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	TArray<struct FOptimusAnimAttributeDescription> InnerArray;                                        // 0x0(0x10)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -499,12 +499,12 @@ public:
 struct FOptimusDebugDrawParameters
 {
 public:
-	bool                                         bForceEnable;                                      // 0x0(0x1)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B2E[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        MaxLineCount;                                      // 0x4(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        MaxTriangleCount;                                  // 0x8(0x4)(ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        MaxCharacterCount;                                 // 0xC(0x4)(ExportObject, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        FontSize;                                          // 0x10(0x4)(ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bForceEnable;                                      // 0x0(0x1)(Net, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_E9[0x3];                                       // Fixing Size After Last Property  > TateDumper <
+	int32                                        MaxLineCount;                                      // 0x4(0x4)(Edit, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        MaxTriangleCount;                                  // 0x8(0x4)(BlueprintReadOnly, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        MaxCharacterCount;                                 // 0xC(0x4)(ConstParm, BlueprintVisible, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        FontSize;                                          // 0x10(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -513,10 +513,10 @@ struct FOptimusGraphVariableDescription
 {
 public:
 	class FString                                Name;                                              // 0x0(0x10)(ConstParm, Net, OutParm)
-	struct FShaderValueTypeHandle                ValueType;                                         // 0x10(0x8)(Edit, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<uint8>                                Value;                                             // 0x18(0x10)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-	int32                                        Offset;                                            // 0x28(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
-	uint8                                        Pad_B32[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	struct FShaderValueTypeHandle                ValueType;                                         // 0x10(0x8)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<uint8>                                Value;                                             // 0x18(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+	int32                                        Offset;                                            // 0x28(0x4)(Edit, ExportObject, Parm, Transient, Config, DisableEditOnInstance, EditConst)
+	uint8                                        Pad_EA[0x4];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -524,8 +524,8 @@ public:
 struct FOptimusSecondaryInputBindingsGroup
 {
 public:
-	struct FOptimusValidatedName                 GroupName;                                         // 0x0(0x8)(ConstParm, ExportObject, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	struct FOptimusParameterBindingArray         BindingArray;                                      // 0x8(0x10)(Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	struct FOptimusValidatedName                 GroupName;                                         // 0x0(0x8)(ExportObject, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FOptimusParameterBindingArray         BindingArray;                                      // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -533,9 +533,9 @@ public:
 struct FOptimusNode_GetVariable_DuplicationInfo
 {
 public:
-	class FName                                  VariableName;                                      // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-	struct FOptimusDataTypeRef                   DataType;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	class FString                                DefaultValue;                                      // 0x18(0x10)(ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  VariableName;                                      // 0x0(0x8)(ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	struct FOptimusDataTypeRef                   DataType;                                          // 0x8(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                DefaultValue;                                      // 0x18(0x10)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -543,9 +543,9 @@ public:
 struct FOptimusNode_ResourceAccessorBase_DuplicationInfo
 {
 public:
-	class FName                                  ResourceName;                                      // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	struct FOptimusDataTypeRef                   DataType;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	struct FOptimusDataDomain                    DataDomain;                                        // 0x18(0x40)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class FName                                  ResourceName;                                      // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+	struct FOptimusDataTypeRef                   DataType;                                          // 0x8(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FOptimusDataDomain                    DataDomain;                                        // 0x18(0x40)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -553,18 +553,18 @@ public:
 struct FOptimusDataType
 {
 public:
-	class FName                                  TypeName;                                          // 0x0(0x8)(ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	class FText                                  DisplayName;                                       // 0x8(0x18)(BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient)
+	class FName                                  TypeName;                                          // 0x0(0x8)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FText                                  DisplayName;                                       // 0x8(0x18)(Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient)
 	struct FShaderValueTypeHandle                ShaderValueType;                                   // 0x20(0x8)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient)
-	int32                                        ShaderValueSize;                                   // 0x28(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	class FName                                  TypeCategory;                                      // 0x2C(0x8)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	TWeakObjectPtr<class UObject>                TypeObject;                                        // 0x34(0x8)(ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	bool                                         bHasCustomPinColor;                                // 0x3C(0x1)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B34[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FLinearColor                          CustomPinColor;                                    // 0x40(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	enum class EOptimusDataTypeUsageFlags        UsageFlags;                                        // 0x50(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	enum class EOptimusDataTypeFlags             TypeFlags;                                         // 0x51(0x1)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B36[0x6];                                      // Fixing Size Of Struct > TateDumper <
+	int32                                        ShaderValueSize;                                   // 0x28(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  TypeCategory;                                      // 0x2C(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	TWeakObjectPtr<class UObject>                TypeObject;                                        // 0x34(0x8)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bHasCustomPinColor;                                // 0x3C(0x1)(ConstParm, EditFixedSize, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_ED[0x3];                                       // Fixing Size After Last Property  > TateDumper <
+	struct FLinearColor                          CustomPinColor;                                    // 0x40(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	enum class EOptimusDataTypeUsageFlags        UsageFlags;                                        // 0x50(0x1)(BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	enum class EOptimusDataTypeFlags             TypeFlags;                                         // 0x51(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_EE[0x6];                                       // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -572,10 +572,10 @@ public:
 struct FOptimusComputeGraphInfo
 {
 public:
-	enum class EOptimusNodeGraphType             GraphType;                                         // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	class FName                                  GraphName;                                         // 0x4(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_B37[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UOptimusComputeGraph*                  ComputeGraph;                                      // 0x10(0x8)(ConstParm, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst)
+	enum class EOptimusNodeGraphType             GraphType;                                         // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  GraphName;                                         // 0x4(0x8)(Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_F0[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	class UOptimusComputeGraph*                  ComputeGraph;                                      // 0x10(0x8)(ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -583,10 +583,10 @@ public:
 struct FOptimusDeformerInstanceExecInfo
 {
 public:
-	class FName                                  GraphName;                                         // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class EOptimusNodeGraphType             GraphType;                                         // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_B39[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UComputeGraph*                         ComputeGraph;                                      // 0x10(0x8)(ConstParm, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst)
+	class FName                                  GraphName;                                         // 0x0(0x8)(Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	enum class EOptimusNodeGraphType             GraphType;                                         // 0x8(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_F1[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	class UComputeGraph*                         ComputeGraph;                                      // 0x10(0x8)(ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst)
 	struct FComputeGraphInstance                 ComputeGraphInstance;                              // 0x18(0x18)(ConstParm, OutParm, ReturnParm, DisableEditOnTemplate, Transient)
 };
 
@@ -595,8 +595,8 @@ public:
 struct FOptimusDeformerInstanceComponentBinding
 {
 public:
-	class FName                                  ProviderName;                                      // 0x0(0x8)(BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	class FName                                  ComponentName;                                     // 0x8(0x8)(Edit, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  ProviderName;                                      // 0x0(0x8)(ConstParm, Net, EditFixedSize, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  ComponentName;                                     // 0x8(0x8)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -604,8 +604,8 @@ public:
 struct FOptimusVariableMetaDataEntry
 {
 public:
-	class FName                                  Key;                                               // 0x0(0x8)(BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-	class FString                                Value;                                             // 0x8(0x10)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+	class FName                                  Key;                                               // 0x0(0x8)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+	class FString                                Value;                                             // 0x8(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 };
 
 }

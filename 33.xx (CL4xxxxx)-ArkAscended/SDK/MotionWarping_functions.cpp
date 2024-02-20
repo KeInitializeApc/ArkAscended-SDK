@@ -43,10 +43,10 @@ class UAnimNotifyState_MotionWarping* UAnimNotifyState_MotionWarping::GetDefault
 // Function MotionWarping.AnimNotifyState_MotionWarping.OnWarpUpdate
 // (Event, Public, BlueprintEvent, Const)
 // Parameters:
-// class UMotionWarpingComponent*     MotionWarpingComp                                                (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-// class URootMotionModifier*         Modifier                                                         (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMotionWarpingComponent*     MotionWarpingComp                                                (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class URootMotionModifier*         Modifier                                                         (ConstParm, BlueprintVisible, ExportObject, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnWarpUpdate(class URootMotionModifier** Modifier)
+class URootMotionModifier* UAnimNotifyState_MotionWarping::OnWarpUpdate(class UMotionWarpingComponent** MotionWarpingComp)
 {
 	static class UFunction* Func = nullptr;
 
@@ -58,8 +58,8 @@ class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnWarpUpdate(clas
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Modifier != nullptr)
-		*Modifier = Parms.Modifier;
+	if (MotionWarpingComp != nullptr)
+		*MotionWarpingComp = Parms.MotionWarpingComp;
 
 	return Parms.ReturnValue;
 
@@ -69,10 +69,10 @@ class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnWarpUpdate(clas
 // Function MotionWarping.AnimNotifyState_MotionWarping.OnWarpEnd
 // (Event, Public, BlueprintEvent, Const)
 // Parameters:
-// class UMotionWarpingComponent*     MotionWarpingComp                                                (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-// class URootMotionModifier*         Modifier                                                         (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMotionWarpingComponent*     MotionWarpingComp                                                (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class URootMotionModifier*         Modifier                                                         (ConstParm, BlueprintVisible, ExportObject, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnWarpEnd(class URootMotionModifier** Modifier)
+class URootMotionModifier* UAnimNotifyState_MotionWarping::OnWarpEnd(class UMotionWarpingComponent** MotionWarpingComp)
 {
 	static class UFunction* Func = nullptr;
 
@@ -84,8 +84,8 @@ class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnWarpEnd(class U
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Modifier != nullptr)
-		*Modifier = Parms.Modifier;
+	if (MotionWarpingComp != nullptr)
+		*MotionWarpingComp = Parms.MotionWarpingComp;
 
 	return Parms.ReturnValue;
 
@@ -95,10 +95,10 @@ class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnWarpEnd(class U
 // Function MotionWarping.AnimNotifyState_MotionWarping.OnWarpBegin
 // (Event, Public, BlueprintEvent, Const)
 // Parameters:
-// class UMotionWarpingComponent*     MotionWarpingComp                                                (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-// class URootMotionModifier*         Modifier                                                         (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMotionWarpingComponent*     MotionWarpingComp                                                (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class URootMotionModifier*         Modifier                                                         (ConstParm, BlueprintVisible, ExportObject, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnWarpBegin(class URootMotionModifier** Modifier)
+class URootMotionModifier* UAnimNotifyState_MotionWarping::OnWarpBegin(class UMotionWarpingComponent** MotionWarpingComp)
 {
 	static class UFunction* Func = nullptr;
 
@@ -110,8 +110,8 @@ class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnWarpBegin(class
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Modifier != nullptr)
-		*Modifier = Parms.Modifier;
+	if (MotionWarpingComp != nullptr)
+		*MotionWarpingComp = Parms.MotionWarpingComp;
 
 	return Parms.ReturnValue;
 
@@ -121,10 +121,10 @@ class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnWarpBegin(class
 // Function MotionWarping.AnimNotifyState_MotionWarping.OnRootMotionModifierUpdate
 // (Final, Native, Public, Const)
 // Parameters:
-// class UMotionWarpingComponent*     MotionWarpingComp                                                (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-// class URootMotionModifier*         Modifier                                                         (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMotionWarpingComponent*     MotionWarpingComp                                                (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class URootMotionModifier*         Modifier                                                         (ConstParm, BlueprintVisible, ExportObject, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnRootMotionModifierUpdate(class URootMotionModifier** Modifier)
+class URootMotionModifier* UAnimNotifyState_MotionWarping::OnRootMotionModifierUpdate(class UMotionWarpingComponent** MotionWarpingComp)
 {
 	static class UFunction* Func = nullptr;
 
@@ -142,8 +142,8 @@ class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnRootMotionModif
 
 	Func->FunctionFlags = Flgs;
 
-	if (Modifier != nullptr)
-		*Modifier = Parms.Modifier;
+	if (MotionWarpingComp != nullptr)
+		*MotionWarpingComp = Parms.MotionWarpingComp;
 
 	return Parms.ReturnValue;
 
@@ -153,10 +153,10 @@ class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnRootMotionModif
 // Function MotionWarping.AnimNotifyState_MotionWarping.OnRootMotionModifierDeactivate
 // (Final, Native, Public, Const)
 // Parameters:
-// class UMotionWarpingComponent*     MotionWarpingComp                                                (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-// class URootMotionModifier*         Modifier                                                         (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMotionWarpingComponent*     MotionWarpingComp                                                (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class URootMotionModifier*         Modifier                                                         (ConstParm, BlueprintVisible, ExportObject, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnRootMotionModifierDeactivate(class URootMotionModifier** Modifier)
+class URootMotionModifier* UAnimNotifyState_MotionWarping::OnRootMotionModifierDeactivate(class UMotionWarpingComponent** MotionWarpingComp)
 {
 	static class UFunction* Func = nullptr;
 
@@ -174,8 +174,8 @@ class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnRootMotionModif
 
 	Func->FunctionFlags = Flgs;
 
-	if (Modifier != nullptr)
-		*Modifier = Parms.Modifier;
+	if (MotionWarpingComp != nullptr)
+		*MotionWarpingComp = Parms.MotionWarpingComp;
 
 	return Parms.ReturnValue;
 
@@ -185,10 +185,10 @@ class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnRootMotionModif
 // Function MotionWarping.AnimNotifyState_MotionWarping.OnRootMotionModifierActivate
 // (Final, Native, Public, Const)
 // Parameters:
-// class UMotionWarpingComponent*     MotionWarpingComp                                                (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-// class URootMotionModifier*         Modifier                                                         (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMotionWarpingComponent*     MotionWarpingComp                                                (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class URootMotionModifier*         Modifier                                                         (ConstParm, BlueprintVisible, ExportObject, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnRootMotionModifierActivate(class URootMotionModifier** Modifier)
+class URootMotionModifier* UAnimNotifyState_MotionWarping::OnRootMotionModifierActivate(class UMotionWarpingComponent** MotionWarpingComp)
 {
 	static class UFunction* Func = nullptr;
 
@@ -206,8 +206,8 @@ class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnRootMotionModif
 
 	Func->FunctionFlags = Flgs;
 
-	if (Modifier != nullptr)
-		*Modifier = Parms.Modifier;
+	if (MotionWarpingComp != nullptr)
+		*MotionWarpingComp = Parms.MotionWarpingComp;
 
 	return Parms.ReturnValue;
 
@@ -217,13 +217,13 @@ class UMotionWarpingComponent* UAnimNotifyState_MotionWarping::OnRootMotionModif
 // Function MotionWarping.AnimNotifyState_MotionWarping.AddRootMotionModifier
 // (Native, Event, Public, BlueprintEvent, Const)
 // Parameters:
-// class UMotionWarpingComponent*     MotionWarpingComp                                                (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-// class UAnimSequenceBase*           Animation                                                        (Edit, Net, EditFixedSize, Config, EditConst)
-// float                              StartTime                                                        (BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              EndTime                                                          (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class URootMotionModifier*         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMotionWarpingComponent*     MotionWarpingComp                                                (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class UAnimSequenceBase*           Animation                                                        (ConstParm, ExportObject, ReturnParm, Config, EditConst)
+// float                              StartTime                                                        (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              EndTime                                                          (ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class URootMotionModifier*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UAnimNotifyState_MotionWarping::AddRootMotionModifier(class UAnimSequenceBase* Animation, class URootMotionModifier* ReturnValue)
+float UAnimNotifyState_MotionWarping::AddRootMotionModifier(class UMotionWarpingComponent** MotionWarpingComp, class URootMotionModifier* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -232,7 +232,6 @@ float UAnimNotifyState_MotionWarping::AddRootMotionModifier(class UAnimSequenceB
 
 	Params::UAnimNotifyState_MotionWarping_AddRootMotionModifier_Params Parms{};
 
-	Parms.Animation = Animation;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -242,6 +241,9 @@ float UAnimNotifyState_MotionWarping::AddRootMotionModifier(class UAnimSequenceB
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (MotionWarpingComp != nullptr)
+		*MotionWarpingComp = Parms.MotionWarpingComp;
 
 	return Parms.ReturnValue;
 
@@ -279,10 +281,10 @@ class UMotionWarpingUtilities* UMotionWarpingUtilities::GetDefaultObj()
 // Function MotionWarping.MotionWarpingUtilities.GetMotionWarpingWindowsFromAnimation
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UAnimSequenceBase*           Animation                                                        (Edit, Net, EditFixedSize, Config, EditConst)
-// TArray<struct FMotionWarpingWindowData>OutWindows                                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UAnimSequenceBase*           Animation                                                        (ConstParm, ExportObject, ReturnParm, Config, EditConst)
+// TArray<struct FMotionWarpingWindowData>OutWindows                                                       (Edit, ConstParm, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-void UMotionWarpingUtilities::GetMotionWarpingWindowsFromAnimation(class UAnimSequenceBase* Animation, TArray<struct FMotionWarpingWindowData>* OutWindows)
+TArray<struct FMotionWarpingWindowData> UMotionWarpingUtilities::GetMotionWarpingWindowsFromAnimation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -291,7 +293,6 @@ void UMotionWarpingUtilities::GetMotionWarpingWindowsFromAnimation(class UAnimSe
 
 	Params::UMotionWarpingUtilities_GetMotionWarpingWindowsFromAnimation_Params Parms{};
 
-	Parms.Animation = Animation;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -301,8 +302,7 @@ void UMotionWarpingUtilities::GetMotionWarpingWindowsFromAnimation(class UAnimSe
 
 	Func->FunctionFlags = Flgs;
 
-	if (OutWindows != nullptr)
-		*OutWindows = std::move(Parms.OutWindows);
+	return Parms.ReturnValue;
 
 }
 
@@ -310,11 +310,11 @@ void UMotionWarpingUtilities::GetMotionWarpingWindowsFromAnimation(class UAnimSe
 // Function MotionWarping.MotionWarpingUtilities.GetMotionWarpingWindowsForWarpTargetFromAnimation
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UAnimSequenceBase*           Animation                                                        (Edit, Net, EditFixedSize, Config, EditConst)
-// class FName                        WarpTargetName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<struct FMotionWarpingWindowData>OutWindows                                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UAnimSequenceBase*           Animation                                                        (ConstParm, ExportObject, ReturnParm, Config, EditConst)
+// class FName                        WarpTargetName                                                   (Edit, ExportObject, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
+// TArray<struct FMotionWarpingWindowData>OutWindows                                                       (Edit, ConstParm, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-void UMotionWarpingUtilities::GetMotionWarpingWindowsForWarpTargetFromAnimation(class UAnimSequenceBase* Animation, class FName* WarpTargetName, TArray<struct FMotionWarpingWindowData>* OutWindows)
+TArray<struct FMotionWarpingWindowData> UMotionWarpingUtilities::GetMotionWarpingWindowsForWarpTargetFromAnimation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -323,7 +323,6 @@ void UMotionWarpingUtilities::GetMotionWarpingWindowsForWarpTargetFromAnimation(
 
 	Params::UMotionWarpingUtilities_GetMotionWarpingWindowsForWarpTargetFromAnimation_Params Parms{};
 
-	Parms.Animation = Animation;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -333,11 +332,7 @@ void UMotionWarpingUtilities::GetMotionWarpingWindowsForWarpTargetFromAnimation(
 
 	Func->FunctionFlags = Flgs;
 
-	if (WarpTargetName != nullptr)
-		*WarpTargetName = Parms.WarpTargetName;
-
-	if (OutWindows != nullptr)
-		*OutWindows = std::move(Parms.OutWindows);
+	return Parms.ReturnValue;
 
 }
 
@@ -345,12 +340,12 @@ void UMotionWarpingUtilities::GetMotionWarpingWindowsForWarpTargetFromAnimation(
 // Function MotionWarping.MotionWarpingUtilities.ExtractRootMotionFromAnimation
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UAnimSequenceBase*           Animation                                                        (Edit, Net, EditFixedSize, Config, EditConst)
-// float                              StartTime                                                        (BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              EndTime                                                          (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAnimSequenceBase*           Animation                                                        (ConstParm, ExportObject, ReturnParm, Config, EditConst)
+// float                              StartTime                                                        (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              EndTime                                                          (ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UMotionWarpingUtilities::ExtractRootMotionFromAnimation(class UAnimSequenceBase* Animation, const struct FTransform& ReturnValue)
+float UMotionWarpingUtilities::ExtractRootMotionFromAnimation(const struct FTransform& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -359,7 +354,6 @@ float UMotionWarpingUtilities::ExtractRootMotionFromAnimation(class UAnimSequenc
 
 	Params::UMotionWarpingUtilities_ExtractRootMotionFromAnimation_Params Parms{};
 
-	Parms.Animation = Animation;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -406,10 +400,10 @@ class UMotionWarpingComponent* UMotionWarpingComponent::GetDefaultObj()
 // Function MotionWarping.MotionWarpingComponent.RemoveWarpTarget
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        WarpTargetName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        WarpTargetName                                                   (Edit, ExportObject, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMotionWarpingComponent::RemoveWarpTarget(class FName* WarpTargetName, int32 ReturnValue)
+class FName UMotionWarpingComponent::RemoveWarpTarget(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -428,8 +422,7 @@ void UMotionWarpingComponent::RemoveWarpTarget(class FName* WarpTargetName, int3
 
 	Func->FunctionFlags = Flgs;
 
-	if (WarpTargetName != nullptr)
-		*WarpTargetName = Parms.WarpTargetName;
+	return Parms.ReturnValue;
 
 }
 
@@ -461,10 +454,10 @@ void UMotionWarpingComponent::DisableAllRootMotionModifiers()
 // Function MotionWarping.MotionWarpingComponent.AddOrUpdateWarpTargetFromTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        WarpTargetName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FTransform                  TargetTransform                                                  (Edit, BlueprintVisible, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        WarpTargetName                                                   (Edit, ExportObject, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FTransform                  TargetTransform                                                  (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-void UMotionWarpingComponent::AddOrUpdateWarpTargetFromTransform(class FName* WarpTargetName, const struct FTransform& TargetTransform)
+struct FTransform UMotionWarpingComponent::AddOrUpdateWarpTargetFromTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -473,7 +466,6 @@ void UMotionWarpingComponent::AddOrUpdateWarpTargetFromTransform(class FName* Wa
 
 	Params::UMotionWarpingComponent_AddOrUpdateWarpTargetFromTransform_Params Parms{};
 
-	Parms.TargetTransform = TargetTransform;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -483,8 +475,7 @@ void UMotionWarpingComponent::AddOrUpdateWarpTargetFromTransform(class FName* Wa
 
 	Func->FunctionFlags = Flgs;
 
-	if (WarpTargetName != nullptr)
-		*WarpTargetName = Parms.WarpTargetName;
+	return Parms.ReturnValue;
 
 }
 
@@ -492,11 +483,11 @@ void UMotionWarpingComponent::AddOrUpdateWarpTargetFromTransform(class FName* Wa
 // Function MotionWarping.MotionWarpingComponent.AddOrUpdateWarpTargetFromLocationAndRotation
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        WarpTargetName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector                     TargetLocation                                                   (Edit, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRotator                    TargetRotation                                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FName                        WarpTargetName                                                   (Edit, ExportObject, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FVector                     TargetLocation                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FRotator                    TargetRotation                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-struct FRotator UMotionWarpingComponent::AddOrUpdateWarpTargetFromLocationAndRotation(class FName* WarpTargetName, struct FVector* TargetLocation)
+struct FVector UMotionWarpingComponent::AddOrUpdateWarpTargetFromLocationAndRotation(const struct FRotator& TargetRotation)
 {
 	static class UFunction* Func = nullptr;
 
@@ -505,6 +496,7 @@ struct FRotator UMotionWarpingComponent::AddOrUpdateWarpTargetFromLocationAndRot
 
 	Params::UMotionWarpingComponent_AddOrUpdateWarpTargetFromLocationAndRotation_Params Parms{};
 
+	Parms.TargetRotation = TargetRotation;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -513,12 +505,6 @@ struct FRotator UMotionWarpingComponent::AddOrUpdateWarpTargetFromLocationAndRot
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (WarpTargetName != nullptr)
-		*WarpTargetName = Parms.WarpTargetName;
-
-	if (TargetLocation != nullptr)
-		*TargetLocation = std::move(Parms.TargetLocation);
 
 	return Parms.ReturnValue;
 
@@ -528,10 +514,10 @@ struct FRotator UMotionWarpingComponent::AddOrUpdateWarpTargetFromLocationAndRot
 // Function MotionWarping.MotionWarpingComponent.AddOrUpdateWarpTargetFromLocation
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        WarpTargetName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector                     TargetLocation                                                   (Edit, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// class FName                        WarpTargetName                                                   (Edit, ExportObject, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FVector                     TargetLocation                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UMotionWarpingComponent::AddOrUpdateWarpTargetFromLocation(class FName* WarpTargetName, struct FVector* TargetLocation)
+struct FVector UMotionWarpingComponent::AddOrUpdateWarpTargetFromLocation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -549,11 +535,7 @@ void UMotionWarpingComponent::AddOrUpdateWarpTargetFromLocation(class FName* War
 
 	Func->FunctionFlags = Flgs;
 
-	if (WarpTargetName != nullptr)
-		*WarpTargetName = Parms.WarpTargetName;
-
-	if (TargetLocation != nullptr)
-		*TargetLocation = std::move(Parms.TargetLocation);
+	return Parms.ReturnValue;
 
 }
 
@@ -561,12 +543,12 @@ void UMotionWarpingComponent::AddOrUpdateWarpTargetFromLocation(class FName* War
 // Function MotionWarping.MotionWarpingComponent.AddOrUpdateWarpTargetFromComponent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        WarpTargetName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class USceneComponent*             Component                                                        (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FName                        BoneName                                                         (ConstParm, Net, DisableEditOnTemplate, Config)
-// bool                               bFollowComponent                                                 (BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        WarpTargetName                                                   (Edit, ExportObject, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class USceneComponent*             Component                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class FName                        BoneName                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// bool                               bFollowComponent                                                 (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-bool UMotionWarpingComponent::AddOrUpdateWarpTargetFromComponent(class FName* WarpTargetName, class USceneComponent** Component, class FName BoneName)
+bool UMotionWarpingComponent::AddOrUpdateWarpTargetFromComponent(class USceneComponent* Component, class FName* BoneName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -575,7 +557,7 @@ bool UMotionWarpingComponent::AddOrUpdateWarpTargetFromComponent(class FName* Wa
 
 	Params::UMotionWarpingComponent_AddOrUpdateWarpTargetFromComponent_Params Parms{};
 
-	Parms.BoneName = BoneName;
+	Parms.Component = Component;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -585,11 +567,8 @@ bool UMotionWarpingComponent::AddOrUpdateWarpTargetFromComponent(class FName* Wa
 
 	Func->FunctionFlags = Flgs;
 
-	if (WarpTargetName != nullptr)
-		*WarpTargetName = Parms.WarpTargetName;
-
-	if (Component != nullptr)
-		*Component = Parms.Component;
+	if (BoneName != nullptr)
+		*BoneName = Parms.BoneName;
 
 	return Parms.ReturnValue;
 
@@ -599,9 +578,9 @@ bool UMotionWarpingComponent::AddOrUpdateWarpTargetFromComponent(class FName* Wa
 // Function MotionWarping.MotionWarpingComponent.AddOrUpdateWarpTarget
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FMotionWarpingTarget        WarpTarget                                                       (Edit, ConstParm, BlueprintVisible, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FMotionWarpingTarget        WarpTarget                                                       (Edit, Net, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-void UMotionWarpingComponent::AddOrUpdateWarpTarget(const struct FMotionWarpingTarget& WarpTarget)
+struct FMotionWarpingTarget UMotionWarpingComponent::AddOrUpdateWarpTarget()
 {
 	static class UFunction* Func = nullptr;
 
@@ -610,7 +589,6 @@ void UMotionWarpingComponent::AddOrUpdateWarpTarget(const struct FMotionWarpingT
 
 	Params::UMotionWarpingComponent_AddOrUpdateWarpTarget_Params Parms{};
 
-	Parms.WarpTarget = WarpTarget;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -619,6 +597,8 @@ void UMotionWarpingComponent::AddOrUpdateWarpTarget(const struct FMotionWarpingT
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -738,14 +718,14 @@ class URootMotionModifier_Scale* URootMotionModifier_Scale::GetDefaultObj()
 // Function MotionWarping.RootMotionModifier_Scale.AddRootMotionModifierScale
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UMotionWarpingComponent*     InMotionWarpingComp                                              (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UAnimSequenceBase*           InAnimation                                                      (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              InStartTime                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              InEndTime                                                        (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector                     InScale                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// class URootMotionModifier_Scale*   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMotionWarpingComponent*     InMotionWarpingComp                                              (ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class UAnimSequenceBase*           InAnimation                                                      (BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+// float                              InStartTime                                                      (Edit, ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// float                              InEndTime                                                        (Edit, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FVector                     InScale                                                          (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class URootMotionModifier_Scale*   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FVector URootMotionModifier_Scale::AddRootMotionModifierScale(class UMotionWarpingComponent* InMotionWarpingComp, class UAnimSequenceBase** InAnimation, float InStartTime, float InEndTime, class URootMotionModifier_Scale* ReturnValue)
+struct FVector URootMotionModifier_Scale::AddRootMotionModifierScale(class UAnimSequenceBase* InAnimation, class URootMotionModifier_Scale* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -754,9 +734,7 @@ struct FVector URootMotionModifier_Scale::AddRootMotionModifierScale(class UMoti
 
 	Params::URootMotionModifier_Scale_AddRootMotionModifierScale_Params Parms{};
 
-	Parms.InMotionWarpingComp = InMotionWarpingComp;
-	Parms.InStartTime = InStartTime;
-	Parms.InEndTime = InEndTime;
+	Parms.InAnimation = InAnimation;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -766,9 +744,6 @@ struct FVector URootMotionModifier_Scale::AddRootMotionModifierScale(class UMoti
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
 
 	return Parms.ReturnValue;
 
@@ -834,22 +809,22 @@ class URootMotionModifier_SkewWarp* URootMotionModifier_SkewWarp::GetDefaultObj(
 // Function MotionWarping.RootMotionModifier_SkewWarp.AddRootMotionModifierSkewWarp
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UMotionWarpingComponent*     InMotionWarpingComp                                              (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UAnimSequenceBase*           InAnimation                                                      (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              InStartTime                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              InEndTime                                                        (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        InWarpTargetName                                                 (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class EWarpPointAnimProvider  InWarpPointAnimProvider                                          (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FTransform                  InWarpPointAnimTransform                                         (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        InWarpPointAnimBoneName                                          (Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bInWarpTranslation                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bInIgnoreZAxis                                                   (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bInWarpRotation                                                  (Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class EMotionWarpRotationType InRotationType                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              InWarpRotationTimeMultiplier                                     (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class URootMotionModifier_SkewWarp*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMotionWarpingComponent*     InMotionWarpingComp                                              (ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class UAnimSequenceBase*           InAnimation                                                      (BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+// float                              InStartTime                                                      (Edit, ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// float                              InEndTime                                                        (Edit, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FName                        InWarpTargetName                                                 (Edit, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// enum class EWarpPointAnimProvider  InWarpPointAnimProvider                                          (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FTransform                  InWarpPointAnimTransform                                         (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FName                        InWarpPointAnimBoneName                                          (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// bool                               bInWarpTranslation                                               (BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// bool                               bInIgnoreZAxis                                                   (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// bool                               bInWarpRotation                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// enum class EMotionWarpRotationType InRotationType                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// float                              InWarpRotationTimeMultiplier                                     (ExportObject, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class URootMotionModifier_SkewWarp*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URootMotionModifier_SkewWarp::AddRootMotionModifierSkewWarp(class UMotionWarpingComponent* InMotionWarpingComp, class UAnimSequenceBase** InAnimation, float InStartTime, float InEndTime, class FName* InWarpTargetName, enum class EWarpPointAnimProvider* InWarpPointAnimProvider, struct FTransform* InWarpPointAnimTransform, class FName* InWarpPointAnimBoneName, bool* bInWarpTranslation, bool* bInIgnoreZAxis, bool* bInWarpRotation, enum class EMotionWarpRotationType* InRotationType, float* InWarpRotationTimeMultiplier, class URootMotionModifier_SkewWarp* ReturnValue)
+float URootMotionModifier_SkewWarp::AddRootMotionModifierSkewWarp(class UAnimSequenceBase* InAnimation, class URootMotionModifier_SkewWarp* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -858,9 +833,7 @@ void URootMotionModifier_SkewWarp::AddRootMotionModifierSkewWarp(class UMotionWa
 
 	Params::URootMotionModifier_SkewWarp_AddRootMotionModifierSkewWarp_Params Parms{};
 
-	Parms.InMotionWarpingComp = InMotionWarpingComp;
-	Parms.InStartTime = InStartTime;
-	Parms.InEndTime = InEndTime;
+	Parms.InAnimation = InAnimation;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -871,35 +844,7 @@ void URootMotionModifier_SkewWarp::AddRootMotionModifierSkewWarp(class UMotionWa
 
 	Func->FunctionFlags = Flgs;
 
-	if (InAnimation != nullptr)
-		*InAnimation = Parms.InAnimation;
-
-	if (InWarpTargetName != nullptr)
-		*InWarpTargetName = Parms.InWarpTargetName;
-
-	if (InWarpPointAnimProvider != nullptr)
-		*InWarpPointAnimProvider = Parms.InWarpPointAnimProvider;
-
-	if (InWarpPointAnimTransform != nullptr)
-		*InWarpPointAnimTransform = std::move(Parms.InWarpPointAnimTransform);
-
-	if (InWarpPointAnimBoneName != nullptr)
-		*InWarpPointAnimBoneName = Parms.InWarpPointAnimBoneName;
-
-	if (bInWarpTranslation != nullptr)
-		*bInWarpTranslation = Parms.bInWarpTranslation;
-
-	if (bInIgnoreZAxis != nullptr)
-		*bInIgnoreZAxis = Parms.bInIgnoreZAxis;
-
-	if (bInWarpRotation != nullptr)
-		*bInWarpRotation = Parms.bInWarpRotation;
-
-	if (InRotationType != nullptr)
-		*InRotationType = Parms.InRotationType;
-
-	if (InWarpRotationTimeMultiplier != nullptr)
-		*InWarpRotationTimeMultiplier = Parms.InWarpRotationTimeMultiplier;
+	return Parms.ReturnValue;
 
 }
 

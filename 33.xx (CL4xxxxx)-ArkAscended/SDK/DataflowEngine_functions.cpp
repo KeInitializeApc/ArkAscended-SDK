@@ -43,11 +43,11 @@ class UDataflowBlueprintLibrary* UDataflowBlueprintLibrary::GetDefaultObj()
 // Function DataflowEngine.DataflowBlueprintLibrary.EvaluateTerminalNodeByName
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UDataflow*                   Dataflow                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class FName                        TerminalNodeName                                                 (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UObject*                     ResultAsset                                                      (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UDataflow*                   Dataflow                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class FName                        TerminalNodeName                                                 (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     ResultAsset                                                      (BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-class UDataflow* UDataflowBlueprintLibrary::EvaluateTerminalNodeByName(class FName* TerminalNodeName, class UObject** ResultAsset)
+class UObject* UDataflowBlueprintLibrary::EvaluateTerminalNodeByName(class UDataflow* Dataflow)
 {
 	static class UFunction* Func = nullptr;
 
@@ -56,6 +56,7 @@ class UDataflow* UDataflowBlueprintLibrary::EvaluateTerminalNodeByName(class FNa
 
 	Params::UDataflowBlueprintLibrary_EvaluateTerminalNodeByName_Params Parms{};
 
+	Parms.Dataflow = Dataflow;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -64,12 +65,6 @@ class UDataflow* UDataflowBlueprintLibrary::EvaluateTerminalNodeByName(class FNa
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (TerminalNodeName != nullptr)
-		*TerminalNodeName = Parms.TerminalNodeName;
-
-	if (ResultAsset != nullptr)
-		*ResultAsset = Parms.ResultAsset;
 
 	return Parms.ReturnValue;
 

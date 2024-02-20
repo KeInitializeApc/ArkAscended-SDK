@@ -43,17 +43,17 @@ class UCFCoreBPLibrary* UCFCoreBPLibrary::GetDefaultObj()
 // Function cfcore.CFCoreBPLibrary.MakeUpdateModRequest
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int64                              Class_id                                                         (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              Class_id                                                         (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// class FString                      Summary                                                          (BlueprintVisible, BlueprintReadOnly, Parm, Transient, GlobalConfig, SubobjectReference)
-// enum class ECFCoreMakrupType       Description_type                                                 (ConstParm, ExportObject, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      Description                                                      (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, DuplicateTransient)
-// int64                              Primary_category_id                                              (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<int64>                      Game_category_ids                                                (Edit, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               Is_experimental                                                  (BlueprintVisible, ExportObject, Net, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FUpdateModRequest           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Summary                                                          (BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class ECFCoreMakrupType       Description_type                                                 (BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      Description                                                      (Edit, ConstParm, ExportObject, Net, ReturnParm, Transient, Config, EditConst, InstancedReference, DuplicateTransient)
+// int64                              Primary_category_id                                              (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// TArray<int64>                      Game_category_ids                                                (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// bool                               Is_experimental                                                  (ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FUpdateModRequest           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UCFCoreBPLibrary::MakeUpdateModRequest(class FString* Name, const class FString& Summary, const class FString& Description, const struct FUpdateModRequest& ReturnValue)
+bool UCFCoreBPLibrary::MakeUpdateModRequest(class FString* Name, const struct FUpdateModRequest& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -62,8 +62,6 @@ bool UCFCoreBPLibrary::MakeUpdateModRequest(class FString* Name, const class FSt
 
 	Params::UCFCoreBPLibrary_MakeUpdateModRequest_Params Parms{};
 
-	Parms.Summary = Summary;
-	Parms.Description = Description;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -85,7 +83,7 @@ bool UCFCoreBPLibrary::MakeUpdateModRequest(class FString* Name, const class FSt
 // Function cfcore.CFCoreBPLibrary.MakeSettingsFromProjectConfig
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FCFCoreSettings             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FCFCoreSettings             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UCFCoreBPLibrary::MakeSettingsFromProjectConfig(const struct FCFCoreSettings& ReturnValue)
 {
@@ -112,13 +110,13 @@ void UCFCoreBPLibrary::MakeSettingsFromProjectConfig(const struct FCFCoreSetting
 // Function cfcore.CFCoreBPLibrary.MakeSettings
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FString                      Default_language                                                 (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int64                              Game_id                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      Api_key                                                          (BlueprintReadOnly, Net, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      Mods_directory                                                   (ExportObject, Net, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      User_data_directory                                              (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              Max_concurrent_installations                                     (ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FCFCoreSettings             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Default_language                                                 (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int64                              Game_id                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      Api_key                                                          (ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      Mods_directory                                                   (ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      User_data_directory                                              (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              Max_concurrent_installations                                     (ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FCFCoreSettings             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 int32 UCFCoreBPLibrary::MakeSettings(const struct FCFCoreSettings& ReturnValue)
 {
@@ -147,15 +145,15 @@ int32 UCFCoreBPLibrary::MakeSettings(const struct FCFCoreSettings& ReturnValue)
 // Function cfcore.CFCoreBPLibrary.MakeSearchModsFilter
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              Class_id                                                         (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              Category_id                                                      (Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      Game_version                                                     (Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      Search_filter                                                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class ECFCoreModsSearchSortFieldSort_field                                                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class ECFCoreSortOrder        Sort_order                                                       (BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class ECFCoreModLoaderType    Mod_loader_type                                                  (Edit, ConstParm, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              Game_version_type_id                                             (ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FCFCoreSearchModsFilter     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              Class_id                                                         (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              Category_id                                                      (Edit, Net, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      Game_version                                                     (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      Search_filter                                                    (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// enum class ECFCoreModsSearchSortFieldSort_field                                                       (BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// enum class ECFCoreSortOrder        Sort_order                                                       (ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// enum class ECFCoreModLoaderType    Mod_loader_type                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              Game_version_type_id                                             (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FCFCoreSearchModsFilter     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 int32 UCFCoreBPLibrary::MakeSearchModsFilter(const struct FCFCoreSearchModsFilter& ReturnValue)
 {
@@ -184,8 +182,8 @@ int32 UCFCoreBPLibrary::MakeSearchModsFilter(const struct FCFCoreSearchModsFilte
 // Function cfcore.CFCoreBPLibrary.MakeGetCategoriesFilter
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              Class_id                                                         (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FCFCoreGetCategoriesFilter  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              Class_id                                                         (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FCFCoreGetCategoriesFilter  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 int32 UCFCoreBPLibrary::MakeGetCategoriesFilter(const struct FCFCoreGetCategoriesFilter& ReturnValue)
 {
@@ -214,8 +212,8 @@ int32 UCFCoreBPLibrary::MakeGetCategoriesFilter(const struct FCFCoreGetCategorie
 // Function cfcore.CFCoreBPLibrary.MakeExternalAuthAdditionalInfo
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FDateTime                   EulaAcceptTime                                                   (ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FExternalAuthAdditionalInfo ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FDateTime                   EulaAcceptTime                                                   (Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FExternalAuthAdditionalInfo ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FDateTime UCFCoreBPLibrary::MakeExternalAuthAdditionalInfo(const struct FExternalAuthAdditionalInfo& ReturnValue)
 {
@@ -244,17 +242,17 @@ struct FDateTime UCFCoreBPLibrary::MakeExternalAuthAdditionalInfo(const struct F
 // Function cfcore.CFCoreBPLibrary.MakeCreateModRequest
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int64                              Class_id                                                         (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              Class_id                                                         (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// class FString                      Summary                                                          (BlueprintVisible, BlueprintReadOnly, Parm, Transient, GlobalConfig, SubobjectReference)
-// enum class ECFCoreMakrupType       Description_type                                                 (ConstParm, ExportObject, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      Description                                                      (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, DuplicateTransient)
-// int64                              Primary_category_id                                              (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<int64>                      Game_category_ids                                                (Edit, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               Is_experimental                                                  (BlueprintVisible, ExportObject, Net, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FCreateModRequest           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Summary                                                          (BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class ECFCoreMakrupType       Description_type                                                 (BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      Description                                                      (Edit, ConstParm, ExportObject, Net, ReturnParm, Transient, Config, EditConst, InstancedReference, DuplicateTransient)
+// int64                              Primary_category_id                                              (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// TArray<int64>                      Game_category_ids                                                (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// bool                               Is_experimental                                                  (ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FCreateModRequest           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UCFCoreBPLibrary::MakeCreateModRequest(class FString* Name, const class FString& Summary, const class FString& Description, const struct FCreateModRequest& ReturnValue)
+bool UCFCoreBPLibrary::MakeCreateModRequest(class FString* Name, const struct FCreateModRequest& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -263,8 +261,6 @@ bool UCFCoreBPLibrary::MakeCreateModRequest(class FString* Name, const class FSt
 
 	Params::UCFCoreBPLibrary_MakeCreateModRequest_Params Parms{};
 
-	Parms.Summary = Summary;
-	Parms.Description = Description;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -286,16 +282,16 @@ bool UCFCoreBPLibrary::MakeCreateModRequest(class FString* Name, const class FSt
 // Function cfcore.CFCoreBPLibrary.MakeCreateModFileRequest
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class ECFCoreChangelogMarkupTypeChangelog_type                                                   (BlueprintVisible, Net, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      Changelog                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class ECFCoreChangelogMarkupTypeChangelog_type                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      Changelog                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 // class FString                      Filename                                                         (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm)
-// class FString                      DisplayName                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient)
-// TArray<int64>                      GameVersionIds                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class ECFCoreFileReleaseType  ReleaseType                                                      (Edit, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// struct FModFileCookingOptions      CookingOptions                                                   (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FCreateModFileRequest       ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      DisplayName                                                      (Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient)
+// TArray<int64>                      GameVersionIds                                                   (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// enum class ECFCoreFileReleaseType  ReleaseType                                                      (ConstParm, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FModFileCookingOptions      CookingOptions                                                   (ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FCreateModFileRequest       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FModFileCookingOptions UCFCoreBPLibrary::MakeCreateModFileRequest(const struct FCreateModFileRequest& ReturnValue)
+struct FModFileCookingOptions UCFCoreBPLibrary::MakeCreateModFileRequest(enum class ECFCoreFileReleaseType ReleaseType, const struct FCreateModFileRequest& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -304,6 +300,7 @@ struct FModFileCookingOptions UCFCoreBPLibrary::MakeCreateModFileRequest(const s
 
 	Params::UCFCoreBPLibrary_MakeCreateModFileRequest_Params Parms{};
 
+	Parms.ReleaseType = ReleaseType;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -322,11 +319,11 @@ struct FModFileCookingOptions UCFCoreBPLibrary::MakeCreateModFileRequest(const s
 // Function cfcore.CFCoreBPLibrary.MakeAssureServerModsUpdatedParams
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// TArray<int64>                      ModIds                                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// TArray<int64>                      DevModIds                                                        (ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FAssureServerModsUpdatedParamsReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<int64>                      ModIds                                                           (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// TArray<int64>                      DevModIds                                                        (Edit, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FAssureServerModsUpdatedParamsReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<int64> UCFCoreBPLibrary::MakeAssureServerModsUpdatedParams(TArray<int64>* ModIds, const struct FAssureServerModsUpdatedParams& ReturnValue)
+TArray<int64> UCFCoreBPLibrary::MakeAssureServerModsUpdatedParams(const struct FAssureServerModsUpdatedParams& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -345,9 +342,6 @@ TArray<int64> UCFCoreBPLibrary::MakeAssureServerModsUpdatedParams(TArray<int64>*
 
 	Func->FunctionFlags = Flgs;
 
-	if (ModIds != nullptr)
-		*ModIds = std::move(Parms.ModIds);
-
 	return Parms.ReturnValue;
 
 }
@@ -356,11 +350,11 @@ TArray<int64> UCFCoreBPLibrary::MakeAssureServerModsUpdatedParams(TArray<int64>*
 // Function cfcore.CFCoreBPLibrary.MakeApiRequestPagination
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// int32                              Page_size                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FCFCoreApiRequestPagination ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// int32                              Page_size                                                        (ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FCFCoreApiRequestPagination ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UCFCoreBPLibrary::MakeApiRequestPagination(const struct FCFCoreApiRequestPagination& ReturnValue)
+int32 UCFCoreBPLibrary::MakeApiRequestPagination(int32* Index, const struct FCFCoreApiRequestPagination& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -379,6 +373,9 @@ int32 UCFCoreBPLibrary::MakeApiRequestPagination(const struct FCFCoreApiRequestP
 
 	Func->FunctionFlags = Flgs;
 
+	if (Index != nullptr)
+		*Index = Parms.Index;
+
 	return Parms.ReturnValue;
 
 }
@@ -387,10 +384,10 @@ int32 UCFCoreBPLibrary::MakeApiRequestPagination(const struct FCFCoreApiRequestP
 // Function cfcore.CFCoreBPLibrary.FormatFileSize
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int64                              Bytes                                                            (BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int64                              Bytes                                                            (Edit, ConstParm, Net, Parm, ZeroConstructor, Config, GlobalConfig, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int64 UCFCoreBPLibrary::FormatFileSize(const class FString& ReturnValue)
+void UCFCoreBPLibrary::FormatFileSize(int64 Bytes, const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -399,6 +396,7 @@ int64 UCFCoreBPLibrary::FormatFileSize(const class FString& ReturnValue)
 
 	Params::UCFCoreBPLibrary_FormatFileSize_Params Parms{};
 
+	Parms.Bytes = Bytes;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -409,18 +407,16 @@ int64 UCFCoreBPLibrary::FormatFileSize(const class FString& ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function cfcore.CFCoreBPLibrary.BreakFileSize
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int64                              Bytes                                                            (BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FCFCoreFileSize             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int64                              Bytes                                                            (Edit, ConstParm, Net, Parm, ZeroConstructor, Config, GlobalConfig, SubobjectReference)
+// struct FCFCoreFileSize             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int64 UCFCoreBPLibrary::BreakFileSize(const struct FCFCoreFileSize& ReturnValue)
+void UCFCoreBPLibrary::BreakFileSize(int64 Bytes, const struct FCFCoreFileSize& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -429,6 +425,7 @@ int64 UCFCoreBPLibrary::BreakFileSize(const struct FCFCoreFileSize& ReturnValue)
 
 	Params::UCFCoreBPLibrary_BreakFileSize_Params Parms{};
 
+	Parms.Bytes = Bytes;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -438,8 +435,6 @@ int64 UCFCoreBPLibrary::BreakFileSize(const struct FCFCoreFileSize& ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -503,11 +498,11 @@ class UCFCoreSubsystem* UCFCoreSubsystem::GetDefaultObj()
 // Function cfcore.CFCoreSubsystem.UpdateMod
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int64                              Mod_id                                                           (ExportObject, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FUpdateModRequest           Update_mod_request                                               (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      Avatar_image_filename                                            (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_success                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              Mod_id                                                           (ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FUpdateModRequest           Update_mod_request                                               (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      Avatar_image_filename                                            (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_success                                                       (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::UpdateMod()
 {
@@ -535,8 +530,8 @@ FDelegateProperty_ UCFCoreSubsystem::UpdateMod()
 // Function cfcore.CFCoreSubsystem.Unitialize
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 OnUninitialized                                                  (Edit, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnError                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnUninitialized                                                  (Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::Unitialize()
 {
@@ -564,9 +559,9 @@ FDelegateProperty_ UCFCoreSubsystem::Unitialize()
 // Function cfcore.CFCoreSubsystem.UninstallMod
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// int64                              Mod_id                                                           (ExportObject, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_uninstalled                                                   (Edit, Net, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              Mod_id                                                           (ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_uninstalled                                                   (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::UninstallMod()
 {
@@ -594,8 +589,8 @@ FDelegateProperty_ UCFCoreSubsystem::UninstallMod()
 // Function cfcore.CFCoreSubsystem.SynchronizeWithServer
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_success                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_success                                                       (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::SynchronizeWithServer()
 {
@@ -623,11 +618,11 @@ FDelegateProperty_ UCFCoreSubsystem::SynchronizeWithServer()
 // Function cfcore.CFCoreSubsystem.SendSecurityCode
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Email                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 On_success                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      Email                                                            (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// FDelegateProperty_                 On_success                                                       (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::SendSecurityCode()
+FDelegateProperty_ UCFCoreSubsystem::SendSecurityCode(const class FString& Email)
 {
 	static class UFunction* Func = nullptr;
 
@@ -636,6 +631,7 @@ FDelegateProperty_ UCFCoreSubsystem::SendSecurityCode()
 
 	Params::UCFCoreSubsystem_SendSecurityCode_Params Parms{};
 
+	Parms.Email = Email;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -650,11 +646,77 @@ FDelegateProperty_ UCFCoreSubsystem::SendSecurityCode()
 }
 
 
+// Function cfcore.CFCoreSubsystem.PremiumModsCheck
+// (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
+// Parameters:
+// TArray<int64>                      InModIds                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnSuccess                                                        (EditFixedSize, OutParm, Config, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+
+FDelegateProperty_ UCFCoreSubsystem::PremiumModsCheck(FDelegateProperty_* OnSuccess)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("CFCoreSubsystem", "PremiumModsCheck");
+
+	Params::UCFCoreSubsystem_PremiumModsCheck_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	if (OnSuccess != nullptr)
+		*OnSuccess = Parms.OnSuccess;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function cfcore.CFCoreSubsystem.OverridePublicKey
+// (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
+// Parameters:
+// class FString                      InPublicKeyPem                                                   (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnSuccess                                                        (EditFixedSize, OutParm, Config, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+
+FDelegateProperty_ UCFCoreSubsystem::OverridePublicKey(FDelegateProperty_* OnSuccess)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("CFCoreSubsystem", "OverridePublicKey");
+
+	Params::UCFCoreSubsystem_OverridePublicKey_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	if (OnSuccess != nullptr)
+		*OnSuccess = Parms.OnSuccess;
+
+	return Parms.ReturnValue;
+
+}
+
+
 // Function cfcore.CFCoreSubsystem.Logout
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_success                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_success                                                       (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::Logout()
 {
@@ -682,7 +744,7 @@ FDelegateProperty_ UCFCoreSubsystem::Logout()
 // Function cfcore.CFCoreSubsystem.IsAuthenticated
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_is_auth                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_is_auth                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::IsAuthenticated()
 {
@@ -707,15 +769,48 @@ FDelegateProperty_ UCFCoreSubsystem::IsAuthenticated()
 }
 
 
+// Function cfcore.CFCoreSubsystem.InstallModExtended
+// (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
+// Parameters:
+// struct FCFCoreMod                  InMod                                                            (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FFile                       InFile                                                           (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FInstallModAdditionalParams InAdditionalParams                                               (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnProgress                                                       (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnInstalled                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+
+FDelegateProperty_ UCFCoreSubsystem::InstallModExtended()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("CFCoreSubsystem", "InstallModExtended");
+
+	Params::UCFCoreSubsystem_InstallModExtended_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
 // Function cfcore.CFCoreSubsystem.InstallMod
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCFCoreMod                  Mod                                                              (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, Transient, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 On_progress                                                      (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_installed                                                     (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FCFCoreMod                  Mod                                                              (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// FDelegateProperty_                 On_progress                                                      (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_installed                                                     (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::InstallMod(const struct FCFCoreMod& Mod)
+FDelegateProperty_ UCFCoreSubsystem::InstallMod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -724,7 +819,6 @@ FDelegateProperty_ UCFCoreSubsystem::InstallMod(const struct FCFCoreMod& Mod)
 
 	Params::UCFCoreSubsystem_InstallMod_Params Parms{};
 
-	Parms.Mod = Mod;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -742,11 +836,11 @@ FDelegateProperty_ UCFCoreSubsystem::InstallMod(const struct FCFCoreMod& Mod)
 // Function cfcore.CFCoreSubsystem.Initialize
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCFCoreSettings             Settings                                                         (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// FDelegateProperty_                 OnInitialized                                                    (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, EditConst)
-// FDelegateProperty_                 OnError                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FCFCoreSettings             Settings                                                         (Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// FDelegateProperty_                 OnInitialized                                                    (BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::Initialize()
+FDelegateProperty_ UCFCoreSubsystem::Initialize(const struct FCFCoreSettings& Settings, FDelegateProperty_ OnInitialized)
 {
 	static class UFunction* Func = nullptr;
 
@@ -755,6 +849,8 @@ FDelegateProperty_ UCFCoreSubsystem::Initialize()
 
 	Params::UCFCoreSubsystem_Initialize_Params Parms{};
 
+	Parms.Settings = Settings;
+	Parms.OnInitialized = OnInitialized;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -769,11 +865,43 @@ FDelegateProperty_ UCFCoreSubsystem::Initialize()
 }
 
 
+// Function cfcore.CFCoreSubsystem.GetMyPremiumMods
+// (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
+// Parameters:
+// FDelegateProperty_                 OnSuccess                                                        (EditFixedSize, OutParm, Config, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+
+FDelegateProperty_ UCFCoreSubsystem::GetMyPremiumMods(FDelegateProperty_* OnSuccess)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("CFCoreSubsystem", "GetMyPremiumMods");
+
+	Params::UCFCoreSubsystem_GetMyPremiumMods_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	if (OnSuccess != nullptr)
+		*OnSuccess = Parms.OnSuccess;
+
+	return Parms.ReturnValue;
+
+}
+
+
 // Function cfcore.CFCoreSubsystem.GetModsDirInfo
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 OnModsDirInfo                                                    (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnError                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnModsDirInfo                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::GetModsDirInfo()
 {
@@ -801,8 +929,8 @@ FDelegateProperty_ UCFCoreSubsystem::GetModsDirInfo()
 // Function cfcore.CFCoreSubsystem.GetInstalledMods
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_installed_mods                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_installed_mods                                                (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::GetInstalledMods()
 {
@@ -830,8 +958,8 @@ FDelegateProperty_ UCFCoreSubsystem::GetInstalledMods()
 // Function cfcore.CFCoreSubsystem.GetAuthTerms
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_success                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_success                                                       (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::GetAuthTerms()
 {
@@ -859,11 +987,11 @@ FDelegateProperty_ UCFCoreSubsystem::GetAuthTerms()
 // Function cfcore.CFCoreSubsystem.GenerateAuthTokenByExternalProvider
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// enum class ECFCoreExternalAuthProviderProvider                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      External_token                                                   (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FExternalAuthAdditionalInfo Additional_info                                                  (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_success                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class ECFCoreExternalAuthProviderProvider                                                         (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      External_token                                                   (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FExternalAuthAdditionalInfo Additional_info                                                  (BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_success                                                       (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::GenerateAuthTokenByExternalProvider()
 {
@@ -891,12 +1019,12 @@ FDelegateProperty_ UCFCoreSubsystem::GenerateAuthTokenByExternalProvider()
 // Function cfcore.CFCoreSubsystem.GenerateAuthToken
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Email                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int32                              Security_code                                                    (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_success                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      Email                                                            (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              Security_code                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_success                                                       (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::GenerateAuthToken()
+FDelegateProperty_ UCFCoreSubsystem::GenerateAuthToken(const class FString& Email)
 {
 	static class UFunction* Func = nullptr;
 
@@ -905,6 +1033,7 @@ FDelegateProperty_ UCFCoreSubsystem::GenerateAuthToken()
 
 	Params::UCFCoreSubsystem_GenerateAuthToken_Params Parms{};
 
+	Parms.Email = Email;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -922,15 +1051,15 @@ FDelegateProperty_ UCFCoreSubsystem::GenerateAuthToken()
 // Function cfcore.CFCoreSubsystem.CreateModFile
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// struct FCreateModFileRequest       CreateModFileRequest                                             (Edit, BlueprintVisible, ExportObject, Parm, OutParm, Transient)
-// class FString                      LocalFilenameToUpload                                            (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnCreateModFileRequestId                                         (BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnProgress                                                       (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnSuccess                                                        (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 OnError                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// struct FCreateModFileRequest       CreateModFileRequest                                             (ConstParm, BlueprintVisible, Net, Parm, OutParm, Transient)
+// class FString                      LocalFilenameToUpload                                            (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnCreateModFileRequestId                                         (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnProgress                                                       (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnSuccess                                                        (EditFixedSize, OutParm, Config, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::CreateModFile(int64 ModId, struct FCreateModFileRequest* CreateModFileRequest, FDelegateProperty_ OnSuccess)
+FDelegateProperty_ UCFCoreSubsystem::CreateModFile(struct FCreateModFileRequest* CreateModFileRequest, FDelegateProperty_* OnSuccess)
 {
 	static class UFunction* Func = nullptr;
 
@@ -939,8 +1068,6 @@ FDelegateProperty_ UCFCoreSubsystem::CreateModFile(int64 ModId, struct FCreateMo
 
 	Params::UCFCoreSubsystem_CreateModFile_Params Parms{};
 
-	Parms.ModId = ModId;
-	Parms.OnSuccess = OnSuccess;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -953,6 +1080,9 @@ FDelegateProperty_ UCFCoreSubsystem::CreateModFile(int64 ModId, struct FCreateMo
 	if (CreateModFileRequest != nullptr)
 		*CreateModFileRequest = std::move(Parms.CreateModFileRequest);
 
+	if (OnSuccess != nullptr)
+		*OnSuccess = Parms.OnSuccess;
+
 	return Parms.ReturnValue;
 
 }
@@ -961,10 +1091,10 @@ FDelegateProperty_ UCFCoreSubsystem::CreateModFile(int64 ModId, struct FCreateMo
 // Function cfcore.CFCoreSubsystem.CreateMod
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCreateModRequest           Create_mod_request                                               (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      Avatar_image_filename                                            (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_success                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FCreateModRequest           Create_mod_request                                               (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      Avatar_image_filename                                            (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_success                                                       (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::CreateMod()
 {
@@ -992,16 +1122,16 @@ FDelegateProperty_ UCFCoreSubsystem::CreateMod()
 // Function cfcore.CFCoreSubsystem.CreateCookedModFile
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int64                              SourceFileId                                                     (Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FCreateCookedModFileRequest CreateCookedModFileRequest                                       (BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient)
-// class FString                      LocalFilenameToUpload                                            (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnCreateModFileRequestId                                         (BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnProgress                                                       (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnSuccess                                                        (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 OnError                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// int64                              SourceFileId                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FCreateCookedModFileRequest CreateCookedModFileRequest                                       (Edit, ExportObject, Parm, OutParm, Transient)
+// class FString                      LocalFilenameToUpload                                            (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnCreateModFileRequestId                                         (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnProgress                                                       (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnSuccess                                                        (EditFixedSize, OutParm, Config, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::CreateCookedModFile(int64 ModId, struct FCreateCookedModFileRequest* CreateCookedModFileRequest, FDelegateProperty_ OnSuccess)
+FDelegateProperty_ UCFCoreSubsystem::CreateCookedModFile(struct FCreateCookedModFileRequest* CreateCookedModFileRequest, FDelegateProperty_* OnSuccess)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1010,8 +1140,6 @@ FDelegateProperty_ UCFCoreSubsystem::CreateCookedModFile(int64 ModId, struct FCr
 
 	Params::UCFCoreSubsystem_CreateCookedModFile_Params Parms{};
 
-	Parms.ModId = ModId;
-	Parms.OnSuccess = OnSuccess;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1024,6 +1152,9 @@ FDelegateProperty_ UCFCoreSubsystem::CreateCookedModFile(int64 ModId, struct FCr
 	if (CreateCookedModFileRequest != nullptr)
 		*CreateCookedModFileRequest = std::move(Parms.CreateCookedModFileRequest);
 
+	if (OnSuccess != nullptr)
+		*OnSuccess = Parms.OnSuccess;
+
 	return Parms.ReturnValue;
 
 }
@@ -1032,9 +1163,9 @@ FDelegateProperty_ UCFCoreSubsystem::CreateCookedModFile(int64 ModId, struct FCr
 // Function cfcore.CFCoreSubsystem.CancelInstallation
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// int64                              Mod_id                                                           (ExportObject, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_success                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              Mod_id                                                           (ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_success                                                       (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::CancelInstallation()
 {
@@ -1062,10 +1193,10 @@ FDelegateProperty_ UCFCoreSubsystem::CancelInstallation()
 // Function cfcore.CFCoreSubsystem.AssureServerModsUpdated
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAssureServerModsUpdatedParamsParams                                                           (BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// FDelegateProperty_                 OnProgress                                                       (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnUpdated                                                        (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnError                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FAssureServerModsUpdatedParamsParams                                                           (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// FDelegateProperty_                 OnProgress                                                       (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnUpdated                                                        (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::AssureServerModsUpdated()
 {
@@ -1093,10 +1224,10 @@ FDelegateProperty_ UCFCoreSubsystem::AssureServerModsUpdated()
 // Function cfcore.CFCoreSubsystem.AssureClientModsUpdated
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<int64>                      ServerFileIds                                                    (Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnProgress                                                       (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnUpdated                                                        (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnError                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<int64>                      ServerFileIds                                                    (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnProgress                                                       (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnUpdated                                                        (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::AssureClientModsUpdated()
 {
@@ -1124,12 +1255,12 @@ FDelegateProperty_ UCFCoreSubsystem::AssureClientModsUpdated()
 // Function cfcore.CFCoreSubsystem.ApiUpdateRating
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// enum class ECFCoreRatingVoteDirectionDirection                                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
-// FDelegateProperty_                 On_success                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// enum class ECFCoreRatingVoteDirectionDirection                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// FDelegateProperty_                 On_success                                                       (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::ApiUpdateRating(int64 ModId)
+FDelegateProperty_ UCFCoreSubsystem::ApiUpdateRating()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1138,7 +1269,6 @@ FDelegateProperty_ UCFCoreSubsystem::ApiUpdateRating(int64 ModId)
 
 	Params::UCFCoreSubsystem_ApiUpdateRating_Params Parms{};
 
-	Parms.ModId = ModId;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1156,9 +1286,9 @@ FDelegateProperty_ UCFCoreSubsystem::ApiUpdateRating(int64 ModId)
 // Function cfcore.CFCoreSubsystem.ApiUnblockMods
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FUnblockModsRequest         Request                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnResult                                                         (ConstParm, ExportObject, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnError                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FUnblockModsRequest         Request                                                          (ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnResult                                                         (Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::ApiUnblockMods()
 {
@@ -1186,12 +1316,12 @@ FDelegateProperty_ UCFCoreSubsystem::ApiUnblockMods()
 // Function cfcore.CFCoreSubsystem.ApiSearchMods
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCFCoreSearchModsFilter     Filter                                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config)
-// struct FCFCoreApiRequestPagination Pagination                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 On_results                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FCFCoreSearchModsFilter     Filter                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
+// struct FCFCoreApiRequestPagination Pagination                                                       (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// FDelegateProperty_                 On_results                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::ApiSearchMods(struct FCFCoreSearchModsFilter* Filter, struct FCFCoreApiRequestPagination* Pagination)
+FDelegateProperty_ UCFCoreSubsystem::ApiSearchMods()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1209,12 +1339,6 @@ FDelegateProperty_ UCFCoreSubsystem::ApiSearchMods(struct FCFCoreSearchModsFilte
 
 	Func->FunctionFlags = Flgs;
 
-	if (Filter != nullptr)
-		*Filter = std::move(Parms.Filter);
-
-	if (Pagination != nullptr)
-		*Pagination = std::move(Parms.Pagination);
-
 	return Parms.ReturnValue;
 
 }
@@ -1223,13 +1347,13 @@ FDelegateProperty_ UCFCoreSubsystem::ApiSearchMods(struct FCFCoreSearchModsFilte
 // Function cfcore.CFCoreSubsystem.ApiReportMod
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int64                              ReasonId                                                         (Edit, BlueprintVisible, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      Report                                                           (Edit, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_reasons                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// int64                              ReasonId                                                         (BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      Report                                                           (Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_reasons                                                       (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::ApiReportMod(int64 ModId)
+FDelegateProperty_ UCFCoreSubsystem::ApiReportMod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1238,7 +1362,6 @@ FDelegateProperty_ UCFCoreSubsystem::ApiReportMod(int64 ModId)
 
 	Params::UCFCoreSubsystem_ApiReportMod_Params Parms{};
 
-	Parms.ModId = ModId;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1256,11 +1379,11 @@ FDelegateProperty_ UCFCoreSubsystem::ApiReportMod(int64 ModId)
 // Function cfcore.CFCoreSubsystem.ApiRemoveRating
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 On_success                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// FDelegateProperty_                 On_success                                                       (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::ApiRemoveRating(int64 ModId)
+FDelegateProperty_ UCFCoreSubsystem::ApiRemoveRating()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1269,7 +1392,36 @@ FDelegateProperty_ UCFCoreSubsystem::ApiRemoveRating(int64 ModId)
 
 	Params::UCFCoreSubsystem_ApiRemoveRating_Params Parms{};
 
-	Parms.ModId = ModId;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function cfcore.CFCoreSubsystem.ApiMatchPlatformFiles
+// (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
+// Parameters:
+// struct FMatchPlatformFilesFilter   Filter                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
+// FDelegateProperty_                 OnResults                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+
+FDelegateProperty_ UCFCoreSubsystem::ApiMatchPlatformFiles()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("CFCoreSubsystem", "ApiMatchPlatformFiles");
+
+	Params::UCFCoreSubsystem_ApiMatchPlatformFiles_Params Parms{};
+
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1287,8 +1439,8 @@ FDelegateProperty_ UCFCoreSubsystem::ApiRemoveRating(int64 ModId)
 // Function cfcore.CFCoreSubsystem.ApiGetVersionTypes
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_results                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_results                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::ApiGetVersionTypes()
 {
@@ -1316,8 +1468,8 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetVersionTypes()
 // Function cfcore.CFCoreSubsystem.ApiGetVersions
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_results                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_results                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::ApiGetVersions()
 {
@@ -1345,8 +1497,8 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetVersions()
 // Function cfcore.CFCoreSubsystem.ApiGetReportingReasons
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_results                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_results                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::ApiGetReportingReasons()
 {
@@ -1374,8 +1526,8 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetReportingReasons()
 // Function cfcore.CFCoreSubsystem.ApiGetMyRatings
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_results                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_results                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::ApiGetMyRatings()
 {
@@ -1403,8 +1555,8 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetMyRatings()
 // Function cfcore.CFCoreSubsystem.ApiGetMyMods
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_results                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_results                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::ApiGetMyMods()
 {
@@ -1432,11 +1584,11 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetMyMods()
 // Function cfcore.CFCoreSubsystem.ApiGetMods
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<int64>                      ModIds                                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 On_results                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<int64>                      ModIds                                                           (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// FDelegateProperty_                 On_results                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::ApiGetMods(TArray<int64>* ModIds)
+FDelegateProperty_ UCFCoreSubsystem::ApiGetMods()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1454,9 +1606,6 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetMods(TArray<int64>* ModIds)
 
 	Func->FunctionFlags = Flgs;
 
-	if (ModIds != nullptr)
-		*ModIds = std::move(Parms.ModIds);
-
 	return Parms.ReturnValue;
 
 }
@@ -1465,11 +1614,11 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetMods(TArray<int64>* ModIds)
 // Function cfcore.CFCoreSubsystem.ApiGetModDescription
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 On_mod_desc                                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// FDelegateProperty_                 On_mod_desc                                                      (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::ApiGetModDescription(int64 ModId)
+FDelegateProperty_ UCFCoreSubsystem::ApiGetModDescription()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1478,7 +1627,6 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetModDescription(int64 ModId)
 
 	Params::UCFCoreSubsystem_ApiGetModDescription_Params Parms{};
 
-	Parms.ModId = ModId;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1496,11 +1644,11 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetModDescription(int64 ModId)
 // Function cfcore.CFCoreSubsystem.ApiGetMod
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 On_mod                                                           (ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int64                              ModId                                                            (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// FDelegateProperty_                 On_mod                                                           (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::ApiGetMod(int64 ModId)
+FDelegateProperty_ UCFCoreSubsystem::ApiGetMod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1509,7 +1657,6 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetMod(int64 ModId)
 
 	Params::UCFCoreSubsystem_ApiGetMod_Params Parms{};
 
-	Parms.ModId = ModId;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1527,8 +1674,8 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetMod(int64 ModId)
 // Function cfcore.CFCoreSubsystem.ApiGetMe
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_results                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_results                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::ApiGetMe()
 {
@@ -1556,8 +1703,8 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetMe()
 // Function cfcore.CFCoreSubsystem.ApiGetGame
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_game                                                          (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_game                                                          (BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::ApiGetGame()
 {
@@ -1585,9 +1732,9 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetGame()
 // Function cfcore.CFCoreSubsystem.ApiGetFiles
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<int64>                      FileIds                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 OnResults                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnError                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<int64>                      FileIds                                                          (Edit, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 OnResults                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::ApiGetFiles()
 {
@@ -1615,11 +1762,11 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetFiles()
 // Function cfcore.CFCoreSubsystem.ApiGetCategories
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCFCoreGetCategoriesFilter  Filter                                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config)
-// FDelegateProperty_                 On_results                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FCFCoreGetCategoriesFilter  Filter                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
+// FDelegateProperty_                 On_results                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UCFCoreSubsystem::ApiGetCategories(struct FCFCoreGetCategoriesFilter* Filter)
+FDelegateProperty_ UCFCoreSubsystem::ApiGetCategories()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1637,9 +1784,6 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetCategories(struct FCFCoreGetCategorie
 
 	Func->FunctionFlags = Flgs;
 
-	if (Filter != nullptr)
-		*Filter = std::move(Parms.Filter);
-
 	return Parms.ReturnValue;
 
 }
@@ -1648,8 +1792,8 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetCategories(struct FCFCoreGetCategorie
 // Function cfcore.CFCoreSubsystem.ApiGetBlockedModsDetails
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_result                                                        (ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_result                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::ApiGetBlockedModsDetails()
 {
@@ -1677,8 +1821,8 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetBlockedModsDetails()
 // Function cfcore.CFCoreSubsystem.ApiGetActiveCookingVersion
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 OnVersion                                                        (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnError                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnVersion                                                        (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::ApiGetActiveCookingVersion()
 {
@@ -1706,8 +1850,8 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGetActiveCookingVersion()
 // Function cfcore.CFCoreSubsystem.ApiGenerateTempToken
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 On_result                                                        (ExportObject, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_result                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 On_error                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 FDelegateProperty_ UCFCoreSubsystem::ApiGenerateTempToken()
 {
@@ -1726,6 +1870,39 @@ FDelegateProperty_ UCFCoreSubsystem::ApiGenerateTempToken()
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function cfcore.CFCoreSubsystem.ApiGeneratePremiumCheckoutUrl
+// (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
+// Parameters:
+// struct FGenPremiumCheckoutUrlRequestRequest                                                          (ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnSuccess                                                        (EditFixedSize, OutParm, Config, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 OnError                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+
+FDelegateProperty_ UCFCoreSubsystem::ApiGeneratePremiumCheckoutUrl(FDelegateProperty_* OnSuccess)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("CFCoreSubsystem", "ApiGeneratePremiumCheckoutUrl");
+
+	Params::UCFCoreSubsystem_ApiGeneratePremiumCheckoutUrl_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	if (OnSuccess != nullptr)
+		*OnSuccess = Parms.OnSuccess;
 
 	return Parms.ReturnValue;
 

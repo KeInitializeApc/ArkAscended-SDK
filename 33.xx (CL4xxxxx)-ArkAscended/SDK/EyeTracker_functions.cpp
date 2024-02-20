@@ -43,9 +43,9 @@ class UEyeTrackerFunctionLibrary* UEyeTrackerFunctionLibrary::GetDefaultObj()
 // Function EyeTracker.EyeTrackerFunctionLibrary.SetEyeTrackedPlayer
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
 
-class APlayerController* UEyeTrackerFunctionLibrary::SetEyeTrackedPlayer()
+void UEyeTrackerFunctionLibrary::SetEyeTrackedPlayer(class APlayerController** PlayerController)
 {
 	static class UFunction* Func = nullptr;
 
@@ -63,7 +63,8 @@ class APlayerController* UEyeTrackerFunctionLibrary::SetEyeTrackedPlayer()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PlayerController != nullptr)
+		*PlayerController = Parms.PlayerController;
 
 }
 
@@ -71,7 +72,7 @@ class APlayerController* UEyeTrackerFunctionLibrary::SetEyeTrackedPlayer()
 // Function EyeTracker.EyeTrackerFunctionLibrary.IsStereoGazeDataAvailable
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UEyeTrackerFunctionLibrary::IsStereoGazeDataAvailable(bool ReturnValue)
 {
@@ -98,7 +99,7 @@ void UEyeTrackerFunctionLibrary::IsStereoGazeDataAvailable(bool ReturnValue)
 // Function EyeTracker.EyeTrackerFunctionLibrary.IsEyeTrackerConnected
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UEyeTrackerFunctionLibrary::IsEyeTrackerConnected(bool ReturnValue)
 {
@@ -125,10 +126,10 @@ void UEyeTrackerFunctionLibrary::IsEyeTrackerConnected(bool ReturnValue)
 // Function EyeTracker.EyeTrackerFunctionLibrary.GetStereoGazeData
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FEyeTrackerStereoGazeData   OutGazeData                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEyeTrackerStereoGazeData   OutGazeData                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UEyeTrackerFunctionLibrary::GetStereoGazeData(const struct FEyeTrackerStereoGazeData& OutGazeData, bool ReturnValue)
+void UEyeTrackerFunctionLibrary::GetStereoGazeData(struct FEyeTrackerStereoGazeData* OutGazeData, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -137,7 +138,6 @@ void UEyeTrackerFunctionLibrary::GetStereoGazeData(const struct FEyeTrackerStere
 
 	Params::UEyeTrackerFunctionLibrary_GetStereoGazeData_Params Parms{};
 
-	Parms.OutGazeData = OutGazeData;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -148,16 +148,19 @@ void UEyeTrackerFunctionLibrary::GetStereoGazeData(const struct FEyeTrackerStere
 
 	Func->FunctionFlags = Flgs;
 
+	if (OutGazeData != nullptr)
+		*OutGazeData = std::move(Parms.OutGazeData);
+
 }
 
 
 // Function EyeTracker.EyeTrackerFunctionLibrary.GetGazeData
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FEyeTrackerGazeData         OutGazeData                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEyeTrackerGazeData         OutGazeData                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UEyeTrackerFunctionLibrary::GetGazeData(const struct FEyeTrackerGazeData& OutGazeData, bool ReturnValue)
+void UEyeTrackerFunctionLibrary::GetGazeData(struct FEyeTrackerGazeData* OutGazeData, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -166,7 +169,6 @@ void UEyeTrackerFunctionLibrary::GetGazeData(const struct FEyeTrackerGazeData& O
 
 	Params::UEyeTrackerFunctionLibrary_GetGazeData_Params Parms{};
 
-	Parms.OutGazeData = OutGazeData;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -176,6 +178,9 @@ void UEyeTrackerFunctionLibrary::GetGazeData(const struct FEyeTrackerGazeData& O
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutGazeData != nullptr)
+		*OutGazeData = std::move(Parms.OutGazeData);
 
 }
 

@@ -43,10 +43,10 @@ class UAnalyticsBlueprintLibrary* UAnalyticsBlueprintLibrary::GetDefaultObj()
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.StartSessionWithAttributes
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, Config)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAnalyticsBlueprintLibrary::StartSessionWithAttributes(const TArray<struct FAnalyticsEventAttr>& Attributes, bool ReturnValue)
+TArray<struct FAnalyticsEventAttr> UAnalyticsBlueprintLibrary::StartSessionWithAttributes(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,7 +55,6 @@ void UAnalyticsBlueprintLibrary::StartSessionWithAttributes(const TArray<struct 
 
 	Params::UAnalyticsBlueprintLibrary_StartSessionWithAttributes_Params Parms{};
 
-	Parms.Attributes = Attributes;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -66,13 +65,15 @@ void UAnalyticsBlueprintLibrary::StartSessionWithAttributes(const TArray<struct 
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.StartSession
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UAnalyticsBlueprintLibrary::StartSession(bool ReturnValue)
 {
@@ -99,7 +100,7 @@ void UAnalyticsBlueprintLibrary::StartSession(bool ReturnValue)
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.SetUserId
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      UserId                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      UserId                                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FString UAnalyticsBlueprintLibrary::SetUserId()
 {
@@ -127,7 +128,7 @@ class FString UAnalyticsBlueprintLibrary::SetUserId()
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.SetSessionId
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      SessionId                                                        (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      SessionId                                                        (ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
 class FString UAnalyticsBlueprintLibrary::SetSessionId()
 {
@@ -184,9 +185,9 @@ void UAnalyticsBlueprintLibrary::SetLocation(class FString* Location)
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.SetGender
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Gender                                                           (ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      Gender                                                           (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-class FString UAnalyticsBlueprintLibrary::SetGender()
+void UAnalyticsBlueprintLibrary::SetGender(class FString* Gender)
 {
 	static class UFunction* Func = nullptr;
 
@@ -204,7 +205,8 @@ class FString UAnalyticsBlueprintLibrary::SetGender()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Gender != nullptr)
+		*Gender = std::move(Parms.Gender);
 
 }
 
@@ -212,9 +214,9 @@ class FString UAnalyticsBlueprintLibrary::SetGender()
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.SetBuildInfo
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      BuildInfo                                                        (BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      BuildInfo                                                        (ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-class FString UAnalyticsBlueprintLibrary::SetBuildInfo()
+void UAnalyticsBlueprintLibrary::SetBuildInfo(class FString* BuildInfo)
 {
 	static class UFunction* Func = nullptr;
 
@@ -232,7 +234,8 @@ class FString UAnalyticsBlueprintLibrary::SetBuildInfo()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (BuildInfo != nullptr)
+		*BuildInfo = std::move(Parms.BuildInfo);
 
 }
 
@@ -240,9 +243,9 @@ class FString UAnalyticsBlueprintLibrary::SetBuildInfo()
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.SetAge
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              Age                                                              (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              Age                                                              (BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-void UAnalyticsBlueprintLibrary::SetAge(int32 Age)
+void UAnalyticsBlueprintLibrary::SetAge(int32* Age)
 {
 	static class UFunction* Func = nullptr;
 
@@ -251,7 +254,6 @@ void UAnalyticsBlueprintLibrary::SetAge(int32 Age)
 
 	Params::UAnalyticsBlueprintLibrary_SetAge_Params Parms{};
 
-	Parms.Age = Age;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -261,17 +263,20 @@ void UAnalyticsBlueprintLibrary::SetAge(int32 Age)
 
 	Func->FunctionFlags = Flgs;
 
+	if (Age != nullptr)
+		*Age = Parms.Age;
+
 }
 
 
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordSimpleItemPurchaseWithAttributes
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      ItemID                                                           (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-// int32                              ItemQuantity                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
+// class FString                      ItemID                                                           (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+// int32                              ItemQuantity                                                     (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Config, GlobalConfig, SubobjectReference)
+// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, Config)
 
-void UAnalyticsBlueprintLibrary::RecordSimpleItemPurchaseWithAttributes(class FString* ItemID, int32 ItemQuantity, const TArray<struct FAnalyticsEventAttr>& Attributes)
+TArray<struct FAnalyticsEventAttr> UAnalyticsBlueprintLibrary::RecordSimpleItemPurchaseWithAttributes(int32 ItemQuantity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -281,7 +286,6 @@ void UAnalyticsBlueprintLibrary::RecordSimpleItemPurchaseWithAttributes(class FS
 	Params::UAnalyticsBlueprintLibrary_RecordSimpleItemPurchaseWithAttributes_Params Parms{};
 
 	Parms.ItemQuantity = ItemQuantity;
-	Parms.Attributes = Attributes;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -291,8 +295,7 @@ void UAnalyticsBlueprintLibrary::RecordSimpleItemPurchaseWithAttributes(class FS
 
 	Func->FunctionFlags = Flgs;
 
-	if (ItemID != nullptr)
-		*ItemID = std::move(Parms.ItemID);
+	return Parms.ReturnValue;
 
 }
 
@@ -300,10 +303,10 @@ void UAnalyticsBlueprintLibrary::RecordSimpleItemPurchaseWithAttributes(class FS
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordSimpleItemPurchase
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      ItemID                                                           (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-// int32                              ItemQuantity                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FString                      ItemID                                                           (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+// int32                              ItemQuantity                                                     (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Config, GlobalConfig, SubobjectReference)
 
-void UAnalyticsBlueprintLibrary::RecordSimpleItemPurchase(class FString* ItemID, int32 ItemQuantity)
+class FString UAnalyticsBlueprintLibrary::RecordSimpleItemPurchase(int32 ItemQuantity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -322,8 +325,7 @@ void UAnalyticsBlueprintLibrary::RecordSimpleItemPurchase(class FString* ItemID,
 
 	Func->FunctionFlags = Flgs;
 
-	if (ItemID != nullptr)
-		*ItemID = std::move(Parms.ItemID);
+	return Parms.ReturnValue;
 
 }
 
@@ -331,11 +333,11 @@ void UAnalyticsBlueprintLibrary::RecordSimpleItemPurchase(class FString* ItemID,
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordSimpleCurrencyPurchaseWithAttributes
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      GameCurrencyType                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              GameCurrencyAmount                                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
+// class FString                      GameCurrencyType                                                 (Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              GameCurrencyAmount                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, Config)
 
-int32 UAnalyticsBlueprintLibrary::RecordSimpleCurrencyPurchaseWithAttributes(const TArray<struct FAnalyticsEventAttr>& Attributes)
+TArray<struct FAnalyticsEventAttr> UAnalyticsBlueprintLibrary::RecordSimpleCurrencyPurchaseWithAttributes(class FString* GameCurrencyType, int32* GameCurrencyAmount)
 {
 	static class UFunction* Func = nullptr;
 
@@ -344,7 +346,6 @@ int32 UAnalyticsBlueprintLibrary::RecordSimpleCurrencyPurchaseWithAttributes(con
 
 	Params::UAnalyticsBlueprintLibrary_RecordSimpleCurrencyPurchaseWithAttributes_Params Parms{};
 
-	Parms.Attributes = Attributes;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -354,6 +355,12 @@ int32 UAnalyticsBlueprintLibrary::RecordSimpleCurrencyPurchaseWithAttributes(con
 
 	Func->FunctionFlags = Flgs;
 
+	if (GameCurrencyType != nullptr)
+		*GameCurrencyType = std::move(Parms.GameCurrencyType);
+
+	if (GameCurrencyAmount != nullptr)
+		*GameCurrencyAmount = Parms.GameCurrencyAmount;
+
 	return Parms.ReturnValue;
 
 }
@@ -362,10 +369,10 @@ int32 UAnalyticsBlueprintLibrary::RecordSimpleCurrencyPurchaseWithAttributes(con
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordSimpleCurrencyPurchase
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      GameCurrencyType                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              GameCurrencyAmount                                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      GameCurrencyType                                                 (Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              GameCurrencyAmount                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-int32 UAnalyticsBlueprintLibrary::RecordSimpleCurrencyPurchase()
+void UAnalyticsBlueprintLibrary::RecordSimpleCurrencyPurchase(class FString* GameCurrencyType, int32* GameCurrencyAmount)
 {
 	static class UFunction* Func = nullptr;
 
@@ -383,7 +390,11 @@ int32 UAnalyticsBlueprintLibrary::RecordSimpleCurrencyPurchase()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (GameCurrencyType != nullptr)
+		*GameCurrencyType = std::move(Parms.GameCurrencyType);
+
+	if (GameCurrencyAmount != nullptr)
+		*GameCurrencyAmount = Parms.GameCurrencyAmount;
 
 }
 
@@ -391,11 +402,11 @@ int32 UAnalyticsBlueprintLibrary::RecordSimpleCurrencyPurchase()
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordProgressWithFullHierarchyAndAttributes
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      ProgressType                                                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<class FString>              ProgressNames                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
+// class FString                      ProgressType                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<class FString>              ProgressNames                                                    (ConstParm, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, Config)
 
-TArray<class FString> UAnalyticsBlueprintLibrary::RecordProgressWithFullHierarchyAndAttributes(const TArray<struct FAnalyticsEventAttr>& Attributes)
+TArray<struct FAnalyticsEventAttr> UAnalyticsBlueprintLibrary::RecordProgressWithFullHierarchyAndAttributes(class FString* ProgressType, TArray<class FString>* ProgressNames)
 {
 	static class UFunction* Func = nullptr;
 
@@ -404,7 +415,6 @@ TArray<class FString> UAnalyticsBlueprintLibrary::RecordProgressWithFullHierarch
 
 	Params::UAnalyticsBlueprintLibrary_RecordProgressWithFullHierarchyAndAttributes_Params Parms{};
 
-	Parms.Attributes = Attributes;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -413,6 +423,12 @@ TArray<class FString> UAnalyticsBlueprintLibrary::RecordProgressWithFullHierarch
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (ProgressType != nullptr)
+		*ProgressType = std::move(Parms.ProgressType);
+
+	if (ProgressNames != nullptr)
+		*ProgressNames = std::move(Parms.ProgressNames);
 
 	return Parms.ReturnValue;
 
@@ -422,11 +438,11 @@ TArray<class FString> UAnalyticsBlueprintLibrary::RecordProgressWithFullHierarch
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordProgressWithAttributes
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      ProgressType                                                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      ProgressName                                                     (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
+// class FString                      ProgressType                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class FString                      ProgressName                                                     (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, Config)
 
-class FString UAnalyticsBlueprintLibrary::RecordProgressWithAttributes(const TArray<struct FAnalyticsEventAttr>& Attributes)
+TArray<struct FAnalyticsEventAttr> UAnalyticsBlueprintLibrary::RecordProgressWithAttributes(class FString* ProgressType, class FString* ProgressName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -435,7 +451,6 @@ class FString UAnalyticsBlueprintLibrary::RecordProgressWithAttributes(const TAr
 
 	Params::UAnalyticsBlueprintLibrary_RecordProgressWithAttributes_Params Parms{};
 
-	Parms.Attributes = Attributes;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -445,6 +460,12 @@ class FString UAnalyticsBlueprintLibrary::RecordProgressWithAttributes(const TAr
 
 	Func->FunctionFlags = Flgs;
 
+	if (ProgressType != nullptr)
+		*ProgressType = std::move(Parms.ProgressType);
+
+	if (ProgressName != nullptr)
+		*ProgressName = std::move(Parms.ProgressName);
+
 	return Parms.ReturnValue;
 
 }
@@ -453,10 +474,10 @@ class FString UAnalyticsBlueprintLibrary::RecordProgressWithAttributes(const TAr
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordProgress
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      ProgressType                                                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      ProgressName                                                     (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      ProgressType                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class FString                      ProgressName                                                     (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-class FString UAnalyticsBlueprintLibrary::RecordProgress()
+void UAnalyticsBlueprintLibrary::RecordProgress(class FString* ProgressType, class FString* ProgressName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -474,7 +495,11 @@ class FString UAnalyticsBlueprintLibrary::RecordProgress()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ProgressType != nullptr)
+		*ProgressType = std::move(Parms.ProgressType);
+
+	if (ProgressName != nullptr)
+		*ProgressName = std::move(Parms.ProgressName);
 
 }
 
@@ -482,12 +507,12 @@ class FString UAnalyticsBlueprintLibrary::RecordProgress()
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordItemPurchase
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      ItemID                                                           (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-// class FString                      Currency                                                         (Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              PerItemCost                                                      (ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              ItemQuantity                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FString                      ItemID                                                           (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+// class FString                      Currency                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              PerItemCost                                                      (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              ItemQuantity                                                     (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Config, GlobalConfig, SubobjectReference)
 
-int32 UAnalyticsBlueprintLibrary::RecordItemPurchase(class FString* ItemID, int32 ItemQuantity)
+class FString UAnalyticsBlueprintLibrary::RecordItemPurchase(class FString* Currency, int32* PerItemCost, int32 ItemQuantity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -506,8 +531,11 @@ int32 UAnalyticsBlueprintLibrary::RecordItemPurchase(class FString* ItemID, int3
 
 	Func->FunctionFlags = Flgs;
 
-	if (ItemID != nullptr)
-		*ItemID = std::move(Parms.ItemID);
+	if (Currency != nullptr)
+		*Currency = std::move(Parms.Currency);
+
+	if (PerItemCost != nullptr)
+		*PerItemCost = Parms.PerItemCost;
 
 	return Parms.ReturnValue;
 
@@ -517,10 +545,10 @@ int32 UAnalyticsBlueprintLibrary::RecordItemPurchase(class FString* ItemID, int3
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordEventWithAttributes
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      EventName                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
+// class FString                      EventName                                                        (ExportObject, Net, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, Config)
 
-void UAnalyticsBlueprintLibrary::RecordEventWithAttributes(class FString* EventName, const TArray<struct FAnalyticsEventAttr>& Attributes)
+TArray<struct FAnalyticsEventAttr> UAnalyticsBlueprintLibrary::RecordEventWithAttributes(class FString* EventName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -529,7 +557,6 @@ void UAnalyticsBlueprintLibrary::RecordEventWithAttributes(class FString* EventN
 
 	Params::UAnalyticsBlueprintLibrary_RecordEventWithAttributes_Params Parms{};
 
-	Parms.Attributes = Attributes;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -542,17 +569,19 @@ void UAnalyticsBlueprintLibrary::RecordEventWithAttributes(class FString* EventN
 	if (EventName != nullptr)
 		*EventName = std::move(Parms.EventName);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordEventWithAttribute
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      EventName                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FString                      AttributeName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      AttributeValue                                                   (Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      EventName                                                        (ExportObject, Net, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class FString                      AttributeName                                                    (ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      AttributeValue                                                   (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-class FString UAnalyticsBlueprintLibrary::RecordEventWithAttribute(class FString* EventName)
+class FString UAnalyticsBlueprintLibrary::RecordEventWithAttribute(class FString* EventName, class FString* AttributeValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -573,6 +602,9 @@ class FString UAnalyticsBlueprintLibrary::RecordEventWithAttribute(class FString
 	if (EventName != nullptr)
 		*EventName = std::move(Parms.EventName);
 
+	if (AttributeValue != nullptr)
+		*AttributeValue = std::move(Parms.AttributeValue);
+
 	return Parms.ReturnValue;
 
 }
@@ -581,7 +613,7 @@ class FString UAnalyticsBlueprintLibrary::RecordEventWithAttribute(class FString
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordEvent
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      EventName                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      EventName                                                        (ExportObject, Net, OutParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 void UAnalyticsBlueprintLibrary::RecordEvent(class FString* EventName)
 {
@@ -611,9 +643,9 @@ void UAnalyticsBlueprintLibrary::RecordEvent(class FString* EventName)
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class FString                      Error                                                            (ExportObject, EditFixedSize, Parm, ReturnParm)
-// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
+// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, Config)
 
-class FString UAnalyticsBlueprintLibrary::RecordErrorWithAttributes(const TArray<struct FAnalyticsEventAttr>& Attributes)
+TArray<struct FAnalyticsEventAttr> UAnalyticsBlueprintLibrary::RecordErrorWithAttributes()
 {
 	static class UFunction* Func = nullptr;
 
@@ -622,7 +654,6 @@ class FString UAnalyticsBlueprintLibrary::RecordErrorWithAttributes(const TArray
 
 	Params::UAnalyticsBlueprintLibrary_RecordErrorWithAttributes_Params Parms{};
 
-	Parms.Attributes = Attributes;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -668,13 +699,13 @@ class FString UAnalyticsBlueprintLibrary::RecordError()
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordCurrencyPurchase
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      GameCurrencyType                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              GameCurrencyAmount                                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      RealCurrencyType                                                 (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              RealMoneyCost                                                    (Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      PaymentProvider                                                  (ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      GameCurrencyType                                                 (Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              GameCurrencyAmount                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class FString                      RealCurrencyType                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// float                              RealMoneyCost                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class FString                      PaymentProvider                                                  (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-class FString UAnalyticsBlueprintLibrary::RecordCurrencyPurchase()
+void UAnalyticsBlueprintLibrary::RecordCurrencyPurchase(class FString* GameCurrencyType, int32* GameCurrencyAmount, class FString* RealCurrencyType, float* RealMoneyCost, class FString* PaymentProvider)
 {
 	static class UFunction* Func = nullptr;
 
@@ -692,7 +723,20 @@ class FString UAnalyticsBlueprintLibrary::RecordCurrencyPurchase()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (GameCurrencyType != nullptr)
+		*GameCurrencyType = std::move(Parms.GameCurrencyType);
+
+	if (GameCurrencyAmount != nullptr)
+		*GameCurrencyAmount = Parms.GameCurrencyAmount;
+
+	if (RealCurrencyType != nullptr)
+		*RealCurrencyType = std::move(Parms.RealCurrencyType);
+
+	if (RealMoneyCost != nullptr)
+		*RealMoneyCost = Parms.RealMoneyCost;
+
+	if (PaymentProvider != nullptr)
+		*PaymentProvider = std::move(Parms.PaymentProvider);
 
 }
 
@@ -700,11 +744,11 @@ class FString UAnalyticsBlueprintLibrary::RecordCurrencyPurchase()
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordCurrencyGivenWithAttributes
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      GameCurrencyType                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              GameCurrencyAmount                                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
+// class FString                      GameCurrencyType                                                 (Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              GameCurrencyAmount                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<struct FAnalyticsEventAttr> Attributes                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, Config)
 
-int32 UAnalyticsBlueprintLibrary::RecordCurrencyGivenWithAttributes(const TArray<struct FAnalyticsEventAttr>& Attributes)
+TArray<struct FAnalyticsEventAttr> UAnalyticsBlueprintLibrary::RecordCurrencyGivenWithAttributes(class FString* GameCurrencyType, int32* GameCurrencyAmount)
 {
 	static class UFunction* Func = nullptr;
 
@@ -713,7 +757,6 @@ int32 UAnalyticsBlueprintLibrary::RecordCurrencyGivenWithAttributes(const TArray
 
 	Params::UAnalyticsBlueprintLibrary_RecordCurrencyGivenWithAttributes_Params Parms{};
 
-	Parms.Attributes = Attributes;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -723,6 +766,12 @@ int32 UAnalyticsBlueprintLibrary::RecordCurrencyGivenWithAttributes(const TArray
 
 	Func->FunctionFlags = Flgs;
 
+	if (GameCurrencyType != nullptr)
+		*GameCurrencyType = std::move(Parms.GameCurrencyType);
+
+	if (GameCurrencyAmount != nullptr)
+		*GameCurrencyAmount = Parms.GameCurrencyAmount;
+
 	return Parms.ReturnValue;
 
 }
@@ -731,10 +780,10 @@ int32 UAnalyticsBlueprintLibrary::RecordCurrencyGivenWithAttributes(const TArray
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.RecordCurrencyGiven
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      GameCurrencyType                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              GameCurrencyAmount                                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      GameCurrencyType                                                 (Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              GameCurrencyAmount                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-int32 UAnalyticsBlueprintLibrary::RecordCurrencyGiven()
+void UAnalyticsBlueprintLibrary::RecordCurrencyGiven(class FString* GameCurrencyType, int32* GameCurrencyAmount)
 {
 	static class UFunction* Func = nullptr;
 
@@ -752,7 +801,11 @@ int32 UAnalyticsBlueprintLibrary::RecordCurrencyGiven()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (GameCurrencyType != nullptr)
+		*GameCurrencyType = std::move(Parms.GameCurrencyType);
+
+	if (GameCurrencyAmount != nullptr)
+		*GameCurrencyAmount = Parms.GameCurrencyAmount;
 
 }
 
@@ -760,11 +813,11 @@ int32 UAnalyticsBlueprintLibrary::RecordCurrencyGiven()
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.MakeEventAttribute
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FString                      AttributeName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      AttributeValue                                                   (Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FAnalyticsEventAttr         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      AttributeName                                                    (ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      AttributeValue                                                   (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FAnalyticsEventAttr         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString UAnalyticsBlueprintLibrary::MakeEventAttribute(const struct FAnalyticsEventAttr& ReturnValue)
+class FString UAnalyticsBlueprintLibrary::MakeEventAttribute(class FString* AttributeValue, const struct FAnalyticsEventAttr& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -783,6 +836,9 @@ class FString UAnalyticsBlueprintLibrary::MakeEventAttribute(const struct FAnaly
 
 	Func->FunctionFlags = Flgs;
 
+	if (AttributeValue != nullptr)
+		*AttributeValue = std::move(Parms.AttributeValue);
+
 	return Parms.ReturnValue;
 
 }
@@ -791,7 +847,7 @@ class FString UAnalyticsBlueprintLibrary::MakeEventAttribute(const struct FAnaly
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.GetUserId
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UAnalyticsBlueprintLibrary::GetUserId(const class FString& ReturnValue)
 {
@@ -818,7 +874,7 @@ void UAnalyticsBlueprintLibrary::GetUserId(const class FString& ReturnValue)
 // Function AnalyticsBlueprintLibrary.AnalyticsBlueprintLibrary.GetSessionId
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UAnalyticsBlueprintLibrary::GetSessionId(const class FString& ReturnValue)
 {

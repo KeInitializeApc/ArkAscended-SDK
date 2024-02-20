@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xEB0 - 0xEB0)
+// 0x0 (0xED0 - 0xED0)
 // BlueprintGeneratedClass PrimalItemConsumablePoop.PrimalItemConsumablePoop_C
 class UPrimalItemConsumablePoop_C : public UPrimalItemConsumable_Fertilizer_Base_C
 {

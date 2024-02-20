@@ -46,23 +46,23 @@ enum class EPcmBitDepthConversion : uint8
 struct FAudioParameter
 {
 public:
-	class FName                                  ParamName;                                         // 0x0(0x8)(BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        FloatParam;                                        // 0x8(0x4)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	bool                                         BoolParam;                                         // 0xC(0x1)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2692[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        IntParam;                                          // 0x10(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2693[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UObject*                               ObjectParam;                                       // 0x18(0x8)(OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	class FString                                StringParam;                                       // 0x20(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TArray<float>                                ArrayFloatParam;                                   // 0x30(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TArray<bool>                                 ArrayBoolParam;                                    // 0x40(0x10)(ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                ArrayIntParam;                                     // 0x50(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TArray<class UObject*>                       ArrayObjectParam;                                  // 0x60(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TArray<class FString>                        ArrayStringParam;                                  // 0x70(0x10)(BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	enum class EAudioParameterType               ParamType;                                         // 0x80(0x1)(ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2695[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	class FName                                  TypeName;                                          // 0x84(0x8)(ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2696[0x14];                                    // Fixing Size Of Struct > TateDumper <
+	class FName                                  ParamName;                                         // 0x0(0x8)(Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	float                                        FloatParam;                                        // 0x8(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         BoolParam;                                         // 0xC(0x1)(BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_184E[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        IntParam;                                          // 0x10(0x4)(Edit, ConstParm, ExportObject, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_184F[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UObject*                               ObjectParam;                                       // 0x18(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	class FString                                StringParam;                                       // 0x20(0x10)(BlueprintVisible, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<float>                                ArrayFloatParam;                                   // 0x30(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<bool>                                 ArrayBoolParam;                                    // 0x40(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<int32>                                ArrayIntParam;                                     // 0x50(0x10)(Edit, ConstParm, ExportObject, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class UObject*>                       ArrayObjectParam;                                  // 0x60(0x10)(ConstParm, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FString>                        ArrayStringParam;                                  // 0x70(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EAudioParameterType               ParamType;                                         // 0x80(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1853[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	class FName                                  TypeName;                                          // 0x84(0x8)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1854[0x14];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 }

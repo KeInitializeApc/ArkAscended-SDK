@@ -86,16 +86,16 @@ enum class ELocationZToSpawnEnum : uint8
 struct FChaosDestructionEvent
 {
 public:
-	struct FVector                               Position;                                          // 0x0(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config)
-	struct FVector                               Normal;                                            // 0x18(0x18)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-	struct FVector                               Velocity;                                          // 0x30(0x18)(Edit, ReturnParm, Config, EditConst, SubobjectReference)
-	struct FVector                               AngularVelocity;                                   // 0x48(0x18)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        ExtentMin;                                         // 0x60(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        ExtentMax;                                         // 0x64(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        ParticleID;                                        // 0x68(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Time;                                              // 0x6C(0x4)(Edit, ConstParm, Net, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-	int32                                        Type;                                              // 0x70(0x4)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	uint8                                        Pad_223B[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	struct FVector                               Position;                                          // 0x0(0x18)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
+	struct FVector                               Normal;                                            // 0x18(0x18)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
+	struct FVector                               Velocity;                                          // 0x30(0x18)(Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
+	struct FVector                               AngularVelocity;                                   // 0x48(0x18)(Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, Config, GlobalConfig, SubobjectReference)
+	float                                        ExtentMin;                                         // 0x60(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        ExtentMax;                                         // 0x64(0x4)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        ParticleID;                                        // 0x68(0x4)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Time;                                              // 0x6C(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	int32                                        Type;                                              // 0x70(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config)
+	uint8                                        Pad_163F[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

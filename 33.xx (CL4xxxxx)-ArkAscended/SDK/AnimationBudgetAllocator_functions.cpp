@@ -43,10 +43,10 @@ class UAnimationBudgetBlueprintLibrary* UAnimationBudgetBlueprintLibrary::GetDef
 // Function AnimationBudgetAllocator.AnimationBudgetBlueprintLibrary.SetAnimationBudgetParameters
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FAnimationBudgetAllocatorParametersInParameters                                                     (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FAnimationBudgetAllocatorParametersInParameters                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
 
-void UAnimationBudgetBlueprintLibrary::SetAnimationBudgetParameters(class UObject* WorldContextObject, const struct FAnimationBudgetAllocatorParameters& InParameters)
+struct FAnimationBudgetAllocatorParameters UAnimationBudgetBlueprintLibrary::SetAnimationBudgetParameters()
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,8 +55,6 @@ void UAnimationBudgetBlueprintLibrary::SetAnimationBudgetParameters(class UObjec
 
 	Params::UAnimationBudgetBlueprintLibrary_SetAnimationBudgetParameters_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
-	Parms.InParameters = InParameters;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -66,16 +64,18 @@ void UAnimationBudgetBlueprintLibrary::SetAnimationBudgetParameters(class UObjec
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AnimationBudgetAllocator.AnimationBudgetBlueprintLibrary.EnableAnimationBudget
 // (Final, Native, Static, Private, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bEnabled                                                         (Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// bool                               bEnabled                                                         (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
 
-bool UAnimationBudgetBlueprintLibrary::EnableAnimationBudget(class UObject* WorldContextObject)
+bool UAnimationBudgetBlueprintLibrary::EnableAnimationBudget()
 {
 	static class UFunction* Func = nullptr;
 
@@ -84,7 +84,6 @@ bool UAnimationBudgetBlueprintLibrary::EnableAnimationBudget(class UObject* Worl
 
 	Params::UAnimationBudgetBlueprintLibrary_EnableAnimationBudget_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -130,9 +129,9 @@ class USkeletalMeshComponentBudgeted* USkeletalMeshComponentBudgeted::GetDefault
 // Function AnimationBudgetAllocator.SkeletalMeshComponentBudgeted.SetAutoRegisterWithBudgetAllocator
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInAutoRegisterWithBudgetAllocator                               (Edit, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               bInAutoRegisterWithBudgetAllocator                               (Edit, ConstParm, ExportObject, Parm, OutParm, Transient, InstancedReference, SubobjectReference)
 
-bool USkeletalMeshComponentBudgeted::SetAutoRegisterWithBudgetAllocator()
+void USkeletalMeshComponentBudgeted::SetAutoRegisterWithBudgetAllocator(bool* bInAutoRegisterWithBudgetAllocator)
 {
 	static class UFunction* Func = nullptr;
 
@@ -150,7 +149,8 @@ bool USkeletalMeshComponentBudgeted::SetAutoRegisterWithBudgetAllocator()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInAutoRegisterWithBudgetAllocator != nullptr)
+		*bInAutoRegisterWithBudgetAllocator = Parms.bInAutoRegisterWithBudgetAllocator;
 
 }
 

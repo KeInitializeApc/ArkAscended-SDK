@@ -43,10 +43,10 @@ class UMapSelect_Entry_C* UMapSelect_Entry_C::GetDefaultObj()
 // Function MapSelect_Entry.MapSelect_Entry_C.FixupComboBox
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              CallFunc_GetSelectedIndex_ReturnValue                            (Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_GetSelectedIndex_ReturnValue                            (Edit, ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 UMapSelect_Entry_C::FixupComboBox(bool CallFunc_Less_IntInt_ReturnValue)
+bool UMapSelect_Entry_C::FixupComboBox()
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,7 +55,6 @@ int32 UMapSelect_Entry_C::FixupComboBox(bool CallFunc_Less_IntInt_ReturnValue)
 
 	Params::UMapSelect_Entry_C_FixupComboBox_Params Parms{};
 
-	Parms.CallFunc_Less_IntInt_ReturnValue = CallFunc_Less_IntInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -67,14 +66,14 @@ int32 UMapSelect_Entry_C::FixupComboBox(bool CallFunc_Less_IntInt_ReturnValue)
 // Function MapSelect_Entry.MapSelect_Entry_C.UpdateDeleteSaveButton
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable                                               (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable_1                                             (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               CallFunc_HasSaveForMapIndex_ReturnValue                          (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class ESlateVisibility        K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               Temp_bool_Variable                                               (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable                                               (ConstParm, EditFixedSize, Parm, OutParm, Config, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable_1                                             (ConstParm, EditFixedSize, Parm, OutParm, Config, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               CallFunc_HasSaveForMapIndex_ReturnValue                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// enum class ESlateVisibility        K2Node_Select_Default                                            (ConstParm, Net, Parm, OutParm, Config, SubobjectReference)
 
-bool UMapSelect_Entry_C::UpdateDeleteSaveButton(bool Temp_bool_Variable, enum class ESlateVisibility K2Node_Select_Default)
+void UMapSelect_Entry_C::UpdateDeleteSaveButton(bool* Temp_bool_Variable, enum class ESlateVisibility* Temp_byte_Variable, enum class ESlateVisibility* Temp_byte_Variable_1, bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_HasSaveForMapIndex_ReturnValue, enum class ESlateVisibility* K2Node_Select_Default)
 {
 	static class UFunction* Func = nullptr;
 
@@ -83,12 +82,26 @@ bool UMapSelect_Entry_C::UpdateDeleteSaveButton(bool Temp_bool_Variable, enum cl
 
 	Params::UMapSelect_Entry_C_UpdateDeleteSaveButton_Params Parms{};
 
-	Parms.Temp_bool_Variable = Temp_bool_Variable;
-	Parms.K2Node_Select_Default = K2Node_Select_Default;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (Temp_bool_Variable != nullptr)
+		*Temp_bool_Variable = Parms.Temp_bool_Variable;
+
+	if (Temp_byte_Variable != nullptr)
+		*Temp_byte_Variable = Parms.Temp_byte_Variable;
+
+	if (Temp_byte_Variable_1 != nullptr)
+		*Temp_byte_Variable_1 = Parms.Temp_byte_Variable_1;
+
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+
+	if (CallFunc_HasSaveForMapIndex_ReturnValue != nullptr)
+		*CallFunc_HasSaveForMapIndex_ReturnValue = Parms.CallFunc_HasSaveForMapIndex_ReturnValue;
+
+	if (K2Node_Select_Default != nullptr)
+		*K2Node_Select_Default = Parms.K2Node_Select_Default;
 
 }
 
@@ -96,10 +109,10 @@ bool UMapSelect_Entry_C::UpdateDeleteSaveButton(bool Temp_bool_Variable, enum cl
 // Function MapSelect_Entry.MapSelect_Entry_C.IsSelected
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               Selected                                                         (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsVisible_ReturnValue                                   (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// bool                               Selected                                                         (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               CallFunc_IsVisible_ReturnValue                                   (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-void UMapSelect_Entry_C::IsSelected(bool* Selected, bool* CallFunc_IsVisible_ReturnValue)
+bool UMapSelect_Entry_C::IsSelected()
 {
 	static class UFunction* Func = nullptr;
 
@@ -111,11 +124,7 @@ void UMapSelect_Entry_C::IsSelected(bool* Selected, bool* CallFunc_IsVisible_Ret
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Selected != nullptr)
-		*Selected = Parms.Selected;
-
-	if (CallFunc_IsVisible_ReturnValue != nullptr)
-		*CallFunc_IsVisible_ReturnValue = Parms.CallFunc_IsVisible_ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -123,17 +132,17 @@ void UMapSelect_Entry_C::IsSelected(bool* Selected, bool* CallFunc_IsVisible_Ret
 // Function MapSelect_Entry.MapSelect_Entry_C.Set To Map Select View
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               IsMapSelectView                                                  (ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable                                               (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable_1                                             (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// bool                               Temp_bool_Variable_1                                             (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference, Interp)
-// enum class ESlateVisibility        K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable_2                                             (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
-// enum class ESlateVisibility        Temp_byte_Variable_3                                             (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, NonTransactional)
-// enum class ESlateVisibility        K2Node_Select_Default_1                                          (EditFixedSize, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               IsMapSelectView                                                  (BlueprintVisible, Net, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               Temp_bool_Variable                                               (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable                                               (ConstParm, EditFixedSize, Parm, OutParm, Config, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable_1                                             (ConstParm, EditFixedSize, Parm, OutParm, Config, SubobjectReference, Interp)
+// bool                               Temp_bool_Variable_1                                             (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, SubobjectReference, Interp)
+// enum class ESlateVisibility        K2Node_Select_Default                                            (ConstParm, Net, Parm, OutParm, Config, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable_2                                             (ConstParm, EditFixedSize, Parm, OutParm, Config, SubobjectReference, RepNotify, Interp)
+// enum class ESlateVisibility        Temp_byte_Variable_3                                             (ConstParm, EditFixedSize, Parm, OutParm, Config, SubobjectReference, NonTransactional)
+// enum class ESlateVisibility        K2Node_Select_Default_1                                          (ConstParm, Net, Parm, OutParm, Config, SubobjectReference, Interp)
 
-enum class ESlateVisibility UMapSelect_Entry_C::Set_To_Map_Select_View(bool Temp_bool_Variable, bool Temp_bool_Variable_1, enum class ESlateVisibility K2Node_Select_Default, enum class ESlateVisibility K2Node_Select_Default_1)
+bool UMapSelect_Entry_C::Set_To_Map_Select_View(bool* Temp_bool_Variable, enum class ESlateVisibility* Temp_byte_Variable, enum class ESlateVisibility* Temp_byte_Variable_1, bool* Temp_bool_Variable_1, enum class ESlateVisibility* K2Node_Select_Default, enum class ESlateVisibility* Temp_byte_Variable_2, enum class ESlateVisibility* Temp_byte_Variable_3, enum class ESlateVisibility* K2Node_Select_Default_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -142,12 +151,32 @@ enum class ESlateVisibility UMapSelect_Entry_C::Set_To_Map_Select_View(bool Temp
 
 	Params::UMapSelect_Entry_C_Set_To_Map_Select_View_Params Parms{};
 
-	Parms.Temp_bool_Variable = Temp_bool_Variable;
-	Parms.Temp_bool_Variable_1 = Temp_bool_Variable_1;
-	Parms.K2Node_Select_Default = K2Node_Select_Default;
-	Parms.K2Node_Select_Default_1 = K2Node_Select_Default_1;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Temp_bool_Variable != nullptr)
+		*Temp_bool_Variable = Parms.Temp_bool_Variable;
+
+	if (Temp_byte_Variable != nullptr)
+		*Temp_byte_Variable = Parms.Temp_byte_Variable;
+
+	if (Temp_byte_Variable_1 != nullptr)
+		*Temp_byte_Variable_1 = Parms.Temp_byte_Variable_1;
+
+	if (Temp_bool_Variable_1 != nullptr)
+		*Temp_bool_Variable_1 = Parms.Temp_bool_Variable_1;
+
+	if (K2Node_Select_Default != nullptr)
+		*K2Node_Select_Default = Parms.K2Node_Select_Default;
+
+	if (Temp_byte_Variable_2 != nullptr)
+		*Temp_byte_Variable_2 = Parms.Temp_byte_Variable_2;
+
+	if (Temp_byte_Variable_3 != nullptr)
+		*Temp_byte_Variable_3 = Parms.Temp_byte_Variable_3;
+
+	if (K2Node_Select_Default_1 != nullptr)
+		*K2Node_Select_Default_1 = Parms.K2Node_Select_Default_1;
 
 	return Parms.ReturnValue;
 
@@ -157,13 +186,13 @@ enum class ESlateVisibility UMapSelect_Entry_C::Set_To_Map_Select_View(bool Temp
 // Function MapSelect_Entry.MapSelect_Entry_C.Show Hide Locked Images
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               IsLocked                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable                                               (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable_1                                             (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// enum class ESlateVisibility        K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               IsLocked                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+// bool                               Temp_bool_Variable                                               (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable                                               (ConstParm, EditFixedSize, Parm, OutParm, Config, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable_1                                             (ConstParm, EditFixedSize, Parm, OutParm, Config, SubobjectReference, Interp)
+// enum class ESlateVisibility        K2Node_Select_Default                                            (ConstParm, Net, Parm, OutParm, Config, SubobjectReference)
 
-enum class ESlateVisibility UMapSelect_Entry_C::Show_Hide_Locked_Images(bool Temp_bool_Variable, enum class ESlateVisibility K2Node_Select_Default)
+void UMapSelect_Entry_C::Show_Hide_Locked_Images(bool IsLocked, bool* Temp_bool_Variable, enum class ESlateVisibility* Temp_byte_Variable, enum class ESlateVisibility* Temp_byte_Variable_1, enum class ESlateVisibility* K2Node_Select_Default)
 {
 	static class UFunction* Func = nullptr;
 
@@ -172,12 +201,21 @@ enum class ESlateVisibility UMapSelect_Entry_C::Show_Hide_Locked_Images(bool Tem
 
 	Params::UMapSelect_Entry_C_Show_Hide_Locked_Images_Params Parms{};
 
-	Parms.Temp_bool_Variable = Temp_bool_Variable;
-	Parms.K2Node_Select_Default = K2Node_Select_Default;
+	Parms.IsLocked = IsLocked;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (Temp_bool_Variable != nullptr)
+		*Temp_bool_Variable = Parms.Temp_bool_Variable;
+
+	if (Temp_byte_Variable != nullptr)
+		*Temp_byte_Variable = Parms.Temp_byte_Variable;
+
+	if (Temp_byte_Variable_1 != nullptr)
+		*Temp_byte_Variable_1 = Parms.Temp_byte_Variable_1;
+
+	if (K2Node_Select_Default != nullptr)
+		*K2Node_Select_Default = Parms.K2Node_Select_Default;
 
 }
 
@@ -185,15 +223,15 @@ enum class ESlateVisibility UMapSelect_Entry_C::Show_Hide_Locked_Images(bool Tem
 // Function MapSelect_Entry.MapSelect_Entry_C.SetupUsingHostSession
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UUI_HostSession*             HostSession                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UMapSelect_Session_C*        MapSelectSession                                                 (Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              WithIndex                                                        (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               CallFunc_Greater_IntInt_ReturnValue                              (ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// int32                              CallFunc_SelectInt_ReturnValue                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_GetMapInfo_OutMapName                                   (Edit, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FMapDescription             CallFunc_GetMapInfo_OutDescription                               (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUI_HostSession*             HostSession                                                      (Edit, BlueprintReadOnly, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UMapSelect_Session_C*        MapSelectSession                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// int32                              WithIndex                                                        (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// bool                               CallFunc_Greater_IntInt_ReturnValue                              (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, SubobjectReference)
+// int32                              CallFunc_SelectInt_ReturnValue                                   (BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, SubobjectReference)
+// class FText                        CallFunc_GetMapInfo_OutMapName                                   (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FMapDescription             CallFunc_GetMapInfo_OutDescription                               (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-struct FMapDescription UMapSelect_Entry_C::SetupUsingHostSession(int32* WithIndex, int32 CallFunc_SelectInt_ReturnValue)
+bool UMapSelect_Entry_C::SetupUsingHostSession(int32* CallFunc_SelectInt_ReturnValue, class FText* CallFunc_GetMapInfo_OutMapName, struct FMapDescription* CallFunc_GetMapInfo_OutDescription)
 {
 	static class UFunction* Func = nullptr;
 
@@ -202,12 +240,17 @@ struct FMapDescription UMapSelect_Entry_C::SetupUsingHostSession(int32* WithInde
 
 	Params::UMapSelect_Entry_C_SetupUsingHostSession_Params Parms{};
 
-	Parms.CallFunc_SelectInt_ReturnValue = CallFunc_SelectInt_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (WithIndex != nullptr)
-		*WithIndex = Parms.WithIndex;
+	if (CallFunc_SelectInt_ReturnValue != nullptr)
+		*CallFunc_SelectInt_ReturnValue = Parms.CallFunc_SelectInt_ReturnValue;
+
+	if (CallFunc_GetMapInfo_OutMapName != nullptr)
+		*CallFunc_GetMapInfo_OutMapName = Parms.CallFunc_GetMapInfo_OutMapName;
+
+	if (CallFunc_GetMapInfo_OutDescription != nullptr)
+		*CallFunc_GetMapInfo_OutDescription = std::move(Parms.CallFunc_GetMapInfo_OutDescription);
 
 	return Parms.ReturnValue;
 
@@ -253,9 +296,9 @@ void UMapSelect_Entry_C::Construct()
 // Function MapSelect_Entry.MapSelect_Entry_C.SetSelected
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               IsSelected                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst)
+// bool                               IsSelected                                                       (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
 
-bool UMapSelect_Entry_C::SetSelected()
+void UMapSelect_Entry_C::SetSelected(bool* IsSelected)
 {
 	static class UFunction* Func = nullptr;
 
@@ -267,7 +310,8 @@ bool UMapSelect_Entry_C::SetSelected()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (IsSelected != nullptr)
+		*IsSelected = Parms.IsSelected;
 
 }
 
@@ -293,10 +337,10 @@ void UMapSelect_Entry_C::BndEvt__MapSelect_Entry_ScrollViewSelectionButton_K2Nod
 // Function MapSelect_Entry.MapSelect_Entry_C.BndEvt__MapSelect_Entry_MapModeComboBox_K2Node_ComponentBoundEvent_4_OnSelectionChangedEvent__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
-// class FString                      SelectedItem                                                     (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// enum class ESelectInfo             SelectionType                                                    (ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FString                      SelectedItem                                                     (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+// enum class ESelectInfo             SelectionType                                                    (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
 
-enum class ESelectInfo UMapSelect_Entry_C::BndEvt__MapSelect_Entry_MapModeComboBox_K2Node_ComponentBoundEvent_4_OnSelectionChangedEvent__DelegateSignature()
+void UMapSelect_Entry_C::BndEvt__MapSelect_Entry_MapModeComboBox_K2Node_ComponentBoundEvent_4_OnSelectionChangedEvent__DelegateSignature(class FString* SelectedItem, enum class ESelectInfo* SelectionType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -308,7 +352,11 @@ enum class ESelectInfo UMapSelect_Entry_C::BndEvt__MapSelect_Entry_MapModeComboB
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (SelectedItem != nullptr)
+		*SelectedItem = std::move(Parms.SelectedItem);
+
+	if (SelectionType != nullptr)
+		*SelectionType = Parms.SelectionType;
 
 }
 
@@ -316,10 +364,10 @@ enum class ESelectInfo UMapSelect_Entry_C::BndEvt__MapSelect_Entry_MapModeComboB
 // Function MapSelect_Entry.MapSelect_Entry_C.BndEvt__MapSelect_Entry_MapNameComboBox_K2Node_ComponentBoundEvent_5_OnSelectionChangedEvent__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
-// class FString                      SelectedItem                                                     (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// enum class ESelectInfo             SelectionType                                                    (ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FString                      SelectedItem                                                     (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+// enum class ESelectInfo             SelectionType                                                    (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
 
-enum class ESelectInfo UMapSelect_Entry_C::BndEvt__MapSelect_Entry_MapNameComboBox_K2Node_ComponentBoundEvent_5_OnSelectionChangedEvent__DelegateSignature()
+void UMapSelect_Entry_C::BndEvt__MapSelect_Entry_MapNameComboBox_K2Node_ComponentBoundEvent_5_OnSelectionChangedEvent__DelegateSignature(class FString* SelectedItem, enum class ESelectInfo* SelectionType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -331,7 +379,11 @@ enum class ESelectInfo UMapSelect_Entry_C::BndEvt__MapSelect_Entry_MapNameComboB
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (SelectedItem != nullptr)
+		*SelectedItem = std::move(Parms.SelectedItem);
+
+	if (SelectionType != nullptr)
+		*SelectionType = Parms.SelectionType;
 
 }
 
@@ -357,10 +409,10 @@ void UMapSelect_Entry_C::BndEvt__MapSelect_Entry_DeleteSinglePlayerData_K2Node_C
 // Function MapSelect_Entry.MapSelect_Entry_C.Tick
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (Edit, BlueprintVisible, Net, Parm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// float                              InDeltaTime                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              InDeltaTime                                                      (ConstParm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UMapSelect_Entry_C::Tick(const struct FGeometry& MyGeometry)
+float UMapSelect_Entry_C::Tick()
 {
 	static class UFunction* Func = nullptr;
 
@@ -369,7 +421,6 @@ float UMapSelect_Entry_C::Tick(const struct FGeometry& MyGeometry)
 
 	Params::UMapSelect_Entry_C_Tick_Params Parms{};
 
-	Parms.MyGeometry = MyGeometry;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -381,35 +432,35 @@ float UMapSelect_Entry_C::Tick(const struct FGeometry& MyGeometry)
 // Function MapSelect_Entry.MapSelect_Entry_C.ExecuteUbergraph_MapSelect_Entry
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable                                               (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Multiply_DoubleDouble_ReturnValue                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Sin_ReturnValue                                         (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class ESlateVisibility        Temp_byte_Variable_1                                             (ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// double                             CallFunc_Multiply_DoubleDouble_ReturnValue_1                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// double                             CallFunc_Add_DoubleDouble_ReturnValue                            (Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_CustomEvent_IsSelected                                    (Edit, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// enum class ESlateVisibility        K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
-// class FString                      K2Node_ComponentBoundEvent_SelectedItem_1                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// enum class ESelectInfo             K2Node_ComponentBoundEvent_SelectionType_1                       (BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// int32                              CallFunc_GetSelectedIndex_ReturnValue                            (Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      K2Node_ComponentBoundEvent_SelectedItem                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class ESelectInfo             K2Node_ComponentBoundEvent_SelectionType                         (BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              CallFunc_Map_Find_Value                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Map_Find_ReturnValue                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, SubobjectReference)
-// struct FGeometry                   K2Node_Event_MyGeometry                                          (Net, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              K2Node_Event_InDeltaTime                                         (Edit, ConstParm, BlueprintReadOnly, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Add_DoubleDouble_ReturnValue_1                          (Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// double                             CallFunc_Percent_FloatFloat_ReturnValue                          (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
-// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast                 (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             CallFunc_Add_DoubleDouble_B_ImplicitCast                         (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_EqualEqual_DoubleDouble_A_ImplicitCast                  (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable                                               (ConstParm, EditFixedSize, Parm, OutParm, Config, SubobjectReference)
+// double                             CallFunc_Multiply_DoubleDouble_ReturnValue                       (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// double                             CallFunc_Sin_ReturnValue                                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// enum class ESlateVisibility        Temp_byte_Variable_1                                             (ConstParm, EditFixedSize, Parm, OutParm, Config, SubobjectReference, Interp)
+// double                             CallFunc_Multiply_DoubleDouble_ReturnValue_1                     (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
+// double                             CallFunc_Add_DoubleDouble_ReturnValue                            (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               K2Node_CustomEvent_IsSelected                                    (Edit, BlueprintVisible, ExportObject, Net, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               Temp_bool_Variable                                               (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
+// enum class ESlateVisibility        K2Node_Select_Default                                            (ConstParm, Net, Parm, OutParm, Config, SubobjectReference)
+// class FString                      K2Node_ComponentBoundEvent_SelectedItem_1                        (Edit, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference, Interp)
+// enum class ESelectInfo             K2Node_ComponentBoundEvent_SelectionType_1                       (ConstParm, Parm, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference, Interp)
+// int32                              CallFunc_GetSelectedIndex_ReturnValue                            (Edit, ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      K2Node_ComponentBoundEvent_SelectedItem                          (Edit, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// enum class ESelectInfo             K2Node_ComponentBoundEvent_SelectionType                         (ConstParm, Parm, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
+// int32                              CallFunc_Map_Find_Value                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_Map_Find_ReturnValue                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FGeometry                   K2Node_Event_MyGeometry                                          (BlueprintVisible, ZeroConstructor, Config, SubobjectReference)
+// float                              K2Node_Event_InDeltaTime                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Config, SubobjectReference)
+// bool                               CallFunc_EqualEqual_DoubleDouble_ReturnValue                     (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Add_DoubleDouble_ReturnValue_1                          (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
+// double                             CallFunc_Percent_FloatFloat_ReturnValue                          (Edit, ZeroConstructor, ReturnParm, SubobjectReference)
+// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast                 (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference)
+// double                             CallFunc_Add_DoubleDouble_B_ImplicitCast                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// double                             CallFunc_EqualEqual_DoubleDouble_A_ImplicitCast                  (Edit, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
-double UMapSelect_Entry_C::ExecuteUbergraph_MapSelect_Entry(int32 EntryPoint, double CallFunc_Multiply_DoubleDouble_ReturnValue, double CallFunc_Multiply_DoubleDouble_ReturnValue_1, bool Temp_bool_Variable, enum class ESlateVisibility K2Node_Select_Default, bool* CallFunc_Map_Find_ReturnValue, struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime, float* CallFunc_SetRenderOpacity_InOpacity_ImplicitCast)
+double UMapSelect_Entry_C::ExecuteUbergraph_MapSelect_Entry(enum class ESlateVisibility* Temp_byte_Variable, double CallFunc_Multiply_DoubleDouble_ReturnValue, double* CallFunc_Sin_ReturnValue, enum class ESlateVisibility* Temp_byte_Variable_1, double CallFunc_Multiply_DoubleDouble_ReturnValue_1, double* CallFunc_Add_DoubleDouble_ReturnValue, bool* CallFunc_IsValid_ReturnValue, bool* Temp_bool_Variable, bool* CallFunc_IsValid_ReturnValue_1, enum class ESlateVisibility* K2Node_Select_Default, const struct FGeometry& K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime, bool CallFunc_EqualEqual_DoubleDouble_ReturnValue, double* CallFunc_Add_DoubleDouble_ReturnValue_1, double* CallFunc_Add_DoubleDouble_B_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -418,25 +469,45 @@ double UMapSelect_Entry_C::ExecuteUbergraph_MapSelect_Entry(int32 EntryPoint, do
 
 	Params::UMapSelect_Entry_C_ExecuteUbergraph_MapSelect_Entry_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
 	Parms.CallFunc_Multiply_DoubleDouble_ReturnValue = CallFunc_Multiply_DoubleDouble_ReturnValue;
 	Parms.CallFunc_Multiply_DoubleDouble_ReturnValue_1 = CallFunc_Multiply_DoubleDouble_ReturnValue_1;
-	Parms.Temp_bool_Variable = Temp_bool_Variable;
-	Parms.K2Node_Select_Default = K2Node_Select_Default;
+	Parms.K2Node_Event_MyGeometry = K2Node_Event_MyGeometry;
+	Parms.CallFunc_EqualEqual_DoubleDouble_ReturnValue = CallFunc_EqualEqual_DoubleDouble_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_Map_Find_ReturnValue != nullptr)
-		*CallFunc_Map_Find_ReturnValue = Parms.CallFunc_Map_Find_ReturnValue;
+	if (Temp_byte_Variable != nullptr)
+		*Temp_byte_Variable = Parms.Temp_byte_Variable;
 
-	if (K2Node_Event_MyGeometry != nullptr)
-		*K2Node_Event_MyGeometry = std::move(Parms.K2Node_Event_MyGeometry);
+	if (CallFunc_Sin_ReturnValue != nullptr)
+		*CallFunc_Sin_ReturnValue = Parms.CallFunc_Sin_ReturnValue;
+
+	if (Temp_byte_Variable_1 != nullptr)
+		*Temp_byte_Variable_1 = Parms.Temp_byte_Variable_1;
+
+	if (CallFunc_Add_DoubleDouble_ReturnValue != nullptr)
+		*CallFunc_Add_DoubleDouble_ReturnValue = Parms.CallFunc_Add_DoubleDouble_ReturnValue;
+
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+
+	if (Temp_bool_Variable != nullptr)
+		*Temp_bool_Variable = Parms.Temp_bool_Variable;
+
+	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
+		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+
+	if (K2Node_Select_Default != nullptr)
+		*K2Node_Select_Default = Parms.K2Node_Select_Default;
 
 	if (K2Node_Event_InDeltaTime != nullptr)
 		*K2Node_Event_InDeltaTime = Parms.K2Node_Event_InDeltaTime;
 
-	if (CallFunc_SetRenderOpacity_InOpacity_ImplicitCast != nullptr)
-		*CallFunc_SetRenderOpacity_InOpacity_ImplicitCast = Parms.CallFunc_SetRenderOpacity_InOpacity_ImplicitCast;
+	if (CallFunc_Add_DoubleDouble_ReturnValue_1 != nullptr)
+		*CallFunc_Add_DoubleDouble_ReturnValue_1 = Parms.CallFunc_Add_DoubleDouble_ReturnValue_1;
+
+	if (CallFunc_Add_DoubleDouble_B_ImplicitCast != nullptr)
+		*CallFunc_Add_DoubleDouble_B_ImplicitCast = Parms.CallFunc_Add_DoubleDouble_B_ImplicitCast;
 
 	return Parms.ReturnValue;
 

@@ -19,11 +19,11 @@ namespace SDK
 struct FCheatMapJumpInfo
 {
 public:
-	class FString                                Title_4_A4481B644D42E5FE2343EDAE476A0BC1;          // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, DisableEditOnInstance, SubobjectReference)
-	struct FVector                               LatLongZ_6_9622632A4ACF79E9795811B6443B3434;       // 0x10(0x18)(Edit, ConstParm, Config, DisableEditOnInstance, SubobjectReference)
-	float                                        Yaw_9_6AC569F940AAE2C5DDDCCDAEF30CFC76;            // 0x28(0x4)(Edit, EditFixedSize, Config, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_3376[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                TimeOfDay_12_D183AB1C4811CF9D27E1BA90B45766F4;     // 0x30(0x10)(Edit, ExportObject, Net, Config, DisableEditOnInstance, SubobjectReference)
+	class FString                                Title_4_A4481B644D42E5FE2343EDAE476A0BC1;          // 0x0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+	struct FVector                               LatLongZ_6_9622632A4ACF79E9795811B6443B3434;       // 0x10(0x18)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
+	float                                        Yaw_9_6AC569F940AAE2C5DDDCCDAEF30CFC76;            // 0x28(0x4)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_2D04[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                TimeOfDay_12_D183AB1C4811CF9D27E1BA90B45766F4;     // 0x30(0x10)(ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
 };
 
 }

@@ -18,7 +18,7 @@ namespace Params
 struct UPropertyPathTestObject_SetStructRef_Params
 {
 public:
-	struct FPropertyPathTestStruct               InStruct;                                          // 0x0(0x50)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FPropertyPathTestStruct               InStruct;                                          // 0x0(0x50)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct UPropertyPathTestObject_SetStructConstRef_Params
 {
 public:
-	struct FPropertyPathTestStruct               InStruct;                                          // 0x0(0x50)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FPropertyPathTestStruct               InStruct;                                          // 0x0(0x50)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -34,7 +34,7 @@ public:
 struct UPropertyPathTestObject_SetStruct_Params
 {
 public:
-	struct FPropertyPathTestStruct               InStruct;                                          // 0x0(0x50)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FPropertyPathTestStruct               InStruct;                                          // 0x0(0x50)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -42,7 +42,7 @@ public:
 struct UPropertyPathTestObject_SetFloat_Params
 {
 public:
-	float                                        InFloat;                                           // 0x0(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	float                                        InFloat;                                           // 0x0(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -50,7 +50,7 @@ public:
 struct UPropertyPathTestObject_GetStructRef_Params
 {
 public:
-	struct FPropertyPathTestStruct               ReturnValue;                                       // 0x0(0x50)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPropertyPathTestStruct               ReturnValue;                                       // 0x0(0x50)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -58,7 +58,7 @@ public:
 struct UPropertyPathTestObject_GetStructConstRef_Params
 {
 public:
-	struct FPropertyPathTestStruct               ReturnValue;                                       // 0x0(0x50)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPropertyPathTestStruct               ReturnValue;                                       // 0x0(0x50)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -66,7 +66,7 @@ public:
 struct UPropertyPathTestObject_GetStruct_Params
 {
 public:
-	struct FPropertyPathTestStruct               ReturnValue;                                       // 0x0(0x50)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPropertyPathTestStruct               ReturnValue;                                       // 0x0(0x50)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -74,7 +74,7 @@ public:
 struct UPropertyPathTestObject_GetFloat_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 }

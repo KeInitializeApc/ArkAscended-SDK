@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class IBPI_CustomComboBoxInterface_C* GetDefaultObj();
 
-	class UUI_CustomComboBoxOption_C* OnOptionSelectedInterface(int64* ID);
+	class UUI_CustomComboBoxOption_C* OnOptionSelectedInterface(class FString* Option, int64* ID);
 };
 
 }

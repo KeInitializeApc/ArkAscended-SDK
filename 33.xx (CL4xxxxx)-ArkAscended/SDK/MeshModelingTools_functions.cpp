@@ -2943,7 +2943,7 @@ class UExistingMeshMaterialProperties* UExistingMeshMaterialProperties::GetDefau
 // Function MeshModelingTools.ExistingMeshMaterialProperties.GetUVChannelNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UExistingMeshMaterialProperties::GetUVChannelNamesFunc(const TArray<class FString>& ReturnValue)
 {
@@ -3026,7 +3026,7 @@ class UMeshUVChannelProperties* UMeshUVChannelProperties::GetDefaultObj()
 // Function MeshModelingTools.MeshUVChannelProperties.GetUVChannelNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMeshUVChannelProperties::GetUVChannelNamesFunc(const TArray<class FString>& ReturnValue)
 {

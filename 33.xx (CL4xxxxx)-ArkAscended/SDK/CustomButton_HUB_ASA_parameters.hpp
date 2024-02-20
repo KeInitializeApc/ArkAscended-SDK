@@ -18,7 +18,7 @@ namespace Params
 struct UCustomButton_HUB_ASA_C_BPSetToggledState_Params
 {
 public:
-	bool                                         IsToggled;                                         // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	bool                                         IsToggled;                                         // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x5 (0x5 - 0x0)
@@ -26,8 +26,8 @@ public:
 struct UCustomButton_HUB_ASA_C_ExecuteUbergraph_CustomButton_HUB_ASA_Params
 {
 public:
-	int32                                        EntryPoint;                                        // 0x0(0x4)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         K2Node_Event_IsToggled;                            // 0x4(0x1)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	int32                                        EntryPoint;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+	bool                                         K2Node_Event_IsToggled;                            // 0x4(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, SubobjectReference)
 };
 
 }

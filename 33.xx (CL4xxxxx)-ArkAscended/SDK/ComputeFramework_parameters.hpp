@@ -18,9 +18,9 @@ namespace Params
 struct UComputeGraphComponent_CreateDataProviders_Params
 {
 public:
-	int32                                        InBindingIndex;                                    // 0x0(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_EE[0x4];                                       // Fixing Size After Last Property  > TateDumper <
-	class UObject*                               InBindingObject;                                   // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        InBindingIndex;                                    // 0x0(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_19D[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class UObject*                               InBindingObject;                                   // 0x8(0x8)(Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
 };
 
 }

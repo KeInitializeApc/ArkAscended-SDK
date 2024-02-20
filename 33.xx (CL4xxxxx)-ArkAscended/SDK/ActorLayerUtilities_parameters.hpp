@@ -18,8 +18,8 @@ namespace Params
 struct ULayersBlueprintLibrary_RemoveActorFromLayer_Params
 {
 public:
-	class AActor*                                InActor;                                           // 0x0(0x8)(Net, OutParm, EditConst, InstancedReference, SubobjectReference)
-	struct FActorLayer                           Layer;                                             // 0x8(0x8)(Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+	class AActor*                                InActor;                                           // 0x0(0x8)(ConstParm, ExportObject, Net, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	struct FActorLayer                           Layer;                                             // 0x8(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -27,9 +27,9 @@ public:
 struct ULayersBlueprintLibrary_GetActors_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FActorLayer                           ActorLayer;                                        // 0x8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config)
-	TArray<class AActor*>                        ReturnValue;                                       // 0x10(0x10)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	struct FActorLayer                           ActorLayer;                                        // 0x8(0x8)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config)
+	TArray<class AActor*>                        ReturnValue;                                       // 0x10(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -37,8 +37,8 @@ public:
 struct ULayersBlueprintLibrary_AddActorToLayer_Params
 {
 public:
-	class AActor*                                InActor;                                           // 0x0(0x8)(Net, OutParm, EditConst, InstancedReference, SubobjectReference)
-	struct FActorLayer                           Layer;                                             // 0x8(0x8)(Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+	class AActor*                                InActor;                                           // 0x0(0x8)(ConstParm, ExportObject, Net, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	struct FActorLayer                           Layer;                                             // 0x8(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, SubobjectReference)
 };
 
 }

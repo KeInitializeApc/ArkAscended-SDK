@@ -463,15 +463,15 @@ class UGroomBlueprintLibrary* UGroomBlueprintLibrary::GetDefaultObj()
 // Function HairStrandsCore.GroomBlueprintLibrary.CreateNewGroomBindingAssetWithPath
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InDesiredPackagePath                                             (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UGroomAsset*                 InGroomAsset                                                     (Edit, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class USkeletalMesh*               InSkeletalMesh                                                   (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InNumInterpolationPoints                                         (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class USkeletalMesh*               InSourceSkeletalMeshForTransfer                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InMatchingSection                                                (Edit, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UGroomBindingAsset*          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InDesiredPackagePath                                             (Edit, BlueprintReadOnly, EditFixedSize, Parm, InstancedReference, SubobjectReference)
+// class UGroomAsset*                 InGroomAsset                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class USkeletalMesh*               InSkeletalMesh                                                   (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InNumInterpolationPoints                                         (ConstParm, BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class USkeletalMesh*               InSourceSkeletalMeshForTransfer                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// int32                              InMatchingSection                                                (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UGroomBindingAsset*          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UGroomBlueprintLibrary::CreateNewGroomBindingAssetWithPath(class USkeletalMesh** InSkeletalMesh, class UGroomBindingAsset* ReturnValue)
+class USkeletalMesh* UGroomBlueprintLibrary::CreateNewGroomBindingAssetWithPath(const class FString& InDesiredPackagePath, class UGroomAsset* InGroomAsset, int32 InNumInterpolationPoints, class USkeletalMesh* InSourceSkeletalMeshForTransfer, int32 InMatchingSection, class UGroomBindingAsset* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -480,6 +480,11 @@ int32 UGroomBlueprintLibrary::CreateNewGroomBindingAssetWithPath(class USkeletal
 
 	Params::UGroomBlueprintLibrary_CreateNewGroomBindingAssetWithPath_Params Parms{};
 
+	Parms.InDesiredPackagePath = InDesiredPackagePath;
+	Parms.InGroomAsset = InGroomAsset;
+	Parms.InNumInterpolationPoints = InNumInterpolationPoints;
+	Parms.InSourceSkeletalMeshForTransfer = InSourceSkeletalMeshForTransfer;
+	Parms.InMatchingSection = InMatchingSection;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -489,9 +494,6 @@ int32 UGroomBlueprintLibrary::CreateNewGroomBindingAssetWithPath(class USkeletal
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InSkeletalMesh != nullptr)
-		*InSkeletalMesh = Parms.InSkeletalMesh;
 
 	return Parms.ReturnValue;
 
@@ -501,14 +503,14 @@ int32 UGroomBlueprintLibrary::CreateNewGroomBindingAssetWithPath(class USkeletal
 // Function HairStrandsCore.GroomBlueprintLibrary.CreateNewGroomBindingAsset
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UGroomAsset*                 InGroomAsset                                                     (Edit, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class USkeletalMesh*               InSkeletalMesh                                                   (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InNumInterpolationPoints                                         (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class USkeletalMesh*               InSourceSkeletalMeshForTransfer                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InMatchingSection                                                (Edit, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UGroomBindingAsset*          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UGroomAsset*                 InGroomAsset                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class USkeletalMesh*               InSkeletalMesh                                                   (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InNumInterpolationPoints                                         (ConstParm, BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class USkeletalMesh*               InSourceSkeletalMeshForTransfer                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// int32                              InMatchingSection                                                (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UGroomBindingAsset*          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UGroomBlueprintLibrary::CreateNewGroomBindingAsset(class USkeletalMesh** InSkeletalMesh, class UGroomBindingAsset* ReturnValue)
+class USkeletalMesh* UGroomBlueprintLibrary::CreateNewGroomBindingAsset(class UGroomAsset* InGroomAsset, int32 InNumInterpolationPoints, class USkeletalMesh* InSourceSkeletalMeshForTransfer, int32 InMatchingSection, class UGroomBindingAsset* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -517,6 +519,10 @@ int32 UGroomBlueprintLibrary::CreateNewGroomBindingAsset(class USkeletalMesh** I
 
 	Params::UGroomBlueprintLibrary_CreateNewGroomBindingAsset_Params Parms{};
 
+	Parms.InGroomAsset = InGroomAsset;
+	Parms.InNumInterpolationPoints = InNumInterpolationPoints;
+	Parms.InSourceSkeletalMeshForTransfer = InSourceSkeletalMeshForTransfer;
+	Parms.InMatchingSection = InMatchingSection;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -526,9 +532,6 @@ int32 UGroomBlueprintLibrary::CreateNewGroomBindingAsset(class USkeletalMesh** I
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InSkeletalMesh != nullptr)
-		*InSkeletalMesh = Parms.InSkeletalMesh;
 
 	return Parms.ReturnValue;
 
@@ -538,15 +541,15 @@ int32 UGroomBlueprintLibrary::CreateNewGroomBindingAsset(class USkeletalMesh** I
 // Function HairStrandsCore.GroomBlueprintLibrary.CreateNewGeometryCacheGroomBindingAssetWithPath
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      DesiredPackagePath                                               (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UGroomAsset*                 GroomAsset                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-// class UGeometryCache*              GeometryCache                                                    (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst)
-// int32                              NumInterpolationPoints                                           (ExportObject, BlueprintReadOnly, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UGeometryCache*              SourceGeometryCacheForTransfer                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              MatchingSection                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UGroomBindingAsset*          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      DesiredPackagePath                                               (Edit, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UGroomAsset*                 GroomAsset                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+// class UGeometryCache*              GeometryCache                                                    (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+// int32                              NumInterpolationPoints                                           (ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UGeometryCache*              SourceGeometryCacheForTransfer                                   (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// int32                              MatchingSection                                                  (Edit, BlueprintReadOnly, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UGroomBindingAsset*          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UGroomBlueprintLibrary::CreateNewGeometryCacheGroomBindingAssetWithPath(class UGroomBindingAsset* ReturnValue)
+void UGroomBlueprintLibrary::CreateNewGeometryCacheGroomBindingAssetWithPath(const class FString& DesiredPackagePath, class UGroomAsset** GroomAsset, class UGeometryCache** GeometryCache, int32 NumInterpolationPoints, class UGeometryCache* SourceGeometryCacheForTransfer, int32 MatchingSection, class UGroomBindingAsset* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -555,6 +558,10 @@ int32 UGroomBlueprintLibrary::CreateNewGeometryCacheGroomBindingAssetWithPath(cl
 
 	Params::UGroomBlueprintLibrary_CreateNewGeometryCacheGroomBindingAssetWithPath_Params Parms{};
 
+	Parms.DesiredPackagePath = DesiredPackagePath;
+	Parms.NumInterpolationPoints = NumInterpolationPoints;
+	Parms.SourceGeometryCacheForTransfer = SourceGeometryCacheForTransfer;
+	Parms.MatchingSection = MatchingSection;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -565,7 +572,11 @@ int32 UGroomBlueprintLibrary::CreateNewGeometryCacheGroomBindingAssetWithPath(cl
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (GroomAsset != nullptr)
+		*GroomAsset = Parms.GroomAsset;
+
+	if (GeometryCache != nullptr)
+		*GeometryCache = Parms.GeometryCache;
 
 }
 
@@ -573,14 +584,14 @@ int32 UGroomBlueprintLibrary::CreateNewGeometryCacheGroomBindingAssetWithPath(cl
 // Function HairStrandsCore.GroomBlueprintLibrary.CreateNewGeometryCacheGroomBindingAsset
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UGroomAsset*                 GroomAsset                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-// class UGeometryCache*              GeometryCache                                                    (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst)
-// int32                              NumInterpolationPoints                                           (ExportObject, BlueprintReadOnly, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UGeometryCache*              SourceGeometryCacheForTransfer                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              MatchingSection                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UGroomBindingAsset*          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UGroomAsset*                 GroomAsset                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+// class UGeometryCache*              GeometryCache                                                    (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+// int32                              NumInterpolationPoints                                           (ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UGeometryCache*              SourceGeometryCacheForTransfer                                   (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// int32                              MatchingSection                                                  (Edit, BlueprintReadOnly, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UGroomBindingAsset*          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UGroomBlueprintLibrary::CreateNewGeometryCacheGroomBindingAsset(class UGroomBindingAsset* ReturnValue)
+void UGroomBlueprintLibrary::CreateNewGeometryCacheGroomBindingAsset(class UGroomAsset** GroomAsset, class UGeometryCache** GeometryCache, int32 NumInterpolationPoints, class UGeometryCache* SourceGeometryCacheForTransfer, int32 MatchingSection, class UGroomBindingAsset* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -589,6 +600,9 @@ int32 UGroomBlueprintLibrary::CreateNewGeometryCacheGroomBindingAsset(class UGro
 
 	Params::UGroomBlueprintLibrary_CreateNewGeometryCacheGroomBindingAsset_Params Parms{};
 
+	Parms.NumInterpolationPoints = NumInterpolationPoints;
+	Parms.SourceGeometryCacheForTransfer = SourceGeometryCacheForTransfer;
+	Parms.MatchingSection = MatchingSection;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -599,7 +613,11 @@ int32 UGroomBlueprintLibrary::CreateNewGeometryCacheGroomBindingAsset(class UGro
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (GroomAsset != nullptr)
+		*GroomAsset = Parms.GroomAsset;
+
+	if (GeometryCache != nullptr)
+		*GeometryCache = Parms.GeometryCache;
 
 }
 
@@ -663,9 +681,9 @@ class UGroomComponent* UGroomComponent::GetDefaultObj()
 // Function HairStrandsCore.GroomComponent.SetPhysicsAsset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPhysicsAsset*               InPhysicsAsset                                                   (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UPhysicsAsset*               InPhysicsAsset                                                   (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-class UPhysicsAsset* UGroomComponent::SetPhysicsAsset()
+void UGroomComponent::SetPhysicsAsset(class UPhysicsAsset* InPhysicsAsset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -674,6 +692,7 @@ class UPhysicsAsset* UGroomComponent::SetPhysicsAsset()
 
 	Params::UGroomComponent_SetPhysicsAsset_Params Parms{};
 
+	Parms.InPhysicsAsset = InPhysicsAsset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -683,17 +702,15 @@ class UPhysicsAsset* UGroomComponent::SetPhysicsAsset()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HairStrandsCore.GroomComponent.SetMeshDeformer
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMeshDeformer*               InMeshDeformer                                                   (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMeshDeformer*               InMeshDeformer                                                   (Edit, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-class UMeshDeformer* UGroomComponent::SetMeshDeformer()
+void UGroomComponent::SetMeshDeformer(class UMeshDeformer* InMeshDeformer)
 {
 	static class UFunction* Func = nullptr;
 
@@ -702,6 +719,7 @@ class UMeshDeformer* UGroomComponent::SetMeshDeformer()
 
 	Params::UGroomComponent_SetMeshDeformer_Params Parms{};
 
+	Parms.InMeshDeformer = InMeshDeformer;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -711,15 +729,13 @@ class UMeshDeformer* UGroomComponent::SetMeshDeformer()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HairStrandsCore.GroomComponent.SetHairLengthScaleEnable
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bEnable                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// bool                               bEnable                                                          (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
 bool UGroomComponent::SetHairLengthScaleEnable()
 {
@@ -747,9 +763,9 @@ bool UGroomComponent::SetHairLengthScaleEnable()
 // Function HairStrandsCore.GroomComponent.SetHairLengthScale
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Scale                                                            (Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
+// float                              Scale                                                            (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config)
 
-void UGroomComponent::SetHairLengthScale(float Scale)
+void UGroomComponent::SetHairLengthScale(float* Scale)
 {
 	static class UFunction* Func = nullptr;
 
@@ -758,7 +774,6 @@ void UGroomComponent::SetHairLengthScale(float Scale)
 
 	Params::UGroomComponent_SetHairLengthScale_Params Parms{};
 
-	Parms.Scale = Scale;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -768,15 +783,18 @@ void UGroomComponent::SetHairLengthScale(float Scale)
 
 	Func->FunctionFlags = Flgs;
 
+	if (Scale != nullptr)
+		*Scale = Parms.Scale;
+
 }
 
 
 // Function HairStrandsCore.GroomComponent.SetGroomAsset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UGroomAsset*                 Asset                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UGroomAsset*                 Asset                                                            (BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
 
-class UGroomAsset* UGroomComponent::SetGroomAsset()
+void UGroomComponent::SetGroomAsset(class UGroomAsset* Asset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -785,6 +803,7 @@ class UGroomAsset* UGroomComponent::SetGroomAsset()
 
 	Params::UGroomComponent_SetGroomAsset_Params Parms{};
 
+	Parms.Asset = Asset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -794,17 +813,15 @@ class UGroomAsset* UGroomComponent::SetGroomAsset()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HairStrandsCore.GroomComponent.SetEnableSimulation
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInEnableSimulation                                              (Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInEnableSimulation                                              (ConstParm, Net, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-bool UGroomComponent::SetEnableSimulation()
+void UGroomComponent::SetEnableSimulation(bool bInEnableSimulation)
 {
 	static class UFunction* Func = nullptr;
 
@@ -813,6 +830,33 @@ bool UGroomComponent::SetEnableSimulation()
 
 	Params::UGroomComponent_SetEnableSimulation_Params Parms{};
 
+	Parms.bInEnableSimulation = bInEnableSimulation;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+}
+
+
+// Function HairStrandsCore.GroomComponent.SetBindingAsset
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// class UGroomBindingAsset*          InBinding                                                        (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+
+class UGroomBindingAsset* UGroomComponent::SetBindingAsset()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("GroomComponent", "SetBindingAsset");
+
+	Params::UGroomComponent_SetBindingAsset_Params Parms{};
+
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -823,33 +867,6 @@ bool UGroomComponent::SetEnableSimulation()
 	Func->FunctionFlags = Flgs;
 
 	return Parms.ReturnValue;
-
-}
-
-
-// Function HairStrandsCore.GroomComponent.SetBindingAsset
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// class UGroomBindingAsset*          InBinding                                                        (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-
-void UGroomComponent::SetBindingAsset(class UGroomBindingAsset* InBinding)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("GroomComponent", "SetBindingAsset");
-
-	Params::UGroomComponent_SetBindingAsset_Params Parms{};
-
-	Parms.InBinding = InBinding;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
 
 }
 
@@ -905,10 +922,10 @@ void UGroomComponent::ResetCollisionComponents()
 // Function HairStrandsCore.GroomComponent.GetNiagaraComponent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              GroupIndex                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// class UNiagaraComponent*           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              GroupIndex                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UNiagaraComponent*           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UGroomComponent::GetNiagaraComponent(int32* GroupIndex, class UNiagaraComponent* ReturnValue)
+int32 UGroomComponent::GetNiagaraComponent(class UNiagaraComponent* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -927,8 +944,7 @@ void UGroomComponent::GetNiagaraComponent(int32* GroupIndex, class UNiagaraCompo
 
 	Func->FunctionFlags = Flgs;
 
-	if (GroupIndex != nullptr)
-		*GroupIndex = Parms.GroupIndex;
+	return Parms.ReturnValue;
 
 }
 
@@ -936,7 +952,7 @@ void UGroomComponent::GetNiagaraComponent(int32* GroupIndex, class UNiagaraCompo
 // Function HairStrandsCore.GroomComponent.GetIsHairLengthScaleEnabled
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGroomComponent::GetIsHairLengthScaleEnabled(bool ReturnValue)
 {
@@ -963,9 +979,9 @@ void UGroomComponent::GetIsHairLengthScaleEnabled(bool ReturnValue)
 // Function HairStrandsCore.GroomComponent.AddCollisionComponent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USkeletalMeshComponent*      SkeletalMeshComponent                                            (Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+// class USkeletalMeshComponent*      SkeletalMeshComponent                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
 
-void UGroomComponent::AddCollisionComponent(class USkeletalMeshComponent* SkeletalMeshComponent)
+class USkeletalMeshComponent* UGroomComponent::AddCollisionComponent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -974,7 +990,6 @@ void UGroomComponent::AddCollisionComponent(class USkeletalMeshComponent* Skelet
 
 	Params::UGroomComponent_AddCollisionComponent_Params Parms{};
 
-	Parms.SkeletalMeshComponent = SkeletalMeshComponent;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -983,6 +998,8 @@ void UGroomComponent::AddCollisionComponent(class USkeletalMeshComponent* Skelet
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

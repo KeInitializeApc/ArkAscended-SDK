@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0x1348 - 0x1348)
+// 0x0 (0x1370 - 0x1370)
 // BlueprintGeneratedClass WeapMap.WeapMap_C
 class AWeapMap_C : public AWeapGPS_C
 {

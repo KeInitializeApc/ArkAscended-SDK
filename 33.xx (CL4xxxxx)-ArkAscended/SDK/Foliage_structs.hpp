@@ -66,12 +66,12 @@ enum class ESimulationQuery : uint8
 struct FFoliageVertexColorChannelMask
 {
 public:
-	uint8                                        UseMask : 1;                                       // Mask: 0x1, PropSize: 0x10x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        BitPad_1C1 : 7;                                    // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_233D[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        MaskThreshold;                                     // 0x4(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        InvertMask : 1;                                    // Mask: 0x1, PropSize: 0x10x8(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_233E[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        UseMask : 1;                                       // Mask: 0x1, PropSize: 0x10x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        BitPad_111 : 7;                                    // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_1EF4[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        MaskThreshold;                                     // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        InvertMask : 1;                                    // Mask: 0x1, PropSize: 0x10x8(0x1)(Edit, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1EF6[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x90 (0x90 - 0x0)
@@ -79,9 +79,9 @@ public:
 struct FFoliageDensityFalloff
 {
 public:
-	bool                                         bUseFalloffCurve;                                  // 0x0(0x1)(Edit, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_233F[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FRuntimeFloatCurve                    FalloffCurve;                                      // 0x8(0x88)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	bool                                         bUseFalloffCurve;                                  // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1EF9[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FRuntimeFloatCurve                    FalloffCurve;                                      // 0x8(0x88)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -89,11 +89,11 @@ public:
 struct FFoliageTypeObject
 {
 public:
-	class UObject*                               FoliageTypeObject;                                 // 0x0(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-	class UFoliageType*                          TypeInstance;                                      // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	bool                                         bIsAsset;                                          // 0x10(0x1)(ConstParm, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2340[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class UClass*                                Type;                                              // 0x18(0x8)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
+	class UObject*                               FoliageTypeObject;                                 // 0x0(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
+	class UFoliageType*                          TypeInstance;                                      // 0x8(0x8)(Edit, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bIsAsset;                                          // 0x10(0x1)(BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1EFC[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class UClass*                                Type;                                              // 0x18(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config)
 };
 
 // 0x80 (0x80 - 0x0)
@@ -103,13 +103,13 @@ struct FProceduralFoliageInstance
 public:
 	struct FQuat                                 Rotation;                                          // 0x0(0x20)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
 	struct FVector                               Location;                                          // 0x20(0x18)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	float                                        Age;                                               // 0x38(0x4)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2341[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               Normal;                                            // 0x40(0x18)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-	float                                        Scale;                                             // 0x58(0x4)(Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
-	uint8                                        Pad_2342[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UFoliageType*                          Type;                                              // 0x60(0x8)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	uint8                                        Pad_2343[0x18];                                    // Fixing Size Of Struct > TateDumper <
+	float                                        Age;                                               // 0x38(0x4)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1EFE[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               Normal;                                            // 0x40(0x18)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
+	float                                        Scale;                                             // 0x58(0x4)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config)
+	uint8                                        Pad_1EFF[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UFoliageType*                          Type;                                              // 0x60(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config)
+	uint8                                        Pad_1F00[0x18];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 }

@@ -43,8 +43,8 @@ class URigVMHost* URigVMHost::GetDefaultObj()
 // Function RigVM.RigVMHost.SupportsEvent
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        InEventName                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InEventName                                                      (BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName URigVMHost::SupportsEvent(bool ReturnValue)
 {
@@ -73,9 +73,9 @@ class FName URigVMHost::SupportsEvent(bool ReturnValue)
 // Function RigVM.RigVMHost.SetVariableFromString
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// class FString                      InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FString URigVMHost::SetVariableFromString(bool ReturnValue)
 {
@@ -104,7 +104,7 @@ class FString URigVMHost::SetVariableFromString(bool ReturnValue)
 // Function RigVM.RigVMHost.SetFramesPerSecond
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InFramesPerSecond                                                (Edit, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// float                              InFramesPerSecond                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 float URigVMHost::SetFramesPerSecond()
 {
@@ -132,7 +132,7 @@ float URigVMHost::SetFramesPerSecond()
 // Function RigVM.RigVMHost.SetDeltaTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InDeltaTime                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// float                              InDeltaTime                                                      (ConstParm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 float URigVMHost::SetDeltaTime()
 {
@@ -160,8 +160,8 @@ float URigVMHost::SetDeltaTime()
 // Function RigVM.RigVMHost.SetAbsoluteTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InAbsoluteTime                                                   (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// bool                               InSetDeltaTimeZero                                               (ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// float                              InAbsoluteTime                                                   (Edit, ExportObject, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               InSetDeltaTimeZero                                               (Edit, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 bool URigVMHost::SetAbsoluteTime()
 {
@@ -189,8 +189,8 @@ bool URigVMHost::SetAbsoluteTime()
 // Function RigVM.RigVMHost.SetAbsoluteAndDeltaTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InAbsoluteTime                                                   (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// float                              InDeltaTime                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// float                              InAbsoluteTime                                                   (Edit, ExportObject, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              InDeltaTime                                                      (ConstParm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 float URigVMHost::SetAbsoluteAndDeltaTime()
 {
@@ -218,8 +218,8 @@ float URigVMHost::SetAbsoluteAndDeltaTime()
 // Function RigVM.RigVMHost.RequestRunOnceEvent
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InEventName                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int32                              InEventIndex                                                     (BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// class FName                        InEventName                                                      (BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InEventIndex                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 int32 URigVMHost::RequestRunOnceEvent()
 {
@@ -271,8 +271,8 @@ void URigVMHost::RequestInit()
 // Function RigVM.RigVMHost.RemoveRunOnceEvent
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InEventName                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InEventName                                                      (BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName URigVMHost::RemoveRunOnceEvent(bool ReturnValue)
 {
@@ -301,7 +301,7 @@ class FName URigVMHost::RemoveRunOnceEvent(bool ReturnValue)
 // Function RigVM.RigVMHost.GetVM
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class URigVM*                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class URigVM*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void URigVMHost::GetVM(class URigVM* ReturnValue)
 {
@@ -328,8 +328,8 @@ void URigVMHost::GetVM(class URigVM* ReturnValue)
 // Function RigVM.RigVMHost.GetVariableType
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// class FName                        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName URigVMHost::GetVariableType(class FName ReturnValue)
 {
@@ -358,8 +358,8 @@ class FName URigVMHost::GetVariableType(class FName ReturnValue)
 // Function RigVM.RigVMHost.GetVariableAsString
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        InVariableName                                                   (Edit, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InVariableName                                                   (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName URigVMHost::GetVariableAsString(const class FString& ReturnValue)
 {
@@ -388,7 +388,7 @@ class FName URigVMHost::GetVariableAsString(const class FString& ReturnValue)
 // Function RigVM.RigVMHost.GetSupportedEvents
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class FName>                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void URigVMHost::GetSupportedEvents(const TArray<class FName>& ReturnValue)
 {
@@ -415,7 +415,7 @@ void URigVMHost::GetSupportedEvents(const TArray<class FName>& ReturnValue)
 // Function RigVM.RigVMHost.GetScriptAccessibleVariables
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class FName>                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void URigVMHost::GetScriptAccessibleVariables(const TArray<class FName>& ReturnValue)
 {
@@ -442,7 +442,7 @@ void URigVMHost::GetScriptAccessibleVariables(const TArray<class FName>& ReturnV
 // Function RigVM.RigVMHost.GetDeltaTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void URigVMHost::GetDeltaTime(float ReturnValue)
 {
@@ -469,7 +469,7 @@ void URigVMHost::GetDeltaTime(float ReturnValue)
 // Function RigVM.RigVMHost.GetCurrentFramesPerSecond
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void URigVMHost::GetCurrentFramesPerSecond(float ReturnValue)
 {
@@ -496,7 +496,7 @@ void URigVMHost::GetCurrentFramesPerSecond(float ReturnValue)
 // Function RigVM.RigVMHost.GetAbsoluteTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void URigVMHost::GetAbsoluteTime(float ReturnValue)
 {
@@ -524,8 +524,8 @@ void URigVMHost::GetAbsoluteTime(float ReturnValue)
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UObject*                     Outer                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
-// class UClass*                      OptionalClass                                                    (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// TArray<class URigVMHost*>          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      OptionalClass                                                    (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class URigVMHost*>          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class UClass* URigVMHost::FindRigVMHosts(class UObject* Outer, const TArray<class URigVMHost*>& ReturnValue)
 {
@@ -555,8 +555,8 @@ class UClass* URigVMHost::FindRigVMHosts(class UObject* Outer, const TArray<clas
 // Function RigVM.RigVMHost.ExecuteEvent
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InEventName                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InEventName                                                      (BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName URigVMHost::ExecuteEvent(bool ReturnValue)
 {
@@ -585,8 +585,8 @@ class FName URigVMHost::ExecuteEvent(bool ReturnValue)
 // Function RigVM.RigVMHost.Execute
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InEventName                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InEventName                                                      (BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName URigVMHost::Execute(bool ReturnValue)
 {
@@ -615,7 +615,7 @@ class FName URigVMHost::Execute(bool ReturnValue)
 // Function RigVM.RigVMHost.CanExecute
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void URigVMHost::CanExecute(bool ReturnValue)
 {
@@ -698,7 +698,7 @@ class URigVMUserWorkflowOptions* URigVMUserWorkflowOptions::GetDefaultObj()
 // Function RigVM.RigVMUserWorkflowOptions.RequiresDialog
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void URigVMUserWorkflowOptions::RequiresDialog(bool ReturnValue)
 {
@@ -725,9 +725,9 @@ void URigVMUserWorkflowOptions::RequiresDialog(bool ReturnValue)
 // Function RigVM.RigVMUserWorkflowOptions.ReportWarning
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InMessage                                                        (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      InMessage                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-class FString URigVMUserWorkflowOptions::ReportWarning()
+void URigVMUserWorkflowOptions::ReportWarning(class FString* InMessage)
 {
 	static class UFunction* Func = nullptr;
 
@@ -745,7 +745,8 @@ class FString URigVMUserWorkflowOptions::ReportWarning()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InMessage != nullptr)
+		*InMessage = std::move(Parms.InMessage);
 
 }
 
@@ -753,9 +754,9 @@ class FString URigVMUserWorkflowOptions::ReportWarning()
 // Function RigVM.RigVMUserWorkflowOptions.ReportInfo
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InMessage                                                        (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      InMessage                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-class FString URigVMUserWorkflowOptions::ReportInfo()
+void URigVMUserWorkflowOptions::ReportInfo(class FString* InMessage)
 {
 	static class UFunction* Func = nullptr;
 
@@ -773,7 +774,8 @@ class FString URigVMUserWorkflowOptions::ReportInfo()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InMessage != nullptr)
+		*InMessage = std::move(Parms.InMessage);
 
 }
 
@@ -781,9 +783,9 @@ class FString URigVMUserWorkflowOptions::ReportInfo()
 // Function RigVM.RigVMUserWorkflowOptions.ReportError
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InMessage                                                        (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      InMessage                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-class FString URigVMUserWorkflowOptions::ReportError()
+void URigVMUserWorkflowOptions::ReportError(class FString* InMessage)
 {
 	static class UFunction* Func = nullptr;
 
@@ -801,7 +803,8 @@ class FString URigVMUserWorkflowOptions::ReportError()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InMessage != nullptr)
+		*InMessage = std::move(Parms.InMessage);
 
 }
 
@@ -809,7 +812,7 @@ class FString URigVMUserWorkflowOptions::ReportError()
 // Function RigVM.RigVMUserWorkflowOptions.IsValid
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void URigVMUserWorkflowOptions::IsValid(bool ReturnValue)
 {
@@ -892,11 +895,11 @@ class URigVM* URigVM::GetDefaultObj()
 // Function RigVM.RigVM.SetParameterValueVector2D
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector2D                   InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// struct FVector2D                   InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 URigVM::SetParameterValueVector2D()
+int32 URigVM::SetParameterValueVector2D(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -905,6 +908,7 @@ int32 URigVM::SetParameterValueVector2D()
 
 	Params::URigVM_SetParameterValueVector2D_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -922,11 +926,11 @@ int32 URigVM::SetParameterValueVector2D()
 // Function RigVM.RigVM.SetParameterValueVector
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector                     InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// struct FVector                     InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 URigVM::SetParameterValueVector()
+int32 URigVM::SetParameterValueVector(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -935,6 +939,7 @@ int32 URigVM::SetParameterValueVector()
 
 	Params::URigVM_SetParameterValueVector_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -952,11 +957,11 @@ int32 URigVM::SetParameterValueVector()
 // Function RigVM.RigVM.SetParameterValueTransform
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FTransform                  InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// struct FTransform                  InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 URigVM::SetParameterValueTransform()
+int32 URigVM::SetParameterValueTransform(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -965,6 +970,7 @@ int32 URigVM::SetParameterValueTransform()
 
 	Params::URigVM_SetParameterValueTransform_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -982,11 +988,11 @@ int32 URigVM::SetParameterValueTransform()
 // Function RigVM.RigVM.SetParameterValueString
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// class FString                      InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 URigVM::SetParameterValueString()
+int32 URigVM::SetParameterValueString(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -995,6 +1001,7 @@ int32 URigVM::SetParameterValueString()
 
 	Params::URigVM_SetParameterValueString_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1012,11 +1019,11 @@ int32 URigVM::SetParameterValueString()
 // Function RigVM.RigVM.SetParameterValueQuat
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FQuat                       InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// struct FQuat                       InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 URigVM::SetParameterValueQuat()
+int32 URigVM::SetParameterValueQuat(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1025,6 +1032,7 @@ int32 URigVM::SetParameterValueQuat()
 
 	Params::URigVM_SetParameterValueQuat_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1042,11 +1050,11 @@ int32 URigVM::SetParameterValueQuat()
 // Function RigVM.RigVM.SetParameterValueName
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FName                        InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// class FName                        InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 URigVM::SetParameterValueName()
+int32 URigVM::SetParameterValueName(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1055,6 +1063,7 @@ int32 URigVM::SetParameterValueName()
 
 	Params::URigVM_SetParameterValueName_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1072,11 +1081,11 @@ int32 URigVM::SetParameterValueName()
 // Function RigVM.RigVM.SetParameterValueInt
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 URigVM::SetParameterValueInt()
+int32 URigVM::SetParameterValueInt(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1085,6 +1094,7 @@ int32 URigVM::SetParameterValueInt()
 
 	Params::URigVM_SetParameterValueInt_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1102,11 +1112,11 @@ int32 URigVM::SetParameterValueInt()
 // Function RigVM.RigVM.SetParameterValueFloat
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// float                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 URigVM::SetParameterValueFloat()
+int32 URigVM::SetParameterValueFloat(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1115,6 +1125,7 @@ int32 URigVM::SetParameterValueFloat()
 
 	Params::URigVM_SetParameterValueFloat_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1132,11 +1143,11 @@ int32 URigVM::SetParameterValueFloat()
 // Function RigVM.RigVM.SetParameterValueDouble
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// double                             InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// double                             InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 URigVM::SetParameterValueDouble()
+int32 URigVM::SetParameterValueDouble(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1145,6 +1156,7 @@ int32 URigVM::SetParameterValueDouble()
 
 	Params::URigVM_SetParameterValueDouble_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1162,11 +1174,11 @@ int32 URigVM::SetParameterValueDouble()
 // Function RigVM.RigVM.SetParameterValueBool
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// bool                               InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 URigVM::SetParameterValueBool()
+int32 URigVM::SetParameterValueBool(class FName InParameterName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1175,6 +1187,7 @@ int32 URigVM::SetParameterValueBool()
 
 	Params::URigVM_SetParameterValueBool_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1192,7 +1205,7 @@ int32 URigVM::SetParameterValueBool()
 // Function RigVM.RigVM.GetStatistics
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigVMStatistics            ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRigVMStatistics            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void URigVM::GetStatistics(const struct FRigVMStatistics& ReturnValue)
 {
@@ -1219,8 +1232,8 @@ void URigVM::GetStatistics(const struct FRigVMStatistics& ReturnValue)
 // Function RigVM.RigVM.GetRigVMFunctionName
 // (Native, Public, Const)
 // Parameters:
-// int32                              InFunctionIndex                                                  (ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InFunctionIndex                                                  (Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 int32 URigVM::GetRigVMFunctionName(const class FString& ReturnValue)
 {
@@ -1249,11 +1262,11 @@ int32 URigVM::GetRigVMFunctionName(const class FString& ReturnValue)
 // Function RigVM.RigVM.GetParameterValueVector2D
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 URigVM::GetParameterValueVector2D(const struct FVector2D& ReturnValue)
+int32 URigVM::GetParameterValueVector2D(class FName InParameterName, const struct FVector2D& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1262,6 +1275,7 @@ int32 URigVM::GetParameterValueVector2D(const struct FVector2D& ReturnValue)
 
 	Params::URigVM_GetParameterValueVector2D_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1280,11 +1294,11 @@ int32 URigVM::GetParameterValueVector2D(const struct FVector2D& ReturnValue)
 // Function RigVM.RigVM.GetParameterValueVector
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 URigVM::GetParameterValueVector(const struct FVector& ReturnValue)
+int32 URigVM::GetParameterValueVector(class FName InParameterName, const struct FVector& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1293,6 +1307,7 @@ int32 URigVM::GetParameterValueVector(const struct FVector& ReturnValue)
 
 	Params::URigVM_GetParameterValueVector_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1311,11 +1326,11 @@ int32 URigVM::GetParameterValueVector(const struct FVector& ReturnValue)
 // Function RigVM.RigVM.GetParameterValueTransform
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 URigVM::GetParameterValueTransform(const struct FTransform& ReturnValue)
+int32 URigVM::GetParameterValueTransform(class FName InParameterName, const struct FTransform& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1324,6 +1339,7 @@ int32 URigVM::GetParameterValueTransform(const struct FTransform& ReturnValue)
 
 	Params::URigVM_GetParameterValueTransform_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1342,11 +1358,11 @@ int32 URigVM::GetParameterValueTransform(const struct FTransform& ReturnValue)
 // Function RigVM.RigVM.GetParameterValueString
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 URigVM::GetParameterValueString(const class FString& ReturnValue)
+int32 URigVM::GetParameterValueString(class FName InParameterName, const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1355,6 +1371,7 @@ int32 URigVM::GetParameterValueString(const class FString& ReturnValue)
 
 	Params::URigVM_GetParameterValueString_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1373,11 +1390,11 @@ int32 URigVM::GetParameterValueString(const class FString& ReturnValue)
 // Function RigVM.RigVM.GetParameterValueQuat
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FQuat                       ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FQuat                       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 URigVM::GetParameterValueQuat(const struct FQuat& ReturnValue)
+int32 URigVM::GetParameterValueQuat(class FName InParameterName, const struct FQuat& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1386,6 +1403,7 @@ int32 URigVM::GetParameterValueQuat(const struct FQuat& ReturnValue)
 
 	Params::URigVM_GetParameterValueQuat_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1404,11 +1422,11 @@ int32 URigVM::GetParameterValueQuat(const struct FQuat& ReturnValue)
 // Function RigVM.RigVM.GetParameterValueName
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class FName                        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 URigVM::GetParameterValueName(class FName ReturnValue)
+int32 URigVM::GetParameterValueName(class FName InParameterName, class FName ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1417,6 +1435,7 @@ int32 URigVM::GetParameterValueName(class FName ReturnValue)
 
 	Params::URigVM_GetParameterValueName_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1435,11 +1454,11 @@ int32 URigVM::GetParameterValueName(class FName ReturnValue)
 // Function RigVM.RigVM.GetParameterValueInt
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 URigVM::GetParameterValueInt(int32 ReturnValue)
+int32 URigVM::GetParameterValueInt(class FName InParameterName, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1448,6 +1467,7 @@ int32 URigVM::GetParameterValueInt(int32 ReturnValue)
 
 	Params::URigVM_GetParameterValueInt_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1466,11 +1486,11 @@ int32 URigVM::GetParameterValueInt(int32 ReturnValue)
 // Function RigVM.RigVM.GetParameterValueFloat
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 URigVM::GetParameterValueFloat(float ReturnValue)
+int32 URigVM::GetParameterValueFloat(class FName InParameterName, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1479,6 +1499,7 @@ int32 URigVM::GetParameterValueFloat(float ReturnValue)
 
 	Params::URigVM_GetParameterValueFloat_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1497,11 +1518,11 @@ int32 URigVM::GetParameterValueFloat(float ReturnValue)
 // Function RigVM.RigVM.GetParameterValueDouble
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// double                             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// double                             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 URigVM::GetParameterValueDouble(double ReturnValue)
+int32 URigVM::GetParameterValueDouble(class FName InParameterName, double ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1510,6 +1531,7 @@ int32 URigVM::GetParameterValueDouble(double ReturnValue)
 
 	Params::URigVM_GetParameterValueDouble_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1528,11 +1550,11 @@ int32 URigVM::GetParameterValueDouble(double ReturnValue)
 // Function RigVM.RigVM.GetParameterValueBool
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InParameterName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InArrayIndex                                                     (Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InParameterName                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              InArrayIndex                                                     (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 URigVM::GetParameterValueBool(bool ReturnValue)
+int32 URigVM::GetParameterValueBool(class FName InParameterName, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1541,6 +1563,7 @@ int32 URigVM::GetParameterValueBool(bool ReturnValue)
 
 	Params::URigVM_GetParameterValueBool_Params Parms{};
 
+	Parms.InParameterName = InParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1559,8 +1582,8 @@ int32 URigVM::GetParameterValueBool(bool ReturnValue)
 // Function RigVM.RigVM.Execute
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InEntryName                                                      (ConstParm, ExportObject, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InEntryName                                                      (Edit, ConstParm, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName URigVM::Execute(bool ReturnValue)
 {
@@ -1589,9 +1612,9 @@ class FName URigVM::Execute(bool ReturnValue)
 // Function RigVM.RigVM.AddRigVMFunction
 // (Native, Public, HasOutParams)
 // Parameters:
-// class UScriptStruct*               InRigVMStruct                                                    (ConstParm, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class FName                        InMethodName                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UScriptStruct*               InRigVMStruct                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InMethodName                                                     (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName URigVM::AddRigVMFunction(int32 ReturnValue)
 {

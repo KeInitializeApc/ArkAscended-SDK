@@ -14,7 +14,7 @@ namespace SDK
 class AWeapGun_Impacts_C : public AShooterImpactEffect
 {
 public:
-	class USceneComponent*                       DefaultSceneRoot;                                  // 0x860(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst)
+	class USceneComponent*                       DefaultSceneRoot;                                  // 0x860(0x8)(Net, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst)
 
 	static class UClass* StaticClass();
 	static class AWeapGun_Impacts_C* GetDefaultObj();

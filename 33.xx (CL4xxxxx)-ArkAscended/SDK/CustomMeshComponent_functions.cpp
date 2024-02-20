@@ -43,10 +43,10 @@ class UCustomMeshComponent* UCustomMeshComponent::GetDefaultObj()
 // Function CustomMeshComponent.CustomMeshComponent.SetCustomMeshTriangles
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FCustomMeshTriangle> Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FCustomMeshTriangle> Triangles                                                        (Edit, BlueprintVisible, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<struct FCustomMeshTriangle> UCustomMeshComponent::SetCustomMeshTriangles(bool ReturnValue)
+void UCustomMeshComponent::SetCustomMeshTriangles(TArray<struct FCustomMeshTriangle>* Triangles, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -65,7 +65,8 @@ TArray<struct FCustomMeshTriangle> UCustomMeshComponent::SetCustomMeshTriangles(
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Triangles != nullptr)
+		*Triangles = std::move(Parms.Triangles);
 
 }
 
@@ -97,9 +98,9 @@ void UCustomMeshComponent::ClearCustomMeshTriangles()
 // Function CustomMeshComponent.CustomMeshComponent.AddCustomMeshTriangles
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FCustomMeshTriangle> Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
+// TArray<struct FCustomMeshTriangle> Triangles                                                        (Edit, BlueprintVisible, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
 
-TArray<struct FCustomMeshTriangle> UCustomMeshComponent::AddCustomMeshTriangles()
+void UCustomMeshComponent::AddCustomMeshTriangles(TArray<struct FCustomMeshTriangle>* Triangles)
 {
 	static class UFunction* Func = nullptr;
 
@@ -117,7 +118,8 @@ TArray<struct FCustomMeshTriangle> UCustomMeshComponent::AddCustomMeshTriangles(
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Triangles != nullptr)
+		*Triangles = std::move(Parms.Triangles);
 
 }
 

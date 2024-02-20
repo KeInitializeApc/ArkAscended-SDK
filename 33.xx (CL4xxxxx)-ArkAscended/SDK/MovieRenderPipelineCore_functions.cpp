@@ -43,9 +43,9 @@ class UMoviePipelineSetting* UMoviePipelineSetting::GetDefaultObj()
 // Function MovieRenderPipelineCore.MoviePipelineSetting.SetIsEnabled
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInEnabled                                                       (BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInEnabled                                                       (ConstParm, ExportObject, Parm, InstancedReference, SubobjectReference)
 
-bool UMoviePipelineSetting::SetIsEnabled()
+void UMoviePipelineSetting::SetIsEnabled(bool bInEnabled)
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,6 +54,7 @@ bool UMoviePipelineSetting::SetIsEnabled()
 
 	Params::UMoviePipelineSetting_SetIsEnabled_Params Parms{};
 
+	Parms.bInEnabled = bInEnabled;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -63,15 +64,13 @@ bool UMoviePipelineSetting::SetIsEnabled()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineSetting.IsEnabled
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineSetting::IsEnabled(bool ReturnValue)
 {
@@ -98,12 +97,12 @@ void UMoviePipelineSetting::IsEnabled(bool ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipelineSetting.BuildNewProcessCommandLineArgs
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class FString>              InOutUnrealURLParams                                             (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<class FString>              InOutCommandLineArgs                                             (ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<class FString>              InOutDeviceProfileCvars                                          (ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<class FString>              InOutExecCmds                                                    (Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<class FString>              InOutUnrealURLParams                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// TArray<class FString>              InOutCommandLineArgs                                             (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// TArray<class FString>              InOutDeviceProfileCvars                                          (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// TArray<class FString>              InOutExecCmds                                                    (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-void UMoviePipelineSetting::BuildNewProcessCommandLineArgs(TArray<class FString>* InOutUnrealURLParams, TArray<class FString>* InOutCommandLineArgs, TArray<class FString>* InOutDeviceProfileCvars, TArray<class FString>* InOutExecCmds)
+TArray<class FString> UMoviePipelineSetting::BuildNewProcessCommandLineArgs()
 {
 	static class UFunction* Func = nullptr;
 
@@ -121,17 +120,7 @@ void UMoviePipelineSetting::BuildNewProcessCommandLineArgs(TArray<class FString>
 
 	Func->FunctionFlags = Flgs;
 
-	if (InOutUnrealURLParams != nullptr)
-		*InOutUnrealURLParams = std::move(Parms.InOutUnrealURLParams);
-
-	if (InOutCommandLineArgs != nullptr)
-		*InOutCommandLineArgs = std::move(Parms.InOutCommandLineArgs);
-
-	if (InOutDeviceProfileCvars != nullptr)
-		*InOutDeviceProfileCvars = std::move(Parms.InOutDeviceProfileCvars);
-
-	if (InOutExecCmds != nullptr)
-		*InOutExecCmds = std::move(Parms.InOutExecCmds);
+	return Parms.ReturnValue;
 
 }
 
@@ -139,10 +128,10 @@ void UMoviePipelineSetting::BuildNewProcessCommandLineArgs(TArray<class FString>
 // Function MovieRenderPipelineCore.MoviePipelineSetting.BuildNewProcessCommandLine
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      InOutUnrealURLParams                                             (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      InOutCommandLineArgs                                             (ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      InOutUnrealURLParams                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class FString                      InOutCommandLineArgs                                             (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-void UMoviePipelineSetting::BuildNewProcessCommandLine(class FString* InOutUnrealURLParams, class FString* InOutCommandLineArgs)
+class FString UMoviePipelineSetting::BuildNewProcessCommandLine()
 {
 	static class UFunction* Func = nullptr;
 
@@ -160,11 +149,7 @@ void UMoviePipelineSetting::BuildNewProcessCommandLine(class FString* InOutUnrea
 
 	Func->FunctionFlags = Flgs;
 
-	if (InOutUnrealURLParams != nullptr)
-		*InOutUnrealURLParams = std::move(Parms.InOutUnrealURLParams);
-
-	if (InOutCommandLineArgs != nullptr)
-		*InOutCommandLineArgs = std::move(Parms.InOutCommandLineArgs);
+	return Parms.ReturnValue;
 
 }
 
@@ -340,9 +325,9 @@ class UMoviePipelineSetting_BlueprintBase* UMoviePipelineSetting_BlueprintBase::
 // Function MovieRenderPipelineCore.MoviePipelineSetting_BlueprintBase.ReceiveTeardownForPipelineImpl
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class UMoviePipeline*              InPipeline                                                       (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipeline*              InPipeline                                                       (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-void UMoviePipelineSetting_BlueprintBase::ReceiveTeardownForPipelineImpl(class UMoviePipeline* InPipeline)
+class UMoviePipeline* UMoviePipelineSetting_BlueprintBase::ReceiveTeardownForPipelineImpl()
 {
 	static class UFunction* Func = nullptr;
 
@@ -351,9 +336,10 @@ void UMoviePipelineSetting_BlueprintBase::ReceiveTeardownForPipelineImpl(class U
 
 	Params::UMoviePipelineSetting_BlueprintBase_ReceiveTeardownForPipelineImpl_Params Parms{};
 
-	Parms.InPipeline = InPipeline;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -361,9 +347,9 @@ void UMoviePipelineSetting_BlueprintBase::ReceiveTeardownForPipelineImpl(class U
 // Function MovieRenderPipelineCore.MoviePipelineSetting_BlueprintBase.ReceiveSetupForPipelineImpl
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class UMoviePipeline*              InPipeline                                                       (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipeline*              InPipeline                                                       (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-void UMoviePipelineSetting_BlueprintBase::ReceiveSetupForPipelineImpl(class UMoviePipeline* InPipeline)
+class UMoviePipeline* UMoviePipelineSetting_BlueprintBase::ReceiveSetupForPipelineImpl()
 {
 	static class UFunction* Func = nullptr;
 
@@ -372,9 +358,10 @@ void UMoviePipelineSetting_BlueprintBase::ReceiveSetupForPipelineImpl(class UMov
 
 	Params::UMoviePipelineSetting_BlueprintBase_ReceiveSetupForPipelineImpl_Params Parms{};
 
-	Parms.InPipeline = InPipeline;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -382,10 +369,10 @@ void UMoviePipelineSetting_BlueprintBase::ReceiveSetupForPipelineImpl(class UMov
 // Function MovieRenderPipelineCore.MoviePipelineSetting_BlueprintBase.ReceiveGetFormatArguments
 // (Native, Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// struct FMoviePipelineFormatArgs    InOutFormatArgs                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FMoviePipelineFormatArgs    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FMoviePipelineFormatArgs    InOutFormatArgs                                                  (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// struct FMoviePipelineFormatArgs    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineSetting_BlueprintBase::ReceiveGetFormatArguments(const struct FMoviePipelineFormatArgs& InOutFormatArgs, const struct FMoviePipelineFormatArgs& ReturnValue)
+struct FMoviePipelineFormatArgs UMoviePipelineSetting_BlueprintBase::ReceiveGetFormatArguments(const struct FMoviePipelineFormatArgs& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -394,7 +381,6 @@ void UMoviePipelineSetting_BlueprintBase::ReceiveGetFormatArguments(const struct
 
 	Params::UMoviePipelineSetting_BlueprintBase_ReceiveGetFormatArguments_Params Parms{};
 
-	Parms.InOutFormatArgs = InOutFormatArgs;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -404,6 +390,8 @@ void UMoviePipelineSetting_BlueprintBase::ReceiveGetFormatArguments(const struct
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -485,9 +473,9 @@ class UMovieRenderDebugWidget* UMovieRenderDebugWidget::GetDefaultObj()
 // Function MovieRenderPipelineCore.MovieRenderDebugWidget.OnInitializedForPipeline
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class UMoviePipeline*              ForPipeline                                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipeline*              ForPipeline                                                      (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-void UMovieRenderDebugWidget::OnInitializedForPipeline(class UMoviePipeline* ForPipeline)
+class UMoviePipeline* UMovieRenderDebugWidget::OnInitializedForPipeline()
 {
 	static class UFunction* Func = nullptr;
 
@@ -496,9 +484,10 @@ void UMovieRenderDebugWidget::OnInitializedForPipeline(class UMoviePipeline* For
 
 	Params::UMovieRenderDebugWidget_OnInitializedForPipeline_Params Parms{};
 
-	Parms.ForPipeline = ForPipeline;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -534,9 +523,9 @@ class UMoviePipeline* UMoviePipeline::GetDefaultObj()
 // Function MovieRenderPipelineCore.MoviePipeline.Shutdown
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bError                                                           (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bError                                                           (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-void UMoviePipeline::Shutdown(bool* bError)
+bool UMoviePipeline::Shutdown()
 {
 	static class UFunction* Func = nullptr;
 
@@ -554,8 +543,7 @@ void UMoviePipeline::Shutdown(bool* bError)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bError != nullptr)
-		*bError = Parms.bError;
+	return Parms.ReturnValue;
 
 }
 
@@ -563,9 +551,9 @@ void UMoviePipeline::Shutdown(bool* bError)
 // Function MovieRenderPipelineCore.MoviePipeline.SetInitializationTime
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FDateTime                   InDateTime                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FDateTime                   InDateTime                                                       (BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-void UMoviePipeline::SetInitializationTime(const struct FDateTime& InDateTime)
+struct FDateTime UMoviePipeline::SetInitializationTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -574,7 +562,6 @@ void UMoviePipeline::SetInitializationTime(const struct FDateTime& InDateTime)
 
 	Params::UMoviePipeline_SetInitializationTime_Params Parms{};
 
-	Parms.InDateTime = InDateTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -584,15 +571,17 @@ void UMoviePipeline::SetInitializationTime(const struct FDateTime& InDateTime)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipeline.RequestShutdown
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bIsError                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bIsError                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-void UMoviePipeline::RequestShutdown(bool bIsError)
+bool UMoviePipeline::RequestShutdown()
 {
 	static class UFunction* Func = nullptr;
 
@@ -601,7 +590,6 @@ void UMoviePipeline::RequestShutdown(bool bIsError)
 
 	Params::UMoviePipeline_RequestShutdown_Params Parms{};
 
-	Parms.bIsError = bIsError;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -610,6 +598,8 @@ void UMoviePipeline::RequestShutdown(bool bIsError)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -641,7 +631,7 @@ void UMoviePipeline::OnMoviePipelineFinishedImpl()
 // Function MovieRenderPipelineCore.MoviePipeline.IsShutdownRequested
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipeline::IsShutdownRequested(bool ReturnValue)
 {
@@ -668,9 +658,9 @@ void UMoviePipeline::IsShutdownRequested(bool ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipeline.Initialize
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelineExecutorJob*   InJob                                                            (Net, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UMoviePipelineExecutorJob*   InJob                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void UMoviePipeline::Initialize(class UMoviePipelineExecutorJob** InJob)
+void UMoviePipeline::Initialize(class UMoviePipelineExecutorJob* InJob)
 {
 	static class UFunction* Func = nullptr;
 
@@ -679,6 +669,7 @@ void UMoviePipeline::Initialize(class UMoviePipelineExecutorJob** InJob)
 
 	Params::UMoviePipeline_Initialize_Params Parms{};
 
+	Parms.InJob = InJob;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -688,16 +679,13 @@ void UMoviePipeline::Initialize(class UMoviePipelineExecutorJob** InJob)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InJob != nullptr)
-		*InJob = Parms.InJob;
-
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipeline.GetPreviewTexture
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UTexture*                    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTexture*                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipeline::GetPreviewTexture(class UTexture* ReturnValue)
 {
@@ -724,7 +712,7 @@ void UMoviePipeline::GetPreviewTexture(class UTexture* ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipeline.GetPipelinePrimaryConfig
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMoviePipelinePrimaryConfig* ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelinePrimaryConfig* ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipeline::GetPipelinePrimaryConfig(class UMoviePipelinePrimaryConfig* ReturnValue)
 {
@@ -751,7 +739,7 @@ void UMoviePipeline::GetPipelinePrimaryConfig(class UMoviePipelinePrimaryConfig*
 // Function MovieRenderPipelineCore.MoviePipeline.GetPipelineMasterConfig
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMoviePipelinePrimaryConfig* ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelinePrimaryConfig* ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipeline::GetPipelineMasterConfig(class UMoviePipelinePrimaryConfig* ReturnValue)
 {
@@ -778,7 +766,7 @@ void UMoviePipeline::GetPipelineMasterConfig(class UMoviePipelinePrimaryConfig* 
 // Function MovieRenderPipelineCore.MoviePipeline.GetInitializationTime
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FDateTime                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FDateTime                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipeline::GetInitializationTime(const struct FDateTime& ReturnValue)
 {
@@ -805,7 +793,7 @@ void UMoviePipeline::GetInitializationTime(const struct FDateTime& ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipeline.GetCurrentJob
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMoviePipelineExecutorJob*   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelineExecutorJob*   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipeline::GetCurrentJob(class UMoviePipelineExecutorJob* ReturnValue)
 {
@@ -916,11 +904,11 @@ class UMoviePipelineBlueprintLibrary* UMoviePipelineBlueprintLibrary::GetDefault
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.UpdateJobShotListFromSequence
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class ULevelSequence*              InSequence                                                       (Edit, ExportObject, Transient, Config, InstancedReference, SubobjectReference)
-// class UMoviePipelineExecutorJob*   InJob                                                            (Net, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// bool                               bShotsChanged                                                    (BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class ULevelSequence*              InSequence                                                       (BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UMoviePipelineExecutorJob*   InJob                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bShotsChanged                                                    (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, InstancedReference, SubobjectReference)
 
-bool UMoviePipelineBlueprintLibrary::UpdateJobShotListFromSequence(class ULevelSequence* InSequence, class UMoviePipelineExecutorJob** InJob)
+void UMoviePipelineBlueprintLibrary::UpdateJobShotListFromSequence(class ULevelSequence* InSequence, class UMoviePipelineExecutorJob* InJob, bool bShotsChanged)
 {
 	static class UFunction* Func = nullptr;
 
@@ -930,6 +918,8 @@ bool UMoviePipelineBlueprintLibrary::UpdateJobShotListFromSequence(class ULevelS
 	Params::UMoviePipelineBlueprintLibrary_UpdateJobShotListFromSequence_Params Parms{};
 
 	Parms.InSequence = InSequence;
+	Parms.InJob = InJob;
+	Parms.bShotsChanged = bShotsChanged;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -939,22 +929,17 @@ bool UMoviePipelineBlueprintLibrary::UpdateJobShotListFromSequence(class ULevelS
 
 	Func->FunctionFlags = Flgs;
 
-	if (InJob != nullptr)
-		*InJob = Parms.InJob;
-
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.ResolveVersionNumber
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FMoviePipelineFilenameResolveParamsInParams                                                         (ConstParm, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bGetNextVersion                                                  (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FMoviePipelineFilenameResolveParamsInParams                                                         (BlueprintVisible, EditFixedSize, InstancedReference, SubobjectReference)
+// bool                               bGetNextVersion                                                  (Edit, BlueprintReadOnly, EditFixedSize, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UMoviePipelineBlueprintLibrary::ResolveVersionNumber(int32 ReturnValue)
+void UMoviePipelineBlueprintLibrary::ResolveVersionNumber(const struct FMoviePipelineFilenameResolveParams& InParams, bool bGetNextVersion, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -963,6 +948,8 @@ bool UMoviePipelineBlueprintLibrary::ResolveVersionNumber(int32 ReturnValue)
 
 	Params::UMoviePipelineBlueprintLibrary_ResolveVersionNumber_Params Parms{};
 
+	Parms.InParams = InParams;
+	Parms.bGetNextVersion = bGetNextVersion;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -973,20 +960,18 @@ bool UMoviePipelineBlueprintLibrary::ResolveVersionNumber(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.ResolveFilenameFormatArguments
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      InFormatString                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FMoviePipelineFilenameResolveParamsInParams                                                         (ConstParm, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      OutFinalPath                                                     (Edit, ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FMoviePipelineFormatArgs    OutMergedFormatArgs                                              (ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      InFormatString                                                   (Edit, ExportObject, EditFixedSize, InstancedReference, SubobjectReference)
+// struct FMoviePipelineFilenameResolveParamsInParams                                                         (BlueprintVisible, EditFixedSize, InstancedReference, SubobjectReference)
+// class FString                      OutFinalPath                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, InstancedReference, SubobjectReference)
+// struct FMoviePipelineFormatArgs    OutMergedFormatArgs                                              (ConstParm, BlueprintReadOnly, Net, InstancedReference, SubobjectReference)
 
-struct FMoviePipelineFormatArgs UMoviePipelineBlueprintLibrary::ResolveFilenameFormatArguments()
+void UMoviePipelineBlueprintLibrary::ResolveFilenameFormatArguments(const class FString& InFormatString, const struct FMoviePipelineFilenameResolveParams& InParams, const class FString& OutFinalPath, const struct FMoviePipelineFormatArgs& OutMergedFormatArgs)
 {
 	static class UFunction* Func = nullptr;
 
@@ -995,6 +980,10 @@ struct FMoviePipelineFormatArgs UMoviePipelineBlueprintLibrary::ResolveFilenameF
 
 	Params::UMoviePipelineBlueprintLibrary_ResolveFilenameFormatArguments_Params Parms{};
 
+	Parms.InFormatString = InFormatString;
+	Parms.InParams = InParams;
+	Parms.OutFinalPath = OutFinalPath;
+	Parms.OutMergedFormatArgs = OutMergedFormatArgs;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1004,18 +993,16 @@ struct FMoviePipelineFormatArgs UMoviePipelineBlueprintLibrary::ResolveFilenameF
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.LoadManifestFileFromString
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InManifestFilePath                                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UMoviePipelineQueue*         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InManifestFilePath                                               (ExportObject, Net, InstancedReference, SubobjectReference)
+// class UMoviePipelineQueue*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString UMoviePipelineBlueprintLibrary::LoadManifestFileFromString(class UMoviePipelineQueue* ReturnValue)
+void UMoviePipelineBlueprintLibrary::LoadManifestFileFromString(const class FString& InManifestFilePath, class UMoviePipelineQueue* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1024,6 +1011,7 @@ class FString UMoviePipelineBlueprintLibrary::LoadManifestFileFromString(class U
 
 	Params::UMoviePipelineBlueprintLibrary_LoadManifestFileFromString_Params Parms{};
 
+	Parms.InManifestFilePath = InManifestFilePath;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1034,18 +1022,16 @@ class FString UMoviePipelineBlueprintLibrary::LoadManifestFileFromString(class U
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetRootTimecode
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FTimecode                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// struct FTimecode                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetRootTimecode(class UMoviePipeline** InMoviePipeline, const struct FTimecode& ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetRootTimecode(const struct FTimecode& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1064,8 +1050,7 @@ void UMoviePipelineBlueprintLibrary::GetRootTimecode(class UMoviePipeline** InMo
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1073,10 +1058,10 @@ void UMoviePipelineBlueprintLibrary::GetRootTimecode(class UMoviePipeline** InMo
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetRootFrameNumber
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FFrameNumber                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// struct FFrameNumber                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetRootFrameNumber(class UMoviePipeline** InMoviePipeline, const struct FFrameNumber& ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetRootFrameNumber(const struct FFrameNumber& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1095,8 +1080,7 @@ void UMoviePipelineBlueprintLibrary::GetRootFrameNumber(class UMoviePipeline** I
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1104,10 +1088,10 @@ void UMoviePipelineBlueprintLibrary::GetRootFrameNumber(class UMoviePipeline** I
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetPipelineState
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InPipeline                                                       (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class EMovieRenderPipelineStateReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InPipeline                                                       (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// enum class EMovieRenderPipelineStateReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetPipelineState(class UMoviePipeline* InPipeline, enum class EMovieRenderPipelineState ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetPipelineState(enum class EMovieRenderPipelineState ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1116,7 +1100,6 @@ void UMoviePipelineBlueprintLibrary::GetPipelineState(class UMoviePipeline* InPi
 
 	Params::UMoviePipelineBlueprintLibrary_GetPipelineState_Params Parms{};
 
-	Parms.InPipeline = InPipeline;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1127,17 +1110,19 @@ void UMoviePipelineBlueprintLibrary::GetPipelineState(class UMoviePipeline* InPi
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetOverallSegmentCounts
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              OutCurrentIndex                                                  (Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              OutTotalCount                                                    (Edit, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// int32                              OutCurrentIndex                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, InstancedReference, SubobjectReference)
+// int32                              OutTotalCount                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, InstancedReference, SubobjectReference)
 
-int32 UMoviePipelineBlueprintLibrary::GetOverallSegmentCounts(class UMoviePipeline** InMoviePipeline)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetOverallSegmentCounts(int32 OutCurrentIndex, int32 OutTotalCount)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1146,6 +1131,8 @@ int32 UMoviePipelineBlueprintLibrary::GetOverallSegmentCounts(class UMoviePipeli
 
 	Params::UMoviePipelineBlueprintLibrary_GetOverallSegmentCounts_Params Parms{};
 
+	Parms.OutCurrentIndex = OutCurrentIndex;
+	Parms.OutTotalCount = OutTotalCount;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1154,9 +1141,6 @@ int32 UMoviePipelineBlueprintLibrary::GetOverallSegmentCounts(class UMoviePipeli
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
 
 	return Parms.ReturnValue;
 
@@ -1166,11 +1150,11 @@ int32 UMoviePipelineBlueprintLibrary::GetOverallSegmentCounts(class UMoviePipeli
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetOverallOutputFrames
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              OutCurrentIndex                                                  (Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              OutTotalCount                                                    (Edit, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// int32                              OutCurrentIndex                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, InstancedReference, SubobjectReference)
+// int32                              OutTotalCount                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, InstancedReference, SubobjectReference)
 
-int32 UMoviePipelineBlueprintLibrary::GetOverallOutputFrames(class UMoviePipeline** InMoviePipeline)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetOverallOutputFrames(int32 OutCurrentIndex, int32 OutTotalCount)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1179,6 +1163,8 @@ int32 UMoviePipelineBlueprintLibrary::GetOverallOutputFrames(class UMoviePipelin
 
 	Params::UMoviePipelineBlueprintLibrary_GetOverallOutputFrames_Params Parms{};
 
+	Parms.OutCurrentIndex = OutCurrentIndex;
+	Parms.OutTotalCount = OutTotalCount;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1188,9 +1174,6 @@ int32 UMoviePipelineBlueprintLibrary::GetOverallOutputFrames(class UMoviePipelin
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
-
 	return Parms.ReturnValue;
 
 }
@@ -1199,10 +1182,10 @@ int32 UMoviePipelineBlueprintLibrary::GetOverallOutputFrames(class UMoviePipelin
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetMoviePipelineEngineChangelistLabel
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FText                        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetMoviePipelineEngineChangelistLabel(class UMoviePipeline** InMoviePipeline, class FText ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetMoviePipelineEngineChangelistLabel(class FText ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1221,8 +1204,7 @@ void UMoviePipelineBlueprintLibrary::GetMoviePipelineEngineChangelistLabel(class
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1230,10 +1212,10 @@ void UMoviePipelineBlueprintLibrary::GetMoviePipelineEngineChangelistLabel(class
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetMasterTimecode
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FTimecode                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// struct FTimecode                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetMasterTimecode(class UMoviePipeline** InMoviePipeline, const struct FTimecode& ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetMasterTimecode(const struct FTimecode& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1252,8 +1234,7 @@ void UMoviePipelineBlueprintLibrary::GetMasterTimecode(class UMoviePipeline** In
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1261,10 +1242,10 @@ void UMoviePipelineBlueprintLibrary::GetMasterTimecode(class UMoviePipeline** In
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetMasterFrameNumber
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FFrameNumber                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// struct FFrameNumber                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetMasterFrameNumber(class UMoviePipeline** InMoviePipeline, const struct FFrameNumber& ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetMasterFrameNumber(const struct FFrameNumber& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1283,8 +1264,7 @@ void UMoviePipelineBlueprintLibrary::GetMasterFrameNumber(class UMoviePipeline**
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1292,10 +1272,10 @@ void UMoviePipelineBlueprintLibrary::GetMasterFrameNumber(class UMoviePipeline**
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetMapPackageName
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipelineExecutorJob*   InJob                                                            (Net, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelineExecutorJob*   InJob                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetMapPackageName(class UMoviePipelineExecutorJob** InJob, const class FString& ReturnValue)
+void UMoviePipelineBlueprintLibrary::GetMapPackageName(class UMoviePipelineExecutorJob* InJob, const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1304,6 +1284,7 @@ void UMoviePipelineBlueprintLibrary::GetMapPackageName(class UMoviePipelineExecu
 
 	Params::UMoviePipelineBlueprintLibrary_GetMapPackageName_Params Parms{};
 
+	Parms.InJob = InJob;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1314,19 +1295,16 @@ void UMoviePipelineBlueprintLibrary::GetMapPackageName(class UMoviePipelineExecu
 
 	Func->FunctionFlags = Flgs;
 
-	if (InJob != nullptr)
-		*InJob = Parms.InJob;
-
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetJobName
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FText                        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetJobName(class UMoviePipeline** InMoviePipeline, class FText ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetJobName(class FText ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1345,8 +1323,7 @@ void UMoviePipelineBlueprintLibrary::GetJobName(class UMoviePipeline** InMoviePi
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1354,10 +1331,10 @@ void UMoviePipelineBlueprintLibrary::GetJobName(class UMoviePipeline** InMoviePi
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetJobInitializationTime
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FDateTime                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// struct FDateTime                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetJobInitializationTime(class UMoviePipeline** InMoviePipeline, const struct FDateTime& ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetJobInitializationTime(const struct FDateTime& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1376,8 +1353,7 @@ void UMoviePipelineBlueprintLibrary::GetJobInitializationTime(class UMoviePipeli
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1385,10 +1361,10 @@ void UMoviePipelineBlueprintLibrary::GetJobInitializationTime(class UMoviePipeli
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetJobAuthor
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FText                        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetJobAuthor(class UMoviePipeline** InMoviePipeline, class FText ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetJobAuthor(class FText ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1407,8 +1383,7 @@ void UMoviePipelineBlueprintLibrary::GetJobAuthor(class UMoviePipeline** InMovie
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1416,11 +1391,11 @@ void UMoviePipelineBlueprintLibrary::GetJobAuthor(class UMoviePipeline** InMovie
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetEstimatedTimeRemaining
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InPipeline                                                       (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FTimespan                   OutEstimate                                                      (ConstParm, BlueprintVisible, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InPipeline                                                       (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// struct FTimespan                   OutEstimate                                                      (BlueprintReadOnly, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FTimespan UMoviePipelineBlueprintLibrary::GetEstimatedTimeRemaining(class UMoviePipeline* InPipeline, bool ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetEstimatedTimeRemaining(const struct FTimespan& OutEstimate, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1429,7 +1404,7 @@ struct FTimespan UMoviePipelineBlueprintLibrary::GetEstimatedTimeRemaining(class
 
 	Params::UMoviePipelineBlueprintLibrary_GetEstimatedTimeRemaining_Params Parms{};
 
-	Parms.InPipeline = InPipeline;
+	Parms.OutEstimate = OutEstimate;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1448,11 +1423,11 @@ struct FTimespan UMoviePipelineBlueprintLibrary::GetEstimatedTimeRemaining(class
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetEffectiveOutputResolution
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UMoviePipelinePrimaryConfig* InPrimaryConfig                                                  (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UMoviePipelineExecutorShot*  InPipelineExecutorShot                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FIntPoint                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelinePrimaryConfig* InPrimaryConfig                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UMoviePipelineExecutorShot*  InPipelineExecutorShot                                           (BlueprintVisible, InstancedReference, SubobjectReference)
+// struct FIntPoint                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetEffectiveOutputResolution(class UMoviePipelinePrimaryConfig** InPrimaryConfig, class UMoviePipelineExecutorShot** InPipelineExecutorShot, const struct FIntPoint& ReturnValue)
+class UMoviePipelinePrimaryConfig* UMoviePipelineBlueprintLibrary::GetEffectiveOutputResolution(class UMoviePipelineExecutorShot* InPipelineExecutorShot, const struct FIntPoint& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1461,6 +1436,7 @@ void UMoviePipelineBlueprintLibrary::GetEffectiveOutputResolution(class UMoviePi
 
 	Params::UMoviePipelineBlueprintLibrary_GetEffectiveOutputResolution_Params Parms{};
 
+	Parms.InPipelineExecutorShot = InPipelineExecutorShot;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1471,11 +1447,7 @@ void UMoviePipelineBlueprintLibrary::GetEffectiveOutputResolution(class UMoviePi
 
 	Func->FunctionFlags = Flgs;
 
-	if (InPrimaryConfig != nullptr)
-		*InPrimaryConfig = Parms.InPrimaryConfig;
-
-	if (InPipelineExecutorShot != nullptr)
-		*InPipelineExecutorShot = Parms.InPipelineExecutorShot;
+	return Parms.ReturnValue;
 
 }
 
@@ -1483,10 +1455,10 @@ void UMoviePipelineBlueprintLibrary::GetEffectiveOutputResolution(class UMoviePi
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetCurrentShotTimecode
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FTimecode                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// struct FTimecode                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetCurrentShotTimecode(class UMoviePipeline** InMoviePipeline, const struct FTimecode& ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetCurrentShotTimecode(const struct FTimecode& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1505,8 +1477,7 @@ void UMoviePipelineBlueprintLibrary::GetCurrentShotTimecode(class UMoviePipeline
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1514,10 +1485,10 @@ void UMoviePipelineBlueprintLibrary::GetCurrentShotTimecode(class UMoviePipeline
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetCurrentShotFrameNumber
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FFrameNumber                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// struct FFrameNumber                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetCurrentShotFrameNumber(class UMoviePipeline** InMoviePipeline, const struct FFrameNumber& ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetCurrentShotFrameNumber(const struct FFrameNumber& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1536,8 +1507,7 @@ void UMoviePipelineBlueprintLibrary::GetCurrentShotFrameNumber(class UMoviePipel
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1545,10 +1515,10 @@ void UMoviePipelineBlueprintLibrary::GetCurrentShotFrameNumber(class UMoviePipel
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetCurrentSequence
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class ULevelSequence*              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class ULevelSequence*              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetCurrentSequence(class UMoviePipeline** InMoviePipeline, class ULevelSequence* ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetCurrentSequence(class ULevelSequence* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1567,8 +1537,7 @@ void UMoviePipelineBlueprintLibrary::GetCurrentSequence(class UMoviePipeline** I
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1576,10 +1545,10 @@ void UMoviePipelineBlueprintLibrary::GetCurrentSequence(class UMoviePipeline** I
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetCurrentSegmentWorkMetrics
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FMoviePipelineSegmentWorkMetricsReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// struct FMoviePipelineSegmentWorkMetricsReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetCurrentSegmentWorkMetrics(class UMoviePipeline** InMoviePipeline, const struct FMoviePipelineSegmentWorkMetrics& ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetCurrentSegmentWorkMetrics(const struct FMoviePipelineSegmentWorkMetrics& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1598,8 +1567,7 @@ void UMoviePipelineBlueprintLibrary::GetCurrentSegmentWorkMetrics(class UMoviePi
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1607,10 +1575,10 @@ void UMoviePipelineBlueprintLibrary::GetCurrentSegmentWorkMetrics(class UMoviePi
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetCurrentSegmentState
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class EMovieRenderShotState   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// enum class EMovieRenderShotState   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetCurrentSegmentState(class UMoviePipeline** InMoviePipeline, enum class EMovieRenderShotState ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetCurrentSegmentState(enum class EMovieRenderShotState ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1629,8 +1597,7 @@ void UMoviePipelineBlueprintLibrary::GetCurrentSegmentState(class UMoviePipeline
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1638,11 +1605,11 @@ void UMoviePipelineBlueprintLibrary::GetCurrentSegmentState(class UMoviePipeline
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetCurrentSegmentName
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FText                        OutOuterName                                                     (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FText                        OutInnerName                                                     (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class FText                        OutOuterName                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class FText                        OutInnerName                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetCurrentSegmentName(class UMoviePipeline** InMoviePipeline, class FText* OutOuterName, class FText* OutInnerName)
+class FText UMoviePipelineBlueprintLibrary::GetCurrentSegmentName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1660,14 +1627,7 @@ void UMoviePipelineBlueprintLibrary::GetCurrentSegmentName(class UMoviePipeline*
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
-
-	if (OutOuterName != nullptr)
-		*OutOuterName = Parms.OutOuterName;
-
-	if (OutInnerName != nullptr)
-		*OutInnerName = Parms.OutInnerName;
+	return Parms.ReturnValue;
 
 }
 
@@ -1675,10 +1635,10 @@ void UMoviePipelineBlueprintLibrary::GetCurrentSegmentName(class UMoviePipeline*
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetCurrentFocusDistance
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetCurrentFocusDistance(class UMoviePipeline** InMoviePipeline, float ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetCurrentFocusDistance(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1697,8 +1657,7 @@ void UMoviePipelineBlueprintLibrary::GetCurrentFocusDistance(class UMoviePipelin
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1706,10 +1665,10 @@ void UMoviePipelineBlueprintLibrary::GetCurrentFocusDistance(class UMoviePipelin
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetCurrentFocalLength
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetCurrentFocalLength(class UMoviePipeline** InMoviePipeline, float ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetCurrentFocalLength(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1728,8 +1687,7 @@ void UMoviePipelineBlueprintLibrary::GetCurrentFocalLength(class UMoviePipeline*
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1737,10 +1695,10 @@ void UMoviePipelineBlueprintLibrary::GetCurrentFocalLength(class UMoviePipeline*
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetCurrentExecutorShot
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UMoviePipelineExecutorShot*  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UMoviePipelineExecutorShot*  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetCurrentExecutorShot(class UMoviePipeline** InMoviePipeline, class UMoviePipelineExecutorShot* ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetCurrentExecutorShot(class UMoviePipelineExecutorShot* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1759,8 +1717,7 @@ void UMoviePipelineBlueprintLibrary::GetCurrentExecutorShot(class UMoviePipeline
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1768,10 +1725,10 @@ void UMoviePipelineBlueprintLibrary::GetCurrentExecutorShot(class UMoviePipeline
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetCurrentAperture
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InMoviePipeline                                                  (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InMoviePipeline                                                  (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetCurrentAperture(class UMoviePipeline** InMoviePipeline, float ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetCurrentAperture(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1790,8 +1747,7 @@ void UMoviePipelineBlueprintLibrary::GetCurrentAperture(class UMoviePipeline** I
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMoviePipeline != nullptr)
-		*InMoviePipeline = Parms.InMoviePipeline;
+	return Parms.ReturnValue;
 
 }
 
@@ -1799,10 +1755,10 @@ void UMoviePipelineBlueprintLibrary::GetCurrentAperture(class UMoviePipeline** I
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.GetCompletionPercentage
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UMoviePipeline*              InPipeline                                                       (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipeline*              InPipeline                                                       (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::GetCompletionPercentage(class UMoviePipeline* InPipeline, float ReturnValue)
+class UMoviePipeline* UMoviePipelineBlueprintLibrary::GetCompletionPercentage(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1811,7 +1767,6 @@ void UMoviePipelineBlueprintLibrary::GetCompletionPercentage(class UMoviePipelin
 
 	Params::UMoviePipelineBlueprintLibrary_GetCompletionPercentage_Params Parms{};
 
-	Parms.InPipeline = InPipeline;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1822,18 +1777,20 @@ void UMoviePipelineBlueprintLibrary::GetCompletionPercentage(class UMoviePipelin
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineBlueprintLibrary.FindOrGetDefaultSettingForShot
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InSettingType                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UMoviePipelinePrimaryConfig* InPrimaryConfig                                                  (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UMoviePipelineExecutorShot*  InShot                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UMoviePipelineSetting*       ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InSettingType                                                    (Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UMoviePipelinePrimaryConfig* InPrimaryConfig                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UMoviePipelineExecutorShot*  InShot                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UMoviePipelineSetting*       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineBlueprintLibrary::FindOrGetDefaultSettingForShot(class UClass** InSettingType, class UMoviePipelinePrimaryConfig** InPrimaryConfig, class UMoviePipelineExecutorShot** InShot, class UMoviePipelineSetting* ReturnValue)
+class UMoviePipelineExecutorShot* UMoviePipelineBlueprintLibrary::FindOrGetDefaultSettingForShot(class UMoviePipelineSetting* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1852,14 +1809,7 @@ void UMoviePipelineBlueprintLibrary::FindOrGetDefaultSettingForShot(class UClass
 
 	Func->FunctionFlags = Flgs;
 
-	if (InSettingType != nullptr)
-		*InSettingType = Parms.InSettingType;
-
-	if (InPrimaryConfig != nullptr)
-		*InPrimaryConfig = Parms.InPrimaryConfig;
-
-	if (InShot != nullptr)
-		*InShot = Parms.InShot;
+	return Parms.ReturnValue;
 
 }
 
@@ -1868,8 +1818,8 @@ void UMoviePipelineBlueprintLibrary::FindOrGetDefaultSettingForShot(class UClass
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UObject*                     Outer                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
-// class UMovieSceneSequence*         InSequence                                                       (Edit, ExportObject, Transient, Config, InstancedReference, SubobjectReference)
-// class UMovieSceneSequence*         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMovieSceneSequence*         InSequence                                                       (BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UMovieSceneSequence*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineBlueprintLibrary::DuplicateSequence(class UObject* Outer, class UMovieSceneSequence* InSequence, class UMovieSceneSequence* ReturnValue)
 {
@@ -2010,9 +1960,9 @@ class UMoviePipelineConfigBase* UMoviePipelineConfigBase::GetDefaultObj()
 // Function MovieRenderPipelineCore.MoviePipelineConfigBase.SetConfigOrigin
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelineConfigBase*    InConfig                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipelineConfigBase*    InConfig                                                         (Edit, Net, OutParm, InstancedReference, SubobjectReference)
 
-class UMoviePipelineConfigBase* UMoviePipelineConfigBase::SetConfigOrigin()
+void UMoviePipelineConfigBase::SetConfigOrigin(class UMoviePipelineConfigBase** InConfig)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2030,7 +1980,8 @@ class UMoviePipelineConfigBase* UMoviePipelineConfigBase::SetConfigOrigin()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InConfig != nullptr)
+		*InConfig = Parms.InConfig;
 
 }
 
@@ -2038,9 +1989,9 @@ class UMoviePipelineConfigBase* UMoviePipelineConfigBase::SetConfigOrigin()
 // Function MovieRenderPipelineCore.MoviePipelineConfigBase.RemoveSetting
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelineSetting*       InSetting                                                        (Edit, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipelineSetting*       InSetting                                                        (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, InstancedReference, SubobjectReference)
 
-class UMoviePipelineSetting* UMoviePipelineConfigBase::RemoveSetting()
+void UMoviePipelineConfigBase::RemoveSetting(class UMoviePipelineSetting** InSetting)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2058,7 +2009,8 @@ class UMoviePipelineSetting* UMoviePipelineConfigBase::RemoveSetting()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InSetting != nullptr)
+		*InSetting = Parms.InSetting;
 
 }
 
@@ -2066,7 +2018,7 @@ class UMoviePipelineSetting* UMoviePipelineConfigBase::RemoveSetting()
 // Function MovieRenderPipelineCore.MoviePipelineConfigBase.GetUserSettings
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UMoviePipelineSetting*>ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UMoviePipelineSetting*>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineConfigBase::GetUserSettings(const TArray<class UMoviePipelineSetting*>& ReturnValue)
 {
@@ -2093,7 +2045,7 @@ void UMoviePipelineConfigBase::GetUserSettings(const TArray<class UMoviePipeline
 // Function MovieRenderPipelineCore.MoviePipelineConfigBase.GetConfigOrigin
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMoviePipelineConfigBase*    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelineConfigBase*    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineConfigBase::GetConfigOrigin(class UMoviePipelineConfigBase* ReturnValue)
 {
@@ -2120,12 +2072,12 @@ void UMoviePipelineConfigBase::GetConfigOrigin(class UMoviePipelineConfigBase* R
 // Function MovieRenderPipelineCore.MoviePipelineConfigBase.FindSettingsByClass
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UClass*                      InClass                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bIncludeDisabledSettings                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bExactMatch                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-// TArray<class UMoviePipelineSetting*>ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InClass                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bIncludeDisabledSettings                                         (ConstParm, BlueprintVisible, Net, OutParm, InstancedReference, SubobjectReference)
+// bool                               bExactMatch                                                      (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class UMoviePipelineSetting*>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UMoviePipelineConfigBase::FindSettingsByClass(class UClass* InClass, bool bExactMatch, const TArray<class UMoviePipelineSetting*>& ReturnValue)
+class UClass* UMoviePipelineConfigBase::FindSettingsByClass(bool* bIncludeDisabledSettings, bool* bExactMatch, const TArray<class UMoviePipelineSetting*>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2134,8 +2086,6 @@ bool UMoviePipelineConfigBase::FindSettingsByClass(class UClass* InClass, bool b
 
 	Params::UMoviePipelineConfigBase_FindSettingsByClass_Params Parms{};
 
-	Parms.InClass = InClass;
-	Parms.bExactMatch = bExactMatch;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -2145,6 +2095,12 @@ bool UMoviePipelineConfigBase::FindSettingsByClass(class UClass* InClass, bool b
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (bIncludeDisabledSettings != nullptr)
+		*bIncludeDisabledSettings = Parms.bIncludeDisabledSettings;
+
+	if (bExactMatch != nullptr)
+		*bExactMatch = Parms.bExactMatch;
 
 	return Parms.ReturnValue;
 
@@ -2154,12 +2110,12 @@ bool UMoviePipelineConfigBase::FindSettingsByClass(class UClass* InClass, bool b
 // Function MovieRenderPipelineCore.MoviePipelineConfigBase.FindSettingByClass
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UClass*                      InClass                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bIncludeDisabledSettings                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bExactMatch                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-// class UMoviePipelineSetting*       ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InClass                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bIncludeDisabledSettings                                         (ConstParm, BlueprintVisible, Net, OutParm, InstancedReference, SubobjectReference)
+// bool                               bExactMatch                                                      (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UMoviePipelineSetting*       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UMoviePipelineConfigBase::FindSettingByClass(class UClass* InClass, bool bExactMatch, class UMoviePipelineSetting* ReturnValue)
+class UClass* UMoviePipelineConfigBase::FindSettingByClass(bool* bIncludeDisabledSettings, bool* bExactMatch, class UMoviePipelineSetting* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2168,8 +2124,6 @@ bool UMoviePipelineConfigBase::FindSettingByClass(class UClass* InClass, bool bE
 
 	Params::UMoviePipelineConfigBase_FindSettingByClass_Params Parms{};
 
-	Parms.InClass = InClass;
-	Parms.bExactMatch = bExactMatch;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -2179,6 +2133,12 @@ bool UMoviePipelineConfigBase::FindSettingByClass(class UClass* InClass, bool bE
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (bIncludeDisabledSettings != nullptr)
+		*bIncludeDisabledSettings = Parms.bIncludeDisabledSettings;
+
+	if (bExactMatch != nullptr)
+		*bExactMatch = Parms.bExactMatch;
 
 	return Parms.ReturnValue;
 
@@ -2188,12 +2148,12 @@ bool UMoviePipelineConfigBase::FindSettingByClass(class UClass* InClass, bool bE
 // Function MovieRenderPipelineCore.MoviePipelineConfigBase.FindOrAddSettingByClass
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InClass                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bIncludeDisabledSettings                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bExactMatch                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-// class UMoviePipelineSetting*       ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InClass                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bIncludeDisabledSettings                                         (ConstParm, BlueprintVisible, Net, OutParm, InstancedReference, SubobjectReference)
+// bool                               bExactMatch                                                      (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UMoviePipelineSetting*       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UMoviePipelineConfigBase::FindOrAddSettingByClass(class UClass* InClass, bool bExactMatch, class UMoviePipelineSetting* ReturnValue)
+class UClass* UMoviePipelineConfigBase::FindOrAddSettingByClass(bool* bIncludeDisabledSettings, bool* bExactMatch, class UMoviePipelineSetting* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2202,8 +2162,6 @@ bool UMoviePipelineConfigBase::FindOrAddSettingByClass(class UClass* InClass, bo
 
 	Params::UMoviePipelineConfigBase_FindOrAddSettingByClass_Params Parms{};
 
-	Parms.InClass = InClass;
-	Parms.bExactMatch = bExactMatch;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -2214,6 +2172,12 @@ bool UMoviePipelineConfigBase::FindOrAddSettingByClass(class UClass* InClass, bo
 
 	Func->FunctionFlags = Flgs;
 
+	if (bIncludeDisabledSettings != nullptr)
+		*bIncludeDisabledSettings = Parms.bIncludeDisabledSettings;
+
+	if (bExactMatch != nullptr)
+		*bExactMatch = Parms.bExactMatch;
+
 	return Parms.ReturnValue;
 
 }
@@ -2222,9 +2186,9 @@ bool UMoviePipelineConfigBase::FindOrAddSettingByClass(class UClass* InClass, bo
 // Function MovieRenderPipelineCore.MoviePipelineConfigBase.CopyFrom
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelineConfigBase*    InConfig                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipelineConfigBase*    InConfig                                                         (Edit, Net, OutParm, InstancedReference, SubobjectReference)
 
-class UMoviePipelineConfigBase* UMoviePipelineConfigBase::CopyFrom()
+void UMoviePipelineConfigBase::CopyFrom(class UMoviePipelineConfigBase** InConfig)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2242,7 +2206,8 @@ class UMoviePipelineConfigBase* UMoviePipelineConfigBase::CopyFrom()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InConfig != nullptr)
+		*InConfig = Parms.InConfig;
 
 }
 
@@ -2306,9 +2271,9 @@ class UMoviePipelineExecutorBase* UMoviePipelineExecutorBase::GetDefaultObj()
 // Function MovieRenderPipelineCore.MoviePipelineExecutorBase.SetStatusProgress
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// float                              InProgress                                                       (Edit, ConstParm, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst)
+// float                              InProgress                                                       (BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
 
-void UMoviePipelineExecutorBase::SetStatusProgress(float InProgress)
+float UMoviePipelineExecutorBase::SetStatusProgress()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2317,7 +2282,6 @@ void UMoviePipelineExecutorBase::SetStatusProgress(float InProgress)
 
 	Params::UMoviePipelineExecutorBase_SetStatusProgress_Params Parms{};
 
-	Parms.InProgress = InProgress;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2327,15 +2291,17 @@ void UMoviePipelineExecutorBase::SetStatusProgress(float InProgress)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineExecutorBase.SetStatusMessage
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FString                      InStatus                                                         (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      InStatus                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, InstancedReference, SubobjectReference)
 
-class FString UMoviePipelineExecutorBase::SetStatusMessage()
+void UMoviePipelineExecutorBase::SetStatusMessage(class FString* InStatus)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2353,7 +2319,8 @@ class FString UMoviePipelineExecutorBase::SetStatusMessage()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InStatus != nullptr)
+		*InStatus = std::move(Parms.InStatus);
 
 }
 
@@ -2361,9 +2328,9 @@ class FString UMoviePipelineExecutorBase::SetStatusMessage()
 // Function MovieRenderPipelineCore.MoviePipelineExecutorBase.SetMoviePipelineClass
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InPipelineClass                                                  (Edit, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UClass*                      InPipelineClass                                                  (Edit, ConstParm, ExportObject, Net, Parm, OutParm, InstancedReference, SubobjectReference)
 
-class UClass* UMoviePipelineExecutorBase::SetMoviePipelineClass()
+void UMoviePipelineExecutorBase::SetMoviePipelineClass(class UClass** InPipelineClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2381,7 +2348,8 @@ class UClass* UMoviePipelineExecutorBase::SetMoviePipelineClass()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPipelineClass != nullptr)
+		*InPipelineClass = Parms.InPipelineClass;
 
 }
 
@@ -2389,10 +2357,10 @@ class UClass* UMoviePipelineExecutorBase::SetMoviePipelineClass()
 // Function MovieRenderPipelineCore.MoviePipelineExecutorBase.SendSocketMessage
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// class FString                      InMessage                                                        (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InMessage                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString UMoviePipelineExecutorBase::SendSocketMessage(bool ReturnValue)
+void UMoviePipelineExecutorBase::SendSocketMessage(class FString* InMessage, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2411,7 +2379,8 @@ class FString UMoviePipelineExecutorBase::SendSocketMessage(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InMessage != nullptr)
+		*InMessage = std::move(Parms.InMessage);
 
 }
 
@@ -2419,13 +2388,13 @@ class FString UMoviePipelineExecutorBase::SendSocketMessage(bool ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipelineExecutorBase.SendHTTPRequest
 // (Final, Native, Protected, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      InURL                                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      InVerb                                                           (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      InMessage                                                        (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TMap<class FString, class FString> InHeaders                                                        (Edit, ConstParm, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InURL                                                            (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, InstancedReference, SubobjectReference)
+// class FString                      InVerb                                                           (Edit, ConstParm, Net, Parm, OutParm, InstancedReference, SubobjectReference)
+// class FString                      InMessage                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// TMap<class FString, class FString> InHeaders                                                        (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TMap<class FString, class FString> UMoviePipelineExecutorBase::SendHTTPRequest(int32 ReturnValue)
+void UMoviePipelineExecutorBase::SendHTTPRequest(class FString* InURL, class FString* InVerb, class FString* InMessage, TMap<class FString, class FString>* InHeaders, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2444,7 +2413,17 @@ TMap<class FString, class FString> UMoviePipelineExecutorBase::SendHTTPRequest(i
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InURL != nullptr)
+		*InURL = std::move(Parms.InURL);
+
+	if (InVerb != nullptr)
+		*InVerb = std::move(Parms.InVerb);
+
+	if (InMessage != nullptr)
+		*InMessage = std::move(Parms.InMessage);
+
+	if (InHeaders != nullptr)
+		*InHeaders = Parms.InHeaders;
 
 }
 
@@ -2476,11 +2455,11 @@ void UMoviePipelineExecutorBase::OnExecutorFinishedImpl()
 // Function MovieRenderPipelineCore.MoviePipelineExecutorBase.OnExecutorErroredImpl
 // (Native, Protected, BlueprintCallable)
 // Parameters:
-// class UMoviePipeline*              ErroredPipeline                                                  (ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bFatal                                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FText                        ErrorReason                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipeline*              ErroredPipeline                                                  (BlueprintVisible, ExportObject, Parm, OutParm, InstancedReference, SubobjectReference)
+// bool                               bFatal                                                           (ExportObject, Parm, OutParm, InstancedReference, SubobjectReference)
+// class FText                        ErrorReason                                                      (Edit, Parm, OutParm, InstancedReference, SubobjectReference)
 
-class FText UMoviePipelineExecutorBase::OnExecutorErroredImpl()
+void UMoviePipelineExecutorBase::OnExecutorErroredImpl(class UMoviePipeline** ErroredPipeline, bool* bFatal, class FText* ErrorReason)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2498,7 +2477,14 @@ class FText UMoviePipelineExecutorBase::OnExecutorErroredImpl()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ErroredPipeline != nullptr)
+		*ErroredPipeline = Parms.ErroredPipeline;
+
+	if (bFatal != nullptr)
+		*bFatal = Parms.bFatal;
+
+	if (ErrorReason != nullptr)
+		*ErrorReason = Parms.ErrorReason;
 
 }
 
@@ -2530,7 +2516,7 @@ void UMoviePipelineExecutorBase::OnBeginFrame()
 // Function MovieRenderPipelineCore.MoviePipelineExecutorBase.IsSocketConnected
 // (Final, Native, Protected, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorBase::IsSocketConnected(bool ReturnValue)
 {
@@ -2557,7 +2543,7 @@ void UMoviePipelineExecutorBase::IsSocketConnected(bool ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipelineExecutorBase.IsRendering
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorBase::IsRendering(bool ReturnValue)
 {
@@ -2584,7 +2570,7 @@ void UMoviePipelineExecutorBase::IsRendering(bool ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipelineExecutorBase.GetStatusProgress
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorBase::GetStatusProgress(float ReturnValue)
 {
@@ -2611,7 +2597,7 @@ void UMoviePipelineExecutorBase::GetStatusProgress(float ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipelineExecutorBase.GetStatusMessage
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorBase::GetStatusMessage(const class FString& ReturnValue)
 {
@@ -2638,9 +2624,9 @@ void UMoviePipelineExecutorBase::GetStatusMessage(const class FString& ReturnVal
 // Function MovieRenderPipelineCore.MoviePipelineExecutorBase.Execute
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UMoviePipelineQueue*         InPipelineQueue                                                  (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipelineQueue*         InPipelineQueue                                                  (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
 
-class UMoviePipelineQueue* UMoviePipelineExecutorBase::Execute()
+void UMoviePipelineExecutorBase::Execute(class UMoviePipelineQueue** InPipelineQueue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2658,7 +2644,8 @@ class UMoviePipelineQueue* UMoviePipelineExecutorBase::Execute()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPipelineQueue != nullptr)
+		*InPipelineQueue = Parms.InPipelineQueue;
 
 }
 
@@ -2690,11 +2677,11 @@ void UMoviePipelineExecutorBase::DisconnectSocket()
 // Function MovieRenderPipelineCore.MoviePipelineExecutorBase.ConnectSocket
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// class FString                      InHostName                                                       (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InPort                                                           (BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InHostName                                                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
+// int32                              InPort                                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMoviePipelineExecutorBase::ConnectSocket(bool ReturnValue)
+void UMoviePipelineExecutorBase::ConnectSocket(class FString* InHostName, int32* InPort, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2713,7 +2700,11 @@ int32 UMoviePipelineExecutorBase::ConnectSocket(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InHostName != nullptr)
+		*InHostName = std::move(Parms.InHostName);
+
+	if (InPort != nullptr)
+		*InPort = Parms.InPort;
 
 }
 
@@ -2906,6 +2897,149 @@ class UMoviePipelineOutputSetting* UMoviePipelineOutputSetting::GetDefaultObj()
 }
 
 
+// Class MovieRenderPipelineCore.MoviePipelinePrimaryConfig
+// (None)
+
+class UClass* UMoviePipelinePrimaryConfig::StaticClass()
+{
+	static class UClass* Clss = nullptr;
+
+	if (!Clss)
+		Clss = UObject::FindClassFast("MoviePipelinePrimaryConfig");
+
+	return Clss;
+}
+
+
+// MoviePipelinePrimaryConfig MovieRenderPipelineCore.Default__MoviePipelinePrimaryConfig
+// (Public, ClassDefaultObject, ArchetypeObject)
+
+class UMoviePipelinePrimaryConfig* UMoviePipelinePrimaryConfig::GetDefaultObj()
+{
+	static class UMoviePipelinePrimaryConfig* Default = nullptr;
+
+	if (!Default)
+		Default = static_cast<UMoviePipelinePrimaryConfig*>(UMoviePipelinePrimaryConfig::StaticClass()->DefaultObject);
+
+	return Default;
+}
+
+
+// Function MovieRenderPipelineCore.MoviePipelinePrimaryConfig.InitializeTransientSettings
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+
+void UMoviePipelinePrimaryConfig::InitializeTransientSettings()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("MoviePipelinePrimaryConfig", "InitializeTransientSettings");
+
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, nullptr);
+
+
+	Func->FunctionFlags = Flgs;
+
+}
+
+
+// Function MovieRenderPipelineCore.MoviePipelinePrimaryConfig.GetTransientSettings
+// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
+// Parameters:
+// TArray<class UMoviePipelineSetting*>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+void UMoviePipelinePrimaryConfig::GetTransientSettings(const TArray<class UMoviePipelineSetting*>& ReturnValue)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("MoviePipelinePrimaryConfig", "GetTransientSettings");
+
+	Params::UMoviePipelinePrimaryConfig_GetTransientSettings_Params Parms{};
+
+	Parms.ReturnValue = ReturnValue;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+}
+
+
+// Function MovieRenderPipelineCore.MoviePipelinePrimaryConfig.GetEffectiveFrameRate
+// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
+// Parameters:
+// class ULevelSequence*              InSequence                                                       (BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FFrameRate                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+void UMoviePipelinePrimaryConfig::GetEffectiveFrameRate(class ULevelSequence* InSequence, const struct FFrameRate& ReturnValue)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("MoviePipelinePrimaryConfig", "GetEffectiveFrameRate");
+
+	Params::UMoviePipelinePrimaryConfig_GetEffectiveFrameRate_Params Parms{};
+
+	Parms.InSequence = InSequence;
+	Parms.ReturnValue = ReturnValue;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+}
+
+
+// Function MovieRenderPipelineCore.MoviePipelinePrimaryConfig.GetAllSettings
+// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
+// Parameters:
+// bool                               bIncludeDisabledSettings                                         (ConstParm, BlueprintVisible, Net, OutParm, InstancedReference, SubobjectReference)
+// bool                               bIncludeTransientSettings                                        (BlueprintReadOnly, Net, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// TArray<class UMoviePipelineSetting*>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+void UMoviePipelinePrimaryConfig::GetAllSettings(bool* bIncludeDisabledSettings, bool* bIncludeTransientSettings, const TArray<class UMoviePipelineSetting*>& ReturnValue)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("MoviePipelinePrimaryConfig", "GetAllSettings");
+
+	Params::UMoviePipelinePrimaryConfig_GetAllSettings_Params Parms{};
+
+	Parms.ReturnValue = ReturnValue;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	if (bIncludeDisabledSettings != nullptr)
+		*bIncludeDisabledSettings = Parms.bIncludeDisabledSettings;
+
+	if (bIncludeTransientSettings != nullptr)
+		*bIncludeTransientSettings = Parms.bIncludeTransientSettings;
+
+}
+
+
 // Class MovieRenderPipelineCore.MoviePipelinePythonHostExecutor
 // (None)
 
@@ -2937,9 +3071,9 @@ class UMoviePipelinePythonHostExecutor* UMoviePipelinePythonHostExecutor::GetDef
 // Function MovieRenderPipelineCore.MoviePipelinePythonHostExecutor.OnMapLoad
 // (Native, Event, Public, BlueprintEvent)
 // Parameters:
-// class UWorld*                      InWorld                                                          (ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UWorld*                      InWorld                                                          (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-class UWorld* UMoviePipelinePythonHostExecutor::OnMapLoad()
+void UMoviePipelinePythonHostExecutor::OnMapLoad(class UWorld** InWorld)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2957,7 +3091,8 @@ class UWorld* UMoviePipelinePythonHostExecutor::OnMapLoad()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InWorld != nullptr)
+		*InWorld = Parms.InWorld;
 
 }
 
@@ -2965,7 +3100,7 @@ class UWorld* UMoviePipelinePythonHostExecutor::OnMapLoad()
 // Function MovieRenderPipelineCore.MoviePipelinePythonHostExecutor.GetLastLoadedWorld
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UWorld*                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWorld*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelinePythonHostExecutor::GetLastLoadedWorld(class UWorld* ReturnValue)
 {
@@ -2992,9 +3127,9 @@ void UMoviePipelinePythonHostExecutor::GetLastLoadedWorld(class UWorld* ReturnVa
 // Function MovieRenderPipelineCore.MoviePipelinePythonHostExecutor.ExecuteDelayed
 // (Native, Event, Public, BlueprintEvent)
 // Parameters:
-// class UMoviePipelineQueue*         InPipelineQueue                                                  (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipelineQueue*         InPipelineQueue                                                  (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
 
-class UMoviePipelineQueue* UMoviePipelinePythonHostExecutor::ExecuteDelayed()
+void UMoviePipelinePythonHostExecutor::ExecuteDelayed(class UMoviePipelineQueue** InPipelineQueue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3012,7 +3147,8 @@ class UMoviePipelineQueue* UMoviePipelinePythonHostExecutor::ExecuteDelayed()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPipelineQueue != nullptr)
+		*InPipelineQueue = Parms.InPipelineQueue;
 
 }
 
@@ -3048,7 +3184,7 @@ class UMoviePipelineExecutorShot* UMoviePipelineExecutorShot::GetDefaultObj()
 // Function MovieRenderPipelineCore.MoviePipelineExecutorShot.ShouldRender
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorShot::ShouldRender(bool ReturnValue)
 {
@@ -3075,9 +3211,9 @@ void UMoviePipelineExecutorShot::ShouldRender(bool ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipelineExecutorShot.SetStatusProgress
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// float                              InProgress                                                       (Edit, ConstParm, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst)
+// float                              InProgress                                                       (BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
 
-void UMoviePipelineExecutorShot::SetStatusProgress(float InProgress)
+float UMoviePipelineExecutorShot::SetStatusProgress()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3086,7 +3222,6 @@ void UMoviePipelineExecutorShot::SetStatusProgress(float InProgress)
 
 	Params::UMoviePipelineExecutorShot_SetStatusProgress_Params Parms{};
 
-	Parms.InProgress = InProgress;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3096,15 +3231,17 @@ void UMoviePipelineExecutorShot::SetStatusProgress(float InProgress)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineExecutorShot.SetStatusMessage
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FString                      InStatus                                                         (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      InStatus                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, InstancedReference, SubobjectReference)
 
-class FString UMoviePipelineExecutorShot::SetStatusMessage()
+void UMoviePipelineExecutorShot::SetStatusMessage(class FString* InStatus)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3122,7 +3259,8 @@ class FString UMoviePipelineExecutorShot::SetStatusMessage()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InStatus != nullptr)
+		*InStatus = std::move(Parms.InStatus);
 
 }
 
@@ -3130,9 +3268,9 @@ class FString UMoviePipelineExecutorShot::SetStatusMessage()
 // Function MovieRenderPipelineCore.MoviePipelineExecutorShot.SetShotOverridePresetOrigin
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelineShotConfig*    InPreset                                                         (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipelineShotConfig*    InPreset                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-class UMoviePipelineShotConfig* UMoviePipelineExecutorShot::SetShotOverridePresetOrigin()
+void UMoviePipelineExecutorShot::SetShotOverridePresetOrigin(class UMoviePipelineShotConfig** InPreset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3150,7 +3288,8 @@ class UMoviePipelineShotConfig* UMoviePipelineExecutorShot::SetShotOverridePrese
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPreset != nullptr)
+		*InPreset = Parms.InPreset;
 
 }
 
@@ -3158,9 +3297,9 @@ class UMoviePipelineShotConfig* UMoviePipelineExecutorShot::SetShotOverridePrese
 // Function MovieRenderPipelineCore.MoviePipelineExecutorShot.SetShotOverrideConfiguration
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelineShotConfig*    InPreset                                                         (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipelineShotConfig*    InPreset                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-class UMoviePipelineShotConfig* UMoviePipelineExecutorShot::SetShotOverrideConfiguration()
+void UMoviePipelineExecutorShot::SetShotOverrideConfiguration(class UMoviePipelineShotConfig** InPreset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3178,7 +3317,8 @@ class UMoviePipelineShotConfig* UMoviePipelineExecutorShot::SetShotOverrideConfi
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPreset != nullptr)
+		*InPreset = Parms.InPreset;
 
 }
 
@@ -3186,7 +3326,7 @@ class UMoviePipelineShotConfig* UMoviePipelineExecutorShot::SetShotOverrideConfi
 // Function MovieRenderPipelineCore.MoviePipelineExecutorShot.GetStatusProgress
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorShot::GetStatusProgress(float ReturnValue)
 {
@@ -3213,7 +3353,7 @@ void UMoviePipelineExecutorShot::GetStatusProgress(float ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipelineExecutorShot.GetStatusMessage
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorShot::GetStatusMessage(const class FString& ReturnValue)
 {
@@ -3240,7 +3380,7 @@ void UMoviePipelineExecutorShot::GetStatusMessage(const class FString& ReturnVal
 // Function MovieRenderPipelineCore.MoviePipelineExecutorShot.GetShotOverridePresetOrigin
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMoviePipelineShotConfig*    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelineShotConfig*    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorShot::GetShotOverridePresetOrigin(class UMoviePipelineShotConfig* ReturnValue)
 {
@@ -3267,7 +3407,7 @@ void UMoviePipelineExecutorShot::GetShotOverridePresetOrigin(class UMoviePipelin
 // Function MovieRenderPipelineCore.MoviePipelineExecutorShot.GetShotOverrideConfiguration
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMoviePipelineShotConfig*    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelineShotConfig*    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorShot::GetShotOverrideConfiguration(class UMoviePipelineShotConfig* ReturnValue)
 {
@@ -3294,10 +3434,10 @@ void UMoviePipelineExecutorShot::GetShotOverrideConfiguration(class UMoviePipeli
 // Function MovieRenderPipelineCore.MoviePipelineExecutorShot.GetCameraName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InCameraIndex                                                    (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InCameraIndex                                                    (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMoviePipelineExecutorShot::GetCameraName(const class FString& ReturnValue)
+void UMoviePipelineExecutorShot::GetCameraName(int32* InCameraIndex, const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3316,7 +3456,8 @@ int32 UMoviePipelineExecutorShot::GetCameraName(const class FString& ReturnValue
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InCameraIndex != nullptr)
+		*InCameraIndex = Parms.InCameraIndex;
 
 }
 
@@ -3324,10 +3465,10 @@ int32 UMoviePipelineExecutorShot::GetCameraName(const class FString& ReturnValue
 // Function MovieRenderPipelineCore.MoviePipelineExecutorShot.AllocateNewShotOverrideConfig
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InConfigType                                                     (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UMoviePipelineShotConfig*    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InConfigType                                                     (ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// class UMoviePipelineShotConfig*    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UMoviePipelineExecutorShot::AllocateNewShotOverrideConfig(class UMoviePipelineShotConfig* ReturnValue)
+void UMoviePipelineExecutorShot::AllocateNewShotOverrideConfig(class UClass** InConfigType, class UMoviePipelineShotConfig* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3346,7 +3487,8 @@ class UClass* UMoviePipelineExecutorShot::AllocateNewShotOverrideConfig(class UM
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InConfigType != nullptr)
+		*InConfigType = Parms.InConfigType;
 
 }
 
@@ -3382,9 +3524,9 @@ class UMoviePipelineExecutorJob* UMoviePipelineExecutorJob::GetDefaultObj()
 // Function MovieRenderPipelineCore.MoviePipelineExecutorJob.SetStatusProgress
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// float                              InProgress                                                       (Edit, ConstParm, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst)
+// float                              InProgress                                                       (BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
 
-void UMoviePipelineExecutorJob::SetStatusProgress(float InProgress)
+float UMoviePipelineExecutorJob::SetStatusProgress()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3393,7 +3535,6 @@ void UMoviePipelineExecutorJob::SetStatusProgress(float InProgress)
 
 	Params::UMoviePipelineExecutorJob_SetStatusProgress_Params Parms{};
 
-	Parms.InProgress = InProgress;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3403,15 +3544,17 @@ void UMoviePipelineExecutorJob::SetStatusProgress(float InProgress)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineExecutorJob.SetStatusMessage
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FString                      InStatus                                                         (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      InStatus                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, InstancedReference, SubobjectReference)
 
-class FString UMoviePipelineExecutorJob::SetStatusMessage()
+void UMoviePipelineExecutorJob::SetStatusMessage(class FString* InStatus)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3429,7 +3572,8 @@ class FString UMoviePipelineExecutorJob::SetStatusMessage()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InStatus != nullptr)
+		*InStatus = std::move(Parms.InStatus);
 
 }
 
@@ -3437,7 +3581,7 @@ class FString UMoviePipelineExecutorJob::SetStatusMessage()
 // Function MovieRenderPipelineCore.MoviePipelineExecutorJob.SetSequence
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FSoftObjectPath             InSequence                                                       (Edit, ExportObject, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSoftObjectPath             InSequence                                                       (BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void UMoviePipelineExecutorJob::SetSequence(const struct FSoftObjectPath& InSequence)
 {
@@ -3464,9 +3608,9 @@ void UMoviePipelineExecutorJob::SetSequence(const struct FSoftObjectPath& InSequ
 // Function MovieRenderPipelineCore.MoviePipelineExecutorJob.SetPresetOrigin
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelinePrimaryConfig* InPreset                                                         (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipelinePrimaryConfig* InPreset                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-class UMoviePipelinePrimaryConfig* UMoviePipelineExecutorJob::SetPresetOrigin()
+void UMoviePipelineExecutorJob::SetPresetOrigin(class UMoviePipelinePrimaryConfig** InPreset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3484,7 +3628,8 @@ class UMoviePipelinePrimaryConfig* UMoviePipelineExecutorJob::SetPresetOrigin()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPreset != nullptr)
+		*InPreset = Parms.InPreset;
 
 }
 
@@ -3492,9 +3637,9 @@ class UMoviePipelinePrimaryConfig* UMoviePipelineExecutorJob::SetPresetOrigin()
 // Function MovieRenderPipelineCore.MoviePipelineExecutorJob.SetIsEnabled
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               bInEnabled                                                       (BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInEnabled                                                       (ConstParm, ExportObject, Parm, InstancedReference, SubobjectReference)
 
-bool UMoviePipelineExecutorJob::SetIsEnabled()
+void UMoviePipelineExecutorJob::SetIsEnabled(bool bInEnabled)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3503,6 +3648,7 @@ bool UMoviePipelineExecutorJob::SetIsEnabled()
 
 	Params::UMoviePipelineExecutorJob_SetIsEnabled_Params Parms{};
 
+	Parms.bInEnabled = bInEnabled;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3512,17 +3658,15 @@ bool UMoviePipelineExecutorJob::SetIsEnabled()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineExecutorJob.SetConsumed
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               bInConsumed                                                      (Edit, ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInConsumed                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-bool UMoviePipelineExecutorJob::SetConsumed()
+void UMoviePipelineExecutorJob::SetConsumed(bool* bInConsumed)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3540,7 +3684,8 @@ bool UMoviePipelineExecutorJob::SetConsumed()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInConsumed != nullptr)
+		*bInConsumed = Parms.bInConsumed;
 
 }
 
@@ -3548,9 +3693,9 @@ bool UMoviePipelineExecutorJob::SetConsumed()
 // Function MovieRenderPipelineCore.MoviePipelineExecutorJob.SetConfiguration
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelinePrimaryConfig* InPreset                                                         (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipelinePrimaryConfig* InPreset                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-class UMoviePipelinePrimaryConfig* UMoviePipelineExecutorJob::SetConfiguration()
+void UMoviePipelineExecutorJob::SetConfiguration(class UMoviePipelinePrimaryConfig** InPreset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3568,7 +3713,8 @@ class UMoviePipelinePrimaryConfig* UMoviePipelineExecutorJob::SetConfiguration()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPreset != nullptr)
+		*InPreset = Parms.InPreset;
 
 }
 
@@ -3600,7 +3746,7 @@ void UMoviePipelineExecutorJob::OnDuplicated()
 // Function MovieRenderPipelineCore.MoviePipelineExecutorJob.IsEnabled
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorJob::IsEnabled(bool ReturnValue)
 {
@@ -3627,7 +3773,7 @@ void UMoviePipelineExecutorJob::IsEnabled(bool ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipelineExecutorJob.IsConsumed
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorJob::IsConsumed(bool ReturnValue)
 {
@@ -3654,7 +3800,7 @@ void UMoviePipelineExecutorJob::IsConsumed(bool ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipelineExecutorJob.GetStatusProgress
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorJob::GetStatusProgress(float ReturnValue)
 {
@@ -3681,7 +3827,7 @@ void UMoviePipelineExecutorJob::GetStatusProgress(float ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipelineExecutorJob.GetStatusMessage
 // (Native, Event, Public, BlueprintCallable, BlueprintEvent, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorJob::GetStatusMessage(const class FString& ReturnValue)
 {
@@ -3708,7 +3854,7 @@ void UMoviePipelineExecutorJob::GetStatusMessage(const class FString& ReturnValu
 // Function MovieRenderPipelineCore.MoviePipelineExecutorJob.GetPresetOrigin
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMoviePipelinePrimaryConfig* ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelinePrimaryConfig* ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorJob::GetPresetOrigin(class UMoviePipelinePrimaryConfig* ReturnValue)
 {
@@ -3735,7 +3881,7 @@ void UMoviePipelineExecutorJob::GetPresetOrigin(class UMoviePipelinePrimaryConfi
 // Function MovieRenderPipelineCore.MoviePipelineExecutorJob.GetConfiguration
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMoviePipelinePrimaryConfig* ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelinePrimaryConfig* ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineExecutorJob::GetConfiguration(class UMoviePipelinePrimaryConfig* ReturnValue)
 {
@@ -3790,9 +3936,9 @@ class UMoviePipelineQueue* UMoviePipelineQueue::GetDefaultObj()
 // Function MovieRenderPipelineCore.MoviePipelineQueue.SetQueueOrigin
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelineQueue*         InConfig                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipelineQueue*         InConfig                                                         (Edit, Net, OutParm, InstancedReference, SubobjectReference)
 
-class UMoviePipelineQueue* UMoviePipelineQueue::SetQueueOrigin()
+void UMoviePipelineQueue::SetQueueOrigin(class UMoviePipelineQueue** InConfig)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3810,7 +3956,8 @@ class UMoviePipelineQueue* UMoviePipelineQueue::SetQueueOrigin()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InConfig != nullptr)
+		*InConfig = Parms.InConfig;
 
 }
 
@@ -3818,10 +3965,10 @@ class UMoviePipelineQueue* UMoviePipelineQueue::SetQueueOrigin()
 // Function MovieRenderPipelineCore.MoviePipelineQueue.SetJobIndex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelineExecutorJob*   InJob                                                            (Net, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
+// class UMoviePipelineExecutorJob*   InJob                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 
-int32 UMoviePipelineQueue::SetJobIndex(class UMoviePipelineExecutorJob** InJob)
+void UMoviePipelineQueue::SetJobIndex(class UMoviePipelineExecutorJob* InJob, int32* Index)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3830,6 +3977,7 @@ int32 UMoviePipelineQueue::SetJobIndex(class UMoviePipelineExecutorJob** InJob)
 
 	Params::UMoviePipelineQueue_SetJobIndex_Params Parms{};
 
+	Parms.InJob = InJob;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3839,10 +3987,8 @@ int32 UMoviePipelineQueue::SetJobIndex(class UMoviePipelineExecutorJob** InJob)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InJob != nullptr)
-		*InJob = Parms.InJob;
-
-	return Parms.ReturnValue;
+	if (Index != nullptr)
+		*Index = Parms.Index;
 
 }
 
@@ -3850,7 +3996,7 @@ int32 UMoviePipelineQueue::SetJobIndex(class UMoviePipelineExecutorJob** InJob)
 // Function MovieRenderPipelineCore.MoviePipelineQueue.GetQueueOrigin
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMoviePipelineQueue*         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelineQueue*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineQueue::GetQueueOrigin(class UMoviePipelineQueue* ReturnValue)
 {
@@ -3877,7 +4023,7 @@ void UMoviePipelineQueue::GetQueueOrigin(class UMoviePipelineQueue* ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipelineQueue.GetJobs
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UMoviePipelineExecutorJob*>ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UMoviePipelineExecutorJob*>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineQueue::GetJobs(const TArray<class UMoviePipelineExecutorJob*>& ReturnValue)
 {
@@ -3904,10 +4050,10 @@ void UMoviePipelineQueue::GetJobs(const TArray<class UMoviePipelineExecutorJob*>
 // Function MovieRenderPipelineCore.MoviePipelineQueue.DuplicateJob
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelineExecutorJob*   InJob                                                            (Net, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UMoviePipelineExecutorJob*   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelineExecutorJob*   InJob                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UMoviePipelineExecutorJob*   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMoviePipelineQueue::DuplicateJob(class UMoviePipelineExecutorJob** InJob, class UMoviePipelineExecutorJob* ReturnValue)
+void UMoviePipelineQueue::DuplicateJob(class UMoviePipelineExecutorJob* InJob, class UMoviePipelineExecutorJob* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3916,6 +4062,7 @@ void UMoviePipelineQueue::DuplicateJob(class UMoviePipelineExecutorJob** InJob, 
 
 	Params::UMoviePipelineQueue_DuplicateJob_Params Parms{};
 
+	Parms.InJob = InJob;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -3926,18 +4073,15 @@ void UMoviePipelineQueue::DuplicateJob(class UMoviePipelineExecutorJob** InJob, 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InJob != nullptr)
-		*InJob = Parms.InJob;
-
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineQueue.DeleteJob
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelineExecutorJob*   InJob                                                            (Net, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UMoviePipelineExecutorJob*   InJob                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void UMoviePipelineQueue::DeleteJob(class UMoviePipelineExecutorJob** InJob)
+void UMoviePipelineQueue::DeleteJob(class UMoviePipelineExecutorJob* InJob)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3946,6 +4090,7 @@ void UMoviePipelineQueue::DeleteJob(class UMoviePipelineExecutorJob** InJob)
 
 	Params::UMoviePipelineQueue_DeleteJob_Params Parms{};
 
+	Parms.InJob = InJob;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3954,9 +4099,6 @@ void UMoviePipelineQueue::DeleteJob(class UMoviePipelineExecutorJob** InJob)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InJob != nullptr)
-		*InJob = Parms.InJob;
 
 }
 
@@ -3988,7 +4130,7 @@ void UMoviePipelineQueue::DeleteAllJobs()
 // Function MovieRenderPipelineCore.MoviePipelineQueue.CopyFrom
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelineQueue*         InQueue                                                          (BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipelineQueue*         InQueue                                                          (ConstParm, BlueprintVisible, ReturnParm, InstancedReference, SubobjectReference)
 
 class UMoviePipelineQueue* UMoviePipelineQueue::CopyFrom()
 {
@@ -4016,8 +4158,8 @@ class UMoviePipelineQueue* UMoviePipelineQueue::CopyFrom()
 // Function MovieRenderPipelineCore.MoviePipelineQueue.AllocateNewJob
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InJobType                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UMoviePipelineExecutorJob*   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InJobType                                                        (ReturnParm, InstancedReference, SubobjectReference)
+// class UMoviePipelineExecutorJob*   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class UClass* UMoviePipelineQueue::AllocateNewJob(class UMoviePipelineExecutorJob* ReturnValue)
 {
@@ -4074,8 +4216,8 @@ class UMoviePipelineQueueEngineSubsystem* UMoviePipelineQueueEngineSubsystem::Ge
 // Function MovieRenderPipelineCore.MoviePipelineQueueEngineSubsystem.SetConfiguration
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InProgressWidgetClass                                            (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bRenderPlayerViewport                                            (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UClass*                      InProgressWidgetClass                                            (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, InstancedReference, SubobjectReference)
+// bool                               bRenderPlayerViewport                                            (Edit, ConstParm, Net, ReturnParm, InstancedReference, SubobjectReference)
 
 bool UMoviePipelineQueueEngineSubsystem::SetConfiguration()
 {
@@ -4103,7 +4245,7 @@ bool UMoviePipelineQueueEngineSubsystem::SetConfiguration()
 // Function MovieRenderPipelineCore.MoviePipelineQueueEngineSubsystem.RenderQueueWithExecutorInstance
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelineExecutorBase*  InExecutor                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UMoviePipelineExecutorBase*  InExecutor                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, InstancedReference, SubobjectReference)
 
 class UMoviePipelineExecutorBase* UMoviePipelineQueueEngineSubsystem::RenderQueueWithExecutorInstance()
 {
@@ -4131,8 +4273,8 @@ class UMoviePipelineExecutorBase* UMoviePipelineQueueEngineSubsystem::RenderQueu
 // Function MovieRenderPipelineCore.MoviePipelineQueueEngineSubsystem.RenderQueueWithExecutor
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InExecutorType                                                   (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UMoviePipelineExecutorBase*  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InExecutorType                                                   (Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, InstancedReference, SubobjectReference)
+// class UMoviePipelineExecutorBase*  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class UClass* UMoviePipelineQueueEngineSubsystem::RenderQueueWithExecutor(class UMoviePipelineExecutorBase* ReturnValue)
 {
@@ -4161,9 +4303,9 @@ class UClass* UMoviePipelineQueueEngineSubsystem::RenderQueueWithExecutor(class 
 // Function MovieRenderPipelineCore.MoviePipelineQueueEngineSubsystem.RenderJob
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMoviePipelineExecutorJob*   InJob                                                            (Net, Parm, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UMoviePipelineExecutorJob*   InJob                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void UMoviePipelineQueueEngineSubsystem::RenderJob(class UMoviePipelineExecutorJob** InJob)
+void UMoviePipelineQueueEngineSubsystem::RenderJob(class UMoviePipelineExecutorJob* InJob)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4172,6 +4314,7 @@ void UMoviePipelineQueueEngineSubsystem::RenderJob(class UMoviePipelineExecutorJ
 
 	Params::UMoviePipelineQueueEngineSubsystem_RenderJob_Params Parms{};
 
+	Parms.InJob = InJob;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4181,16 +4324,13 @@ void UMoviePipelineQueueEngineSubsystem::RenderJob(class UMoviePipelineExecutorJ
 
 	Func->FunctionFlags = Flgs;
 
-	if (InJob != nullptr)
-		*InJob = Parms.InJob;
-
 }
 
 
 // Function MovieRenderPipelineCore.MoviePipelineQueueEngineSubsystem.IsRendering
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineQueueEngineSubsystem::IsRendering(bool ReturnValue)
 {
@@ -4217,7 +4357,7 @@ void UMoviePipelineQueueEngineSubsystem::IsRendering(bool ReturnValue)
 // Function MovieRenderPipelineCore.MoviePipelineQueueEngineSubsystem.GetQueue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMoviePipelineQueue*         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelineQueue*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineQueueEngineSubsystem::GetQueue(class UMoviePipelineQueue* ReturnValue)
 {
@@ -4244,7 +4384,7 @@ void UMoviePipelineQueueEngineSubsystem::GetQueue(class UMoviePipelineQueue* Ret
 // Function MovieRenderPipelineCore.MoviePipelineQueueEngineSubsystem.GetActiveExecutor
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMoviePipelineExecutorBase*  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMoviePipelineExecutorBase*  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineQueueEngineSubsystem::GetActiveExecutor(class UMoviePipelineExecutorBase* ReturnValue)
 {
@@ -4271,8 +4411,8 @@ void UMoviePipelineQueueEngineSubsystem::GetActiveExecutor(class UMoviePipelineE
 // Function MovieRenderPipelineCore.MoviePipelineQueueEngineSubsystem.AllocateJob
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class ULevelSequence*              InSequence                                                       (Edit, ExportObject, Transient, Config, InstancedReference, SubobjectReference)
-// class UMoviePipelineExecutorJob*   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class ULevelSequence*              InSequence                                                       (BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UMoviePipelineExecutorJob*   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMoviePipelineQueueEngineSubsystem::AllocateJob(class ULevelSequence* InSequence, class UMoviePipelineExecutorJob* ReturnValue)
 {
@@ -4378,146 +4518,6 @@ class UMoviePipelineVideoOutputBase* UMoviePipelineVideoOutputBase::GetDefaultOb
 		Default = static_cast<UMoviePipelineVideoOutputBase*>(UMoviePipelineVideoOutputBase::StaticClass()->DefaultObject);
 
 	return Default;
-}
-
-
-// Class MovieRenderPipelineCore.MoviePipelinePrimaryConfig
-// (None)
-
-class UClass* UMoviePipelinePrimaryConfig::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("MoviePipelinePrimaryConfig");
-
-	return Clss;
-}
-
-
-// MoviePipelinePrimaryConfig MovieRenderPipelineCore.Default__MoviePipelinePrimaryConfig
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UMoviePipelinePrimaryConfig* UMoviePipelinePrimaryConfig::GetDefaultObj()
-{
-	static class UMoviePipelinePrimaryConfig* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UMoviePipelinePrimaryConfig*>(UMoviePipelinePrimaryConfig::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Function MovieRenderPipelineCore.MoviePipelinePrimaryConfig.InitializeTransientSettings
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-
-void UMoviePipelinePrimaryConfig::InitializeTransientSettings()
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("MoviePipelinePrimaryConfig", "InitializeTransientSettings");
-
-
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, nullptr);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function MovieRenderPipelineCore.MoviePipelinePrimaryConfig.GetTransientSettings
-// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
-// Parameters:
-// TArray<class UMoviePipelineSetting*>ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-
-void UMoviePipelinePrimaryConfig::GetTransientSettings(const TArray<class UMoviePipelineSetting*>& ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("MoviePipelinePrimaryConfig", "GetTransientSettings");
-
-	Params::UMoviePipelinePrimaryConfig_GetTransientSettings_Params Parms{};
-
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function MovieRenderPipelineCore.MoviePipelinePrimaryConfig.GetEffectiveFrameRate
-// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
-// Parameters:
-// class ULevelSequence*              InSequence                                                       (Edit, ExportObject, Transient, Config, InstancedReference, SubobjectReference)
-// struct FFrameRate                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-
-void UMoviePipelinePrimaryConfig::GetEffectiveFrameRate(class ULevelSequence* InSequence, const struct FFrameRate& ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("MoviePipelinePrimaryConfig", "GetEffectiveFrameRate");
-
-	Params::UMoviePipelinePrimaryConfig_GetEffectiveFrameRate_Params Parms{};
-
-	Parms.InSequence = InSequence;
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function MovieRenderPipelineCore.MoviePipelinePrimaryConfig.GetAllSettings
-// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
-// Parameters:
-// bool                               bIncludeDisabledSettings                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bIncludeTransientSettings                                        (Edit, BlueprintReadOnly, EditConst, InstancedReference, SubobjectReference)
-// TArray<class UMoviePipelineSetting*>ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-
-bool UMoviePipelinePrimaryConfig::GetAllSettings(bool bIncludeTransientSettings, const TArray<class UMoviePipelineSetting*>& ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("MoviePipelinePrimaryConfig", "GetAllSettings");
-
-	Params::UMoviePipelinePrimaryConfig_GetAllSettings_Params Parms{};
-
-	Parms.bIncludeTransientSettings = bIncludeTransientSettings;
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
-
 }
 
 }

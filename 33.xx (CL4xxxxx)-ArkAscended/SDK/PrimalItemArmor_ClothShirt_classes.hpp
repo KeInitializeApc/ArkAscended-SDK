@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xEB8 - 0xEB8)
+// 0x0 (0xED8 - 0xED8)
 // BlueprintGeneratedClass PrimalItemArmor_ClothShirt.PrimalItemArmor_ClothShirt_C
 class UPrimalItemArmor_ClothShirt_C : public UPrimalItemArmor_BaseShirt_C
 {

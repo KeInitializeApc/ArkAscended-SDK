@@ -14,16 +14,16 @@ namespace SDK
 class ACameraRig_Crane : public AActor
 {
 public:
-	float                                        CranePitch;                                        // 0x4C8(0x4)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        CraneYaw;                                          // 0x4CC(0x4)(Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	float                                        CraneArmLength;                                    // 0x4D0(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bLockMountPitch;                                   // 0x4D4(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bLockMountYaw;                                     // 0x4D5(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2E82[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	class USceneComponent*                       TransformComponent;                                // 0x4D8(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
-	class USceneComponent*                       CraneYawControl;                                   // 0x4E0(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class USceneComponent*                       CranePitchControl;                                 // 0x4E8(0x8)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class USceneComponent*                       CraneCameraMount;                                  // 0x4F0(0x8)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        CranePitch;                                        // 0x4C8(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        CraneYaw;                                          // 0x4CC(0x4)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        CraneArmLength;                                    // 0x4D0(0x4)(ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bLockMountPitch;                                   // 0x4D4(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bLockMountYaw;                                     // 0x4D5(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_159[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	class USceneComponent*                       TransformComponent;                                // 0x4D8(0x8)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class USceneComponent*                       CraneYawControl;                                   // 0x4E0(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class USceneComponent*                       CranePitchControl;                                 // 0x4E8(0x8)(BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class USceneComponent*                       CraneCameraMount;                                  // 0x4F0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ACameraRig_Crane* GetDefaultObj();
@@ -35,12 +35,12 @@ public:
 class ACameraRig_Rail : public AActor
 {
 public:
-	float                                        CurrentPositionOnRail;                             // 0x4C8(0x4)(Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bLockOrientationToRail;                            // 0x4CC(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2E84[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	class USceneComponent*                       TransformComponent;                                // 0x4D0(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
-	class USplineComponent*                      RailSplineComponent;                               // 0x4D8(0x8)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class USceneComponent*                       RailCameraMount;                                   // 0x4E0(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        CurrentPositionOnRail;                             // 0x4C8(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bLockOrientationToRail;                            // 0x4CC(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_15B[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	class USceneComponent*                       TransformComponent;                                // 0x4D0(0x8)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class USplineComponent*                      RailSplineComponent;                               // 0x4D8(0x8)(BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class USceneComponent*                       RailCameraMount;                                   // 0x4E0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ACameraRig_Rail* GetDefaultObj();
@@ -48,13 +48,13 @@ public:
 	void GetRailSplineComponent(class USplineComponent* ReturnValue);
 };
 
-// 0x80 (0xCF0 - 0xC70)
+// 0x80 (0xD00 - 0xC80)
 // Class CinematicCamera.CineCameraActor
 class ACineCameraActor : public ACameraActor
 {
 public:
-	struct FCameraLookatTrackingSettings         LookatTrackingSettings;                            // 0xC70(0x70)(ConstParm, BlueprintReadOnly, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2E88[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	struct FCameraLookatTrackingSettings         LookatTrackingSettings;                            // 0xC80(0x70)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_15D[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ACineCameraActor* GetDefaultObj();
@@ -62,47 +62,47 @@ public:
 	void GetCineCameraComponent(class UCineCameraComponent* ReturnValue);
 };
 
-// 0x120 (0xC00 - 0xAE0)
+// 0x120 (0xC10 - 0xAF0)
 // Class CinematicCamera.CineCameraComponent
 class UCineCameraComponent : public UCameraComponent
 {
 public:
-	struct FCameraFilmbackSettings               FilmbackSettings;                                  // 0xAE0(0xC)(Edit, ExportObject, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FCameraFilmbackSettings               Filmback;                                          // 0xAEC(0xC)(ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	struct FCameraLensSettings                   LensSettings;                                      // 0xAF8(0x1C)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
-	uint8                                        Pad_2E90[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FCameraFocusSettings                  FocusSettings;                                     // 0xB18(0x68)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	struct FPlateCropSettings                    CropSettings;                                      // 0xB80(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        CurrentFocalLength;                                // 0xB84(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, Config)
-	float                                        CurrentAperture;                                   // 0xB88(0x4)(Edit, ConstParm, ExportObject, Net, OutParm, Config)
-	float                                        CurrentFocusDistance;                              // 0xB8C(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        bOverride_CustomNearClippingPlane : 1;             // Mask: 0x1, PropSize: 0x10xB90(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        BitPad_28F : 7;                                    // Fixing Bit-Field Size  > TateDumper <
-	uint8                                        Pad_2E91[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        CustomNearClippingPlane;                           // 0xB94(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2E92[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FNamedFilmbackPreset>          FilmbackPresets;                                   // 0xBA0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	TArray<struct FNamedLensPreset>              LensPresets;                                       // 0xBB0(0x10)(Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	class FString                                DefaultFilmbackPresetName;                         // 0xBC0(0x10)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class FString                                DefaultFilmbackPreset;                             // 0xBD0(0x10)(Edit, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	class FString                                DefaultLensPresetName;                             // 0xBE0(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	float                                        DefaultLensFocalLength;                            // 0xBF0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	float                                        DefaultLensFStop;                                  // 0xBF4(0x4)(Edit, ConstParm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_2E94[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	struct FCameraFilmbackSettings               FilmbackSettings;                                  // 0xAF0(0xC)(ConstParm, BlueprintVisible, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FCameraFilmbackSettings               Filmback;                                          // 0xAFC(0xC)(Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	struct FCameraLensSettings                   LensSettings;                                      // 0xB08(0x1C)(ConstParm, ExportObject, Net, Parm, ZeroConstructor, Transient, EditConst)
+	uint8                                        Pad_173[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FCameraFocusSettings                  FocusSettings;                                     // 0xB28(0x68)(Edit, ConstParm, ExportObject, Net, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	struct FPlateCropSettings                    CropSettings;                                      // 0xB90(0x4)(ConstParm, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        CurrentFocalLength;                                // 0xB94(0x4)(Edit, ExportObject, EditFixedSize, ZeroConstructor, Config)
+	float                                        CurrentAperture;                                   // 0xB98(0x4)(Edit, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, Config)
+	float                                        CurrentFocusDistance;                              // 0xB9C(0x4)(Net, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	uint8                                        bOverride_CustomNearClippingPlane : 1;             // Mask: 0x1, PropSize: 0x10xBA0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        BitPad_1 : 7;                                      // Fixing Bit-Field Size  > TateDumper <
+	uint8                                        Pad_175[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        CustomNearClippingPlane;                           // 0xBA4(0x4)(ExportObject, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_176[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FNamedFilmbackPreset>          FilmbackPresets;                                   // 0xBB0(0x10)(BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	TArray<struct FNamedLensPreset>              LensPresets;                                       // 0xBC0(0x10)(Edit, Net, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	class FString                                DefaultFilmbackPresetName;                         // 0xBD0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class FString                                DefaultFilmbackPreset;                             // 0xBE0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	class FString                                DefaultLensPresetName;                             // 0xBF0(0x10)(ExportObject, Net, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	float                                        DefaultLensFocalLength;                            // 0xC00(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	float                                        DefaultLensFStop;                                  // 0xC04(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	uint8                                        Pad_177[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UCineCameraComponent* GetDefaultObj();
 
-	struct FCameraLensSettings SetLensSettings();
-	class FString SetLensPresetByName();
-	struct FCameraFocusSettings SetFocusSettings();
-	class FString SetFilmbackPresetByName();
-	struct FCameraFilmbackSettings SetFilmback();
-	float SetCustomNearClippingPlane();
-	float SetCurrentFocalLength();
-	float SetCurrentAperture();
-	struct FPlateCropSettings SetCropSettings();
-	class FString SetCropPresetByName();
+	void SetLensSettings(const struct FCameraLensSettings& NewLensSettings);
+	void SetLensPresetByName(const class FString& InPresetName);
+	void SetFocusSettings(const struct FCameraFocusSettings& NewFocusSettings);
+	void SetFilmbackPresetByName(const class FString& InPresetName);
+	void SetFilmback(const struct FCameraFilmbackSettings& NewFilmback);
+	void SetCustomNearClippingPlane(float NewCustomNearClippingPlane);
+	void SetCurrentFocalLength(float InFocalLength);
+	void SetCurrentAperture(float NewCurrentAperture);
+	void SetCropSettings(const struct FPlateCropSettings& NewCropSettings);
+	void SetCropPresetByName(const class FString& InPresetName);
 	void GetVerticalFieldOfView(float ReturnValue);
 	void GetLensPresetsCopy(const TArray<struct FNamedLensPreset>& ReturnValue);
 	void GetLensPresetName(const class FString& ReturnValue);
@@ -118,15 +118,15 @@ public:
 class UCineCameraSettings : public UDeveloperSettings
 {
 public:
-	class FString                                DefaultLensPresetName;                             // 0x38(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	float                                        DefaultLensFocalLength;                            // 0x48(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	float                                        DefaultLensFStop;                                  // 0x4C(0x4)(Edit, ConstParm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	TArray<struct FNamedLensPreset>              LensPresets;                                       // 0x50(0x10)(Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	class FString                                DefaultFilmbackPreset;                             // 0x60(0x10)(Edit, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	TArray<struct FNamedFilmbackPreset>          FilmbackPresets;                                   // 0x70(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	class FString                                DefaultCropPresetName;                             // 0x80(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	TArray<struct FNamedPlateCropPreset>         CropPresets;                                       // 0x90(0x10)(BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_2EA7[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	class FString                                DefaultLensPresetName;                             // 0x38(0x10)(ExportObject, Net, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	float                                        DefaultLensFocalLength;                            // 0x48(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	float                                        DefaultLensFStop;                                  // 0x4C(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	TArray<struct FNamedLensPreset>              LensPresets;                                       // 0x50(0x10)(Edit, Net, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	class FString                                DefaultFilmbackPreset;                             // 0x60(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	TArray<struct FNamedFilmbackPreset>          FilmbackPresets;                                   // 0x70(0x10)(BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	class FString                                DefaultCropPresetName;                             // 0x80(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	TArray<struct FNamedPlateCropPreset>         CropPresets;                                       // 0x90(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, SubobjectReference)
+	uint8                                        Pad_190[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UCineCameraSettings* GetDefaultObj();
@@ -137,14 +137,14 @@ public:
 	void SetDefaultLensFStop(float InDefaultLensFStop);
 	void SetDefaultLensFocalLength(float InDefaultLensFocalLength);
 	void SetDefaultFilmbackPreset(const class FString& InDefaultFilmbackPreset);
-	class FString SetDefaultCropPresetName();
-	TArray<struct FNamedPlateCropPreset> SetCropPresets();
+	void SetDefaultCropPresetName(const class FString& InDefaultCropPresetName);
+	void SetCropPresets(const TArray<struct FNamedPlateCropPreset>& InCropPresets);
 	void GetLensPresetNames(const TArray<class FString>& ReturnValue);
-	struct FCameraLensSettings GetLensPresetByName(const class FString& PresetName, bool ReturnValue);
+	void GetLensPresetByName(class FString* PresetName, const struct FCameraLensSettings& LensSettings, bool ReturnValue);
 	void GetFilmbackPresetNames(const TArray<class FString>& ReturnValue);
-	void GetFilmbackPresetByName(const class FString& PresetName, const struct FCameraFilmbackSettings& FilmbackSettings, bool ReturnValue);
+	void GetFilmbackPresetByName(class FString* PresetName, const struct FCameraFilmbackSettings& FilmbackSettings, bool ReturnValue);
 	void GetCropPresetNames(const TArray<class FString>& ReturnValue);
-	void GetCropPresetByName(const class FString& PresetName, const struct FPlateCropSettings& CropSettings, bool ReturnValue);
+	void GetCropPresetByName(class FString* PresetName, const struct FPlateCropSettings& CropSettings, bool ReturnValue);
 	void GetCineCameraSettings(class UCineCameraSettings* ReturnValue);
 };
 

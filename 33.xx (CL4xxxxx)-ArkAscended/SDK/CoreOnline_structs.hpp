@@ -25,13 +25,13 @@ enum class ECoreOnlineDummy : uint8
 struct FJoinabilitySettings
 {
 public:
-	class FName                                  SessionName;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-	bool                                         bPublicSearchable;                                 // 0x8(0x1)(Edit, ExportObject, Parm, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bAllowInvites;                                     // 0x9(0x1)(Edit, Parm, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bJoinViaPresence;                                  // 0xA(0x1)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bJoinViaPresenceFriendsOnly;                       // 0xB(0x1)(Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        MaxPlayers;                                        // 0xC(0x4)(Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	int32                                        MaxPartySize;                                      // 0x10(0x4)(ConstParm, Net, EditFixedSize, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  SessionName;                                       // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, Config, EditConst, SubobjectReference)
+	bool                                         bPublicSearchable;                                 // 0x8(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bAllowInvites;                                     // 0x9(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bJoinViaPresence;                                  // 0xA(0x1)(Edit, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bJoinViaPresenceFriendsOnly;                       // 0xB(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	int32                                        MaxPlayers;                                        // 0xC(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnInstance, SubobjectReference)
+	int32                                        MaxPartySize;                                      // 0x10(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -39,7 +39,7 @@ public:
 struct FUniqueNetIdWrapper
 {
 public:
-	uint8                                        Pad_33AC[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_239F[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

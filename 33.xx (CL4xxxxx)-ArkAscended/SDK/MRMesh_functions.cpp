@@ -43,13 +43,13 @@ class UMockDataMeshTrackerComponent* UMockDataMeshTrackerComponent::GetDefaultOb
 // DelegateFunction MRMesh.MockDataMeshTrackerComponent.OnMockDataMeshTrackerUpdated__DelegateSignature
 // (MulticastDelegate, Public, Delegate, HasOutParams)
 // Parameters:
-// int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// TArray<struct FVector>             Vertices                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// TArray<int32>                      Triangles                                                        (EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-// TArray<struct FVector>             Normals                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<float>                      Confidence                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// TArray<struct FVector>             Vertices                                                         (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// TArray<int32>                      Triangles                                                        (Edit, BlueprintVisible, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
+// TArray<struct FVector>             Normals                                                          (ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// TArray<float>                      Confidence                                                       (ConstParm, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
 
-TArray<float> UMockDataMeshTrackerComponent::OnMockDataMeshTrackerUpdated__DelegateSignature()
+TArray<float> UMockDataMeshTrackerComponent::OnMockDataMeshTrackerUpdated__DelegateSignature(int32* Index, const TArray<struct FVector>& Vertices, TArray<int32>* Triangles)
 {
 	static class UFunction* Func = nullptr;
 
@@ -58,8 +58,15 @@ TArray<float> UMockDataMeshTrackerComponent::OnMockDataMeshTrackerUpdated__Deleg
 
 	Params::UMockDataMeshTrackerComponent_OnMockDataMeshTrackerUpdated__DelegateSignature_Params Parms{};
 
+	Parms.Vertices = Vertices;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Index != nullptr)
+		*Index = Parms.Index;
+
+	if (Triangles != nullptr)
+		*Triangles = std::move(Parms.Triangles);
 
 	return Parms.ReturnValue;
 
@@ -69,7 +76,7 @@ TArray<float> UMockDataMeshTrackerComponent::OnMockDataMeshTrackerUpdated__Deleg
 // Function MRMesh.MockDataMeshTrackerComponent.DisconnectMRMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMRMeshComponent*            InMRMeshPtr                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UMRMeshComponent*            InMRMeshPtr                                                      (ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
 
 class UMRMeshComponent* UMockDataMeshTrackerComponent::DisconnectMRMesh()
 {
@@ -97,7 +104,7 @@ class UMRMeshComponent* UMockDataMeshTrackerComponent::DisconnectMRMesh()
 // Function MRMesh.MockDataMeshTrackerComponent.ConnectMRMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMRMeshComponent*            InMRMeshPtr                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UMRMeshComponent*            InMRMeshPtr                                                      (ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
 
 class UMRMeshComponent* UMockDataMeshTrackerComponent::ConnectMRMesh()
 {
@@ -181,9 +188,9 @@ class UMRMeshComponent* UMRMeshComponent::GetDefaultObj()
 // Function MRMesh.MRMeshComponent.SetWireframeMaterial
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInterface*          InMaterial                                                       (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class UMaterialInterface*          InMaterial                                                       (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
-void UMRMeshComponent::SetWireframeMaterial(class UMaterialInterface** InMaterial)
+class UMaterialInterface* UMRMeshComponent::SetWireframeMaterial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -201,8 +208,7 @@ void UMRMeshComponent::SetWireframeMaterial(class UMaterialInterface** InMateria
 
 	Func->FunctionFlags = Flgs;
 
-	if (InMaterial != nullptr)
-		*InMaterial = Parms.InMaterial;
+	return Parms.ReturnValue;
 
 }
 
@@ -210,9 +216,9 @@ void UMRMeshComponent::SetWireframeMaterial(class UMaterialInterface** InMateria
 // Function MRMesh.MRMeshComponent.SetWireframeColor
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InColor                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FLinearColor                InColor                                                          (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FLinearColor UMRMeshComponent::SetWireframeColor()
+void UMRMeshComponent::SetWireframeColor(struct FLinearColor* InColor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -230,7 +236,8 @@ struct FLinearColor UMRMeshComponent::SetWireframeColor()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InColor != nullptr)
+		*InColor = std::move(Parms.InColor);
 
 }
 
@@ -238,9 +245,9 @@ struct FLinearColor UMRMeshComponent::SetWireframeColor()
 // Function MRMesh.MRMeshComponent.SetUseWireframe
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bUseWireframe                                                    (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bUseWireframe                                                    (BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-bool UMRMeshComponent::SetUseWireframe()
+void UMRMeshComponent::SetUseWireframe(bool bUseWireframe)
 {
 	static class UFunction* Func = nullptr;
 
@@ -249,6 +256,7 @@ bool UMRMeshComponent::SetUseWireframe()
 
 	Params::UMRMeshComponent_SetUseWireframe_Params Parms{};
 
+	Parms.bUseWireframe = bUseWireframe;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -258,15 +266,13 @@ bool UMRMeshComponent::SetUseWireframe()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MRMesh.MRMeshComponent.SetEnableMeshOcclusion
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bEnable                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// bool                               bEnable                                                          (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
 bool UMRMeshComponent::SetEnableMeshOcclusion()
 {
@@ -318,7 +324,7 @@ void UMRMeshComponent::RequestNavMeshUpdate()
 // Function MRMesh.MRMeshComponent.IsConnected
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMRMeshComponent::IsConnected(bool ReturnValue)
 {
@@ -345,7 +351,7 @@ void UMRMeshComponent::IsConnected(bool ReturnValue)
 // Function MRMesh.MRMeshComponent.GetWireframeColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FLinearColor                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMRMeshComponent::GetWireframeColor(const struct FLinearColor& ReturnValue)
 {
@@ -372,7 +378,7 @@ void UMRMeshComponent::GetWireframeColor(const struct FLinearColor& ReturnValue)
 // Function MRMesh.MRMeshComponent.GetUseWireframe
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMRMeshComponent::GetUseWireframe(bool ReturnValue)
 {
@@ -399,7 +405,7 @@ void UMRMeshComponent::GetUseWireframe(bool ReturnValue)
 // Function MRMesh.MRMeshComponent.GetEnableMeshOcclusion
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMRMeshComponent::GetEnableMeshOcclusion(bool ReturnValue)
 {
@@ -574,7 +580,7 @@ void UMeshReconstructorBase::PauseReconstruction()
 // Function MRMesh.MeshReconstructorBase.IsReconstructionStarted
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMeshReconstructorBase::IsReconstructionStarted(bool ReturnValue)
 {
@@ -601,7 +607,7 @@ void UMeshReconstructorBase::IsReconstructionStarted(bool ReturnValue)
 // Function MRMesh.MeshReconstructorBase.IsReconstructionPaused
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMeshReconstructorBase::IsReconstructionPaused(bool ReturnValue)
 {
@@ -652,9 +658,9 @@ void UMeshReconstructorBase::DisconnectMRMesh()
 // Function MRMesh.MeshReconstructorBase.ConnectMRMesh
 // (Native, Public)
 // Parameters:
-// class UMRMeshComponent*            Mesh                                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UMRMeshComponent*            Mesh                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-void UMeshReconstructorBase::ConnectMRMesh(class UMRMeshComponent** Mesh)
+void UMeshReconstructorBase::ConnectMRMesh(class UMRMeshComponent* Mesh)
 {
 	static class UFunction* Func = nullptr;
 
@@ -663,6 +669,7 @@ void UMeshReconstructorBase::ConnectMRMesh(class UMRMeshComponent** Mesh)
 
 	Params::UMeshReconstructorBase_ConnectMRMesh_Params Parms{};
 
+	Parms.Mesh = Mesh;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -671,9 +678,6 @@ void UMeshReconstructorBase::ConnectMRMesh(class UMRMeshComponent** Mesh)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Mesh != nullptr)
-		*Mesh = Parms.Mesh;
 
 }
 

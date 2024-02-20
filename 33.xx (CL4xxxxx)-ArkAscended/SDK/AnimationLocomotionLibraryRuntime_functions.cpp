@@ -43,15 +43,15 @@ class UAnimCharacterMovementLibrary* UAnimCharacterMovementLibrary::GetDefaultOb
 // Function AnimationLocomotionLibraryRuntime.AnimCharacterMovementLibrary.PredictGroundMovementStopLocation
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FVector                     Velocity                                                         (Edit, ReturnParm, Config, EditConst, SubobjectReference)
-// bool                               bUseSeparateBrakingFriction                                      (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// float                              BrakingFriction                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// float                              GroundFriction                                                   (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// float                              BrakingFrictionFactor                                            (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// float                              BrakingDecelerationWalking                                       (Edit, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     Velocity                                                         (Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
+// bool                               bUseSeparateBrakingFriction                                      (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// float                              BrakingFriction                                                  (ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// float                              GroundFriction                                                   (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// float                              BrakingFrictionFactor                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// float                              BrakingDecelerationWalking                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UAnimCharacterMovementLibrary::PredictGroundMovementStopLocation(bool* bUseSeparateBrakingFriction, float* BrakingFriction, float* GroundFriction, float* BrakingFrictionFactor, const struct FVector& ReturnValue)
+float UAnimCharacterMovementLibrary::PredictGroundMovementStopLocation(const struct FVector& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -70,18 +70,6 @@ float UAnimCharacterMovementLibrary::PredictGroundMovementStopLocation(bool* bUs
 
 	Func->FunctionFlags = Flgs;
 
-	if (bUseSeparateBrakingFriction != nullptr)
-		*bUseSeparateBrakingFriction = Parms.bUseSeparateBrakingFriction;
-
-	if (BrakingFriction != nullptr)
-		*BrakingFriction = Parms.BrakingFriction;
-
-	if (GroundFriction != nullptr)
-		*GroundFriction = Parms.GroundFriction;
-
-	if (BrakingFrictionFactor != nullptr)
-		*BrakingFrictionFactor = Parms.BrakingFrictionFactor;
-
 	return Parms.ReturnValue;
 
 }
@@ -90,12 +78,12 @@ float UAnimCharacterMovementLibrary::PredictGroundMovementStopLocation(bool* bUs
 // Function AnimationLocomotionLibraryRuntime.AnimCharacterMovementLibrary.PredictGroundMovementPivotLocation
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FVector                     Acceleration                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance)
-// struct FVector                     Velocity                                                         (Edit, ReturnParm, Config, EditConst, SubobjectReference)
-// float                              GroundFriction                                                   (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     Acceleration                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+// struct FVector                     Velocity                                                         (Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
+// float                              GroundFriction                                                   (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FVector UAnimCharacterMovementLibrary::PredictGroundMovementPivotLocation(float* GroundFriction, const struct FVector& ReturnValue)
+float UAnimCharacterMovementLibrary::PredictGroundMovementPivotLocation(const struct FVector& Acceleration, const struct FVector& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -104,6 +92,7 @@ struct FVector UAnimCharacterMovementLibrary::PredictGroundMovementPivotLocation
 
 	Params::UAnimCharacterMovementLibrary_PredictGroundMovementPivotLocation_Params Parms{};
 
+	Parms.Acceleration = Acceleration;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -113,9 +102,6 @@ struct FVector UAnimCharacterMovementLibrary::PredictGroundMovementPivotLocation
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (GroundFriction != nullptr)
-		*GroundFriction = Parms.GroundFriction;
 
 	return Parms.ReturnValue;
 
@@ -153,12 +139,12 @@ class UAnimDistanceMatchingLibrary* UAnimDistanceMatchingLibrary::GetDefaultObj(
 // Function AnimationLocomotionLibraryRuntime.AnimDistanceMatchingLibrary.SetPlayrateToMatchSpeed
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FSequencePlayerReference    SequencePlayer                                                   (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
-// float                              SpeedToMatch                                                     (BlueprintVisible, ExportObject, Net, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   PlayRateClamp                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// struct FSequencePlayerReference    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequencePlayerReference    SequencePlayer                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              SpeedToMatch                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// struct FVector2D                   PlayRateClamp                                                    (ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// struct FSequencePlayerReference    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAnimDistanceMatchingLibrary::SetPlayrateToMatchSpeed(const struct FSequencePlayerReference& SequencePlayer, float SpeedToMatch, struct FVector2D* PlayRateClamp, const struct FSequencePlayerReference& ReturnValue)
+struct FVector2D UAnimDistanceMatchingLibrary::SetPlayrateToMatchSpeed(const struct FSequencePlayerReference& SequencePlayer, const struct FSequencePlayerReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -168,7 +154,6 @@ void UAnimDistanceMatchingLibrary::SetPlayrateToMatchSpeed(const struct FSequenc
 	Params::UAnimDistanceMatchingLibrary_SetPlayrateToMatchSpeed_Params Parms{};
 
 	Parms.SequencePlayer = SequencePlayer;
-	Parms.SpeedToMatch = SpeedToMatch;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -179,8 +164,7 @@ void UAnimDistanceMatchingLibrary::SetPlayrateToMatchSpeed(const struct FSequenc
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayRateClamp != nullptr)
-		*PlayRateClamp = std::move(Parms.PlayRateClamp);
+	return Parms.ReturnValue;
 
 }
 
@@ -188,12 +172,12 @@ void UAnimDistanceMatchingLibrary::SetPlayrateToMatchSpeed(const struct FSequenc
 // Function AnimationLocomotionLibraryRuntime.AnimDistanceMatchingLibrary.DistanceMatchToTarget
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-// float                              DistanceToTarget                                                 (Edit, ConstParm, Net, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-// class FName                        DistanceCurveName                                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// struct FSequenceEvaluatorReference ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// float                              DistanceToTarget                                                 (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        DistanceCurveName                                                (ExportObject, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// struct FSequenceEvaluatorReference ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAnimDistanceMatchingLibrary::DistanceMatchToTarget(const struct FSequenceEvaluatorReference& SequenceEvaluator, float DistanceToTarget, class FName* DistanceCurveName, const struct FSequenceEvaluatorReference& ReturnValue)
+class FName UAnimDistanceMatchingLibrary::DistanceMatchToTarget(const struct FSequenceEvaluatorReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -202,8 +186,6 @@ void UAnimDistanceMatchingLibrary::DistanceMatchToTarget(const struct FSequenceE
 
 	Params::UAnimDistanceMatchingLibrary_DistanceMatchToTarget_Params Parms{};
 
-	Parms.SequenceEvaluator = SequenceEvaluator;
-	Parms.DistanceToTarget = DistanceToTarget;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -214,8 +196,7 @@ void UAnimDistanceMatchingLibrary::DistanceMatchToTarget(const struct FSequenceE
 
 	Func->FunctionFlags = Flgs;
 
-	if (DistanceCurveName != nullptr)
-		*DistanceCurveName = Parms.DistanceCurveName;
+	return Parms.ReturnValue;
 
 }
 
@@ -223,14 +204,14 @@ void UAnimDistanceMatchingLibrary::DistanceMatchToTarget(const struct FSequenceE
 // Function AnimationLocomotionLibraryRuntime.AnimDistanceMatchingLibrary.AdvanceTimeByDistanceMatching
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FAnimUpdateContext          UpdateContext                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, BlueprintReadOnly, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-// float                              DistanceTraveled                                                 (ExportObject, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
-// class FName                        DistanceCurveName                                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   PlayRateClamp                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// struct FSequenceEvaluatorReference ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAnimUpdateContext          UpdateContext                                                    (Edit, BlueprintVisible, Net, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// struct FSequenceEvaluatorReference SequenceEvaluator                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// float                              DistanceTraveled                                                 (ConstParm, BlueprintReadOnly, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// class FName                        DistanceCurveName                                                (ExportObject, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// struct FVector2D                   PlayRateClamp                                                    (ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// struct FSequenceEvaluatorReference ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAnimDistanceMatchingLibrary::AdvanceTimeByDistanceMatching(const struct FAnimUpdateContext& UpdateContext, const struct FSequenceEvaluatorReference& SequenceEvaluator, float DistanceTraveled, class FName* DistanceCurveName, struct FVector2D* PlayRateClamp, const struct FSequenceEvaluatorReference& ReturnValue)
+struct FVector2D UAnimDistanceMatchingLibrary::AdvanceTimeByDistanceMatching(const struct FSequenceEvaluatorReference& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -239,9 +220,6 @@ void UAnimDistanceMatchingLibrary::AdvanceTimeByDistanceMatching(const struct FA
 
 	Params::UAnimDistanceMatchingLibrary_AdvanceTimeByDistanceMatching_Params Parms{};
 
-	Parms.UpdateContext = UpdateContext;
-	Parms.SequenceEvaluator = SequenceEvaluator;
-	Parms.DistanceTraveled = DistanceTraveled;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -252,11 +230,7 @@ void UAnimDistanceMatchingLibrary::AdvanceTimeByDistanceMatching(const struct FA
 
 	Func->FunctionFlags = Flgs;
 
-	if (DistanceCurveName != nullptr)
-		*DistanceCurveName = Parms.DistanceCurveName;
-
-	if (PlayRateClamp != nullptr)
-		*PlayRateClamp = std::move(Parms.PlayRateClamp);
+	return Parms.ReturnValue;
 
 }
 

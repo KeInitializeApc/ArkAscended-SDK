@@ -95,7 +95,7 @@ void UMutex::UnLock()
 // Function ThreadExecutionBlueprintNode.Mutex.TryLock
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMutex::TryLock(bool ReturnValue)
 {
@@ -202,11 +202,11 @@ class UThreadAsyncExecLoop* UThreadAsyncExecLoop::GetDefaultObj()
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecLoop.CreateThreadExecLoop
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// float                              Interval                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bLongTask                                                        (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// class UThreadAsyncExecLoop*        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              Interval                                                         (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// bool                               bLongTask                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class UThreadAsyncExecLoop*        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UThreadAsyncExecLoop::CreateThreadExecLoop(float Interval, bool* bLongTask, class UThreadAsyncExecLoop* ReturnValue)
+bool UThreadAsyncExecLoop::CreateThreadExecLoop(float Interval, class UThreadAsyncExecLoop* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -226,8 +226,7 @@ void UThreadAsyncExecLoop::CreateThreadExecLoop(float Interval, bool* bLongTask,
 
 	Func->FunctionFlags = Flgs;
 
-	if (bLongTask != nullptr)
-		*bLongTask = Parms.bLongTask;
+	return Parms.ReturnValue;
 
 }
 
@@ -263,7 +262,7 @@ class USyncExecOnce* USyncExecOnce::GetDefaultObj()
 // Function ThreadExecutionBlueprintNode.SyncExecOnce.CreateSyncExecOnce
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class USyncExecOnce*               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USyncExecOnce*               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void USyncExecOnce::CreateSyncExecOnce(class USyncExecOnce* ReturnValue)
 {
@@ -318,9 +317,9 @@ class UThreadAsyncExecLibrary* UThreadAsyncExecLibrary::GetDefaultObj()
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecLibrary.ThreadWait
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// float                              Seconds                                                          (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              Seconds                                                          (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
 
-void UThreadAsyncExecLibrary::ThreadWait(float Seconds)
+float UThreadAsyncExecLibrary::ThreadWait()
 {
 	static class UFunction* Func = nullptr;
 
@@ -329,7 +328,6 @@ void UThreadAsyncExecLibrary::ThreadWait(float Seconds)
 
 	Params::UThreadAsyncExecLibrary_ThreadWait_Params Parms{};
 
-	Parms.Seconds = Seconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -339,16 +337,18 @@ void UThreadAsyncExecLibrary::ThreadWait(float Seconds)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecLibrary.SetTickableWhenPaused
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UThreadAsyncExecTick*        TickHandle                                                       (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               NewValue                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+// class UThreadAsyncExecTick*        TickHandle                                                       (Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// bool                               NewValue                                                         (ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
-bool UThreadAsyncExecLibrary::SetTickableWhenPaused(class UThreadAsyncExecTick** TickHandle)
+class UThreadAsyncExecTick* UThreadAsyncExecLibrary::SetTickableWhenPaused(bool* NewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -366,8 +366,8 @@ bool UThreadAsyncExecLibrary::SetTickableWhenPaused(class UThreadAsyncExecTick**
 
 	Func->FunctionFlags = Flgs;
 
-	if (TickHandle != nullptr)
-		*TickHandle = Parms.TickHandle;
+	if (NewValue != nullptr)
+		*NewValue = Parms.NewValue;
 
 	return Parms.ReturnValue;
 
@@ -377,10 +377,10 @@ bool UThreadAsyncExecLibrary::SetTickableWhenPaused(class UThreadAsyncExecTick**
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecLibrary.SetTickable
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UThreadAsyncExecTick*        TickHandle                                                       (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               NewValue                                                         (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+// class UThreadAsyncExecTick*        TickHandle                                                       (Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// bool                               NewValue                                                         (ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
 
-bool UThreadAsyncExecLibrary::SetTickable(class UThreadAsyncExecTick** TickHandle)
+class UThreadAsyncExecTick* UThreadAsyncExecLibrary::SetTickable(bool* NewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -398,8 +398,8 @@ bool UThreadAsyncExecLibrary::SetTickable(class UThreadAsyncExecTick** TickHandl
 
 	Func->FunctionFlags = Flgs;
 
-	if (TickHandle != nullptr)
-		*TickHandle = Parms.TickHandle;
+	if (NewValue != nullptr)
+		*NewValue = Parms.NewValue;
 
 	return Parms.ReturnValue;
 
@@ -409,10 +409,10 @@ bool UThreadAsyncExecLibrary::SetTickable(class UThreadAsyncExecTick** TickHandl
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecLibrary.IsTickableWhenPaused
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UThreadAsyncExecTick*        TickHandle                                                       (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UThreadAsyncExecTick*        TickHandle                                                       (Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UThreadAsyncExecLibrary::IsTickableWhenPaused(class UThreadAsyncExecTick** TickHandle, bool ReturnValue)
+class UThreadAsyncExecTick* UThreadAsyncExecLibrary::IsTickableWhenPaused(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -431,8 +431,7 @@ void UThreadAsyncExecLibrary::IsTickableWhenPaused(class UThreadAsyncExecTick** 
 
 	Func->FunctionFlags = Flgs;
 
-	if (TickHandle != nullptr)
-		*TickHandle = Parms.TickHandle;
+	return Parms.ReturnValue;
 
 }
 
@@ -440,10 +439,10 @@ void UThreadAsyncExecLibrary::IsTickableWhenPaused(class UThreadAsyncExecTick** 
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecLibrary.IsTickable
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UThreadAsyncExecTick*        TickHandle                                                       (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UThreadAsyncExecTick*        TickHandle                                                       (Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UThreadAsyncExecLibrary::IsTickable(class UThreadAsyncExecTick** TickHandle, bool ReturnValue)
+class UThreadAsyncExecTick* UThreadAsyncExecLibrary::IsTickable(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -462,8 +461,7 @@ void UThreadAsyncExecLibrary::IsTickable(class UThreadAsyncExecTick** TickHandle
 
 	Func->FunctionFlags = Flgs;
 
-	if (TickHandle != nullptr)
-		*TickHandle = Parms.TickHandle;
+	return Parms.ReturnValue;
 
 }
 
@@ -471,7 +469,7 @@ void UThreadAsyncExecLibrary::IsTickable(class UThreadAsyncExecTick** TickHandle
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecLibrary.IsGameThread
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UThreadAsyncExecLibrary::IsGameThread(bool ReturnValue)
 {
@@ -498,7 +496,7 @@ void UThreadAsyncExecLibrary::IsGameThread(bool ReturnValue)
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecLibrary.GetCurrentThreadName
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UThreadAsyncExecLibrary::GetCurrentThreadName(const class FString& ReturnValue)
 {
@@ -525,7 +523,7 @@ void UThreadAsyncExecLibrary::GetCurrentThreadName(const class FString& ReturnVa
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecLibrary.GetCurrentThreadID
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UThreadAsyncExecLibrary::GetCurrentThreadID(int32 ReturnValue)
 {
@@ -552,9 +550,9 @@ void UThreadAsyncExecLibrary::GetCurrentThreadID(int32 ReturnValue)
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecLibrary.ExecIsGameThread
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// bool                               bIsInGameThread                                                  (Edit, EditFixedSize, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+// bool                               bIsInGameThread                                                  (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
 
-void UThreadAsyncExecLibrary::ExecIsGameThread(bool* bIsInGameThread)
+bool UThreadAsyncExecLibrary::ExecIsGameThread()
 {
 	static class UFunction* Func = nullptr;
 
@@ -572,8 +570,7 @@ void UThreadAsyncExecLibrary::ExecIsGameThread(bool* bIsInGameThread)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bIsInGameThread != nullptr)
-		*bIsInGameThread = Parms.bIsInGameThread;
+	return Parms.ReturnValue;
 
 }
 
@@ -581,9 +578,9 @@ void UThreadAsyncExecLibrary::ExecIsGameThread(bool* bIsInGameThread)
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecLibrary.BreakNextTick
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UThreadAsyncExecTick*        TickHandle                                                       (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+// class UThreadAsyncExecTick*        TickHandle                                                       (Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
 
-void UThreadAsyncExecLibrary::BreakNextTick(class UThreadAsyncExecTick** TickHandle)
+class UThreadAsyncExecTick* UThreadAsyncExecLibrary::BreakNextTick()
 {
 	static class UFunction* Func = nullptr;
 
@@ -601,8 +598,7 @@ void UThreadAsyncExecLibrary::BreakNextTick(class UThreadAsyncExecTick** TickHan
 
 	Func->FunctionFlags = Flgs;
 
-	if (TickHandle != nullptr)
-		*TickHandle = Parms.TickHandle;
+	return Parms.ReturnValue;
 
 }
 
@@ -610,9 +606,9 @@ void UThreadAsyncExecLibrary::BreakNextTick(class UThreadAsyncExecTick** TickHan
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecLibrary.BreakNextLoop
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UThreadAsyncExecLoop*        LoopHandle                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+// class UThreadAsyncExecLoop*        LoopHandle                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
 
-void UThreadAsyncExecLibrary::BreakNextLoop(class UThreadAsyncExecLoop** LoopHandle)
+class UThreadAsyncExecLoop* UThreadAsyncExecLibrary::BreakNextLoop()
 {
 	static class UFunction* Func = nullptr;
 
@@ -630,8 +626,7 @@ void UThreadAsyncExecLibrary::BreakNextLoop(class UThreadAsyncExecLoop** LoopHan
 
 	Func->FunctionFlags = Flgs;
 
-	if (LoopHandle != nullptr)
-		*LoopHandle = Parms.LoopHandle;
+	return Parms.ReturnValue;
 
 }
 
@@ -667,10 +662,10 @@ class UThreadAsyncExecOnce* UThreadAsyncExecOnce::GetDefaultObj()
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecOnce.CreateThreadExecOnce
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               bLongTask                                                        (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// class UThreadAsyncExecOnce*        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bLongTask                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class UThreadAsyncExecOnce*        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UThreadAsyncExecOnce::CreateThreadExecOnce(bool* bLongTask, class UThreadAsyncExecOnce* ReturnValue)
+bool UThreadAsyncExecOnce::CreateThreadExecOnce(class UThreadAsyncExecOnce* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -689,8 +684,7 @@ void UThreadAsyncExecOnce::CreateThreadExecOnce(bool* bLongTask, class UThreadAs
 
 	Func->FunctionFlags = Flgs;
 
-	if (bLongTask != nullptr)
-		*bLongTask = Parms.bLongTask;
+	return Parms.ReturnValue;
 
 }
 
@@ -726,10 +720,10 @@ class UThreadAsyncExecTick* UThreadAsyncExecTick::GetDefaultObj()
 // DelegateFunction ThreadExecutionBlueprintNode.ThreadAsyncExecTick.OnTick__DelegateSignature
 // (MulticastDelegate, Public, Delegate)
 // Parameters:
-// float                              DeltaSeconds                                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UThreadAsyncExecTick*        TickHandle                                                       (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaSeconds                                                     (ConstParm, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UThreadAsyncExecTick*        TickHandle                                                       (Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
 
-float UThreadAsyncExecTick::OnTick__DelegateSignature(class UThreadAsyncExecTick** TickHandle)
+class UThreadAsyncExecTick* UThreadAsyncExecTick::OnTick__DelegateSignature()
 {
 	static class UFunction* Func = nullptr;
 
@@ -741,9 +735,6 @@ float UThreadAsyncExecTick::OnTick__DelegateSignature(class UThreadAsyncExecTick
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (TickHandle != nullptr)
-		*TickHandle = Parms.TickHandle;
-
 	return Parms.ReturnValue;
 
 }
@@ -752,10 +743,10 @@ float UThreadAsyncExecTick::OnTick__DelegateSignature(class UThreadAsyncExecTick
 // Function ThreadExecutionBlueprintNode.ThreadAsyncExecTick.CreateThreadExecTick
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               bLongTask                                                        (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-// class UThreadAsyncExecTick*        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bLongTask                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// class UThreadAsyncExecTick*        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UThreadAsyncExecTick::CreateThreadExecTick(bool* bLongTask, class UThreadAsyncExecTick* ReturnValue)
+bool UThreadAsyncExecTick::CreateThreadExecTick(class UThreadAsyncExecTick* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -774,8 +765,7 @@ void UThreadAsyncExecTick::CreateThreadExecTick(bool* bLongTask, class UThreadAs
 
 	Func->FunctionFlags = Flgs;
 
-	if (bLongTask != nullptr)
-		*bLongTask = Parms.bLongTask;
+	return Parms.ReturnValue;
 
 }
 
@@ -835,7 +825,7 @@ class UThreadExecDeveloperSettings* UThreadExecDeveloperSettings::GetDefaultObj(
 // Function ThreadExecutionBlueprintNode.ThreadExecDeveloperSettings.Get
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UThreadExecDeveloperSettings*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UThreadExecDeveloperSettings*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UThreadExecDeveloperSettings::Get(class UThreadExecDeveloperSettings* ReturnValue)
 {
@@ -890,7 +880,7 @@ class UThreadNodeSubsystem* UThreadNodeSubsystem::GetDefaultObj()
 // Function ThreadExecutionBlueprintNode.ThreadNodeSubsystem.GetAllThreadExecTicks
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// TSet<class UThreadAsyncExecTick*>  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TSet<class UThreadAsyncExecTick*>  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UThreadNodeSubsystem::GetAllThreadExecTicks(TSet<class UThreadAsyncExecTick*> ReturnValue)
 {
@@ -917,7 +907,7 @@ void UThreadNodeSubsystem::GetAllThreadExecTicks(TSet<class UThreadAsyncExecTick
 // Function ThreadExecutionBlueprintNode.ThreadNodeSubsystem.GetAllThreadExecOnces
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// TSet<class UThreadAsyncExecOnce*>  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TSet<class UThreadAsyncExecOnce*>  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UThreadNodeSubsystem::GetAllThreadExecOnces(TSet<class UThreadAsyncExecOnce*> ReturnValue)
 {
@@ -944,7 +934,7 @@ void UThreadNodeSubsystem::GetAllThreadExecOnces(TSet<class UThreadAsyncExecOnce
 // Function ThreadExecutionBlueprintNode.ThreadNodeSubsystem.GetAllThreadExecNodes
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// TSet<class UThreadAsyncExecBase*>  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TSet<class UThreadAsyncExecBase*>  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UThreadNodeSubsystem::GetAllThreadExecNodes(TSet<class UThreadAsyncExecBase*> ReturnValue)
 {
@@ -971,7 +961,7 @@ void UThreadNodeSubsystem::GetAllThreadExecNodes(TSet<class UThreadAsyncExecBase
 // Function ThreadExecutionBlueprintNode.ThreadNodeSubsystem.GetAllThreadExecLoops
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// TSet<class UThreadAsyncExecLoop*>  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TSet<class UThreadAsyncExecLoop*>  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UThreadNodeSubsystem::GetAllThreadExecLoops(TSet<class UThreadAsyncExecLoop*> ReturnValue)
 {
@@ -998,7 +988,7 @@ void UThreadNodeSubsystem::GetAllThreadExecLoops(TSet<class UThreadAsyncExecLoop
 // Function ThreadExecutionBlueprintNode.ThreadNodeSubsystem.GetAllMutexes
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TSet<class UMutex*>                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TSet<class UMutex*>                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UThreadNodeSubsystem::GetAllMutexes(TSet<class UMutex*> ReturnValue)
 {
@@ -1025,9 +1015,9 @@ void UThreadNodeSubsystem::GetAllMutexes(TSet<class UMutex*> ReturnValue)
 // Function ThreadExecutionBlueprintNode.ThreadNodeSubsystem.DestoryMutex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMutex*                      Mutex                                                            (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+// class UMutex*                      Mutex                                                            (ExportObject, BlueprintReadOnly, Parm, Config, DisableEditOnInstance, EditConst)
 
-class UMutex* UThreadNodeSubsystem::DestoryMutex()
+void UThreadNodeSubsystem::DestoryMutex(class UMutex* Mutex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1036,6 +1026,7 @@ class UMutex* UThreadNodeSubsystem::DestoryMutex()
 
 	Params::UThreadNodeSubsystem_DestoryMutex_Params Parms{};
 
+	Parms.Mutex = Mutex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1045,15 +1036,13 @@ class UMutex* UThreadNodeSubsystem::DestoryMutex()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function ThreadExecutionBlueprintNode.ThreadNodeSubsystem.CreateNewMutex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMutex*                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMutex*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UThreadNodeSubsystem::CreateNewMutex(class UMutex* ReturnValue)
 {

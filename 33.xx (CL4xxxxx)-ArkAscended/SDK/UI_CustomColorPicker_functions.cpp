@@ -43,9 +43,9 @@ class UUI_CustomColorPicker_C* UUI_CustomColorPicker_C::GetDefaultObj()
 // Function UI_CustomColorPicker.UI_CustomColorPicker_C.SetColorPickerEnabled
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               bInIsEnabled                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bInIsEnabled                                                     (Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUI_CustomColorPicker_C::SetColorPickerEnabled(bool* bInIsEnabled)
+bool UUI_CustomColorPicker_C::SetColorPickerEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,8 +57,7 @@ void UUI_CustomColorPicker_C::SetColorPickerEnabled(bool* bInIsEnabled)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (bInIsEnabled != nullptr)
-		*bInIsEnabled = Parms.bInIsEnabled;
+	return Parms.ReturnValue;
 
 }
 
@@ -66,14 +65,14 @@ void UUI_CustomColorPicker_C::SetColorPickerEnabled(bool* bInIsEnabled)
 // Function UI_CustomColorPicker.UI_CustomColorPicker_C.LimitTextSize
 // (Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// class FString                      SourceString                                                     (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              Size                                                             (Edit, ExportObject, EditFixedSize, ReturnParm, Transient, Config)
+// class FString                      SourceString                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// int32                              Size                                                             (Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, Config)
 // class FString                      Array                                                            (ExportObject, Parm, OutParm, ZeroConstructor)
-// TArray<class FString>              LocalArray                                                       (ConstParm, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<class FString>              CallFunc_GetCharacterArrayFromString_ReturnValue                 (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      CallFunc_JoinStringArray_ReturnValue                             (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class FString>              LocalArray                                                       (BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class FString>              CallFunc_GetCharacterArrayFromString_ReturnValue                 (BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      CallFunc_JoinStringArray_ReturnValue                             (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
-TArray<class FString> UUI_CustomColorPicker_C::LimitTextSize(const class FString& SourceString, class FString* Array, class FString* CallFunc_JoinStringArray_ReturnValue)
+int32 UUI_CustomColorPicker_C::LimitTextSize(class FString* SourceString, class FString* Array, TArray<class FString>* LocalArray, const TArray<class FString>& CallFunc_GetCharacterArrayFromString_ReturnValue, const class FString& CallFunc_JoinStringArray_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -82,15 +81,19 @@ TArray<class FString> UUI_CustomColorPicker_C::LimitTextSize(const class FString
 
 	Params::UUI_CustomColorPicker_C_LimitTextSize_Params Parms{};
 
-	Parms.SourceString = SourceString;
+	Parms.CallFunc_GetCharacterArrayFromString_ReturnValue = CallFunc_GetCharacterArrayFromString_ReturnValue;
+	Parms.CallFunc_JoinStringArray_ReturnValue = CallFunc_JoinStringArray_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (SourceString != nullptr)
+		*SourceString = std::move(Parms.SourceString);
 
 	if (Array != nullptr)
 		*Array = std::move(Parms.Array);
 
-	if (CallFunc_JoinStringArray_ReturnValue != nullptr)
-		*CallFunc_JoinStringArray_ReturnValue = std::move(Parms.CallFunc_JoinStringArray_ReturnValue);
+	if (LocalArray != nullptr)
+		*LocalArray = std::move(Parms.LocalArray);
 
 	return Parms.ReturnValue;
 
@@ -101,21 +104,21 @@ TArray<class FString> UUI_CustomColorPicker_C::LimitTextSize(const class FString
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // struct FLinearColor                Color                                                            (Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
-// float                              CallFunc_RGBToHSV_H                                              (ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              CallFunc_RGBToHSV_S                                              (Edit, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              CallFunc_RGBToHSV_V                                              (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              CallFunc_RGBToHSV_A                                              (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FColor                      CallFunc_Conv_LinearColorToColor_ReturnValue                     (ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleDouble_ReturnValue                       (ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// class FString                      CallFunc_SRGBtoHEX_ReturnValue                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// double                             CallFunc_Divide_DoubleDouble_ReturnValue                         (BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// struct FVector2D                   CallFunc_MakeVector2D_ReturnValue                                (Edit, ConstParm, BlueprintReadOnly, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Divide_DoubleDouble_A_ImplicitCast                      (Edit, ConstParm, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleDouble_B_ImplicitCast                    (ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// float                              CallFunc_SetValue_InValue_ImplicitCast                           (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              CallFunc_RGBToHSV_H                                              (ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              CallFunc_RGBToHSV_S                                              (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              CallFunc_RGBToHSV_V                                              (EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              CallFunc_RGBToHSV_A                                              (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FColor                      CallFunc_Conv_LinearColorToColor_ReturnValue                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleDouble_ReturnValue                       (BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      CallFunc_SRGBtoHEX_ReturnValue                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// double                             CallFunc_Divide_DoubleDouble_ReturnValue                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, SubobjectReference)
+// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// struct FVector2D                   CallFunc_MakeVector2D_ReturnValue                                (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
+// double                             CallFunc_Divide_DoubleDouble_A_ImplicitCast                      (BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleDouble_B_ImplicitCast                    (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              CallFunc_SetValue_InValue_ImplicitCast                           (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
-float UUI_CustomColorPicker_C::UpdateAllSliders(struct FLinearColor* Color, double* CallFunc_Subtract_DoubleDouble_ReturnValue, const struct FVector2D& CallFunc_MakeVector2D_ReturnValue)
+double UUI_CustomColorPicker_C::UpdateAllSliders(struct FLinearColor* Color, float* CallFunc_RGBToHSV_H, float* CallFunc_RGBToHSV_S, float* CallFunc_RGBToHSV_V, float* CallFunc_RGBToHSV_A, const struct FColor& CallFunc_Conv_LinearColorToColor_ReturnValue, class FString* CallFunc_SRGBtoHEX_ReturnValue, double CallFunc_Divide_DoubleDouble_ReturnValue, class FText* CallFunc_Conv_StringToText_ReturnValue, double* CallFunc_Divide_DoubleDouble_A_ImplicitCast, float* CallFunc_SetValue_InValue_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -124,15 +127,37 @@ float UUI_CustomColorPicker_C::UpdateAllSliders(struct FLinearColor* Color, doub
 
 	Params::UUI_CustomColorPicker_C_UpdateAllSliders_Params Parms{};
 
-	Parms.CallFunc_MakeVector2D_ReturnValue = CallFunc_MakeVector2D_ReturnValue;
+	Parms.CallFunc_Conv_LinearColorToColor_ReturnValue = CallFunc_Conv_LinearColorToColor_ReturnValue;
+	Parms.CallFunc_Divide_DoubleDouble_ReturnValue = CallFunc_Divide_DoubleDouble_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
 	if (Color != nullptr)
 		*Color = std::move(Parms.Color);
 
-	if (CallFunc_Subtract_DoubleDouble_ReturnValue != nullptr)
-		*CallFunc_Subtract_DoubleDouble_ReturnValue = Parms.CallFunc_Subtract_DoubleDouble_ReturnValue;
+	if (CallFunc_RGBToHSV_H != nullptr)
+		*CallFunc_RGBToHSV_H = Parms.CallFunc_RGBToHSV_H;
+
+	if (CallFunc_RGBToHSV_S != nullptr)
+		*CallFunc_RGBToHSV_S = Parms.CallFunc_RGBToHSV_S;
+
+	if (CallFunc_RGBToHSV_V != nullptr)
+		*CallFunc_RGBToHSV_V = Parms.CallFunc_RGBToHSV_V;
+
+	if (CallFunc_RGBToHSV_A != nullptr)
+		*CallFunc_RGBToHSV_A = Parms.CallFunc_RGBToHSV_A;
+
+	if (CallFunc_SRGBtoHEX_ReturnValue != nullptr)
+		*CallFunc_SRGBtoHEX_ReturnValue = std::move(Parms.CallFunc_SRGBtoHEX_ReturnValue);
+
+	if (CallFunc_Conv_StringToText_ReturnValue != nullptr)
+		*CallFunc_Conv_StringToText_ReturnValue = Parms.CallFunc_Conv_StringToText_ReturnValue;
+
+	if (CallFunc_Divide_DoubleDouble_A_ImplicitCast != nullptr)
+		*CallFunc_Divide_DoubleDouble_A_ImplicitCast = Parms.CallFunc_Divide_DoubleDouble_A_ImplicitCast;
+
+	if (CallFunc_SetValue_InValue_ImplicitCast != nullptr)
+		*CallFunc_SetValue_InValue_ImplicitCast = Parms.CallFunc_SetValue_InValue_ImplicitCast;
 
 	return Parms.ReturnValue;
 
@@ -142,18 +167,18 @@ float UUI_CustomColorPicker_C::UpdateAllSliders(struct FLinearColor* Color, doub
 // Function UI_CustomColorPicker.UI_CustomColorPicker_C.GetFinalColor
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// struct FLinearColor                FinalColor                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              CallFunc_GetValue_ReturnValue                                    (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              CallFunc_GetValue_ReturnValue_1                                  (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// float                              CallFunc_GetValue_ReturnValue_2                                  (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// struct FVector2D                   CallFunc_GetValue_ReturnValue_3                                  (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, NonTransactional)
-// double                             CallFunc_BreakVector2D_X                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_BreakVector2D_Y                                         (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Multiply_DoubleDouble_ReturnValue                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// struct FLinearColor                CallFunc_HSVToRGB_ReturnValue                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              CallFunc_HSVToRGB_H_ImplicitCast                                 (Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FLinearColor                FinalColor                                                       (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              CallFunc_GetValue_ReturnValue                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              CallFunc_GetValue_ReturnValue_1                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
+// float                              CallFunc_GetValue_ReturnValue_2                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// struct FVector2D                   CallFunc_GetValue_ReturnValue_3                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference, NonTransactional)
+// double                             CallFunc_BreakVector2D_X                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// double                             CallFunc_BreakVector2D_Y                                         (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// double                             CallFunc_Multiply_DoubleDouble_ReturnValue                       (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FLinearColor                CallFunc_HSVToRGB_ReturnValue                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              CallFunc_HSVToRGB_H_ImplicitCast                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
-float UUI_CustomColorPicker_C::GetFinalColor(double CallFunc_Multiply_DoubleDouble_ReturnValue)
+void UUI_CustomColorPicker_C::GetFinalColor(struct FLinearColor* FinalColor, float CallFunc_GetValue_ReturnValue, float CallFunc_GetValue_ReturnValue_1, float CallFunc_GetValue_ReturnValue_2, const struct FVector2D& CallFunc_GetValue_ReturnValue_3, double* CallFunc_BreakVector2D_X, double* CallFunc_BreakVector2D_Y, double CallFunc_Multiply_DoubleDouble_ReturnValue, const struct FLinearColor& CallFunc_HSVToRGB_ReturnValue, float CallFunc_HSVToRGB_H_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -162,11 +187,24 @@ float UUI_CustomColorPicker_C::GetFinalColor(double CallFunc_Multiply_DoubleDoub
 
 	Params::UUI_CustomColorPicker_C_GetFinalColor_Params Parms{};
 
+	Parms.CallFunc_GetValue_ReturnValue = CallFunc_GetValue_ReturnValue;
+	Parms.CallFunc_GetValue_ReturnValue_1 = CallFunc_GetValue_ReturnValue_1;
+	Parms.CallFunc_GetValue_ReturnValue_2 = CallFunc_GetValue_ReturnValue_2;
+	Parms.CallFunc_GetValue_ReturnValue_3 = CallFunc_GetValue_ReturnValue_3;
 	Parms.CallFunc_Multiply_DoubleDouble_ReturnValue = CallFunc_Multiply_DoubleDouble_ReturnValue;
+	Parms.CallFunc_HSVToRGB_ReturnValue = CallFunc_HSVToRGB_ReturnValue;
+	Parms.CallFunc_HSVToRGB_H_ImplicitCast = CallFunc_HSVToRGB_H_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (FinalColor != nullptr)
+		*FinalColor = std::move(Parms.FinalColor);
+
+	if (CallFunc_BreakVector2D_X != nullptr)
+		*CallFunc_BreakVector2D_X = Parms.CallFunc_BreakVector2D_X;
+
+	if (CallFunc_BreakVector2D_Y != nullptr)
+		*CallFunc_BreakVector2D_Y = Parms.CallFunc_BreakVector2D_Y;
 
 }
 
@@ -174,18 +212,18 @@ float UUI_CustomColorPicker_C::GetFinalColor(double CallFunc_Multiply_DoubleDoub
 // Function UI_CustomColorPicker.UI_CustomColorPicker_C.OnUpdateOpacity
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FVector2D                   CallFunc_GetValue_ReturnValue                                    (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// double                             CallFunc_BreakVector2D_X                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_BreakVector2D_Y                                         (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Multiply_DoubleDouble_ReturnValue                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleDouble_ReturnValue                       (ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// struct FLinearColor                CallFunc_HSVToRGB_ReturnValue                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleDouble_ReturnValue_1                     (ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// float                              CallFunc_HSVToRGB_H_ImplicitCast                                 (Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              CallFunc_SetValue_InValue_ImplicitCast                           (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              CallFunc_SetValue_InValue_ImplicitCast_1                         (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// struct FVector2D                   CallFunc_GetValue_ReturnValue                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// double                             CallFunc_BreakVector2D_X                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// double                             CallFunc_BreakVector2D_Y                                         (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// double                             CallFunc_Multiply_DoubleDouble_ReturnValue                       (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleDouble_ReturnValue                       (BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FLinearColor                CallFunc_HSVToRGB_ReturnValue                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleDouble_ReturnValue_1                     (BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
+// float                              CallFunc_HSVToRGB_H_ImplicitCast                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              CallFunc_SetValue_InValue_ImplicitCast                           (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              CallFunc_SetValue_InValue_ImplicitCast_1                         (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
 
-float UUI_CustomColorPicker_C::OnUpdateOpacity(double CallFunc_Multiply_DoubleDouble_ReturnValue, double* CallFunc_Subtract_DoubleDouble_ReturnValue, double* CallFunc_Subtract_DoubleDouble_ReturnValue_1)
+double UUI_CustomColorPicker_C::OnUpdateOpacity(const struct FVector2D& CallFunc_GetValue_ReturnValue, double* CallFunc_BreakVector2D_X, double* CallFunc_BreakVector2D_Y, double CallFunc_Multiply_DoubleDouble_ReturnValue, const struct FLinearColor& CallFunc_HSVToRGB_ReturnValue, float CallFunc_HSVToRGB_H_ImplicitCast, float* CallFunc_SetValue_InValue_ImplicitCast, float* CallFunc_SetValue_InValue_ImplicitCast_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -194,15 +232,24 @@ float UUI_CustomColorPicker_C::OnUpdateOpacity(double CallFunc_Multiply_DoubleDo
 
 	Params::UUI_CustomColorPicker_C_OnUpdateOpacity_Params Parms{};
 
+	Parms.CallFunc_GetValue_ReturnValue = CallFunc_GetValue_ReturnValue;
 	Parms.CallFunc_Multiply_DoubleDouble_ReturnValue = CallFunc_Multiply_DoubleDouble_ReturnValue;
+	Parms.CallFunc_HSVToRGB_ReturnValue = CallFunc_HSVToRGB_ReturnValue;
+	Parms.CallFunc_HSVToRGB_H_ImplicitCast = CallFunc_HSVToRGB_H_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_Subtract_DoubleDouble_ReturnValue != nullptr)
-		*CallFunc_Subtract_DoubleDouble_ReturnValue = Parms.CallFunc_Subtract_DoubleDouble_ReturnValue;
+	if (CallFunc_BreakVector2D_X != nullptr)
+		*CallFunc_BreakVector2D_X = Parms.CallFunc_BreakVector2D_X;
 
-	if (CallFunc_Subtract_DoubleDouble_ReturnValue_1 != nullptr)
-		*CallFunc_Subtract_DoubleDouble_ReturnValue_1 = Parms.CallFunc_Subtract_DoubleDouble_ReturnValue_1;
+	if (CallFunc_BreakVector2D_Y != nullptr)
+		*CallFunc_BreakVector2D_Y = Parms.CallFunc_BreakVector2D_Y;
+
+	if (CallFunc_SetValue_InValue_ImplicitCast != nullptr)
+		*CallFunc_SetValue_InValue_ImplicitCast = Parms.CallFunc_SetValue_InValue_ImplicitCast;
+
+	if (CallFunc_SetValue_InValue_ImplicitCast_1 != nullptr)
+		*CallFunc_SetValue_InValue_ImplicitCast_1 = Parms.CallFunc_SetValue_InValue_ImplicitCast_1;
 
 	return Parms.ReturnValue;
 
@@ -212,15 +259,15 @@ float UUI_CustomColorPicker_C::OnUpdateOpacity(double CallFunc_Multiply_DoubleDo
 // Function UI_CustomColorPicker.UI_CustomColorPicker_C.OnUpdateValue
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// float                              CallFunc_GetValue_ReturnValue                                    (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FVector2D                   CallFunc_GetValue_ReturnValue_1                                  (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// double                             CallFunc_Subtract_DoubleDouble_ReturnValue                       (ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_BreakVector2D_X                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_BreakVector2D_Y                                         (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// struct FVector2D                   CallFunc_MakeVector2D_ReturnValue                                (Edit, ConstParm, BlueprintReadOnly, Transient, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleDouble_B_ImplicitCast                    (ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// float                              CallFunc_GetValue_ReturnValue                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector2D                   CallFunc_GetValue_ReturnValue_1                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
+// double                             CallFunc_Subtract_DoubleDouble_ReturnValue                       (BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// double                             CallFunc_BreakVector2D_X                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// double                             CallFunc_BreakVector2D_Y                                         (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// struct FVector2D                   CallFunc_MakeVector2D_ReturnValue                                (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleDouble_B_ImplicitCast                    (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
 
-double UUI_CustomColorPicker_C::OnUpdateValue(double* CallFunc_Subtract_DoubleDouble_ReturnValue, const struct FVector2D& CallFunc_MakeVector2D_ReturnValue)
+double UUI_CustomColorPicker_C::OnUpdateValue(float CallFunc_GetValue_ReturnValue, const struct FVector2D& CallFunc_GetValue_ReturnValue_1, double* CallFunc_BreakVector2D_X, double* CallFunc_BreakVector2D_Y)
 {
 	static class UFunction* Func = nullptr;
 
@@ -229,12 +276,16 @@ double UUI_CustomColorPicker_C::OnUpdateValue(double* CallFunc_Subtract_DoubleDo
 
 	Params::UUI_CustomColorPicker_C_OnUpdateValue_Params Parms{};
 
-	Parms.CallFunc_MakeVector2D_ReturnValue = CallFunc_MakeVector2D_ReturnValue;
+	Parms.CallFunc_GetValue_ReturnValue = CallFunc_GetValue_ReturnValue;
+	Parms.CallFunc_GetValue_ReturnValue_1 = CallFunc_GetValue_ReturnValue_1;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_Subtract_DoubleDouble_ReturnValue != nullptr)
-		*CallFunc_Subtract_DoubleDouble_ReturnValue = Parms.CallFunc_Subtract_DoubleDouble_ReturnValue;
+	if (CallFunc_BreakVector2D_X != nullptr)
+		*CallFunc_BreakVector2D_X = Parms.CallFunc_BreakVector2D_X;
+
+	if (CallFunc_BreakVector2D_Y != nullptr)
+		*CallFunc_BreakVector2D_Y = Parms.CallFunc_BreakVector2D_Y;
 
 	return Parms.ReturnValue;
 
@@ -262,18 +313,18 @@ void UUI_CustomColorPicker_C::OnUpdateSaturation()
 // Function UI_CustomColorPicker.UI_CustomColorPicker_C.OnUpdate2DSynth
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FVector2D                   CallFunc_GetValue_ReturnValue                                    (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// double                             CallFunc_BreakVector2D_X                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_BreakVector2D_Y                                         (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Multiply_DoubleDouble_ReturnValue                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleDouble_ReturnValue                       (ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// struct FLinearColor                CallFunc_HSVToRGB_ReturnValue                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// double                             CallFunc_Subtract_DoubleDouble_ReturnValue_1                     (ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// float                              CallFunc_HSVToRGB_H_ImplicitCast                                 (Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              CallFunc_SetValue_InValue_ImplicitCast                           (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              CallFunc_SetValue_InValue_ImplicitCast_1                         (Edit, ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// struct FVector2D                   CallFunc_GetValue_ReturnValue                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// double                             CallFunc_BreakVector2D_X                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// double                             CallFunc_BreakVector2D_Y                                         (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// double                             CallFunc_Multiply_DoubleDouble_ReturnValue                       (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleDouble_ReturnValue                       (BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FLinearColor                CallFunc_HSVToRGB_ReturnValue                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// double                             CallFunc_Subtract_DoubleDouble_ReturnValue_1                     (BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
+// float                              CallFunc_HSVToRGB_H_ImplicitCast                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              CallFunc_SetValue_InValue_ImplicitCast                           (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              CallFunc_SetValue_InValue_ImplicitCast_1                         (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
 
-float UUI_CustomColorPicker_C::OnUpdate2DSynth(double CallFunc_Multiply_DoubleDouble_ReturnValue, double* CallFunc_Subtract_DoubleDouble_ReturnValue, double* CallFunc_Subtract_DoubleDouble_ReturnValue_1)
+double UUI_CustomColorPicker_C::OnUpdate2DSynth(const struct FVector2D& CallFunc_GetValue_ReturnValue, double* CallFunc_BreakVector2D_X, double* CallFunc_BreakVector2D_Y, double CallFunc_Multiply_DoubleDouble_ReturnValue, const struct FLinearColor& CallFunc_HSVToRGB_ReturnValue, float CallFunc_HSVToRGB_H_ImplicitCast, float* CallFunc_SetValue_InValue_ImplicitCast, float* CallFunc_SetValue_InValue_ImplicitCast_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -282,15 +333,24 @@ float UUI_CustomColorPicker_C::OnUpdate2DSynth(double CallFunc_Multiply_DoubleDo
 
 	Params::UUI_CustomColorPicker_C_OnUpdate2DSynth_Params Parms{};
 
+	Parms.CallFunc_GetValue_ReturnValue = CallFunc_GetValue_ReturnValue;
 	Parms.CallFunc_Multiply_DoubleDouble_ReturnValue = CallFunc_Multiply_DoubleDouble_ReturnValue;
+	Parms.CallFunc_HSVToRGB_ReturnValue = CallFunc_HSVToRGB_ReturnValue;
+	Parms.CallFunc_HSVToRGB_H_ImplicitCast = CallFunc_HSVToRGB_H_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_Subtract_DoubleDouble_ReturnValue != nullptr)
-		*CallFunc_Subtract_DoubleDouble_ReturnValue = Parms.CallFunc_Subtract_DoubleDouble_ReturnValue;
+	if (CallFunc_BreakVector2D_X != nullptr)
+		*CallFunc_BreakVector2D_X = Parms.CallFunc_BreakVector2D_X;
 
-	if (CallFunc_Subtract_DoubleDouble_ReturnValue_1 != nullptr)
-		*CallFunc_Subtract_DoubleDouble_ReturnValue_1 = Parms.CallFunc_Subtract_DoubleDouble_ReturnValue_1;
+	if (CallFunc_BreakVector2D_Y != nullptr)
+		*CallFunc_BreakVector2D_Y = Parms.CallFunc_BreakVector2D_Y;
+
+	if (CallFunc_SetValue_InValue_ImplicitCast != nullptr)
+		*CallFunc_SetValue_InValue_ImplicitCast = Parms.CallFunc_SetValue_InValue_ImplicitCast;
+
+	if (CallFunc_SetValue_InValue_ImplicitCast_1 != nullptr)
+		*CallFunc_SetValue_InValue_ImplicitCast_1 = Parms.CallFunc_SetValue_InValue_ImplicitCast_1;
 
 	return Parms.ReturnValue;
 
@@ -301,11 +361,11 @@ float UUI_CustomColorPicker_C::OnUpdate2DSynth(double CallFunc_Multiply_DoubleDo
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // struct FLinearColor                Color                                                            (Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
-// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue                          (BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue_1                        (BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue_2                        (BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue                          (Edit, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference)
+// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue_1                        (Edit, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference, Interp)
+// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue_2                        (Edit, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference, RepNotify, Interp)
 
-void UUI_CustomColorPicker_C::SetValueBarValue(struct FLinearColor* Color, class UMaterialInstanceDynamic** CallFunc_GetDynamicMaterial_ReturnValue, class UMaterialInstanceDynamic** CallFunc_GetDynamicMaterial_ReturnValue_1, class UMaterialInstanceDynamic** CallFunc_GetDynamicMaterial_ReturnValue_2)
+class UMaterialInstanceDynamic* UUI_CustomColorPicker_C::SetValueBarValue(struct FLinearColor* Color)
 {
 	static class UFunction* Func = nullptr;
 
@@ -320,14 +380,7 @@ void UUI_CustomColorPicker_C::SetValueBarValue(struct FLinearColor* Color, class
 	if (Color != nullptr)
 		*Color = std::move(Parms.Color);
 
-	if (CallFunc_GetDynamicMaterial_ReturnValue != nullptr)
-		*CallFunc_GetDynamicMaterial_ReturnValue = Parms.CallFunc_GetDynamicMaterial_ReturnValue;
-
-	if (CallFunc_GetDynamicMaterial_ReturnValue_1 != nullptr)
-		*CallFunc_GetDynamicMaterial_ReturnValue_1 = Parms.CallFunc_GetDynamicMaterial_ReturnValue_1;
-
-	if (CallFunc_GetDynamicMaterial_ReturnValue_2 != nullptr)
-		*CallFunc_GetDynamicMaterial_ReturnValue_2 = Parms.CallFunc_GetDynamicMaterial_ReturnValue_2;
+	return Parms.ReturnValue;
 
 }
 
@@ -336,11 +389,11 @@ void UUI_CustomColorPicker_C::SetValueBarValue(struct FLinearColor* Color, class
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // struct FLinearColor                Color                                                            (Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
-// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue                          (BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue_1                        (BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue_2                        (BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue                          (Edit, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference)
+// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue_1                        (Edit, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference, Interp)
+// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue_2                        (Edit, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference, RepNotify, Interp)
 
-void UUI_CustomColorPicker_C::SetSaturationBarColor(struct FLinearColor* Color, class UMaterialInstanceDynamic** CallFunc_GetDynamicMaterial_ReturnValue, class UMaterialInstanceDynamic** CallFunc_GetDynamicMaterial_ReturnValue_1, class UMaterialInstanceDynamic** CallFunc_GetDynamicMaterial_ReturnValue_2)
+class UMaterialInstanceDynamic* UUI_CustomColorPicker_C::SetSaturationBarColor(struct FLinearColor* Color)
 {
 	static class UFunction* Func = nullptr;
 
@@ -355,14 +408,7 @@ void UUI_CustomColorPicker_C::SetSaturationBarColor(struct FLinearColor* Color, 
 	if (Color != nullptr)
 		*Color = std::move(Parms.Color);
 
-	if (CallFunc_GetDynamicMaterial_ReturnValue != nullptr)
-		*CallFunc_GetDynamicMaterial_ReturnValue = Parms.CallFunc_GetDynamicMaterial_ReturnValue;
-
-	if (CallFunc_GetDynamicMaterial_ReturnValue_1 != nullptr)
-		*CallFunc_GetDynamicMaterial_ReturnValue_1 = Parms.CallFunc_GetDynamicMaterial_ReturnValue_1;
-
-	if (CallFunc_GetDynamicMaterial_ReturnValue_2 != nullptr)
-		*CallFunc_GetDynamicMaterial_ReturnValue_2 = Parms.CallFunc_GetDynamicMaterial_ReturnValue_2;
+	return Parms.ReturnValue;
 
 }
 
@@ -370,9 +416,9 @@ void UUI_CustomColorPicker_C::SetSaturationBarColor(struct FLinearColor* Color, 
 // Function UI_CustomColorPicker.UI_CustomColorPicker_C.BndEvt__UI_CustomColorPicker_SYNTH_Picker_K2Node_ComponentBoundEvent_0_OnFloatValueChangedEventSynth2D__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
-// float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SYNTH_Picker_K2Node_ComponentBoundEvent_0_OnFloatValueChangedEventSynth2D__DelegateSignature(float Value)
+void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SYNTH_Picker_K2Node_ComponentBoundEvent_0_OnFloatValueChangedEventSynth2D__DelegateSignature(float* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -381,9 +427,11 @@ void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SYNTH_Picker_K2Node_C
 
 	Params::UUI_CustomColorPicker_C_BndEvt__UI_CustomColorPicker_SYNTH_Picker_K2Node_ComponentBoundEvent_0_OnFloatValueChangedEventSynth2D__DelegateSignature_Params Parms{};
 
-	Parms.Value = Value;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 }
 
@@ -391,9 +439,9 @@ void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SYNTH_Picker_K2Node_C
 // Function UI_CustomColorPicker.UI_CustomColorPicker_C.BndEvt__UI_CustomColorPicker_SYNTH_Picker_K2Node_ComponentBoundEvent_1_OnFloatValueChangedEventSynth2D__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
-// float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SYNTH_Picker_K2Node_ComponentBoundEvent_1_OnFloatValueChangedEventSynth2D__DelegateSignature(float Value)
+void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SYNTH_Picker_K2Node_ComponentBoundEvent_1_OnFloatValueChangedEventSynth2D__DelegateSignature(float* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -402,9 +450,11 @@ void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SYNTH_Picker_K2Node_C
 
 	Params::UUI_CustomColorPicker_C_BndEvt__UI_CustomColorPicker_SYNTH_Picker_K2Node_ComponentBoundEvent_1_OnFloatValueChangedEventSynth2D__DelegateSignature_Params Parms{};
 
-	Parms.Value = Value;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 }
 
@@ -412,9 +462,9 @@ void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SYNTH_Picker_K2Node_C
 // Function UI_CustomColorPicker.UI_CustomColorPicker_C.BndEvt__UI_CustomColorPicker_SLIDER_Saturation_K2Node_ComponentBoundEvent_2_OnFloatValueChangedEvent__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
-// float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SLIDER_Saturation_K2Node_ComponentBoundEvent_2_OnFloatValueChangedEvent__DelegateSignature(float Value)
+void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SLIDER_Saturation_K2Node_ComponentBoundEvent_2_OnFloatValueChangedEvent__DelegateSignature(float* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -423,9 +473,11 @@ void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SLIDER_Saturation_K2N
 
 	Params::UUI_CustomColorPicker_C_BndEvt__UI_CustomColorPicker_SLIDER_Saturation_K2Node_ComponentBoundEvent_2_OnFloatValueChangedEvent__DelegateSignature_Params Parms{};
 
-	Parms.Value = Value;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 }
 
@@ -433,9 +485,9 @@ void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SLIDER_Saturation_K2N
 // Function UI_CustomColorPicker.UI_CustomColorPicker_C.BndEvt__UI_CustomColorPicker_SLIDER_Value_K2Node_ComponentBoundEvent_3_OnFloatValueChangedEvent__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
-// float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SLIDER_Value_K2Node_ComponentBoundEvent_3_OnFloatValueChangedEvent__DelegateSignature(float Value)
+void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SLIDER_Value_K2Node_ComponentBoundEvent_3_OnFloatValueChangedEvent__DelegateSignature(float* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -444,9 +496,11 @@ void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SLIDER_Value_K2Node_C
 
 	Params::UUI_CustomColorPicker_C_BndEvt__UI_CustomColorPicker_SLIDER_Value_K2Node_ComponentBoundEvent_3_OnFloatValueChangedEvent__DelegateSignature_Params Parms{};
 
-	Parms.Value = Value;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 }
 
@@ -454,9 +508,9 @@ void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SLIDER_Value_K2Node_C
 // Function UI_CustomColorPicker.UI_CustomColorPicker_C.BndEvt__UI_CustomColorPicker_SLIDER_Opacity_K2Node_ComponentBoundEvent_4_OnFloatValueChangedEvent__DelegateSignature
 // (BlueprintEvent)
 // Parameters:
-// float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SLIDER_Opacity_K2Node_ComponentBoundEvent_4_OnFloatValueChangedEvent__DelegateSignature(float Value)
+void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SLIDER_Opacity_K2Node_ComponentBoundEvent_4_OnFloatValueChangedEvent__DelegateSignature(float* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -465,9 +519,11 @@ void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SLIDER_Opacity_K2Node
 
 	Params::UUI_CustomColorPicker_C_BndEvt__UI_CustomColorPicker_SLIDER_Opacity_K2Node_ComponentBoundEvent_4_OnFloatValueChangedEvent__DelegateSignature_Params Parms{};
 
-	Parms.Value = Value;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 }
 
@@ -475,10 +531,10 @@ void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SLIDER_Opacity_K2Node
 // Function UI_CustomColorPicker.UI_CustomColorPicker_C.BndEvt__UI_CustomColorPicker_TEXT_HexValue_K2Node_ComponentBoundEvent_6_OnEditableTextCommittedEvent__DelegateSignature
 // (HasOutParams, BlueprintEvent)
 // Parameters:
-// class FText                        Text                                                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, EditConst)
-// enum class ETextCommit             CommitMethod                                                     (Edit, ConstParm, BlueprintVisible, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FText                        Text                                                             (Edit, Net, OutParm, DisableEditOnTemplate, EditConst)
+// enum class ETextCommit             CommitMethod                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 
-class FText UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_TEXT_HexValue_K2Node_ComponentBoundEvent_6_OnEditableTextCommittedEvent__DelegateSignature(enum class ETextCommit* CommitMethod)
+enum class ETextCommit UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_TEXT_HexValue_K2Node_ComponentBoundEvent_6_OnEditableTextCommittedEvent__DelegateSignature(class FText* Text)
 {
 	static class UFunction* Func = nullptr;
 
@@ -490,8 +546,8 @@ class FText UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_TEXT_HexValue_
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CommitMethod != nullptr)
-		*CommitMethod = Parms.CommitMethod;
+	if (Text != nullptr)
+		*Text = Parms.Text;
 
 	return Parms.ReturnValue;
 
@@ -573,27 +629,27 @@ void UUI_CustomColorPicker_C::BndEvt__UI_CustomColorPicker_SLIDER_Opacity_K2Node
 // Function UI_CustomColorPicker.UI_CustomColorPicker_C.ExecuteUbergraph_UI_CustomColorPicker
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// float                              K2Node_ComponentBoundEvent_Value_4                               (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, NonTransactional)
-// float                              K2Node_ComponentBoundEvent_Value_3                               (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, NonTransactional)
-// float                              K2Node_ComponentBoundEvent_Value_2                               (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// float                              K2Node_ComponentBoundEvent_Value_1                               (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// float                              K2Node_ComponentBoundEvent_Value                                 (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FLinearColor                CallFunc_GetFinalColor_FinalColor                                (BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FColor                      CallFunc_Conv_LinearColorToColor_ReturnValue                     (ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
-// class FString                      CallFunc_SRGBtoHEX_ReturnValue                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// class FText                        K2Node_ComponentBoundEvent_Text                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// enum class ETextCommit             K2Node_ComponentBoundEvent_CommitMethod                          (ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
-// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-// class FString                      CallFunc_LimitTextSize_Array                                     (BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FColor                      CallFunc_HEXtoSRGB_Color                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class FText                        CallFunc_Conv_StringToText_ReturnValue_1                         (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
-// struct FLinearColor                CallFunc_Conv_ColorToLinearColor_ReturnValue                     (Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              K2Node_ComponentBoundEvent_Value_4                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference, RepNotify, NonTransactional)
+// float                              K2Node_ComponentBoundEvent_Value_3                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference, NonTransactional)
+// float                              K2Node_ComponentBoundEvent_Value_2                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// float                              K2Node_ComponentBoundEvent_Value_1                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
+// float                              K2Node_ComponentBoundEvent_Value                                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FLinearColor                CallFunc_GetFinalColor_FinalColor                                (Edit, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FColor                      CallFunc_Conv_LinearColorToColor_ReturnValue                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
+// class FString                      CallFunc_SRGBtoHEX_ReturnValue                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class FText                        K2Node_ComponentBoundEvent_Text                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// enum class ETextCommit             K2Node_ComponentBoundEvent_CommitMethod                          (Edit, ConstParm, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class FString                      CallFunc_LimitTextSize_Array                                     (BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FColor                      CallFunc_HEXtoSRGB_Color                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// class FText                        CallFunc_Conv_StringToText_ReturnValue_1                         (ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// struct FLinearColor                CallFunc_Conv_ColorToLinearColor_ReturnValue                     (ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, Config, SubobjectReference)
 
-class FText UUI_CustomColorPicker_C::ExecuteUbergraph_UI_CustomColorPicker(int32 EntryPoint, class FText K2Node_ComponentBoundEvent_Text, struct FLinearColor* CallFunc_Conv_ColorToLinearColor_ReturnValue)
+class FText UUI_CustomColorPicker_C::ExecuteUbergraph_UI_CustomColorPicker(bool* CallFunc_IsValid_ReturnValue, float* K2Node_ComponentBoundEvent_Value_4, float* K2Node_ComponentBoundEvent_Value_3, float* K2Node_ComponentBoundEvent_Value_2, float* K2Node_ComponentBoundEvent_Value_1, float* K2Node_ComponentBoundEvent_Value, const struct FLinearColor& CallFunc_GetFinalColor_FinalColor, const struct FColor& CallFunc_Conv_LinearColorToColor_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, class FString* CallFunc_SRGBtoHEX_ReturnValue, class FText* CallFunc_Conv_StringToText_ReturnValue, enum class ETextCommit K2Node_ComponentBoundEvent_CommitMethod, class FString* CallFunc_Conv_TextToString_ReturnValue, class FString* CallFunc_LimitTextSize_Array, const struct FColor& CallFunc_HEXtoSRGB_Color, class FText* CallFunc_Conv_StringToText_ReturnValue_1, const struct FLinearColor& CallFunc_Conv_ColorToLinearColor_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -602,13 +658,49 @@ class FText UUI_CustomColorPicker_C::ExecuteUbergraph_UI_CustomColorPicker(int32
 
 	Params::UUI_CustomColorPicker_C_ExecuteUbergraph_UI_CustomColorPicker_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
-	Parms.K2Node_ComponentBoundEvent_Text = K2Node_ComponentBoundEvent_Text;
+	Parms.CallFunc_GetFinalColor_FinalColor = CallFunc_GetFinalColor_FinalColor;
+	Parms.CallFunc_Conv_LinearColorToColor_ReturnValue = CallFunc_Conv_LinearColorToColor_ReturnValue;
+	Parms.K2Node_ComponentBoundEvent_CommitMethod = K2Node_ComponentBoundEvent_CommitMethod;
+	Parms.CallFunc_HEXtoSRGB_Color = CallFunc_HEXtoSRGB_Color;
+	Parms.CallFunc_Conv_ColorToLinearColor_ReturnValue = CallFunc_Conv_ColorToLinearColor_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_Conv_ColorToLinearColor_ReturnValue != nullptr)
-		*CallFunc_Conv_ColorToLinearColor_ReturnValue = std::move(Parms.CallFunc_Conv_ColorToLinearColor_ReturnValue);
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+
+	if (K2Node_ComponentBoundEvent_Value_4 != nullptr)
+		*K2Node_ComponentBoundEvent_Value_4 = Parms.K2Node_ComponentBoundEvent_Value_4;
+
+	if (K2Node_ComponentBoundEvent_Value_3 != nullptr)
+		*K2Node_ComponentBoundEvent_Value_3 = Parms.K2Node_ComponentBoundEvent_Value_3;
+
+	if (K2Node_ComponentBoundEvent_Value_2 != nullptr)
+		*K2Node_ComponentBoundEvent_Value_2 = Parms.K2Node_ComponentBoundEvent_Value_2;
+
+	if (K2Node_ComponentBoundEvent_Value_1 != nullptr)
+		*K2Node_ComponentBoundEvent_Value_1 = Parms.K2Node_ComponentBoundEvent_Value_1;
+
+	if (K2Node_ComponentBoundEvent_Value != nullptr)
+		*K2Node_ComponentBoundEvent_Value = Parms.K2Node_ComponentBoundEvent_Value;
+
+	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
+		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+
+	if (CallFunc_SRGBtoHEX_ReturnValue != nullptr)
+		*CallFunc_SRGBtoHEX_ReturnValue = std::move(Parms.CallFunc_SRGBtoHEX_ReturnValue);
+
+	if (CallFunc_Conv_StringToText_ReturnValue != nullptr)
+		*CallFunc_Conv_StringToText_ReturnValue = Parms.CallFunc_Conv_StringToText_ReturnValue;
+
+	if (CallFunc_Conv_TextToString_ReturnValue != nullptr)
+		*CallFunc_Conv_TextToString_ReturnValue = std::move(Parms.CallFunc_Conv_TextToString_ReturnValue);
+
+	if (CallFunc_LimitTextSize_Array != nullptr)
+		*CallFunc_LimitTextSize_Array = std::move(Parms.CallFunc_LimitTextSize_Array);
+
+	if (CallFunc_Conv_StringToText_ReturnValue_1 != nullptr)
+		*CallFunc_Conv_StringToText_ReturnValue_1 = Parms.CallFunc_Conv_StringToText_ReturnValue_1;
 
 	return Parms.ReturnValue;
 

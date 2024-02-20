@@ -18,8 +18,8 @@ public:
 	static class UClass* StaticClass();
 	static class UAnimCharacterMovementLibrary* GetDefaultObj();
 
-	float PredictGroundMovementStopLocation(bool* bUseSeparateBrakingFriction, float* BrakingFriction, float* GroundFriction, float* BrakingFrictionFactor, const struct FVector& ReturnValue);
-	struct FVector PredictGroundMovementPivotLocation(float* GroundFriction, const struct FVector& ReturnValue);
+	float PredictGroundMovementStopLocation(const struct FVector& ReturnValue);
+	float PredictGroundMovementPivotLocation(const struct FVector& Acceleration, const struct FVector& ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -31,9 +31,9 @@ public:
 	static class UClass* StaticClass();
 	static class UAnimDistanceMatchingLibrary* GetDefaultObj();
 
-	void SetPlayrateToMatchSpeed(const struct FSequencePlayerReference& SequencePlayer, float SpeedToMatch, struct FVector2D* PlayRateClamp, const struct FSequencePlayerReference& ReturnValue);
-	void DistanceMatchToTarget(const struct FSequenceEvaluatorReference& SequenceEvaluator, float DistanceToTarget, class FName* DistanceCurveName, const struct FSequenceEvaluatorReference& ReturnValue);
-	void AdvanceTimeByDistanceMatching(const struct FAnimUpdateContext& UpdateContext, const struct FSequenceEvaluatorReference& SequenceEvaluator, float DistanceTraveled, class FName* DistanceCurveName, struct FVector2D* PlayRateClamp, const struct FSequenceEvaluatorReference& ReturnValue);
+	struct FVector2D SetPlayrateToMatchSpeed(const struct FSequencePlayerReference& SequencePlayer, const struct FSequencePlayerReference& ReturnValue);
+	class FName DistanceMatchToTarget(const struct FSequenceEvaluatorReference& ReturnValue);
+	struct FVector2D AdvanceTimeByDistanceMatching(const struct FSequenceEvaluatorReference& ReturnValue);
 };
 
 }

@@ -43,9 +43,9 @@ class IScorchedEarthDayCycle_Interface_C* IScorchedEarthDayCycle_Interface_C::Ge
 // Function ScorchedEarthDayCycle_Interface.ScorchedEarthDayCycle_Interface_C.GetIsElectricalStorm
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               Return                                                           (ConstParm, Parm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               Return                                                           (Edit, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
 
-void IScorchedEarthDayCycle_Interface_C::GetIsElectricalStorm(bool Return)
+void IScorchedEarthDayCycle_Interface_C::GetIsElectricalStorm(bool* Return)
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,9 +54,11 @@ void IScorchedEarthDayCycle_Interface_C::GetIsElectricalStorm(bool Return)
 
 	Params::IScorchedEarthDayCycle_Interface_C_GetIsElectricalStorm_Params Parms{};
 
-	Parms.Return = Return;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Return != nullptr)
+		*Return = Parms.Return;
 
 }
 
@@ -64,11 +66,11 @@ void IScorchedEarthDayCycle_Interface_C::GetIsElectricalStorm(bool Return)
 // Function ScorchedEarthDayCycle_Interface.ScorchedEarthDayCycle_Interface_C.GetElectricalStormValues
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// TArray<class AActor*>              LocationRegions                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// int32                              CurrentRegion                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// double                             Radius                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class AActor*>              LocationRegions                                                  (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              CurrentRegion                                                    (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// double                             Radius                                                           (ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
 
-int32 IScorchedEarthDayCycle_Interface_C::GetElectricalStormValues(double Radius)
+int32 IScorchedEarthDayCycle_Interface_C::GetElectricalStormValues(double* Radius)
 {
 	static class UFunction* Func = nullptr;
 
@@ -77,9 +79,11 @@ int32 IScorchedEarthDayCycle_Interface_C::GetElectricalStormValues(double Radius
 
 	Params::IScorchedEarthDayCycle_Interface_C_GetElectricalStormValues_Params Parms{};
 
-	Parms.Radius = Radius;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Radius != nullptr)
+		*Radius = Parms.Radius;
 
 	return Parms.ReturnValue;
 

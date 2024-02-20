@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class UGPSHumanAnimBP_C* GetDefaultObj();
 
-	void UpdateLayeringValues(bool CallFunc_EqualEqual_ByteByte_ReturnValue, bool CallFunc_EqualEqual_ByteByte_ReturnValue_1, bool CallFunc_EqualEqual_ByteByte_ReturnValue_2);
+	bool UpdateLayeringValues();
 };
 
 }

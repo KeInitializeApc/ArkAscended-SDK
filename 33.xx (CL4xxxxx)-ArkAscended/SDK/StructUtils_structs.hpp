@@ -69,7 +69,7 @@ enum class EStructUtilsResult : uint8
 struct FInstancedStruct
 {
 public:
-	uint8                                        Pad_587[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_F10[0x10];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -77,52 +77,7 @@ public:
 struct FInstancedPropertyBag
 {
 public:
-	struct FInstancedStruct                      Value;                                             // 0x0(0x10)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-};
-
-// 0x18 (0x18 - 0x0)
-// ScriptStruct StructUtils.PropertyBagPropertyDescMetaData
-struct FPropertyBagPropertyDescMetaData
-{
-public:
-	class FName                                  Key;                                               // 0x0(0x8)(BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-	class FString                                Value;                                             // 0x8(0x10)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-};
-
-// 0x30 (0x30 - 0x0)
-// ScriptStruct StructUtils.PropertyBagPropertyDesc
-struct FPropertyBagPropertyDesc
-{
-public:
-	class UObject*                               ValueTypeObject;                                   // 0x0(0x8)(ConstParm, BlueprintVisible, Net, Config, InstancedReference, SubobjectReference)
-	struct FGuid                                 ID;                                                // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	class FName                                  Name;                                              // 0x18(0x8)(ConstParm, Net, OutParm)
-	enum class EPropertyBagPropertyType          ValueType;                                         // 0x20(0x1)(Edit, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class EPropertyBagContainerType         ContainerType;                                     // 0x21(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_588[0xE];                                      // Fixing Size Of Struct > TateDumper <
-};
-
-// 0x1 (0x1 - 0x0)
-// ScriptStruct StructUtils.PropertyBagMissingStruct
-struct FPropertyBagMissingStruct
-{
-public:
-	uint8                                        Pad_589[0x1];                                      // Fixing Size Of Struct > TateDumper <
-};
-
-// 0x10 (0x10 - 0x0)
-// ScriptStruct StructUtils.ConstSharedStruct
-struct FConstSharedStruct
-{
-public:
-	uint8                                        Pad_58A[0x10];                                     // Fixing Size Of Struct > TateDumper <
-};
-
-// 0x0 (0x10 - 0x10)
-// ScriptStruct StructUtils.SharedStruct
-struct FSharedStruct : public FConstSharedStruct
-{
-public:
+	struct FInstancedStruct                      Value;                                             // 0x0(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -130,7 +85,52 @@ public:
 struct FInstancedStructContainer
 {
 public:
-	uint8                                        Pad_58B[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_F13[0x10];                                     // Fixing Size Of Struct > TateDumper <
+};
+
+// 0x18 (0x18 - 0x0)
+// ScriptStruct StructUtils.PropertyBagPropertyDescMetaData
+struct FPropertyBagPropertyDescMetaData
+{
+public:
+	class FName                                  Key;                                               // 0x0(0x8)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+	class FString                                Value;                                             // 0x8(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+};
+
+// 0x30 (0x30 - 0x0)
+// ScriptStruct StructUtils.PropertyBagPropertyDesc
+struct FPropertyBagPropertyDesc
+{
+public:
+	class UObject*                               ValueTypeObject;                                   // 0x0(0x8)(BlueprintVisible, Net, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 ID;                                                // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
+	class FName                                  Name;                                              // 0x18(0x8)(ConstParm, Net, OutParm)
+	enum class EPropertyBagPropertyType          ValueType;                                         // 0x20(0x1)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	enum class EPropertyBagContainerType         ContainerType;                                     // 0x21(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_F1E[0xE];                                      // Fixing Size Of Struct > TateDumper <
+};
+
+// 0x1 (0x1 - 0x0)
+// ScriptStruct StructUtils.PropertyBagMissingStruct
+struct FPropertyBagMissingStruct
+{
+public:
+	uint8                                        Pad_F20[0x1];                                      // Fixing Size Of Struct > TateDumper <
+};
+
+// 0x10 (0x10 - 0x0)
+// ScriptStruct StructUtils.ConstSharedStruct
+struct FConstSharedStruct
+{
+public:
+	uint8                                        Pad_F21[0x10];                                     // Fixing Size Of Struct > TateDumper <
+};
+
+// 0x0 (0x10 - 0x10)
+// ScriptStruct StructUtils.SharedStruct
+struct FSharedStruct : public FConstSharedStruct
+{
+public:
 };
 
 }

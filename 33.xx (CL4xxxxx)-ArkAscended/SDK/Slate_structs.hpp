@@ -198,9 +198,9 @@ enum class EListItemAlignment : uint8
 struct FVirtualKeyboardOptions
 {
 public:
-	bool                                         bEnableAutocorrect;                                // 0x0(0x1)(Edit, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1CD1[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class FText                                  ConsoleHint;                                       // 0x8(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bEnableAutocorrect;                                // 0x0(0x1)(BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1B11[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class FText                                  ConsoleHint;                                       // 0x8(0x18)(Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -208,12 +208,12 @@ public:
 struct FInputChord
 {
 public:
-	struct FKey                                  Key;                                               // 0x0(0x18)(BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-	uint8                                        bShift : 1;                                        // Mask: 0x1, PropSize: 0x10x18(0x1)(Edit, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        bCtrl : 1;                                         // Mask: 0x2, PropSize: 0x10x18(0x1)(Edit, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        bAlt : 1;                                          // Mask: 0x4, PropSize: 0x10x18(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        bCmd : 1;                                          // Mask: 0x8, PropSize: 0x10x18(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1CD5[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	struct FKey                                  Key;                                               // 0x0(0x18)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+	uint8                                        bShift : 1;                                        // Mask: 0x1, PropSize: 0x10x18(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        bCtrl : 1;                                         // Mask: 0x2, PropSize: 0x10x18(0x1)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        bAlt : 1;                                          // Mask: 0x4, PropSize: 0x10x18(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        bCmd : 1;                                          // Mask: 0x8, PropSize: 0x10x18(0x1)(ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1B13[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -221,8 +221,8 @@ public:
 struct FAnchors
 {
 public:
-	struct FVector2D                             Minimum;                                           // 0x0(0x10)(ConstParm, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	struct FVector2D                             Maximum;                                           // 0x10(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	struct FVector2D                             Minimum;                                           // 0x0(0x10)(Edit, ConstParm, ExportObject, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FVector2D                             Maximum;                                           // 0x10(0x10)(ConstParm, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -230,7 +230,7 @@ public:
 struct FCustomizedToolMenuEntry
 {
 public:
-	enum class ECustomizedToolMenuVisibility     Visibility;                                        // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance)
+	enum class ECustomizedToolMenuVisibility     Visibility;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -238,7 +238,7 @@ public:
 struct FCustomizedToolMenuSection
 {
 public:
-	enum class ECustomizedToolMenuVisibility     Visibility;                                        // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance)
+	enum class ECustomizedToolMenuVisibility     Visibility;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -246,7 +246,7 @@ public:
 struct FCustomizedToolMenuNameArray
 {
 public:
-	TArray<class FName>                          Names;                                             // 0x0(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	TArray<class FName>                          Names;                                             // 0x0(0x10)(Edit, BlueprintVisible, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1F0 (0x1F0 - 0x0)
@@ -255,11 +255,11 @@ struct FCustomizedToolMenu
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	TMap<class FName, struct FCustomizedToolMenuEntry> Entries;                                           // 0x8(0x50)(Edit, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
-	TMap<class FName, struct FCustomizedToolMenuSection> Sections;                                          // 0x58(0x50)(BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	TMap<class FName, struct FCustomizedToolMenuNameArray> EntryOrder;                                        // 0xA8(0x50)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	TArray<class FName>                          SectionOrder;                                      // 0xF8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1CD9[0xE8];                                    // Fixing Size Of Struct > TateDumper <
+	TMap<class FName, struct FCustomizedToolMenuEntry> Entries;                                           // 0x8(0x50)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	TMap<class FName, struct FCustomizedToolMenuSection> Sections;                                          // 0x58(0x50)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TMap<class FName, struct FCustomizedToolMenuNameArray> EntryOrder;                                        // 0xA8(0x50)(BlueprintReadOnly, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FName>                          SectionOrder;                                      // 0xF8(0x10)(Edit, ExportObject, Net, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1B28[0xE8];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 }

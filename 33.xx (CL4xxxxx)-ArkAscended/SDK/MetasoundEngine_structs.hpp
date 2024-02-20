@@ -38,7 +38,7 @@ enum class EMetasoundSourceAudioFormat : uint8
 struct FDefaultMetaSoundAssetAutoUpdateSettings
 {
 public:
-	struct FSoftObjectPath                       Metasound;                                         // 0x0(0x20)(EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	struct FSoftObjectPath                       Metasound;                                         // 0x0(0x20)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -46,7 +46,7 @@ public:
 struct FMetaSoundAssetDirectory
 {
 public:
-	struct FDirectoryPath                        Directory;                                         // 0x0(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst)
+	struct FDirectoryPath                        Directory;                                         // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, EditConst)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -54,9 +54,9 @@ public:
 struct FMetaSoundAsyncAssetDependencies
 {
 public:
-	uint8                                        Pad_255A[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	class UObject*                               Metasound;                                         // 0x8(0x8)(EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-	uint8                                        Pad_255B[0x20];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_CA5[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class UObject*                               Metasound;                                         // 0x8(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_CA6[0x20];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

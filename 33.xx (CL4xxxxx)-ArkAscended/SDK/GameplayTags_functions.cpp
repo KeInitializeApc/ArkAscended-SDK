@@ -43,11 +43,11 @@ class UBlueprintGameplayTagLibrary* UBlueprintGameplayTagLibrary::GetDefaultObj(
 // Function GameplayTags.BlueprintGameplayTagLibrary.RemoveGameplayTag
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FGameplayTagContainer       TagContainer                                                     (ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// struct FGameplayTag                Tag                                                              (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       TagContainer                                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// struct FGameplayTag                Tag                                                              (ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FGameplayTag UBlueprintGameplayTagLibrary::RemoveGameplayTag(struct FGameplayTagContainer* TagContainer, bool ReturnValue)
+struct FGameplayTag UBlueprintGameplayTagLibrary::RemoveGameplayTag(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -66,9 +66,6 @@ struct FGameplayTag UBlueprintGameplayTagLibrary::RemoveGameplayTag(struct FGame
 
 	Func->FunctionFlags = Flgs;
 
-	if (TagContainer != nullptr)
-		*TagContainer = std::move(Parms.TagContainer);
-
 	return Parms.ReturnValue;
 
 }
@@ -77,9 +74,9 @@ struct FGameplayTag UBlueprintGameplayTagLibrary::RemoveGameplayTag(struct FGame
 // Function GameplayTags.BlueprintGameplayTagLibrary.NotEqual_TagTag
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTag                A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// class FString                      B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                A                                                                (Edit, Parm, OutParm, ReturnParm, Transient, Config)
+// class FString                      B                                                                (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FString UBlueprintGameplayTagLibrary::NotEqual_TagTag(bool ReturnValue)
 {
@@ -108,9 +105,9 @@ class FString UBlueprintGameplayTagLibrary::NotEqual_TagTag(bool ReturnValue)
 // Function GameplayTags.BlueprintGameplayTagLibrary.NotEqual_TagContainerTagContainer
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTagContainer       A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// class FString                      B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       A                                                                (Edit, Parm, OutParm, ReturnParm, Transient, Config)
+// class FString                      B                                                                (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FString UBlueprintGameplayTagLibrary::NotEqual_TagContainerTagContainer(bool ReturnValue)
 {
@@ -139,9 +136,9 @@ class FString UBlueprintGameplayTagLibrary::NotEqual_TagContainerTagContainer(bo
 // Function GameplayTags.BlueprintGameplayTagLibrary.NotEqual_GameplayTagContainer
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTagContainer       A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// struct FGameplayTagContainer       B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       A                                                                (Edit, Parm, OutParm, ReturnParm, Transient, Config)
+// struct FGameplayTagContainer       B                                                                (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FGameplayTagContainer UBlueprintGameplayTagLibrary::NotEqual_GameplayTagContainer(bool ReturnValue)
 {
@@ -170,9 +167,9 @@ struct FGameplayTagContainer UBlueprintGameplayTagLibrary::NotEqual_GameplayTagC
 // Function GameplayTags.BlueprintGameplayTagLibrary.NotEqual_GameplayTag
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTag                A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// struct FGameplayTag                B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                A                                                                (Edit, Parm, OutParm, ReturnParm, Transient, Config)
+// struct FGameplayTag                B                                                                (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FGameplayTag UBlueprintGameplayTagLibrary::NotEqual_GameplayTag(bool ReturnValue)
 {
@@ -201,12 +198,12 @@ struct FGameplayTag UBlueprintGameplayTagLibrary::NotEqual_GameplayTag(bool Retu
 // Function GameplayTags.BlueprintGameplayTagLibrary.MatchesTag
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTag                TagOne                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FGameplayTag                TagTwo                                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bExactMatch                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                TagOne                                                           (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FGameplayTag                TagTwo                                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               bExactMatch                                                      (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::MatchesTag(struct FGameplayTag* TagOne, struct FGameplayTag* TagTwo, bool bExactMatch, bool ReturnValue)
+void UBlueprintGameplayTagLibrary::MatchesTag(struct FGameplayTag* TagOne, struct FGameplayTag* TagTwo, bool* bExactMatch, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -215,7 +212,6 @@ void UBlueprintGameplayTagLibrary::MatchesTag(struct FGameplayTag* TagOne, struc
 
 	Params::UBlueprintGameplayTagLibrary_MatchesTag_Params Parms{};
 
-	Parms.bExactMatch = bExactMatch;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -232,18 +228,21 @@ void UBlueprintGameplayTagLibrary::MatchesTag(struct FGameplayTag* TagOne, struc
 	if (TagTwo != nullptr)
 		*TagTwo = std::move(Parms.TagTwo);
 
+	if (bExactMatch != nullptr)
+		*bExactMatch = Parms.bExactMatch;
+
 }
 
 
 // Function GameplayTags.BlueprintGameplayTagLibrary.MatchesAnyTags
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTag                TagOne                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FGameplayTagContainer       OtherContainer                                                   (ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bExactMatch                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                TagOne                                                           (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FGameplayTagContainer       OtherContainer                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bExactMatch                                                      (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::MatchesAnyTags(struct FGameplayTag* TagOne, const struct FGameplayTagContainer& OtherContainer, bool bExactMatch, bool ReturnValue)
+struct FGameplayTagContainer UBlueprintGameplayTagLibrary::MatchesAnyTags(struct FGameplayTag* TagOne, bool* bExactMatch, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -252,8 +251,6 @@ void UBlueprintGameplayTagLibrary::MatchesAnyTags(struct FGameplayTag* TagOne, c
 
 	Params::UBlueprintGameplayTagLibrary_MatchesAnyTags_Params Parms{};
 
-	Parms.OtherContainer = OtherContainer;
-	Parms.bExactMatch = bExactMatch;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -267,16 +264,21 @@ void UBlueprintGameplayTagLibrary::MatchesAnyTags(struct FGameplayTag* TagOne, c
 	if (TagOne != nullptr)
 		*TagOne = std::move(Parms.TagOne);
 
+	if (bExactMatch != nullptr)
+		*bExactMatch = Parms.bExactMatch;
+
+	return Parms.ReturnValue;
+
 }
 
 
 // Function GameplayTags.BlueprintGameplayTagLibrary.MakeLiteralGameplayTagContainer
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTagContainer       Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// struct FGameplayTagContainer       ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// struct FGameplayTagContainer       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::MakeLiteralGameplayTagContainer(const struct FGameplayTagContainer& Value, const struct FGameplayTagContainer& ReturnValue)
+void UBlueprintGameplayTagLibrary::MakeLiteralGameplayTagContainer(struct FGameplayTagContainer* Value, const struct FGameplayTagContainer& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -285,7 +287,6 @@ void UBlueprintGameplayTagLibrary::MakeLiteralGameplayTagContainer(const struct 
 
 	Params::UBlueprintGameplayTagLibrary_MakeLiteralGameplayTagContainer_Params Parms{};
 
-	Parms.Value = Value;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -296,16 +297,19 @@ void UBlueprintGameplayTagLibrary::MakeLiteralGameplayTagContainer(const struct 
 
 	Func->FunctionFlags = Flgs;
 
+	if (Value != nullptr)
+		*Value = std::move(Parms.Value);
+
 }
 
 
 // Function GameplayTags.BlueprintGameplayTagLibrary.MakeLiteralGameplayTag
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTag                Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// struct FGameplayTag                ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// struct FGameplayTag                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::MakeLiteralGameplayTag(const struct FGameplayTag& Value, const struct FGameplayTag& ReturnValue)
+void UBlueprintGameplayTagLibrary::MakeLiteralGameplayTag(struct FGameplayTag* Value, const struct FGameplayTag& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -314,7 +318,6 @@ void UBlueprintGameplayTagLibrary::MakeLiteralGameplayTag(const struct FGameplay
 
 	Params::UBlueprintGameplayTagLibrary_MakeLiteralGameplayTag_Params Parms{};
 
-	Parms.Value = Value;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -325,14 +328,17 @@ void UBlueprintGameplayTagLibrary::MakeLiteralGameplayTag(const struct FGameplay
 
 	Func->FunctionFlags = Flgs;
 
+	if (Value != nullptr)
+		*Value = std::move(Parms.Value);
+
 }
 
 
 // Function GameplayTags.BlueprintGameplayTagLibrary.MakeGameplayTagQuery
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTagQuery           TagQuery                                                         (Edit, ConstParm, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FGameplayTagQuery           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagQuery           TagQuery                                                         (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FGameplayTagQuery           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBlueprintGameplayTagLibrary::MakeGameplayTagQuery(struct FGameplayTagQuery* TagQuery, const struct FGameplayTagQuery& ReturnValue)
 {
@@ -362,8 +368,8 @@ void UBlueprintGameplayTagLibrary::MakeGameplayTagQuery(struct FGameplayTagQuery
 // Function GameplayTags.BlueprintGameplayTagLibrary.MakeGameplayTagContainerFromTag
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTag                SingleTag                                                        (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FGameplayTagContainer       ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                SingleTag                                                        (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FGameplayTagContainer       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBlueprintGameplayTagLibrary::MakeGameplayTagContainerFromTag(struct FGameplayTag* SingleTag, const struct FGameplayTagContainer& ReturnValue)
 {
@@ -393,10 +399,10 @@ void UBlueprintGameplayTagLibrary::MakeGameplayTagContainerFromTag(struct FGamep
 // Function GameplayTags.BlueprintGameplayTagLibrary.MakeGameplayTagContainerFromArray
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// TArray<struct FGameplayTag>        GameplayTags                                                     (Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
-// struct FGameplayTagContainer       ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FGameplayTag>        GameplayTags                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnInstance, EditConst)
+// struct FGameplayTagContainer       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<struct FGameplayTag> UBlueprintGameplayTagLibrary::MakeGameplayTagContainerFromArray(const struct FGameplayTagContainer& ReturnValue)
+void UBlueprintGameplayTagLibrary::MakeGameplayTagContainerFromArray(const TArray<struct FGameplayTag>& GameplayTags, const struct FGameplayTagContainer& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -405,6 +411,7 @@ TArray<struct FGameplayTag> UBlueprintGameplayTagLibrary::MakeGameplayTagContain
 
 	Params::UBlueprintGameplayTagLibrary_MakeGameplayTagContainerFromArray_Params Parms{};
 
+	Parms.GameplayTags = GameplayTags;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -415,16 +422,14 @@ TArray<struct FGameplayTag> UBlueprintGameplayTagLibrary::MakeGameplayTagContain
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function GameplayTags.BlueprintGameplayTagLibrary.IsTagQueryEmpty
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTagQuery           TagQuery                                                         (Edit, ConstParm, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagQuery           TagQuery                                                         (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBlueprintGameplayTagLibrary::IsTagQueryEmpty(struct FGameplayTagQuery* TagQuery, bool ReturnValue)
 {
@@ -454,10 +459,10 @@ void UBlueprintGameplayTagLibrary::IsTagQueryEmpty(struct FGameplayTagQuery* Tag
 // Function GameplayTags.BlueprintGameplayTagLibrary.IsGameplayTagValid
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTag                GameplayTag                                                      (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                GameplayTag                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::IsGameplayTagValid(const struct FGameplayTag& GameplayTag, bool ReturnValue)
+struct FGameplayTag UBlueprintGameplayTagLibrary::IsGameplayTagValid(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -466,7 +471,6 @@ void UBlueprintGameplayTagLibrary::IsGameplayTagValid(const struct FGameplayTag&
 
 	Params::UBlueprintGameplayTagLibrary_IsGameplayTagValid_Params Parms{};
 
-	Parms.GameplayTag = GameplayTag;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -477,18 +481,20 @@ void UBlueprintGameplayTagLibrary::IsGameplayTagValid(const struct FGameplayTag&
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function GameplayTags.BlueprintGameplayTagLibrary.HasTag
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTagContainer       TagContainer                                                     (ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// struct FGameplayTag                Tag                                                              (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bExactMatch                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       TagContainer                                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// struct FGameplayTag                Tag                                                              (ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// bool                               bExactMatch                                                      (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FGameplayTag UBlueprintGameplayTagLibrary::HasTag(struct FGameplayTagContainer* TagContainer, bool bExactMatch, bool ReturnValue)
+struct FGameplayTag UBlueprintGameplayTagLibrary::HasTag(bool* bExactMatch, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -497,7 +503,6 @@ struct FGameplayTag UBlueprintGameplayTagLibrary::HasTag(struct FGameplayTagCont
 
 	Params::UBlueprintGameplayTagLibrary_HasTag_Params Parms{};
 
-	Parms.bExactMatch = bExactMatch;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -508,8 +513,8 @@ struct FGameplayTag UBlueprintGameplayTagLibrary::HasTag(struct FGameplayTagCont
 
 	Func->FunctionFlags = Flgs;
 
-	if (TagContainer != nullptr)
-		*TagContainer = std::move(Parms.TagContainer);
+	if (bExactMatch != nullptr)
+		*bExactMatch = Parms.bExactMatch;
 
 	return Parms.ReturnValue;
 
@@ -519,12 +524,12 @@ struct FGameplayTag UBlueprintGameplayTagLibrary::HasTag(struct FGameplayTagCont
 // Function GameplayTags.BlueprintGameplayTagLibrary.HasAnyTags
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTagContainer       TagContainer                                                     (ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// struct FGameplayTagContainer       OtherContainer                                                   (ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bExactMatch                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       TagContainer                                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// struct FGameplayTagContainer       OtherContainer                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bExactMatch                                                      (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::HasAnyTags(struct FGameplayTagContainer* TagContainer, const struct FGameplayTagContainer& OtherContainer, bool bExactMatch, bool ReturnValue)
+struct FGameplayTagContainer UBlueprintGameplayTagLibrary::HasAnyTags(bool* bExactMatch, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -533,8 +538,6 @@ void UBlueprintGameplayTagLibrary::HasAnyTags(struct FGameplayTagContainer* TagC
 
 	Params::UBlueprintGameplayTagLibrary_HasAnyTags_Params Parms{};
 
-	Parms.OtherContainer = OtherContainer;
-	Parms.bExactMatch = bExactMatch;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -545,8 +548,10 @@ void UBlueprintGameplayTagLibrary::HasAnyTags(struct FGameplayTagContainer* TagC
 
 	Func->FunctionFlags = Flgs;
 
-	if (TagContainer != nullptr)
-		*TagContainer = std::move(Parms.TagContainer);
+	if (bExactMatch != nullptr)
+		*bExactMatch = Parms.bExactMatch;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -554,12 +559,12 @@ void UBlueprintGameplayTagLibrary::HasAnyTags(struct FGameplayTagContainer* TagC
 // Function GameplayTags.BlueprintGameplayTagLibrary.HasAllTags
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTagContainer       TagContainer                                                     (ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// struct FGameplayTagContainer       OtherContainer                                                   (ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bExactMatch                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       TagContainer                                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// struct FGameplayTagContainer       OtherContainer                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bExactMatch                                                      (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::HasAllTags(struct FGameplayTagContainer* TagContainer, const struct FGameplayTagContainer& OtherContainer, bool bExactMatch, bool ReturnValue)
+struct FGameplayTagContainer UBlueprintGameplayTagLibrary::HasAllTags(bool* bExactMatch, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -568,8 +573,6 @@ void UBlueprintGameplayTagLibrary::HasAllTags(struct FGameplayTagContainer* TagC
 
 	Params::UBlueprintGameplayTagLibrary_HasAllTags_Params Parms{};
 
-	Parms.OtherContainer = OtherContainer;
-	Parms.bExactMatch = bExactMatch;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -580,8 +583,10 @@ void UBlueprintGameplayTagLibrary::HasAllTags(struct FGameplayTagContainer* TagC
 
 	Func->FunctionFlags = Flgs;
 
-	if (TagContainer != nullptr)
-		*TagContainer = std::move(Parms.TagContainer);
+	if (bExactMatch != nullptr)
+		*bExactMatch = Parms.bExactMatch;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -589,11 +594,11 @@ void UBlueprintGameplayTagLibrary::HasAllTags(struct FGameplayTagContainer* TagC
 // Function GameplayTags.BlueprintGameplayTagLibrary.HasAllMatchingGameplayTags
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// TScriptInterface<class IGameplayTagAssetInterface>TagContainerInterface                                            (ExportObject, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FGameplayTagContainer       OtherContainer                                                   (ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TScriptInterface<class IGameplayTagAssetInterface>TagContainerInterface                                            (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FGameplayTagContainer       OtherContainer                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::HasAllMatchingGameplayTags(TScriptInterface<class IGameplayTagAssetInterface>* TagContainerInterface, const struct FGameplayTagContainer& OtherContainer, bool ReturnValue)
+struct FGameplayTagContainer UBlueprintGameplayTagLibrary::HasAllMatchingGameplayTags(TScriptInterface<class IGameplayTagAssetInterface>* TagContainerInterface, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -602,7 +607,6 @@ void UBlueprintGameplayTagLibrary::HasAllMatchingGameplayTags(TScriptInterface<c
 
 	Params::UBlueprintGameplayTagLibrary_HasAllMatchingGameplayTags_Params Parms{};
 
-	Parms.OtherContainer = OtherContainer;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -616,16 +620,18 @@ void UBlueprintGameplayTagLibrary::HasAllMatchingGameplayTags(TScriptInterface<c
 	if (TagContainerInterface != nullptr)
 		*TagContainerInterface = Parms.TagContainerInterface;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function GameplayTags.BlueprintGameplayTagLibrary.GetTagName
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTag                GameplayTag                                                      (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst)
-// class FName                        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                GameplayTag                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst)
+// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::GetTagName(const struct FGameplayTag& GameplayTag, class FName ReturnValue)
+struct FGameplayTag UBlueprintGameplayTagLibrary::GetTagName(class FName ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -634,7 +640,6 @@ void UBlueprintGameplayTagLibrary::GetTagName(const struct FGameplayTag& Gamepla
 
 	Params::UBlueprintGameplayTagLibrary_GetTagName_Params Parms{};
 
-	Parms.GameplayTag = GameplayTag;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -645,16 +650,18 @@ void UBlueprintGameplayTagLibrary::GetTagName(const struct FGameplayTag& Gamepla
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function GameplayTags.BlueprintGameplayTagLibrary.GetNumGameplayTagsInContainer
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTagContainer       TagContainer                                                     (ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       TagContainer                                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::GetNumGameplayTagsInContainer(struct FGameplayTagContainer* TagContainer, int32 ReturnValue)
+struct FGameplayTagContainer UBlueprintGameplayTagLibrary::GetNumGameplayTagsInContainer(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -673,8 +680,7 @@ void UBlueprintGameplayTagLibrary::GetNumGameplayTagsInContainer(struct FGamepla
 
 	Func->FunctionFlags = Flgs;
 
-	if (TagContainer != nullptr)
-		*TagContainer = std::move(Parms.TagContainer);
+	return Parms.ReturnValue;
 
 }
 
@@ -682,10 +688,10 @@ void UBlueprintGameplayTagLibrary::GetNumGameplayTagsInContainer(struct FGamepla
 // Function GameplayTags.BlueprintGameplayTagLibrary.GetDebugStringFromGameplayTagContainer
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTagContainer       TagContainer                                                     (ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       TagContainer                                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::GetDebugStringFromGameplayTagContainer(struct FGameplayTagContainer* TagContainer, const class FString& ReturnValue)
+struct FGameplayTagContainer UBlueprintGameplayTagLibrary::GetDebugStringFromGameplayTagContainer(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -704,8 +710,7 @@ void UBlueprintGameplayTagLibrary::GetDebugStringFromGameplayTagContainer(struct
 
 	Func->FunctionFlags = Flgs;
 
-	if (TagContainer != nullptr)
-		*TagContainer = std::move(Parms.TagContainer);
+	return Parms.ReturnValue;
 
 }
 
@@ -713,10 +718,10 @@ void UBlueprintGameplayTagLibrary::GetDebugStringFromGameplayTagContainer(struct
 // Function GameplayTags.BlueprintGameplayTagLibrary.GetDebugStringFromGameplayTag
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTag                GameplayTag                                                      (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst)
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                GameplayTag                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::GetDebugStringFromGameplayTag(const struct FGameplayTag& GameplayTag, const class FString& ReturnValue)
+struct FGameplayTag UBlueprintGameplayTagLibrary::GetDebugStringFromGameplayTag(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -725,7 +730,6 @@ void UBlueprintGameplayTagLibrary::GetDebugStringFromGameplayTag(const struct FG
 
 	Params::UBlueprintGameplayTagLibrary_GetDebugStringFromGameplayTag_Params Parms{};
 
-	Parms.GameplayTag = GameplayTag;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -736,18 +740,20 @@ void UBlueprintGameplayTagLibrary::GetDebugStringFromGameplayTag(const struct FG
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function GameplayTags.BlueprintGameplayTagLibrary.GetAllActorsOfClassMatchingTagQuery
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UClass*                      ActorClass                                                       (Edit, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FGameplayTagQuery           GameplayTagQuery                                                 (Edit, ConstParm, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst)
-// TArray<class AActor*>              OutActors                                                        (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UClass*                      ActorClass                                                       (ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FGameplayTagQuery           GameplayTagQuery                                                 (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst)
+// TArray<class AActor*>              OutActors                                                        (Edit, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
-TArray<class AActor*> UBlueprintGameplayTagLibrary::GetAllActorsOfClassMatchingTagQuery(class UObject* WorldContextObject, const struct FGameplayTagQuery& GameplayTagQuery)
+TArray<class AActor*> UBlueprintGameplayTagLibrary::GetAllActorsOfClassMatchingTagQuery()
 {
 	static class UFunction* Func = nullptr;
 
@@ -756,8 +762,6 @@ TArray<class AActor*> UBlueprintGameplayTagLibrary::GetAllActorsOfClassMatchingT
 
 	Params::UBlueprintGameplayTagLibrary_GetAllActorsOfClassMatchingTagQuery_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
-	Parms.GameplayTagQuery = GameplayTagQuery;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -775,9 +779,9 @@ TArray<class AActor*> UBlueprintGameplayTagLibrary::GetAllActorsOfClassMatchingT
 // Function GameplayTags.BlueprintGameplayTagLibrary.EqualEqual_GameplayTagContainer
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTagContainer       A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// struct FGameplayTagContainer       B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       A                                                                (Edit, Parm, OutParm, ReturnParm, Transient, Config)
+// struct FGameplayTagContainer       B                                                                (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FGameplayTagContainer UBlueprintGameplayTagLibrary::EqualEqual_GameplayTagContainer(bool ReturnValue)
 {
@@ -806,9 +810,9 @@ struct FGameplayTagContainer UBlueprintGameplayTagLibrary::EqualEqual_GameplayTa
 // Function GameplayTags.BlueprintGameplayTagLibrary.EqualEqual_GameplayTag
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTag                A                                                                (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// struct FGameplayTag                B                                                                (Edit, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                A                                                                (Edit, Parm, OutParm, ReturnParm, Transient, Config)
+// struct FGameplayTag                B                                                                (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FGameplayTag UBlueprintGameplayTagLibrary::EqualEqual_GameplayTag(bool ReturnValue)
 {
@@ -837,9 +841,9 @@ struct FGameplayTag UBlueprintGameplayTagLibrary::EqualEqual_GameplayTag(bool Re
 // Function GameplayTags.BlueprintGameplayTagLibrary.DoesTagAssetInterfaceHaveTag
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// TScriptInterface<class IGameplayTagAssetInterface>TagContainerInterface                                            (ExportObject, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FGameplayTag                Tag                                                              (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TScriptInterface<class IGameplayTagAssetInterface>TagContainerInterface                                            (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FGameplayTag                Tag                                                              (ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FGameplayTag UBlueprintGameplayTagLibrary::DoesTagAssetInterfaceHaveTag(TScriptInterface<class IGameplayTagAssetInterface>* TagContainerInterface, bool ReturnValue)
 {
@@ -871,11 +875,11 @@ struct FGameplayTag UBlueprintGameplayTagLibrary::DoesTagAssetInterfaceHaveTag(T
 // Function GameplayTags.BlueprintGameplayTagLibrary.DoesContainerMatchTagQuery
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTagContainer       TagContainer                                                     (ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// struct FGameplayTagQuery           TagQuery                                                         (Edit, ConstParm, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       TagContainer                                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// struct FGameplayTagQuery           TagQuery                                                         (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::DoesContainerMatchTagQuery(struct FGameplayTagContainer* TagContainer, struct FGameplayTagQuery* TagQuery, bool ReturnValue)
+struct FGameplayTagContainer UBlueprintGameplayTagLibrary::DoesContainerMatchTagQuery(struct FGameplayTagQuery* TagQuery, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -894,11 +898,10 @@ void UBlueprintGameplayTagLibrary::DoesContainerMatchTagQuery(struct FGameplayTa
 
 	Func->FunctionFlags = Flgs;
 
-	if (TagContainer != nullptr)
-		*TagContainer = std::move(Parms.TagContainer);
-
 	if (TagQuery != nullptr)
 		*TagQuery = std::move(Parms.TagQuery);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -906,10 +909,10 @@ void UBlueprintGameplayTagLibrary::DoesContainerMatchTagQuery(struct FGameplayTa
 // Function GameplayTags.BlueprintGameplayTagLibrary.BreakGameplayTagContainer
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FGameplayTagContainer       GameplayTagContainer                                             (Edit, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst)
-// TArray<struct FGameplayTag>        GameplayTags                                                     (Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+// struct FGameplayTagContainer       GameplayTagContainer                                             (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst)
+// TArray<struct FGameplayTag>        GameplayTags                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnInstance, EditConst)
 
-TArray<struct FGameplayTag> UBlueprintGameplayTagLibrary::BreakGameplayTagContainer(const struct FGameplayTagContainer& GameplayTagContainer)
+struct FGameplayTagContainer UBlueprintGameplayTagLibrary::BreakGameplayTagContainer(const TArray<struct FGameplayTag>& GameplayTags)
 {
 	static class UFunction* Func = nullptr;
 
@@ -918,7 +921,7 @@ TArray<struct FGameplayTag> UBlueprintGameplayTagLibrary::BreakGameplayTagContai
 
 	Params::UBlueprintGameplayTagLibrary_BreakGameplayTagContainer_Params Parms{};
 
-	Parms.GameplayTagContainer = GameplayTagContainer;
+	Parms.GameplayTags = GameplayTags;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -936,10 +939,10 @@ TArray<struct FGameplayTag> UBlueprintGameplayTagLibrary::BreakGameplayTagContai
 // Function GameplayTags.BlueprintGameplayTagLibrary.AppendGameplayTagContainers
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FGameplayTagContainer       InOutTagContainer                                                (Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// struct FGameplayTagContainer       InTagContainer                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FGameplayTagContainer       InOutTagContainer                                                (Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// struct FGameplayTagContainer       InTagContainer                                                   (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-void UBlueprintGameplayTagLibrary::AppendGameplayTagContainers(struct FGameplayTagContainer* InOutTagContainer, struct FGameplayTagContainer* InTagContainer)
+struct FGameplayTagContainer UBlueprintGameplayTagLibrary::AppendGameplayTagContainers(struct FGameplayTagContainer* InTagContainer)
 {
 	static class UFunction* Func = nullptr;
 
@@ -957,11 +960,10 @@ void UBlueprintGameplayTagLibrary::AppendGameplayTagContainers(struct FGameplayT
 
 	Func->FunctionFlags = Flgs;
 
-	if (InOutTagContainer != nullptr)
-		*InOutTagContainer = std::move(Parms.InOutTagContainer);
-
 	if (InTagContainer != nullptr)
 		*InTagContainer = std::move(Parms.InTagContainer);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -969,10 +971,10 @@ void UBlueprintGameplayTagLibrary::AppendGameplayTagContainers(struct FGameplayT
 // Function GameplayTags.BlueprintGameplayTagLibrary.AddGameplayTag
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FGameplayTagContainer       TagContainer                                                     (ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// struct FGameplayTag                Tag                                                              (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       TagContainer                                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// struct FGameplayTag                Tag                                                              (ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
-struct FGameplayTag UBlueprintGameplayTagLibrary::AddGameplayTag(struct FGameplayTagContainer* TagContainer)
+struct FGameplayTag UBlueprintGameplayTagLibrary::AddGameplayTag()
 {
 	static class UFunction* Func = nullptr;
 
@@ -989,9 +991,6 @@ struct FGameplayTag UBlueprintGameplayTagLibrary::AddGameplayTag(struct FGamepla
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (TagContainer != nullptr)
-		*TagContainer = std::move(Parms.TagContainer);
 
 	return Parms.ReturnValue;
 
@@ -1029,8 +1028,8 @@ class IGameplayTagAssetInterface* IGameplayTagAssetInterface::GetDefaultObj()
 // Function GameplayTags.GameplayTagAssetInterface.HasMatchingGameplayTag
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FGameplayTag                TagToCheck                                                       (ConstParm, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                TagToCheck                                                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void IGameplayTagAssetInterface::HasMatchingGameplayTag(struct FGameplayTag* TagToCheck, bool ReturnValue)
 {
@@ -1060,10 +1059,10 @@ void IGameplayTagAssetInterface::HasMatchingGameplayTag(struct FGameplayTag* Tag
 // Function GameplayTags.GameplayTagAssetInterface.HasAnyMatchingGameplayTags
 // (Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FGameplayTagContainer       TagContainer                                                     (ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       TagContainer                                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void IGameplayTagAssetInterface::HasAnyMatchingGameplayTags(struct FGameplayTagContainer* TagContainer, bool ReturnValue)
+struct FGameplayTagContainer IGameplayTagAssetInterface::HasAnyMatchingGameplayTags(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1082,8 +1081,7 @@ void IGameplayTagAssetInterface::HasAnyMatchingGameplayTags(struct FGameplayTagC
 
 	Func->FunctionFlags = Flgs;
 
-	if (TagContainer != nullptr)
-		*TagContainer = std::move(Parms.TagContainer);
+	return Parms.ReturnValue;
 
 }
 
@@ -1091,10 +1089,10 @@ void IGameplayTagAssetInterface::HasAnyMatchingGameplayTags(struct FGameplayTagC
 // Function GameplayTags.GameplayTagAssetInterface.HasAllMatchingGameplayTags
 // (Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FGameplayTagContainer       TagContainer                                                     (ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       TagContainer                                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void IGameplayTagAssetInterface::HasAllMatchingGameplayTags(struct FGameplayTagContainer* TagContainer, bool ReturnValue)
+struct FGameplayTagContainer IGameplayTagAssetInterface::HasAllMatchingGameplayTags(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1113,8 +1111,7 @@ void IGameplayTagAssetInterface::HasAllMatchingGameplayTags(struct FGameplayTagC
 
 	Func->FunctionFlags = Flgs;
 
-	if (TagContainer != nullptr)
-		*TagContainer = std::move(Parms.TagContainer);
+	return Parms.ReturnValue;
 
 }
 
@@ -1122,9 +1119,9 @@ void IGameplayTagAssetInterface::HasAllMatchingGameplayTags(struct FGameplayTagC
 // Function GameplayTags.GameplayTagAssetInterface.GetOwnedGameplayTags
 // (Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FGameplayTagContainer       TagContainer                                                     (ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
+// struct FGameplayTagContainer       TagContainer                                                     (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
 
-void IGameplayTagAssetInterface::GetOwnedGameplayTags(struct FGameplayTagContainer* TagContainer)
+struct FGameplayTagContainer IGameplayTagAssetInterface::GetOwnedGameplayTags()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1142,8 +1139,7 @@ void IGameplayTagAssetInterface::GetOwnedGameplayTags(struct FGameplayTagContain
 
 	Func->FunctionFlags = Flgs;
 
-	if (TagContainer != nullptr)
-		*TagContainer = std::move(Parms.TagContainer);
+	return Parms.ReturnValue;
 
 }
 

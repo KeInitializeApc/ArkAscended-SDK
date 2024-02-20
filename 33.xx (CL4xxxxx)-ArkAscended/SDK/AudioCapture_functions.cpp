@@ -91,7 +91,7 @@ void UAudioCapture::StartCapturingAudio()
 // Function AudioCapture.AudioCapture.IsCapturingAudio
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UAudioCapture::IsCapturingAudio(bool ReturnValue)
 {
@@ -118,10 +118,10 @@ void UAudioCapture::IsCapturingAudio(bool ReturnValue)
 // Function AudioCapture.AudioCapture.GetAudioCaptureDeviceInfo
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FAudioCaptureDeviceInfo     OutInfo                                                          (Edit, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FAudioCaptureDeviceInfo     OutInfo                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAudioCapture::GetAudioCaptureDeviceInfo(struct FAudioCaptureDeviceInfo* OutInfo, bool ReturnValue)
+struct FAudioCaptureDeviceInfo UAudioCapture::GetAudioCaptureDeviceInfo(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -140,8 +140,7 @@ void UAudioCapture::GetAudioCaptureDeviceInfo(struct FAudioCaptureDeviceInfo* Ou
 
 	Func->FunctionFlags = Flgs;
 
-	if (OutInfo != nullptr)
-		*OutInfo = std::move(Parms.OutInfo);
+	return Parms.ReturnValue;
 
 }
 
@@ -177,7 +176,7 @@ class UAudioCaptureFunctionLibrary* UAudioCaptureFunctionLibrary::GetDefaultObj(
 // Function AudioCapture.AudioCaptureFunctionLibrary.CreateAudioCapture
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UAudioCapture*               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAudioCapture*               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UAudioCaptureFunctionLibrary::CreateAudioCapture(class UAudioCapture* ReturnValue)
 {
@@ -232,10 +231,10 @@ class UAudioCaptureBlueprintLibrary* UAudioCaptureBlueprintLibrary::GetDefaultOb
 // Function AudioCapture.AudioCaptureBlueprintLibrary.GetAvailableAudioInputDevices
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// FDelegateProperty_                 OnObtainDevicesEvent                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// FDelegateProperty_                 OnObtainDevicesEvent                                             (Edit, ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void UAudioCaptureBlueprintLibrary::GetAvailableAudioInputDevices(class UObject* WorldContextObject, FDelegateProperty_* OnObtainDevicesEvent)
+FDelegateProperty_ UAudioCaptureBlueprintLibrary::GetAvailableAudioInputDevices()
 {
 	static class UFunction* Func = nullptr;
 
@@ -244,7 +243,6 @@ void UAudioCaptureBlueprintLibrary::GetAvailableAudioInputDevices(class UObject*
 
 	Params::UAudioCaptureBlueprintLibrary_GetAvailableAudioInputDevices_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -254,8 +252,7 @@ void UAudioCaptureBlueprintLibrary::GetAvailableAudioInputDevices(class UObject*
 
 	Func->FunctionFlags = Flgs;
 
-	if (OnObtainDevicesEvent != nullptr)
-		*OnObtainDevicesEvent = Parms.OnObtainDevicesEvent;
+	return Parms.ReturnValue;
 
 }
 
@@ -264,7 +261,7 @@ void UAudioCaptureBlueprintLibrary::GetAvailableAudioInputDevices(class UObject*
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FAudioInputDeviceInfo       Info                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm)
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FAudioInputDeviceInfo UAudioCaptureBlueprintLibrary::Conv_AudioInputDeviceInfoToString(const class FString& ReturnValue)
 {

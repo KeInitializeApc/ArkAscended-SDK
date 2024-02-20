@@ -155,9 +155,9 @@ class ULiveLinkComponentController* ULiveLinkComponentController::GetDefaultObj(
 // Function LiveLinkComponents.LiveLinkComponentController.SetSubjectRepresentation
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkSubjectRepresentationInSubjectRepresentation                                          (Edit, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FLiveLinkSubjectRepresentationInSubjectRepresentation                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
 
-void ULiveLinkComponentController::SetSubjectRepresentation(struct FLiveLinkSubjectRepresentation* InSubjectRepresentation)
+struct FLiveLinkSubjectRepresentation ULiveLinkComponentController::SetSubjectRepresentation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -175,8 +175,7 @@ void ULiveLinkComponentController::SetSubjectRepresentation(struct FLiveLinkSubj
 
 	Func->FunctionFlags = Flgs;
 
-	if (InSubjectRepresentation != nullptr)
-		*InSubjectRepresentation = std::move(Parms.InSubjectRepresentation);
+	return Parms.ReturnValue;
 
 }
 
@@ -184,7 +183,7 @@ void ULiveLinkComponentController::SetSubjectRepresentation(struct FLiveLinkSubj
 // Function LiveLinkComponents.LiveLinkComponentController.GetSubjectRepresentation
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FLiveLinkSubjectRepresentationReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLiveLinkSubjectRepresentationReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ULiveLinkComponentController::GetSubjectRepresentation(const struct FLiveLinkSubjectRepresentation& ReturnValue)
 {

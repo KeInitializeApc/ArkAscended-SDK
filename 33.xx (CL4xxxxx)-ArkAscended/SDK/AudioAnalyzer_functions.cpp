@@ -155,9 +155,9 @@ class UAudioAnalyzer* UAudioAnalyzer::GetDefaultObj()
 // Function AudioAnalyzer.AudioAnalyzer.StopAnalyzing
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
-void UAudioAnalyzer::StopAnalyzing(class UObject* WorldContextObject)
+class UObject* UAudioAnalyzer::StopAnalyzing()
 {
 	static class UFunction* Func = nullptr;
 
@@ -166,7 +166,6 @@ void UAudioAnalyzer::StopAnalyzing(class UObject* WorldContextObject)
 
 	Params::UAudioAnalyzer_StopAnalyzing_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -176,16 +175,18 @@ void UAudioAnalyzer::StopAnalyzing(class UObject* WorldContextObject)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AudioAnalyzer.AudioAnalyzer.StartAnalyzing
 // (Final, BlueprintCosmetic, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UAudioBus*                   AudioBusToAnalyze                                                (Edit, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UAudioBus*                   AudioBusToAnalyze                                                (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-class UAudioBus* UAudioAnalyzer::StartAnalyzing(class UObject* WorldContextObject)
+class UObject* UAudioAnalyzer::StartAnalyzing(class UAudioBus** AudioBusToAnalyze)
 {
 	static class UFunction* Func = nullptr;
 
@@ -194,7 +195,6 @@ class UAudioBus* UAudioAnalyzer::StartAnalyzing(class UObject* WorldContextObjec
 
 	Params::UAudioAnalyzer_StartAnalyzing_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -203,6 +203,9 @@ class UAudioBus* UAudioAnalyzer::StartAnalyzing(class UObject* WorldContextObjec
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (AudioBusToAnalyze != nullptr)
+		*AudioBusToAnalyze = Parms.AudioBusToAnalyze;
 
 	return Parms.ReturnValue;
 

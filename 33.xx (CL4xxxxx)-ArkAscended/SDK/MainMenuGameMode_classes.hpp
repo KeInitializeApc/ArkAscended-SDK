@@ -14,13 +14,13 @@ namespace SDK
 class AMainMenuGameMode_C : public AShooterGame_Menu
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x658(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-	class USceneComponent*                       DefaultSceneRoot;                                  // 0x660(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x658(0x8)(BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+	class USceneComponent*                       DefaultSceneRoot;                                  // 0x660(0x8)(Net, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst)
 
 	static class UClass* StaticClass();
 	static class AMainMenuGameMode_C* GetDefaultObj();
 
-	void ExecuteUbergraph_MainMenuGameMode(int32 EntryPoint);
+	int32 ExecuteUbergraph_MainMenuGameMode();
 };
 
 }

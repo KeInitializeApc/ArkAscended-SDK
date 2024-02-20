@@ -14,13 +14,13 @@ namespace SDK
 class UGeometryCache : public UObject
 {
 public:
-	uint8                                        Pad_7F9[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class UMaterialInterface*>            Materials;                                         // 0x30(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, DuplicateTransient)
-	TArray<class UGeometryCacheTrack*>           Tracks;                                            // 0x40(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_7FA[0x10];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        StartFrame;                                        // 0x60(0x4)(BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	int32                                        EndFrame;                                          // 0x64(0x4)(Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint64                                       Hash;                                              // 0x68(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_203[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<class UMaterialInterface*>            Materials;                                         // 0x30(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, DuplicateTransient)
+	TArray<class UGeometryCacheTrack*>           Tracks;                                            // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_204[0x10];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        StartFrame;                                        // 0x60(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        EndFrame;                                          // 0x64(0x4)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint64                                       Hash;                                              // 0x68(0x8)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGeometryCache* GetDefaultObj();
@@ -32,7 +32,7 @@ public:
 class AGeometryCacheActor : public AActor
 {
 public:
-	class UGeometryCacheComponent*               GeometryCacheComponent;                            // 0x4C8(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+	class UGeometryCacheComponent*               GeometryCacheComponent;                            // 0x4C8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst)
 
 	static class UClass* StaticClass();
 	static class AGeometryCacheActor* GetDefaultObj();
@@ -45,7 +45,7 @@ public:
 class UGeometryCacheCodecBase : public UObject
 {
 public:
-	TArray<int32>                                TopologyRanges;                                    // 0x28(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<int32>                                TopologyRanges;                                    // 0x28(0x10)(BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UGeometryCacheCodecBase* GetDefaultObj();
@@ -57,8 +57,8 @@ public:
 class UGeometryCacheCodecRaw : public UGeometryCacheCodecBase
 {
 public:
-	int32                                        DummyProperty;                                     // 0x38(0x4)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_81C[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	int32                                        DummyProperty;                                     // 0x38(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+	uint8                                        Pad_20A[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGeometryCacheCodecRaw* GetDefaultObj();
@@ -70,7 +70,7 @@ public:
 class UGeometryCacheCodecV1 : public UGeometryCacheCodecBase
 {
 public:
-	uint8                                        Pad_81E[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_20D[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGeometryCacheCodecV1* GetDefaultObj();
@@ -82,37 +82,37 @@ public:
 class UGeometryCacheComponent : public UMeshComponent
 {
 public:
-	class UGeometryCache*                        GeometryCache;                                     // 0x6D8(0x8)(Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst)
-	bool                                         bRunning;                                          // 0x6E0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	bool                                         bLooping;                                          // 0x6E1(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, EditConst)
-	bool                                         bExtrapolateFrames;                                // 0x6E2(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_8C0[0x1];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        StartTimeOffset;                                   // 0x6E4(0x4)(Edit, ExportObject, EditFixedSize, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	float                                        PlaybackSpeed;                                     // 0x6E8(0x4)(ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	float                                        MotionVectorScale;                                 // 0x6EC(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	int32                                        NumTracks;                                         // 0x6F0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	float                                        ElapsedTime;                                       // 0x6F4(0x4)(Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_8C5[0x4C];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        Duration;                                          // 0x744(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
-	bool                                         bManualTick;                                       // 0x748(0x1)(ConstParm, BlueprintReadOnly, Net, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	bool                                         bOverrideWireframeColor;                           // 0x749(0x1)(Edit, BlueprintVisible, Net, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_8C6[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FLinearColor                          WireframeOverrideColor;                            // 0x74C(0x10)(Edit, ExportObject, BlueprintReadOnly, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_8C8[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	class UGeometryCache*                        GeometryCache;                                     // 0x6D8(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+	bool                                         bRunning;                                          // 0x6E0(0x1)(ConstParm, Net, EditFixedSize, ReturnParm, InstancedReference, SubobjectReference)
+	bool                                         bLooping;                                          // 0x6E1(0x1)(ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst)
+	bool                                         bExtrapolateFrames;                                // 0x6E2(0x1)(ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, InstancedReference, SubobjectReference)
+	uint8                                        Pad_23E[0x1];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        StartTimeOffset;                                   // 0x6E4(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, InstancedReference, SubobjectReference)
+	float                                        PlaybackSpeed;                                     // 0x6E8(0x4)(Edit, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	float                                        MotionVectorScale;                                 // 0x6EC(0x4)(Edit, BlueprintVisible, EditFixedSize, ReturnParm, InstancedReference, SubobjectReference)
+	int32                                        NumTracks;                                         // 0x6F0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, InstancedReference, SubobjectReference)
+	float                                        ElapsedTime;                                       // 0x6F4(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_240[0x4C];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Duration;                                          // 0x744(0x4)(Edit, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, DuplicateTransient)
+	bool                                         bManualTick;                                       // 0x748(0x1)(ExportObject, BlueprintReadOnly, Net, ReturnParm, InstancedReference, SubobjectReference)
+	bool                                         bOverrideWireframeColor;                           // 0x749(0x1)(Edit, ConstParm, ExportObject, Net, ReturnParm, InstancedReference, SubobjectReference)
+	uint8                                        Pad_243[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FLinearColor                          WireframeOverrideColor;                            // 0x74C(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, InstancedReference, SubobjectReference)
+	uint8                                        Pad_245[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGeometryCacheComponent* GetDefaultObj();
 
-	float TickAtThisTime(bool bInIsRunning, bool bInBackwards, bool bInIsLooping);
+	bool TickAtThisTime();
 	void Stop();
 	void SetWireframeOverrideColor(struct FLinearColor* Color);
 	float SetStartTimeOffset();
-	float SetPlaybackSpeed();
-	void SetOverrideWireframeColor(bool* bOverride);
-	float SetMotionVectorScale();
-	bool SetLooping();
-	class UGeometryCache* SetGeometryCache(bool ReturnValue);
-	bool SetExtrapolateFrames();
+	void SetPlaybackSpeed(float* NewPlaybackSpeed);
+	bool SetOverrideWireframeColor();
+	void SetMotionVectorScale(float* NewMotionVectorScale);
+	void SetLooping(bool* bNewLooping);
+	void SetGeometryCache(class UGeometryCache** NewGeomCache, bool ReturnValue);
+	void SetExtrapolateFrames(bool* bNewExtrapolating);
 	void PlayReversedFromEnd();
 	void PlayReversed();
 	void PlayFromStart();
@@ -138,8 +138,8 @@ public:
 class UGeometryCacheTrack : public UObject
 {
 public:
-	float                                        Duration;                                          // 0x28(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
-	uint8                                        Pad_8D3[0x2C];                                     // Fixing Size Of Struct > TateDumper <
+	float                                        Duration;                                          // 0x28(0x4)(Edit, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, DuplicateTransient)
+	uint8                                        Pad_251[0x2C];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGeometryCacheTrack* GetDefaultObj();
@@ -151,13 +151,13 @@ public:
 class UGeometryCacheTrack_FlipbookAnimation : public UGeometryCacheTrack
 {
 public:
-	uint32                                       NumMeshSamples;                                    // 0x58(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_8DE[0x24];                                     // Fixing Size Of Struct > TateDumper <
+	uint32                                       NumMeshSamples;                                    // 0x58(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, InstancedReference, SubobjectReference)
+	uint8                                        Pad_25A[0x24];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGeometryCacheTrack_FlipbookAnimation* GetDefaultObj();
 
-	void AddMeshSample(const struct FGeometryCacheMeshData& MeshData, float SampleTime);
+	float AddMeshSample();
 };
 
 // 0x80 (0xD8 - 0x58)
@@ -165,10 +165,10 @@ public:
 class UGeometryCacheTrackStreamable : public UGeometryCacheTrack
 {
 public:
-	class UGeometryCacheCodecBase*               Codec;                                             // 0x58(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_8E4[0x68];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        StartSampleTime;                                   // 0xC8(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_8E5[0xC];                                      // Fixing Size Of Struct > TateDumper <
+	class UGeometryCacheCodecBase*               Codec;                                             // 0x58(0x8)(Edit, ConstParm, Parm, ReturnParm, InstancedReference, SubobjectReference)
+	uint8                                        Pad_25C[0x68];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        StartSampleTime;                                   // 0xC8(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, InstancedReference, SubobjectReference)
+	uint8                                        Pad_25D[0xC];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGeometryCacheTrackStreamable* GetDefaultObj();
@@ -180,12 +180,12 @@ public:
 class UGeometryCacheTrack_TransformAnimation : public UGeometryCacheTrack
 {
 public:
-	uint8                                        Pad_8ED[0xC8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_25F[0xC8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGeometryCacheTrack_TransformAnimation* GetDefaultObj();
 
-	void SetMesh(const struct FGeometryCacheMeshData& NewMeshData);
+	struct FGeometryCacheMeshData SetMesh();
 };
 
 // 0xC8 (0x120 - 0x58)
@@ -193,12 +193,12 @@ public:
 class UGeometryCacheTrack_TransformGroupAnimation : public UGeometryCacheTrack
 {
 public:
-	uint8                                        Pad_8F8[0xC8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_264[0xC8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGeometryCacheTrack_TransformGroupAnimation* GetDefaultObj();
 
-	void SetMesh(const struct FGeometryCacheMeshData& NewMeshData);
+	struct FGeometryCacheMeshData SetMesh();
 };
 
 // 0x288 (0x368 - 0xE0)
@@ -206,20 +206,20 @@ public:
 class UNiagaraGeometryCacheRendererProperties : public UNiagaraRendererProperties
 {
 public:
-	TArray<struct FNiagaraGeometryCacheReference> GeometryCaches;                                    // 0xE0(0x10)(Edit, ConstParm, ExportObject, Net, Parm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	bool                                         bIsLooping;                                        // 0xF0(0x1)(Edit, BlueprintVisible, Net, Parm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_90A[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	uint32                                       ComponentCountLimit;                               // 0xF4(0x4)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FNiagaraVariableAttributeBinding      PositionBinding;                                   // 0xF8(0x58)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FNiagaraVariableAttributeBinding      RotationBinding;                                   // 0x150(0x58)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FNiagaraVariableAttributeBinding      ScaleBinding;                                      // 0x1A8(0x58)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FNiagaraVariableAttributeBinding      ElapsedTimeBinding;                                // 0x200(0x58)(ConstParm, BlueprintReadOnly, Parm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FNiagaraVariableAttributeBinding      EnabledBinding;                                    // 0x258(0x58)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FNiagaraVariableAttributeBinding      ArrayIndexBinding;                                 // 0x2B0(0x58)(ExportObject, Parm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FNiagaraVariableAttributeBinding      RendererVisibilityTagBinding;                      // 0x308(0x58)(Edit, ConstParm, OutParm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	int32                                        RendererVisibility;                                // 0x360(0x4)(BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	bool                                         bAssignComponentsOnParticleID;                     // 0x364(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_914[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	TArray<struct FNiagaraGeometryCacheReference> GeometryCaches;                                    // 0xE0(0x10)(Edit, BlueprintReadOnly, Net, Parm, ReturnParm, InstancedReference, SubobjectReference)
+	bool                                         bIsLooping;                                        // 0xF0(0x1)(Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, InstancedReference, SubobjectReference)
+	uint8                                        Pad_268[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	uint32                                       ComponentCountLimit;                               // 0xF4(0x4)(Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FNiagaraVariableAttributeBinding      PositionBinding;                                   // 0xF8(0x58)(ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	struct FNiagaraVariableAttributeBinding      RotationBinding;                                   // 0x150(0x58)(ConstParm, Net, Parm, ReturnParm, InstancedReference, SubobjectReference)
+	struct FNiagaraVariableAttributeBinding      ScaleBinding;                                      // 0x1A8(0x58)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	struct FNiagaraVariableAttributeBinding      ElapsedTimeBinding;                                // 0x200(0x58)(ExportObject, BlueprintReadOnly, Parm, ReturnParm, InstancedReference, SubobjectReference)
+	struct FNiagaraVariableAttributeBinding      EnabledBinding;                                    // 0x258(0x58)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FNiagaraVariableAttributeBinding      ArrayIndexBinding;                                 // 0x2B0(0x58)(ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, InstancedReference, SubobjectReference)
+	struct FNiagaraVariableAttributeBinding      RendererVisibilityTagBinding;                      // 0x308(0x58)(ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	int32                                        RendererVisibility;                                // 0x360(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bAssignComponentsOnParticleID;                     // 0x364(0x1)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_26A[0x3];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UNiagaraGeometryCacheRendererProperties* GetDefaultObj();

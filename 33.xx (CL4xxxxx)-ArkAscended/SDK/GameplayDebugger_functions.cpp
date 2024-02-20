@@ -43,8 +43,8 @@ class AGameplayDebuggerCategoryReplicator* AGameplayDebuggerCategoryReplicator::
 // Function GameplayDebugger.GameplayDebuggerCategoryReplicator.ServerSetViewPoint
 // (Net, NetReliable, Native, Event, Protected, NetServer, HasDefaults, NetValidate)
 // Parameters:
-// struct FVector                     InViewLocation                                                   (ConstParm, BlueprintVisible, ExportObject, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     InViewDirection                                                  (Edit, BlueprintVisible, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     InViewLocation                                                   (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     InViewDirection                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FVector AGameplayDebuggerCategoryReplicator::ServerSetViewPoint()
 {
@@ -72,7 +72,7 @@ struct FVector AGameplayDebuggerCategoryReplicator::ServerSetViewPoint()
 // Function GameplayDebugger.GameplayDebuggerCategoryReplicator.ServerSetEnabled
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// bool                               bEnable                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// bool                               bEnable                                                          (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
 bool AGameplayDebuggerCategoryReplicator::ServerSetEnabled()
 {
@@ -101,9 +101,9 @@ bool AGameplayDebuggerCategoryReplicator::ServerSetEnabled()
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// bool                               bSelectInEditor                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bSelectInEditor                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void AGameplayDebuggerCategoryReplicator::ServerSetDebugActor(class AActor** Actor, bool* bSelectInEditor)
+bool AGameplayDebuggerCategoryReplicator::ServerSetDebugActor(class AActor** Actor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -124,8 +124,7 @@ void AGameplayDebuggerCategoryReplicator::ServerSetDebugActor(class AActor** Act
 	if (Actor != nullptr)
 		*Actor = Parms.Actor;
 
-	if (bSelectInEditor != nullptr)
-		*bSelectInEditor = Parms.bSelectInEditor;
+	return Parms.ReturnValue;
 
 }
 
@@ -133,8 +132,8 @@ void AGameplayDebuggerCategoryReplicator::ServerSetDebugActor(class AActor** Act
 // Function GameplayDebugger.GameplayDebuggerCategoryReplicator.ServerSetCategoryEnabled
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// int32                              CategoryId                                                       (Edit, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bEnable                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// int32                              CategoryId                                                       (Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bEnable                                                          (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
 bool AGameplayDebuggerCategoryReplicator::ServerSetCategoryEnabled()
 {
@@ -162,10 +161,10 @@ bool AGameplayDebuggerCategoryReplicator::ServerSetCategoryEnabled()
 // Function GameplayDebugger.GameplayDebuggerCategoryReplicator.ServerSendExtensionInputEvent
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// int32                              ExtensionId                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              HandlerId                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ExtensionId                                                      (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              HandlerId                                                        (ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void AGameplayDebuggerCategoryReplicator::ServerSendExtensionInputEvent(int32* ExtensionId, int32* HandlerId)
+int32 AGameplayDebuggerCategoryReplicator::ServerSendExtensionInputEvent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -183,11 +182,7 @@ void AGameplayDebuggerCategoryReplicator::ServerSendExtensionInputEvent(int32* E
 
 	Func->FunctionFlags = Flgs;
 
-	if (ExtensionId != nullptr)
-		*ExtensionId = Parms.ExtensionId;
-
-	if (HandlerId != nullptr)
-		*HandlerId = Parms.HandlerId;
+	return Parms.ReturnValue;
 
 }
 
@@ -195,10 +190,10 @@ void AGameplayDebuggerCategoryReplicator::ServerSendExtensionInputEvent(int32* E
 // Function GameplayDebugger.GameplayDebuggerCategoryReplicator.ServerSendCategoryInputEvent
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// int32                              CategoryId                                                       (Edit, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              HandlerId                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              CategoryId                                                       (Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              HandlerId                                                        (ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-int32 AGameplayDebuggerCategoryReplicator::ServerSendCategoryInputEvent(int32* HandlerId)
+int32 AGameplayDebuggerCategoryReplicator::ServerSendCategoryInputEvent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -215,9 +210,6 @@ int32 AGameplayDebuggerCategoryReplicator::ServerSendCategoryInputEvent(int32* H
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (HandlerId != nullptr)
-		*HandlerId = Parms.HandlerId;
 
 	return Parms.ReturnValue;
 
@@ -275,7 +267,7 @@ void AGameplayDebuggerCategoryReplicator::OnRep_ReplicatedData()
 // Function GameplayDebugger.GameplayDebuggerCategoryReplicator.ClientDataPackPacket
 // (Net, NetReliable, Native, Event, Protected, NetClient)
 // Parameters:
-// struct FGameplayDebuggerDataPackRPCParamsParams                                                           (BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+// struct FGameplayDebuggerDataPackRPCParamsParams                                                           (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
 
 struct FGameplayDebuggerDataPackRPCParams AGameplayDebuggerCategoryReplicator::ClientDataPackPacket()
 {

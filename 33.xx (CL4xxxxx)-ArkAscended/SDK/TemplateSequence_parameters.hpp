@@ -18,7 +18,7 @@ namespace Params
 struct ATemplateSequenceActor_SetSequence_Params
 {
 public:
-	class UTemplateSequence*                     InSequence;                                        // 0x0(0x8)(Edit, ExportObject, Transient, Config, InstancedReference, SubobjectReference)
+	class UTemplateSequence*                     InSequence;                                        // 0x0(0x8)(BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -27,8 +27,8 @@ struct ATemplateSequenceActor_SetBinding_Params
 {
 public:
 	class AActor*                                Actor;                                             // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-	bool                                         bOverridesDefault;                                 // 0x8(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1EF6[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bOverridesDefault;                                 // 0x8(0x1)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_13C7[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -36,7 +36,7 @@ public:
 struct ATemplateSequenceActor_LoadSequence_Params
 {
 public:
-	class UTemplateSequence*                     ReturnValue;                                       // 0x0(0x8)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UTemplateSequence*                     ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -44,7 +44,7 @@ public:
 struct ATemplateSequenceActor_GetSequencePlayer_Params
 {
 public:
-	class UTemplateSequencePlayer*               ReturnValue;                                       // 0x0(0x8)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UTemplateSequencePlayer*               ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -52,7 +52,7 @@ public:
 struct ATemplateSequenceActor_GetSequence_Params
 {
 public:
-	class UTemplateSequence*                     ReturnValue;                                       // 0x0(0x8)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UTemplateSequence*                     ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -60,45 +60,45 @@ public:
 struct UTemplateSequencePlayer_CreateTemplateSequencePlayer_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	class UTemplateSequence*                     TemplateSequence;                                  // 0x8(0x8)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
-	struct FMovieSceneSequencePlaybackSettings   Settings;                                          // 0x10(0x20)(Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-	class ATemplateSequenceActor*                OutActor;                                          // 0x30(0x8)(ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	class UTemplateSequencePlayer*               ReturnValue;                                       // 0x38(0x8)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	class UTemplateSequence*                     TemplateSequence;                                  // 0x8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+	struct FMovieSceneSequencePlaybackSettings   Settings;                                          // 0x10(0x20)(Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+	class ATemplateSequenceActor*                OutActor;                                          // 0x30(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	class UTemplateSequencePlayer*               ReturnValue;                                       // 0x38(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
-// 0x790 (0x790 - 0x0)
+// 0x7A0 (0x7A0 - 0x0)
 // Function TemplateSequence.SequenceCameraShakeTestUtil.GetPostProcessBlendCache
 struct USequenceCameraShakeTestUtil_GetPostProcessBlendCache_Params
 {
 public:
-	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-	int32                                        PPIndex;                                           // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1F12[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FPostProcessSettings                  OutPPSettings;                                     // 0x10(0x770)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	float                                        OutPPBlendWeight;                                  // 0x780(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x784(0x1)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_1F14[0xB];                                     // Fixing Size Of Struct > TateDumper <
+	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	int32                                        PPIndex;                                           // 0x8(0x4)(Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_13EB[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FPostProcessSettings                  OutPPSettings;                                     // 0x10(0x780)(Edit, ConstParm, Net, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	float                                        OutPPBlendWeight;                                  // 0x790(0x4)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x794(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_13EC[0xB];                                     // Fixing Size Of Struct > TateDumper <
 };
 
-// 0x870 (0x870 - 0x0)
+// 0x880 (0x880 - 0x0)
 // Function TemplateSequence.SequenceCameraShakeTestUtil.GetLastFrameCameraCachePOV
 struct USequenceCameraShakeTestUtil_GetLastFrameCameraCachePOV_Params
 {
 public:
-	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-	uint8                                        Pad_1F18[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FMinimalViewInfo                      ReturnValue;                                       // 0x10(0x860)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	uint8                                        Pad_13F7[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FMinimalViewInfo                      ReturnValue;                                       // 0x10(0x870)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
-// 0x870 (0x870 - 0x0)
+// 0x880 (0x880 - 0x0)
 // Function TemplateSequence.SequenceCameraShakeTestUtil.GetCameraCachePOV
 struct USequenceCameraShakeTestUtil_GetCameraCachePOV_Params
 {
 public:
-	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-	uint8                                        Pad_1F1A[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FMinimalViewInfo                      ReturnValue;                                       // 0x10(0x860)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	uint8                                        Pad_13FB[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FMinimalViewInfo                      ReturnValue;                                       // 0x10(0x870)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 }

@@ -43,11 +43,11 @@ class UMobileInstalledContent* UMobileInstalledContent::GetDefaultObj()
 // Function MobilePatchingUtils.MobileInstalledContent.Mount
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              PakOrder                                                         (Edit, ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// class FString                      MountPoint                                                       (Edit, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              PakOrder                                                         (ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// class FString                      MountPoint                                                       (ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString UMobileInstalledContent::Mount(bool ReturnValue)
+void UMobileInstalledContent::Mount(int32 PakOrder, const class FString& MountPoint, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -56,6 +56,8 @@ class FString UMobileInstalledContent::Mount(bool ReturnValue)
 
 	Params::UMobileInstalledContent_Mount_Params Parms{};
 
+	Parms.PakOrder = PakOrder;
+	Parms.MountPoint = MountPoint;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -66,15 +68,13 @@ class FString UMobileInstalledContent::Mount(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MobilePatchingUtils.MobileInstalledContent.GetInstalledContentSize
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMobileInstalledContent::GetInstalledContentSize(float ReturnValue)
 {
@@ -101,7 +101,7 @@ void UMobileInstalledContent::GetInstalledContentSize(float ReturnValue)
 // Function MobilePatchingUtils.MobileInstalledContent.GetDiskFreeSpace
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMobileInstalledContent::GetDiskFreeSpace(float ReturnValue)
 {
@@ -156,10 +156,10 @@ class UMobilePendingContent* UMobilePendingContent::GetDefaultObj()
 // Function MobilePatchingUtils.MobilePendingContent.StartInstall
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// FDelegateProperty_                 OnSucceeded                                                      (BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnFailed                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 OnSucceeded                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnFailed                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, Config, GlobalConfig, SubobjectReference)
 
-FDelegateProperty_ UMobilePendingContent::StartInstall(FDelegateProperty_ OnFailed)
+void UMobilePendingContent::StartInstall(FDelegateProperty_ OnSucceeded, FDelegateProperty_* OnFailed)
 {
 	static class UFunction* Func = nullptr;
 
@@ -168,7 +168,7 @@ FDelegateProperty_ UMobilePendingContent::StartInstall(FDelegateProperty_ OnFail
 
 	Params::UMobilePendingContent_StartInstall_Params Parms{};
 
-	Parms.OnFailed = OnFailed;
+	Parms.OnSucceeded = OnSucceeded;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -178,7 +178,8 @@ FDelegateProperty_ UMobilePendingContent::StartInstall(FDelegateProperty_ OnFail
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (OnFailed != nullptr)
+		*OnFailed = Parms.OnFailed;
 
 }
 
@@ -186,7 +187,7 @@ FDelegateProperty_ UMobilePendingContent::StartInstall(FDelegateProperty_ OnFail
 // Function MobilePatchingUtils.MobilePendingContent.GetTotalDownloadedSize
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMobilePendingContent::GetTotalDownloadedSize(float ReturnValue)
 {
@@ -213,7 +214,7 @@ void UMobilePendingContent::GetTotalDownloadedSize(float ReturnValue)
 // Function MobilePatchingUtils.MobilePendingContent.GetRequiredDiskSpace
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMobilePendingContent::GetRequiredDiskSpace(float ReturnValue)
 {
@@ -240,7 +241,7 @@ void UMobilePendingContent::GetRequiredDiskSpace(float ReturnValue)
 // Function MobilePatchingUtils.MobilePendingContent.GetInstallProgress
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMobilePendingContent::GetInstallProgress(float ReturnValue)
 {
@@ -267,7 +268,7 @@ void UMobilePendingContent::GetInstallProgress(float ReturnValue)
 // Function MobilePatchingUtils.MobilePendingContent.GetDownloadStatusText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FText                        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMobilePendingContent::GetDownloadStatusText(class FText ReturnValue)
 {
@@ -294,7 +295,7 @@ void UMobilePendingContent::GetDownloadStatusText(class FText ReturnValue)
 // Function MobilePatchingUtils.MobilePendingContent.GetDownloadSpeed
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMobilePendingContent::GetDownloadSpeed(float ReturnValue)
 {
@@ -321,7 +322,7 @@ void UMobilePendingContent::GetDownloadSpeed(float ReturnValue)
 // Function MobilePatchingUtils.MobilePendingContent.GetDownloadSize
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMobilePendingContent::GetDownloadSize(float ReturnValue)
 {
@@ -376,13 +377,13 @@ class UMobilePatchingLibrary* UMobilePatchingLibrary::GetDefaultObj()
 // Function MobilePatchingUtils.MobilePatchingLibrary.RequestContent
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      RemoteManifestURL                                                (Edit, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// class FString                      CloudURL                                                         (Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// class FString                      InstallDirectory                                                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnSucceeded                                                      (BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnFailed                                                         (BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      RemoteManifestURL                                                (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// class FString                      CloudURL                                                         (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// class FString                      InstallDirectory                                                 (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnSucceeded                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnFailed                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, Config, GlobalConfig, SubobjectReference)
 
-FDelegateProperty_ UMobilePatchingLibrary::RequestContent(FDelegateProperty_ OnFailed)
+void UMobilePatchingLibrary::RequestContent(const class FString& RemoteManifestURL, const class FString& CloudURL, const class FString& InstallDirectory, FDelegateProperty_ OnSucceeded, FDelegateProperty_* OnFailed)
 {
 	static class UFunction* Func = nullptr;
 
@@ -391,7 +392,10 @@ FDelegateProperty_ UMobilePatchingLibrary::RequestContent(FDelegateProperty_ OnF
 
 	Params::UMobilePatchingLibrary_RequestContent_Params Parms{};
 
-	Parms.OnFailed = OnFailed;
+	Parms.RemoteManifestURL = RemoteManifestURL;
+	Parms.CloudURL = CloudURL;
+	Parms.InstallDirectory = InstallDirectory;
+	Parms.OnSucceeded = OnSucceeded;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -401,7 +405,8 @@ FDelegateProperty_ UMobilePatchingLibrary::RequestContent(FDelegateProperty_ OnF
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (OnFailed != nullptr)
+		*OnFailed = Parms.OnFailed;
 
 }
 
@@ -409,7 +414,7 @@ FDelegateProperty_ UMobilePatchingLibrary::RequestContent(FDelegateProperty_ OnF
 // Function MobilePatchingUtils.MobilePatchingLibrary.HasActiveWiFiConnection
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMobilePatchingLibrary::HasActiveWiFiConnection(bool ReturnValue)
 {
@@ -436,7 +441,7 @@ void UMobilePatchingLibrary::HasActiveWiFiConnection(bool ReturnValue)
 // Function MobilePatchingUtils.MobilePatchingLibrary.GetSupportedPlatformNames
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMobilePatchingLibrary::GetSupportedPlatformNames(const TArray<class FString>& ReturnValue)
 {
@@ -463,10 +468,10 @@ void UMobilePatchingLibrary::GetSupportedPlatformNames(const TArray<class FStrin
 // Function MobilePatchingUtils.MobilePatchingLibrary.GetInstalledContent
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FString                      InstallDirectory                                                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// class UMobileInstalledContent*     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      InstallDirectory                                                 (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// class UMobileInstalledContent*     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString UMobilePatchingLibrary::GetInstalledContent(class UMobileInstalledContent* ReturnValue)
+void UMobilePatchingLibrary::GetInstalledContent(const class FString& InstallDirectory, class UMobileInstalledContent* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -475,6 +480,7 @@ class FString UMobilePatchingLibrary::GetInstalledContent(class UMobileInstalled
 
 	Params::UMobilePatchingLibrary_GetInstalledContent_Params Parms{};
 
+	Parms.InstallDirectory = InstallDirectory;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -485,15 +491,13 @@ class FString UMobilePatchingLibrary::GetInstalledContent(class UMobileInstalled
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MobilePatchingUtils.MobilePatchingLibrary.GetActiveDeviceProfileName
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMobilePatchingLibrary::GetActiveDeviceProfileName(const class FString& ReturnValue)
 {

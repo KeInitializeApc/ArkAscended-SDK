@@ -18,15 +18,15 @@ namespace Params
 struct UPrimalItem_TaxidermyDermis_C_BPInitIconMaterial_Params
 {
 public:
-	struct FCustomItemData                       CallFunc_GetCustomItemData_OutData;                // 0x0(0x78)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
-	bool                                         CallFunc_GetCustomItemData_ReturnValue;            // 0x78(0x1)(Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_379E[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class UClass*                                CallFunc_Array_Get_Item;                           // 0x80(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
-	class UObject*                               CallFunc_GetClassDefaultObject_ReturnValue;        // 0x88(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
-	class APrimalDinoCharacter*                  K2Node_DynamicCast_AsPrimal_Dino_Character;        // 0x90(0x8)(ConstParm, ExportObject, Net, DisableEditOnInstance, SubobjectReference)
-	bool                                         K2Node_DynamicCast_bSuccess;                       // 0x98(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-	uint8                                        Pad_379F[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class UTexture*                              CallFunc_GetDinoEntryIcon_ReturnValue;             // 0xA0(0x8)(ExportObject, EditFixedSize, Parm, ReturnParm, EditConst, SubobjectReference)
+	struct FCustomItemData                       CallFunc_GetCustomItemData_OutData;                // 0x0(0x78)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         CallFunc_GetCustomItemData_ReturnValue;            // 0x78(0x1)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2D5B[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class UClass*                                CallFunc_Array_Get_Item;                           // 0x80(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+	class UObject*                               CallFunc_GetClassDefaultObject_ReturnValue;        // 0x88(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
+	class APrimalDinoCharacter*                  K2Node_DynamicCast_AsPrimal_Dino_Character;        // 0x90(0x8)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         K2Node_DynamicCast_bSuccess;                       // 0x98(0x1)(Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_2D5C[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class UTexture*                              CallFunc_GetDinoEntryIcon_ReturnValue;             // 0xA0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
 };
 
 }

@@ -155,11 +155,11 @@ class UConstantQNRT* UConstantQNRT::GetDefaultObj()
 // Function AudioSynesthesia.ConstantQNRT.GetNormalizedChannelConstantQAtTime
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              InSeconds                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InChannel                                                        (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<float>                      OutConstantQ                                                     (Edit, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InSeconds                                                        (Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
+// int32                              InChannel                                                        (Edit, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<float>                      OutConstantQ                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-TArray<float> UConstantQNRT::GetNormalizedChannelConstantQAtTime()
+void UConstantQNRT::GetNormalizedChannelConstantQAtTime(float InSeconds, int32* InChannel, TArray<float>* OutConstantQ)
 {
 	static class UFunction* Func = nullptr;
 
@@ -168,6 +168,7 @@ TArray<float> UConstantQNRT::GetNormalizedChannelConstantQAtTime()
 
 	Params::UConstantQNRT_GetNormalizedChannelConstantQAtTime_Params Parms{};
 
+	Parms.InSeconds = InSeconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -177,7 +178,11 @@ TArray<float> UConstantQNRT::GetNormalizedChannelConstantQAtTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InChannel != nullptr)
+		*InChannel = Parms.InChannel;
+
+	if (OutConstantQ != nullptr)
+		*OutConstantQ = std::move(Parms.OutConstantQ);
 
 }
 
@@ -185,11 +190,11 @@ TArray<float> UConstantQNRT::GetNormalizedChannelConstantQAtTime()
 // Function AudioSynesthesia.ConstantQNRT.GetChannelConstantQAtTime
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              InSeconds                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InChannel                                                        (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<float>                      OutConstantQ                                                     (Edit, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InSeconds                                                        (Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
+// int32                              InChannel                                                        (Edit, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<float>                      OutConstantQ                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-TArray<float> UConstantQNRT::GetChannelConstantQAtTime()
+void UConstantQNRT::GetChannelConstantQAtTime(float InSeconds, int32* InChannel, TArray<float>* OutConstantQ)
 {
 	static class UFunction* Func = nullptr;
 
@@ -198,6 +203,7 @@ TArray<float> UConstantQNRT::GetChannelConstantQAtTime()
 
 	Params::UConstantQNRT_GetChannelConstantQAtTime_Params Parms{};
 
+	Parms.InSeconds = InSeconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -207,7 +213,11 @@ TArray<float> UConstantQNRT::GetChannelConstantQAtTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InChannel != nullptr)
+		*InChannel = Parms.InChannel;
+
+	if (OutConstantQ != nullptr)
+		*OutConstantQ = std::move(Parms.OutConstantQ);
 
 }
 
@@ -327,10 +337,10 @@ class ULoudnessNRT* ULoudnessNRT::GetDefaultObj()
 // Function AudioSynesthesia.LoudnessNRT.GetNormalizedLoudnessAtTime
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              InSeconds                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              OutLoudness                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InSeconds                                                        (Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
+// float                              OutLoudness                                                      (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-float ULoudnessNRT::GetNormalizedLoudnessAtTime()
+void ULoudnessNRT::GetNormalizedLoudnessAtTime(float InSeconds, float* OutLoudness)
 {
 	static class UFunction* Func = nullptr;
 
@@ -339,6 +349,7 @@ float ULoudnessNRT::GetNormalizedLoudnessAtTime()
 
 	Params::ULoudnessNRT_GetNormalizedLoudnessAtTime_Params Parms{};
 
+	Parms.InSeconds = InSeconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -348,7 +359,8 @@ float ULoudnessNRT::GetNormalizedLoudnessAtTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (OutLoudness != nullptr)
+		*OutLoudness = Parms.OutLoudness;
 
 }
 
@@ -356,11 +368,11 @@ float ULoudnessNRT::GetNormalizedLoudnessAtTime()
 // Function AudioSynesthesia.LoudnessNRT.GetNormalizedChannelLoudnessAtTime
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              InSeconds                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InChannel                                                        (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              OutLoudness                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InSeconds                                                        (Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
+// int32                              InChannel                                                        (Edit, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              OutLoudness                                                      (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-float ULoudnessNRT::GetNormalizedChannelLoudnessAtTime()
+void ULoudnessNRT::GetNormalizedChannelLoudnessAtTime(float InSeconds, int32* InChannel, float* OutLoudness)
 {
 	static class UFunction* Func = nullptr;
 
@@ -369,6 +381,7 @@ float ULoudnessNRT::GetNormalizedChannelLoudnessAtTime()
 
 	Params::ULoudnessNRT_GetNormalizedChannelLoudnessAtTime_Params Parms{};
 
+	Parms.InSeconds = InSeconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -378,7 +391,11 @@ float ULoudnessNRT::GetNormalizedChannelLoudnessAtTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InChannel != nullptr)
+		*InChannel = Parms.InChannel;
+
+	if (OutLoudness != nullptr)
+		*OutLoudness = Parms.OutLoudness;
 
 }
 
@@ -386,10 +403,10 @@ float ULoudnessNRT::GetNormalizedChannelLoudnessAtTime()
 // Function AudioSynesthesia.LoudnessNRT.GetLoudnessAtTime
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              InSeconds                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              OutLoudness                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InSeconds                                                        (Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
+// float                              OutLoudness                                                      (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-float ULoudnessNRT::GetLoudnessAtTime()
+void ULoudnessNRT::GetLoudnessAtTime(float InSeconds, float* OutLoudness)
 {
 	static class UFunction* Func = nullptr;
 
@@ -398,6 +415,7 @@ float ULoudnessNRT::GetLoudnessAtTime()
 
 	Params::ULoudnessNRT_GetLoudnessAtTime_Params Parms{};
 
+	Parms.InSeconds = InSeconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -407,7 +425,8 @@ float ULoudnessNRT::GetLoudnessAtTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (OutLoudness != nullptr)
+		*OutLoudness = Parms.OutLoudness;
 
 }
 
@@ -415,11 +434,11 @@ float ULoudnessNRT::GetLoudnessAtTime()
 // Function AudioSynesthesia.LoudnessNRT.GetChannelLoudnessAtTime
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              InSeconds                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InChannel                                                        (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              OutLoudness                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InSeconds                                                        (Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
+// int32                              InChannel                                                        (Edit, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              OutLoudness                                                      (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
-float ULoudnessNRT::GetChannelLoudnessAtTime()
+void ULoudnessNRT::GetChannelLoudnessAtTime(float InSeconds, int32* InChannel, float* OutLoudness)
 {
 	static class UFunction* Func = nullptr;
 
@@ -428,6 +447,7 @@ float ULoudnessNRT::GetChannelLoudnessAtTime()
 
 	Params::ULoudnessNRT_GetChannelLoudnessAtTime_Params Parms{};
 
+	Parms.InSeconds = InSeconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -437,7 +457,11 @@ float ULoudnessNRT::GetChannelLoudnessAtTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InChannel != nullptr)
+		*InChannel = Parms.InChannel;
+
+	if (OutLoudness != nullptr)
+		*OutLoudness = Parms.OutLoudness;
 
 }
 
@@ -557,13 +581,13 @@ class UOnsetNRT* UOnsetNRT::GetDefaultObj()
 // Function AudioSynesthesia.OnsetNRT.GetNormalizedChannelOnsetsBetweenTimes
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              InStartSeconds                                                   (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              InEndSeconds                                                     (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              InChannel                                                        (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<float>                      OutOnsetTimestamps                                               (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<float>                      OutOnsetStrengths                                                (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InStartSeconds                                                   (ConstParm, Net, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InEndSeconds                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InChannel                                                        (Edit, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<float>                      OutOnsetTimestamps                                               (Edit, BlueprintReadOnly, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<float>                      OutOnsetStrengths                                                (Edit, ConstParm, BlueprintVisible, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-TArray<float> UOnsetNRT::GetNormalizedChannelOnsetsBetweenTimes()
+void UOnsetNRT::GetNormalizedChannelOnsetsBetweenTimes(float InStartSeconds, float InEndSeconds, int32* InChannel, const TArray<float>& OutOnsetTimestamps, const TArray<float>& OutOnsetStrengths)
 {
 	static class UFunction* Func = nullptr;
 
@@ -572,6 +596,10 @@ TArray<float> UOnsetNRT::GetNormalizedChannelOnsetsBetweenTimes()
 
 	Params::UOnsetNRT_GetNormalizedChannelOnsetsBetweenTimes_Params Parms{};
 
+	Parms.InStartSeconds = InStartSeconds;
+	Parms.InEndSeconds = InEndSeconds;
+	Parms.OutOnsetTimestamps = OutOnsetTimestamps;
+	Parms.OutOnsetStrengths = OutOnsetStrengths;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -581,7 +609,8 @@ TArray<float> UOnsetNRT::GetNormalizedChannelOnsetsBetweenTimes()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InChannel != nullptr)
+		*InChannel = Parms.InChannel;
 
 }
 
@@ -589,13 +618,13 @@ TArray<float> UOnsetNRT::GetNormalizedChannelOnsetsBetweenTimes()
 // Function AudioSynesthesia.OnsetNRT.GetChannelOnsetsBetweenTimes
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              InStartSeconds                                                   (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              InEndSeconds                                                     (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              InChannel                                                        (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<float>                      OutOnsetTimestamps                                               (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<float>                      OutOnsetStrengths                                                (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InStartSeconds                                                   (ConstParm, Net, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InEndSeconds                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InChannel                                                        (Edit, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<float>                      OutOnsetTimestamps                                               (Edit, BlueprintReadOnly, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<float>                      OutOnsetStrengths                                                (Edit, ConstParm, BlueprintVisible, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-TArray<float> UOnsetNRT::GetChannelOnsetsBetweenTimes()
+void UOnsetNRT::GetChannelOnsetsBetweenTimes(float InStartSeconds, float InEndSeconds, int32* InChannel, const TArray<float>& OutOnsetTimestamps, const TArray<float>& OutOnsetStrengths)
 {
 	static class UFunction* Func = nullptr;
 
@@ -604,6 +633,10 @@ TArray<float> UOnsetNRT::GetChannelOnsetsBetweenTimes()
 
 	Params::UOnsetNRT_GetChannelOnsetsBetweenTimes_Params Parms{};
 
+	Parms.InStartSeconds = InStartSeconds;
+	Parms.InEndSeconds = InEndSeconds;
+	Parms.OutOnsetTimestamps = OutOnsetTimestamps;
+	Parms.OutOnsetStrengths = OutOnsetStrengths;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -613,7 +646,8 @@ TArray<float> UOnsetNRT::GetChannelOnsetsBetweenTimes()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InChannel != nullptr)
+		*InChannel = Parms.InChannel;
 
 }
 
@@ -677,7 +711,7 @@ class USynesthesiaSpectrumAnalyzer* USynesthesiaSpectrumAnalyzer::GetDefaultObj(
 // Function AudioSynesthesia.SynesthesiaSpectrumAnalyzer.GetNumCenterFrequencies
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void USynesthesiaSpectrumAnalyzer::GetNumCenterFrequencies(int32 ReturnValue)
 {
@@ -704,10 +738,10 @@ void USynesthesiaSpectrumAnalyzer::GetNumCenterFrequencies(int32 ReturnValue)
 // Function AudioSynesthesia.SynesthesiaSpectrumAnalyzer.GetCenterFrequencies
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// float                              InSampleRate                                                     (ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<float>                      OutCenterFrequencies                                             (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              InSampleRate                                                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<float>                      OutCenterFrequencies                                             (ConstParm, ExportObject, Net, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-TArray<float> USynesthesiaSpectrumAnalyzer::GetCenterFrequencies()
+void USynesthesiaSpectrumAnalyzer::GetCenterFrequencies(float InSampleRate, const TArray<float>& OutCenterFrequencies)
 {
 	static class UFunction* Func = nullptr;
 
@@ -716,6 +750,8 @@ TArray<float> USynesthesiaSpectrumAnalyzer::GetCenterFrequencies()
 
 	Params::USynesthesiaSpectrumAnalyzer_GetCenterFrequencies_Params Parms{};
 
+	Parms.InSampleRate = InSampleRate;
+	Parms.OutCenterFrequencies = OutCenterFrequencies;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -724,8 +760,6 @@ TArray<float> USynesthesiaSpectrumAnalyzer::GetCenterFrequencies()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 

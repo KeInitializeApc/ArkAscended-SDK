@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xEB0 - 0xEB0)
+// 0x0 (0xED0 - 0xED0)
 // BlueprintGeneratedClass PrimalItem_WeaponGun.PrimalItem_WeaponGun_C
 class UPrimalItem_WeaponGun_C : public UPrimalItemWeaponGenericGun_C
 {

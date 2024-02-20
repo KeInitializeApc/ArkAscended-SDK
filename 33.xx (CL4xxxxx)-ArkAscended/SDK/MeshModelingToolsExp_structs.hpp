@@ -792,10 +792,10 @@ enum class EVoxelBlendOperation : uint8
 struct FBakeMultiMeshDetailProperties
 {
 public:
-	class UStaticMesh*                           SourceMesh;                                        // 0x0(0x8)(ConstParm, EditFixedSize, Config, InstancedReference, SubobjectReference)
-	class UTexture2D*                            SourceTexture;                                     // 0x8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, Config, InstancedReference, SubobjectReference)
-	int32                                        SourceTextureUVLayer;                              // 0x10(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1E28[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	class UStaticMesh*                           SourceMesh;                                        // 0x0(0x8)(EditFixedSize, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UTexture2D*                            SourceTexture;                                     // 0x8(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        SourceTextureUVLayer;                              // 0x10(0x4)(Edit, BlueprintVisible, ExportObject, Net, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1503[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -803,8 +803,8 @@ public:
 struct FPerlinLayerProperties
 {
 public:
-	float                                        Frequency;                                         // 0x0(0x4)(Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        Intensity;                                         // 0x4(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, Config)
+	float                                        Frequency;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Intensity;                                         // 0x4(0x4)(Edit, BlueprintVisible, Parm, ZeroConstructor, Config)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -812,8 +812,8 @@ public:
 struct FEditPivotTarget
 {
 public:
-	class UTransformProxy*                       TransformProxy;                                    // 0x0(0x8)(ExportObject, Net, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-	class UCombinedTransformGizmo*               TransformGizmo;                                    // 0x8(0x8)(ExportObject, EditFixedSize, Config, InstancedReference, SubobjectReference)
+	class UTransformProxy*                       TransformProxy;                                    // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, SubobjectReference)
+	class UCombinedTransformGizmo*               TransformGizmo;                                    // 0x8(0x8)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xA0 (0xA0 - 0x0)
@@ -821,10 +821,10 @@ public:
 struct FPhysicsSphereData
 {
 public:
-	float                                        Radius;                                            // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1E2C[0xC];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Radius;                                            // 0x0(0x4)(ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_1504[0xC];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FTransform                            Transform;                                         // 0x10(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-	struct FKShapeElem                           Element;                                           // 0x70(0x30)(BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
+	struct FKShapeElem                           Element;                                           // 0x70(0x30)(ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
 };
 
 // 0xB0 (0xB0 - 0x0)
@@ -832,10 +832,10 @@ public:
 struct FPhysicsBoxData
 {
 public:
-	struct FVector                               Dimensions;                                        // 0x0(0x18)(Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, InstancedReference, DuplicateTransient)
-	uint8                                        Pad_1E2E[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               Dimensions;                                        // 0x0(0x18)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, DuplicateTransient)
+	uint8                                        Pad_1506[0x8];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FTransform                            Transform;                                         // 0x20(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-	struct FKShapeElem                           Element;                                           // 0x80(0x30)(BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
+	struct FKShapeElem                           Element;                                           // 0x80(0x30)(ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
 };
 
 // 0xA0 (0xA0 - 0x0)
@@ -843,11 +843,11 @@ public:
 struct FPhysicsCapsuleData
 {
 public:
-	float                                        Radius;                                            // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        Radius;                                            // 0x0(0x4)(ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
 	float                                        Length;                                            // 0x4(0x4)(ConstParm, BlueprintVisible, Net, ReturnParm)
-	uint8                                        Pad_1E31[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_1507[0x8];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FTransform                            Transform;                                         // 0x10(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-	struct FKShapeElem                           Element;                                           // 0x70(0x30)(BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
+	struct FKShapeElem                           Element;                                           // 0x70(0x30)(ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -855,9 +855,9 @@ public:
 struct FPhysicsConvexData
 {
 public:
-	int32                                        NumVertices;                                       // 0x0(0x4)(Edit, BlueprintVisible, Net, EditFixedSize, Config, InstancedReference, SubobjectReference)
-	int32                                        NumFaces;                                          // 0x4(0x4)(Net, EditFixedSize, Config, InstancedReference, SubobjectReference)
-	struct FKShapeElem                           Element;                                           // 0x8(0x30)(BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
+	int32                                        NumVertices;                                       // 0x0(0x4)(Edit, ConstParm, Net, EditFixedSize, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        NumFaces;                                          // 0x4(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FKShapeElem                           Element;                                           // 0x8(0x30)(ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -865,7 +865,7 @@ public:
 struct FPhysicsLevelSetData
 {
 public:
-	struct FKShapeElem                           Element;                                           // 0x0(0x30)(BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
+	struct FKShapeElem                           Element;                                           // 0x0(0x30)(ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -873,11 +873,11 @@ public:
 struct FBrushToolRadius
 {
 public:
-	enum class EBrushToolSizeType                SizeType;                                          // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1E34[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        AdaptiveSize;                                      // 0x4(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Config, InstancedReference, SubobjectReference)
-	float                                        WorldRadius;                                       // 0x8(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1E35[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EBrushToolSizeType                SizeType;                                          // 0x0(0x1)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_150D[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        AdaptiveSize;                                      // 0x4(0x4)(Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        WorldRadius;                                       // 0x8(0x4)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_150E[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -885,8 +885,8 @@ public:
 struct FTransformMeshesTarget
 {
 public:
-	class UTransformProxy*                       TransformProxy;                                    // 0x0(0x8)(ExportObject, Net, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-	class UCombinedTransformGizmo*               TransformGizmo;                                    // 0x8(0x8)(ExportObject, EditFixedSize, Config, InstancedReference, SubobjectReference)
+	class UTransformProxy*                       TransformProxy;                                    // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, SubobjectReference)
+	class UCombinedTransformGizmo*               TransformGizmo;                                    // 0x8(0x8)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

@@ -14,12 +14,12 @@ namespace SDK
 class UDeco_IsTargetSubmerged_C : public UBTDecorator_BlueprintBase
 {
 public:
-	struct FBlackboardKeySelector                Target;                                            // 0xA0(0x28)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
+	struct FBlackboardKeySelector                Target;                                            // 0xA0(0x28)(Edit, ConstParm, ReturnParm, Transient, Config)
 
 	static class UClass* StaticClass();
 	static class UDeco_IsTargetSubmerged_C* GetDefaultObj();
 
-	bool ReceiveConditionCheck(class AActor* CallFunc_GetBlackboardValueAsActor_ReturnValue);
+	bool ReceiveConditionCheck(class AActor** OwnerActor, class AActor* CallFunc_GetBlackboardValueAsActor_ReturnValue, class APrimalCharacter* K2Node_DynamicCast_AsPrimal_Character);
 };
 
 }

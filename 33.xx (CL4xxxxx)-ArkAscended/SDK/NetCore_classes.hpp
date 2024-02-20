@@ -14,7 +14,7 @@ namespace SDK
 class UNetAnalyticsAggregatorConfig : public UObject
 {
 public:
-	TArray<struct FNetAnalyticsDataConfig>       NetAnalyticsData;                                  // 0x28(0x10)(ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<struct FNetAnalyticsDataConfig>       NetAnalyticsData;                                  // 0x28(0x10)(BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UNetAnalyticsAggregatorConfig* GetDefaultObj();
@@ -26,10 +26,10 @@ public:
 class UStatePerObjectConfig : public UObject
 {
 public:
-	uint8                                        Pad_2D17[0x28];                                    // Fixing Size After Last Property  > TateDumper <
-	class FString                                PerObjectConfigSection;                            // 0x50(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bEnabled;                                          // 0x60(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_2D18[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1DBB[0x28];                                    // Fixing Size After Last Property  > TateDumper <
+	class FString                                PerObjectConfigSection;                            // 0x50(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bEnabled;                                          // 0x60(0x1)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
+	uint8                                        Pad_1DBE[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UStatePerObjectConfig* GetDefaultObj();
@@ -41,8 +41,8 @@ public:
 class UEscalationManagerConfig : public UStatePerObjectConfig
 {
 public:
-	TArray<class FString>                        EscalationSeverity;                                // 0x68(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2D1A[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	TArray<class FString>                        EscalationSeverity;                                // 0x68(0x10)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1DC1[0x10];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UEscalationManagerConfig* GetDefaultObj();

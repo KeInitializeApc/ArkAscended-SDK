@@ -43,9 +43,9 @@ class UUI_DownloadSize_C* UUI_DownloadSize_C::GetDefaultObj()
 // Function UI_DownloadSize.UI_DownloadSize_C.SetSizeText
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        InText                                                           (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        InText                                                           (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
 
-class FText UUI_DownloadSize_C::SetSizeText()
+void UUI_DownloadSize_C::SetSizeText(class FText* InText)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,7 +57,8 @@ class FText UUI_DownloadSize_C::SetSizeText()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (InText != nullptr)
+		*InText = Parms.InText;
 
 }
 

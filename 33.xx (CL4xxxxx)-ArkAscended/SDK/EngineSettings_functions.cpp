@@ -71,7 +71,7 @@ class UGameMapsSettings* UGameMapsSettings::GetDefaultObj()
 // Function EngineSettings.GameMapsSettings.SetSkipAssigningGamepadToPlayer1
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bSkipFirstPlayer                                                 (Edit, ConstParm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bSkipFirstPlayer                                                 (Edit, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 bool UGameMapsSettings::SetSkipAssigningGamepadToPlayer1()
 {
@@ -99,7 +99,7 @@ bool UGameMapsSettings::SetSkipAssigningGamepadToPlayer1()
 // Function EngineSettings.GameMapsSettings.GetSkipAssigningGamepadToPlayer1
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGameMapsSettings::GetSkipAssigningGamepadToPlayer1(bool ReturnValue)
 {
@@ -126,7 +126,7 @@ void UGameMapsSettings::GetSkipAssigningGamepadToPlayer1(bool ReturnValue)
 // Function EngineSettings.GameMapsSettings.GetGameMapsSettings
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UGameMapsSettings*           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UGameMapsSettings*           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGameMapsSettings::GetGameMapsSettings(class UGameMapsSettings* ReturnValue)
 {

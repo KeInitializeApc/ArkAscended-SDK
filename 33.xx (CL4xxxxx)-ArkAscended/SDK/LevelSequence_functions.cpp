@@ -43,9 +43,9 @@ class ULevelSequence* ULevelSequence::GetDefaultObj()
 // Function LevelSequence.LevelSequence.RemoveMetaDataByClass
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InClass                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UClass*                      InClass                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-void ULevelSequence::RemoveMetaDataByClass(class UClass* InClass)
+class UClass* ULevelSequence::RemoveMetaDataByClass()
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,7 +54,6 @@ void ULevelSequence::RemoveMetaDataByClass(class UClass* InClass)
 
 	Params::ULevelSequence_RemoveMetaDataByClass_Params Parms{};
 
-	Parms.InClass = InClass;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -64,16 +63,18 @@ void ULevelSequence::RemoveMetaDataByClass(class UClass* InClass)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function LevelSequence.LevelSequence.FindOrAddMetaDataByClass
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InClass                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UObject*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InClass                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void ULevelSequence::FindOrAddMetaDataByClass(class UClass* InClass, class UObject* ReturnValue)
+class UClass* ULevelSequence::FindOrAddMetaDataByClass(class UObject* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -82,7 +83,6 @@ void ULevelSequence::FindOrAddMetaDataByClass(class UClass* InClass, class UObje
 
 	Params::ULevelSequence_FindOrAddMetaDataByClass_Params Parms{};
 
-	Parms.InClass = InClass;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -93,16 +93,18 @@ void ULevelSequence::FindOrAddMetaDataByClass(class UClass* InClass, class UObje
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function LevelSequence.LevelSequence.FindMetaDataByClass
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UClass*                      InClass                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UObject*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InClass                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void ULevelSequence::FindMetaDataByClass(class UClass* InClass, class UObject* ReturnValue)
+class UClass* ULevelSequence::FindMetaDataByClass(class UObject* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -111,7 +113,6 @@ void ULevelSequence::FindMetaDataByClass(class UClass* InClass, class UObject* R
 
 	Params::ULevelSequence_FindMetaDataByClass_Params Parms{};
 
-	Parms.InClass = InClass;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -122,16 +123,18 @@ void ULevelSequence::FindMetaDataByClass(class UClass* InClass, class UObject* R
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function LevelSequence.LevelSequence.CopyMetaData
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     InMetaData                                                       (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UObject*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     InMetaData                                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, InstancedReference, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* ULevelSequence::CopyMetaData(class UObject* ReturnValue)
+void ULevelSequence::CopyMetaData(class UObject** InMetaData, class UObject* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -150,7 +153,8 @@ class UObject* ULevelSequence::CopyMetaData(class UObject* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InMetaData != nullptr)
+		*InMetaData = Parms.InMetaData;
 
 }
 
@@ -298,7 +302,7 @@ class ULevelSequenceBurnInOptions* ULevelSequenceBurnInOptions::GetDefaultObj()
 // Function LevelSequence.LevelSequenceBurnInOptions.SetBurnIn
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FSoftClassPath              InBurnInClass                                                    (ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FSoftClassPath              InBurnInClass                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 struct FSoftClassPath ULevelSequenceBurnInOptions::SetBurnIn()
 {
@@ -378,7 +382,7 @@ void ALevelSequenceActor::ShowBurnin()
 // Function LevelSequence.LevelSequenceActor.SetSequence
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class ULevelSequence*              InSequence                                                       (Edit, ExportObject, Transient, Config, InstancedReference, SubobjectReference)
+// class ULevelSequence*              InSequence                                                       (BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void ALevelSequenceActor::SetSequence(class ULevelSequence* InSequence)
 {
@@ -405,9 +409,9 @@ void ALevelSequenceActor::SetSequence(class ULevelSequence* InSequence)
 // Function LevelSequence.LevelSequenceActor.SetReplicatePlayback
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReplicatePlayback                                                (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               ReplicatePlayback                                                (ConstParm, Net, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-bool ALevelSequenceActor::SetReplicatePlayback()
+void ALevelSequenceActor::SetReplicatePlayback(bool ReplicatePlayback)
 {
 	static class UFunction* Func = nullptr;
 
@@ -416,6 +420,7 @@ bool ALevelSequenceActor::SetReplicatePlayback()
 
 	Params::ALevelSequenceActor_SetReplicatePlayback_Params Parms{};
 
+	Parms.ReplicatePlayback = ReplicatePlayback;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -425,19 +430,17 @@ bool ALevelSequenceActor::SetReplicatePlayback()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function LevelSequence.LevelSequenceActor.SetBindingByTag
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        BindingTag                                                       (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<class AActor*>              Actors                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowBindingsFromAsset                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class FName                        BindingTag                                                       (Edit, ConstParm, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class AActor*>              Actors                                                           (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowBindingsFromAsset                                          (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-bool ALevelSequenceActor::SetBindingByTag(const TArray<class AActor*>& Actors)
+TArray<class AActor*> ALevelSequenceActor::SetBindingByTag(class FName BindingTag, bool* bAllowBindingsFromAsset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -446,7 +449,7 @@ bool ALevelSequenceActor::SetBindingByTag(const TArray<class AActor*>& Actors)
 
 	Params::ALevelSequenceActor_SetBindingByTag_Params Parms{};
 
-	Parms.Actors = Actors;
+	Parms.BindingTag = BindingTag;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -455,6 +458,9 @@ bool ALevelSequenceActor::SetBindingByTag(const TArray<class AActor*>& Actors)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (bAllowBindingsFromAsset != nullptr)
+		*bAllowBindingsFromAsset = Parms.bAllowBindingsFromAsset;
 
 	return Parms.ReturnValue;
 
@@ -464,11 +470,11 @@ bool ALevelSequenceActor::SetBindingByTag(const TArray<class AActor*>& Actors)
 // Function LevelSequence.LevelSequenceActor.SetBinding
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FMovieSceneObjectBindingID  Binding                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// TArray<class AActor*>              Actors                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAllowBindingsFromAsset                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FMovieSceneObjectBindingID  Binding                                                          (Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// TArray<class AActor*>              Actors                                                           (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAllowBindingsFromAsset                                          (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-bool ALevelSequenceActor::SetBinding(const TArray<class AActor*>& Actors)
+TArray<class AActor*> ALevelSequenceActor::SetBinding(struct FMovieSceneObjectBindingID* Binding, bool* bAllowBindingsFromAsset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -477,7 +483,6 @@ bool ALevelSequenceActor::SetBinding(const TArray<class AActor*>& Actors)
 
 	Params::ALevelSequenceActor_SetBinding_Params Parms{};
 
-	Parms.Actors = Actors;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -486,6 +491,12 @@ bool ALevelSequenceActor::SetBinding(const TArray<class AActor*>& Actors)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Binding != nullptr)
+		*Binding = std::move(Parms.Binding);
+
+	if (bAllowBindingsFromAsset != nullptr)
+		*bAllowBindingsFromAsset = Parms.bAllowBindingsFromAsset;
 
 	return Parms.ReturnValue;
 
@@ -519,9 +530,9 @@ void ALevelSequenceActor::ResetBindings()
 // Function LevelSequence.LevelSequenceActor.ResetBinding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMovieSceneObjectBindingID  Binding                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
+// struct FMovieSceneObjectBindingID  Binding                                                          (Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 
-struct FMovieSceneObjectBindingID ALevelSequenceActor::ResetBinding()
+void ALevelSequenceActor::ResetBinding(struct FMovieSceneObjectBindingID* Binding)
 {
 	static class UFunction* Func = nullptr;
 
@@ -539,7 +550,8 @@ struct FMovieSceneObjectBindingID ALevelSequenceActor::ResetBinding()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Binding != nullptr)
+		*Binding = std::move(Parms.Binding);
 
 }
 
@@ -547,7 +559,7 @@ struct FMovieSceneObjectBindingID ALevelSequenceActor::ResetBinding()
 // Function LevelSequence.LevelSequenceActor.RemoveBindingByTag
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        Tag                                                              (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        Tag                                                              (ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
 
 class FName ALevelSequenceActor::RemoveBindingByTag(class AActor** Actor)
@@ -579,10 +591,10 @@ class FName ALevelSequenceActor::RemoveBindingByTag(class AActor** Actor)
 // Function LevelSequence.LevelSequenceActor.RemoveBinding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMovieSceneObjectBindingID  Binding                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
+// struct FMovieSceneObjectBindingID  Binding                                                          (Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
 
-struct FMovieSceneObjectBindingID ALevelSequenceActor::RemoveBinding(class AActor** Actor)
+void ALevelSequenceActor::RemoveBinding(struct FMovieSceneObjectBindingID* Binding, class AActor** Actor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -600,10 +612,11 @@ struct FMovieSceneObjectBindingID ALevelSequenceActor::RemoveBinding(class AActo
 
 	Func->FunctionFlags = Flgs;
 
+	if (Binding != nullptr)
+		*Binding = std::move(Parms.Binding);
+
 	if (Actor != nullptr)
 		*Actor = Parms.Actor;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -629,7 +642,7 @@ void ALevelSequenceActor::OnLevelSequenceLoaded__DelegateSignature()
 // Function LevelSequence.LevelSequenceActor.LoadSequence
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class ULevelSequence*              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class ULevelSequence*              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ALevelSequenceActor::LoadSequence(class ULevelSequence* ReturnValue)
 {
@@ -680,7 +693,7 @@ void ALevelSequenceActor::HideBurnin()
 // Function LevelSequence.LevelSequenceActor.GetSequencePlayer
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class ULevelSequencePlayer*        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class ULevelSequencePlayer*        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ALevelSequenceActor::GetSequencePlayer(class ULevelSequencePlayer* ReturnValue)
 {
@@ -707,7 +720,7 @@ void ALevelSequenceActor::GetSequencePlayer(class ULevelSequencePlayer* ReturnVa
 // Function LevelSequence.LevelSequenceActor.GetSequence
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class ULevelSequence*              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class ULevelSequence*              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ALevelSequenceActor::GetSequence(class ULevelSequence* ReturnValue)
 {
@@ -734,8 +747,8 @@ void ALevelSequenceActor::GetSequence(class ULevelSequence* ReturnValue)
 // Function LevelSequence.LevelSequenceActor.FindNamedBindings
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        Tag                                                              (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// TArray<struct FMovieSceneObjectBindingID>ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        Tag                                                              (ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// TArray<struct FMovieSceneObjectBindingID>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName ALevelSequenceActor::FindNamedBindings(const TArray<struct FMovieSceneObjectBindingID>& ReturnValue)
 {
@@ -764,8 +777,8 @@ class FName ALevelSequenceActor::FindNamedBindings(const TArray<struct FMovieSce
 // Function LevelSequence.LevelSequenceActor.FindNamedBinding
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        Tag                                                              (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FMovieSceneObjectBindingID  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        Tag                                                              (ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FMovieSceneObjectBindingID  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName ALevelSequenceActor::FindNamedBinding(const struct FMovieSceneObjectBindingID& ReturnValue)
 {
@@ -794,11 +807,11 @@ class FName ALevelSequenceActor::FindNamedBinding(const struct FMovieSceneObject
 // Function LevelSequence.LevelSequenceActor.AddBindingByTag
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        BindingTag                                                       (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class FName                        BindingTag                                                       (Edit, ConstParm, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// bool                               bAllowBindingsFromAsset                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bAllowBindingsFromAsset                                          (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-bool ALevelSequenceActor::AddBindingByTag(class AActor** Actor)
+void ALevelSequenceActor::AddBindingByTag(class FName BindingTag, class AActor** Actor, bool* bAllowBindingsFromAsset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -807,6 +820,7 @@ bool ALevelSequenceActor::AddBindingByTag(class AActor** Actor)
 
 	Params::ALevelSequenceActor_AddBindingByTag_Params Parms{};
 
+	Parms.BindingTag = BindingTag;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -819,7 +833,8 @@ bool ALevelSequenceActor::AddBindingByTag(class AActor** Actor)
 	if (Actor != nullptr)
 		*Actor = Parms.Actor;
 
-	return Parms.ReturnValue;
+	if (bAllowBindingsFromAsset != nullptr)
+		*bAllowBindingsFromAsset = Parms.bAllowBindingsFromAsset;
 
 }
 
@@ -827,11 +842,11 @@ bool ALevelSequenceActor::AddBindingByTag(class AActor** Actor)
 // Function LevelSequence.LevelSequenceActor.AddBinding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMovieSceneObjectBindingID  Binding                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
+// struct FMovieSceneObjectBindingID  Binding                                                          (Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// bool                               bAllowBindingsFromAsset                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bAllowBindingsFromAsset                                          (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-bool ALevelSequenceActor::AddBinding(class AActor** Actor)
+void ALevelSequenceActor::AddBinding(struct FMovieSceneObjectBindingID* Binding, class AActor** Actor, bool* bAllowBindingsFromAsset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -849,10 +864,14 @@ bool ALevelSequenceActor::AddBinding(class AActor** Actor)
 
 	Func->FunctionFlags = Flgs;
 
+	if (Binding != nullptr)
+		*Binding = std::move(Parms.Binding);
+
 	if (Actor != nullptr)
 		*Actor = Parms.Actor;
 
-	return Parms.ReturnValue;
+	if (bAllowBindingsFromAsset != nullptr)
+		*bAllowBindingsFromAsset = Parms.bAllowBindingsFromAsset;
 
 }
 
@@ -944,9 +963,9 @@ class ULevelSequenceBurnIn* ULevelSequenceBurnIn::GetDefaultObj()
 // Function LevelSequence.LevelSequenceBurnIn.SetSettings
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class UObject*                     InSettings                                                       (Edit, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UObject*                     InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-void ULevelSequenceBurnIn::SetSettings(class UObject* InSettings)
+class UObject* ULevelSequenceBurnIn::SetSettings()
 {
 	static class UFunction* Func = nullptr;
 
@@ -955,9 +974,10 @@ void ULevelSequenceBurnIn::SetSettings(class UObject* InSettings)
 
 	Params::ULevelSequenceBurnIn_SetSettings_Params Parms{};
 
-	Parms.InSettings = InSettings;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -965,7 +985,7 @@ void ULevelSequenceBurnIn::SetSettings(class UObject* InSettings)
 // Function LevelSequence.LevelSequenceBurnIn.GetSettingsClass
 // (Native, Event, Public, BlueprintEvent, Const)
 // Parameters:
-// class UClass*                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ULevelSequenceBurnIn::GetSettingsClass(class UClass* ReturnValue)
 {
@@ -1038,7 +1058,7 @@ void ULevelSequenceDirector::OnCreated()
 // Function LevelSequence.LevelSequenceDirector.GetSequence
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMovieSceneSequence*         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMovieSceneSequence*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ULevelSequenceDirector::GetSequence(class UMovieSceneSequence* ReturnValue)
 {
@@ -1065,7 +1085,7 @@ void ULevelSequenceDirector::GetSequence(class UMovieSceneSequence* ReturnValue)
 // Function LevelSequence.LevelSequenceDirector.GetRootSequenceTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FQualifiedFrameTime         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FQualifiedFrameTime         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ULevelSequenceDirector::GetRootSequenceTime(const struct FQualifiedFrameTime& ReturnValue)
 {
@@ -1092,7 +1112,7 @@ void ULevelSequenceDirector::GetRootSequenceTime(const struct FQualifiedFrameTim
 // Function LevelSequence.LevelSequenceDirector.GetMasterSequenceTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FQualifiedFrameTime         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FQualifiedFrameTime         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ULevelSequenceDirector::GetMasterSequenceTime(const struct FQualifiedFrameTime& ReturnValue)
 {
@@ -1119,7 +1139,7 @@ void ULevelSequenceDirector::GetMasterSequenceTime(const struct FQualifiedFrameT
 // Function LevelSequence.LevelSequenceDirector.GetCurrentTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FQualifiedFrameTime         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FQualifiedFrameTime         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ULevelSequenceDirector::GetCurrentTime(const struct FQualifiedFrameTime& ReturnValue)
 {
@@ -1146,8 +1166,8 @@ void ULevelSequenceDirector::GetCurrentTime(const struct FQualifiedFrameTime& Re
 // Function LevelSequence.LevelSequenceDirector.GetBoundObjects
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMovieSceneObjectBindingID  ObjectBinding                                                    (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// TArray<class UObject*>             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FMovieSceneObjectBindingID  ObjectBinding                                                    (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class UObject*>             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FMovieSceneObjectBindingID ULevelSequenceDirector::GetBoundObjects(const TArray<class UObject*>& ReturnValue)
 {
@@ -1176,8 +1196,8 @@ struct FMovieSceneObjectBindingID ULevelSequenceDirector::GetBoundObjects(const 
 // Function LevelSequence.LevelSequenceDirector.GetBoundObject
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMovieSceneObjectBindingID  ObjectBinding                                                    (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UObject*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FMovieSceneObjectBindingID  ObjectBinding                                                    (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FMovieSceneObjectBindingID ULevelSequenceDirector::GetBoundObject(class UObject* ReturnValue)
 {
@@ -1206,8 +1226,8 @@ struct FMovieSceneObjectBindingID ULevelSequenceDirector::GetBoundObject(class U
 // Function LevelSequence.LevelSequenceDirector.GetBoundActors
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMovieSceneObjectBindingID  ObjectBinding                                                    (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// TArray<class AActor*>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FMovieSceneObjectBindingID  ObjectBinding                                                    (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class AActor*>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FMovieSceneObjectBindingID ULevelSequenceDirector::GetBoundActors(const TArray<class AActor*>& ReturnValue)
 {
@@ -1236,8 +1256,8 @@ struct FMovieSceneObjectBindingID ULevelSequenceDirector::GetBoundActors(const T
 // Function LevelSequence.LevelSequenceDirector.GetBoundActor
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FMovieSceneObjectBindingID  ObjectBinding                                                    (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class AActor*                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FMovieSceneObjectBindingID  ObjectBinding                                                    (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class AActor*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FMovieSceneObjectBindingID ULevelSequenceDirector::GetBoundActor(class AActor* ReturnValue)
 {
@@ -1322,7 +1342,7 @@ class ULevelSequencePlayer* ULevelSequencePlayer::GetDefaultObj()
 // Function LevelSequence.LevelSequencePlayer.GetActiveCameraComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UCameraComponent*            ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UCameraComponent*            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ULevelSequencePlayer::GetActiveCameraComponent(class UCameraComponent* ReturnValue)
 {
@@ -1349,13 +1369,13 @@ void ULevelSequencePlayer::GetActiveCameraComponent(class UCameraComponent* Retu
 // Function LevelSequence.LevelSequencePlayer.CreateLevelSequencePlayer
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class ULevelSequence*              LevelSequence                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
-// struct FMovieSceneSequencePlaybackSettingsSettings                                                         (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// class ALevelSequenceActor*         OutActor                                                         (ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// class ULevelSequencePlayer*        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class ULevelSequence*              LevelSequence                                                    (BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnInstance, EditConst)
+// struct FMovieSceneSequencePlaybackSettingsSettings                                                         (Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// class ALevelSequenceActor*         OutActor                                                         (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// class ULevelSequencePlayer*        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class ALevelSequenceActor* ULevelSequencePlayer::CreateLevelSequencePlayer(class UObject* WorldContextObject, class ULevelSequencePlayer* ReturnValue)
+class UObject* ULevelSequencePlayer::CreateLevelSequencePlayer(class ULevelSequence* LevelSequence, const struct FMovieSceneSequencePlaybackSettings& Settings, class ALevelSequenceActor** OutActor, class ULevelSequencePlayer* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1364,7 +1384,8 @@ class ALevelSequenceActor* ULevelSequencePlayer::CreateLevelSequencePlayer(class
 
 	Params::ULevelSequencePlayer_CreateLevelSequencePlayer_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
+	Parms.LevelSequence = LevelSequence;
+	Parms.Settings = Settings;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1374,6 +1395,9 @@ class ALevelSequenceActor* ULevelSequencePlayer::CreateLevelSequencePlayer(class
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (OutActor != nullptr)
+		*OutActor = Parms.OutActor;
 
 	return Parms.ReturnValue;
 
@@ -1439,7 +1463,7 @@ class ALevelSequenceMediaController* ALevelSequenceMediaController::GetDefaultOb
 // Function LevelSequence.LevelSequenceMediaController.SynchronizeToServer
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              DesyncThresholdSeconds                                           (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              DesyncThresholdSeconds                                           (Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 float ALevelSequenceMediaController::SynchronizeToServer()
 {
@@ -1515,7 +1539,7 @@ void ALevelSequenceMediaController::OnRep_ServerStartTimeSeconds()
 // Function LevelSequence.LevelSequenceMediaController.GetSequence
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class ALevelSequenceActor*         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class ALevelSequenceActor*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ALevelSequenceMediaController::GetSequence(class ALevelSequenceActor* ReturnValue)
 {
@@ -1542,7 +1566,7 @@ void ALevelSequenceMediaController::GetSequence(class ALevelSequenceActor* Retur
 // Function LevelSequence.LevelSequenceMediaController.GetMediaComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMediaComponent*             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMediaComponent*             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ALevelSequenceMediaController::GetMediaComponent(class UMediaComponent* ReturnValue)
 {

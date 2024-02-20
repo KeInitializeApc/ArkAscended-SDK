@@ -14,7 +14,7 @@ namespace SDK
 class UDataListEntryWidgetGeneric_AutomaticRefresh_C : public UDataListEntryWidget
 {
 public:
-	class UDataListEntryButton_CustomOverlay*    MyDataListButton;                                  // 0x3F8(0x8)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, GlobalConfig, SubobjectReference)
+	class UDataListEntryButton_CustomOverlay*    MyDataListButton;                                  // 0x3F8(0x8)(ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UDataListEntryWidgetGeneric_AutomaticRefresh_C* GetDefaultObj();

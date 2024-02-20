@@ -14,20 +14,20 @@ namespace SDK
 class UUI_Option_ModPageCategory_C : public UPrimalUserWidget
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x330(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-	class UImage*                                IMG_Icon;                                          // 0x338(0x8)(Edit, ConstParm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UTextBlock*                            TEXT_Block;                                        // 0x340(0x8)(Edit, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FString                                IconUrl;                                           // 0x348(0x10)(Edit, BlueprintVisible, Parm, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-	class UUI_StoreMenu_C*                       StoreMenu_Ref;                                     // 0x358(0x8)(Edit, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x330(0x8)(BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+	class UImage*                                IMG_Icon;                                          // 0x338(0x8)(ConstParm, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UTextBlock*                            TEXT_Block;                                        // 0x340(0x8)(ConstParm, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                IconUrl;                                           // 0x348(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+	class UUI_StoreMenu_C*                       StoreMenu_Ref;                                     // 0x358(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UUI_Option_ModPageCategory_C* GetDefaultObj();
 
-	struct FSlateColor UpdateThemeSettings();
-	class UTexture2DDynamic* OnFail_20B338B847EF646EF76186BFC4DF1AD5();
-	class UTexture2DDynamic* OnSuccess_20B338B847EF646EF76186BFC4DF1AD5();
+	struct FSlateColor UpdateThemeSettings(bool* CallFunc_IsValid_ReturnValue);
+	void OnFail_20B338B847EF646EF76186BFC4DF1AD5(class UTexture2DDynamic** Texture);
+	void OnSuccess_20B338B847EF646EF76186BFC4DF1AD5(class UTexture2DDynamic** Texture);
 	void Construct();
-	bool ExecuteUbergraph_UI_Option_ModPageCategory(int32 EntryPoint, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate, class UTexture2DDynamic** K2Node_CustomEvent_Texture_1, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_1, class UTexture2DDynamic** K2Node_CustomEvent_Texture, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_2, class UAsyncTaskDownloadImage* CallFunc_DownloadImage_ReturnValue, bool CallFunc_IsEmpty_ReturnValue);
+	bool ExecuteUbergraph_UI_Option_ModPageCategory(class UTexture2DDynamic* K2Node_CustomEvent_Texture_1, class UTexture2DDynamic* K2Node_CustomEvent_Texture, class UTexture2DDynamic* Temp_object_Variable, bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1);
 };
 
 }

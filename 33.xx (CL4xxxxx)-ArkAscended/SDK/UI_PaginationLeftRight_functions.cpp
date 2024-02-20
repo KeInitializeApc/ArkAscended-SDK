@@ -61,9 +61,9 @@ void UUI_PaginationLeftRight_C::BndEvt__UI_PaginationLeftRight_Button_PrevPage_K
 // Function UI_PaginationLeftRight.UI_PaginationLeftRight_C.ExecuteUbergraph_UI_PaginationLeftRight
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
 
-void UUI_PaginationLeftRight_C::ExecuteUbergraph_UI_PaginationLeftRight(int32 EntryPoint)
+int32 UUI_PaginationLeftRight_C::ExecuteUbergraph_UI_PaginationLeftRight()
 {
 	static class UFunction* Func = nullptr;
 
@@ -72,9 +72,10 @@ void UUI_PaginationLeftRight_C::ExecuteUbergraph_UI_PaginationLeftRight(int32 En
 
 	Params::UUI_PaginationLeftRight_C_ExecuteUbergraph_UI_PaginationLeftRight_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 

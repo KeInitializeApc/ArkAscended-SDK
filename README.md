@@ -8,4 +8,4 @@ How Updates are Handled
 Regular Updates: This repository will be updated promptly following each Ark update.
 
 
-Discord: Ark Ascended Discord Server [(link to Discord server)](https://discord.gg/qb7fvnVT)
+Discord: Ark Ascended Discord Server [(link to Discord server)](https://discord.gg/xXfDmAcrJC)

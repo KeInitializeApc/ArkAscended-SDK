@@ -19,12 +19,12 @@ namespace SDK
 struct FLiveLinkTransformControllerData
 {
 public:
-	bool                                         bWorldTransform;                                   // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-	bool                                         bUseLocation;                                      // 0x1(0x1)(EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-	bool                                         bUseRotation;                                      // 0x2(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, Config, InstancedReference, SubobjectReference)
-	bool                                         bUseScale;                                         // 0x3(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, Config, InstancedReference, SubobjectReference)
-	bool                                         bSweep;                                            // 0x4(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         bTeleport;                                         // 0x5(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bWorldTransform;                                   // 0x0(0x1)(Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseLocation;                                      // 0x1(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseRotation;                                      // 0x2(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseScale;                                         // 0x3(0x1)(Edit, BlueprintReadOnly, Net, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bSweep;                                            // 0x4(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, SubobjectReference)
+	bool                                         bTeleport;                                         // 0x5(0x1)(Edit, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, SubobjectReference)
 };
 
 }

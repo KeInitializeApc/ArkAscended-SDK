@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xEB0 - 0xEB0)
+// 0x0 (0xED0 - 0xED0)
 // BlueprintGeneratedClass PrimalItemResource_Fibers.PrimalItemResource_Fibers_C
 class UPrimalItemResource_Fibers_C : public UPrimalItemResourceGeneric_C
 {

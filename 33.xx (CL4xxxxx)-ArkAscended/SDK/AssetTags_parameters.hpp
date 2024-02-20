@@ -18,8 +18,8 @@ namespace Params
 struct UAssetTagsSubsystem_K2_GetCollectionsContainingAsset_Params
 {
 public:
-	struct FSoftObjectPath                       AssetPath;                                         // 0x0(0x20)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<class FName>                          ReturnValue;                                       // 0x20(0x10)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FSoftObjectPath                       AssetPath;                                         // 0x0(0x20)(BlueprintVisible, BlueprintReadOnly, OutParm, Transient, EditConst, SubobjectReference)
+	TArray<class FName>                          ReturnValue;                                       // 0x20(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -27,8 +27,8 @@ public:
 struct UAssetTagsSubsystem_GetCollectionsContainingAssetPtr_Params
 {
 public:
-	class UObject*                               AssetPtr;                                          // 0x0(0x8)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	TArray<class FName>                          ReturnValue;                                       // 0x8(0x10)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UObject*                               AssetPtr;                                          // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	TArray<class FName>                          ReturnValue;                                       // 0x8(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x78 (0x78 - 0x0)
@@ -36,8 +36,8 @@ public:
 struct UAssetTagsSubsystem_GetCollectionsContainingAssetData_Params
 {
 public:
-	struct FAssetData                            AssetData;                                         // 0x0(0x68)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-	TArray<class FName>                          ReturnValue;                                       // 0x68(0x10)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FAssetData                            AssetData;                                         // 0x0(0x68)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+	TArray<class FName>                          ReturnValue;                                       // 0x68(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -45,8 +45,8 @@ public:
 struct UAssetTagsSubsystem_GetCollectionsContainingAsset_Params
 {
 public:
-	class FName                                  AssetPathName;                                     // 0x0(0x8)(BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	TArray<class FName>                          ReturnValue;                                       // 0x8(0x10)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FName                                  AssetPathName;                                     // 0x0(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	TArray<class FName>                          ReturnValue;                                       // 0x8(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -54,7 +54,7 @@ public:
 struct UAssetTagsSubsystem_GetCollections_Params
 {
 public:
-	TArray<class FName>                          ReturnValue;                                       // 0x0(0x10)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<class FName>                          ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -63,7 +63,7 @@ struct UAssetTagsSubsystem_GetAssetsInCollection_Params
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	TArray<struct FAssetData>                    ReturnValue;                                       // 0x8(0x10)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FAssetData>                    ReturnValue;                                       // 0x8(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -72,8 +72,8 @@ struct UAssetTagsSubsystem_CollectionExists_Params
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_243B[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_171D[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

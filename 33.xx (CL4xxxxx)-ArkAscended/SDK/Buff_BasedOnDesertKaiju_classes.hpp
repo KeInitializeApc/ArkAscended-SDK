@@ -14,14 +14,14 @@ namespace SDK
 class ABuff_BasedOnDesertKaiju_C : public ABuff_Base_C
 {
 public:
-	uint8                                        Pad_42C4[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	double                                       CachedMaxWalkSpeed;                                // 0xB70(0x8)(Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2D42[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	double                                       CachedMaxWalkSpeed;                                // 0xB70(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ABuff_BasedOnDesertKaiju_C* GetDefaultObj();
 
-	bool BPDeactivated(class AActor** ForInstigator, class UPrimalCharacterStatusComponent** CallFunc_GetCharacterStatusComponent_ReturnValue, class UPrimalCharacterMovement** CallFunc_CharacterMovementToPCM_ReturnValue);
-	bool BPSetupForInstigator(class AActor** ForInstigator, class UPrimalCharacterStatusComponent** CallFunc_GetCharacterStatusComponent_ReturnValue, class UPrimalCharacterMovement** CallFunc_CharacterMovementToPCM_ReturnValue);
+	class UPrimalCharacterMovement* BPDeactivated(class UPrimalCharacterStatusComponent** CallFunc_GetCharacterStatusComponent_ReturnValue);
+	class UPrimalCharacterMovement* BPSetupForInstigator(class UPrimalCharacterStatusComponent** CallFunc_GetCharacterStatusComponent_ReturnValue);
 };
 
 }

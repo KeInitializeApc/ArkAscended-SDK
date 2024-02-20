@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class UDmgType_Melee_Torpidity_None_StoneWeapon_AutoDrag_C* GetDefaultObj();
 
-	float BPAdjustHarvestingDamage(float ReturnValue);
+	bool BPAdjustHarvestingDamage(float* IncomingDamage, struct FDamageEvent* TheDamageEvent, float ReturnValue, double* OutgoingDamage, class APrimalCharacter* K2Node_DynamicCast_AsPrimal_Character, double* K2Node_VariableSet_OutgoingDamage_ImplicitCast, float* K2Node_FunctionResult_ReturnValue_ImplicitCast);
 };
 
 }

@@ -43,11 +43,11 @@ class IBPI_CustomComboBoxInterface_C* IBPI_CustomComboBoxInterface_C::GetDefault
 // Function BPI_CustomComboBoxInterface.BPI_CustomComboBoxInterface_C.OnOptionSelectedInterface
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FString                      Option                                                           (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FString                      Option                                                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
 // int64                              ID                                                               (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// class UUI_CustomComboBoxOption_C*  OptionWidget                                                     (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UUI_CustomComboBoxOption_C*  OptionWidget                                                     (Net, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
 
-class UUI_CustomComboBoxOption_C* IBPI_CustomComboBoxInterface_C::OnOptionSelectedInterface(int64* ID)
+class UUI_CustomComboBoxOption_C* IBPI_CustomComboBoxInterface_C::OnOptionSelectedInterface(class FString* Option, int64* ID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -58,6 +58,9 @@ class UUI_CustomComboBoxOption_C* IBPI_CustomComboBoxInterface_C::OnOptionSelect
 
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Option != nullptr)
+		*Option = std::move(Parms.Option);
 
 	if (ID != nullptr)
 		*ID = Parms.ID;

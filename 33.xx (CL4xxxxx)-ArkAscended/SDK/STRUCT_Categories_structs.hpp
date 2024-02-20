@@ -19,8 +19,8 @@ namespace SDK
 struct FSTRUCT_Categories
 {
 public:
-	class FString                                Category_2_50A926C24852A3BE34364590C48544B3;       // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	TArray<class FString>                        SubMinuscategory_5_46D135D147D90126DA53EFAA94CFD6C5; // 0x10(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	class FString                                Category_2_50A926C24852A3BE34364590C48544B3;       // 0x0(0x10)(Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FString>                        SubMinuscategory_5_46D135D147D90126DA53EFAA94CFD6C5; // 0x10(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

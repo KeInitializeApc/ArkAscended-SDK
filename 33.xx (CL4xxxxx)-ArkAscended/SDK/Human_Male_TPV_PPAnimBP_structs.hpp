@@ -19,13 +19,13 @@ namespace SDK
 struct FAnimBlueprintGeneratedConstantData : public FAnimBlueprintConstantData
 {
 public:
-	uint8                                        Pad_224B[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	class FName                                  __NameProperty_7;                                  // 0x4(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, EditorOnly)
-	class FName                                  __NameProperty_8;                                  // 0xC(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, RepNotify, EditorOnly)
-	uint8                                        Pad_224C[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FAnimNodeFunctionRef                  __StructProperty_9;                                // 0x18(0x20)(ConstParm, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp, EditorOnly)
-	struct FAnimSubsystem_PropertyAccess         AnimBlueprintExtension_PropertyAccess;             // 0x38(0x80)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
-	struct FAnimSubsystem_Base                   AnimBlueprintExtension_Base;                       // 0xB8(0x18)(Edit, ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_2FA9[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	class FName                                  __NameProperty_7;                                  // 0x4(0x8)(Edit, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, SubobjectReference, EditorOnly)
+	class FName                                  __NameProperty_8;                                  // 0xC(0x8)(Edit, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, SubobjectReference, RepNotify, EditorOnly)
+	uint8                                        Pad_2FAB[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FAnimNodeFunctionRef                  __StructProperty_9;                                // 0x18(0x20)(Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, SubobjectReference, Interp, EditorOnly)
+	struct FAnimSubsystem_PropertyAccess         AnimBlueprintExtension_PropertyAccess;             // 0x38(0x80)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, SubobjectReference)
+	struct FAnimSubsystem_Base                   AnimBlueprintExtension_Base;                       // 0xB8(0x18)(ConstParm, EditFixedSize, ZeroConstructor, ReturnParm, SubobjectReference)
 };
 
 }

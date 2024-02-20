@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xEB0 - 0xEB0)
+// 0x0 (0xED0 - 0xED0)
 // BlueprintGeneratedClass PrimalItemResource_Clay.PrimalItemResource_Clay_C
 class UPrimalItemResource_Clay_C : public UPrimalItemResourceGeneric_C
 {

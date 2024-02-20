@@ -43,7 +43,7 @@ class UBinkFunctionLibrary* UBinkFunctionLibrary::GetDefaultObj()
 // Function BinkMediaPlayer.BinkFunctionLibrary.BinkLoadingMovie_GetTime
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTimespan                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTimespan                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkFunctionLibrary::BinkLoadingMovie_GetTime(const struct FTimespan& ReturnValue)
 {
@@ -70,7 +70,7 @@ void UBinkFunctionLibrary::BinkLoadingMovie_GetTime(const struct FTimespan& Retu
 // Function BinkMediaPlayer.BinkFunctionLibrary.BinkLoadingMovie_GetDuration
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTimespan                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTimespan                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkFunctionLibrary::BinkLoadingMovie_GetDuration(const struct FTimespan& ReturnValue)
 {
@@ -149,7 +149,7 @@ class UBinkMediaPlayer* UBinkMediaPlayer::GetDefaultObj()
 // Function BinkMediaPlayer.BinkMediaPlayer.SupportsSeeking
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::SupportsSeeking(bool ReturnValue)
 {
@@ -176,7 +176,7 @@ void UBinkMediaPlayer::SupportsSeeking(bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.SupportsScrubbing
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::SupportsScrubbing(bool ReturnValue)
 {
@@ -203,9 +203,9 @@ void UBinkMediaPlayer::SupportsScrubbing(bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.SupportsRate
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              Rate                                                             (ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               Unthinned                                                        (Edit, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              Rate                                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// bool                               Unthinned                                                        (BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 bool UBinkMediaPlayer::SupportsRate(bool ReturnValue)
 {
@@ -258,7 +258,7 @@ void UBinkMediaPlayer::Stop()
 // Function BinkMediaPlayer.BinkMediaPlayer.SetVolume
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Rate                                                             (ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              Rate                                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
 
 float UBinkMediaPlayer::SetVolume()
 {
@@ -286,8 +286,8 @@ float UBinkMediaPlayer::SetVolume()
 // Function BinkMediaPlayer.BinkMediaPlayer.SetRate
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Rate                                                             (ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              Rate                                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 float UBinkMediaPlayer::SetRate(bool ReturnValue)
 {
@@ -316,10 +316,10 @@ float UBinkMediaPlayer::SetRate(bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.SetLooping
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InLooping                                                        (ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               InLooping                                                        (BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBinkMediaPlayer::SetLooping(bool* InLooping, bool ReturnValue)
+bool UBinkMediaPlayer::SetLooping(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -338,8 +338,7 @@ void UBinkMediaPlayer::SetLooping(bool* InLooping, bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InLooping != nullptr)
-		*InLooping = Parms.InLooping;
+	return Parms.ReturnValue;
 
 }
 
@@ -347,10 +346,10 @@ void UBinkMediaPlayer::SetLooping(bool* InLooping, bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.Seek
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTimespan                   InTime                                                           (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTimespan                   InTime                                                           (BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBinkMediaPlayer::Seek(struct FTimespan* InTime, bool ReturnValue)
+struct FTimespan UBinkMediaPlayer::Seek(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -369,8 +368,7 @@ void UBinkMediaPlayer::Seek(struct FTimespan* InTime, bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InTime != nullptr)
-		*InTime = std::move(Parms.InTime);
+	return Parms.ReturnValue;
 
 }
 
@@ -378,7 +376,7 @@ void UBinkMediaPlayer::Seek(struct FTimespan* InTime, bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.Rewind
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::Rewind(bool ReturnValue)
 {
@@ -405,7 +403,7 @@ void UBinkMediaPlayer::Rewind(bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.Play
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::Play(bool ReturnValue)
 {
@@ -432,7 +430,7 @@ void UBinkMediaPlayer::Play(bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.Pause
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::Pause(bool ReturnValue)
 {
@@ -459,10 +457,10 @@ void UBinkMediaPlayer::Pause(bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.OpenUrl
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      NewUrl                                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      NewUrl                                                           (BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBinkMediaPlayer::OpenUrl(class FString* NewUrl, bool ReturnValue)
+class FString UBinkMediaPlayer::OpenUrl(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -481,8 +479,7 @@ void UBinkMediaPlayer::OpenUrl(class FString* NewUrl, bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (NewUrl != nullptr)
-		*NewUrl = std::move(Parms.NewUrl);
+	return Parms.ReturnValue;
 
 }
 
@@ -490,7 +487,7 @@ void UBinkMediaPlayer::OpenUrl(class FString* NewUrl, bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.IsStopped
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::IsStopped(bool ReturnValue)
 {
@@ -517,7 +514,7 @@ void UBinkMediaPlayer::IsStopped(bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.IsPlaying
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::IsPlaying(bool ReturnValue)
 {
@@ -544,7 +541,7 @@ void UBinkMediaPlayer::IsPlaying(bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.IsPaused
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::IsPaused(bool ReturnValue)
 {
@@ -571,7 +568,7 @@ void UBinkMediaPlayer::IsPaused(bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.IsLooping
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::IsLooping(bool ReturnValue)
 {
@@ -598,7 +595,7 @@ void UBinkMediaPlayer::IsLooping(bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.IsInitialized
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::IsInitialized(bool ReturnValue)
 {
@@ -625,7 +622,7 @@ void UBinkMediaPlayer::IsInitialized(bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.GetUrl
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::GetUrl(const class FString& ReturnValue)
 {
@@ -652,7 +649,7 @@ void UBinkMediaPlayer::GetUrl(const class FString& ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.GetTime
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FTimespan                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTimespan                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::GetTime(const struct FTimespan& ReturnValue)
 {
@@ -679,7 +676,7 @@ void UBinkMediaPlayer::GetTime(const struct FTimespan& ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.GetRate
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::GetRate(float ReturnValue)
 {
@@ -706,7 +703,7 @@ void UBinkMediaPlayer::GetRate(float ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.GetDuration
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FTimespan                   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTimespan                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::GetDuration(const struct FTimespan& ReturnValue)
 {
@@ -733,14 +730,14 @@ void UBinkMediaPlayer::GetDuration(const struct FTimespan& ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.Draw
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UTexture*                    Texture                                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst)
-// bool                               Tonemap                                                          (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              Out_nits                                                         (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              Alpha                                                            (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               Srgb_decode                                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               Hdr                                                              (Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UTexture*                    Texture                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
+// bool                               Tonemap                                                          (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// int32                              Out_nits                                                         (ConstParm, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// float                              Alpha                                                            (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               Srgb_decode                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// bool                               Hdr                                                              (ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
-class UTexture* UBinkMediaPlayer::Draw(bool* Tonemap, int32* Out_nits, float* Alpha, bool* Srgb_decode, bool* Hdr)
+bool UBinkMediaPlayer::Draw(class UTexture** Texture, float Alpha)
 {
 	static class UFunction* Func = nullptr;
 
@@ -749,6 +746,7 @@ class UTexture* UBinkMediaPlayer::Draw(bool* Tonemap, int32* Out_nits, float* Al
 
 	Params::UBinkMediaPlayer_Draw_Params Parms{};
 
+	Parms.Alpha = Alpha;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -758,20 +756,8 @@ class UTexture* UBinkMediaPlayer::Draw(bool* Tonemap, int32* Out_nits, float* Al
 
 	Func->FunctionFlags = Flgs;
 
-	if (Tonemap != nullptr)
-		*Tonemap = Parms.Tonemap;
-
-	if (Out_nits != nullptr)
-		*Out_nits = Parms.Out_nits;
-
-	if (Alpha != nullptr)
-		*Alpha = Parms.Alpha;
-
-	if (Srgb_decode != nullptr)
-		*Srgb_decode = Parms.Srgb_decode;
-
-	if (Hdr != nullptr)
-		*Hdr = Parms.Hdr;
+	if (Texture != nullptr)
+		*Texture = Parms.Texture;
 
 	return Parms.ReturnValue;
 
@@ -805,7 +791,7 @@ void UBinkMediaPlayer::CloseUrl()
 // Function BinkMediaPlayer.BinkMediaPlayer.CanPlay
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::CanPlay(bool ReturnValue)
 {
@@ -832,7 +818,7 @@ void UBinkMediaPlayer::CanPlay(bool ReturnValue)
 // Function BinkMediaPlayer.BinkMediaPlayer.CanPause
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBinkMediaPlayer::CanPause(bool ReturnValue)
 {
@@ -887,7 +873,7 @@ class UBinkMediaTexture* UBinkMediaTexture::GetDefaultObj()
 // Function BinkMediaPlayer.BinkMediaTexture.SetMediaPlayer
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UBinkMediaPlayer*            InMediaPlayer                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UBinkMediaPlayer*            InMediaPlayer                                                    (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
 class UBinkMediaPlayer* UBinkMediaTexture::SetMediaPlayer()
 {

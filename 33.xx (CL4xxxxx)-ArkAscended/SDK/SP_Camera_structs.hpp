@@ -38,24 +38,24 @@ enum class EDebugCameraStyle : uint8
 struct FPenetrationAvoidanceRay
 {
 public:
-	struct FRotator                              AdjustmentRot;                                     // 0x0(0x18)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	float                                        WorldWeight;                                       // 0x18(0x4)(Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	float                                        Radius;                                            // 0x1C(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	int32                                        TraceInterval;                                     // 0x20(0x4)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	int32                                        FramesUntilNextTrace;                              // 0x24(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	bool                                         bEnabled;                                          // 0x28(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-	bool                                         bPrimaryRay;                                       // 0x29(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1E70[0x6];                                     // Fixing Size Of Struct > TateDumper <
+	struct FRotator                              AdjustmentRot;                                     // 0x0(0x18)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        WorldWeight;                                       // 0x18(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Radius;                                            // 0x1C(0x4)(ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+	int32                                        TraceInterval;                                     // 0x20(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        FramesUntilNextTrace;                              // 0x24(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnabled;                                          // 0x28(0x1)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
+	bool                                         bPrimaryRay;                                       // 0x29(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1238[0x6];                                     // Fixing Size Of Struct > TateDumper <
 };
 
-// 0x890 (0x890 - 0x0)
+// 0x8A0 (0x8A0 - 0x0)
 // ScriptStruct SP_Camera.ActiveSPCamera
 struct FActiveSPCamera
 {
 public:
 	class USPCameraMode*                         Camera;                                            // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-	class AActor*                                ViewTarget;                                        // 0x8(0x8)(Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1E73[0x880];                                   // Fixing Size Of Struct > TateDumper <
+	class AActor*                                ViewTarget;                                        // 0x8(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_123C[0x890];                                   // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -63,10 +63,10 @@ public:
 struct FSPCameraModeInstance
 {
 public:
-	class UClass*                                CameraModeClass;                                   // 0x0(0x8)(BlueprintVisible, ExportObject, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	class AActor*                                ViewTarget;                                        // 0x8(0x8)(Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	class USPCameraMode*                         CameraMode;                                        // 0x10(0x8)(ConstParm, BlueprintVisible, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-	class UCineCameraComponent*                  CineCameraComponent;                               // 0x18(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
+	class UClass*                                CameraModeClass;                                   // 0x0(0x8)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class AActor*                                ViewTarget;                                        // 0x8(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class USPCameraMode*                         CameraMode;                                        // 0x10(0x8)(BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UCineCameraComponent*                  CineCameraComponent;                               // 0x18(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
 };
 
 }

@@ -235,11 +235,11 @@ class IEOSUserInterface_EnterDevicePinCode* IEOSUserInterface_EnterDevicePinCode
 // Function OnlineSubsystemRedpointEOS.EOSUserInterface_EnterDevicePinCode.SetupUserInterface
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UEOSUserInterface_EnterDevicePinCode_Context*Context                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FString                      VerificationUrl                                                  (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class FString                      PinCode                                                          (Edit, ExportObject, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UEOSUserInterface_EnterDevicePinCode_Context*Context                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// class FString                      VerificationUrl                                                  (BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// class FString                      PinCode                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 
-class UEOSUserInterface_EnterDevicePinCode_Context* IEOSUserInterface_EnterDevicePinCode::SetupUserInterface(const class FString& VerificationUrl, const class FString& PinCode)
+class FString IEOSUserInterface_EnterDevicePinCode::SetupUserInterface(class UEOSUserInterface_EnterDevicePinCode_Context** Context)
 {
 	static class UFunction* Func = nullptr;
 
@@ -248,10 +248,11 @@ class UEOSUserInterface_EnterDevicePinCode_Context* IEOSUserInterface_EnterDevic
 
 	Params::IEOSUserInterface_EnterDevicePinCode_SetupUserInterface_Params Parms{};
 
-	Parms.VerificationUrl = VerificationUrl;
-	Parms.PinCode = PinCode;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Context != nullptr)
+		*Context = Parms.Context;
 
 	return Parms.ReturnValue;
 
@@ -289,9 +290,9 @@ class UEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context* UEOSUserInt
 // Function OnlineSubsystemRedpointEOS.EOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context.SelectedCandidates
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<struct FEOSUserInterface_CandidateEOSAccount>SelectedCandidates                                               (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
+// TArray<struct FEOSUserInterface_CandidateEOSAccount>SelectedCandidates                                               (Edit, ConstParm, ExportObject, Net, EditFixedSize, DisableEditOnInstance, EditConst)
 
-TArray<struct FEOSUserInterface_CandidateEOSAccount> UEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context::SelectedCandidates()
+void UEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context::SelectedCandidates(const TArray<struct FEOSUserInterface_CandidateEOSAccount>& SelectedCandidates)
 {
 	static class UFunction* Func = nullptr;
 
@@ -300,6 +301,7 @@ TArray<struct FEOSUserInterface_CandidateEOSAccount> UEOSUserInterface_LinkEOSAc
 
 	Params::UEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context_SelectedCandidates_Params Parms{};
 
+	Parms.SelectedCandidates = SelectedCandidates;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -308,8 +310,6 @@ TArray<struct FEOSUserInterface_CandidateEOSAccount> UEOSUserInterface_LinkEOSAc
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -345,10 +345,10 @@ class IEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform* IEOSUserInterface_L
 // Function OnlineSubsystemRedpointEOS.EOSUserInterface_LinkEOSAccountsAgainstCrossPlatform.SetupUserInterface
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context*Context                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// TArray<struct FEOSUserInterface_CandidateEOSAccount>AvailableCandidates                                              (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context*Context                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// TArray<struct FEOSUserInterface_CandidateEOSAccount>AvailableCandidates                                              (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 
-class UEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context* IEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform::SetupUserInterface(const TArray<struct FEOSUserInterface_CandidateEOSAccount>& AvailableCandidates)
+TArray<struct FEOSUserInterface_CandidateEOSAccount> IEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform::SetupUserInterface(class UEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context** Context)
 {
 	static class UFunction* Func = nullptr;
 
@@ -357,9 +357,11 @@ class UEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context* IEOSUserInt
 
 	Params::IEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_SetupUserInterface_Params Parms{};
 
-	Parms.AvailableCandidates = AvailableCandidates;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Context != nullptr)
+		*Context = Parms.Context;
 
 	return Parms.ReturnValue;
 
@@ -397,9 +399,9 @@ class UEOSUserInterface_SelectEOSAccount_Context* UEOSUserInterface_SelectEOSAcc
 // Function OnlineSubsystemRedpointEOS.EOSUserInterface_SelectEOSAccount_Context.SelectCandidate
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// struct FEOSUserInterface_CandidateEOSAccountSelectedCandidate                                                (ConstParm, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FEOSUserInterface_CandidateEOSAccountSelectedCandidate                                                (ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 
-void UEOSUserInterface_SelectEOSAccount_Context::SelectCandidate(const struct FEOSUserInterface_CandidateEOSAccount& SelectedCandidate)
+struct FEOSUserInterface_CandidateEOSAccount UEOSUserInterface_SelectEOSAccount_Context::SelectCandidate()
 {
 	static class UFunction* Func = nullptr;
 
@@ -408,7 +410,6 @@ void UEOSUserInterface_SelectEOSAccount_Context::SelectCandidate(const struct FE
 
 	Params::UEOSUserInterface_SelectEOSAccount_Context_SelectCandidate_Params Parms{};
 
-	Parms.SelectedCandidate = SelectedCandidate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -417,6 +418,8 @@ void UEOSUserInterface_SelectEOSAccount_Context::SelectCandidate(const struct FE
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -452,10 +455,10 @@ class IEOSUserInterface_SelectEOSAccount* IEOSUserInterface_SelectEOSAccount::Ge
 // Function OnlineSubsystemRedpointEOS.EOSUserInterface_SelectEOSAccount.SetupUserInterface
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UEOSUserInterface_SelectEOSAccount_Context*Context                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// TArray<struct FEOSUserInterface_CandidateEOSAccount>AvailableCandidates                                              (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UEOSUserInterface_SelectEOSAccount_Context*Context                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// TArray<struct FEOSUserInterface_CandidateEOSAccount>AvailableCandidates                                              (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 
-class UEOSUserInterface_SelectEOSAccount_Context* IEOSUserInterface_SelectEOSAccount::SetupUserInterface(const TArray<struct FEOSUserInterface_CandidateEOSAccount>& AvailableCandidates)
+TArray<struct FEOSUserInterface_CandidateEOSAccount> IEOSUserInterface_SelectEOSAccount::SetupUserInterface(class UEOSUserInterface_SelectEOSAccount_Context** Context)
 {
 	static class UFunction* Func = nullptr;
 
@@ -464,9 +467,11 @@ class UEOSUserInterface_SelectEOSAccount_Context* IEOSUserInterface_SelectEOSAcc
 
 	Params::IEOSUserInterface_SelectEOSAccount_SetupUserInterface_Params Parms{};
 
-	Parms.AvailableCandidates = AvailableCandidates;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Context != nullptr)
+		*Context = Parms.Context;
 
 	return Parms.ReturnValue;
 
@@ -504,9 +509,9 @@ class UEOSUserInterface_SignInOrCreateAccount_Context* UEOSUserInterface_SignInO
 // Function OnlineSubsystemRedpointEOS.EOSUserInterface_SignInOrCreateAccount_Context.SelectChoice
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EEOSUserInterface_SignInOrCreateAccount_ChoiceSelectedChoice                                                   (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EEOSUserInterface_SignInOrCreateAccount_ChoiceSelectedChoice                                                   (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 
-void UEOSUserInterface_SignInOrCreateAccount_Context::SelectChoice(enum class EEOSUserInterface_SignInOrCreateAccount_Choice SelectedChoice)
+enum class EEOSUserInterface_SignInOrCreateAccount_Choice UEOSUserInterface_SignInOrCreateAccount_Context::SelectChoice()
 {
 	static class UFunction* Func = nullptr;
 
@@ -515,7 +520,6 @@ void UEOSUserInterface_SignInOrCreateAccount_Context::SelectChoice(enum class EE
 
 	Params::UEOSUserInterface_SignInOrCreateAccount_Context_SelectChoice_Params Parms{};
 
-	Parms.SelectedChoice = SelectedChoice;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -524,6 +528,8 @@ void UEOSUserInterface_SignInOrCreateAccount_Context::SelectChoice(enum class EE
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -559,9 +565,9 @@ class IEOSUserInterface_SignInOrCreateAccount* IEOSUserInterface_SignInOrCreateA
 // Function OnlineSubsystemRedpointEOS.EOSUserInterface_SignInOrCreateAccount.SetupUserInterface
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UEOSUserInterface_SignInOrCreateAccount_Context*Context                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UEOSUserInterface_SignInOrCreateAccount_Context*Context                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
 
-class UEOSUserInterface_SignInOrCreateAccount_Context* IEOSUserInterface_SignInOrCreateAccount::SetupUserInterface()
+void IEOSUserInterface_SignInOrCreateAccount::SetupUserInterface(class UEOSUserInterface_SignInOrCreateAccount_Context** Context)
 {
 	static class UFunction* Func = nullptr;
 
@@ -573,7 +579,8 @@ class UEOSUserInterface_SignInOrCreateAccount_Context* IEOSUserInterface_SignInO
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (Context != nullptr)
+		*Context = Parms.Context;
 
 }
 
@@ -609,9 +616,9 @@ class UEOSUserInterface_SwitchToCrossPlatformAccount_Context* UEOSUserInterface_
 // Function OnlineSubsystemRedpointEOS.EOSUserInterface_SwitchToCrossPlatformAccount_Context.SelectChoice
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EEOSUserInterface_SwitchToCrossPlatformAccount_ChoiceSelectedChoice                                                   (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EEOSUserInterface_SwitchToCrossPlatformAccount_ChoiceSelectedChoice                                                   (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 
-void UEOSUserInterface_SwitchToCrossPlatformAccount_Context::SelectChoice(enum class EEOSUserInterface_SwitchToCrossPlatformAccount_Choice SelectedChoice)
+enum class EEOSUserInterface_SwitchToCrossPlatformAccount_Choice UEOSUserInterface_SwitchToCrossPlatformAccount_Context::SelectChoice()
 {
 	static class UFunction* Func = nullptr;
 
@@ -620,7 +627,6 @@ void UEOSUserInterface_SwitchToCrossPlatformAccount_Context::SelectChoice(enum c
 
 	Params::UEOSUserInterface_SwitchToCrossPlatformAccount_Context_SelectChoice_Params Parms{};
 
-	Parms.SelectedChoice = SelectedChoice;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -629,6 +635,8 @@ void UEOSUserInterface_SwitchToCrossPlatformAccount_Context::SelectChoice(enum c
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -664,10 +672,10 @@ class IEOSUserInterface_SwitchToCrossPlatformAccount* IEOSUserInterface_SwitchTo
 // Function OnlineSubsystemRedpointEOS.EOSUserInterface_SwitchToCrossPlatformAccount.SetupUserInterface
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UEOSUserInterface_SwitchToCrossPlatformAccount_Context*Context                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FString                      EpicAccountName                                                  (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UEOSUserInterface_SwitchToCrossPlatformAccount_Context*Context                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// class FString                      EpicAccountName                                                  (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 
-class UEOSUserInterface_SwitchToCrossPlatformAccount_Context* IEOSUserInterface_SwitchToCrossPlatformAccount::SetupUserInterface(const class FString& EpicAccountName)
+class FString IEOSUserInterface_SwitchToCrossPlatformAccount::SetupUserInterface(class UEOSUserInterface_SwitchToCrossPlatformAccount_Context** Context)
 {
 	static class UFunction* Func = nullptr;
 
@@ -676,9 +684,11 @@ class UEOSUserInterface_SwitchToCrossPlatformAccount_Context* IEOSUserInterface_
 
 	Params::IEOSUserInterface_SwitchToCrossPlatformAccount_SetupUserInterface_Params Parms{};
 
-	Parms.EpicAccountName = EpicAccountName;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Context != nullptr)
+		*Context = Parms.Context;
 
 	return Parms.ReturnValue;
 

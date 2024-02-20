@@ -183,9 +183,9 @@ class ALandscapeProxy* ALandscapeProxy::GetDefaultObj()
 // Function Landscape.LandscapeProxy.SetVirtualTextureRenderPassType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ERuntimeVirtualTextureMainPassTypeInType                                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, InstancedReference, SubobjectReference)
+// enum class ERuntimeVirtualTextureMainPassTypeInType                                                           (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 
-void ALandscapeProxy::SetVirtualTextureRenderPassType(enum class ERuntimeVirtualTextureMainPassType InType)
+enum class ERuntimeVirtualTextureMainPassType ALandscapeProxy::SetVirtualTextureRenderPassType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -194,7 +194,6 @@ void ALandscapeProxy::SetVirtualTextureRenderPassType(enum class ERuntimeVirtual
 
 	Params::ALandscapeProxy_SetVirtualTextureRenderPassType_Params Parms{};
 
-	Parms.InType = InType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -204,16 +203,18 @@ void ALandscapeProxy::SetVirtualTextureRenderPassType(enum class ERuntimeVirtual
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Landscape.LandscapeProxy.SetLandscapeMaterialVectorParameterValue
 // (Final, RequiredAPI, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// struct FLinearColor                Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// struct FLinearColor                Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class FName ALandscapeProxy::SetLandscapeMaterialVectorParameterValue(const struct FLinearColor& Value)
+void ALandscapeProxy::SetLandscapeMaterialVectorParameterValue(class FName ParameterName, struct FLinearColor* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -222,7 +223,7 @@ class FName ALandscapeProxy::SetLandscapeMaterialVectorParameterValue(const stru
 
 	Params::ALandscapeProxy_SetLandscapeMaterialVectorParameterValue_Params Parms{};
 
-	Parms.Value = Value;
+	Parms.ParameterName = ParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -232,7 +233,8 @@ class FName ALandscapeProxy::SetLandscapeMaterialVectorParameterValue(const stru
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Value != nullptr)
+		*Value = std::move(Parms.Value);
 
 }
 
@@ -240,10 +242,10 @@ class FName ALandscapeProxy::SetLandscapeMaterialVectorParameterValue(const stru
 // Function Landscape.LandscapeProxy.SetLandscapeMaterialTextureParameterValue
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// class UTexture*                    Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// class UTexture*                    Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class FName ALandscapeProxy::SetLandscapeMaterialTextureParameterValue(class UTexture* Value)
+void ALandscapeProxy::SetLandscapeMaterialTextureParameterValue(class FName ParameterName, class UTexture** Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -252,7 +254,7 @@ class FName ALandscapeProxy::SetLandscapeMaterialTextureParameterValue(class UTe
 
 	Params::ALandscapeProxy_SetLandscapeMaterialTextureParameterValue_Params Parms{};
 
-	Parms.Value = Value;
+	Parms.ParameterName = ParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -262,7 +264,8 @@ class FName ALandscapeProxy::SetLandscapeMaterialTextureParameterValue(class UTe
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 }
 
@@ -270,10 +273,10 @@ class FName ALandscapeProxy::SetLandscapeMaterialTextureParameterValue(class UTe
 // Function Landscape.LandscapeProxy.SetLandscapeMaterialScalarParameterValue
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class FName ALandscapeProxy::SetLandscapeMaterialScalarParameterValue(float Value)
+void ALandscapeProxy::SetLandscapeMaterialScalarParameterValue(class FName ParameterName, float* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -282,7 +285,7 @@ class FName ALandscapeProxy::SetLandscapeMaterialScalarParameterValue(float Valu
 
 	Params::ALandscapeProxy_SetLandscapeMaterialScalarParameterValue_Params Parms{};
 
-	Parms.Value = Value;
+	Parms.ParameterName = ParameterName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -292,7 +295,8 @@ class FName ALandscapeProxy::SetLandscapeMaterialScalarParameterValue(float Valu
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 }
 
@@ -300,12 +304,12 @@ class FName ALandscapeProxy::SetLandscapeMaterialScalarParameterValue(float Valu
 // Function Landscape.LandscapeProxy.LandscapeExportHeightmapToRenderTarget
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UTextureRenderTarget2D*      InRenderTarget                                                   (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               InExportHeightIntoRGChannel                                      (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               InExportLandscapeProxies                                         (ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTextureRenderTarget2D*      InRenderTarget                                                   (Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, Transient, InstancedReference, SubobjectReference)
+// bool                               InExportHeightIntoRGChannel                                      (ConstParm, ExportObject, EditFixedSize, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               InExportLandscapeProxies                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool ALandscapeProxy::LandscapeExportHeightmapToRenderTarget(bool ReturnValue)
+void ALandscapeProxy::LandscapeExportHeightmapToRenderTarget(class UTextureRenderTarget2D** InRenderTarget, bool InExportHeightIntoRGChannel, bool InExportLandscapeProxies, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -314,6 +318,8 @@ bool ALandscapeProxy::LandscapeExportHeightmapToRenderTarget(bool ReturnValue)
 
 	Params::ALandscapeProxy_LandscapeExportHeightmapToRenderTarget_Params Parms{};
 
+	Parms.InExportHeightIntoRGChannel = InExportHeightIntoRGChannel;
+	Parms.InExportLandscapeProxies = InExportLandscapeProxies;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -324,7 +330,8 @@ bool ALandscapeProxy::LandscapeExportHeightmapToRenderTarget(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InRenderTarget != nullptr)
+		*InRenderTarget = Parms.InRenderTarget;
 
 }
 
@@ -332,7 +339,7 @@ bool ALandscapeProxy::LandscapeExportHeightmapToRenderTarget(bool ReturnValue)
 // Function Landscape.LandscapeProxy.GetLandscapeActor
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class ALandscape*                  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class ALandscape*                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ALandscapeProxy::GetLandscapeActor(class ALandscape* ReturnValue)
 {
@@ -359,9 +366,9 @@ void ALandscapeProxy::GetLandscapeActor(class ALandscape* ReturnValue)
 // Function Landscape.LandscapeProxy.EditorSetLandscapeMaterial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMaterialInterface*          NewLandscapeMaterial                                             (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UMaterialInterface*          NewLandscapeMaterial                                             (ConstParm, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-class UMaterialInterface* ALandscapeProxy::EditorSetLandscapeMaterial()
+void ALandscapeProxy::EditorSetLandscapeMaterial(class UMaterialInterface* NewLandscapeMaterial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -370,6 +377,7 @@ class UMaterialInterface* ALandscapeProxy::EditorSetLandscapeMaterial()
 
 	Params::ALandscapeProxy_EditorSetLandscapeMaterial_Params Parms{};
 
+	Parms.NewLandscapeMaterial = NewLandscapeMaterial;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -379,28 +387,26 @@ class UMaterialInterface* ALandscapeProxy::EditorSetLandscapeMaterial()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Landscape.LandscapeProxy.EditorApplySpline
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// class USplineComponent*            InSplineComponent                                                (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              StartWidth                                                       (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              EndWidth                                                         (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              StartSideFalloff                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              EndSideFalloff                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              StartRoll                                                        (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              EndRoll                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              NumSubdivisions                                                  (Edit, OutParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               bRaiseHeights                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bLowerHeights                                                    (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class ULandscapeLayerInfoObject*   PaintLayer                                                       (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class FName                        EditLayerName                                                    (BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class USplineComponent*            InSplineComponent                                                (ExportObject, Net, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              StartWidth                                                       (ConstParm, Net, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              EndWidth                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              StartSideFalloff                                                 (BlueprintVisible, BlueprintReadOnly, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              EndSideFalloff                                                   (BlueprintVisible, ExportObject, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              StartRoll                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              EndRoll                                                          (Edit, BlueprintVisible, Net, EditFixedSize, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              NumSubdivisions                                                  (Edit, ConstParm, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// bool                               bRaiseHeights                                                    (BlueprintVisible, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               bLowerHeights                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class ULandscapeLayerInfoObject*   PaintLayer                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class FName                        EditLayerName                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-class ULandscapeLayerInfoObject* ALandscapeProxy::EditorApplySpline(int32* NumSubdivisions, class FName* EditLayerName)
+class FName ALandscapeProxy::EditorApplySpline(class USplineComponent* InSplineComponent, float StartWidth, float EndWidth, float StartSideFalloff, float EndSideFalloff, float StartRoll, float EndRoll, bool bRaiseHeights)
 {
 	static class UFunction* Func = nullptr;
 
@@ -409,6 +415,14 @@ class ULandscapeLayerInfoObject* ALandscapeProxy::EditorApplySpline(int32* NumSu
 
 	Params::ALandscapeProxy_EditorApplySpline_Params Parms{};
 
+	Parms.InSplineComponent = InSplineComponent;
+	Parms.StartWidth = StartWidth;
+	Parms.EndWidth = EndWidth;
+	Parms.StartSideFalloff = StartSideFalloff;
+	Parms.EndSideFalloff = EndSideFalloff;
+	Parms.StartRoll = StartRoll;
+	Parms.EndRoll = EndRoll;
+	Parms.bRaiseHeights = bRaiseHeights;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -417,12 +431,6 @@ class ULandscapeLayerInfoObject* ALandscapeProxy::EditorApplySpline(int32* NumSu
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (NumSubdivisions != nullptr)
-		*NumSubdivisions = Parms.NumSubdivisions;
-
-	if (EditLayerName != nullptr)
-		*EditLayerName = Parms.EditLayerName;
 
 	return Parms.ReturnValue;
 
@@ -432,7 +440,7 @@ class ULandscapeLayerInfoObject* ALandscapeProxy::EditorApplySpline(int32* NumSu
 // Function Landscape.LandscapeProxy.ChangeLODDistanceFactor
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InLODDistanceFactor                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InLODDistanceFactor                                              (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 float ALandscapeProxy::ChangeLODDistanceFactor()
 {
@@ -460,7 +468,7 @@ float ALandscapeProxy::ChangeLODDistanceFactor()
 // Function Landscape.LandscapeProxy.ChangeComponentScreenSizeToUseSubSections
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InComponentScreenSizeToUseSubSections                            (ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InComponentScreenSizeToUseSubSections                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 float ALandscapeProxy::ChangeComponentScreenSizeToUseSubSections()
 {
@@ -516,11 +524,11 @@ class ALandscape* ALandscape::GetDefaultObj()
 // Function Landscape.Landscape.RenderHeightmap
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTransform                  InWorldTransform                                                 (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FBox2D                      InExtents                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, EditConst, InstancedReference, SubobjectReference)
-// class UTextureRenderTarget2D*      OutRenderTarget                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  InWorldTransform                                                 (ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FBox2D                      InExtents                                                        (Edit, ExportObject, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// class UTextureRenderTarget2D*      OutRenderTarget                                                  (Edit, BlueprintReadOnly, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-struct FBox2D ALandscape::RenderHeightmap(struct FTransform* InWorldTransform, class UTextureRenderTarget2D** OutRenderTarget)
+void ALandscape::RenderHeightmap(const struct FTransform& InWorldTransform, const struct FBox2D& InExtents, class UTextureRenderTarget2D* OutRenderTarget)
 {
 	static class UFunction* Func = nullptr;
 
@@ -529,6 +537,9 @@ struct FBox2D ALandscape::RenderHeightmap(struct FTransform* InWorldTransform, c
 
 	Params::ALandscape_RenderHeightmap_Params Parms{};
 
+	Parms.InWorldTransform = InWorldTransform;
+	Parms.InExtents = InExtents;
+	Parms.OutRenderTarget = OutRenderTarget;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -537,14 +548,6 @@ struct FBox2D ALandscape::RenderHeightmap(struct FTransform* InWorldTransform, c
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InWorldTransform != nullptr)
-		*InWorldTransform = std::move(Parms.InWorldTransform);
-
-	if (OutRenderTarget != nullptr)
-		*OutRenderTarget = Parms.OutRenderTarget;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -608,9 +611,9 @@ class ULandscapeComponent* ULandscapeComponent::GetDefaultObj()
 // Function Landscape.LandscapeComponent.SetLODBias
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InLODBias                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InLODBias                                                        (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-void ULandscapeComponent::SetLODBias(int32* InLODBias)
+void ULandscapeComponent::SetLODBias(int32 InLODBias)
 {
 	static class UFunction* Func = nullptr;
 
@@ -619,6 +622,7 @@ void ULandscapeComponent::SetLODBias(int32* InLODBias)
 
 	Params::ULandscapeComponent_SetLODBias_Params Parms{};
 
+	Parms.InLODBias = InLODBias;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -628,18 +632,15 @@ void ULandscapeComponent::SetLODBias(int32* InLODBias)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InLODBias != nullptr)
-		*InLODBias = Parms.InLODBias;
-
 }
 
 
 // Function Landscape.LandscapeComponent.SetForcedLOD
 // (Final, RequiredAPI, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InForcedLOD                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InForcedLOD                                                      (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-void ULandscapeComponent::SetForcedLOD(int32* InForcedLOD)
+void ULandscapeComponent::SetForcedLOD(int32 InForcedLOD)
 {
 	static class UFunction* Func = nullptr;
 
@@ -648,6 +649,7 @@ void ULandscapeComponent::SetForcedLOD(int32* InForcedLOD)
 
 	Params::ULandscapeComponent_SetForcedLOD_Params Parms{};
 
+	Parms.InForcedLOD = InForcedLOD;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -657,19 +659,16 @@ void ULandscapeComponent::SetForcedLOD(int32* InForcedLOD)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InForcedLOD != nullptr)
-		*InForcedLOD = Parms.InForcedLOD;
-
 }
 
 
 // Function Landscape.LandscapeComponent.GetMaterialInstanceDynamic
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InIndex                                                          (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UMaterialInstanceDynamic*    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InIndex                                                          (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UMaterialInstanceDynamic*    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 ULandscapeComponent::GetMaterialInstanceDynamic(class UMaterialInstanceDynamic* ReturnValue)
+void ULandscapeComponent::GetMaterialInstanceDynamic(int32* InIndex, class UMaterialInstanceDynamic* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -688,7 +687,8 @@ int32 ULandscapeComponent::GetMaterialInstanceDynamic(class UMaterialInstanceDyn
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InIndex != nullptr)
+		*InIndex = Parms.InIndex;
 
 }
 
@@ -696,11 +696,11 @@ int32 ULandscapeComponent::GetMaterialInstanceDynamic(class UMaterialInstanceDyn
 // Function Landscape.LandscapeComponent.EditorGetPaintLayerWeightByNameAtLocation
 // (Final, RequiredAPI, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     InLocation                                                       (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// class FName                        InPaintLayerName                                                 (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     InLocation                                                       (EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class FName                        InPaintLayerName                                                 (Edit, ConstParm, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void ULandscapeComponent::EditorGetPaintLayerWeightByNameAtLocation(const struct FVector& InLocation, class FName* InPaintLayerName, float ReturnValue)
+void ULandscapeComponent::EditorGetPaintLayerWeightByNameAtLocation(struct FVector* InLocation, class FName InPaintLayerName, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -709,7 +709,7 @@ void ULandscapeComponent::EditorGetPaintLayerWeightByNameAtLocation(const struct
 
 	Params::ULandscapeComponent_EditorGetPaintLayerWeightByNameAtLocation_Params Parms{};
 
-	Parms.InLocation = InLocation;
+	Parms.InPaintLayerName = InPaintLayerName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -720,8 +720,8 @@ void ULandscapeComponent::EditorGetPaintLayerWeightByNameAtLocation(const struct
 
 	Func->FunctionFlags = Flgs;
 
-	if (InPaintLayerName != nullptr)
-		*InPaintLayerName = Parms.InPaintLayerName;
+	if (InLocation != nullptr)
+		*InLocation = std::move(Parms.InLocation);
 
 }
 
@@ -729,11 +729,11 @@ void ULandscapeComponent::EditorGetPaintLayerWeightByNameAtLocation(const struct
 // Function Landscape.LandscapeComponent.EditorGetPaintLayerWeightAtLocation
 // (Final, RequiredAPI, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     InLocation                                                       (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// class ULandscapeLayerInfoObject*   PaintLayer                                                       (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     InLocation                                                       (EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class ULandscapeLayerInfoObject*   PaintLayer                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class ULandscapeLayerInfoObject* ULandscapeComponent::EditorGetPaintLayerWeightAtLocation(const struct FVector& InLocation, float ReturnValue)
+class ULandscapeLayerInfoObject* ULandscapeComponent::EditorGetPaintLayerWeightAtLocation(struct FVector* InLocation, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -742,7 +742,6 @@ class ULandscapeLayerInfoObject* ULandscapeComponent::EditorGetPaintLayerWeightA
 
 	Params::ULandscapeComponent_EditorGetPaintLayerWeightAtLocation_Params Parms{};
 
-	Parms.InLocation = InLocation;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -752,6 +751,9 @@ class ULandscapeLayerInfoObject* ULandscapeComponent::EditorGetPaintLayerWeightA
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InLocation != nullptr)
+		*InLocation = std::move(Parms.InLocation);
 
 	return Parms.ReturnValue;
 
@@ -901,7 +903,7 @@ class ULandscapeHeightfieldCollisionComponent* ULandscapeHeightfieldCollisionCom
 // Function Landscape.LandscapeHeightfieldCollisionComponent.GetRenderComponent
 // (Final, RequiredAPI, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class ULandscapeComponent*         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class ULandscapeComponent*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ULandscapeHeightfieldCollisionComponent::GetRenderComponent(class ULandscapeComponent* ReturnValue)
 {
@@ -1124,7 +1126,7 @@ class ULandscapeSplinesComponent* ULandscapeSplinesComponent::GetDefaultObj()
 // Function Landscape.LandscapeSplinesComponent.GetSplineMeshComponents
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<class USplineMeshComponent*>ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class USplineMeshComponent*>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ULandscapeSplinesComponent::GetSplineMeshComponents(const TArray<class USplineMeshComponent*>& ReturnValue)
 {
@@ -1403,7 +1405,7 @@ class ALandscapeBlueprintBrushBase* ALandscapeBlueprintBrushBase::GetDefaultObj(
 // Function Landscape.LandscapeBlueprintBrushBase.RequestLandscapeUpdate
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInUserTriggered                                                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInUserTriggered                                                 (BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 bool ALandscapeBlueprintBrushBase::RequestLandscapeUpdate()
 {
@@ -1431,10 +1433,10 @@ bool ALandscapeBlueprintBrushBase::RequestLandscapeUpdate()
 // Function Landscape.LandscapeBlueprintBrushBase.Render
 // (Native, Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// bool                               InIsHeightmap                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UTextureRenderTarget2D*      InCombinedResult                                                 (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class FName                        InWeightmapLayerName                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UTextureRenderTarget2D*      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               InIsHeightmap                                                    (BlueprintVisible, Net, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UTextureRenderTarget2D*      InCombinedResult                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class FName                        InWeightmapLayerName                                             (BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UTextureRenderTarget2D*      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName ALandscapeBlueprintBrushBase::Render(class UTextureRenderTarget2D* ReturnValue)
 {
@@ -1463,9 +1465,9 @@ class FName ALandscapeBlueprintBrushBase::Render(class UTextureRenderTarget2D* R
 // Function Landscape.LandscapeBlueprintBrushBase.Initialize
 // (Native, Event, Public, HasOutParams, HasDefaults, BlueprintEvent)
 // Parameters:
-// struct FTransform                  InLandscapeTransform                                             (BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FIntPoint                   InLandscapeSize                                                  (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FIntPoint                   InLandscapeRenderTargetSize                                      (ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FTransform                  InLandscapeTransform                                             (Edit, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FIntPoint                   InLandscapeSize                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FIntPoint                   InLandscapeRenderTargetSize                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 struct FIntPoint ALandscapeBlueprintBrushBase::Initialize()
 {
@@ -1493,7 +1495,7 @@ struct FIntPoint ALandscapeBlueprintBrushBase::Initialize()
 // Function Landscape.LandscapeBlueprintBrushBase.GetBlueprintRenderDependencies
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// TArray<class UObject*>             OutStreamableAssets                                              (Edit, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class UObject*>             OutStreamableAssets                                              (ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 TArray<class UObject*> ALandscapeBlueprintBrushBase::GetBlueprintRenderDependencies()
 {

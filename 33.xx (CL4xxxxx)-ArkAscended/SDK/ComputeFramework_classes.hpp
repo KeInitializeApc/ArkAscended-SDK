@@ -36,14 +36,14 @@ public:
 class UComputeKernelSource : public UObject
 {
 public:
-	class FString                                EntryPoint;                                        // 0x28(0x10)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FIntVector                            GroupSize;                                         // 0x38(0xC)(ExportObject, Net, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_E5[0x4];                                       // Fixing Size After Last Property  > TateDumper <
-	struct FComputeKernelPermutationSet          PermutationSet;                                    // 0x48(0x10)(Net, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	struct FComputeKernelDefinitionSet           DefinitionsSet;                                    // 0x58(0x10)(ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<class UComputeSource*>                AdditionalSources;                                 // 0x68(0x10)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<struct FShaderFunctionDefinition>     ExternalInputs;                                    // 0x78(0x10)(ConstParm, BlueprintVisible, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<struct FShaderFunctionDefinition>     ExternalOutputs;                                   // 0x88(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FString                                EntryPoint;                                        // 0x28(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+	struct FIntVector                            GroupSize;                                         // 0x38(0xC)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_192[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FComputeKernelPermutationSet          PermutationSet;                                    // 0x48(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	struct FComputeKernelDefinitionSet           DefinitionsSet;                                    // 0x58(0x10)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	TArray<class UComputeSource*>                AdditionalSources;                                 // 0x68(0x10)(ExportObject, Net, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	TArray<struct FShaderFunctionDefinition>     ExternalInputs;                                    // 0x78(0x10)(Net, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	TArray<struct FShaderFunctionDefinition>     ExternalOutputs;                                   // 0x88(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UComputeKernelSource* GetDefaultObj();
@@ -55,7 +55,7 @@ public:
 class UComputeSource : public UObject
 {
 public:
-	TArray<class UComputeSource*>                AdditionalSources;                                 // 0x28(0x10)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class UComputeSource*>                AdditionalSources;                                 // 0x28(0x10)(ExportObject, Net, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UComputeSource* GetDefaultObj();
@@ -67,12 +67,12 @@ public:
 class UComputeGraph : public UObject
 {
 public:
-	TArray<class UComputeKernel*>                KernelInvocations;                                 // 0x28(0x10)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<class UComputeDataInterface*>         DataInterfaces;                                    // 0x38(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FComputeGraphEdge>             GraphEdges;                                        // 0x48(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<class UClass*>                        Bindings;                                          // 0x58(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	TArray<int32>                                DataInterfaceToBinding;                            // 0x68(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_EC[0x18];                                      // Fixing Size Of Struct > TateDumper <
+	TArray<class UComputeKernel*>                KernelInvocations;                                 // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	TArray<class UComputeDataInterface*>         DataInterfaces;                                    // 0x38(0x10)(BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FComputeGraphEdge>             GraphEdges;                                        // 0x48(0x10)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	TArray<class UClass*>                        Bindings;                                          // 0x58(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                DataInterfaceToBinding;                            // 0x68(0x10)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_196[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UComputeGraph* GetDefaultObj();
@@ -84,7 +84,7 @@ public:
 class UComputeGraphComponent : public UActorComponent
 {
 public:
-	class UComputeGraph*                         ComputeGraph;                                      // 0xB8(0x8)(ConstParm, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst)
+	class UComputeGraph*                         ComputeGraph;                                      // 0xB8(0x8)(ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst)
 	struct FComputeGraphInstance                 ComputeGraphInstance;                              // 0xC0(0x18)(ConstParm, OutParm, ReturnParm, DisableEditOnTemplate, Transient)
 
 	static class UClass* StaticClass();
@@ -100,9 +100,9 @@ public:
 class UComputeKernel : public UObject
 {
 public:
-	class UComputeKernelSource*                  KernelSource;                                      // 0x28(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	int32                                        KernelFlags;                                       // 0x30(0x4)(Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_F4[0x4];                                       // Fixing Size Of Struct > TateDumper <
+	class UComputeKernelSource*                  KernelSource;                                      // 0x28(0x8)(Edit, ReturnParm, Config, InstancedReference, SubobjectReference)
+	int32                                        KernelFlags;                                       // 0x30(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1A2[0x4];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UComputeKernel* GetDefaultObj();
@@ -114,7 +114,7 @@ public:
 class UComputeKernelFromText : public UComputeKernelSource
 {
 public:
-	struct FFilePath                             SourceFile;                                        // 0x98(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FFilePath                             SourceFile;                                        // 0x98(0x10)(ExportObject, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UComputeKernelFromText* GetDefaultObj();
@@ -126,7 +126,7 @@ public:
 class UComputeSourceFromText : public UComputeSource
 {
 public:
-	struct FFilePath                             SourceFile;                                        // 0x38(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FFilePath                             SourceFile;                                        // 0x38(0x10)(ExportObject, ReturnParm, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UComputeSourceFromText* GetDefaultObj();

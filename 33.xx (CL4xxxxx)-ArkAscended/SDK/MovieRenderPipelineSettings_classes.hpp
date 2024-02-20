@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class UMoviePipelineBurnInWidget* GetDefaultObj();
 
-	void OnOutputFrameStarted(class UMoviePipeline* ForPipeline);
+	class UMoviePipeline* OnOutputFrameStarted();
 };
 
 // 0x68 (0xB0 - 0x48)
@@ -26,11 +26,11 @@ public:
 class UMoviePipelineBurnInSetting : public UMoviePipelineRenderPass
 {
 public:
-	struct FSoftClassPath                        BurnInClass;                                       // 0x48(0x20)(ConstParm, Net, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bCompositeOntoFinalImage;                          // 0x68(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_10EC[0x2F];                                    // Fixing Size After Last Property  > TateDumper <
-	class UTextureRenderTarget2D*                RenderTarget;                                      // 0x98(0x8)(Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference)
-	TArray<class UMoviePipelineBurnInWidget*>    BurnInWidgetInstances;                             // 0xA0(0x10)(Edit, ExportObject, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
+	struct FSoftClassPath                        BurnInClass;                                       // 0x48(0x20)(BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, InstancedReference, SubobjectReference)
+	bool                                         bCompositeOntoFinalImage;                          // 0x68(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, InstancedReference, SubobjectReference)
+	uint8                                        Pad_D55[0x2F];                                     // Fixing Size After Last Property  > TateDumper <
+	class UTextureRenderTarget2D*                RenderTarget;                                      // 0x98(0x8)(BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, EditConst, GlobalConfig, InstancedReference)
+	TArray<class UMoviePipelineBurnInWidget*>    BurnInWidgetInstances;                             // 0xA0(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMoviePipelineBurnInSetting* GetDefaultObj();
@@ -42,21 +42,21 @@ public:
 class UMoviePipelineConsoleVariableSetting : public UMoviePipelineSetting
 {
 public:
-	TArray<TScriptInterface<class IMovieSceneConsoleVariableTrackInterface>> ConsoleVariablePresets;                            // 0x48(0x10)(BlueprintVisible, BlueprintReadOnly, Parm, EditConst, InstancedReference, SubobjectReference)
-	TMap<class FString, float>                   ConsoleVariables;                                  // 0x58(0x50)(BlueprintReadOnly, Net, DisableEditOnTemplate, EditConst, SubobjectReference)
-	TArray<class FString>                        StartConsoleCommands;                              // 0xA8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
-	TArray<class FString>                        EndConsoleCommands;                                // 0xB8(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
-	TArray<struct FMoviePipelineConsoleVariableEntry> CVars;                                             // 0xC8(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, EditConst, SubobjectReference)
-	uint8                                        Pad_1114[0x20];                                    // Fixing Size Of Struct > TateDumper <
+	TArray<TScriptInterface<class IMovieSceneConsoleVariableTrackInterface>> ConsoleVariablePresets;                            // 0x48(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, InstancedReference, SubobjectReference)
+	TMap<class FString, float>                   ConsoleVariables;                                  // 0x58(0x50)(Edit, BlueprintVisible, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+	TArray<class FString>                        StartConsoleCommands;                              // 0xA8(0x10)(ExportObject, Parm, ReturnParm, InstancedReference, SubobjectReference)
+	TArray<class FString>                        EndConsoleCommands;                                // 0xB8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, InstancedReference, SubobjectReference)
+	TArray<struct FMoviePipelineConsoleVariableEntry> CVars;                                             // 0xC8(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_D73[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMoviePipelineConsoleVariableSetting* GetDefaultObj();
 
-	bool UpdateConsoleVariableEnableState(class FString* Name, bool ReturnValue);
-	void RemoveConsoleVariable(class FString* Name, bool bRemoveAllInstances, bool ReturnValue);
+	void UpdateConsoleVariableEnableState(class FString* Name, bool* bIsEnabled, bool ReturnValue);
+	bool RemoveConsoleVariable(class FString* Name, bool ReturnValue);
 	void GetConsoleVariables(const TArray<struct FMoviePipelineConsoleVariableEntry>& ReturnValue);
-	void AddOrUpdateConsoleVariable(class FString* Name, float Value, bool ReturnValue);
-	void AddConsoleVariable(class FString* Name, float Value, bool ReturnValue);
+	void AddOrUpdateConsoleVariable(class FString* Name, float* Value, bool ReturnValue);
+	void AddConsoleVariable(class FString* Name, float* Value, bool ReturnValue);
 };
 
 // 0x20 (0x68 - 0x48)
@@ -64,9 +64,9 @@ public:
 class UMoviePipelineWidgetRenderer : public UMoviePipelineRenderPass
 {
 public:
-	bool                                         bCompositeOntoFinalImage;                          // 0x48(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1118[0x17];                                    // Fixing Size After Last Property  > TateDumper <
-	class UTextureRenderTarget2D*                RenderTarget;                                      // 0x60(0x8)(Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference)
+	bool                                         bCompositeOntoFinalImage;                          // 0x48(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, InstancedReference, SubobjectReference)
+	uint8                                        Pad_D76[0x17];                                     // Fixing Size After Last Property  > TateDumper <
+	class UTextureRenderTarget2D*                RenderTarget;                                      // 0x60(0x8)(BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, EditConst, GlobalConfig, InstancedReference)
 
 	static class UClass* StaticClass();
 	static class UMoviePipelineWidgetRenderer* GetDefaultObj();

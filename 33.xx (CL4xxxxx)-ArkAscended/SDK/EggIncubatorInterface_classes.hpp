@@ -18,8 +18,8 @@ public:
 	static class UClass* StaticClass();
 	static class IEggIncubatorInterface_C* GetDefaultObj();
 
-	void IsEggItemAllowed(class UPrimalItemConsumable_Egg_C* EggItem, bool IsAllowed);
-	class UPrimalItem* GetItemDisplaySlot(int32 InSlot, bool SlotFound);
+	bool IsEggItemAllowed(class UPrimalItemConsumable_Egg_C** EggItem);
+	bool GetItemDisplaySlot(int32* InSlot);
 };
 
 }

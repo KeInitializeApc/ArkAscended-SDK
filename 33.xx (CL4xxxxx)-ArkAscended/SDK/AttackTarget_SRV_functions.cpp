@@ -43,9 +43,9 @@ class UAttackTarget_SRV_C* UAttackTarget_SRV_C::GetDefaultObj()
 // Function AttackTarget_SRV.AttackTarget_SRV_C.ReceiveActivation
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class AActor* UAttackTarget_SRV_C::ReceiveActivation()
+void UAttackTarget_SRV_C::ReceiveActivation(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,7 +57,8 @@ class AActor* UAttackTarget_SRV_C::ReceiveActivation()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -65,9 +66,9 @@ class AActor* UAttackTarget_SRV_C::ReceiveActivation()
 // Function AttackTarget_SRV.AttackTarget_SRV_C.ReceiveDeactivation
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class AActor* UAttackTarget_SRV_C::ReceiveDeactivation()
+void UAttackTarget_SRV_C::ReceiveDeactivation(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -79,7 +80,8 @@ class AActor* UAttackTarget_SRV_C::ReceiveDeactivation()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -87,11 +89,11 @@ class AActor* UAttackTarget_SRV_C::ReceiveDeactivation()
 // Function AttackTarget_SRV.AttackTarget_SRV_C.ExecuteUbergraph_AttackTarget_SRV
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class AActor*                      K2Node_Event_OwnerActor                                          (BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
-// class AActor*                      K2Node_Event_OwnerActor_1                                        (BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// class AActor*                      K2Node_Event_OwnerActor                                          (Edit, ConstParm, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// class AActor*                      K2Node_Event_OwnerActor_1                                        (Edit, ConstParm, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
 
-void UAttackTarget_SRV_C::ExecuteUbergraph_AttackTarget_SRV(int32 EntryPoint, class AActor* K2Node_Event_OwnerActor, class AActor* K2Node_Event_OwnerActor_1)
+int32 UAttackTarget_SRV_C::ExecuteUbergraph_AttackTarget_SRV(class AActor** K2Node_Event_OwnerActor, class AActor** K2Node_Event_OwnerActor_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -100,11 +102,16 @@ void UAttackTarget_SRV_C::ExecuteUbergraph_AttackTarget_SRV(int32 EntryPoint, cl
 
 	Params::UAttackTarget_SRV_C_ExecuteUbergraph_AttackTarget_SRV_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
-	Parms.K2Node_Event_OwnerActor = K2Node_Event_OwnerActor;
-	Parms.K2Node_Event_OwnerActor_1 = K2Node_Event_OwnerActor_1;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (K2Node_Event_OwnerActor != nullptr)
+		*K2Node_Event_OwnerActor = Parms.K2Node_Event_OwnerActor;
+
+	if (K2Node_Event_OwnerActor_1 != nullptr)
+		*K2Node_Event_OwnerActor_1 = Parms.K2Node_Event_OwnerActor_1;
+
+	return Parms.ReturnValue;
 
 }
 

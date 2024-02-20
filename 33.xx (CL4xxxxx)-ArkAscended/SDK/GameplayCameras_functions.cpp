@@ -43,15 +43,15 @@ class UMatineeCameraShake* UMatineeCameraShake::GetDefaultObj()
 // Function GameplayCameras.MatineeCameraShake.StartMatineeCameraShakeFromSource
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class APlayerCameraManager*        PlayerCameraManager                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, SubobjectReference)
-// class UClass*                      ShakeClass                                                       (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UCameraShakeSourceComponent* SourceComponent                                                  (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              Scale                                                            (Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
-// enum class ECameraShakePlaySpace   PlaySpace                                                        (Edit, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FRotator                    UserPlaySpaceRot                                                 (EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UMatineeCameraShake*         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APlayerCameraManager*        PlayerCameraManager                                              (BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class UClass*                      ShakeClass                                                       (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UCameraShakeSourceComponent* SourceComponent                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Scale                                                            (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config)
+// enum class ECameraShakePlaySpace   PlaySpace                                                        (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FRotator                    UserPlaySpaceRot                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UMatineeCameraShake*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRotator UMatineeCameraShake::StartMatineeCameraShakeFromSource(class UCameraShakeSourceComponent** SourceComponent, float Scale, class UMatineeCameraShake* ReturnValue)
+struct FRotator UMatineeCameraShake::StartMatineeCameraShakeFromSource(class APlayerCameraManager** PlayerCameraManager, class UClass* ShakeClass, class UCameraShakeSourceComponent** SourceComponent, float* Scale, class UMatineeCameraShake* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -60,7 +60,7 @@ struct FRotator UMatineeCameraShake::StartMatineeCameraShakeFromSource(class UCa
 
 	Params::UMatineeCameraShake_StartMatineeCameraShakeFromSource_Params Parms{};
 
-	Parms.Scale = Scale;
+	Parms.ShakeClass = ShakeClass;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -71,8 +71,14 @@ struct FRotator UMatineeCameraShake::StartMatineeCameraShakeFromSource(class UCa
 
 	Func->FunctionFlags = Flgs;
 
+	if (PlayerCameraManager != nullptr)
+		*PlayerCameraManager = Parms.PlayerCameraManager;
+
 	if (SourceComponent != nullptr)
 		*SourceComponent = Parms.SourceComponent;
+
+	if (Scale != nullptr)
+		*Scale = Parms.Scale;
 
 	return Parms.ReturnValue;
 
@@ -82,14 +88,14 @@ struct FRotator UMatineeCameraShake::StartMatineeCameraShakeFromSource(class UCa
 // Function GameplayCameras.MatineeCameraShake.StartMatineeCameraShake
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class APlayerCameraManager*        PlayerCameraManager                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, SubobjectReference)
-// class UClass*                      ShakeClass                                                       (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// float                              Scale                                                            (Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
-// enum class ECameraShakePlaySpace   PlaySpace                                                        (Edit, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FRotator                    UserPlaySpaceRot                                                 (EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UMatineeCameraShake*         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APlayerCameraManager*        PlayerCameraManager                                              (BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class UClass*                      ShakeClass                                                       (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              Scale                                                            (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config)
+// enum class ECameraShakePlaySpace   PlaySpace                                                        (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FRotator                    UserPlaySpaceRot                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UMatineeCameraShake*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRotator UMatineeCameraShake::StartMatineeCameraShake(float Scale, class UMatineeCameraShake* ReturnValue)
+struct FRotator UMatineeCameraShake::StartMatineeCameraShake(class APlayerCameraManager** PlayerCameraManager, class UClass* ShakeClass, float* Scale, class UMatineeCameraShake* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -98,7 +104,7 @@ struct FRotator UMatineeCameraShake::StartMatineeCameraShake(float Scale, class 
 
 	Params::UMatineeCameraShake_StartMatineeCameraShake_Params Parms{};
 
-	Parms.Scale = Scale;
+	Parms.ShakeClass = ShakeClass;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -109,6 +115,12 @@ struct FRotator UMatineeCameraShake::StartMatineeCameraShake(float Scale, class 
 
 	Func->FunctionFlags = Flgs;
 
+	if (PlayerCameraManager != nullptr)
+		*PlayerCameraManager = Parms.PlayerCameraManager;
+
+	if (Scale != nullptr)
+		*Scale = Parms.Scale;
+
 	return Parms.ReturnValue;
 
 }
@@ -117,9 +129,9 @@ struct FRotator UMatineeCameraShake::StartMatineeCameraShake(float Scale, class 
 // Function GameplayCameras.MatineeCameraShake.ReceiveStopShake
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               bImmediately                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bImmediately                                                     (BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UMatineeCameraShake::ReceiveStopShake(bool bImmediately)
+bool UMatineeCameraShake::ReceiveStopShake()
 {
 	static class UFunction* Func = nullptr;
 
@@ -128,9 +140,10 @@ void UMatineeCameraShake::ReceiveStopShake(bool bImmediately)
 
 	Params::UMatineeCameraShake_ReceiveStopShake_Params Parms{};
 
-	Parms.bImmediately = bImmediately;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -138,9 +151,9 @@ void UMatineeCameraShake::ReceiveStopShake(bool bImmediately)
 // Function GameplayCameras.MatineeCameraShake.ReceivePlayShake
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// float                              Scale                                                            (Edit, ExportObject, Parm, ZeroConstructor, Transient, Config)
+// float                              Scale                                                            (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config)
 
-void UMatineeCameraShake::ReceivePlayShake(float Scale)
+void UMatineeCameraShake::ReceivePlayShake(float* Scale)
 {
 	static class UFunction* Func = nullptr;
 
@@ -149,9 +162,11 @@ void UMatineeCameraShake::ReceivePlayShake(float Scale)
 
 	Params::UMatineeCameraShake_ReceivePlayShake_Params Parms{};
 
-	Parms.Scale = Scale;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Scale != nullptr)
+		*Scale = Parms.Scale;
 
 }
 
@@ -159,7 +174,7 @@ void UMatineeCameraShake::ReceivePlayShake(float Scale)
 // Function GameplayCameras.MatineeCameraShake.ReceiveIsFinished
 // (Native, Event, Public, BlueprintEvent, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMatineeCameraShake::ReceiveIsFinished(bool ReturnValue)
 {
@@ -186,12 +201,12 @@ void UMatineeCameraShake::ReceiveIsFinished(bool ReturnValue)
 // Function GameplayCameras.MatineeCameraShake.BlueprintUpdateCameraShake
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// float                              DeltaTime                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              Alpha                                                            (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FMinimalViewInfo            POV                                                              (ConstParm, ExportObject, Net, ReturnParm, EditConst)
-// struct FMinimalViewInfo            ModifiedPOV                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// float                              DeltaTime                                                        (BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              Alpha                                                            (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FMinimalViewInfo            POV                                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst)
+// struct FMinimalViewInfo            ModifiedPOV                                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
 
-struct FMinimalViewInfo UMatineeCameraShake::BlueprintUpdateCameraShake(float* Alpha)
+struct FMinimalViewInfo UMatineeCameraShake::BlueprintUpdateCameraShake(float Alpha, const struct FMinimalViewInfo& ModifiedPOV)
 {
 	static class UFunction* Func = nullptr;
 
@@ -200,11 +215,10 @@ struct FMinimalViewInfo UMatineeCameraShake::BlueprintUpdateCameraShake(float* A
 
 	Params::UMatineeCameraShake_BlueprintUpdateCameraShake_Params Parms{};
 
+	Parms.Alpha = Alpha;
+	Parms.ModifiedPOV = ModifiedPOV;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (Alpha != nullptr)
-		*Alpha = Parms.Alpha;
 
 	return Parms.ReturnValue;
 
@@ -298,10 +312,10 @@ class UMatineeCameraShakeFunctionLibrary* UMatineeCameraShakeFunctionLibrary::Ge
 // Function GameplayCameras.MatineeCameraShakeFunctionLibrary.Conv_MatineeCameraShake
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UCameraShakeBase*            CameraShake                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, Config, EditConst, SubobjectReference)
-// class UMatineeCameraShake*         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UCameraShakeBase*            CameraShake                                                      (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// class UMatineeCameraShake*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMatineeCameraShakeFunctionLibrary::Conv_MatineeCameraShake(class UCameraShakeBase** CameraShake, class UMatineeCameraShake* ReturnValue)
+void UMatineeCameraShakeFunctionLibrary::Conv_MatineeCameraShake(class UCameraShakeBase* CameraShake, class UMatineeCameraShake* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -310,6 +324,7 @@ void UMatineeCameraShakeFunctionLibrary::Conv_MatineeCameraShake(class UCameraSh
 
 	Params::UMatineeCameraShakeFunctionLibrary_Conv_MatineeCameraShake_Params Parms{};
 
+	Parms.CameraShake = CameraShake;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -319,9 +334,6 @@ void UMatineeCameraShakeFunctionLibrary::Conv_MatineeCameraShake(class UCameraSh
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (CameraShake != nullptr)
-		*CameraShake = Parms.CameraShake;
 
 }
 
@@ -357,10 +369,10 @@ class UCameraAnimationCameraModifier* UCameraAnimationCameraModifier::GetDefault
 // Function GameplayCameras.CameraAnimationCameraModifier.StopCameraAnimation
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCameraAnimationHandle      Handle                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bImmediate                                                       (Edit, Net, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// struct FCameraAnimationHandle      Handle                                                           (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+// bool                               bImmediate                                                       (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-struct FCameraAnimationHandle UCameraAnimationCameraModifier::StopCameraAnimation(bool* bImmediate)
+bool UCameraAnimationCameraModifier::StopCameraAnimation(const struct FCameraAnimationHandle& Handle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -369,6 +381,7 @@ struct FCameraAnimationHandle UCameraAnimationCameraModifier::StopCameraAnimatio
 
 	Params::UCameraAnimationCameraModifier_StopCameraAnimation_Params Parms{};
 
+	Parms.Handle = Handle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -377,9 +390,6 @@ struct FCameraAnimationHandle UCameraAnimationCameraModifier::StopCameraAnimatio
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (bImmediate != nullptr)
-		*bImmediate = Parms.bImmediate;
 
 	return Parms.ReturnValue;
 
@@ -389,10 +399,10 @@ struct FCameraAnimationHandle UCameraAnimationCameraModifier::StopCameraAnimatio
 // Function GameplayCameras.CameraAnimationCameraModifier.StopAllCameraAnimationsOf
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UCameraAnimationSequence*    Sequence                                                         (BlueprintVisible, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
-// bool                               bImmediate                                                       (Edit, Net, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class UCameraAnimationSequence*    Sequence                                                         (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               bImmediate                                                       (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-void UCameraAnimationCameraModifier::StopAllCameraAnimationsOf(class UCameraAnimationSequence** Sequence, bool* bImmediate)
+bool UCameraAnimationCameraModifier::StopAllCameraAnimationsOf(class UCameraAnimationSequence* Sequence)
 {
 	static class UFunction* Func = nullptr;
 
@@ -401,6 +411,7 @@ void UCameraAnimationCameraModifier::StopAllCameraAnimationsOf(class UCameraAnim
 
 	Params::UCameraAnimationCameraModifier_StopAllCameraAnimationsOf_Params Parms{};
 
+	Parms.Sequence = Sequence;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -410,11 +421,7 @@ void UCameraAnimationCameraModifier::StopAllCameraAnimationsOf(class UCameraAnim
 
 	Func->FunctionFlags = Flgs;
 
-	if (Sequence != nullptr)
-		*Sequence = Parms.Sequence;
-
-	if (bImmediate != nullptr)
-		*bImmediate = Parms.bImmediate;
+	return Parms.ReturnValue;
 
 }
 
@@ -422,9 +429,9 @@ void UCameraAnimationCameraModifier::StopAllCameraAnimationsOf(class UCameraAnim
 // Function GameplayCameras.CameraAnimationCameraModifier.StopAllCameraAnimations
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bImmediate                                                       (Edit, Net, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// bool                               bImmediate                                                       (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-void UCameraAnimationCameraModifier::StopAllCameraAnimations(bool* bImmediate)
+bool UCameraAnimationCameraModifier::StopAllCameraAnimations()
 {
 	static class UFunction* Func = nullptr;
 
@@ -442,8 +449,7 @@ void UCameraAnimationCameraModifier::StopAllCameraAnimations(bool* bImmediate)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bImmediate != nullptr)
-		*bImmediate = Parms.bImmediate;
+	return Parms.ReturnValue;
 
 }
 
@@ -451,11 +457,11 @@ void UCameraAnimationCameraModifier::StopAllCameraAnimations(bool* bImmediate)
 // Function GameplayCameras.CameraAnimationCameraModifier.PlayCameraAnimation
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UCameraAnimationSequence*    Sequence                                                         (BlueprintVisible, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
-// struct FCameraAnimationParams      Params                                                           (BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// struct FCameraAnimationHandle      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UCameraAnimationSequence*    Sequence                                                         (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FCameraAnimationParams      Params                                                           (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// struct FCameraAnimationHandle      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FCameraAnimationParams UCameraAnimationCameraModifier::PlayCameraAnimation(class UCameraAnimationSequence** Sequence, const struct FCameraAnimationHandle& ReturnValue)
+struct FCameraAnimationParams UCameraAnimationCameraModifier::PlayCameraAnimation(class UCameraAnimationSequence* Sequence, const struct FCameraAnimationHandle& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -464,6 +470,7 @@ struct FCameraAnimationParams UCameraAnimationCameraModifier::PlayCameraAnimatio
 
 	Params::UCameraAnimationCameraModifier_PlayCameraAnimation_Params Parms{};
 
+	Parms.Sequence = Sequence;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -473,9 +480,6 @@ struct FCameraAnimationParams UCameraAnimationCameraModifier::PlayCameraAnimatio
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Sequence != nullptr)
-		*Sequence = Parms.Sequence;
 
 	return Parms.ReturnValue;
 
@@ -485,10 +489,10 @@ struct FCameraAnimationParams UCameraAnimationCameraModifier::PlayCameraAnimatio
 // Function GameplayCameras.CameraAnimationCameraModifier.IsCameraAnimationActive
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FCameraAnimationHandle      Handle                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FCameraAnimationHandle      Handle                                                           (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FCameraAnimationHandle UCameraAnimationCameraModifier::IsCameraAnimationActive(bool ReturnValue)
+void UCameraAnimationCameraModifier::IsCameraAnimationActive(const struct FCameraAnimationHandle& Handle, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -497,6 +501,7 @@ struct FCameraAnimationHandle UCameraAnimationCameraModifier::IsCameraAnimationA
 
 	Params::UCameraAnimationCameraModifier_IsCameraAnimationActive_Params Parms{};
 
+	Parms.Handle = Handle;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -507,18 +512,16 @@ struct FCameraAnimationHandle UCameraAnimationCameraModifier::IsCameraAnimationA
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function GameplayCameras.CameraAnimationCameraModifier.GetCameraAnimationCameraModifierFromPlayerController
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// class UCameraAnimationCameraModifier*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class UCameraAnimationCameraModifier*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class APlayerController* UCameraAnimationCameraModifier::GetCameraAnimationCameraModifierFromPlayerController(class UCameraAnimationCameraModifier* ReturnValue)
+void UCameraAnimationCameraModifier::GetCameraAnimationCameraModifierFromPlayerController(class APlayerController** PlayerController, class UCameraAnimationCameraModifier* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -537,7 +540,8 @@ class APlayerController* UCameraAnimationCameraModifier::GetCameraAnimationCamer
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PlayerController != nullptr)
+		*PlayerController = Parms.PlayerController;
 
 }
 
@@ -545,11 +549,11 @@ class APlayerController* UCameraAnimationCameraModifier::GetCameraAnimationCamer
 // Function GameplayCameras.CameraAnimationCameraModifier.GetCameraAnimationCameraModifierFromID
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              ControllerId                                                     (Edit, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UCameraAnimationCameraModifier*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// int32                              ControllerId                                                     (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+// class UCameraAnimationCameraModifier*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UCameraAnimationCameraModifier::GetCameraAnimationCameraModifierFromID(class UObject* WorldContextObject, class UCameraAnimationCameraModifier* ReturnValue)
+class UObject* UCameraAnimationCameraModifier::GetCameraAnimationCameraModifierFromID(int32 ControllerId, class UCameraAnimationCameraModifier* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -558,7 +562,7 @@ int32 UCameraAnimationCameraModifier::GetCameraAnimationCameraModifierFromID(cla
 
 	Params::UCameraAnimationCameraModifier_GetCameraAnimationCameraModifierFromID_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
+	Parms.ControllerId = ControllerId;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -577,11 +581,11 @@ int32 UCameraAnimationCameraModifier::GetCameraAnimationCameraModifierFromID(cla
 // Function GameplayCameras.CameraAnimationCameraModifier.GetCameraAnimationCameraModifier
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              PlayerIndex                                                      (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UCameraAnimationCameraModifier*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// int32                              PlayerIndex                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UCameraAnimationCameraModifier*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UCameraAnimationCameraModifier::GetCameraAnimationCameraModifier(class UObject* WorldContextObject, int32* PlayerIndex, class UCameraAnimationCameraModifier* ReturnValue)
+class UObject* UCameraAnimationCameraModifier::GetCameraAnimationCameraModifier(int32* PlayerIndex, class UCameraAnimationCameraModifier* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -590,7 +594,6 @@ void UCameraAnimationCameraModifier::GetCameraAnimationCameraModifier(class UObj
 
 	Params::UCameraAnimationCameraModifier_GetCameraAnimationCameraModifier_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -603,6 +606,8 @@ void UCameraAnimationCameraModifier::GetCameraAnimationCameraModifier(class UObj
 
 	if (PlayerIndex != nullptr)
 		*PlayerIndex = Parms.PlayerIndex;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -694,11 +699,11 @@ class UGameplayCamerasSubsystem* UGameplayCamerasSubsystem::GetDefaultObj()
 // Function GameplayCameras.GameplayCamerasSubsystem.StopCameraAnimation
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// struct FCameraAnimationHandle      Handle                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bImmediate                                                       (Edit, Net, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// struct FCameraAnimationHandle      Handle                                                           (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+// bool                               bImmediate                                                       (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-struct FCameraAnimationHandle UGameplayCamerasSubsystem::StopCameraAnimation(bool* bImmediate)
+bool UGameplayCamerasSubsystem::StopCameraAnimation(class APlayerController** PlayerController, const struct FCameraAnimationHandle& Handle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -707,6 +712,7 @@ struct FCameraAnimationHandle UGameplayCamerasSubsystem::StopCameraAnimation(boo
 
 	Params::UGameplayCamerasSubsystem_StopCameraAnimation_Params Parms{};
 
+	Parms.Handle = Handle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -716,8 +722,8 @@ struct FCameraAnimationHandle UGameplayCamerasSubsystem::StopCameraAnimation(boo
 
 	Func->FunctionFlags = Flgs;
 
-	if (bImmediate != nullptr)
-		*bImmediate = Parms.bImmediate;
+	if (PlayerController != nullptr)
+		*PlayerController = Parms.PlayerController;
 
 	return Parms.ReturnValue;
 
@@ -727,11 +733,11 @@ struct FCameraAnimationHandle UGameplayCamerasSubsystem::StopCameraAnimation(boo
 // Function GameplayCameras.GameplayCamerasSubsystem.StopAllCameraAnimationsOf
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// class UCameraAnimationSequence*    Sequence                                                         (BlueprintVisible, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
-// bool                               bImmediate                                                       (Edit, Net, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class UCameraAnimationSequence*    Sequence                                                         (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               bImmediate                                                       (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-class APlayerController* UGameplayCamerasSubsystem::StopAllCameraAnimationsOf(class UCameraAnimationSequence** Sequence, bool* bImmediate)
+bool UGameplayCamerasSubsystem::StopAllCameraAnimationsOf(class APlayerController** PlayerController, class UCameraAnimationSequence* Sequence)
 {
 	static class UFunction* Func = nullptr;
 
@@ -740,6 +746,7 @@ class APlayerController* UGameplayCamerasSubsystem::StopAllCameraAnimationsOf(cl
 
 	Params::UGameplayCamerasSubsystem_StopAllCameraAnimationsOf_Params Parms{};
 
+	Parms.Sequence = Sequence;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -749,11 +756,8 @@ class APlayerController* UGameplayCamerasSubsystem::StopAllCameraAnimationsOf(cl
 
 	Func->FunctionFlags = Flgs;
 
-	if (Sequence != nullptr)
-		*Sequence = Parms.Sequence;
-
-	if (bImmediate != nullptr)
-		*bImmediate = Parms.bImmediate;
+	if (PlayerController != nullptr)
+		*PlayerController = Parms.PlayerController;
 
 	return Parms.ReturnValue;
 
@@ -763,10 +767,10 @@ class APlayerController* UGameplayCamerasSubsystem::StopAllCameraAnimationsOf(cl
 // Function GameplayCameras.GameplayCamerasSubsystem.StopAllCameraAnimations
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// bool                               bImmediate                                                       (Edit, Net, EditFixedSize, Parm, OutParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// bool                               bImmediate                                                       (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-class APlayerController* UGameplayCamerasSubsystem::StopAllCameraAnimations(bool* bImmediate)
+bool UGameplayCamerasSubsystem::StopAllCameraAnimations(class APlayerController** PlayerController)
 {
 	static class UFunction* Func = nullptr;
 
@@ -784,8 +788,8 @@ class APlayerController* UGameplayCamerasSubsystem::StopAllCameraAnimations(bool
 
 	Func->FunctionFlags = Flgs;
 
-	if (bImmediate != nullptr)
-		*bImmediate = Parms.bImmediate;
+	if (PlayerController != nullptr)
+		*PlayerController = Parms.PlayerController;
 
 	return Parms.ReturnValue;
 
@@ -795,12 +799,12 @@ class APlayerController* UGameplayCamerasSubsystem::StopAllCameraAnimations(bool
 // Function GameplayCameras.GameplayCamerasSubsystem.PlayCameraAnimation
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// class UCameraAnimationSequence*    Sequence                                                         (BlueprintVisible, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
-// struct FCameraAnimationParams      Params                                                           (BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// struct FCameraAnimationHandle      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class UCameraAnimationSequence*    Sequence                                                         (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FCameraAnimationParams      Params                                                           (Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// struct FCameraAnimationHandle      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FCameraAnimationParams UGameplayCamerasSubsystem::PlayCameraAnimation(class UCameraAnimationSequence** Sequence, const struct FCameraAnimationHandle& ReturnValue)
+struct FCameraAnimationParams UGameplayCamerasSubsystem::PlayCameraAnimation(class APlayerController** PlayerController, class UCameraAnimationSequence* Sequence, const struct FCameraAnimationHandle& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -809,6 +813,7 @@ struct FCameraAnimationParams UGameplayCamerasSubsystem::PlayCameraAnimation(cla
 
 	Params::UGameplayCamerasSubsystem_PlayCameraAnimation_Params Parms{};
 
+	Parms.Sequence = Sequence;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -819,8 +824,8 @@ struct FCameraAnimationParams UGameplayCamerasSubsystem::PlayCameraAnimation(cla
 
 	Func->FunctionFlags = Flgs;
 
-	if (Sequence != nullptr)
-		*Sequence = Parms.Sequence;
+	if (PlayerController != nullptr)
+		*PlayerController = Parms.PlayerController;
 
 	return Parms.ReturnValue;
 
@@ -830,11 +835,11 @@ struct FCameraAnimationParams UGameplayCamerasSubsystem::PlayCameraAnimation(cla
 // Function GameplayCameras.GameplayCamerasSubsystem.IsCameraAnimationActive
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// struct FCameraAnimationHandle      Handle                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// struct FCameraAnimationHandle      Handle                                                           (ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FCameraAnimationHandle UGameplayCamerasSubsystem::IsCameraAnimationActive(bool ReturnValue)
+void UGameplayCamerasSubsystem::IsCameraAnimationActive(class APlayerController** PlayerController, const struct FCameraAnimationHandle& Handle, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -843,6 +848,7 @@ struct FCameraAnimationHandle UGameplayCamerasSubsystem::IsCameraAnimationActive
 
 	Params::UGameplayCamerasSubsystem_IsCameraAnimationActive_Params Parms{};
 
+	Parms.Handle = Handle;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -853,7 +859,8 @@ struct FCameraAnimationHandle UGameplayCamerasSubsystem::IsCameraAnimationActive
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PlayerController != nullptr)
+		*PlayerController = Parms.PlayerController;
 
 }
 

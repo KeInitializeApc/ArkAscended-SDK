@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xEB0 - 0xEB0)
+// 0x0 (0xED0 - 0xED0)
 // BlueprintGeneratedClass PrimalItem_WeaponBola.PrimalItem_WeaponBola_C
 class UPrimalItem_WeaponBola_C : public UPrimalItemWeaponGenericAmmolessConsumeSelf_C
 {

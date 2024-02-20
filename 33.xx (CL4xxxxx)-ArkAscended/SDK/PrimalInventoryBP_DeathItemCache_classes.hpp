@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0x670 - 0x670)
+// 0x0 (0x678 - 0x678)
 // BlueprintGeneratedClass PrimalInventoryBP_DeathItemCache.PrimalInventoryBP_DeathItemCache_C
 class UPrimalInventoryBP_DeathItemCache_C : public UPrimalInventoryBP_StorageBox_Base_C
 {

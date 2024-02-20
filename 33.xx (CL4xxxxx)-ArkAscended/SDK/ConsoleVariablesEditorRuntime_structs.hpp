@@ -19,10 +19,10 @@ namespace SDK
 struct FConsoleVariablesEditorAssetSaveData
 {
 public:
-	class FString                                CommandName;                                       // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	class FString                                CommandValueAsString;                              // 0x10(0x10)(BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	enum class ECheckBoxState                    CheckedState;                                      // 0x20(0x1)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, EditConst)
-	uint8                                        Pad_1357[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class FString                                CommandName;                                       // 0x0(0x10)(Edit, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	class FString                                CommandValueAsString;                              // 0x10(0x10)(ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	enum class ECheckBoxState                    CheckedState;                                      // 0x20(0x1)(ConstParm, BlueprintReadOnly, OutParm, DisableEditOnTemplate, EditConst)
+	uint8                                        Pad_BC5[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 }

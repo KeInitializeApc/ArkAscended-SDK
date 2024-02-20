@@ -54,14 +54,14 @@ enum class EWaveTableCurve : uint8
 struct FWaveTableTransform
 {
 public:
-	enum class EWaveTableCurve                   Curve;                                             // 0x0(0x1)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	uint8                                        Pad_2631[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        Scalar;                                            // 0x4(0x4)(Edit, BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	struct FRichCurve                            CurveCustom;                                       // 0x8(0x80)(ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	class UCurveFloat*                           CurveShared;                                       // 0x88(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<float>                                WaveTable;                                         // 0x90(0x10)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
-	float                                        FinalValue;                                        // 0xA0(0x4)(Edit, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2632[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EWaveTableCurve                   Curve;                                             // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, Transient, Config)
+	uint8                                        Pad_17E8[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Scalar;                                            // 0x4(0x4)(Edit, ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FRichCurve                            CurveCustom;                                       // 0x8(0x80)(BlueprintVisible, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UCurveFloat*                           CurveShared;                                       // 0x88(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<float>                                WaveTable;                                         // 0x90(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+	float                                        FinalValue;                                        // 0xA0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_17EA[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xA8 (0xA8 - 0x0)
@@ -77,17 +77,17 @@ public:
 struct FWaveTableSettings
 {
 public:
-	struct FFilePath                             FilePath;                                          // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, Transient, Config, EditConst, SubobjectReference)
-	int32                                        ChannelIndex;                                      // 0x10(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	float                                        Phase;                                             // 0x14(0x4)(BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Top;                                               // 0x18(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance)
-	float                                        Tail;                                              // 0x1C(0x4)(Edit, EditFixedSize, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        FadeIn;                                            // 0x20(0x4)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
-	float                                        FadeOut;                                           // 0x24(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
-	bool                                         bNormalize;                                        // 0x28(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bRemoveOffset;                                     // 0x29(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2633[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<float>                                SourcePCMData;                                     // 0x30(0x10)(Edit, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FFilePath                             FilePath;                                          // 0x0(0x10)(Edit, ConstParm, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+	int32                                        ChannelIndex;                                      // 0x10(0x4)(ConstParm, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	float                                        Phase;                                             // 0x14(0x4)(ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Top;                                               // 0x18(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance)
+	float                                        Tail;                                              // 0x1C(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        FadeIn;                                            // 0x20(0x4)(BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
+	float                                        FadeOut;                                           // 0x24(0x4)(ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
+	bool                                         bNormalize;                                        // 0x28(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bRemoveOffset;                                     // 0x29(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_17EC[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<float>                                SourcePCMData;                                     // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

@@ -14,7 +14,7 @@ namespace SDK
 class UAudioCapture : public UAudioGenerator
 {
 public:
-	uint8                                        Pad_24DE[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1729[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAudioCapture* GetDefaultObj();
@@ -22,7 +22,7 @@ public:
 	void StopCapturingAudio();
 	void StartCapturingAudio();
 	void IsCapturingAudio(bool ReturnValue);
-	void GetAudioCaptureDeviceInfo(struct FAudioCaptureDeviceInfo* OutInfo, bool ReturnValue);
+	struct FAudioCaptureDeviceInfo GetAudioCaptureDeviceInfo(bool ReturnValue);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -46,7 +46,7 @@ public:
 	static class UClass* StaticClass();
 	static class UAudioCaptureBlueprintLibrary* GetDefaultObj();
 
-	void GetAvailableAudioInputDevices(class UObject* WorldContextObject, FDelegateProperty_* OnObtainDevicesEvent);
+	FDelegateProperty_ GetAvailableAudioInputDevices();
 	struct FAudioInputDeviceInfo Conv_AudioInputDeviceInfoToString(const class FString& ReturnValue);
 };
 
@@ -55,8 +55,8 @@ public:
 class UAudioCaptureComponent : public USynthComponent
 {
 public:
-	int32                                        JitterLatencyFrames;                               // 0x7C0(0x4)(Edit, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_24E8[0xBC];                                    // Fixing Size Of Struct > TateDumper <
+	int32                                        JitterLatencyFrames;                               // 0x7C0(0x4)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1735[0xBC];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAudioCaptureComponent* GetDefaultObj();

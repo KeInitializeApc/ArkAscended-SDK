@@ -14,37 +14,37 @@ namespace SDK
 class UBaseDynamicMeshComponent : public UMeshComponent
 {
 public:
-	uint8                                        Pad_855[0x20];                                     // Fixing Size After Last Property  > TateDumper <
-	bool                                         bExplicitShowWireframe;                            // 0x6F8(0x1)(BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_857[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FLinearColor                          WireframeColor;                                    // 0x6FC(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	enum class EDynamicMeshComponentColorOverrideMode ColorMode;                                         // 0x70C(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_859[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FColor                                ConstantColor;                                     // 0x710(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	bool                                         bEnableFlatShading;                                // 0x714(0x1)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	bool                                         bEnableViewModeOverrides;                          // 0x715(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_85C[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	class UMaterialInterface*                    OverrideRenderMaterial;                            // 0x718(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	class UMaterialInterface*                    SecondaryRenderMaterial;                           // 0x720(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_85E[0x1];                                      // Fixing Size After Last Property  > TateDumper <
-	bool                                         bEnableRayTracing;                                 // 0x729(0x1)(BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_85F[0x6];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<class UMaterialInterface*>            BaseMaterials;                                     // 0x730(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A24[0x20];                                     // Fixing Size After Last Property  > TateDumper <
+	bool                                         bExplicitShowWireframe;                            // 0x6F8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A25[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FLinearColor                          WireframeColor;                                    // 0x6FC(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EDynamicMeshComponentColorOverrideMode ColorMode;                                         // 0x70C(0x1)(Edit, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A27[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FColor                                ConstantColor;                                     // 0x710(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bEnableFlatShading;                                // 0x714(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bEnableViewModeOverrides;                          // 0x715(0x1)(ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A2A[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	class UMaterialInterface*                    OverrideRenderMaterial;                            // 0x718(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	class UMaterialInterface*                    SecondaryRenderMaterial;                           // 0x720(0x8)(Edit, ExportObject, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_A2C[0x1];                                      // Fixing Size After Last Property  > TateDumper <
+	bool                                         bEnableRayTracing;                                 // 0x729(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, SubobjectReference)
+	uint8                                        Pad_A2E[0x6];                                      // Fixing Size After Last Property  > TateDumper <
+	TArray<class UMaterialInterface*>            BaseMaterials;                                     // 0x730(0x10)(Edit, OutParm, Transient, Config, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UBaseDynamicMeshComponent* GetDefaultObj();
 
 	bool SetViewModeOverridesEnabled();
 	bool SetShadowsEnabled();
-	class UMaterialInterface* SetSecondaryRenderMaterial();
-	bool SetSecondaryBuffersVisibility();
-	class UMaterialInterface* SetOverrideRenderMaterial();
+	void SetSecondaryRenderMaterial(class UMaterialInterface* Material);
+	void SetSecondaryBuffersVisibility(bool bSetVisible);
+	void SetOverrideRenderMaterial(class UMaterialInterface* Material);
 	bool SetEnableWireframeRenderPass();
-	bool SetEnableRaytracing();
+	void SetEnableRaytracing(bool bSetEnabled);
 	bool SetEnableFlatShading();
 	struct FColor SetConstantOverrideColor();
-	enum class EDynamicMeshComponentColorOverrideMode SetColorOverrideMode();
-	void HasOverrideRenderMaterial(int32 K, bool ReturnValue);
+	void SetColorOverrideMode(enum class EDynamicMeshComponentColorOverrideMode NewMode);
+	int32 HasOverrideRenderMaterial(bool ReturnValue);
 	void GetViewModeOverridesEnabled(bool ReturnValue);
 	void GetShadowsEnabled(bool ReturnValue);
 	void GetSecondaryRenderMaterial(class UMaterialInterface* ReturnValue);
@@ -98,34 +98,34 @@ public:
 class UDynamicMeshComponent : public UBaseDynamicMeshComponent
 {
 public:
-	uint8                                        Pad_8C9[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class UDynamicMesh*                          MeshObject;                                        // 0x748(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_8CA[0xF0];                                     // Fixing Size After Last Property  > TateDumper <
-	enum class EDynamicMeshComponentTangentsMode TangentsType;                                      // 0x840(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_8CC[0x3F];                                     // Fixing Size After Last Property  > TateDumper <
-	enum class ECollisionTraceFlag               CollisionType;                                     // 0x880(0x1)(Edit, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	bool                                         bUseAsyncCooking;                                  // 0x881(0x1)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bEnableComplexCollision;                           // 0x882(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bDeferCollisionUpdates;                            // 0x883(0x1)(Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_8CF[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UBodySetup*                            MeshBodySetup;                                     // 0x888(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_8D0[0x38];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FKAggregateGeom                       AggGeom;                                           // 0x8C8(0x68)(Edit, BlueprintVisible, Parm, OutParm, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<class UBodySetup*>                    AsyncBodySetupQueue;                               // 0x930(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_8D2[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_AC6[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	class UDynamicMesh*                          MeshObject;                                        // 0x748(0x8)(Net, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_AC8[0xF0];                                     // Fixing Size After Last Property  > TateDumper <
+	enum class EDynamicMeshComponentTangentsMode TangentsType;                                      // 0x840(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_ACA[0x3F];                                     // Fixing Size After Last Property  > TateDumper <
+	enum class ECollisionTraceFlag               CollisionType;                                     // 0x880(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseAsyncCooking;                                  // 0x881(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	bool                                         bEnableComplexCollision;                           // 0x882(0x1)(ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bDeferCollisionUpdates;                            // 0x883(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_ACE[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class UBodySetup*                            MeshBodySetup;                                     // 0x888(0x8)(ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_ACF[0x38];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FKAggregateGeom                       AggGeom;                                           // 0x8C8(0x68)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class UBodySetup*>                    AsyncBodySetupQueue;                               // 0x930(0x10)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_AD0[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UDynamicMeshComponent* GetDefaultObj();
 
-	bool ValidateMaterialSlots(bool* bDeleteExtraSlots, bool ReturnValue);
-	void UpdateCollision(bool* bOnlyIfPending);
-	void SetTangentsType(enum class EDynamicMeshComponentTangentsMode* NewTangentsType);
-	class UDynamicMesh* SetDynamicMesh();
-	bool SetDeferredCollisionUpdatesEnabled(bool* bImmediateUpdate);
-	bool SetComplexAsSimpleCollisionEnabled(bool* bImmediateUpdate);
+	bool ValidateMaterialSlots(bool ReturnValue);
+	bool UpdateCollision();
+	enum class EDynamicMeshComponentTangentsMode SetTangentsType();
+	void SetDynamicMesh(class UDynamicMesh** NewMesh);
+	bool SetDeferredCollisionUpdatesEnabled();
+	bool SetComplexAsSimpleCollisionEnabled();
 	void GetTangentsType(enum class EDynamicMeshComponentTangentsMode ReturnValue);
 	void EnableComplexAsSimpleCollision();
-	void ConfigureMaterialSet(TArray<class UMaterialInterface*>* NewMaterialSet);
+	TArray<class UMaterialInterface*> ConfigureMaterialSet();
 };
 
 // 0x18 (0x4E0 - 0x4C8)
@@ -133,15 +133,15 @@ public:
 class ADynamicMeshActor : public AActor
 {
 public:
-	class UDynamicMeshComponent*                 DynamicMeshComponent;                              // 0x4C8(0x8)(Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-	bool                                         bEnableComputeMeshPool;                            // 0x4D0(0x1)(Edit, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_8FB[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class UDynamicMeshPool*                      DynamicMeshPool;                                   // 0x4D8(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class UDynamicMeshComponent*                 DynamicMeshComponent;                              // 0x4C8(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, SubobjectReference)
+	bool                                         bEnableComputeMeshPool;                            // 0x4D0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_AF0[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class UDynamicMeshPool*                      DynamicMeshPool;                                   // 0x4D8(0x8)(Net, ReturnParm, Transient, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ADynamicMeshActor* GetDefaultObj();
 
-	void ReleaseComputeMesh(class UDynamicMesh** Mesh, bool ReturnValue);
+	void ReleaseComputeMesh(class UDynamicMesh* Mesh, bool ReturnValue);
 	void ReleaseAllComputeMeshes();
 	void GetDynamicMeshComponent(class UDynamicMeshComponent* ReturnValue);
 	void GetComputeMeshPool(class UDynamicMeshPool* ReturnValue);
@@ -165,12 +165,12 @@ public:
 class UDynamicMesh : public UObject
 {
 public:
-	uint8                                        Pad_91E[0x48];                                     // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            MeshModifiedBPEvent;                               // 0x70(0x10)(Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_91F[0x20];                                     // Fixing Size After Last Property  > TateDumper <
-	class UDynamicMeshGenerator*                 MeshGenerator;                                     // 0xA0(0x8)(ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bEnableMeshGenerator;                              // 0xA8(0x1)(Edit, BlueprintVisible, ExportObject, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_920[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_B00[0x48];                                     // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            MeshModifiedBPEvent;                               // 0x70(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_B01[0x20];                                     // Fixing Size After Last Property  > TateDumper <
+	class UDynamicMeshGenerator*                 MeshGenerator;                                     // 0xA0(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bEnableMeshGenerator;                              // 0xA8(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_B02[0x7];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UDynamicMesh* GetDefaultObj();
@@ -186,13 +186,13 @@ public:
 class UDynamicMeshPool : public UObject
 {
 public:
-	TArray<class UDynamicMesh*>                  CachedMeshes;                                      // 0x28(0x10)(BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	TArray<class UDynamicMesh*>                  AllCreatedMeshes;                                  // 0x38(0x10)(Edit, ConstParm, ExportObject, Net, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class UDynamicMesh*>                  CachedMeshes;                                      // 0x28(0x10)(Edit, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	TArray<class UDynamicMesh*>                  AllCreatedMeshes;                                  // 0x38(0x10)(BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UDynamicMeshPool* GetDefaultObj();
 
-	void ReturnMesh(class UDynamicMesh** Mesh);
+	void ReturnMesh(class UDynamicMesh* Mesh);
 	void ReturnAllMeshes();
 	void RequestMesh(class UDynamicMesh* ReturnValue);
 	void FreeAllMeshes();

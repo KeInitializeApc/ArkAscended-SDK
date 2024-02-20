@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0x11A8 - 0x11A8)
+// 0x0 (0x11D0 - 0x11D0)
 // BlueprintGeneratedClass WeapGlowStick_Base.WeapGlowStick_Base_C
 class AWeapGlowStick_Base_C : public APrimalWeaponGrenade
 {

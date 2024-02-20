@@ -83,8 +83,8 @@ enum class EEOSUserInterface_SwitchToCrossPlatformAccount_Choice : uint8
 struct FEOSUserInterface_CandidateEOSAccount
 {
 public:
-	class FText                                  DisplayName;                                       // 0x0(0x18)(BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient)
-	uint8                                        Pad_37B[0xB8];                                     // Fixing Size Of Struct > TateDumper <
+	class FText                                  DisplayName;                                       // 0x0(0x18)(Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient)
+	uint8                                        Pad_9BC[0xB8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

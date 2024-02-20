@@ -43,12 +43,12 @@ class UCheatMenuFolderButton_C* UCheatMenuFolderButton_C::GetDefaultObj()
 // Function CheatMenuFolderButton.CheatMenuFolderButton_C.SetFolder
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        FolderName                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-// int32                              ScreenNumber                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// class UTexture2D*                  Image                                                            (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance)
-// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// class FText                        FolderName                                                       (EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ScreenNumber                                                     (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// class UTexture2D*                  Image                                                            (Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
+// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-class FString UCheatMenuFolderButton_C::SetFolder(class FText FolderName, class UTexture2D** Image)
+class UTexture2D* UCheatMenuFolderButton_C::SetFolder(class FText FolderName, int32* ScreenNumber, class FString* CallFunc_Conv_TextToString_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -61,8 +61,11 @@ class FString UCheatMenuFolderButton_C::SetFolder(class FText FolderName, class 
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Image != nullptr)
-		*Image = Parms.Image;
+	if (ScreenNumber != nullptr)
+		*ScreenNumber = Parms.ScreenNumber;
+
+	if (CallFunc_Conv_TextToString_ReturnValue != nullptr)
+		*CallFunc_Conv_TextToString_ReturnValue = std::move(Parms.CallFunc_Conv_TextToString_ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -90,9 +93,9 @@ void UCheatMenuFolderButton_C::BndEvt__SpawnButton_K2Node_ComponentBoundEvent_16
 // Function CheatMenuFolderButton.CheatMenuFolderButton_C.ExecuteUbergraph_CheatMenuFolderButton
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
 
-void UCheatMenuFolderButton_C::ExecuteUbergraph_CheatMenuFolderButton(int32 EntryPoint)
+int32 UCheatMenuFolderButton_C::ExecuteUbergraph_CheatMenuFolderButton()
 {
 	static class UFunction* Func = nullptr;
 
@@ -101,9 +104,10 @@ void UCheatMenuFolderButton_C::ExecuteUbergraph_CheatMenuFolderButton(int32 Entr
 
 	Params::UCheatMenuFolderButton_C_ExecuteUbergraph_CheatMenuFolderButton_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 

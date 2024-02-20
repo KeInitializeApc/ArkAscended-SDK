@@ -14,10 +14,10 @@ namespace SDK
 class APreviewScene_Painting_C : public APreviewScene_Base_C
 {
 public:
-	class USkyLightComponent*                    SkyLight;                                          // 0x610(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, EditConst)
-	class UDirectionalLightComponent*            DirectionalLight1;                                 // 0x618(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-	class UDirectionalLightComponent*            DirectionalLight;                                  // 0x620(0x8)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference)
-	class USceneComponent*                       DirectionalLightsParent;                           // 0x628(0x8)(Edit, ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class USkyLightComponent*                    SkyLight;                                          // 0x610(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst)
+	class UDirectionalLightComponent*            DirectionalLight1;                                 // 0x618(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+	class UDirectionalLightComponent*            DirectionalLight;                                  // 0x620(0x8)(Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference)
+	class USceneComponent*                       DirectionalLightsParent;                           // 0x628(0x8)(Edit, ConstParm, BlueprintVisible, Config, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class APreviewScene_Painting_C* GetDefaultObj();

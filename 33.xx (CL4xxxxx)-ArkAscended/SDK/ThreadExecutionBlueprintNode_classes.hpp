@@ -25,7 +25,7 @@ public:
 class UMutex : public UObject
 {
 public:
-	uint8                                        Pad_1472[0x28];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_48E[0x28];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMutex* GetDefaultObj();
@@ -40,7 +40,7 @@ public:
 class UThreadAsyncExecBase : public UBlueprintAsyncActionBase
 {
 public:
-	uint8                                        Pad_147D[0x20];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_490[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UThreadAsyncExecBase* GetDefaultObj();
@@ -52,13 +52,13 @@ public:
 class UThreadAsyncExecLoop : public UThreadAsyncExecBase
 {
 public:
-	FMulticastInlineDelegateProperty_            OnCompleted;                                       // 0x50(0x10)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_148F[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            OnCompleted;                                       // 0x50(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	uint8                                        Pad_497[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UThreadAsyncExecLoop* GetDefaultObj();
 
-	void CreateThreadExecLoop(float Interval, bool* bLongTask, class UThreadAsyncExecLoop* ReturnValue);
+	bool CreateThreadExecLoop(float Interval, class UThreadAsyncExecLoop* ReturnValue);
 };
 
 // 0x10 (0x40 - 0x30)
@@ -66,7 +66,7 @@ public:
 class USyncExecOnce : public UBlueprintAsyncActionBase
 {
 public:
-	FMulticastInlineDelegateProperty_            OnExecution;                                       // 0x30(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnExecution;                                       // 0x30(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class USyncExecOnce* GetDefaultObj();
@@ -83,17 +83,17 @@ public:
 	static class UClass* StaticClass();
 	static class UThreadAsyncExecLibrary* GetDefaultObj();
 
-	void ThreadWait(float Seconds);
-	bool SetTickableWhenPaused(class UThreadAsyncExecTick** TickHandle);
-	bool SetTickable(class UThreadAsyncExecTick** TickHandle);
-	void IsTickableWhenPaused(class UThreadAsyncExecTick** TickHandle, bool ReturnValue);
-	void IsTickable(class UThreadAsyncExecTick** TickHandle, bool ReturnValue);
+	float ThreadWait();
+	class UThreadAsyncExecTick* SetTickableWhenPaused(bool* NewValue);
+	class UThreadAsyncExecTick* SetTickable(bool* NewValue);
+	class UThreadAsyncExecTick* IsTickableWhenPaused(bool ReturnValue);
+	class UThreadAsyncExecTick* IsTickable(bool ReturnValue);
 	void IsGameThread(bool ReturnValue);
 	void GetCurrentThreadName(const class FString& ReturnValue);
 	void GetCurrentThreadID(int32 ReturnValue);
-	void ExecIsGameThread(bool* bIsInGameThread);
-	void BreakNextTick(class UThreadAsyncExecTick** TickHandle);
-	void BreakNextLoop(class UThreadAsyncExecLoop** LoopHandle);
+	bool ExecIsGameThread();
+	class UThreadAsyncExecTick* BreakNextTick();
+	class UThreadAsyncExecLoop* BreakNextLoop();
 };
 
 // 0x28 (0x78 - 0x50)
@@ -101,14 +101,14 @@ public:
 class UThreadAsyncExecOnce : public UThreadAsyncExecBase
 {
 public:
-	uint8                                        Pad_14D3[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            OnExecution;                                       // 0x58(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnCompleted;                                       // 0x68(0x10)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_4C1[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            OnExecution;                                       // 0x58(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnCompleted;                                       // 0x68(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UThreadAsyncExecOnce* GetDefaultObj();
 
-	void CreateThreadExecOnce(bool* bLongTask, class UThreadAsyncExecOnce* ReturnValue);
+	bool CreateThreadExecOnce(class UThreadAsyncExecOnce* ReturnValue);
 };
 
 // 0x38 (0x88 - 0x50)
@@ -116,15 +116,15 @@ public:
 class UThreadAsyncExecTick : public UThreadAsyncExecBase
 {
 public:
-	FMulticastInlineDelegateProperty_            OnTick;                                            // 0x50(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst)
-	FMulticastInlineDelegateProperty_            OnCompleted;                                       // 0x60(0x10)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_14E7[0x18];                                    // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            OnTick;                                            // 0x50(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, EditConst)
+	FMulticastInlineDelegateProperty_            OnCompleted;                                       // 0x60(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	uint8                                        Pad_4C7[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UThreadAsyncExecTick* GetDefaultObj();
 
-	float OnTick__DelegateSignature(class UThreadAsyncExecTick** TickHandle);
-	void CreateThreadExecTick(bool* bLongTask, class UThreadAsyncExecTick* ReturnValue);
+	class UThreadAsyncExecTick* OnTick__DelegateSignature();
+	bool CreateThreadExecTick(class UThreadAsyncExecTick* ReturnValue);
 	void BreakNextTick();
 };
 
@@ -145,7 +145,7 @@ public:
 class UThreadNodeSubsystem : public UEngineSubsystem
 {
 public:
-	uint8                                        Pad_1503[0x78];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_4D7[0x78];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UThreadNodeSubsystem* GetDefaultObj();
@@ -155,7 +155,7 @@ public:
 	void GetAllThreadExecNodes(TSet<class UThreadAsyncExecBase*> ReturnValue);
 	void GetAllThreadExecLoops(TSet<class UThreadAsyncExecLoop*> ReturnValue);
 	void GetAllMutexes(TSet<class UMutex*> ReturnValue);
-	class UMutex* DestoryMutex();
+	void DestoryMutex(class UMutex* Mutex);
 	void CreateNewMutex(class UMutex* ReturnValue);
 };
 

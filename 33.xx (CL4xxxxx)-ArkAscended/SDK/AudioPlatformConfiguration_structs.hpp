@@ -29,11 +29,11 @@ enum class ESoundwaveSampleRateSettings : uint8
 struct FPlatformRuntimeAudioCompressionOverrides
 {
 public:
-	bool                                         bOverrideCompressionTimes;                         // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_33CF[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        DurationThreshold;                                 // 0x4(0x4)(Edit, BlueprintVisible, ExportObject, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        MaxNumRandomBranches;                              // 0x8(0x4)(ConstParm, Net, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        SoundCueQualityIndex;                              // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bOverrideCompressionTimes;                         // 0x0(0x1)(BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_241F[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        DurationThreshold;                                 // 0x4(0x4)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        MaxNumRandomBranches;                              // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        SoundCueQualityIndex;                              // 0xC(0x4)(BlueprintVisible, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

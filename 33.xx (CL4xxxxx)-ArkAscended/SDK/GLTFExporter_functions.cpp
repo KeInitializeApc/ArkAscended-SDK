@@ -96,13 +96,13 @@ class UGLTFExporter* UGLTFExporter::GetDefaultObj()
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UObject*                     Object                                                           (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// class FString                      FilePath                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, Transient, Config, EditConst, SubobjectReference)
-// class UGLTFExportOptions*          Options                                                          (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// TSet<class AActor*>                SelectedActors                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FGLTFExportMessages         OutMessages                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      FilePath                                                         (Edit, ConstParm, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// class UGLTFExportOptions*          Options                                                          (Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// TSet<class AActor*>                SelectedActors                                                   (Edit, ConstParm, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FGLTFExportMessages         OutMessages                                                      (BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FGLTFExportMessages UGLTFExporter::ExportToGLTF(class UObject** Object, const class FString& FilePath, bool ReturnValue)
+class UGLTFExportOptions* UGLTFExporter::ExportToGLTF(class UObject** Object, TSet<class AActor*> SelectedActors, const struct FGLTFExportMessages& OutMessages, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -111,7 +111,8 @@ struct FGLTFExportMessages UGLTFExporter::ExportToGLTF(class UObject** Object, c
 
 	Params::UGLTFExporter_ExportToGLTF_Params Parms{};
 
-	Parms.FilePath = FilePath;
+	Parms.SelectedActors = SelectedActors;
+	Parms.OutMessages = OutMessages;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;

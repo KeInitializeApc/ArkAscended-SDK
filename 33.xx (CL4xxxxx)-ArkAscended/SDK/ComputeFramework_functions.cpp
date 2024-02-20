@@ -231,8 +231,8 @@ void UComputeGraphComponent::DestroyDataProviders()
 // Function ComputeFramework.ComputeGraphComponent.CreateDataProviders
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InBindingIndex                                                   (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UObject*                     InBindingObject                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              InBindingIndex                                                   (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// class UObject*                     InBindingObject                                                  (Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
 
 void UComputeGraphComponent::CreateDataProviders(int32* InBindingIndex, class UObject** InBindingObject)
 {

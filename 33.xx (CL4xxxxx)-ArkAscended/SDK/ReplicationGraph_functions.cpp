@@ -484,9 +484,9 @@ void AReplicationGraphDebugActor::ServerStartDebugging()
 // (Net, NetReliable, Native, Event, Public, NetServer)
 // Parameters:
 // class UClass*                      Class                                                            (ConstParm, BlueprintVisible, ExportObject, ZeroConstructor)
-// int32                              PeriodFrame                                                      (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              PeriodFrame                                                      (Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
-void AReplicationGraphDebugActor::ServerSetPeriodFrameForClass(class UClass* Class, int32* PeriodFrame)
+int32 AReplicationGraphDebugActor::ServerSetPeriodFrameForClass(class UClass* Class)
 {
 	static class UFunction* Func = nullptr;
 
@@ -505,8 +505,7 @@ void AReplicationGraphDebugActor::ServerSetPeriodFrameForClass(class UClass* Cla
 
 	Func->FunctionFlags = Flgs;
 
-	if (PeriodFrame != nullptr)
-		*PeriodFrame = Parms.PeriodFrame;
+	return Parms.ReturnValue;
 
 }
 
@@ -515,9 +514,9 @@ void AReplicationGraphDebugActor::ServerSetPeriodFrameForClass(class UClass* Cla
 // (Net, NetReliable, Native, Event, Public, NetServer)
 // Parameters:
 // class UClass*                      Class                                                            (ConstParm, BlueprintVisible, ExportObject, ZeroConstructor)
-// float                              CullDistance                                                     (ConstParm, ExportObject, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              CullDistance                                                     (Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void AReplicationGraphDebugActor::ServerSetCullDistanceForClass(class UClass* Class, float* CullDistance)
+float AReplicationGraphDebugActor::ServerSetCullDistanceForClass(class UClass* Class)
 {
 	static class UFunction* Func = nullptr;
 
@@ -536,8 +535,7 @@ void AReplicationGraphDebugActor::ServerSetCullDistanceForClass(class UClass* Cl
 
 	Func->FunctionFlags = Flgs;
 
-	if (CullDistance != nullptr)
-		*CullDistance = Parms.CullDistance;
+	return Parms.ReturnValue;
 
 }
 
@@ -598,9 +596,9 @@ void AReplicationGraphDebugActor::ServerPrintCullDistances()
 // Function ReplicationGraph.ReplicationGraphDebugActor.ServerPrintAllActorInfo
 // (Net, NetReliable, Native, Event, Public, NetServer)
 // Parameters:
-// class FString                      Str                                                              (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      Str                                                              (BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
-void AReplicationGraphDebugActor::ServerPrintAllActorInfo(class FString* Str)
+class FString AReplicationGraphDebugActor::ServerPrintAllActorInfo()
 {
 	static class UFunction* Func = nullptr;
 
@@ -618,8 +616,7 @@ void AReplicationGraphDebugActor::ServerPrintAllActorInfo(class FString* Str)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Str != nullptr)
-		*Str = std::move(Parms.Str);
+	return Parms.ReturnValue;
 
 }
 
@@ -651,11 +648,11 @@ void AReplicationGraphDebugActor::ServerCellInfo()
 // Function ReplicationGraph.ReplicationGraphDebugActor.ClientCellInfo
 // (Net, NetReliable, Native, Event, Public, HasDefaults, NetClient)
 // Parameters:
-// struct FVector                     CellLocation                                                     (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector                     CellExtent                                                       (ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// TArray<class AActor*>              Actors                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector                     CellLocation                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// struct FVector                     CellExtent                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// TArray<class AActor*>              Actors                                                           (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void AReplicationGraphDebugActor::ClientCellInfo(struct FVector* CellLocation, struct FVector* CellExtent, const TArray<class AActor*>& Actors)
+TArray<class AActor*> AReplicationGraphDebugActor::ClientCellInfo()
 {
 	static class UFunction* Func = nullptr;
 
@@ -664,7 +661,6 @@ void AReplicationGraphDebugActor::ClientCellInfo(struct FVector* CellLocation, s
 
 	Params::AReplicationGraphDebugActor_ClientCellInfo_Params Parms{};
 
-	Parms.Actors = Actors;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -674,11 +670,7 @@ void AReplicationGraphDebugActor::ClientCellInfo(struct FVector* CellLocation, s
 
 	Func->FunctionFlags = Flgs;
 
-	if (CellLocation != nullptr)
-		*CellLocation = std::move(Parms.CellLocation);
-
-	if (CellExtent != nullptr)
-		*CellExtent = std::move(Parms.CellExtent);
+	return Parms.ReturnValue;
 
 }
 

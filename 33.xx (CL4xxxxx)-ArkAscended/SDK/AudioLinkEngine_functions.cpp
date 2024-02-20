@@ -67,7 +67,7 @@ void IAudioLinkBlueprintInterface::StopLink()
 // Function AudioLinkEngine.AudioLinkBlueprintInterface.SetLinkSound
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundBase*                  NewSound                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class USoundBase*                  NewSound                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 void IAudioLinkBlueprintInterface::SetLinkSound(class USoundBase* NewSound)
 {
@@ -94,7 +94,7 @@ void IAudioLinkBlueprintInterface::SetLinkSound(class USoundBase* NewSound)
 // Function AudioLinkEngine.AudioLinkBlueprintInterface.PlayLink
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// float                              StartTime                                                        (BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              StartTime                                                        (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
 float IAudioLinkBlueprintInterface::PlayLink()
 {
@@ -122,7 +122,7 @@ float IAudioLinkBlueprintInterface::PlayLink()
 // Function AudioLinkEngine.AudioLinkBlueprintInterface.IsLinkPlaying
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void IAudioLinkBlueprintInterface::IsLinkPlaying(bool ReturnValue)
 {

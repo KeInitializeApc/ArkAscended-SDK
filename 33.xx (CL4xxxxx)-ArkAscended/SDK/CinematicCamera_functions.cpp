@@ -71,7 +71,7 @@ class ACameraRig_Rail* ACameraRig_Rail::GetDefaultObj()
 // Function CinematicCamera.CameraRig_Rail.GetRailSplineComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class USplineComponent*            ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USplineComponent*            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ACameraRig_Rail::GetRailSplineComponent(class USplineComponent* ReturnValue)
 {
@@ -126,7 +126,7 @@ class ACineCameraActor* ACineCameraActor::GetDefaultObj()
 // Function CinematicCamera.CineCameraActor.GetCineCameraComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UCineCameraComponent*        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UCineCameraComponent*        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ACineCameraActor::GetCineCameraComponent(class UCineCameraComponent* ReturnValue)
 {
@@ -181,9 +181,9 @@ class UCineCameraComponent* UCineCameraComponent::GetDefaultObj()
 // Function CinematicCamera.CineCameraComponent.SetLensSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCameraLensSettings         NewLensSettings                                                  (Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FCameraLensSettings         NewLensSettings                                                  (Edit, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-struct FCameraLensSettings UCineCameraComponent::SetLensSettings()
+void UCineCameraComponent::SetLensSettings(const struct FCameraLensSettings& NewLensSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -192,6 +192,7 @@ struct FCameraLensSettings UCineCameraComponent::SetLensSettings()
 
 	Params::UCineCameraComponent_SetLensSettings_Params Parms{};
 
+	Parms.NewLensSettings = NewLensSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -201,17 +202,15 @@ struct FCameraLensSettings UCineCameraComponent::SetLensSettings()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function CinematicCamera.CineCameraComponent.SetLensPresetByName
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InPresetName                                                     (Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      InPresetName                                                     (Edit, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-class FString UCineCameraComponent::SetLensPresetByName()
+void UCineCameraComponent::SetLensPresetByName(const class FString& InPresetName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -220,6 +219,7 @@ class FString UCineCameraComponent::SetLensPresetByName()
 
 	Params::UCineCameraComponent_SetLensPresetByName_Params Parms{};
 
+	Parms.InPresetName = InPresetName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -229,17 +229,15 @@ class FString UCineCameraComponent::SetLensPresetByName()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function CinematicCamera.CineCameraComponent.SetFocusSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCameraFocusSettings        NewFocusSettings                                                 (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FCameraFocusSettings        NewFocusSettings                                                 (ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-struct FCameraFocusSettings UCineCameraComponent::SetFocusSettings()
+void UCineCameraComponent::SetFocusSettings(const struct FCameraFocusSettings& NewFocusSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -248,6 +246,7 @@ struct FCameraFocusSettings UCineCameraComponent::SetFocusSettings()
 
 	Params::UCineCameraComponent_SetFocusSettings_Params Parms{};
 
+	Parms.NewFocusSettings = NewFocusSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -257,17 +256,15 @@ struct FCameraFocusSettings UCineCameraComponent::SetFocusSettings()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function CinematicCamera.CineCameraComponent.SetFilmbackPresetByName
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InPresetName                                                     (Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      InPresetName                                                     (Edit, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-class FString UCineCameraComponent::SetFilmbackPresetByName()
+void UCineCameraComponent::SetFilmbackPresetByName(const class FString& InPresetName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -276,6 +273,7 @@ class FString UCineCameraComponent::SetFilmbackPresetByName()
 
 	Params::UCineCameraComponent_SetFilmbackPresetByName_Params Parms{};
 
+	Parms.InPresetName = InPresetName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -285,17 +283,15 @@ class FString UCineCameraComponent::SetFilmbackPresetByName()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function CinematicCamera.CineCameraComponent.SetFilmback
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCameraFilmbackSettings     NewFilmback                                                      (Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FCameraFilmbackSettings     NewFilmback                                                      (Edit, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-struct FCameraFilmbackSettings UCineCameraComponent::SetFilmback()
+void UCineCameraComponent::SetFilmback(const struct FCameraFilmbackSettings& NewFilmback)
 {
 	static class UFunction* Func = nullptr;
 
@@ -304,6 +300,7 @@ struct FCameraFilmbackSettings UCineCameraComponent::SetFilmback()
 
 	Params::UCineCameraComponent_SetFilmback_Params Parms{};
 
+	Parms.NewFilmback = NewFilmback;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -313,17 +310,15 @@ struct FCameraFilmbackSettings UCineCameraComponent::SetFilmback()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function CinematicCamera.CineCameraComponent.SetCustomNearClippingPlane
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewCustomNearClippingPlane                                       (Edit, ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              NewCustomNearClippingPlane                                       (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-float UCineCameraComponent::SetCustomNearClippingPlane()
+void UCineCameraComponent::SetCustomNearClippingPlane(float NewCustomNearClippingPlane)
 {
 	static class UFunction* Func = nullptr;
 
@@ -332,6 +327,7 @@ float UCineCameraComponent::SetCustomNearClippingPlane()
 
 	Params::UCineCameraComponent_SetCustomNearClippingPlane_Params Parms{};
 
+	Parms.NewCustomNearClippingPlane = NewCustomNearClippingPlane;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -341,17 +337,15 @@ float UCineCameraComponent::SetCustomNearClippingPlane()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function CinematicCamera.CineCameraComponent.SetCurrentFocalLength
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InFocalLength                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InFocalLength                                                    (Edit, ConstParm, ExportObject, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-float UCineCameraComponent::SetCurrentFocalLength()
+void UCineCameraComponent::SetCurrentFocalLength(float InFocalLength)
 {
 	static class UFunction* Func = nullptr;
 
@@ -360,6 +354,7 @@ float UCineCameraComponent::SetCurrentFocalLength()
 
 	Params::UCineCameraComponent_SetCurrentFocalLength_Params Parms{};
 
+	Parms.InFocalLength = InFocalLength;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -369,17 +364,15 @@ float UCineCameraComponent::SetCurrentFocalLength()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function CinematicCamera.CineCameraComponent.SetCurrentAperture
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewCurrentAperture                                               (Edit, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              NewCurrentAperture                                               (Edit, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-float UCineCameraComponent::SetCurrentAperture()
+void UCineCameraComponent::SetCurrentAperture(float NewCurrentAperture)
 {
 	static class UFunction* Func = nullptr;
 
@@ -388,6 +381,7 @@ float UCineCameraComponent::SetCurrentAperture()
 
 	Params::UCineCameraComponent_SetCurrentAperture_Params Parms{};
 
+	Parms.NewCurrentAperture = NewCurrentAperture;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -397,17 +391,15 @@ float UCineCameraComponent::SetCurrentAperture()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function CinematicCamera.CineCameraComponent.SetCropSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FPlateCropSettings          NewCropSettings                                                  (ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FPlateCropSettings          NewCropSettings                                                  (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-struct FPlateCropSettings UCineCameraComponent::SetCropSettings()
+void UCineCameraComponent::SetCropSettings(const struct FPlateCropSettings& NewCropSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -416,6 +408,7 @@ struct FPlateCropSettings UCineCameraComponent::SetCropSettings()
 
 	Params::UCineCameraComponent_SetCropSettings_Params Parms{};
 
+	Parms.NewCropSettings = NewCropSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -425,17 +418,15 @@ struct FPlateCropSettings UCineCameraComponent::SetCropSettings()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function CinematicCamera.CineCameraComponent.SetCropPresetByName
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InPresetName                                                     (Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      InPresetName                                                     (Edit, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-class FString UCineCameraComponent::SetCropPresetByName()
+void UCineCameraComponent::SetCropPresetByName(const class FString& InPresetName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -444,6 +435,7 @@ class FString UCineCameraComponent::SetCropPresetByName()
 
 	Params::UCineCameraComponent_SetCropPresetByName_Params Parms{};
 
+	Parms.InPresetName = InPresetName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -453,15 +445,13 @@ class FString UCineCameraComponent::SetCropPresetByName()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function CinematicCamera.CineCameraComponent.GetVerticalFieldOfView
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UCineCameraComponent::GetVerticalFieldOfView(float ReturnValue)
 {
@@ -488,7 +478,7 @@ void UCineCameraComponent::GetVerticalFieldOfView(float ReturnValue)
 // Function CinematicCamera.CineCameraComponent.GetLensPresetsCopy
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TArray<struct FNamedLensPreset>    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FNamedLensPreset>    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UCineCameraComponent::GetLensPresetsCopy(const TArray<struct FNamedLensPreset>& ReturnValue)
 {
@@ -515,7 +505,7 @@ void UCineCameraComponent::GetLensPresetsCopy(const TArray<struct FNamedLensPres
 // Function CinematicCamera.CineCameraComponent.GetLensPresetName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UCineCameraComponent::GetLensPresetName(const class FString& ReturnValue)
 {
@@ -542,7 +532,7 @@ void UCineCameraComponent::GetLensPresetName(const class FString& ReturnValue)
 // Function CinematicCamera.CineCameraComponent.GetHorizontalFieldOfView
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UCineCameraComponent::GetHorizontalFieldOfView(float ReturnValue)
 {
@@ -569,7 +559,7 @@ void UCineCameraComponent::GetHorizontalFieldOfView(float ReturnValue)
 // Function CinematicCamera.CineCameraComponent.GetFilmbackPresetsCopy
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TArray<struct FNamedFilmbackPreset>ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FNamedFilmbackPreset>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UCineCameraComponent::GetFilmbackPresetsCopy(const TArray<struct FNamedFilmbackPreset>& ReturnValue)
 {
@@ -596,7 +586,7 @@ void UCineCameraComponent::GetFilmbackPresetsCopy(const TArray<struct FNamedFilm
 // Function CinematicCamera.CineCameraComponent.GetFilmbackPresetName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UCineCameraComponent::GetFilmbackPresetName(const class FString& ReturnValue)
 {
@@ -623,7 +613,7 @@ void UCineCameraComponent::GetFilmbackPresetName(const class FString& ReturnValu
 // Function CinematicCamera.CineCameraComponent.GetDefaultFilmbackPresetName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UCineCameraComponent::GetDefaultFilmbackPresetName(const class FString& ReturnValue)
 {
@@ -650,7 +640,7 @@ void UCineCameraComponent::GetDefaultFilmbackPresetName(const class FString& Ret
 // Function CinematicCamera.CineCameraComponent.GetCropPresetName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UCineCameraComponent::GetCropPresetName(const class FString& ReturnValue)
 {
@@ -705,7 +695,7 @@ class UCineCameraSettings* UCineCameraSettings::GetDefaultObj()
 // Function CinematicCamera.CineCameraSettings.SetLensPresets
 // (Final, Native, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FNamedLensPreset>    InLensPresets                                                    (Edit, ConstParm, BlueprintVisible, EditFixedSize, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FNamedLensPreset>    InLensPresets                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 void UCineCameraSettings::SetLensPresets(const TArray<struct FNamedLensPreset>& InLensPresets)
 {
@@ -732,7 +722,7 @@ void UCineCameraSettings::SetLensPresets(const TArray<struct FNamedLensPreset>& 
 // Function CinematicCamera.CineCameraSettings.SetFilmbackPresets
 // (Final, Native, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FNamedFilmbackPreset>InFilmbackPresets                                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FNamedFilmbackPreset>InFilmbackPresets                                                (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 void UCineCameraSettings::SetFilmbackPresets(const TArray<struct FNamedFilmbackPreset>& InFilmbackPresets)
 {
@@ -759,7 +749,7 @@ void UCineCameraSettings::SetFilmbackPresets(const TArray<struct FNamedFilmbackP
 // Function CinematicCamera.CineCameraSettings.SetDefaultLensPresetName
 // (Final, Native, Private, BlueprintCallable)
 // Parameters:
-// class FString                      InDefaultLensPresetName                                          (BlueprintReadOnly, Net, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      InDefaultLensPresetName                                          (Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 void UCineCameraSettings::SetDefaultLensPresetName(const class FString& InDefaultLensPresetName)
 {
@@ -786,7 +776,7 @@ void UCineCameraSettings::SetDefaultLensPresetName(const class FString& InDefaul
 // Function CinematicCamera.CineCameraSettings.SetDefaultLensFStop
 // (Final, Native, Private, BlueprintCallable)
 // Parameters:
-// float                              InDefaultLensFStop                                               (ConstParm, BlueprintVisible, Net, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InDefaultLensFStop                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 void UCineCameraSettings::SetDefaultLensFStop(float InDefaultLensFStop)
 {
@@ -813,7 +803,7 @@ void UCineCameraSettings::SetDefaultLensFStop(float InDefaultLensFStop)
 // Function CinematicCamera.CineCameraSettings.SetDefaultLensFocalLength
 // (Final, Native, Private, BlueprintCallable)
 // Parameters:
-// float                              InDefaultLensFocalLength                                         (Edit, ExportObject, BlueprintReadOnly, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InDefaultLensFocalLength                                         (Edit, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 void UCineCameraSettings::SetDefaultLensFocalLength(float InDefaultLensFocalLength)
 {
@@ -840,7 +830,7 @@ void UCineCameraSettings::SetDefaultLensFocalLength(float InDefaultLensFocalLeng
 // Function CinematicCamera.CineCameraSettings.SetDefaultFilmbackPreset
 // (Final, Native, Private, BlueprintCallable)
 // Parameters:
-// class FString                      InDefaultFilmbackPreset                                          (BlueprintVisible, ExportObject, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      InDefaultFilmbackPreset                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 void UCineCameraSettings::SetDefaultFilmbackPreset(const class FString& InDefaultFilmbackPreset)
 {
@@ -867,9 +857,9 @@ void UCineCameraSettings::SetDefaultFilmbackPreset(const class FString& InDefaul
 // Function CinematicCamera.CineCameraSettings.SetDefaultCropPresetName
 // (Final, Native, Private, BlueprintCallable)
 // Parameters:
-// class FString                      InDefaultCropPresetName                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      InDefaultCropPresetName                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-class FString UCineCameraSettings::SetDefaultCropPresetName()
+void UCineCameraSettings::SetDefaultCropPresetName(const class FString& InDefaultCropPresetName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -878,6 +868,7 @@ class FString UCineCameraSettings::SetDefaultCropPresetName()
 
 	Params::UCineCameraSettings_SetDefaultCropPresetName_Params Parms{};
 
+	Parms.InDefaultCropPresetName = InDefaultCropPresetName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -887,17 +878,15 @@ class FString UCineCameraSettings::SetDefaultCropPresetName()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function CinematicCamera.CineCameraSettings.SetCropPresets
 // (Final, Native, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FNamedPlateCropPreset>InCropPresets                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FNamedPlateCropPreset>InCropPresets                                                    (Edit, ConstParm, BlueprintVisible, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-TArray<struct FNamedPlateCropPreset> UCineCameraSettings::SetCropPresets()
+void UCineCameraSettings::SetCropPresets(const TArray<struct FNamedPlateCropPreset>& InCropPresets)
 {
 	static class UFunction* Func = nullptr;
 
@@ -906,6 +895,7 @@ TArray<struct FNamedPlateCropPreset> UCineCameraSettings::SetCropPresets()
 
 	Params::UCineCameraSettings_SetCropPresets_Params Parms{};
 
+	Parms.InCropPresets = InCropPresets;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -915,15 +905,13 @@ TArray<struct FNamedPlateCropPreset> UCineCameraSettings::SetCropPresets()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function CinematicCamera.CineCameraSettings.GetLensPresetNames
 // (Final, Native, Private, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UCineCameraSettings::GetLensPresetNames(const TArray<class FString>& ReturnValue)
 {
@@ -950,11 +938,11 @@ void UCineCameraSettings::GetLensPresetNames(const TArray<class FString>& Return
 // Function CinematicCamera.CineCameraSettings.GetLensPresetByName
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      PresetName                                                       (Edit, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FCameraLensSettings         LensSettings                                                     (Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      PresetName                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FCameraLensSettings         LensSettings                                                     (ConstParm, ExportObject, Net, Parm, ZeroConstructor, Transient, EditConst)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FCameraLensSettings UCineCameraSettings::GetLensPresetByName(const class FString& PresetName, bool ReturnValue)
+void UCineCameraSettings::GetLensPresetByName(class FString* PresetName, const struct FCameraLensSettings& LensSettings, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -963,7 +951,7 @@ struct FCameraLensSettings UCineCameraSettings::GetLensPresetByName(const class 
 
 	Params::UCineCameraSettings_GetLensPresetByName_Params Parms{};
 
-	Parms.PresetName = PresetName;
+	Parms.LensSettings = LensSettings;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -974,7 +962,8 @@ struct FCameraLensSettings UCineCameraSettings::GetLensPresetByName(const class 
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PresetName != nullptr)
+		*PresetName = std::move(Parms.PresetName);
 
 }
 
@@ -982,7 +971,7 @@ struct FCameraLensSettings UCineCameraSettings::GetLensPresetByName(const class 
 // Function CinematicCamera.CineCameraSettings.GetFilmbackPresetNames
 // (Final, Native, Private, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UCineCameraSettings::GetFilmbackPresetNames(const TArray<class FString>& ReturnValue)
 {
@@ -1009,11 +998,11 @@ void UCineCameraSettings::GetFilmbackPresetNames(const TArray<class FString>& Re
 // Function CinematicCamera.CineCameraSettings.GetFilmbackPresetByName
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      PresetName                                                       (Edit, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FCameraFilmbackSettings     FilmbackSettings                                                 (Edit, ExportObject, BlueprintReadOnly, Parm, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      PresetName                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FCameraFilmbackSettings     FilmbackSettings                                                 (ConstParm, BlueprintVisible, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UCineCameraSettings::GetFilmbackPresetByName(const class FString& PresetName, const struct FCameraFilmbackSettings& FilmbackSettings, bool ReturnValue)
+void UCineCameraSettings::GetFilmbackPresetByName(class FString* PresetName, const struct FCameraFilmbackSettings& FilmbackSettings, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1022,7 +1011,6 @@ void UCineCameraSettings::GetFilmbackPresetByName(const class FString& PresetNam
 
 	Params::UCineCameraSettings_GetFilmbackPresetByName_Params Parms{};
 
-	Parms.PresetName = PresetName;
 	Parms.FilmbackSettings = FilmbackSettings;
 	Parms.ReturnValue = ReturnValue;
 
@@ -1034,13 +1022,16 @@ void UCineCameraSettings::GetFilmbackPresetByName(const class FString& PresetNam
 
 	Func->FunctionFlags = Flgs;
 
+	if (PresetName != nullptr)
+		*PresetName = std::move(Parms.PresetName);
+
 }
 
 
 // Function CinematicCamera.CineCameraSettings.GetCropPresetNames
 // (Final, Native, Private, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UCineCameraSettings::GetCropPresetNames(const TArray<class FString>& ReturnValue)
 {
@@ -1067,11 +1058,11 @@ void UCineCameraSettings::GetCropPresetNames(const TArray<class FString>& Return
 // Function CinematicCamera.CineCameraSettings.GetCropPresetByName
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FString                      PresetName                                                       (Edit, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FPlateCropSettings          CropSettings                                                     (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      PresetName                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FPlateCropSettings          CropSettings                                                     (ConstParm, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UCineCameraSettings::GetCropPresetByName(const class FString& PresetName, const struct FPlateCropSettings& CropSettings, bool ReturnValue)
+void UCineCameraSettings::GetCropPresetByName(class FString* PresetName, const struct FPlateCropSettings& CropSettings, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1080,7 +1071,6 @@ void UCineCameraSettings::GetCropPresetByName(const class FString& PresetName, c
 
 	Params::UCineCameraSettings_GetCropPresetByName_Params Parms{};
 
-	Parms.PresetName = PresetName;
 	Parms.CropSettings = CropSettings;
 	Parms.ReturnValue = ReturnValue;
 
@@ -1092,13 +1082,16 @@ void UCineCameraSettings::GetCropPresetByName(const class FString& PresetName, c
 
 	Func->FunctionFlags = Flgs;
 
+	if (PresetName != nullptr)
+		*PresetName = std::move(Parms.PresetName);
+
 }
 
 
 // Function CinematicCamera.CineCameraSettings.GetCineCameraSettings
 // (Final, Native, Static, Private, BlueprintCallable)
 // Parameters:
-// class UCineCameraSettings*         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UCineCameraSettings*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UCineCameraSettings::GetCineCameraSettings(class UCineCameraSettings* ReturnValue)
 {

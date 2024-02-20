@@ -29,9 +29,9 @@ enum class EEXRCompressionFormat : uint8
 struct FMoviePipelinePostProcessPass
 {
 public:
-	bool                                         bEnabled;                                          // 0x0(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1EC[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	TSoftObjectPtr<class UMaterialInterface>     Material;                                          // 0x8(0x30)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
+	bool                                         bEnabled;                                          // 0x0(0x1)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
+	uint8                                        Pad_155[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	TSoftObjectPtr<class UMaterialInterface>     Material;                                          // 0x8(0x30)(Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
 };
 
 }

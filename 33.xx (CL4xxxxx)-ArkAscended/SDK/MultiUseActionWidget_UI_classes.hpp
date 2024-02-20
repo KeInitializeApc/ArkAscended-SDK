@@ -14,10 +14,10 @@ namespace SDK
 class UMultiUseActionWidget_UI_C : public UMultiUseActionWidget
 {
 public:
-	class UImage*                                ImageLine;                                         // 0x370(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-	class UImage*                                MultiUseActionIcon;                                // 0x378(0x8)(Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-	class UTextBlock*                            MultiUseLabelText1;                                // 0x380(0x8)(ConstParm, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-	class UTextBlock*                            MultiUseLabelText2;                                // 0x388(0x8)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class UImage*                                ImageLine;                                         // 0x370(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, SubobjectReference)
+	class UImage*                                MultiUseActionIcon;                                // 0x378(0x8)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, SubobjectReference)
+	class UTextBlock*                            MultiUseLabelText1;                                // 0x380(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, SubobjectReference)
+	class UTextBlock*                            MultiUseLabelText2;                                // 0x388(0x8)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMultiUseActionWidget_UI_C* GetDefaultObj();

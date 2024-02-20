@@ -14,9 +14,9 @@ namespace SDK
 class UMovieSceneCaptureProtocolBase : public UObject
 {
 public:
-	uint8                                        Pad_2F4A[0x28];                                    // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_1CF8[0x28];                                    // Fixing Size After Last Property  > TateDumper <
 	enum class EMovieSceneCaptureProtocolState   State;                                             // 0x50(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor)
-	uint8                                        Pad_2F4B[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1CF9[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneCaptureProtocolBase* GetDefaultObj();
@@ -53,7 +53,7 @@ class UMasterAudioSubmixCaptureProtocol : public UMovieSceneAudioCaptureProtocol
 {
 public:
 	class FString                                Filename;                                          // 0x58(0x10)(Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm)
-	uint8                                        Pad_2F52[0x28];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1D04[0x28];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMasterAudioSubmixCaptureProtocol* GetDefaultObj();
@@ -76,17 +76,17 @@ public:
 class UCompositionGraphCaptureProtocol : public UMovieSceneImageCaptureProtocolBase
 {
 public:
-	struct FCompositionGraphCapturePasses        IncludeRenderPasses;                               // 0x58(0x10)(BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bCaptureFramesInHDR;                               // 0x68(0x1)(Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2F54[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        HDRCompressionQuality;                             // 0x6C(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	enum class EHDRCaptureGamut                  CaptureGamut;                                      // 0x70(0x1)(ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2F55[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FSoftObjectPath                       PostProcessingMaterial;                            // 0x78(0x20)(ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bDisableScreenPercentage;                          // 0x98(0x1)(Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2F56[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class UMaterialInterface*                    PostProcessingMaterialPtr;                         // 0xA0(0x8)(Edit, ConstParm, ExportObject, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2F57[0x20];                                    // Fixing Size Of Struct > TateDumper <
+	struct FCompositionGraphCapturePasses        IncludeRenderPasses;                               // 0x58(0x10)(OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bCaptureFramesInHDR;                               // 0x68(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D10[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        HDRCompressionQuality;                             // 0x6C(0x4)(Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	enum class EHDRCaptureGamut                  CaptureGamut;                                      // 0x70(0x1)(ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D12[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FSoftObjectPath                       PostProcessingMaterial;                            // 0x78(0x20)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bDisableScreenPercentage;                          // 0x98(0x1)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D14[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class UMaterialInterface*                    PostProcessingMaterialPtr;                         // 0xA0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D15[0x20];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UCompositionGraphCaptureProtocol* GetDefaultObj();
@@ -109,7 +109,7 @@ public:
 class UFrameGrabberProtocol : public UMovieSceneImageCaptureProtocolBase
 {
 public:
-	uint8                                        Pad_2F58[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1D1A[0x10];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UFrameGrabberProtocol* GetDefaultObj();
@@ -121,7 +121,7 @@ public:
 class UImageSequenceProtocol : public UFrameGrabberProtocol
 {
 public:
-	uint8                                        Pad_2F59[0x70];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1D1F[0x70];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UImageSequenceProtocol* GetDefaultObj();
@@ -133,8 +133,8 @@ public:
 class UCompressedImageSequenceProtocol : public UImageSequenceProtocol
 {
 public:
-	int32                                        CompressionQuality;                                // 0xD8(0x4)(Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, DuplicateTransient)
-	uint8                                        Pad_2F5A[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        CompressionQuality;                                // 0xD8(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, DuplicateTransient)
+	uint8                                        Pad_1D21[0x4];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UCompressedImageSequenceProtocol* GetDefaultObj();
@@ -179,9 +179,9 @@ public:
 class UImageSequenceProtocol_EXR : public UImageSequenceProtocol
 {
 public:
-	bool                                         bCompressed;                                       // 0xD8(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	enum class EHDRCaptureGamut                  CaptureGamut;                                      // 0xD9(0x1)(ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2FB4[0xE];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bCompressed;                                       // 0xD8(0x1)(ConstParm, ExportObject, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+	enum class EHDRCaptureGamut                  CaptureGamut;                                      // 0xD9(0x1)(ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D33[0xE];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UImageSequenceProtocol_EXR* GetDefaultObj();
@@ -193,18 +193,18 @@ public:
 class UMovieSceneCapture : public UObject
 {
 public:
-	uint8                                        Pad_2FCE[0x10];                                    // Fixing Size After Last Property  > TateDumper <
-	struct FSoftClassPath                        ImageCaptureProtocolType;                          // 0x38(0x20)(Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FSoftClassPath                        AudioCaptureProtocolType;                          // 0x58(0x20)(Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UMovieSceneImageCaptureProtocolBase*   ImageCaptureProtocol;                              // 0x78(0x8)(ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	class UMovieSceneAudioCaptureProtocolBase*   AudioCaptureProtocol;                              // 0x80(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FMovieSceneCaptureSettings            Settings;                                          // 0x88(0x70)(Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-	bool                                         bUseSeparateProcess;                               // 0xF8(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         bCloseEditorWhenCaptureStarts;                     // 0xF9(0x1)(ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2FD1[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                AdditionalCommandLineArguments;                    // 0x100(0x10)(ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	class FString                                InheritedCommandLineArguments;                     // 0x110(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2FD2[0x118];                                   // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1D3A[0x10];                                    // Fixing Size After Last Property  > TateDumper <
+	struct FSoftClassPath                        ImageCaptureProtocolType;                          // 0x38(0x20)(BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FSoftClassPath                        AudioCaptureProtocolType;                          // 0x58(0x20)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class UMovieSceneImageCaptureProtocolBase*   ImageCaptureProtocol;                              // 0x78(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class UMovieSceneAudioCaptureProtocolBase*   AudioCaptureProtocol;                              // 0x80(0x8)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FMovieSceneCaptureSettings            Settings;                                          // 0x88(0x70)(Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+	bool                                         bUseSeparateProcess;                               // 0xF8(0x1)(ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bCloseEditorWhenCaptureStarts;                     // 0xF9(0x1)(ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D3C[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                AdditionalCommandLineArguments;                    // 0x100(0x10)(BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	class FString                                InheritedCommandLineArguments;                     // 0x110(0x10)(Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D3D[0x118];                                   // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneCapture* GetDefaultObj();
@@ -220,10 +220,10 @@ public:
 class ULevelCapture : public UMovieSceneCapture
 {
 public:
-	bool                                         bAutoStartCapture;                                 // 0x238(0x1)(ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2FD4[0xB];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FGuid                                 PrerequisiteActorId;                               // 0x244(0x10)(Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2FD5[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bAutoStartCapture;                                 // 0x238(0x1)(ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D40[0xB];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FGuid                                 PrerequisiteActorId;                               // 0x244(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D41[0x4];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class ULevelCapture* GetDefaultObj();
@@ -251,21 +251,21 @@ public:
 class UUserDefinedCaptureProtocol : public UMovieSceneImageCaptureProtocolBase
 {
 public:
-	class UWorld*                                World;                                             // 0x58(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-	uint8                                        Pad_2FE1[0x78];                                    // Fixing Size Of Struct > TateDumper <
+	class UWorld*                                World;                                             // 0x58(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, DisableEditOnInstance)
+	uint8                                        Pad_1DDA[0x78];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UUserDefinedCaptureProtocol* GetDefaultObj();
 
 	void StopCapturingFinalPixels();
 	struct FCapturedPixelsID StartCapturingFinalPixels();
-	struct FCapturedPixelsID ResolveBuffer(class UTexture* Buffer);
+	struct FCapturedPixelsID ResolveBuffer();
 	void OnWarmUp();
 	void OnTick();
 	void OnStartCapture();
 	void OnSetup(bool ReturnValue);
 	void OnPreTick();
-	struct FFrameMetrics OnPixelsReceived(struct FCapturedPixelsID* ID);
+	struct FCapturedPixels OnPixelsReceived(struct FCapturedPixelsID* ID, const struct FFrameMetrics& FrameMetrics);
 	void OnPauseCapture();
 	void OnFinalize();
 	void OnCaptureFrame();
@@ -280,17 +280,17 @@ public:
 class UUserDefinedImageCaptureProtocol : public UUserDefinedCaptureProtocol
 {
 public:
-	enum class EDesiredImageFormat               Format;                                            // 0xD8(0x1)(BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, EditConst)
-	bool                                         bEnableCompression;                                // 0xD9(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2FE5[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        CompressionQuality;                                // 0xDC(0x4)(Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, DuplicateTransient)
+	enum class EDesiredImageFormat               Format;                                            // 0xD8(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
+	bool                                         bEnableCompression;                                // 0xD9(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1E10[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        CompressionQuality;                                // 0xDC(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, DuplicateTransient)
 
 	static class UClass* StaticClass();
 	static class UUserDefinedImageCaptureProtocol* GetDefaultObj();
 
-	bool WriteImageToDisk();
+	bool WriteImageToDisk(const struct FFrameMetrics& FrameMetrics);
 	void GenerateFilenameForCurrentFrame(const class FString& ReturnValue);
-	struct FCapturedPixelsID GenerateFilenameForBuffer(class UTexture* Buffer, const class FString& ReturnValue);
+	struct FCapturedPixelsID GenerateFilenameForBuffer(const class FString& ReturnValue);
 };
 
 // 0x18 (0x80 - 0x68)
@@ -298,10 +298,10 @@ public:
 class UVideoCaptureProtocol : public UFrameGrabberProtocol
 {
 public:
-	bool                                         bUseCompression;                                   // 0x68(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_2FE7[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        CompressionQuality;                                // 0x6C(0x4)(Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, DuplicateTransient)
-	uint8                                        Pad_2FE8[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	bool                                         bUseCompression;                                   // 0x68(0x1)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+	uint8                                        Pad_1E16[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        CompressionQuality;                                // 0x6C(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, DuplicateTransient)
+	uint8                                        Pad_1E17[0x10];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UVideoCaptureProtocol* GetDefaultObj();

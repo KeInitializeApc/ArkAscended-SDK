@@ -28,14 +28,14 @@ enum class EMobileShadowQuality : uint8
 struct FMaterialQualityOverrides
 {
 public:
-	bool                                         bDiscardQualityDuringCook;                         // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	bool                                         bEnableOverride;                                   // 0x1(0x1)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	bool                                         bForceFullyRough;                                  // 0x2(0x1)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	bool                                         bForceNonMetal;                                    // 0x3(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	bool                                         bForceDisableLMDirectionality;                     // 0x4(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	bool                                         bForceDisablePreintegratedGF;                      // 0x5(0x1)(OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	bool                                         bDisableMaterialNormalCalculation;                 // 0x6(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	enum class EMobileShadowQuality              MobileShadowQuality;                               // 0x7(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	bool                                         bDiscardQualityDuringCook;                         // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnableOverride;                                   // 0x1(0x1)(ConstParm, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bForceFullyRough;                                  // 0x2(0x1)(Edit, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bForceNonMetal;                                    // 0x3(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bForceDisableLMDirectionality;                     // 0x4(0x1)(Edit, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bForceDisablePreintegratedGF;                      // 0x5(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bDisableMaterialNormalCalculation;                 // 0x6(0x1)(ExportObject, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EMobileShadowQuality              MobileShadowQuality;                               // 0x7(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

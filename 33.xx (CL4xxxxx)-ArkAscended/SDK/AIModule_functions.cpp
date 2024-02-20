@@ -239,11 +239,11 @@ class AAIController* AAIController::GetDefaultObj()
 // Function AIModule.AIController.UseBlackboard
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UBlackboardData*             BlackboardAsset                                                  (ConstParm, ExportObject, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class UBlackboardComponent*        BlackboardComponent                                              (Edit, BlueprintVisible, ExportObject, Parm, OutParm, Transient, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBlackboardData*             BlackboardAsset                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UBlackboardComponent*        BlackboardComponent                                              (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void AAIController::UseBlackboard(class UBlackboardData* BlackboardAsset, class UBlackboardComponent** BlackboardComponent, bool ReturnValue)
+class UBlackboardData* AAIController::UseBlackboard(class UBlackboardComponent* BlackboardComponent, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -252,7 +252,7 @@ void AAIController::UseBlackboard(class UBlackboardData* BlackboardAsset, class 
 
 	Params::AAIController_UseBlackboard_Params Parms{};
 
-	Parms.BlackboardAsset = BlackboardAsset;
+	Parms.BlackboardComponent = BlackboardComponent;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -263,8 +263,7 @@ void AAIController::UseBlackboard(class UBlackboardData* BlackboardAsset, class 
 
 	Func->FunctionFlags = Flgs;
 
-	if (BlackboardComponent != nullptr)
-		*BlackboardComponent = Parms.BlackboardComponent;
+	return Parms.ReturnValue;
 
 }
 
@@ -272,7 +271,7 @@ void AAIController::UseBlackboard(class UBlackboardData* BlackboardAsset, class 
 // Function AIModule.AIController.UnclaimTaskResource
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      ResourceClass                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      ResourceClass                                                    (ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class UClass* AAIController::UnclaimTaskResource()
 {
@@ -300,9 +299,9 @@ class UClass* AAIController::UnclaimTaskResource()
 // Function AIModule.AIController.SetPathFollowingComponent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPathFollowingComponent*     NewPFComponent                                                   (Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class UPathFollowingComponent*     NewPFComponent                                                   (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void AAIController::SetPathFollowingComponent(class UPathFollowingComponent* NewPFComponent)
+class UPathFollowingComponent* AAIController::SetPathFollowingComponent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -311,7 +310,6 @@ void AAIController::SetPathFollowingComponent(class UPathFollowingComponent* New
 
 	Params::AAIController_SetPathFollowingComponent_Params Parms{};
 
-	Parms.NewPFComponent = NewPFComponent;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -321,13 +319,15 @@ void AAIController::SetPathFollowingComponent(class UPathFollowingComponent* New
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AIModule.AIController.SetMoveBlockDetection
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bEnable                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// bool                               bEnable                                                          (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
 bool AAIController::SetMoveBlockDetection()
 {
@@ -355,10 +355,10 @@ bool AAIController::SetMoveBlockDetection()
 // Function AIModule.AIController.RunBehaviorTree
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class UBehaviorTree*               BTAsset                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBehaviorTree*               BTAsset                                                          (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void AAIController::RunBehaviorTree(class UBehaviorTree* BTAsset, bool ReturnValue)
+class UBehaviorTree* AAIController::RunBehaviorTree(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -367,7 +367,6 @@ void AAIController::RunBehaviorTree(class UBehaviorTree* BTAsset, bool ReturnVal
 
 	Params::AAIController_RunBehaviorTree_Params Parms{};
 
-	Parms.BTAsset = BTAsset;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -378,16 +377,18 @@ void AAIController::RunBehaviorTree(class UBehaviorTree* BTAsset, bool ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AIModule.AIController.OnUsingBlackBoard
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class UBlackboardComponent*        BlackboardComp                                                   (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class UBlackboardData*             BlackboardAsset                                                  (ConstParm, ExportObject, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class UBlackboardComponent*        BlackboardComp                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UBlackboardData*             BlackboardAsset                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void AAIController::OnUsingBlackBoard(class UBlackboardComponent* BlackboardComp, class UBlackboardData* BlackboardAsset)
+class UBlackboardData* AAIController::OnUsingBlackBoard()
 {
 	static class UFunction* Func = nullptr;
 
@@ -396,10 +397,10 @@ void AAIController::OnUsingBlackBoard(class UBlackboardComponent* BlackboardComp
 
 	Params::AAIController_OnUsingBlackBoard_Params Parms{};
 
-	Parms.BlackboardComp = BlackboardComp;
-	Parms.BlackboardAsset = BlackboardAsset;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -407,10 +408,10 @@ void AAIController::OnUsingBlackBoard(class UBlackboardComponent* BlackboardComp
 // Function AIModule.AIController.OnGameplayTaskResourcesClaimed
 // (Native, Public)
 // Parameters:
-// struct FGameplayResourceSet        NewlyClaimed                                                     (BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FGameplayResourceSet        FreshlyReleased                                                  (Edit, ConstParm, BlueprintVisible, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FGameplayResourceSet        NewlyClaimed                                                     (Edit, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// struct FGameplayResourceSet        FreshlyReleased                                                  (ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-void AAIController::OnGameplayTaskResourcesClaimed(const struct FGameplayResourceSet& NewlyClaimed, const struct FGameplayResourceSet& FreshlyReleased)
+struct FGameplayResourceSet AAIController::OnGameplayTaskResourcesClaimed()
 {
 	static class UFunction* Func = nullptr;
 
@@ -419,8 +420,6 @@ void AAIController::OnGameplayTaskResourcesClaimed(const struct FGameplayResourc
 
 	Params::AAIController_OnGameplayTaskResourcesClaimed_Params Parms{};
 
-	Parms.NewlyClaimed = NewlyClaimed;
-	Parms.FreshlyReleased = FreshlyReleased;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -430,24 +429,26 @@ void AAIController::OnGameplayTaskResourcesClaimed(const struct FGameplayResourc
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AIModule.AIController.MoveToLocation
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     Dest                                                             (BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              AcceptanceRadius                                                 (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bStopOnOverlap                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bUsePathfinding                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bProjectDestinationToNavigation                                  (Edit, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bCanStrafe                                                       (BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class UClass*                      FilterClass                                                      (ConstParm, BlueprintVisible, OutParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bAllowPartialPath                                                (ConstParm, BlueprintVisible, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               WasPlayerCommand                                                 (BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class EPathFollowingRequestResultReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     Dest                                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// float                              AcceptanceRadius                                                 (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bStopOnOverlap                                                   (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bUsePathfinding                                                  (Edit, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bProjectDestinationToNavigation                                  (BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bCanStrafe                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UClass*                      FilterClass                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bAllowPartialPath                                                (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               WasPlayerCommand                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EPathFollowingRequestResultReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FVector AAIController::MoveToLocation(float AcceptanceRadius, bool bStopOnOverlap, bool bUsePathfinding, bool bProjectDestinationToNavigation, bool bCanStrafe, class UClass** FilterClass, bool bAllowPartialPath, bool WasPlayerCommand, enum class EPathFollowingRequestResult ReturnValue)
+bool AAIController::MoveToLocation(const struct FVector& Dest, enum class EPathFollowingRequestResult ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -456,13 +457,7 @@ struct FVector AAIController::MoveToLocation(float AcceptanceRadius, bool bStopO
 
 	Params::AAIController_MoveToLocation_Params Parms{};
 
-	Parms.AcceptanceRadius = AcceptanceRadius;
-	Parms.bStopOnOverlap = bStopOnOverlap;
-	Parms.bUsePathfinding = bUsePathfinding;
-	Parms.bProjectDestinationToNavigation = bProjectDestinationToNavigation;
-	Parms.bCanStrafe = bCanStrafe;
-	Parms.bAllowPartialPath = bAllowPartialPath;
-	Parms.WasPlayerCommand = WasPlayerCommand;
+	Parms.Dest = Dest;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -472,9 +467,6 @@ struct FVector AAIController::MoveToLocation(float AcceptanceRadius, bool bStopO
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (FilterClass != nullptr)
-		*FilterClass = Parms.FilterClass;
 
 	return Parms.ReturnValue;
 
@@ -484,16 +476,16 @@ struct FVector AAIController::MoveToLocation(float AcceptanceRadius, bool bStopO
 // Function AIModule.AIController.MoveToActor
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class AActor*                      Goal                                                             (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
-// float                              AcceptanceRadius                                                 (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bStopOnOverlap                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bUsePathfinding                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bCanStrafe                                                       (BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class UClass*                      FilterClass                                                      (ConstParm, BlueprintVisible, OutParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bAllowPartialPath                                                (ConstParm, BlueprintVisible, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class EPathFollowingRequestResultReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      Goal                                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              AcceptanceRadius                                                 (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bStopOnOverlap                                                   (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bUsePathfinding                                                  (Edit, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bCanStrafe                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UClass*                      FilterClass                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bAllowPartialPath                                                (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EPathFollowingRequestResultReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void AAIController::MoveToActor(class AActor** Goal, float AcceptanceRadius, bool bStopOnOverlap, bool bUsePathfinding, bool bCanStrafe, class UClass** FilterClass, bool bAllowPartialPath, enum class EPathFollowingRequestResult ReturnValue)
+bool AAIController::MoveToActor(enum class EPathFollowingRequestResult ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -502,11 +494,6 @@ void AAIController::MoveToActor(class AActor** Goal, float AcceptanceRadius, boo
 
 	Params::AAIController_MoveToActor_Params Parms{};
 
-	Parms.AcceptanceRadius = AcceptanceRadius;
-	Parms.bStopOnOverlap = bStopOnOverlap;
-	Parms.bUsePathfinding = bUsePathfinding;
-	Parms.bCanStrafe = bCanStrafe;
-	Parms.bAllowPartialPath = bAllowPartialPath;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -517,11 +504,7 @@ void AAIController::MoveToActor(class AActor** Goal, float AcceptanceRadius, boo
 
 	Func->FunctionFlags = Flgs;
 
-	if (Goal != nullptr)
-		*Goal = Parms.Goal;
-
-	if (FilterClass != nullptr)
-		*FilterClass = Parms.FilterClass;
+	return Parms.ReturnValue;
 
 }
 
@@ -529,9 +512,9 @@ void AAIController::MoveToActor(class AActor** Goal, float AcceptanceRadius, boo
 // Function AIModule.AIController.K2_SetFocus
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class AActor*                      NewFocus                                                         (Edit, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      NewFocus                                                         (BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void AAIController::K2_SetFocus(class AActor* NewFocus)
+class AActor* AAIController::K2_SetFocus()
 {
 	static class UFunction* Func = nullptr;
 
@@ -540,7 +523,6 @@ void AAIController::K2_SetFocus(class AActor* NewFocus)
 
 	Params::AAIController_K2_SetFocus_Params Parms{};
 
-	Parms.NewFocus = NewFocus;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -550,13 +532,15 @@ void AAIController::K2_SetFocus(class AActor* NewFocus)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AIModule.AIController.K2_SetFocalPoint
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     FP                                                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     FP                                                               (ConstParm, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FVector AAIController::K2_SetFocalPoint()
 {
@@ -608,7 +592,7 @@ void AAIController::K2_ClearFocus()
 // Function AIModule.AIController.HasPartialPath
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void AAIController::HasPartialPath(bool ReturnValue)
 {
@@ -635,7 +619,7 @@ void AAIController::HasPartialPath(bool ReturnValue)
 // Function AIModule.AIController.GetPathFollowingComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPathFollowingComponent*     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPathFollowingComponent*     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void AAIController::GetPathFollowingComponent(class UPathFollowingComponent* ReturnValue)
 {
@@ -662,7 +646,7 @@ void AAIController::GetPathFollowingComponent(class UPathFollowingComponent* Ret
 // Function AIModule.AIController.GetMoveStatus
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EPathFollowingStatus    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EPathFollowingStatus    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void AAIController::GetMoveStatus(enum class EPathFollowingStatus ReturnValue)
 {
@@ -689,7 +673,7 @@ void AAIController::GetMoveStatus(enum class EPathFollowingStatus ReturnValue)
 // Function AIModule.AIController.GetImmediateMoveDestination
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void AAIController::GetImmediateMoveDestination(const struct FVector& ReturnValue)
 {
@@ -716,7 +700,7 @@ void AAIController::GetImmediateMoveDestination(const struct FVector& ReturnValu
 // Function AIModule.AIController.GetFocusActor
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class AActor*                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void AAIController::GetFocusActor(class AActor* ReturnValue)
 {
@@ -744,7 +728,7 @@ void AAIController::GetFocusActor(class AActor* ReturnValue)
 // (Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void AAIController::GetFocalPointOnActor(class AActor** Actor, const struct FVector& ReturnValue)
 {
@@ -774,7 +758,7 @@ void AAIController::GetFocalPointOnActor(class AActor** Actor, const struct FVec
 // Function AIModule.AIController.GetFocalPoint
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void AAIController::GetFocalPoint(const struct FVector& ReturnValue)
 {
@@ -801,7 +785,7 @@ void AAIController::GetFocalPoint(const struct FVector& ReturnValue)
 // Function AIModule.AIController.GetDeprecatedActionsComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UPawnActionsComponent*       ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPawnActionsComponent*       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void AAIController::GetDeprecatedActionsComponent(class UPawnActionsComponent* ReturnValue)
 {
@@ -828,7 +812,7 @@ void AAIController::GetDeprecatedActionsComponent(class UPawnActionsComponent* R
 // Function AIModule.AIController.GetAIPerceptionComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UAIPerceptionComponent*      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UAIPerceptionComponent*      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void AAIController::GetAIPerceptionComponent(class UAIPerceptionComponent* ReturnValue)
 {
@@ -855,7 +839,7 @@ void AAIController::GetAIPerceptionComponent(class UAIPerceptionComponent* Retur
 // Function AIModule.AIController.ClaimTaskResource
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      ResourceClass                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      ResourceClass                                                    (ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class UClass* AAIController::ClaimTaskResource()
 {
@@ -911,7 +895,7 @@ class UPathFollowingComponent* UPathFollowingComponent::GetDefaultObj()
 // Function AIModule.PathFollowingComponent.OnNavDataRegistered
 // (Final, Native, Public)
 // Parameters:
-// class ANavigationData*             NavData                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class ANavigationData*             NavData                                                          (BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
 
 class ANavigationData* UPathFollowingComponent::OnNavDataRegistered()
 {
@@ -939,12 +923,12 @@ class ANavigationData* UPathFollowingComponent::OnNavDataRegistered()
 // Function AIModule.PathFollowingComponent.OnActorBump
 // (Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// class AActor*                      SelfActor                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate)
-// class AActor*                      OtherActor                                                       (BlueprintVisible, Parm, Transient, EditConst, SubobjectReference)
-// struct FVector                     NormalImpulse                                                    (BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, EditConst, SubobjectReference)
-// struct FHitResult                  Hit                                                              (BlueprintVisible, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      SelfActor                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate)
+// class AActor*                      OtherActor                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     NormalImpulse                                                    (Edit, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FHitResult                  Hit                                                              (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
 
-void UPathFollowingComponent::OnActorBump(class AActor** SelfActor, class AActor* OtherActor, const struct FVector& NormalImpulse, struct FHitResult* Hit)
+struct FHitResult UPathFollowingComponent::OnActorBump(class AActor* SelfActor, class AActor** OtherActor, struct FVector* NormalImpulse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -953,8 +937,7 @@ void UPathFollowingComponent::OnActorBump(class AActor** SelfActor, class AActor
 
 	Params::UPathFollowingComponent_OnActorBump_Params Parms{};
 
-	Parms.OtherActor = OtherActor;
-	Parms.NormalImpulse = NormalImpulse;
+	Parms.SelfActor = SelfActor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -964,11 +947,13 @@ void UPathFollowingComponent::OnActorBump(class AActor** SelfActor, class AActor
 
 	Func->FunctionFlags = Flgs;
 
-	if (SelfActor != nullptr)
-		*SelfActor = Parms.SelfActor;
+	if (OtherActor != nullptr)
+		*OtherActor = Parms.OtherActor;
 
-	if (Hit != nullptr)
-		*Hit = std::move(Parms.Hit);
+	if (NormalImpulse != nullptr)
+		*NormalImpulse = std::move(Parms.NormalImpulse);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -976,7 +961,7 @@ void UPathFollowingComponent::OnActorBump(class AActor** SelfActor, class AActor
 // Function AIModule.PathFollowingComponent.GetPathDestination
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UPathFollowingComponent::GetPathDestination(const struct FVector& ReturnValue)
 {
@@ -1003,7 +988,7 @@ void UPathFollowingComponent::GetPathDestination(const struct FVector& ReturnVal
 // Function AIModule.PathFollowingComponent.GetPathActionType
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EPathFollowingAction    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EPathFollowingAction    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UPathFollowingComponent::GetPathActionType(enum class EPathFollowingAction ReturnValue)
 {
@@ -1058,10 +1043,10 @@ class UAIAsyncTaskBlueprintProxy* UAIAsyncTaskBlueprintProxy::GetDefaultObj()
 // Function AIModule.AIAsyncTaskBlueprintProxy.OnMoveCompleted
 // (Final, Native, Public)
 // Parameters:
-// struct FAIRequestID                RequestID                                                        (ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class EPathFollowingResult    MovementResult                                                   (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FAIRequestID                RequestID                                                        (Edit, ConstParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// enum class EPathFollowingResult    MovementResult                                                   (BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-void UAIAsyncTaskBlueprintProxy::OnMoveCompleted(struct FAIRequestID* RequestID, enum class EPathFollowingResult* MovementResult)
+void UAIAsyncTaskBlueprintProxy::OnMoveCompleted(const struct FAIRequestID& RequestID, enum class EPathFollowingResult MovementResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1070,6 +1055,8 @@ void UAIAsyncTaskBlueprintProxy::OnMoveCompleted(struct FAIRequestID* RequestID,
 
 	Params::UAIAsyncTaskBlueprintProxy_OnMoveCompleted_Params Parms{};
 
+	Parms.RequestID = RequestID;
+	Parms.MovementResult = MovementResult;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1078,12 +1065,6 @@ void UAIAsyncTaskBlueprintProxy::OnMoveCompleted(struct FAIRequestID* RequestID,
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (RequestID != nullptr)
-		*RequestID = std::move(Parms.RequestID);
-
-	if (MovementResult != nullptr)
-		*MovementResult = Parms.MovementResult;
 
 }
 
@@ -1567,7 +1548,7 @@ class UPawnAction* UPawnAction::GetDefaultObj()
 // Function AIModule.PawnAction.GetActionPriority
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EAIRequestPriority      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EAIRequestPriority      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UPawnAction::GetActionPriority(enum class EAIRequestPriority ReturnValue)
 {
@@ -1594,9 +1575,9 @@ void UPawnAction::GetActionPriority(enum class EAIRequestPriority ReturnValue)
 // Function AIModule.PawnAction.Finish
 // (Native, Protected, BlueprintCallable)
 // Parameters:
-// enum class EPawnActionResult       WithResult                                                       (ConstParm, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EPawnActionResult       WithResult                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UPawnAction::Finish(enum class EPawnActionResult WithResult)
+void UPawnAction::Finish(enum class EPawnActionResult* WithResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1605,7 +1586,6 @@ void UPawnAction::Finish(enum class EPawnActionResult WithResult)
 
 	Params::UPawnAction_Finish_Params Parms{};
 
-	Parms.WithResult = WithResult;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1615,17 +1595,20 @@ void UPawnAction::Finish(enum class EPawnActionResult WithResult)
 
 	Func->FunctionFlags = Flgs;
 
+	if (WithResult != nullptr)
+		*WithResult = Parms.WithResult;
+
 }
 
 
 // Function AIModule.PawnAction.CreateActionInstance
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UClass*                      ActionClass                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UPawnAction*                 ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UClass*                      ActionClass                                                      (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UPawnAction*                 ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPawnAction::CreateActionInstance(class UObject* WorldContextObject, class UClass* ActionClass, class UPawnAction* ReturnValue)
+class UObject* UPawnAction::CreateActionInstance(class UClass** ActionClass, class UPawnAction* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1634,8 +1617,6 @@ void UPawnAction::CreateActionInstance(class UObject* WorldContextObject, class 
 
 	Params::UPawnAction_CreateActionInstance_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
-	Parms.ActionClass = ActionClass;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1645,6 +1626,11 @@ void UPawnAction::CreateActionInstance(class UObject* WorldContextObject, class 
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (ActionClass != nullptr)
+		*ActionClass = Parms.ActionClass;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -1680,12 +1666,12 @@ class UPawnActionsComponent* UPawnActionsComponent::GetDefaultObj()
 // Function AIModule.PawnActionsComponent.K2_PushAction
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPawnAction*                 NewAction                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EAIRequestPriority      Priority                                                         (ConstParm, BlueprintVisible, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
-// class UObject*                     Instigator                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPawnAction*                 NewAction                                                        (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EAIRequestPriority      Priority                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class UObject*                     Instigator                                                       (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UPawnActionsComponent::K2_PushAction(class UPawnAction* NewAction, bool ReturnValue)
+enum class EAIRequestPriority UPawnActionsComponent::K2_PushAction(class UPawnAction** NewAction, class UObject** Instigator, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1694,7 +1680,6 @@ class UObject* UPawnActionsComponent::K2_PushAction(class UPawnAction* NewAction
 
 	Params::UPawnActionsComponent_K2_PushAction_Params Parms{};
 
-	Parms.NewAction = NewAction;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1704,6 +1689,12 @@ class UObject* UPawnActionsComponent::K2_PushAction(class UPawnAction* NewAction
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (NewAction != nullptr)
+		*NewAction = Parms.NewAction;
+
+	if (Instigator != nullptr)
+		*Instigator = Parms.Instigator;
 
 	return Parms.ReturnValue;
 
@@ -1714,11 +1705,11 @@ class UObject* UPawnActionsComponent::K2_PushAction(class UPawnAction* NewAction
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class APawn*                       Pawn                                                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor)
-// class UPawnAction*                 Action                                                           (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// enum class EAIRequestPriority      Priority                                                         (ConstParm, BlueprintVisible, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPawnAction*                 Action                                                           (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// enum class EAIRequestPriority      Priority                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class EAIRequestPriority UPawnActionsComponent::K2_PerformAction(class APawn* Pawn, class UPawnAction* Action, bool ReturnValue)
+enum class EAIRequestPriority UPawnActionsComponent::K2_PerformAction(class APawn* Pawn, class UPawnAction** Action, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1728,7 +1719,6 @@ enum class EAIRequestPriority UPawnActionsComponent::K2_PerformAction(class APaw
 	Params::UPawnActionsComponent_K2_PerformAction_Params Parms{};
 
 	Parms.Pawn = Pawn;
-	Parms.Action = Action;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1738,6 +1728,9 @@ enum class EAIRequestPriority UPawnActionsComponent::K2_PerformAction(class APaw
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Action != nullptr)
+		*Action = Parms.Action;
 
 	return Parms.ReturnValue;
 
@@ -1747,10 +1740,10 @@ enum class EAIRequestPriority UPawnActionsComponent::K2_PerformAction(class APaw
 // Function AIModule.PawnActionsComponent.K2_ForceAbortAction
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPawnAction*                 ActionToAbort                                                    (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EPawnActionAbortState   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPawnAction*                 ActionToAbort                                                    (BlueprintVisible, ExportObject, Net, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EPawnActionAbortState   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPawnActionsComponent::K2_ForceAbortAction(class UPawnAction* ActionToAbort, enum class EPawnActionAbortState ReturnValue)
+void UPawnActionsComponent::K2_ForceAbortAction(class UPawnAction** ActionToAbort, enum class EPawnActionAbortState ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1759,7 +1752,6 @@ void UPawnActionsComponent::K2_ForceAbortAction(class UPawnAction* ActionToAbort
 
 	Params::UPawnActionsComponent_K2_ForceAbortAction_Params Parms{};
 
-	Parms.ActionToAbort = ActionToAbort;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1770,16 +1762,19 @@ void UPawnActionsComponent::K2_ForceAbortAction(class UPawnAction* ActionToAbort
 
 	Func->FunctionFlags = Flgs;
 
+	if (ActionToAbort != nullptr)
+		*ActionToAbort = Parms.ActionToAbort;
+
 }
 
 
 // Function AIModule.PawnActionsComponent.K2_AbortAction
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UPawnAction*                 ActionToAbort                                                    (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EPawnActionAbortState   ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UPawnAction*                 ActionToAbort                                                    (BlueprintVisible, ExportObject, Net, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EPawnActionAbortState   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPawnActionsComponent::K2_AbortAction(class UPawnAction* ActionToAbort, enum class EPawnActionAbortState ReturnValue)
+void UPawnActionsComponent::K2_AbortAction(class UPawnAction** ActionToAbort, enum class EPawnActionAbortState ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1788,7 +1783,6 @@ void UPawnActionsComponent::K2_AbortAction(class UPawnAction* ActionToAbort, enu
 
 	Params::UPawnActionsComponent_K2_AbortAction_Params Parms{};
 
-	Parms.ActionToAbort = ActionToAbort;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -1798,6 +1792,9 @@ void UPawnActionsComponent::K2_AbortAction(class UPawnAction* ActionToAbort, enu
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (ActionToAbort != nullptr)
+		*ActionToAbort = Parms.ActionToAbort;
 
 }
 
@@ -1833,10 +1830,10 @@ class UPawnAction_BlueprintBase* UPawnAction_BlueprintBase::GetDefaultObj()
 // Function AIModule.PawnAction_BlueprintBase.ActionTick
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              DeltaSeconds                                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              DeltaSeconds                                                     (ConstParm, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UPawnAction_BlueprintBase::ActionTick(class APawn* ControlledPawn)
+float UPawnAction_BlueprintBase::ActionTick(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1845,9 +1842,11 @@ float UPawnAction_BlueprintBase::ActionTick(class APawn* ControlledPawn)
 
 	Params::UPawnAction_BlueprintBase_ActionTick_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
 
 	return Parms.ReturnValue;
 
@@ -1857,9 +1856,9 @@ float UPawnAction_BlueprintBase::ActionTick(class APawn* ControlledPawn)
 // Function AIModule.PawnAction_BlueprintBase.ActionStart
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UPawnAction_BlueprintBase::ActionStart(class APawn* ControlledPawn)
+void UPawnAction_BlueprintBase::ActionStart(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1868,9 +1867,11 @@ void UPawnAction_BlueprintBase::ActionStart(class APawn* ControlledPawn)
 
 	Params::UPawnAction_BlueprintBase_ActionStart_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
 
 }
 
@@ -1878,9 +1879,9 @@ void UPawnAction_BlueprintBase::ActionStart(class APawn* ControlledPawn)
 // Function AIModule.PawnAction_BlueprintBase.ActionResume
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UPawnAction_BlueprintBase::ActionResume(class APawn* ControlledPawn)
+void UPawnAction_BlueprintBase::ActionResume(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1889,9 +1890,11 @@ void UPawnAction_BlueprintBase::ActionResume(class APawn* ControlledPawn)
 
 	Params::UPawnAction_BlueprintBase_ActionResume_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
 
 }
 
@@ -1899,9 +1902,9 @@ void UPawnAction_BlueprintBase::ActionResume(class APawn* ControlledPawn)
 // Function AIModule.PawnAction_BlueprintBase.ActionPause
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UPawnAction_BlueprintBase::ActionPause(class APawn* ControlledPawn)
+void UPawnAction_BlueprintBase::ActionPause(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1910,9 +1913,11 @@ void UPawnAction_BlueprintBase::ActionPause(class APawn* ControlledPawn)
 
 	Params::UPawnAction_BlueprintBase_ActionPause_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
 
 }
 
@@ -1920,10 +1925,10 @@ void UPawnAction_BlueprintBase::ActionPause(class APawn* ControlledPawn)
 // Function AIModule.PawnAction_BlueprintBase.ActionFinished
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EPawnActionResult       WithResult                                                       (ConstParm, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EPawnActionResult       WithResult                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UPawnAction_BlueprintBase::ActionFinished(class APawn* ControlledPawn, enum class EPawnActionResult WithResult)
+void UPawnAction_BlueprintBase::ActionFinished(class APawn** ControlledPawn, enum class EPawnActionResult* WithResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1932,10 +1937,14 @@ void UPawnAction_BlueprintBase::ActionFinished(class APawn* ControlledPawn, enum
 
 	Params::UPawnAction_BlueprintBase_ActionFinished_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
-	Parms.WithResult = WithResult;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
+
+	if (WithResult != nullptr)
+		*WithResult = Parms.WithResult;
 
 }
 
@@ -2271,7 +2280,7 @@ class UBrainComponent* UBrainComponent::GetDefaultObj()
 // Function AIModule.BrainComponent.StopLogic
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Reason                                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class FString                      Reason                                                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 class FString UBrainComponent::StopLogic()
 {
@@ -2347,7 +2356,7 @@ void UBrainComponent::RestartLogic()
 // Function AIModule.BrainComponent.IsRunning
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBrainComponent::IsRunning(bool ReturnValue)
 {
@@ -2374,7 +2383,7 @@ void UBrainComponent::IsRunning(bool ReturnValue)
 // Function AIModule.BrainComponent.IsPaused
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBrainComponent::IsPaused(bool ReturnValue)
 {
@@ -2429,10 +2438,10 @@ class UBehaviorTreeComponent* UBehaviorTreeComponent::GetDefaultObj()
 // Function AIModule.BehaviorTreeComponent.SetDynamicSubtree
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// struct FGameplayTag                InjectTag                                                        (Edit, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UBehaviorTree*               BehaviorAsset                                                    (Edit, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FGameplayTag                InjectTag                                                        (ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UBehaviorTree*               BehaviorAsset                                                    (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBehaviorTreeComponent::SetDynamicSubtree(const struct FGameplayTag& InjectTag, class UBehaviorTree* BehaviorAsset)
+void UBehaviorTreeComponent::SetDynamicSubtree(struct FGameplayTag* InjectTag, class UBehaviorTree** BehaviorAsset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2441,8 +2450,6 @@ void UBehaviorTreeComponent::SetDynamicSubtree(const struct FGameplayTag& Inject
 
 	Params::UBehaviorTreeComponent_SetDynamicSubtree_Params Parms{};
 
-	Parms.InjectTag = InjectTag;
-	Parms.BehaviorAsset = BehaviorAsset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2452,16 +2459,22 @@ void UBehaviorTreeComponent::SetDynamicSubtree(const struct FGameplayTag& Inject
 
 	Func->FunctionFlags = Flgs;
 
+	if (InjectTag != nullptr)
+		*InjectTag = std::move(Parms.InjectTag);
+
+	if (BehaviorAsset != nullptr)
+		*BehaviorAsset = Parms.BehaviorAsset;
+
 }
 
 
 // Function AIModule.BehaviorTreeComponent.GetTagCooldownEndTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FGameplayTag                CooldownTag                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// double                             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGameplayTag                CooldownTag                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// double                             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBehaviorTreeComponent::GetTagCooldownEndTime(const struct FGameplayTag& CooldownTag, double ReturnValue)
+void UBehaviorTreeComponent::GetTagCooldownEndTime(struct FGameplayTag* CooldownTag, double ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2470,7 +2483,6 @@ void UBehaviorTreeComponent::GetTagCooldownEndTime(const struct FGameplayTag& Co
 
 	Params::UBehaviorTreeComponent_GetTagCooldownEndTime_Params Parms{};
 
-	Parms.CooldownTag = CooldownTag;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -2481,6 +2493,9 @@ void UBehaviorTreeComponent::GetTagCooldownEndTime(const struct FGameplayTag& Co
 
 	Func->FunctionFlags = Flgs;
 
+	if (CooldownTag != nullptr)
+		*CooldownTag = std::move(Parms.CooldownTag);
+
 }
 
 
@@ -2488,7 +2503,7 @@ void UBehaviorTreeComponent::GetTagCooldownEndTime(const struct FGameplayTag& Co
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// class UBTNode*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBehaviorTreeComponent::FindService(class FString* Name, class UBTNode* ReturnValue)
 {
@@ -2518,11 +2533,11 @@ void UBehaviorTreeComponent::FindService(class FString* Name, class UBTNode* Ret
 // Function AIModule.BehaviorTreeComponent.AddCooldownTagDuration
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FGameplayTag                CooldownTag                                                      (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              CooldownDuration                                                 (Edit, ConstParm, BlueprintVisible, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bAddToExistingDuration                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FGameplayTag                CooldownTag                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              CooldownDuration                                                 (BlueprintVisible, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               bAddToExistingDuration                                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBehaviorTreeComponent::AddCooldownTagDuration(const struct FGameplayTag& CooldownTag, float CooldownDuration, bool bAddToExistingDuration)
+void UBehaviorTreeComponent::AddCooldownTagDuration(struct FGameplayTag* CooldownTag, float CooldownDuration, bool* bAddToExistingDuration)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2531,9 +2546,7 @@ void UBehaviorTreeComponent::AddCooldownTagDuration(const struct FGameplayTag& C
 
 	Params::UBehaviorTreeComponent_AddCooldownTagDuration_Params Parms{};
 
-	Parms.CooldownTag = CooldownTag;
 	Parms.CooldownDuration = CooldownDuration;
-	Parms.bAddToExistingDuration = bAddToExistingDuration;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2542,6 +2555,12 @@ void UBehaviorTreeComponent::AddCooldownTagDuration(const struct FGameplayTag& C
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (CooldownTag != nullptr)
+		*CooldownTag = std::move(Parms.CooldownTag);
+
+	if (bAddToExistingDuration != nullptr)
+		*bAddToExistingDuration = Parms.bAddToExistingDuration;
 
 }
 
@@ -2633,7 +2652,7 @@ class IBlackboardAssetProvider* IBlackboardAssetProvider::GetDefaultObj()
 // Function AIModule.BlackboardAssetProvider.GetBlackboardAsset
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UBlackboardData*             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBlackboardData*             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void IBlackboardAssetProvider::GetBlackboardAsset(class UBlackboardData* ReturnValue)
 {
@@ -2688,8 +2707,8 @@ class UBlackboardComponent* UBlackboardComponent::GetDefaultObj()
 // Function AIModule.BlackboardComponent.SetValueAsVector
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     VectorValue                                                      (ConstParm, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FVector                     VectorValue                                                      (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
 struct FVector UBlackboardComponent::SetValueAsVector()
 {
@@ -2717,8 +2736,8 @@ struct FVector UBlackboardComponent::SetValueAsVector()
 // Function AIModule.BlackboardComponent.SetValueAsString
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FString                      StringValue                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      StringValue                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
 
 class FString UBlackboardComponent::SetValueAsString()
 {
@@ -2746,8 +2765,8 @@ class FString UBlackboardComponent::SetValueAsString()
 // Function AIModule.BlackboardComponent.SetValueAsRotator
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRotator                    VectorValue                                                      (ConstParm, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRotator                    VectorValue                                                      (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
 struct FRotator UBlackboardComponent::SetValueAsRotator()
 {
@@ -2775,10 +2794,10 @@ struct FRotator UBlackboardComponent::SetValueAsRotator()
 // Function AIModule.BlackboardComponent.SetValueAsObject
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UObject*                     ObjectValue                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     ObjectValue                                                      (ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
-class UObject* UBlackboardComponent::SetValueAsObject()
+class FName UBlackboardComponent::SetValueAsObject(class UObject* ObjectValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2787,6 +2806,7 @@ class UObject* UBlackboardComponent::SetValueAsObject()
 
 	Params::UBlackboardComponent_SetValueAsObject_Params Parms{};
 
+	Parms.ObjectValue = ObjectValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2804,8 +2824,8 @@ class UObject* UBlackboardComponent::SetValueAsObject()
 // Function AIModule.BlackboardComponent.SetValueAsName
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FName                        NameValue                                                        (Net, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        NameValue                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
 class FName UBlackboardComponent::SetValueAsName()
 {
@@ -2833,10 +2853,10 @@ class FName UBlackboardComponent::SetValueAsName()
 // Function AIModule.BlackboardComponent.SetValueAsInt
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              IntValue                                                         (Edit, ConstParm, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              IntValue                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
-int32 UBlackboardComponent::SetValueAsInt()
+class FName UBlackboardComponent::SetValueAsInt(int32 IntValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2845,6 +2865,7 @@ int32 UBlackboardComponent::SetValueAsInt()
 
 	Params::UBlackboardComponent_SetValueAsInt_Params Parms{};
 
+	Parms.IntValue = IntValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2862,10 +2883,10 @@ int32 UBlackboardComponent::SetValueAsInt()
 // Function AIModule.BlackboardComponent.SetValueAsFloat
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              FloatValue                                                       (Edit, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              FloatValue                                                       (Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
-float UBlackboardComponent::SetValueAsFloat()
+class FName UBlackboardComponent::SetValueAsFloat(float FloatValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2874,6 +2895,7 @@ float UBlackboardComponent::SetValueAsFloat()
 
 	Params::UBlackboardComponent_SetValueAsFloat_Params Parms{};
 
+	Parms.FloatValue = FloatValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2891,10 +2913,10 @@ float UBlackboardComponent::SetValueAsFloat()
 // Function AIModule.BlackboardComponent.SetValueAsEnum
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// uint8                              EnumValue                                                        (BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// uint8                              EnumValue                                                        (Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class FName UBlackboardComponent::SetValueAsEnum(uint8 EnumValue)
+class FName UBlackboardComponent::SetValueAsEnum(uint8* EnumValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2903,7 +2925,6 @@ class FName UBlackboardComponent::SetValueAsEnum(uint8 EnumValue)
 
 	Params::UBlackboardComponent_SetValueAsEnum_Params Parms{};
 
-	Parms.EnumValue = EnumValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2912,6 +2933,9 @@ class FName UBlackboardComponent::SetValueAsEnum(uint8 EnumValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (EnumValue != nullptr)
+		*EnumValue = Parms.EnumValue;
 
 	return Parms.ReturnValue;
 
@@ -2921,10 +2945,10 @@ class FName UBlackboardComponent::SetValueAsEnum(uint8 EnumValue)
 // Function AIModule.BlackboardComponent.SetValueAsClass
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UClass*                      ClassValue                                                       (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UClass*                      ClassValue                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class FName UBlackboardComponent::SetValueAsClass(class UClass* ClassValue)
+class FName UBlackboardComponent::SetValueAsClass(class UClass** ClassValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2933,7 +2957,6 @@ class FName UBlackboardComponent::SetValueAsClass(class UClass* ClassValue)
 
 	Params::UBlackboardComponent_SetValueAsClass_Params Parms{};
 
-	Parms.ClassValue = ClassValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2942,6 +2965,9 @@ class FName UBlackboardComponent::SetValueAsClass(class UClass* ClassValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (ClassValue != nullptr)
+		*ClassValue = Parms.ClassValue;
 
 	return Parms.ReturnValue;
 
@@ -2951,10 +2977,10 @@ class FName UBlackboardComponent::SetValueAsClass(class UClass* ClassValue)
 // Function AIModule.BlackboardComponent.SetValueAsBool
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               BoolValue                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               BoolValue                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-class FName UBlackboardComponent::SetValueAsBool(bool BoolValue)
+class FName UBlackboardComponent::SetValueAsBool(bool* BoolValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2963,7 +2989,6 @@ class FName UBlackboardComponent::SetValueAsBool(bool BoolValue)
 
 	Params::UBlackboardComponent_SetValueAsBool_Params Parms{};
 
-	Parms.BoolValue = BoolValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2973,6 +2998,9 @@ class FName UBlackboardComponent::SetValueAsBool(bool BoolValue)
 
 	Func->FunctionFlags = Flgs;
 
+	if (BoolValue != nullptr)
+		*BoolValue = Parms.BoolValue;
+
 	return Parms.ReturnValue;
 
 }
@@ -2981,8 +3009,8 @@ class FName UBlackboardComponent::SetValueAsBool(bool BoolValue)
 // Function AIModule.BlackboardComponent.IsVectorValueSet
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::IsVectorValueSet(bool ReturnValue)
 {
@@ -3011,8 +3039,8 @@ class FName UBlackboardComponent::IsVectorValueSet(bool ReturnValue)
 // Function AIModule.BlackboardComponent.GetValueAsVector
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::GetValueAsVector(const struct FVector& ReturnValue)
 {
@@ -3041,8 +3069,8 @@ class FName UBlackboardComponent::GetValueAsVector(const struct FVector& ReturnV
 // Function AIModule.BlackboardComponent.GetValueAsString
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::GetValueAsString(const class FString& ReturnValue)
 {
@@ -3071,8 +3099,8 @@ class FName UBlackboardComponent::GetValueAsString(const class FString& ReturnVa
 // Function AIModule.BlackboardComponent.GetValueAsRotator
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRotator                    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::GetValueAsRotator(const struct FRotator& ReturnValue)
 {
@@ -3101,8 +3129,8 @@ class FName UBlackboardComponent::GetValueAsRotator(const struct FRotator& Retur
 // Function AIModule.BlackboardComponent.GetValueAsObject
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UObject*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::GetValueAsObject(class UObject* ReturnValue)
 {
@@ -3131,8 +3159,8 @@ class FName UBlackboardComponent::GetValueAsObject(class UObject* ReturnValue)
 // Function AIModule.BlackboardComponent.GetValueAsName
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FName                        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::GetValueAsName(class FName ReturnValue)
 {
@@ -3161,8 +3189,8 @@ class FName UBlackboardComponent::GetValueAsName(class FName ReturnValue)
 // Function AIModule.BlackboardComponent.GetValueAsInt
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::GetValueAsInt(int32 ReturnValue)
 {
@@ -3191,8 +3219,8 @@ class FName UBlackboardComponent::GetValueAsInt(int32 ReturnValue)
 // Function AIModule.BlackboardComponent.GetValueAsFloat
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::GetValueAsFloat(float ReturnValue)
 {
@@ -3221,8 +3249,8 @@ class FName UBlackboardComponent::GetValueAsFloat(float ReturnValue)
 // Function AIModule.BlackboardComponent.GetValueAsEnum
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// uint8                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// uint8                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::GetValueAsEnum(uint8 ReturnValue)
 {
@@ -3251,8 +3279,8 @@ class FName UBlackboardComponent::GetValueAsEnum(uint8 ReturnValue)
 // Function AIModule.BlackboardComponent.GetValueAsClass
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UClass*                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UClass*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::GetValueAsClass(class UClass* ReturnValue)
 {
@@ -3281,8 +3309,8 @@ class FName UBlackboardComponent::GetValueAsClass(class UClass* ReturnValue)
 // Function AIModule.BlackboardComponent.GetValueAsBool
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::GetValueAsBool(bool ReturnValue)
 {
@@ -3311,11 +3339,11 @@ class FName UBlackboardComponent::GetValueAsBool(bool ReturnValue)
 // Function AIModule.BlackboardComponent.GetRotationFromEntry
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRotator                    ResultRotation                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRotator                    ResultRotation                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UBlackboardComponent::GetRotationFromEntry(const struct FRotator& ResultRotation, bool ReturnValue)
+class FName UBlackboardComponent::GetRotationFromEntry(struct FRotator* ResultRotation, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3324,7 +3352,6 @@ class FName UBlackboardComponent::GetRotationFromEntry(const struct FRotator& Re
 
 	Params::UBlackboardComponent_GetRotationFromEntry_Params Parms{};
 
-	Parms.ResultRotation = ResultRotation;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -3334,6 +3361,9 @@ class FName UBlackboardComponent::GetRotationFromEntry(const struct FRotator& Re
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (ResultRotation != nullptr)
+		*ResultRotation = std::move(Parms.ResultRotation);
 
 	return Parms.ReturnValue;
 
@@ -3343,11 +3373,11 @@ class FName UBlackboardComponent::GetRotationFromEntry(const struct FRotator& Re
 // Function AIModule.BlackboardComponent.GetLocationFromEntry
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     ResultLocation                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FVector                     ResultLocation                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UBlackboardComponent::GetLocationFromEntry(const struct FVector& ResultLocation, bool ReturnValue)
+class FName UBlackboardComponent::GetLocationFromEntry(struct FVector* ResultLocation, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3356,7 +3386,6 @@ class FName UBlackboardComponent::GetLocationFromEntry(const struct FVector& Res
 
 	Params::UBlackboardComponent_GetLocationFromEntry_Params Parms{};
 
-	Parms.ResultLocation = ResultLocation;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -3367,6 +3396,9 @@ class FName UBlackboardComponent::GetLocationFromEntry(const struct FVector& Res
 
 	Func->FunctionFlags = Flgs;
 
+	if (ResultLocation != nullptr)
+		*ResultLocation = std::move(Parms.ResultLocation);
+
 	return Parms.ReturnValue;
 
 }
@@ -3375,7 +3407,7 @@ class FName UBlackboardComponent::GetLocationFromEntry(const struct FVector& Res
 // Function AIModule.BlackboardComponent.ClearValueAsVector
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::ClearValueAsVector()
 {
@@ -3403,7 +3435,7 @@ class FName UBlackboardComponent::ClearValueAsVector()
 // Function AIModule.BlackboardComponent.ClearValueAsRotator
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::ClearValueAsRotator()
 {
@@ -3431,7 +3463,7 @@ class FName UBlackboardComponent::ClearValueAsRotator()
 // Function AIModule.BlackboardComponent.ClearValue
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        KeyName                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        KeyName                                                          (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class FName UBlackboardComponent::ClearValue()
 {
@@ -3907,7 +3939,7 @@ class UBTFunctionLibrary* UBTFunctionLibrary::GetDefaultObj()
 // Function AIModule.BTFunctionLibrary.StopUsingExternalEvent
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class UBTNode* UBTFunctionLibrary::StopUsingExternalEvent()
 {
@@ -3935,10 +3967,10 @@ class UBTNode* UBTFunctionLibrary::StopUsingExternalEvent()
 // Function AIModule.BTFunctionLibrary.StartUsingExternalEvent
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class AActor*                      OwningActor                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class AActor*                      OwningActor                                                      (Edit, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-class AActor* UBTFunctionLibrary::StartUsingExternalEvent()
+class UBTNode* UBTFunctionLibrary::StartUsingExternalEvent(class AActor* OwningActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3947,6 +3979,7 @@ class AActor* UBTFunctionLibrary::StartUsingExternalEvent()
 
 	Params::UBTFunctionLibrary_StartUsingExternalEvent_Params Parms{};
 
+	Parms.OwningActor = OwningActor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3964,11 +3997,11 @@ class AActor* UBTFunctionLibrary::StartUsingExternalEvent()
 // Function AIModule.BTFunctionLibrary.SetBlackboardValueAsVector
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// struct FVector                     Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// struct FVector                     Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsVector(const struct FBlackboardKeySelector& Key, const struct FVector& Value)
+struct FBlackboardKeySelector UBTFunctionLibrary::SetBlackboardValueAsVector(struct FVector* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3977,8 +4010,6 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsVector(const struct FBlac
 
 	Params::UBTFunctionLibrary_SetBlackboardValueAsVector_Params Parms{};
 
-	Parms.Key = Key;
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3987,6 +4018,9 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsVector(const struct FBlac
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Value != nullptr)
+		*Value = std::move(Parms.Value);
 
 	return Parms.ReturnValue;
 
@@ -3996,11 +4030,11 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsVector(const struct FBlac
 // Function AIModule.BTFunctionLibrary.SetBlackboardValueAsString
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// class FString                      Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// class FString                      Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsString(const struct FBlackboardKeySelector& Key, const class FString& Value)
+struct FBlackboardKeySelector UBTFunctionLibrary::SetBlackboardValueAsString(class FString* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4009,8 +4043,6 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsString(const struct FBlac
 
 	Params::UBTFunctionLibrary_SetBlackboardValueAsString_Params Parms{};
 
-	Parms.Key = Key;
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4019,6 +4051,9 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsString(const struct FBlac
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Value != nullptr)
+		*Value = std::move(Parms.Value);
 
 	return Parms.ReturnValue;
 
@@ -4028,11 +4063,11 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsString(const struct FBlac
 // Function AIModule.BTFunctionLibrary.SetBlackboardValueAsRotator
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// struct FRotator                    Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// struct FRotator                    Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsRotator(const struct FBlackboardKeySelector& Key, const struct FRotator& Value)
+struct FBlackboardKeySelector UBTFunctionLibrary::SetBlackboardValueAsRotator(struct FRotator* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4041,8 +4076,6 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsRotator(const struct FBla
 
 	Params::UBTFunctionLibrary_SetBlackboardValueAsRotator_Params Parms{};
 
-	Parms.Key = Key;
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4051,6 +4084,9 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsRotator(const struct FBla
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Value != nullptr)
+		*Value = std::move(Parms.Value);
 
 	return Parms.ReturnValue;
 
@@ -4060,11 +4096,11 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsRotator(const struct FBla
 // Function AIModule.BTFunctionLibrary.SetBlackboardValueAsObject
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// class UObject*                     Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// class UObject*                     Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsObject(const struct FBlackboardKeySelector& Key, class UObject* Value)
+struct FBlackboardKeySelector UBTFunctionLibrary::SetBlackboardValueAsObject(class UObject** Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4073,8 +4109,6 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsObject(const struct FBlac
 
 	Params::UBTFunctionLibrary_SetBlackboardValueAsObject_Params Parms{};
 
-	Parms.Key = Key;
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4083,6 +4117,9 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsObject(const struct FBlac
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 	return Parms.ReturnValue;
 
@@ -4092,11 +4129,11 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsObject(const struct FBlac
 // Function AIModule.BTFunctionLibrary.SetBlackboardValueAsName
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// class FName                        Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// class FName                        Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsName(const struct FBlackboardKeySelector& Key, class FName Value)
+struct FBlackboardKeySelector UBTFunctionLibrary::SetBlackboardValueAsName(class FName* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4105,8 +4142,6 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsName(const struct FBlackb
 
 	Params::UBTFunctionLibrary_SetBlackboardValueAsName_Params Parms{};
 
-	Parms.Key = Key;
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4115,6 +4150,9 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsName(const struct FBlackb
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 	return Parms.ReturnValue;
 
@@ -4124,11 +4162,11 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsName(const struct FBlackb
 // Function AIModule.BTFunctionLibrary.SetBlackboardValueAsInt
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// int32                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// int32                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsInt(const struct FBlackboardKeySelector& Key, int32 Value)
+struct FBlackboardKeySelector UBTFunctionLibrary::SetBlackboardValueAsInt(int32* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4137,8 +4175,6 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsInt(const struct FBlackbo
 
 	Params::UBTFunctionLibrary_SetBlackboardValueAsInt_Params Parms{};
 
-	Parms.Key = Key;
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4147,6 +4183,9 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsInt(const struct FBlackbo
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 	return Parms.ReturnValue;
 
@@ -4156,11 +4195,11 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsInt(const struct FBlackbo
 // Function AIModule.BTFunctionLibrary.SetBlackboardValueAsFloat
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsFloat(const struct FBlackboardKeySelector& Key, float Value)
+struct FBlackboardKeySelector UBTFunctionLibrary::SetBlackboardValueAsFloat(float* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4169,8 +4208,6 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsFloat(const struct FBlack
 
 	Params::UBTFunctionLibrary_SetBlackboardValueAsFloat_Params Parms{};
 
-	Parms.Key = Key;
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4179,6 +4216,9 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsFloat(const struct FBlack
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 	return Parms.ReturnValue;
 
@@ -4188,11 +4228,11 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsFloat(const struct FBlack
 // Function AIModule.BTFunctionLibrary.SetBlackboardValueAsEnum
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// uint8                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// uint8                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsEnum(const struct FBlackboardKeySelector& Key, uint8 Value)
+struct FBlackboardKeySelector UBTFunctionLibrary::SetBlackboardValueAsEnum(uint8* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4201,8 +4241,6 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsEnum(const struct FBlackb
 
 	Params::UBTFunctionLibrary_SetBlackboardValueAsEnum_Params Parms{};
 
-	Parms.Key = Key;
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4211,6 +4249,9 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsEnum(const struct FBlackb
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 	return Parms.ReturnValue;
 
@@ -4220,11 +4261,11 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsEnum(const struct FBlackb
 // Function AIModule.BTFunctionLibrary.SetBlackboardValueAsClass
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// class UClass*                      Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// class UClass*                      Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsClass(const struct FBlackboardKeySelector& Key, class UClass* Value)
+struct FBlackboardKeySelector UBTFunctionLibrary::SetBlackboardValueAsClass(class UClass** Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4233,8 +4274,6 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsClass(const struct FBlack
 
 	Params::UBTFunctionLibrary_SetBlackboardValueAsClass_Params Parms{};
 
-	Parms.Key = Key;
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4243,6 +4282,9 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsClass(const struct FBlack
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 	return Parms.ReturnValue;
 
@@ -4252,11 +4294,11 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsClass(const struct FBlack
 // Function AIModule.BTFunctionLibrary.SetBlackboardValueAsBool
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// bool                               Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// bool                               Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsBool(const struct FBlackboardKeySelector& Key, bool Value)
+struct FBlackboardKeySelector UBTFunctionLibrary::SetBlackboardValueAsBool(bool* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4265,8 +4307,6 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsBool(const struct FBlackb
 
 	Params::UBTFunctionLibrary_SetBlackboardValueAsBool_Params Parms{};
 
-	Parms.Key = Key;
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4276,6 +4316,9 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsBool(const struct FBlackb
 
 	Func->FunctionFlags = Flgs;
 
+	if (Value != nullptr)
+		*Value = Parms.Value;
+
 	return Parms.ReturnValue;
 
 }
@@ -4284,8 +4327,8 @@ class UBTNode* UBTFunctionLibrary::SetBlackboardValueAsBool(const struct FBlackb
 // Function AIModule.BTFunctionLibrary.GetOwnersBlackboard
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class UBlackboardComponent*        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UBlackboardComponent*        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class UBTNode* UBTFunctionLibrary::GetOwnersBlackboard(class UBlackboardComponent* ReturnValue)
 {
@@ -4314,8 +4357,8 @@ class UBTNode* UBTFunctionLibrary::GetOwnersBlackboard(class UBlackboardComponen
 // Function AIModule.BTFunctionLibrary.GetOwnerComponent
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class UBehaviorTreeComponent*      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UBehaviorTreeComponent*      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class UBTNode* UBTFunctionLibrary::GetOwnerComponent(class UBehaviorTreeComponent* ReturnValue)
 {
@@ -4344,11 +4387,11 @@ class UBTNode* UBTFunctionLibrary::GetOwnerComponent(class UBehaviorTreeComponen
 // Function AIModule.BTFunctionLibrary.GetBlackboardValueAsVector
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// struct FVector                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsVector(const struct FBlackboardKeySelector& Key, const struct FVector& ReturnValue)
+struct FBlackboardKeySelector UBTFunctionLibrary::GetBlackboardValueAsVector(const struct FVector& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4357,7 +4400,6 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsVector(const struct FBlac
 
 	Params::UBTFunctionLibrary_GetBlackboardValueAsVector_Params Parms{};
 
-	Parms.Key = Key;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -4376,11 +4418,11 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsVector(const struct FBlac
 // Function AIModule.BTFunctionLibrary.GetBlackboardValueAsString
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsString(const struct FBlackboardKeySelector& Key, const class FString& ReturnValue)
+struct FBlackboardKeySelector UBTFunctionLibrary::GetBlackboardValueAsString(const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4389,7 +4431,6 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsString(const struct FBlac
 
 	Params::UBTFunctionLibrary_GetBlackboardValueAsString_Params Parms{};
 
-	Parms.Key = Key;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -4408,11 +4449,11 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsString(const struct FBlac
 // Function AIModule.BTFunctionLibrary.GetBlackboardValueAsRotator
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// struct FRotator                    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsRotator(const struct FBlackboardKeySelector& Key, const struct FRotator& ReturnValue)
+struct FBlackboardKeySelector UBTFunctionLibrary::GetBlackboardValueAsRotator(const struct FRotator& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4421,7 +4462,6 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsRotator(const struct FBla
 
 	Params::UBTFunctionLibrary_GetBlackboardValueAsRotator_Params Parms{};
 
-	Parms.Key = Key;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -4440,11 +4480,11 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsRotator(const struct FBla
 // Function AIModule.BTFunctionLibrary.GetBlackboardValueAsObject
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// class UObject*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsObject(const struct FBlackboardKeySelector& Key, class UObject* ReturnValue)
+struct FBlackboardKeySelector UBTFunctionLibrary::GetBlackboardValueAsObject(class UObject* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4453,7 +4493,6 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsObject(const struct FBlac
 
 	Params::UBTFunctionLibrary_GetBlackboardValueAsObject_Params Parms{};
 
-	Parms.Key = Key;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -4472,11 +4511,11 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsObject(const struct FBlac
 // Function AIModule.BTFunctionLibrary.GetBlackboardValueAsName
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// class FName                        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsName(const struct FBlackboardKeySelector& Key, class FName ReturnValue)
+struct FBlackboardKeySelector UBTFunctionLibrary::GetBlackboardValueAsName(class FName ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4485,7 +4524,6 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsName(const struct FBlackb
 
 	Params::UBTFunctionLibrary_GetBlackboardValueAsName_Params Parms{};
 
-	Parms.Key = Key;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -4504,11 +4542,11 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsName(const struct FBlackb
 // Function AIModule.BTFunctionLibrary.GetBlackboardValueAsInt
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsInt(const struct FBlackboardKeySelector& Key, int32 ReturnValue)
+struct FBlackboardKeySelector UBTFunctionLibrary::GetBlackboardValueAsInt(int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4517,7 +4555,6 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsInt(const struct FBlackbo
 
 	Params::UBTFunctionLibrary_GetBlackboardValueAsInt_Params Parms{};
 
-	Parms.Key = Key;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -4536,11 +4573,11 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsInt(const struct FBlackbo
 // Function AIModule.BTFunctionLibrary.GetBlackboardValueAsFloat
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsFloat(const struct FBlackboardKeySelector& Key, float ReturnValue)
+struct FBlackboardKeySelector UBTFunctionLibrary::GetBlackboardValueAsFloat(float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4549,7 +4586,6 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsFloat(const struct FBlack
 
 	Params::UBTFunctionLibrary_GetBlackboardValueAsFloat_Params Parms{};
 
-	Parms.Key = Key;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -4568,11 +4604,11 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsFloat(const struct FBlack
 // Function AIModule.BTFunctionLibrary.GetBlackboardValueAsEnum
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// uint8                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// uint8                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsEnum(const struct FBlackboardKeySelector& Key, uint8 ReturnValue)
+struct FBlackboardKeySelector UBTFunctionLibrary::GetBlackboardValueAsEnum(uint8 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4581,7 +4617,6 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsEnum(const struct FBlackb
 
 	Params::UBTFunctionLibrary_GetBlackboardValueAsEnum_Params Parms{};
 
-	Parms.Key = Key;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -4600,11 +4635,11 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsEnum(const struct FBlackb
 // Function AIModule.BTFunctionLibrary.GetBlackboardValueAsClass
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// class UClass*                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// class UClass*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsClass(const struct FBlackboardKeySelector& Key, class UClass* ReturnValue)
+struct FBlackboardKeySelector UBTFunctionLibrary::GetBlackboardValueAsClass(class UClass* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4613,7 +4648,6 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsClass(const struct FBlack
 
 	Params::UBTFunctionLibrary_GetBlackboardValueAsClass_Params Parms{};
 
-	Parms.Key = Key;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -4632,11 +4666,11 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsClass(const struct FBlack
 // Function AIModule.BTFunctionLibrary.GetBlackboardValueAsBool
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsBool(const struct FBlackboardKeySelector& Key, bool ReturnValue)
+struct FBlackboardKeySelector UBTFunctionLibrary::GetBlackboardValueAsBool(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4645,7 +4679,6 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsBool(const struct FBlackb
 
 	Params::UBTFunctionLibrary_GetBlackboardValueAsBool_Params Parms{};
 
-	Parms.Key = Key;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -4664,11 +4697,11 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsBool(const struct FBlackb
 // Function AIModule.BTFunctionLibrary.GetBlackboardValueAsActor
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// class AActor*                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// class AActor*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsActor(const struct FBlackboardKeySelector& Key, class AActor* ReturnValue)
+struct FBlackboardKeySelector UBTFunctionLibrary::GetBlackboardValueAsActor(class AActor* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4677,7 +4710,6 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsActor(const struct FBlack
 
 	Params::UBTFunctionLibrary_GetBlackboardValueAsActor_Params Parms{};
 
-	Parms.Key = Key;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -4696,10 +4728,10 @@ class UBTNode* UBTFunctionLibrary::GetBlackboardValueAsActor(const struct FBlack
 // Function AIModule.BTFunctionLibrary.ClearBlackboardValueAsVector
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
 
-class UBTNode* UBTFunctionLibrary::ClearBlackboardValueAsVector(const struct FBlackboardKeySelector& Key)
+struct FBlackboardKeySelector UBTFunctionLibrary::ClearBlackboardValueAsVector()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4708,7 +4740,6 @@ class UBTNode* UBTFunctionLibrary::ClearBlackboardValueAsVector(const struct FBl
 
 	Params::UBTFunctionLibrary_ClearBlackboardValueAsVector_Params Parms{};
 
-	Parms.Key = Key;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4726,10 +4757,10 @@ class UBTNode* UBTFunctionLibrary::ClearBlackboardValueAsVector(const struct FBl
 // Function AIModule.BTFunctionLibrary.ClearBlackboardValue
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UBTNode*                     NodeOwner                                                        (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FBlackboardKeySelector      Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
+// class UBTNode*                     NodeOwner                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FBlackboardKeySelector      Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
 
-class UBTNode* UBTFunctionLibrary::ClearBlackboardValue(const struct FBlackboardKeySelector& Key)
+struct FBlackboardKeySelector UBTFunctionLibrary::ClearBlackboardValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4738,7 +4769,6 @@ class UBTNode* UBTFunctionLibrary::ClearBlackboardValue(const struct FBlackboard
 
 	Params::UBTFunctionLibrary_ClearBlackboardValue_Params Parms{};
 
-	Parms.Key = Key;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4924,11 +4954,11 @@ class UBTDecorator_BlueprintBase* UBTDecorator_BlueprintBase::GetDefaultObj()
 // Function AIModule.BTDecorator_BlueprintBase.ReceiveTickAI
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AAIController*               OwnerController                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              DeltaSeconds                                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AAIController*               OwnerController                                                  (ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              DeltaSeconds                                                     (ConstParm, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UBTDecorator_BlueprintBase::ReceiveTickAI(class AAIController** OwnerController, class APawn* ControlledPawn)
+float UBTDecorator_BlueprintBase::ReceiveTickAI(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4937,12 +4967,11 @@ float UBTDecorator_BlueprintBase::ReceiveTickAI(class AAIController** OwnerContr
 
 	Params::UBTDecorator_BlueprintBase_ReceiveTickAI_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerController != nullptr)
-		*OwnerController = Parms.OwnerController;
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
 
 	return Parms.ReturnValue;
 
@@ -4952,10 +4981,10 @@ float UBTDecorator_BlueprintBase::ReceiveTickAI(class AAIController** OwnerContr
 // Function AIModule.BTDecorator_BlueprintBase.ReceiveTick
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaSeconds                                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              DeltaSeconds                                                     (ConstParm, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UBTDecorator_BlueprintBase::ReceiveTick()
+float UBTDecorator_BlueprintBase::ReceiveTick(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4967,6 +4996,9 @@ float UBTDecorator_BlueprintBase::ReceiveTick()
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
+
 	return Parms.ReturnValue;
 
 }
@@ -4975,10 +5007,10 @@ float UBTDecorator_BlueprintBase::ReceiveTick()
 // Function AIModule.BTDecorator_BlueprintBase.ReceiveObserverDeactivatedAI
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AAIController*               OwnerController                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AAIController*               OwnerController                                                  (ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBTDecorator_BlueprintBase::ReceiveObserverDeactivatedAI(class AAIController** OwnerController, class APawn* ControlledPawn)
+class AAIController* UBTDecorator_BlueprintBase::ReceiveObserverDeactivatedAI(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4987,12 +5019,13 @@ void UBTDecorator_BlueprintBase::ReceiveObserverDeactivatedAI(class AAIControlle
 
 	Params::UBTDecorator_BlueprintBase_ReceiveObserverDeactivatedAI_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerController != nullptr)
-		*OwnerController = Parms.OwnerController;
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -5000,9 +5033,9 @@ void UBTDecorator_BlueprintBase::ReceiveObserverDeactivatedAI(class AAIControlle
 // Function AIModule.BTDecorator_BlueprintBase.ReceiveObserverDeactivated
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class AActor* UBTDecorator_BlueprintBase::ReceiveObserverDeactivated()
+void UBTDecorator_BlueprintBase::ReceiveObserverDeactivated(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5014,7 +5047,8 @@ class AActor* UBTDecorator_BlueprintBase::ReceiveObserverDeactivated()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -5022,10 +5056,10 @@ class AActor* UBTDecorator_BlueprintBase::ReceiveObserverDeactivated()
 // Function AIModule.BTDecorator_BlueprintBase.ReceiveObserverActivatedAI
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AAIController*               OwnerController                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AAIController*               OwnerController                                                  (ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBTDecorator_BlueprintBase::ReceiveObserverActivatedAI(class AAIController** OwnerController, class APawn* ControlledPawn)
+class AAIController* UBTDecorator_BlueprintBase::ReceiveObserverActivatedAI(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5034,12 +5068,13 @@ void UBTDecorator_BlueprintBase::ReceiveObserverActivatedAI(class AAIController*
 
 	Params::UBTDecorator_BlueprintBase_ReceiveObserverActivatedAI_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerController != nullptr)
-		*OwnerController = Parms.OwnerController;
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -5047,9 +5082,9 @@ void UBTDecorator_BlueprintBase::ReceiveObserverActivatedAI(class AAIController*
 // Function AIModule.BTDecorator_BlueprintBase.ReceiveObserverActivated
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class AActor* UBTDecorator_BlueprintBase::ReceiveObserverActivated()
+void UBTDecorator_BlueprintBase::ReceiveObserverActivated(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5061,7 +5096,8 @@ class AActor* UBTDecorator_BlueprintBase::ReceiveObserverActivated()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -5069,10 +5105,10 @@ class AActor* UBTDecorator_BlueprintBase::ReceiveObserverActivated()
 // Function AIModule.BTDecorator_BlueprintBase.ReceiveExecutionStartAI
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AAIController*               OwnerController                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AAIController*               OwnerController                                                  (ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBTDecorator_BlueprintBase::ReceiveExecutionStartAI(class AAIController** OwnerController, class APawn* ControlledPawn)
+class AAIController* UBTDecorator_BlueprintBase::ReceiveExecutionStartAI(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5081,12 +5117,13 @@ void UBTDecorator_BlueprintBase::ReceiveExecutionStartAI(class AAIController** O
 
 	Params::UBTDecorator_BlueprintBase_ReceiveExecutionStartAI_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerController != nullptr)
-		*OwnerController = Parms.OwnerController;
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -5094,9 +5131,9 @@ void UBTDecorator_BlueprintBase::ReceiveExecutionStartAI(class AAIController** O
 // Function AIModule.BTDecorator_BlueprintBase.ReceiveExecutionStart
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class AActor* UBTDecorator_BlueprintBase::ReceiveExecutionStart()
+void UBTDecorator_BlueprintBase::ReceiveExecutionStart(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5108,7 +5145,8 @@ class AActor* UBTDecorator_BlueprintBase::ReceiveExecutionStart()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -5116,11 +5154,11 @@ class AActor* UBTDecorator_BlueprintBase::ReceiveExecutionStart()
 // Function AIModule.BTDecorator_BlueprintBase.ReceiveExecutionFinishAI
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AAIController*               OwnerController                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EBTNodeResult           NodeResult                                                       (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AAIController*               OwnerController                                                  (ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EBTNodeResult           NodeResult                                                       (Edit, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBTDecorator_BlueprintBase::ReceiveExecutionFinishAI(class AAIController** OwnerController, class APawn* ControlledPawn, enum class EBTNodeResult* NodeResult)
+enum class EBTNodeResult UBTDecorator_BlueprintBase::ReceiveExecutionFinishAI(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5129,15 +5167,13 @@ void UBTDecorator_BlueprintBase::ReceiveExecutionFinishAI(class AAIController** 
 
 	Params::UBTDecorator_BlueprintBase_ReceiveExecutionFinishAI_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerController != nullptr)
-		*OwnerController = Parms.OwnerController;
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
 
-	if (NodeResult != nullptr)
-		*NodeResult = Parms.NodeResult;
+	return Parms.ReturnValue;
 
 }
 
@@ -5145,10 +5181,10 @@ void UBTDecorator_BlueprintBase::ReceiveExecutionFinishAI(class AAIController** 
 // Function AIModule.BTDecorator_BlueprintBase.ReceiveExecutionFinish
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// enum class EBTNodeResult           NodeResult                                                       (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EBTNodeResult           NodeResult                                                       (Edit, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class AActor* UBTDecorator_BlueprintBase::ReceiveExecutionFinish(enum class EBTNodeResult* NodeResult)
+enum class EBTNodeResult UBTDecorator_BlueprintBase::ReceiveExecutionFinish(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5160,8 +5196,8 @@ class AActor* UBTDecorator_BlueprintBase::ReceiveExecutionFinish(enum class EBTN
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (NodeResult != nullptr)
-		*NodeResult = Parms.NodeResult;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 	return Parms.ReturnValue;
 
@@ -5171,9 +5207,9 @@ class AActor* UBTDecorator_BlueprintBase::ReceiveExecutionFinish(enum class EBTN
 // Function AIModule.BTDecorator_BlueprintBase.ReceiveConditionCheck
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class AActor* UBTDecorator_BlueprintBase::ReceiveConditionCheck()
+void UBTDecorator_BlueprintBase::ReceiveConditionCheck(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5185,7 +5221,8 @@ class AActor* UBTDecorator_BlueprintBase::ReceiveConditionCheck()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -5193,11 +5230,11 @@ class AActor* UBTDecorator_BlueprintBase::ReceiveConditionCheck()
 // Function AIModule.BTDecorator_BlueprintBase.PerformConditionCheckAI
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AAIController*               OwnerController                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AAIController*               OwnerController                                                  (ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBTDecorator_BlueprintBase::PerformConditionCheckAI(class AAIController** OwnerController, class APawn* ControlledPawn, bool ReturnValue)
+class AAIController* UBTDecorator_BlueprintBase::PerformConditionCheckAI(class APawn** ControlledPawn, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5206,13 +5243,14 @@ void UBTDecorator_BlueprintBase::PerformConditionCheckAI(class AAIController** O
 
 	Params::UBTDecorator_BlueprintBase_PerformConditionCheckAI_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerController != nullptr)
-		*OwnerController = Parms.OwnerController;
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -5220,10 +5258,10 @@ void UBTDecorator_BlueprintBase::PerformConditionCheckAI(class AAIController** O
 // Function AIModule.BTDecorator_BlueprintBase.PerformConditionCheck
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class AActor* UBTDecorator_BlueprintBase::PerformConditionCheck(bool ReturnValue)
+void UBTDecorator_BlueprintBase::PerformConditionCheck(class AActor** OwnerActor, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5236,7 +5274,8 @@ class AActor* UBTDecorator_BlueprintBase::PerformConditionCheck(bool ReturnValue
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -5244,7 +5283,7 @@ class AActor* UBTDecorator_BlueprintBase::PerformConditionCheck(bool ReturnValue
 // Function AIModule.BTDecorator_BlueprintBase.IsDecoratorObserverActive
 // (Final, Native, Protected, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBTDecorator_BlueprintBase::IsDecoratorObserverActive(bool ReturnValue)
 {
@@ -5271,7 +5310,7 @@ void UBTDecorator_BlueprintBase::IsDecoratorObserverActive(bool ReturnValue)
 // Function AIModule.BTDecorator_BlueprintBase.IsDecoratorExecutionActive
 // (Final, Native, Protected, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBTDecorator_BlueprintBase::IsDecoratorExecutionActive(bool ReturnValue)
 {
@@ -5298,9 +5337,9 @@ void UBTDecorator_BlueprintBase::IsDecoratorExecutionActive(bool ReturnValue)
 // Function AIModule.BTDecorator_BlueprintBase.FinishConditionCheck
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// bool                               bAllowExecution                                                  (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bAllowExecution                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBTDecorator_BlueprintBase::FinishConditionCheck(bool* bAllowExecution)
+bool UBTDecorator_BlueprintBase::FinishConditionCheck()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5318,8 +5357,7 @@ void UBTDecorator_BlueprintBase::FinishConditionCheck(bool* bAllowExecution)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bAllowExecution != nullptr)
-		*bAllowExecution = Parms.bAllowExecution;
+	return Parms.ReturnValue;
 
 }
 
@@ -5775,7 +5813,7 @@ class UBTService_BlueprintBase* UBTService_BlueprintBase::GetDefaultObj()
 // Function AIModule.BTService_BlueprintBase.ResetInterval
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UBehaviorTreeComponent*      OwnerComp                                                        (ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UBehaviorTreeComponent*      OwnerComp                                                        (Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 class UBehaviorTreeComponent* UBTService_BlueprintBase::ResetInterval()
 {
@@ -5803,11 +5841,11 @@ class UBehaviorTreeComponent* UBTService_BlueprintBase::ResetInterval()
 // Function AIModule.BTService_BlueprintBase.ReceiveTickAI
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AAIController*               OwnerController                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              DeltaSeconds                                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AAIController*               OwnerController                                                  (ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              DeltaSeconds                                                     (ConstParm, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UBTService_BlueprintBase::ReceiveTickAI(class AAIController** OwnerController, class APawn* ControlledPawn)
+float UBTService_BlueprintBase::ReceiveTickAI(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5816,12 +5854,11 @@ float UBTService_BlueprintBase::ReceiveTickAI(class AAIController** OwnerControl
 
 	Params::UBTService_BlueprintBase_ReceiveTickAI_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerController != nullptr)
-		*OwnerController = Parms.OwnerController;
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
 
 	return Parms.ReturnValue;
 
@@ -5831,10 +5868,10 @@ float UBTService_BlueprintBase::ReceiveTickAI(class AAIController** OwnerControl
 // Function AIModule.BTService_BlueprintBase.ReceiveTick
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaSeconds                                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              DeltaSeconds                                                     (ConstParm, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UBTService_BlueprintBase::ReceiveTick()
+float UBTService_BlueprintBase::ReceiveTick(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5846,6 +5883,9 @@ float UBTService_BlueprintBase::ReceiveTick()
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
+
 	return Parms.ReturnValue;
 
 }
@@ -5854,10 +5894,10 @@ float UBTService_BlueprintBase::ReceiveTick()
 // Function AIModule.BTService_BlueprintBase.ReceiveSearchStartAI
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AAIController*               OwnerController                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AAIController*               OwnerController                                                  (ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBTService_BlueprintBase::ReceiveSearchStartAI(class AAIController** OwnerController, class APawn* ControlledPawn)
+class AAIController* UBTService_BlueprintBase::ReceiveSearchStartAI(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5866,12 +5906,13 @@ void UBTService_BlueprintBase::ReceiveSearchStartAI(class AAIController** OwnerC
 
 	Params::UBTService_BlueprintBase_ReceiveSearchStartAI_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerController != nullptr)
-		*OwnerController = Parms.OwnerController;
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -5879,9 +5920,9 @@ void UBTService_BlueprintBase::ReceiveSearchStartAI(class AAIController** OwnerC
 // Function AIModule.BTService_BlueprintBase.ReceiveSearchStart
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class AActor* UBTService_BlueprintBase::ReceiveSearchStart()
+void UBTService_BlueprintBase::ReceiveSearchStart(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5893,7 +5934,8 @@ class AActor* UBTService_BlueprintBase::ReceiveSearchStart()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -5901,10 +5943,10 @@ class AActor* UBTService_BlueprintBase::ReceiveSearchStart()
 // Function AIModule.BTService_BlueprintBase.ReceiveDeactivationAI
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AAIController*               OwnerController                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AAIController*               OwnerController                                                  (ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBTService_BlueprintBase::ReceiveDeactivationAI(class AAIController** OwnerController, class APawn* ControlledPawn)
+class AAIController* UBTService_BlueprintBase::ReceiveDeactivationAI(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5913,12 +5955,13 @@ void UBTService_BlueprintBase::ReceiveDeactivationAI(class AAIController** Owner
 
 	Params::UBTService_BlueprintBase_ReceiveDeactivationAI_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerController != nullptr)
-		*OwnerController = Parms.OwnerController;
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -5926,9 +5969,9 @@ void UBTService_BlueprintBase::ReceiveDeactivationAI(class AAIController** Owner
 // Function AIModule.BTService_BlueprintBase.ReceiveDeactivation
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class AActor* UBTService_BlueprintBase::ReceiveDeactivation()
+void UBTService_BlueprintBase::ReceiveDeactivation(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5940,7 +5983,8 @@ class AActor* UBTService_BlueprintBase::ReceiveDeactivation()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -5948,10 +5992,10 @@ class AActor* UBTService_BlueprintBase::ReceiveDeactivation()
 // Function AIModule.BTService_BlueprintBase.ReceiveActivationAI
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AAIController*               OwnerController                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AAIController*               OwnerController                                                  (ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBTService_BlueprintBase::ReceiveActivationAI(class AAIController** OwnerController, class APawn* ControlledPawn)
+class AAIController* UBTService_BlueprintBase::ReceiveActivationAI(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5960,12 +6004,13 @@ void UBTService_BlueprintBase::ReceiveActivationAI(class AAIController** OwnerCo
 
 	Params::UBTService_BlueprintBase_ReceiveActivationAI_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerController != nullptr)
-		*OwnerController = Parms.OwnerController;
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -5973,9 +6018,9 @@ void UBTService_BlueprintBase::ReceiveActivationAI(class AAIController** OwnerCo
 // Function AIModule.BTService_BlueprintBase.ReceiveActivation
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class AActor* UBTService_BlueprintBase::ReceiveActivation()
+void UBTService_BlueprintBase::ReceiveActivation(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5987,7 +6032,8 @@ class AActor* UBTService_BlueprintBase::ReceiveActivation()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -5995,7 +6041,7 @@ class AActor* UBTService_BlueprintBase::ReceiveActivation()
 // Function AIModule.BTService_BlueprintBase.IsServiceActive
 // (Final, Native, Protected, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBTService_BlueprintBase::IsServiceActive(bool ReturnValue)
 {
@@ -6106,10 +6152,10 @@ class UBTTask_BlueprintBase* UBTTask_BlueprintBase::GetDefaultObj()
 // Function AIModule.BTTask_BlueprintBase.SetFinishOnMessageWithId
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// class FName                        MessageName                                                      (BlueprintVisible, BlueprintReadOnly, Net, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              RequestID                                                        (ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        MessageName                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+// int32                              RequestID                                                        (Edit, ConstParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-void UBTTask_BlueprintBase::SetFinishOnMessageWithId(class FName MessageName, int32* RequestID)
+void UBTTask_BlueprintBase::SetFinishOnMessageWithId(class FName MessageName, int32 RequestID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6119,6 +6165,7 @@ void UBTTask_BlueprintBase::SetFinishOnMessageWithId(class FName MessageName, in
 	Params::UBTTask_BlueprintBase_SetFinishOnMessageWithId_Params Parms{};
 
 	Parms.MessageName = MessageName;
+	Parms.RequestID = RequestID;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6128,16 +6175,13 @@ void UBTTask_BlueprintBase::SetFinishOnMessageWithId(class FName MessageName, in
 
 	Func->FunctionFlags = Flgs;
 
-	if (RequestID != nullptr)
-		*RequestID = Parms.RequestID;
-
 }
 
 
 // Function AIModule.BTTask_BlueprintBase.SetFinishOnMessage
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// class FName                        MessageName                                                      (BlueprintVisible, BlueprintReadOnly, Net, Parm, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        MessageName                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
 
 void UBTTask_BlueprintBase::SetFinishOnMessage(class FName MessageName)
 {
@@ -6164,11 +6208,11 @@ void UBTTask_BlueprintBase::SetFinishOnMessage(class FName MessageName)
 // Function AIModule.BTTask_BlueprintBase.ReceiveTickAI
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AAIController*               OwnerController                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              DeltaSeconds                                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AAIController*               OwnerController                                                  (ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              DeltaSeconds                                                     (ConstParm, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UBTTask_BlueprintBase::ReceiveTickAI(class AAIController** OwnerController, class APawn* ControlledPawn)
+float UBTTask_BlueprintBase::ReceiveTickAI(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6177,12 +6221,11 @@ float UBTTask_BlueprintBase::ReceiveTickAI(class AAIController** OwnerController
 
 	Params::UBTTask_BlueprintBase_ReceiveTickAI_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerController != nullptr)
-		*OwnerController = Parms.OwnerController;
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
 
 	return Parms.ReturnValue;
 
@@ -6192,10 +6235,10 @@ float UBTTask_BlueprintBase::ReceiveTickAI(class AAIController** OwnerController
 // Function AIModule.BTTask_BlueprintBase.ReceiveTick
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
-// float                              DeltaSeconds                                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              DeltaSeconds                                                     (ConstParm, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UBTTask_BlueprintBase::ReceiveTick()
+float UBTTask_BlueprintBase::ReceiveTick(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6207,6 +6250,9 @@ float UBTTask_BlueprintBase::ReceiveTick()
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
+
 	return Parms.ReturnValue;
 
 }
@@ -6215,10 +6261,10 @@ float UBTTask_BlueprintBase::ReceiveTick()
 // Function AIModule.BTTask_BlueprintBase.ReceiveExecuteAI
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AAIController*               OwnerController                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AAIController*               OwnerController                                                  (ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBTTask_BlueprintBase::ReceiveExecuteAI(class AAIController** OwnerController, class APawn* ControlledPawn)
+class AAIController* UBTTask_BlueprintBase::ReceiveExecuteAI(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6227,12 +6273,13 @@ void UBTTask_BlueprintBase::ReceiveExecuteAI(class AAIController** OwnerControll
 
 	Params::UBTTask_BlueprintBase_ReceiveExecuteAI_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerController != nullptr)
-		*OwnerController = Parms.OwnerController;
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -6240,9 +6287,9 @@ void UBTTask_BlueprintBase::ReceiveExecuteAI(class AAIController** OwnerControll
 // Function AIModule.BTTask_BlueprintBase.ReceiveExecute
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class AActor* UBTTask_BlueprintBase::ReceiveExecute()
+void UBTTask_BlueprintBase::ReceiveExecute(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6254,7 +6301,8 @@ class AActor* UBTTask_BlueprintBase::ReceiveExecute()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -6262,10 +6310,10 @@ class AActor* UBTTask_BlueprintBase::ReceiveExecute()
 // Function AIModule.BTTask_BlueprintBase.ReceiveAbortAI
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AAIController*               OwnerController                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       ControlledPawn                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AAIController*               OwnerController                                                  (ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       ControlledPawn                                                   (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UBTTask_BlueprintBase::ReceiveAbortAI(class AAIController** OwnerController, class APawn* ControlledPawn)
+class AAIController* UBTTask_BlueprintBase::ReceiveAbortAI(class APawn** ControlledPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6274,12 +6322,13 @@ void UBTTask_BlueprintBase::ReceiveAbortAI(class AAIController** OwnerController
 
 	Params::UBTTask_BlueprintBase_ReceiveAbortAI_Params Parms{};
 
-	Parms.ControlledPawn = ControlledPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerController != nullptr)
-		*OwnerController = Parms.OwnerController;
+	if (ControlledPawn != nullptr)
+		*ControlledPawn = Parms.ControlledPawn;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -6287,9 +6336,9 @@ void UBTTask_BlueprintBase::ReceiveAbortAI(class AAIController** OwnerController
 // Function AIModule.BTTask_BlueprintBase.ReceiveAbort
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class AActor* UBTTask_BlueprintBase::ReceiveAbort()
+void UBTTask_BlueprintBase::ReceiveAbort(class AActor** OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6301,7 +6350,8 @@ class AActor* UBTTask_BlueprintBase::ReceiveAbort()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (OwnerActor != nullptr)
+		*OwnerActor = Parms.OwnerActor;
 
 }
 
@@ -6309,7 +6359,7 @@ class AActor* UBTTask_BlueprintBase::ReceiveAbort()
 // Function AIModule.BTTask_BlueprintBase.IsTaskExecuting
 // (Final, Native, Protected, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBTTask_BlueprintBase::IsTaskExecuting(bool ReturnValue)
 {
@@ -6336,7 +6386,7 @@ void UBTTask_BlueprintBase::IsTaskExecuting(bool ReturnValue)
 // Function AIModule.BTTask_BlueprintBase.IsTaskAborting
 // (Final, Native, Protected, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UBTTask_BlueprintBase::IsTaskAborting(bool ReturnValue)
 {
@@ -6363,9 +6413,9 @@ void UBTTask_BlueprintBase::IsTaskAborting(bool ReturnValue)
 // Function AIModule.BTTask_BlueprintBase.FinishExecute
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// bool                               bSuccess                                                         (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bSuccess                                                         (Edit, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBTTask_BlueprintBase::FinishExecute(bool bSuccess)
+bool UBTTask_BlueprintBase::FinishExecute()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6374,7 +6424,6 @@ void UBTTask_BlueprintBase::FinishExecute(bool bSuccess)
 
 	Params::UBTTask_BlueprintBase_FinishExecute_Params Parms{};
 
-	Parms.bSuccess = bSuccess;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6383,6 +6432,8 @@ void UBTTask_BlueprintBase::FinishExecute(bool bSuccess)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -6862,11 +6913,11 @@ class UAIBlueprintHelperLibrary* UAIBlueprintHelperLibrary::GetDefaultObj()
 // Function AIModule.AIBlueprintHelperLibrary.UnlockAIResourcesWithAnimation
 // (Final, BlueprintAuthorityOnly, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UAnimInstance*               AnimInstance                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst)
-// bool                               bUnlockMovement                                                  (ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               UnlockAILogic                                                    (ConstParm, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UAnimInstance*               AnimInstance                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst)
+// bool                               bUnlockMovement                                                  (ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               UnlockAILogic                                                    (BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-void UAIBlueprintHelperLibrary::UnlockAIResourcesWithAnimation(class UAnimInstance** AnimInstance, bool bUnlockMovement, bool UnlockAILogic)
+bool UAIBlueprintHelperLibrary::UnlockAIResourcesWithAnimation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6875,8 +6926,6 @@ void UAIBlueprintHelperLibrary::UnlockAIResourcesWithAnimation(class UAnimInstan
 
 	Params::UAIBlueprintHelperLibrary_UnlockAIResourcesWithAnimation_Params Parms{};
 
-	Parms.bUnlockMovement = bUnlockMovement;
-	Parms.UnlockAILogic = UnlockAILogic;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6886,8 +6935,7 @@ void UAIBlueprintHelperLibrary::UnlockAIResourcesWithAnimation(class UAnimInstan
 
 	Func->FunctionFlags = Flgs;
 
-	if (AnimInstance != nullptr)
-		*AnimInstance = Parms.AnimInstance;
+	return Parms.ReturnValue;
 
 }
 
@@ -6895,16 +6943,16 @@ void UAIBlueprintHelperLibrary::UnlockAIResourcesWithAnimation(class UAnimInstan
 // Function AIModule.AIBlueprintHelperLibrary.SpawnAIFromClass
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UClass*                      PawnClass                                                        (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UBehaviorTree*               BehaviorTree                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UClass*                      PawnClass                                                        (ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UBehaviorTree*               BehaviorTree                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, InstancedReference)
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
 // struct FRotator                    Rotation                                                         (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// bool                               bNoCollisionFail                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bNoCollisionFail                                                 (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 // class AActor*                      Owner                                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor)
-// class APawn*                       ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APawn*                       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UBehaviorTree* UAIBlueprintHelperLibrary::SpawnAIFromClass(class UObject* WorldContextObject, class UClass** PawnClass, struct FVector* Location, struct FRotator* Rotation, bool bNoCollisionFail, class AActor** Owner, class APawn* ReturnValue)
+class UClass* UAIBlueprintHelperLibrary::SpawnAIFromClass(class UBehaviorTree** BehaviorTree, struct FVector* Location, struct FRotator* Rotation, bool bNoCollisionFail, class AActor** Owner, class APawn* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6913,7 +6961,6 @@ class UBehaviorTree* UAIBlueprintHelperLibrary::SpawnAIFromClass(class UObject* 
 
 	Params::UAIBlueprintHelperLibrary_SpawnAIFromClass_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
 	Parms.bNoCollisionFail = bNoCollisionFail;
 	Parms.ReturnValue = ReturnValue;
 
@@ -6925,8 +6972,8 @@ class UBehaviorTree* UAIBlueprintHelperLibrary::SpawnAIFromClass(class UObject* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (PawnClass != nullptr)
-		*PawnClass = Parms.PawnClass;
+	if (BehaviorTree != nullptr)
+		*BehaviorTree = Parms.BehaviorTree;
 
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
@@ -6945,10 +6992,10 @@ class UBehaviorTree* UAIBlueprintHelperLibrary::SpawnAIFromClass(class UObject* 
 // Function AIModule.AIBlueprintHelperLibrary.SimpleMoveToLocation
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class AController*                 Controller                                                       (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// struct FVector                     Goal                                                             (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AController*                 Controller                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// struct FVector                     Goal                                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-class AController* UAIBlueprintHelperLibrary::SimpleMoveToLocation(struct FVector* Goal)
+struct FVector UAIBlueprintHelperLibrary::SimpleMoveToLocation(class AController** Controller)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6966,8 +7013,8 @@ class AController* UAIBlueprintHelperLibrary::SimpleMoveToLocation(struct FVecto
 
 	Func->FunctionFlags = Flgs;
 
-	if (Goal != nullptr)
-		*Goal = std::move(Parms.Goal);
+	if (Controller != nullptr)
+		*Controller = Parms.Controller;
 
 	return Parms.ReturnValue;
 
@@ -6977,10 +7024,10 @@ class AController* UAIBlueprintHelperLibrary::SimpleMoveToLocation(struct FVecto
 // Function AIModule.AIBlueprintHelperLibrary.SimpleMoveToActor
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class AController*                 Controller                                                       (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// class AActor*                      Goal                                                             (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AController*                 Controller                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class AActor*                      Goal                                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-class AController* UAIBlueprintHelperLibrary::SimpleMoveToActor(class AActor** Goal)
+class AActor* UAIBlueprintHelperLibrary::SimpleMoveToActor(class AController** Controller)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6998,8 +7045,8 @@ class AController* UAIBlueprintHelperLibrary::SimpleMoveToActor(class AActor** G
 
 	Func->FunctionFlags = Flgs;
 
-	if (Goal != nullptr)
-		*Goal = Parms.Goal;
+	if (Controller != nullptr)
+		*Controller = Parms.Controller;
 
 	return Parms.ReturnValue;
 
@@ -7009,12 +7056,12 @@ class AController* UAIBlueprintHelperLibrary::SimpleMoveToActor(class AActor** G
 // Function AIModule.AIBlueprintHelperLibrary.SendAIMessage
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class APawn*                       Target                                                           (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
-// class FName                        Message                                                          (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UObject*                     MessageSource                                                    (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bSuccess                                                         (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APawn*                       Target                                                           (Edit, ConstParm, ReturnParm, Transient, Config)
+// class FName                        Message                                                          (BlueprintVisible, EditFixedSize, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// class UObject*                     MessageSource                                                    (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bSuccess                                                         (Edit, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UAIBlueprintHelperLibrary::SendAIMessage(class APawn* Target, bool bSuccess)
+bool UAIBlueprintHelperLibrary::SendAIMessage(class FName* Message)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7023,8 +7070,6 @@ class UObject* UAIBlueprintHelperLibrary::SendAIMessage(class APawn* Target, boo
 
 	Params::UAIBlueprintHelperLibrary_SendAIMessage_Params Parms{};
 
-	Parms.Target = Target;
-	Parms.bSuccess = bSuccess;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7034,6 +7079,9 @@ class UObject* UAIBlueprintHelperLibrary::SendAIMessage(class APawn* Target, boo
 
 	Func->FunctionFlags = Flgs;
 
+	if (Message != nullptr)
+		*Message = Parms.Message;
+
 	return Parms.ReturnValue;
 
 }
@@ -7042,11 +7090,11 @@ class UObject* UAIBlueprintHelperLibrary::SendAIMessage(class APawn* Target, boo
 // Function AIModule.AIBlueprintHelperLibrary.LockAIResourcesWithAnimation
 // (Final, BlueprintAuthorityOnly, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UAnimInstance*               AnimInstance                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst)
-// bool                               bLockMovement                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               LockAILogic                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UAnimInstance*               AnimInstance                                                     (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst)
+// bool                               bLockMovement                                                    (Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               LockAILogic                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-void UAIBlueprintHelperLibrary::LockAIResourcesWithAnimation(class UAnimInstance** AnimInstance, bool* bLockMovement, bool* LockAILogic)
+bool UAIBlueprintHelperLibrary::LockAIResourcesWithAnimation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7064,14 +7112,7 @@ void UAIBlueprintHelperLibrary::LockAIResourcesWithAnimation(class UAnimInstance
 
 	Func->FunctionFlags = Flgs;
 
-	if (AnimInstance != nullptr)
-		*AnimInstance = Parms.AnimInstance;
-
-	if (bLockMovement != nullptr)
-		*bLockMovement = Parms.bLockMovement;
-
-	if (LockAILogic != nullptr)
-		*LockAILogic = Parms.LockAILogic;
+	return Parms.ReturnValue;
 
 }
 
@@ -7080,7 +7121,7 @@ void UAIBlueprintHelperLibrary::LockAIResourcesWithAnimation(class UAnimInstance
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FRotator                    Rotation                                                         (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UAIBlueprintHelperLibrary::IsValidAIRotation(struct FRotator* Rotation, bool ReturnValue)
 {
@@ -7111,7 +7152,7 @@ void UAIBlueprintHelperLibrary::IsValidAIRotation(struct FRotator* Rotation, boo
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UAIBlueprintHelperLibrary::IsValidAILocation(struct FVector* Location, bool ReturnValue)
 {
@@ -7141,8 +7182,8 @@ void UAIBlueprintHelperLibrary::IsValidAILocation(struct FVector* Location, bool
 // Function AIModule.AIBlueprintHelperLibrary.IsValidAIDirection
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FVector                     DirectionVector                                                  (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     DirectionVector                                                  (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FVector UAIBlueprintHelperLibrary::IsValidAIDirection(bool ReturnValue)
 {
@@ -7171,10 +7212,10 @@ struct FVector UAIBlueprintHelperLibrary::IsValidAIDirection(bool ReturnValue)
 // Function AIModule.AIBlueprintHelperLibrary.GetNextNavLinkIndex
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class AController*                 Controller                                                       (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AController*                 Controller                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class AController* UAIBlueprintHelperLibrary::GetNextNavLinkIndex(int32 ReturnValue)
+void UAIBlueprintHelperLibrary::GetNextNavLinkIndex(class AController** Controller, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7193,7 +7234,8 @@ class AController* UAIBlueprintHelperLibrary::GetNextNavLinkIndex(int32 ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Controller != nullptr)
+		*Controller = Parms.Controller;
 
 }
 
@@ -7201,10 +7243,10 @@ class AController* UAIBlueprintHelperLibrary::GetNextNavLinkIndex(int32 ReturnVa
 // Function AIModule.AIBlueprintHelperLibrary.GetCurrentPathPoints
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class AController*                 Controller                                                       (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// TArray<struct FVector>             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AController*                 Controller                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// TArray<struct FVector>             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class AController* UAIBlueprintHelperLibrary::GetCurrentPathPoints(const TArray<struct FVector>& ReturnValue)
+void UAIBlueprintHelperLibrary::GetCurrentPathPoints(class AController** Controller, const TArray<struct FVector>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7223,7 +7265,8 @@ class AController* UAIBlueprintHelperLibrary::GetCurrentPathPoints(const TArray<
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Controller != nullptr)
+		*Controller = Parms.Controller;
 
 }
 
@@ -7231,10 +7274,10 @@ class AController* UAIBlueprintHelperLibrary::GetCurrentPathPoints(const TArray<
 // Function AIModule.AIBlueprintHelperLibrary.GetCurrentPathIndex
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class AController*                 Controller                                                       (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AController*                 Controller                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class AController* UAIBlueprintHelperLibrary::GetCurrentPathIndex(int32 ReturnValue)
+void UAIBlueprintHelperLibrary::GetCurrentPathIndex(class AController** Controller, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7253,7 +7296,8 @@ class AController* UAIBlueprintHelperLibrary::GetCurrentPathIndex(int32 ReturnVa
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Controller != nullptr)
+		*Controller = Parms.Controller;
 
 }
 
@@ -7261,10 +7305,10 @@ class AController* UAIBlueprintHelperLibrary::GetCurrentPathIndex(int32 ReturnVa
 // Function AIModule.AIBlueprintHelperLibrary.GetCurrentPath
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class AController*                 Controller                                                       (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// class UNavigationPath*             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AController*                 Controller                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class UNavigationPath*             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class AController* UAIBlueprintHelperLibrary::GetCurrentPath(class UNavigationPath* ReturnValue)
+void UAIBlueprintHelperLibrary::GetCurrentPath(class AController** Controller, class UNavigationPath* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7283,7 +7327,8 @@ class AController* UAIBlueprintHelperLibrary::GetCurrentPath(class UNavigationPa
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Controller != nullptr)
+		*Controller = Parms.Controller;
 
 }
 
@@ -7291,10 +7336,10 @@ class AController* UAIBlueprintHelperLibrary::GetCurrentPath(class UNavigationPa
 // Function AIModule.AIBlueprintHelperLibrary.GetBlackboard
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class AActor*                      Target                                                           (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
-// class UBlackboardComponent*        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      Target                                                           (Edit, ConstParm, ReturnParm, Transient, Config)
+// class UBlackboardComponent*        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAIBlueprintHelperLibrary::GetBlackboard(class AActor* Target, class UBlackboardComponent* ReturnValue)
+class AActor* UAIBlueprintHelperLibrary::GetBlackboard(class UBlackboardComponent* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7303,7 +7348,6 @@ void UAIBlueprintHelperLibrary::GetBlackboard(class AActor* Target, class UBlack
 
 	Params::UAIBlueprintHelperLibrary_GetBlackboard_Params Parms{};
 
-	Parms.Target = Target;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -7314,14 +7358,16 @@ void UAIBlueprintHelperLibrary::GetBlackboard(class AActor* Target, class UBlack
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AIModule.AIBlueprintHelperLibrary.GetAIController
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class AActor*                      ControlledActor                                                  (ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class AAIController*               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      ControlledActor                                                  (Edit, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class AAIController*               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 class AActor* UAIBlueprintHelperLibrary::GetAIController(class AAIController* ReturnValue)
 {
@@ -7350,15 +7396,15 @@ class AActor* UAIBlueprintHelperLibrary::GetAIController(class AAIController* Re
 // Function AIModule.AIBlueprintHelperLibrary.CreateMoveToProxyObject
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 // class APawn*                       Pawn                                                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor)
-// struct FVector                     Destination                                                      (BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class AActor*                      TargetActor                                                      (BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              AcceptanceRadius                                                 (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bStopOnOverlap                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class UAIAsyncTaskBlueprintProxy*  ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     Destination                                                      (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class AActor*                      TargetActor                                                      (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              AcceptanceRadius                                                 (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bStopOnOverlap                                                   (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UAIAsyncTaskBlueprintProxy*  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class AActor* UAIBlueprintHelperLibrary::CreateMoveToProxyObject(class UObject* WorldContextObject, class APawn* Pawn, const struct FVector& Destination, float AcceptanceRadius, bool bStopOnOverlap, class UAIAsyncTaskBlueprintProxy* ReturnValue)
+bool UAIBlueprintHelperLibrary::CreateMoveToProxyObject(class APawn* Pawn, struct FVector* Destination, class UAIAsyncTaskBlueprintProxy* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7367,11 +7413,7 @@ class AActor* UAIBlueprintHelperLibrary::CreateMoveToProxyObject(class UObject* 
 
 	Params::UAIBlueprintHelperLibrary_CreateMoveToProxyObject_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
 	Parms.Pawn = Pawn;
-	Parms.Destination = Destination;
-	Parms.AcceptanceRadius = AcceptanceRadius;
-	Parms.bStopOnOverlap = bStopOnOverlap;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -7381,6 +7423,9 @@ class AActor* UAIBlueprintHelperLibrary::CreateMoveToProxyObject(class UObject* 
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Destination != nullptr)
+		*Destination = std::move(Parms.Destination);
 
 	return Parms.ReturnValue;
 
@@ -7558,9 +7603,9 @@ class UEnvQueryContext_BlueprintBase* UEnvQueryContext_BlueprintBase::GetDefault
 // Function AIModule.EnvQueryContext_BlueprintBase.ProvideSingleLocation
 // (Event, Public, HasOutParams, HasDefaults, BlueprintEvent, Const)
 // Parameters:
-// class UObject*                     QuerierObject                                                    (ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class AActor*                      QuerierActor                                                     (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     ResultingLocation                                                (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     QuerierObject                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class AActor*                      QuerierActor                                                     (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     ResultingLocation                                                (BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FVector UEnvQueryContext_BlueprintBase::ProvideSingleLocation()
 {
@@ -7582,9 +7627,9 @@ struct FVector UEnvQueryContext_BlueprintBase::ProvideSingleLocation()
 // Function AIModule.EnvQueryContext_BlueprintBase.ProvideSingleActor
 // (Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// class UObject*                     QuerierObject                                                    (ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class AActor*                      QuerierActor                                                     (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class AActor*                      ResultingActor                                                   (Edit, ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     QuerierObject                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class AActor*                      QuerierActor                                                     (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class AActor*                      ResultingActor                                                   (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 class AActor* UEnvQueryContext_BlueprintBase::ProvideSingleActor()
 {
@@ -7606,9 +7651,9 @@ class AActor* UEnvQueryContext_BlueprintBase::ProvideSingleActor()
 // Function AIModule.EnvQueryContext_BlueprintBase.ProvideLocationsSet
 // (Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// class UObject*                     QuerierObject                                                    (ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class AActor*                      QuerierActor                                                     (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<struct FVector>             ResultingLocationSet                                             (Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     QuerierObject                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class AActor*                      QuerierActor                                                     (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             ResultingLocationSet                                             (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 TArray<struct FVector> UEnvQueryContext_BlueprintBase::ProvideLocationsSet()
 {
@@ -7630,9 +7675,9 @@ TArray<struct FVector> UEnvQueryContext_BlueprintBase::ProvideLocationsSet()
 // Function AIModule.EnvQueryContext_BlueprintBase.ProvideActorsSet
 // (Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// class UObject*                     QuerierObject                                                    (ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class AActor*                      QuerierActor                                                     (Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class AActor*>              ResultingActorsSet                                               (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     QuerierObject                                                    (Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class AActor*                      QuerierActor                                                     (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class AActor*>              ResultingActorsSet                                               (Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 TArray<class AActor*> UEnvQueryContext_BlueprintBase::ProvideActorsSet()
 {
@@ -7850,10 +7895,10 @@ class UEnvQueryInstanceBlueprintWrapper* UEnvQueryInstanceBlueprintWrapper::GetD
 // Function AIModule.EnvQueryInstanceBlueprintWrapper.SetNamedParam
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ParamName                                                        (BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+// class FName                        ParamName                                                        (Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 
-class FName UEnvQueryInstanceBlueprintWrapper::SetNamedParam(float Value)
+void UEnvQueryInstanceBlueprintWrapper::SetNamedParam(class FName* ParamName, float* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7862,7 +7907,6 @@ class FName UEnvQueryInstanceBlueprintWrapper::SetNamedParam(float Value)
 
 	Params::UEnvQueryInstanceBlueprintWrapper_SetNamedParam_Params Parms{};
 
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7872,7 +7916,11 @@ class FName UEnvQueryInstanceBlueprintWrapper::SetNamedParam(float Value)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ParamName != nullptr)
+		*ParamName = Parms.ParamName;
+
+	if (Value != nullptr)
+		*Value = Parms.Value;
 
 }
 
@@ -7880,7 +7928,7 @@ class FName UEnvQueryInstanceBlueprintWrapper::SetNamedParam(float Value)
 // Function AIModule.EnvQueryInstanceBlueprintWrapper.GetResultsAsLocations
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FVector>             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector>             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UEnvQueryInstanceBlueprintWrapper::GetResultsAsLocations(const TArray<struct FVector>& ReturnValue)
 {
@@ -7907,7 +7955,7 @@ void UEnvQueryInstanceBlueprintWrapper::GetResultsAsLocations(const TArray<struc
 // Function AIModule.EnvQueryInstanceBlueprintWrapper.GetResultsAsActors
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class AActor*>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class AActor*>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UEnvQueryInstanceBlueprintWrapper::GetResultsAsActors(const TArray<class AActor*>& ReturnValue)
 {
@@ -7934,10 +7982,10 @@ void UEnvQueryInstanceBlueprintWrapper::GetResultsAsActors(const TArray<class AA
 // Function AIModule.EnvQueryInstanceBlueprintWrapper.GetQueryResultsAsLocations
 // (Final, Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// TArray<struct FVector>             ResultLocations                                                  (Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector>             ResultLocations                                                  (ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<struct FVector> UEnvQueryInstanceBlueprintWrapper::GetQueryResultsAsLocations(bool ReturnValue)
+void UEnvQueryInstanceBlueprintWrapper::GetQueryResultsAsLocations(TArray<struct FVector>* ResultLocations, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7956,7 +8004,8 @@ TArray<struct FVector> UEnvQueryInstanceBlueprintWrapper::GetQueryResultsAsLocat
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ResultLocations != nullptr)
+		*ResultLocations = std::move(Parms.ResultLocations);
 
 }
 
@@ -7964,10 +8013,10 @@ TArray<struct FVector> UEnvQueryInstanceBlueprintWrapper::GetQueryResultsAsLocat
 // Function AIModule.EnvQueryInstanceBlueprintWrapper.GetQueryResultsAsActors
 // (Final, Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// TArray<class AActor*>              ResultActors                                                     (Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class AActor*>              ResultActors                                                     (Edit, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<class AActor*> UEnvQueryInstanceBlueprintWrapper::GetQueryResultsAsActors(bool ReturnValue)
+void UEnvQueryInstanceBlueprintWrapper::GetQueryResultsAsActors(TArray<class AActor*>* ResultActors, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7986,7 +8035,8 @@ TArray<class AActor*> UEnvQueryInstanceBlueprintWrapper::GetQueryResultsAsActors
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ResultActors != nullptr)
+		*ResultActors = std::move(Parms.ResultActors);
 
 }
 
@@ -7994,8 +8044,8 @@ TArray<class AActor*> UEnvQueryInstanceBlueprintWrapper::GetQueryResultsAsActors
 // Function AIModule.EnvQueryInstanceBlueprintWrapper.GetItemScore
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ItemIndex                                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ItemIndex                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 int32 UEnvQueryInstanceBlueprintWrapper::GetItemScore(float ReturnValue)
 {
@@ -8024,10 +8074,10 @@ int32 UEnvQueryInstanceBlueprintWrapper::GetItemScore(float ReturnValue)
 // DelegateFunction AIModule.EnvQueryInstanceBlueprintWrapper.EQSQueryDoneSignature__DelegateSignature
 // (MulticastDelegate, Public, Delegate)
 // Parameters:
-// class UEnvQueryInstanceBlueprintWrapper*QueryInstance                                                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class EEnvQueryStatus         QueryStatus                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UEnvQueryInstanceBlueprintWrapper*QueryInstance                                                    (Edit, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// enum class EEnvQueryStatus         QueryStatus                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-class UEnvQueryInstanceBlueprintWrapper* UEnvQueryInstanceBlueprintWrapper::EQSQueryDoneSignature__DelegateSignature(enum class EEnvQueryStatus* QueryStatus)
+void UEnvQueryInstanceBlueprintWrapper::EQSQueryDoneSignature__DelegateSignature(class UEnvQueryInstanceBlueprintWrapper** QueryInstance, enum class EEnvQueryStatus QueryStatus)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8036,13 +8086,12 @@ class UEnvQueryInstanceBlueprintWrapper* UEnvQueryInstanceBlueprintWrapper::EQSQ
 
 	Params::UEnvQueryInstanceBlueprintWrapper_EQSQueryDoneSignature__DelegateSignature_Params Parms{};
 
+	Parms.QueryStatus = QueryStatus;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (QueryStatus != nullptr)
-		*QueryStatus = Parms.QueryStatus;
-
-	return Parms.ReturnValue;
+	if (QueryInstance != nullptr)
+		*QueryInstance = Parms.QueryInstance;
 
 }
 
@@ -8078,14 +8127,14 @@ class UEnvQueryManager* UEnvQueryManager::GetDefaultObj()
 // Function AIModule.EnvQueryManager.RunEQSQuery
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UEnvQuery*                   QueryTemplate                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UObject*                     Querier                                                          (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// enum class EEnvQueryRunMode        RunMode                                                          (Edit, BlueprintVisible, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UClass*                      WrapperClass                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UEnvQueryInstanceBlueprintWrapper*ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UEnvQuery*                   QueryTemplate                                                    (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// class UObject*                     Querier                                                          (Edit, ConstParm, BlueprintVisible, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
+// enum class EEnvQueryRunMode        RunMode                                                          (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// class UClass*                      WrapperClass                                                     (ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UEnvQueryInstanceBlueprintWrapper*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UEnvQueryManager::RunEQSQuery(class UObject* WorldContextObject, class UEnvQuery** QueryTemplate, class UObject** Querier, enum class EEnvQueryRunMode* RunMode, class UEnvQueryInstanceBlueprintWrapper* ReturnValue)
+class UClass* UEnvQueryManager::RunEQSQuery(class UEnvQuery** QueryTemplate, class UObject* Querier, enum class EEnvQueryRunMode* RunMode, class UEnvQueryInstanceBlueprintWrapper* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8094,7 +8143,7 @@ class UClass* UEnvQueryManager::RunEQSQuery(class UObject* WorldContextObject, c
 
 	Params::UEnvQueryManager_RunEQSQuery_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
+	Parms.Querier = Querier;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -8107,9 +8156,6 @@ class UClass* UEnvQueryManager::RunEQSQuery(class UObject* WorldContextObject, c
 
 	if (QueryTemplate != nullptr)
 		*QueryTemplate = Parms.QueryTemplate;
-
-	if (Querier != nullptr)
-		*Querier = Parms.Querier;
 
 	if (RunMode != nullptr)
 		*RunMode = Parms.RunMode;
@@ -8290,7 +8336,7 @@ class UEnvQueryGenerator_BlueprintBase* UEnvQueryGenerator_BlueprintBase::GetDef
 // Function AIModule.EnvQueryGenerator_BlueprintBase.GetQuerier
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UObject*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UEnvQueryGenerator_BlueprintBase::GetQuerier(class UObject* ReturnValue)
 {
@@ -8317,7 +8363,7 @@ void UEnvQueryGenerator_BlueprintBase::GetQuerier(class UObject* ReturnValue)
 // Function AIModule.EnvQueryGenerator_BlueprintBase.DoItemGenerationFromActors
 // (Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// TArray<class AActor*>              ContextActors                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class AActor*>              ContextActors                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 TArray<class AActor*> UEnvQueryGenerator_BlueprintBase::DoItemGenerationFromActors()
 {
@@ -8339,7 +8385,7 @@ TArray<class AActor*> UEnvQueryGenerator_BlueprintBase::DoItemGenerationFromActo
 // Function AIModule.EnvQueryGenerator_BlueprintBase.DoItemGeneration
 // (Event, Public, HasOutParams, BlueprintEvent, Const)
 // Parameters:
-// TArray<struct FVector>             ContextLocations                                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             ContextLocations                                                 (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 TArray<struct FVector> UEnvQueryGenerator_BlueprintBase::DoItemGeneration()
 {
@@ -8361,7 +8407,7 @@ TArray<struct FVector> UEnvQueryGenerator_BlueprintBase::DoItemGeneration()
 // Function AIModule.EnvQueryGenerator_BlueprintBase.AddGeneratedVector
 // (Final, Native, Public, HasDefaults, BlueprintCallable, Const)
 // Parameters:
-// struct FVector                     GeneratedVector                                                  (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     GeneratedVector                                                  (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 struct FVector UEnvQueryGenerator_BlueprintBase::AddGeneratedVector()
 {
@@ -8389,7 +8435,7 @@ struct FVector UEnvQueryGenerator_BlueprintBase::AddGeneratedVector()
 // Function AIModule.EnvQueryGenerator_BlueprintBase.AddGeneratedActor
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class AActor*                      GeneratedActor                                                   (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AActor*                      GeneratedActor                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 class AActor* UEnvQueryGenerator_BlueprintBase::AddGeneratedActor()
 {
@@ -9201,9 +9247,9 @@ class UCrowdFollowingComponent* UCrowdFollowingComponent::GetDefaultObj()
 // Function AIModule.CrowdFollowingComponent.SuspendCrowdSteering
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bSuspend                                                         (ExportObject, EditFixedSize, Parm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bSuspend                                                         (Edit, Net, Parm, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UCrowdFollowingComponent::SuspendCrowdSteering(bool bSuspend)
+void UCrowdFollowingComponent::SuspendCrowdSteering(bool* bSuspend)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9212,7 +9258,6 @@ void UCrowdFollowingComponent::SuspendCrowdSteering(bool bSuspend)
 
 	Params::UCrowdFollowingComponent_SuspendCrowdSteering_Params Parms{};
 
-	Parms.bSuspend = bSuspend;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9221,6 +9266,9 @@ void UCrowdFollowingComponent::SuspendCrowdSteering(bool bSuspend)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (bSuspend != nullptr)
+		*bSuspend = Parms.bSuspend;
 
 }
 
@@ -9340,7 +9388,7 @@ class ANavLinkProxy* ANavLinkProxy::GetDefaultObj()
 // Function AIModule.NavLinkProxy.SetSmartLinkEnabled
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bEnabled                                                         (Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// bool                               bEnabled                                                         (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
 
 bool ANavLinkProxy::SetSmartLinkEnabled()
 {
@@ -9368,9 +9416,9 @@ bool ANavLinkProxy::SetSmartLinkEnabled()
 // Function AIModule.NavLinkProxy.ResumePathFollowing
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class AActor*                      Agent                                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AActor*                      Agent                                                            (ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void ANavLinkProxy::ResumePathFollowing(class AActor** Agent)
+void ANavLinkProxy::ResumePathFollowing(class AActor* Agent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9379,6 +9427,7 @@ void ANavLinkProxy::ResumePathFollowing(class AActor** Agent)
 
 	Params::ANavLinkProxy_ResumePathFollowing_Params Parms{};
 
+	Parms.Agent = Agent;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9388,19 +9437,16 @@ void ANavLinkProxy::ResumePathFollowing(class AActor** Agent)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Agent != nullptr)
-		*Agent = Parms.Agent;
-
 }
 
 
 // Function AIModule.NavLinkProxy.ReceiveSmartLinkReached
 // (Event, Public, HasOutParams, HasDefaults, BlueprintEvent)
 // Parameters:
-// class AActor*                      Agent                                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     Destination                                                      (BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class AActor*                      Agent                                                            (ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     Destination                                                      (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void ANavLinkProxy::ReceiveSmartLinkReached(class AActor** Agent, const struct FVector& Destination)
+void ANavLinkProxy::ReceiveSmartLinkReached(class AActor* Agent, struct FVector* Destination)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9409,12 +9455,12 @@ void ANavLinkProxy::ReceiveSmartLinkReached(class AActor** Agent, const struct F
 
 	Params::ANavLinkProxy_ReceiveSmartLinkReached_Params Parms{};
 
-	Parms.Destination = Destination;
+	Parms.Agent = Agent;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Agent != nullptr)
-		*Agent = Parms.Agent;
+	if (Destination != nullptr)
+		*Destination = std::move(Parms.Destination);
 
 }
 
@@ -9422,7 +9468,7 @@ void ANavLinkProxy::ReceiveSmartLinkReached(class AActor** Agent, const struct F
 // Function AIModule.NavLinkProxy.IsSmartLinkEnabled
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ANavLinkProxy::IsSmartLinkEnabled(bool ReturnValue)
 {
@@ -9449,7 +9495,7 @@ void ANavLinkProxy::IsSmartLinkEnabled(bool ReturnValue)
 // Function AIModule.NavLinkProxy.HasMovingAgents
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void ANavLinkProxy::HasMovingAgents(bool ReturnValue)
 {
@@ -9504,11 +9550,11 @@ class UNavLocalGridManager* UNavLocalGridManager::GetDefaultObj()
 // Function AIModule.NavLocalGridManager.SetLocalNavigationGridDensity
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              CellSize                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              CellSize                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UNavLocalGridManager::SetLocalNavigationGridDensity(class UObject* WorldContextObject, float CellSize, bool ReturnValue)
+class UObject* UNavLocalGridManager::SetLocalNavigationGridDensity(float* CellSize, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9517,8 +9563,6 @@ void UNavLocalGridManager::SetLocalNavigationGridDensity(class UObject* WorldCon
 
 	Params::UNavLocalGridManager_SetLocalNavigationGridDensity_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
-	Parms.CellSize = CellSize;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -9529,17 +9573,22 @@ void UNavLocalGridManager::SetLocalNavigationGridDensity(class UObject* WorldCon
 
 	Func->FunctionFlags = Flgs;
 
+	if (CellSize != nullptr)
+		*CellSize = Parms.CellSize;
+
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AIModule.NavLocalGridManager.RemoveLocalNavigationGrid
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              GridId                                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bRebuildGrids                                                    (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// int32                              GridId                                                           (BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bRebuildGrids                                                    (Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UNavLocalGridManager::RemoveLocalNavigationGrid(class UObject* WorldContextObject, int32* GridId, bool* bRebuildGrids)
+class UObject* UNavLocalGridManager::RemoveLocalNavigationGrid(int32 GridId, bool bRebuildGrids)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9548,7 +9597,8 @@ void UNavLocalGridManager::RemoveLocalNavigationGrid(class UObject* WorldContext
 
 	Params::UNavLocalGridManager_RemoveLocalNavigationGrid_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
+	Parms.GridId = GridId;
+	Parms.bRebuildGrids = bRebuildGrids;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9558,11 +9608,7 @@ void UNavLocalGridManager::RemoveLocalNavigationGrid(class UObject* WorldContext
 
 	Func->FunctionFlags = Flgs;
 
-	if (GridId != nullptr)
-		*GridId = Parms.GridId;
-
-	if (bRebuildGrids != nullptr)
-		*bRebuildGrids = Parms.bRebuildGrids;
+	return Parms.ReturnValue;
 
 }
 
@@ -9570,13 +9616,13 @@ void UNavLocalGridManager::RemoveLocalNavigationGrid(class UObject* WorldContext
 // Function AIModule.NavLocalGridManager.FindLocalNavigationGridPath
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     Start                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
-// struct FVector                     End                                                              (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance)
-// TArray<struct FVector>             PathPoints                                                       (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FVector                     Start                                                            (Edit, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
+// struct FVector                     End                                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// TArray<struct FVector>             PathPoints                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<struct FVector> UNavLocalGridManager::FindLocalNavigationGridPath(class UObject* WorldContextObject, struct FVector* Start, const struct FVector& End, bool ReturnValue)
+TArray<struct FVector> UNavLocalGridManager::FindLocalNavigationGridPath(bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9585,8 +9631,6 @@ TArray<struct FVector> UNavLocalGridManager::FindLocalNavigationGridPath(class U
 
 	Params::UNavLocalGridManager_FindLocalNavigationGridPath_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
-	Parms.End = End;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -9596,9 +9640,6 @@ TArray<struct FVector> UNavLocalGridManager::FindLocalNavigationGridPath(class U
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Start != nullptr)
-		*Start = std::move(Parms.Start);
 
 	return Parms.ReturnValue;
 
@@ -9608,14 +9649,14 @@ TArray<struct FVector> UNavLocalGridManager::FindLocalNavigationGridPath(class U
 // Function AIModule.NavLocalGridManager.AddLocalNavigationGridForPoints
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// TArray<struct FVector>             Locations                                                        (Edit, Net, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// int32                              Radius2D                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              Height                                                           (BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
-// bool                               bRebuildGrids                                                    (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// TArray<struct FVector>             Locations                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              Radius2D                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              Height                                                           (ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
+// bool                               bRebuildGrids                                                    (Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UNavLocalGridManager::AddLocalNavigationGridForPoints(class UObject* WorldContextObject, TArray<struct FVector>* Locations, int32* Radius2D, float Height, bool* bRebuildGrids, int32 ReturnValue)
+float UNavLocalGridManager::AddLocalNavigationGridForPoints(const TArray<struct FVector>& Locations, int32 Radius2D, bool bRebuildGrids, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9624,8 +9665,9 @@ void UNavLocalGridManager::AddLocalNavigationGridForPoints(class UObject* WorldC
 
 	Params::UNavLocalGridManager_AddLocalNavigationGridForPoints_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
-	Parms.Height = Height;
+	Parms.Locations = Locations;
+	Parms.Radius2D = Radius2D;
+	Parms.bRebuildGrids = bRebuildGrids;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -9636,14 +9678,7 @@ void UNavLocalGridManager::AddLocalNavigationGridForPoints(class UObject* WorldC
 
 	Func->FunctionFlags = Flgs;
 
-	if (Locations != nullptr)
-		*Locations = std::move(Parms.Locations);
-
-	if (Radius2D != nullptr)
-		*Radius2D = Parms.Radius2D;
-
-	if (bRebuildGrids != nullptr)
-		*bRebuildGrids = Parms.bRebuildGrids;
+	return Parms.ReturnValue;
 
 }
 
@@ -9651,14 +9686,14 @@ void UNavLocalGridManager::AddLocalNavigationGridForPoints(class UObject* WorldC
 // Function AIModule.NavLocalGridManager.AddLocalNavigationGridForPoint
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// int32                              Radius2D                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              Height                                                           (BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
-// bool                               bRebuildGrids                                                    (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              Radius2D                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              Height                                                           (ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
+// bool                               bRebuildGrids                                                    (Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UNavLocalGridManager::AddLocalNavigationGridForPoint(class UObject* WorldContextObject, struct FVector* Location, int32* Radius2D, float Height, bool* bRebuildGrids, int32 ReturnValue)
+float UNavLocalGridManager::AddLocalNavigationGridForPoint(struct FVector* Location, int32 Radius2D, bool bRebuildGrids, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9667,8 +9702,8 @@ void UNavLocalGridManager::AddLocalNavigationGridForPoint(class UObject* WorldCo
 
 	Params::UNavLocalGridManager_AddLocalNavigationGridForPoint_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
-	Parms.Height = Height;
+	Parms.Radius2D = Radius2D;
+	Parms.bRebuildGrids = bRebuildGrids;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -9682,11 +9717,7 @@ void UNavLocalGridManager::AddLocalNavigationGridForPoint(class UObject* WorldCo
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
 
-	if (Radius2D != nullptr)
-		*Radius2D = Parms.Radius2D;
-
-	if (bRebuildGrids != nullptr)
-		*bRebuildGrids = Parms.bRebuildGrids;
+	return Parms.ReturnValue;
 
 }
 
@@ -9694,16 +9725,16 @@ void UNavLocalGridManager::AddLocalNavigationGridForPoint(class UObject* WorldCo
 // Function AIModule.NavLocalGridManager.AddLocalNavigationGridForCapsule
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// float                              CapsuleRadius                                                    (BlueprintVisible, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              CapsuleHalfHeight                                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
-// int32                              Radius2D                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              Height                                                           (BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
-// bool                               bRebuildGrids                                                    (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              CapsuleRadius                                                    (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              CapsuleHalfHeight                                                (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              Radius2D                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              Height                                                           (ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
+// bool                               bRebuildGrids                                                    (Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UNavLocalGridManager::AddLocalNavigationGridForCapsule(class UObject* WorldContextObject, struct FVector* Location, float* CapsuleRadius, int32* Radius2D, float Height, bool* bRebuildGrids, int32 ReturnValue)
+float UNavLocalGridManager::AddLocalNavigationGridForCapsule(struct FVector* Location, float CapsuleRadius, int32 Radius2D, bool bRebuildGrids, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9712,8 +9743,9 @@ float UNavLocalGridManager::AddLocalNavigationGridForCapsule(class UObject* Worl
 
 	Params::UNavLocalGridManager_AddLocalNavigationGridForCapsule_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
-	Parms.Height = Height;
+	Parms.CapsuleRadius = CapsuleRadius;
+	Parms.Radius2D = Radius2D;
+	Parms.bRebuildGrids = bRebuildGrids;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -9726,15 +9758,6 @@ float UNavLocalGridManager::AddLocalNavigationGridForCapsule(class UObject* Worl
 
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
-
-	if (CapsuleRadius != nullptr)
-		*CapsuleRadius = Parms.CapsuleRadius;
-
-	if (Radius2D != nullptr)
-		*Radius2D = Parms.Radius2D;
-
-	if (bRebuildGrids != nullptr)
-		*bRebuildGrids = Parms.bRebuildGrids;
 
 	return Parms.ReturnValue;
 
@@ -9744,16 +9767,16 @@ float UNavLocalGridManager::AddLocalNavigationGridForCapsule(class UObject* Worl
 // Function AIModule.NavLocalGridManager.AddLocalNavigationGridForBox
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// struct FVector                     Extent                                                           (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     Extent                                                           (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 // struct FRotator                    Rotation                                                         (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// int32                              Radius2D                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              Height                                                           (BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, EditConst)
-// bool                               bRebuildGrids                                                    (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              Radius2D                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              Height                                                           (ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
+// bool                               bRebuildGrids                                                    (Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UNavLocalGridManager::AddLocalNavigationGridForBox(class UObject* WorldContextObject, struct FVector* Location, const struct FVector& Extent, struct FRotator* Rotation, int32* Radius2D, float Height, bool* bRebuildGrids, int32 ReturnValue)
+float UNavLocalGridManager::AddLocalNavigationGridForBox(struct FVector* Location, struct FRotator* Rotation, int32 Radius2D, bool bRebuildGrids, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9762,9 +9785,8 @@ void UNavLocalGridManager::AddLocalNavigationGridForBox(class UObject* WorldCont
 
 	Params::UNavLocalGridManager_AddLocalNavigationGridForBox_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
-	Parms.Extent = Extent;
-	Parms.Height = Height;
+	Parms.Radius2D = Radius2D;
+	Parms.bRebuildGrids = bRebuildGrids;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -9781,11 +9803,7 @@ void UNavLocalGridManager::AddLocalNavigationGridForBox(class UObject* WorldCont
 	if (Rotation != nullptr)
 		*Rotation = std::move(Parms.Rotation);
 
-	if (Radius2D != nullptr)
-		*Radius2D = Parms.Radius2D;
-
-	if (bRebuildGrids != nullptr)
-		*bRebuildGrids = Parms.bRebuildGrids;
+	return Parms.ReturnValue;
 
 }
 
@@ -9849,10 +9867,10 @@ class UAIPerceptionComponent* UAIPerceptionComponent::GetDefaultObj()
 // Function AIModule.AIPerceptionComponent.SetSenseEnabled
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      SenseClass                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bEnable                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+// class UClass*                      SenseClass                                                       (ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bEnable                                                          (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-bool UAIPerceptionComponent::SetSenseEnabled(class UClass** SenseClass)
+bool UAIPerceptionComponent::SetSenseEnabled(class UClass* SenseClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9861,6 +9879,7 @@ bool UAIPerceptionComponent::SetSenseEnabled(class UClass** SenseClass)
 
 	Params::UAIPerceptionComponent_SetSenseEnabled_Params Parms{};
 
+	Parms.SenseClass = SenseClass;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9869,9 +9888,6 @@ bool UAIPerceptionComponent::SetSenseEnabled(class UClass** SenseClass)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (SenseClass != nullptr)
-		*SenseClass = Parms.SenseClass;
 
 	return Parms.ReturnValue;
 
@@ -9906,7 +9922,7 @@ void UAIPerceptionComponent::RequestStimuliListenerUpdate()
 // (Final, Native, Public)
 // Parameters:
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// enum class EEndPlayReason          EndPlayReason                                                    (BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EEndPlayReason          EndPlayReason                                                    (BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 enum class EEndPlayReason UAIPerceptionComponent::OnOwnerEndPlay(class AActor** Actor)
 {
@@ -9937,8 +9953,8 @@ enum class EEndPlayReason UAIPerceptionComponent::OnOwnerEndPlay(class AActor** 
 // Function AIModule.AIPerceptionComponent.GetPerceivedHostileActorsBySense
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UClass*                      SenseToUse                                                       (BlueprintVisible, Net, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class AActor*>              OutActors                                                        (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      SenseToUse                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class AActor*>              OutActors                                                        (Edit, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 TArray<class AActor*> UAIPerceptionComponent::GetPerceivedHostileActorsBySense(class UClass* SenseToUse)
 {
@@ -9967,7 +9983,7 @@ TArray<class AActor*> UAIPerceptionComponent::GetPerceivedHostileActorsBySense(c
 // Function AIModule.AIPerceptionComponent.GetPerceivedHostileActors
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class AActor*>              OutActors                                                        (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class AActor*>              OutActors                                                        (Edit, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 TArray<class AActor*> UAIPerceptionComponent::GetPerceivedHostileActors()
 {
@@ -9995,8 +10011,8 @@ TArray<class AActor*> UAIPerceptionComponent::GetPerceivedHostileActors()
 // Function AIModule.AIPerceptionComponent.GetPerceivedActors
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UClass*                      SenseToUse                                                       (BlueprintVisible, Net, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class AActor*>              OutActors                                                        (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      SenseToUse                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class AActor*>              OutActors                                                        (Edit, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 TArray<class AActor*> UAIPerceptionComponent::GetPerceivedActors(class UClass* SenseToUse)
 {
@@ -10025,8 +10041,8 @@ TArray<class AActor*> UAIPerceptionComponent::GetPerceivedActors(class UClass* S
 // Function AIModule.AIPerceptionComponent.GetKnownPerceivedActors
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UClass*                      SenseToUse                                                       (BlueprintVisible, Net, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class AActor*>              OutActors                                                        (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      SenseToUse                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class AActor*>              OutActors                                                        (Edit, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 TArray<class AActor*> UAIPerceptionComponent::GetKnownPerceivedActors(class UClass* SenseToUse)
 {
@@ -10055,8 +10071,8 @@ TArray<class AActor*> UAIPerceptionComponent::GetKnownPerceivedActors(class UCla
 // Function AIModule.AIPerceptionComponent.GetCurrentlyPerceivedActors
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UClass*                      SenseToUse                                                       (BlueprintVisible, Net, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class AActor*>              OutActors                                                        (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      SenseToUse                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class AActor*>              OutActors                                                        (Edit, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 TArray<class AActor*> UAIPerceptionComponent::GetCurrentlyPerceivedActors(class UClass* SenseToUse)
 {
@@ -10087,7 +10103,7 @@ TArray<class AActor*> UAIPerceptionComponent::GetCurrentlyPerceivedActors(class 
 // Parameters:
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
 // struct FActorPerceptionBlueprintInfoInfo                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 struct FActorPerceptionBlueprintInfo UAIPerceptionComponent::GetActorsPerception(class AActor** Actor, bool ReturnValue)
 {
@@ -10199,9 +10215,9 @@ class UAIPerceptionStimuliSourceComponent* UAIPerceptionStimuliSourceComponent::
 // Function AIModule.AIPerceptionStimuliSourceComponent.UnregisterFromSense
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      SenseClass                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UClass*                      SenseClass                                                       (ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UAIPerceptionStimuliSourceComponent::UnregisterFromSense(class UClass** SenseClass)
+void UAIPerceptionStimuliSourceComponent::UnregisterFromSense(class UClass* SenseClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10210,6 +10226,7 @@ void UAIPerceptionStimuliSourceComponent::UnregisterFromSense(class UClass** Sen
 
 	Params::UAIPerceptionStimuliSourceComponent_UnregisterFromSense_Params Parms{};
 
+	Parms.SenseClass = SenseClass;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10218,9 +10235,6 @@ void UAIPerceptionStimuliSourceComponent::UnregisterFromSense(class UClass** Sen
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (SenseClass != nullptr)
-		*SenseClass = Parms.SenseClass;
 
 }
 
@@ -10276,9 +10290,9 @@ void UAIPerceptionStimuliSourceComponent::RegisterWithPerceptionSystem()
 // Function AIModule.AIPerceptionStimuliSourceComponent.RegisterForSense
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      SenseClass                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UClass*                      SenseClass                                                       (ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UAIPerceptionStimuliSourceComponent::RegisterForSense(class UClass** SenseClass)
+void UAIPerceptionStimuliSourceComponent::RegisterForSense(class UClass* SenseClass)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10287,6 +10301,7 @@ void UAIPerceptionStimuliSourceComponent::RegisterForSense(class UClass** SenseC
 
 	Params::UAIPerceptionStimuliSourceComponent_RegisterForSense_Params Parms{};
 
+	Parms.SenseClass = SenseClass;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10295,9 +10310,6 @@ void UAIPerceptionStimuliSourceComponent::RegisterForSense(class UClass** SenseC
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (SenseClass != nullptr)
-		*SenseClass = Parms.SenseClass;
 
 }
 
@@ -10333,10 +10345,10 @@ class UAIPerceptionSystem* UAIPerceptionSystem::GetDefaultObj()
 // Function AIModule.AIPerceptionSystem.ReportPerceptionEvent
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UAISenseEvent*               PerceptionEvent                                                  (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UAISenseEvent*               PerceptionEvent                                                  (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UAIPerceptionSystem::ReportPerceptionEvent(class UObject* WorldContextObject, class UAISenseEvent** PerceptionEvent)
+class UObject* UAIPerceptionSystem::ReportPerceptionEvent(class UAISenseEvent* PerceptionEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10345,7 +10357,7 @@ void UAIPerceptionSystem::ReportPerceptionEvent(class UObject* WorldContextObjec
 
 	Params::UAIPerceptionSystem_ReportPerceptionEvent_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
+	Parms.PerceptionEvent = PerceptionEvent;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10355,8 +10367,7 @@ void UAIPerceptionSystem::ReportPerceptionEvent(class UObject* WorldContextObjec
 
 	Func->FunctionFlags = Flgs;
 
-	if (PerceptionEvent != nullptr)
-		*PerceptionEvent = Parms.PerceptionEvent;
+	return Parms.ReturnValue;
 
 }
 
@@ -10364,9 +10375,9 @@ void UAIPerceptionSystem::ReportPerceptionEvent(class UObject* WorldContextObjec
 // Function AIModule.AIPerceptionSystem.ReportEvent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UAISenseEvent*               PerceptionEvent                                                  (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class UAISenseEvent*               PerceptionEvent                                                  (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UAIPerceptionSystem::ReportEvent(class UAISenseEvent** PerceptionEvent)
+void UAIPerceptionSystem::ReportEvent(class UAISenseEvent* PerceptionEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10375,6 +10386,7 @@ void UAIPerceptionSystem::ReportEvent(class UAISenseEvent** PerceptionEvent)
 
 	Params::UAIPerceptionSystem_ReportEvent_Params Parms{};
 
+	Parms.PerceptionEvent = PerceptionEvent;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10384,21 +10396,18 @@ void UAIPerceptionSystem::ReportEvent(class UAISenseEvent** PerceptionEvent)
 
 	Func->FunctionFlags = Flgs;
 
-	if (PerceptionEvent != nullptr)
-		*PerceptionEvent = Parms.PerceptionEvent;
-
 }
 
 
 // Function AIModule.AIPerceptionSystem.RegisterPerceptionStimuliSource
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UClass*                      Sense                                                            (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class AActor*                      Target                                                           (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UClass*                      Sense                                                            (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class AActor*                      Target                                                           (Edit, ConstParm, ReturnParm, Transient, Config)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAIPerceptionSystem::RegisterPerceptionStimuliSource(class UObject* WorldContextObject, class UClass** Sense, class AActor* Target, bool ReturnValue)
+class AActor* UAIPerceptionSystem::RegisterPerceptionStimuliSource(class UClass* Sense, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10407,8 +10416,7 @@ void UAIPerceptionSystem::RegisterPerceptionStimuliSource(class UObject* WorldCo
 
 	Params::UAIPerceptionSystem_RegisterPerceptionStimuliSource_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
-	Parms.Target = Target;
+	Parms.Sense = Sense;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -10419,8 +10427,7 @@ void UAIPerceptionSystem::RegisterPerceptionStimuliSource(class UObject* WorldCo
 
 	Func->FunctionFlags = Flgs;
 
-	if (Sense != nullptr)
-		*Sense = Parms.Sense;
+	return Parms.ReturnValue;
 
 }
 
@@ -10429,7 +10436,7 @@ void UAIPerceptionSystem::RegisterPerceptionStimuliSource(class UObject* WorldCo
 // (Final, Native, Protected)
 // Parameters:
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// enum class EEndPlayReason          EndPlayReason                                                    (BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EEndPlayReason          EndPlayReason                                                    (BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 enum class EEndPlayReason UAIPerceptionSystem::OnPerceptionStimuliSourceEndPlay(class AActor** Actor)
 {
@@ -10460,11 +10467,11 @@ enum class EEndPlayReason UAIPerceptionSystem::OnPerceptionStimuliSourceEndPlay(
 // Function AIModule.AIPerceptionSystem.GetSenseClassForStimulus
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FAIStimulus                 Stimulus                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UClass*                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FAIStimulus                 Stimulus                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAIPerceptionSystem::GetSenseClassForStimulus(class UObject* WorldContextObject, const struct FAIStimulus& Stimulus, class UClass* ReturnValue)
+class UObject* UAIPerceptionSystem::GetSenseClassForStimulus(struct FAIStimulus* Stimulus, class UClass* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10473,8 +10480,6 @@ void UAIPerceptionSystem::GetSenseClassForStimulus(class UObject* WorldContextOb
 
 	Params::UAIPerceptionSystem_GetSenseClassForStimulus_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
-	Parms.Stimulus = Stimulus;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -10484,6 +10489,11 @@ void UAIPerceptionSystem::GetSenseClassForStimulus(class UObject* WorldContextOb
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Stimulus != nullptr)
+		*Stimulus = std::move(Parms.Stimulus);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -10575,10 +10585,10 @@ class UAISense_Blueprint* UAISense_Blueprint::GetDefaultObj()
 // Function AIModule.AISense_Blueprint.OnUpdate
 // (Event, Public, HasOutParams, BlueprintEvent)
 // Parameters:
-// TArray<class UAISenseEvent*>       EventsToProcess                                                  (ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UAISenseEvent*>       EventsToProcess                                                  (Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAISense_Blueprint::OnUpdate(const TArray<class UAISenseEvent*>& EventsToProcess, float ReturnValue)
+void UAISense_Blueprint::OnUpdate(TArray<class UAISenseEvent*>* EventsToProcess, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10587,10 +10597,12 @@ void UAISense_Blueprint::OnUpdate(const TArray<class UAISenseEvent*>& EventsToPr
 
 	Params::UAISense_Blueprint_OnUpdate_Params Parms{};
 
-	Parms.EventsToProcess = EventsToProcess;
 	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (EventsToProcess != nullptr)
+		*EventsToProcess = std::move(Parms.EventsToProcess);
 
 }
 
@@ -10598,10 +10610,10 @@ void UAISense_Blueprint::OnUpdate(const TArray<class UAISenseEvent*>& EventsToPr
 // Function AIModule.AISense_Blueprint.OnListenerUpdated
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class AActor*                      ActorListener                                                    (BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UAIPerceptionComponent*      PerceptionComponent                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      ActorListener                                                    (Edit, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UAIPerceptionComponent*      PerceptionComponent                                              (Edit, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UAISense_Blueprint::OnListenerUpdated(class AActor* ActorListener, class UAIPerceptionComponent* PerceptionComponent)
+class UAIPerceptionComponent* UAISense_Blueprint::OnListenerUpdated(class AActor** ActorListener)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10610,10 +10622,13 @@ void UAISense_Blueprint::OnListenerUpdated(class AActor* ActorListener, class UA
 
 	Params::UAISense_Blueprint_OnListenerUpdated_Params Parms{};
 
-	Parms.ActorListener = ActorListener;
-	Parms.PerceptionComponent = PerceptionComponent;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (ActorListener != nullptr)
+		*ActorListener = Parms.ActorListener;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -10621,10 +10636,10 @@ void UAISense_Blueprint::OnListenerUpdated(class AActor* ActorListener, class UA
 // Function AIModule.AISense_Blueprint.OnListenerUnregistered
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class AActor*                      ActorListener                                                    (BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UAIPerceptionComponent*      PerceptionComponent                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      ActorListener                                                    (Edit, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UAIPerceptionComponent*      PerceptionComponent                                              (Edit, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UAISense_Blueprint::OnListenerUnregistered(class AActor* ActorListener, class UAIPerceptionComponent* PerceptionComponent)
+class UAIPerceptionComponent* UAISense_Blueprint::OnListenerUnregistered(class AActor** ActorListener)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10633,10 +10648,13 @@ void UAISense_Blueprint::OnListenerUnregistered(class AActor* ActorListener, cla
 
 	Params::UAISense_Blueprint_OnListenerUnregistered_Params Parms{};
 
-	Parms.ActorListener = ActorListener;
-	Parms.PerceptionComponent = PerceptionComponent;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (ActorListener != nullptr)
+		*ActorListener = Parms.ActorListener;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -10644,10 +10662,10 @@ void UAISense_Blueprint::OnListenerUnregistered(class AActor* ActorListener, cla
 // Function AIModule.AISense_Blueprint.OnListenerRegistered
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class AActor*                      ActorListener                                                    (BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UAIPerceptionComponent*      PerceptionComponent                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      ActorListener                                                    (Edit, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UAIPerceptionComponent*      PerceptionComponent                                              (Edit, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UAISense_Blueprint::OnListenerRegistered(class AActor* ActorListener, class UAIPerceptionComponent* PerceptionComponent)
+class UAIPerceptionComponent* UAISense_Blueprint::OnListenerRegistered(class AActor** ActorListener)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10656,10 +10674,13 @@ void UAISense_Blueprint::OnListenerRegistered(class AActor* ActorListener, class
 
 	Params::UAISense_Blueprint_OnListenerRegistered_Params Parms{};
 
-	Parms.ActorListener = ActorListener;
-	Parms.PerceptionComponent = PerceptionComponent;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (ActorListener != nullptr)
+		*ActorListener = Parms.ActorListener;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -10667,9 +10688,9 @@ void UAISense_Blueprint::OnListenerRegistered(class AActor* ActorListener, class
 // Function AIModule.AISense_Blueprint.K2_OnNewPawn
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class APawn*                       NewPawn                                                          (Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class APawn*                       NewPawn                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, Config, EditConst, SubobjectReference)
 
-class APawn* UAISense_Blueprint::K2_OnNewPawn()
+void UAISense_Blueprint::K2_OnNewPawn(class APawn* NewPawn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10678,10 +10699,9 @@ class APawn* UAISense_Blueprint::K2_OnNewPawn()
 
 	Params::UAISense_Blueprint_K2_OnNewPawn_Params Parms{};
 
+	Parms.NewPawn = NewPawn;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -10689,9 +10709,9 @@ class APawn* UAISense_Blueprint::K2_OnNewPawn()
 // Function AIModule.AISense_Blueprint.GetAllListenerComponents
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UAIPerceptionComponent*>ListenerComponents                                               (ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class UAIPerceptionComponent*>ListenerComponents                                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UAISense_Blueprint::GetAllListenerComponents(const TArray<class UAIPerceptionComponent*>& ListenerComponents)
+void UAISense_Blueprint::GetAllListenerComponents(TArray<class UAIPerceptionComponent*>* ListenerComponents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10700,7 +10720,6 @@ void UAISense_Blueprint::GetAllListenerComponents(const TArray<class UAIPercepti
 
 	Params::UAISense_Blueprint_GetAllListenerComponents_Params Parms{};
 
-	Parms.ListenerComponents = ListenerComponents;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10710,15 +10729,18 @@ void UAISense_Blueprint::GetAllListenerComponents(const TArray<class UAIPercepti
 
 	Func->FunctionFlags = Flgs;
 
+	if (ListenerComponents != nullptr)
+		*ListenerComponents = std::move(Parms.ListenerComponents);
+
 }
 
 
 // Function AIModule.AISense_Blueprint.GetAllListenerActors
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class AActor*>              ListenerActors                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class AActor*>              ListenerActors                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UAISense_Blueprint::GetAllListenerActors(const TArray<class AActor*>& ListenerActors)
+void UAISense_Blueprint::GetAllListenerActors(TArray<class AActor*>* ListenerActors)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10727,7 +10749,6 @@ void UAISense_Blueprint::GetAllListenerActors(const TArray<class AActor*>& Liste
 
 	Params::UAISense_Blueprint_GetAllListenerActors_Params Parms{};
 
-	Parms.ListenerActors = ListenerActors;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10736,6 +10757,9 @@ void UAISense_Blueprint::GetAllListenerActors(const TArray<class AActor*>& Liste
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (ListenerActors != nullptr)
+		*ListenerActors = std::move(Parms.ListenerActors);
 
 }
 
@@ -10771,15 +10795,15 @@ class UAISense_Damage* UAISense_Damage::GetDefaultObj()
 // Function AIModule.AISense_Damage.ReportDamageEvent
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class AActor*                      DamagedActor                                                     (ConstParm, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class AActor*                      Instigator                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              DamageAmount                                                     (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FVector                     EventLocation                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FVector                     HitLocation                                                      (Edit, BlueprintReadOnly, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// class FName                        Tag                                                              (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class AActor*                      DamagedActor                                                     (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class AActor*                      Instigator                                                       (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// float                              DamageAmount                                                     (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Config, GlobalConfig, SubobjectReference)
+// struct FVector                     EventLocation                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FVector                     HitLocation                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+// class FName                        Tag                                                              (ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
-class FName UAISense_Damage::ReportDamageEvent(class UObject* WorldContextObject, class AActor** DamagedActor, const struct FVector& EventLocation, const struct FVector& HitLocation)
+class FName UAISense_Damage::ReportDamageEvent(class AActor** Instigator, struct FVector* EventLocation)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10788,9 +10812,6 @@ class FName UAISense_Damage::ReportDamageEvent(class UObject* WorldContextObject
 
 	Params::UAISense_Damage_ReportDamageEvent_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
-	Parms.EventLocation = EventLocation;
-	Parms.HitLocation = HitLocation;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10800,8 +10821,11 @@ class FName UAISense_Damage::ReportDamageEvent(class UObject* WorldContextObject
 
 	Func->FunctionFlags = Flgs;
 
-	if (DamagedActor != nullptr)
-		*DamagedActor = Parms.DamagedActor;
+	if (Instigator != nullptr)
+		*Instigator = Parms.Instigator;
+
+	if (EventLocation != nullptr)
+		*EventLocation = std::move(Parms.EventLocation);
 
 	return Parms.ReturnValue;
 
@@ -10839,14 +10863,14 @@ class UAISense_Hearing* UAISense_Hearing::GetDefaultObj()
 // Function AIModule.AISense_Hearing.ReportNoiseEvent
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     NoiseLocation                                                    (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              Loudness                                                         (ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class AActor*                      Instigator                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              MaxRange                                                         (Edit, BlueprintReadOnly, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        Tag                                                              (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FVector                     NoiseLocation                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              Loudness                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// class AActor*                      Instigator                                                       (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// float                              MaxRange                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        Tag                                                              (ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
-class FName UAISense_Hearing::ReportNoiseEvent(class UObject* WorldContextObject, float* Loudness, float* MaxRange)
+class FName UAISense_Hearing::ReportNoiseEvent(float* Loudness, class AActor** Instigator, float MaxRange)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10855,7 +10879,7 @@ class FName UAISense_Hearing::ReportNoiseEvent(class UObject* WorldContextObject
 
 	Params::UAISense_Hearing_ReportNoiseEvent_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
+	Parms.MaxRange = MaxRange;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10868,8 +10892,8 @@ class FName UAISense_Hearing::ReportNoiseEvent(class UObject* WorldContextObject
 	if (Loudness != nullptr)
 		*Loudness = Parms.Loudness;
 
-	if (MaxRange != nullptr)
-		*MaxRange = Parms.MaxRange;
+	if (Instigator != nullptr)
+		*Instigator = Parms.Instigator;
 
 	return Parms.ReturnValue;
 
@@ -10907,11 +10931,11 @@ class UAISense_Prediction* UAISense_Prediction::GetDefaultObj()
 // Function AIModule.AISense_Prediction.RequestPawnPredictionEvent
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class APawn*                       Requestor                                                        (Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class AActor*                      PredictedActor                                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              PredictionTime                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class APawn*                       Requestor                                                        (Parm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// class AActor*                      PredictedActor                                                   (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// float                              PredictionTime                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UAISense_Prediction::RequestPawnPredictionEvent(class APawn* Requestor, class AActor* PredictedActor, float PredictionTime)
+class AActor* UAISense_Prediction::RequestPawnPredictionEvent(float* PredictionTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10920,9 +10944,6 @@ void UAISense_Prediction::RequestPawnPredictionEvent(class APawn* Requestor, cla
 
 	Params::UAISense_Prediction_RequestPawnPredictionEvent_Params Parms{};
 
-	Parms.Requestor = Requestor;
-	Parms.PredictedActor = PredictedActor;
-	Parms.PredictionTime = PredictionTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10932,17 +10953,22 @@ void UAISense_Prediction::RequestPawnPredictionEvent(class APawn* Requestor, cla
 
 	Func->FunctionFlags = Flgs;
 
+	if (PredictionTime != nullptr)
+		*PredictionTime = Parms.PredictionTime;
+
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AIModule.AISense_Prediction.RequestControllerPredictionEvent
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class AAIController*               Requestor                                                        (Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class AActor*                      PredictedActor                                                   (Edit, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              PredictionTime                                                   (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
+// class AAIController*               Requestor                                                        (Parm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// class AActor*                      PredictedActor                                                   (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// float                              PredictionTime                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UAISense_Prediction::RequestControllerPredictionEvent(class AAIController* Requestor, class AActor* PredictedActor, float PredictionTime)
+class AActor* UAISense_Prediction::RequestControllerPredictionEvent(float* PredictionTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -10951,9 +10977,6 @@ void UAISense_Prediction::RequestControllerPredictionEvent(class AAIController* 
 
 	Params::UAISense_Prediction_RequestControllerPredictionEvent_Params Parms{};
 
-	Parms.Requestor = Requestor;
-	Parms.PredictedActor = PredictedActor;
-	Parms.PredictionTime = PredictionTime;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -10962,6 +10985,11 @@ void UAISense_Prediction::RequestControllerPredictionEvent(class AAIController* 
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (PredictionTime != nullptr)
+		*PredictionTime = Parms.PredictionTime;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -11053,12 +11081,12 @@ class UAISense_Touch* UAISense_Touch::GetDefaultObj()
 // Function AIModule.AISense_Touch.ReportTouchEvent
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class AActor*                      TouchReceiver                                                    (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class AActor*                      OtherActor                                                       (BlueprintVisible, Parm, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class AActor*                      TouchReceiver                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// class AActor*                      OtherActor                                                       (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
 
-void UAISense_Touch::ReportTouchEvent(class UObject* WorldContextObject, class AActor* TouchReceiver, class AActor* OtherActor, struct FVector* Location)
+class AActor* UAISense_Touch::ReportTouchEvent(class AActor** OtherActor, struct FVector* Location)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11067,9 +11095,6 @@ void UAISense_Touch::ReportTouchEvent(class UObject* WorldContextObject, class A
 
 	Params::UAISense_Touch_ReportTouchEvent_Params Parms{};
 
-	Parms.WorldContextObject = WorldContextObject;
-	Parms.TouchReceiver = TouchReceiver;
-	Parms.OtherActor = OtherActor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -11079,8 +11104,13 @@ void UAISense_Touch::ReportTouchEvent(class UObject* WorldContextObject, class A
 
 	Func->FunctionFlags = Flgs;
 
+	if (OtherActor != nullptr)
+		*OtherActor = Parms.OtherActor;
+
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -11144,7 +11174,7 @@ class UPawnSensingComponent* UPawnSensingComponent::GetDefaultObj()
 // Function AIModule.PawnSensingComponent.SetSensingUpdatesEnabled
 // (BlueprintAuthorityOnly, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bEnabled                                                         (Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// bool                               bEnabled                                                         (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
 
 bool UPawnSensingComponent::SetSensingUpdatesEnabled()
 {
@@ -11172,9 +11202,9 @@ bool UPawnSensingComponent::SetSensingUpdatesEnabled()
 // Function AIModule.PawnSensingComponent.SetSensingInterval
 // (BlueprintAuthorityOnly, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewSensingInterval                                               (ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              NewSensingInterval                                               (Edit, ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-float UPawnSensingComponent::SetSensingInterval()
+void UPawnSensingComponent::SetSensingInterval(float* NewSensingInterval)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11192,7 +11222,8 @@ float UPawnSensingComponent::SetSensingInterval()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewSensingInterval != nullptr)
+		*NewSensingInterval = Parms.NewSensingInterval;
 
 }
 
@@ -11200,9 +11231,9 @@ float UPawnSensingComponent::SetSensingInterval()
 // Function AIModule.PawnSensingComponent.SetPeripheralVisionAngle
 // (BlueprintAuthorityOnly, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewPeripheralVisionAngle                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              NewPeripheralVisionAngle                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
-float UPawnSensingComponent::SetPeripheralVisionAngle()
+void UPawnSensingComponent::SetPeripheralVisionAngle(float* NewPeripheralVisionAngle)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11220,7 +11251,8 @@ float UPawnSensingComponent::SetPeripheralVisionAngle()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (NewPeripheralVisionAngle != nullptr)
+		*NewPeripheralVisionAngle = Parms.NewPeripheralVisionAngle;
 
 }
 
@@ -11249,11 +11281,11 @@ void UPawnSensingComponent::SeePawnDelegate__DelegateSignature(class APawn* Pawn
 // DelegateFunction AIModule.PawnSensingComponent.HearNoiseDelegate__DelegateSignature
 // (MulticastDelegate, Public, Delegate, HasOutParams, HasDefaults)
 // Parameters:
-// class APawn*                       Instigator                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class APawn*                       Instigator                                                       (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 // struct FVector                     Location                                                         (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// float                              Volume                                                           (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
+// float                              Volume                                                           (ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config)
 
-class APawn* UPawnSensingComponent::HearNoiseDelegate__DelegateSignature(struct FVector* Location, float* Volume)
+float UPawnSensingComponent::HearNoiseDelegate__DelegateSignature(class APawn** Instigator, struct FVector* Location)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11265,11 +11297,11 @@ class APawn* UPawnSensingComponent::HearNoiseDelegate__DelegateSignature(struct 
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (Instigator != nullptr)
+		*Instigator = Parms.Instigator;
+
 	if (Location != nullptr)
 		*Location = std::move(Parms.Location);
-
-	if (Volume != nullptr)
-		*Volume = Parms.Volume;
 
 	return Parms.ReturnValue;
 
@@ -11279,7 +11311,7 @@ class APawn* UPawnSensingComponent::HearNoiseDelegate__DelegateSignature(struct 
 // Function AIModule.PawnSensingComponent.GetPeripheralVisionCosine
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UPawnSensingComponent::GetPeripheralVisionCosine(float ReturnValue)
 {
@@ -11306,7 +11338,7 @@ void UPawnSensingComponent::GetPeripheralVisionCosine(float ReturnValue)
 // Function AIModule.PawnSensingComponent.GetPeripheralVisionAngle
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UPawnSensingComponent::GetPeripheralVisionAngle(float ReturnValue)
 {
@@ -11417,19 +11449,19 @@ class UAITask_MoveTo* UAITask_MoveTo::GetDefaultObj()
 // Function AIModule.AITask_MoveTo.AIMoveTo
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class AAIController*               Controller                                                       (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// struct FVector                     GoalLocation                                                     (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class AActor*                      GoalActor                                                        (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// float                              AcceptanceRadius                                                 (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class EAIOptionFlag           StopOnOverlap                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EAIOptionFlag           AcceptPartialPath                                                (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bUsePathfinding                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               bLockAILogic                                                     (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               bUseContinuousGoalTracking                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// enum class EAIOptionFlag           ProjectGoalOnNavigation                                          (Edit, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, GlobalConfig, InstancedReference, SubobjectReference)
-// class UAITask_MoveTo*              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AAIController*               Controller                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// struct FVector                     GoalLocation                                                     (Edit, ConstParm, BlueprintVisible, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class AActor*                      GoalActor                                                        (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// float                              AcceptanceRadius                                                 (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EAIOptionFlag           StopOnOverlap                                                    (ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EAIOptionFlag           AcceptPartialPath                                                (ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bUsePathfinding                                                  (Edit, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bLockAILogic                                                     (Edit, ConstParm, BlueprintVisible, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bUseContinuousGoalTracking                                       (ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// enum class EAIOptionFlag           ProjectGoalOnNavigation                                          (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UAITask_MoveTo*              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UAITask_MoveTo::AIMoveTo(struct FVector* GoalLocation, class AActor* GoalActor, float AcceptanceRadius, enum class EAIOptionFlag* StopOnOverlap, enum class EAIOptionFlag* AcceptPartialPath, bool bUsePathfinding, bool* bLockAILogic, enum class EAIOptionFlag* ProjectGoalOnNavigation, class UAITask_MoveTo* ReturnValue)
+bool UAITask_MoveTo::AIMoveTo(class AAIController** Controller, const struct FVector& GoalLocation, class AActor* GoalActor, bool* bUseContinuousGoalTracking, enum class EAIOptionFlag* ProjectGoalOnNavigation, class UAITask_MoveTo* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11438,9 +11470,8 @@ bool UAITask_MoveTo::AIMoveTo(struct FVector* GoalLocation, class AActor* GoalAc
 
 	Params::UAITask_MoveTo_AIMoveTo_Params Parms{};
 
+	Parms.GoalLocation = GoalLocation;
 	Parms.GoalActor = GoalActor;
-	Parms.AcceptanceRadius = AcceptanceRadius;
-	Parms.bUsePathfinding = bUsePathfinding;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -11451,17 +11482,11 @@ bool UAITask_MoveTo::AIMoveTo(struct FVector* GoalLocation, class AActor* GoalAc
 
 	Func->FunctionFlags = Flgs;
 
-	if (GoalLocation != nullptr)
-		*GoalLocation = std::move(Parms.GoalLocation);
+	if (Controller != nullptr)
+		*Controller = Parms.Controller;
 
-	if (StopOnOverlap != nullptr)
-		*StopOnOverlap = Parms.StopOnOverlap;
-
-	if (AcceptPartialPath != nullptr)
-		*AcceptPartialPath = Parms.AcceptPartialPath;
-
-	if (bLockAILogic != nullptr)
-		*bLockAILogic = Parms.bLockAILogic;
+	if (bUseContinuousGoalTracking != nullptr)
+		*bUseContinuousGoalTracking = Parms.bUseContinuousGoalTracking;
 
 	if (ProjectGoalOnNavigation != nullptr)
 		*ProjectGoalOnNavigation = Parms.ProjectGoalOnNavigation;
@@ -11502,11 +11527,11 @@ class UAITask_RunEQS* UAITask_RunEQS::GetDefaultObj()
 // Function AIModule.AITask_RunEQS.RunEQS
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class AAIController*               Controller                                                       (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// class UEnvQuery*                   QueryTemplate                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UAITask_RunEQS*              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AAIController*               Controller                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class UEnvQuery*                   QueryTemplate                                                    (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// class UAITask_RunEQS*              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class AAIController* UAITask_RunEQS::RunEQS(class UEnvQuery** QueryTemplate, class UAITask_RunEQS* ReturnValue)
+void UAITask_RunEQS::RunEQS(class AAIController** Controller, class UEnvQuery** QueryTemplate, class UAITask_RunEQS* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -11525,10 +11550,11 @@ class AAIController* UAITask_RunEQS::RunEQS(class UEnvQuery** QueryTemplate, cla
 
 	Func->FunctionFlags = Flgs;
 
+	if (Controller != nullptr)
+		*Controller = Parms.Controller;
+
 	if (QueryTemplate != nullptr)
 		*QueryTemplate = Parms.QueryTemplate;
-
-	return Parms.ReturnValue;
 
 }
 

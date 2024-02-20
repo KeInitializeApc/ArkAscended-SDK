@@ -43,11 +43,11 @@ class UMetasoundParameterPack* UMetasoundParameterPack::GetDefaultObj()
 // Function MetasoundFrontend.MetasoundParameterPack.SetTrigger
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// bool                               OnlyIfExists                                                     (Edit, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class ESetParamResult         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               OnlyIfExists                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// enum class ESetParamResult         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UMetasoundParameterPack::SetTrigger(bool OnlyIfExists, enum class ESetParamResult ReturnValue)
+bool UMetasoundParameterPack::SetTrigger(class FName ParameterName, enum class ESetParamResult ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -56,7 +56,7 @@ class FName UMetasoundParameterPack::SetTrigger(bool OnlyIfExists, enum class ES
 
 	Params::UMetasoundParameterPack_SetTrigger_Params Parms{};
 
-	Parms.OnlyIfExists = OnlyIfExists;
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -75,12 +75,12 @@ class FName UMetasoundParameterPack::SetTrigger(bool OnlyIfExists, enum class ES
 // Function MetasoundFrontend.MetasoundParameterPack.SetString
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// class FString                      InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// bool                               OnlyIfExists                                                     (Edit, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class ESetParamResult         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// class FString                      InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               OnlyIfExists                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// enum class ESetParamResult         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString UMetasoundParameterPack::SetString(bool OnlyIfExists, enum class ESetParamResult ReturnValue)
+bool UMetasoundParameterPack::SetString(class FName ParameterName, enum class ESetParamResult ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -89,7 +89,7 @@ class FString UMetasoundParameterPack::SetString(bool OnlyIfExists, enum class E
 
 	Params::UMetasoundParameterPack_SetString_Params Parms{};
 
-	Parms.OnlyIfExists = OnlyIfExists;
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -108,12 +108,12 @@ class FString UMetasoundParameterPack::SetString(bool OnlyIfExists, enum class E
 // Function MetasoundFrontend.MetasoundParameterPack.SetInt
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// int32                              InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// bool                               OnlyIfExists                                                     (Edit, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class ESetParamResult         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               OnlyIfExists                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// enum class ESetParamResult         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMetasoundParameterPack::SetInt(bool OnlyIfExists, enum class ESetParamResult ReturnValue)
+bool UMetasoundParameterPack::SetInt(class FName ParameterName, enum class ESetParamResult ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -122,7 +122,7 @@ int32 UMetasoundParameterPack::SetInt(bool OnlyIfExists, enum class ESetParamRes
 
 	Params::UMetasoundParameterPack_SetInt_Params Parms{};
 
-	Parms.OnlyIfExists = OnlyIfExists;
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -141,12 +141,12 @@ int32 UMetasoundParameterPack::SetInt(bool OnlyIfExists, enum class ESetParamRes
 // Function MetasoundFrontend.MetasoundParameterPack.SetFloat
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// float                              InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// bool                               OnlyIfExists                                                     (Edit, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class ESetParamResult         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// float                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               OnlyIfExists                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// enum class ESetParamResult         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UMetasoundParameterPack::SetFloat(bool OnlyIfExists, enum class ESetParamResult ReturnValue)
+bool UMetasoundParameterPack::SetFloat(class FName ParameterName, enum class ESetParamResult ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -155,7 +155,7 @@ float UMetasoundParameterPack::SetFloat(bool OnlyIfExists, enum class ESetParamR
 
 	Params::UMetasoundParameterPack_SetFloat_Params Parms{};
 
-	Parms.OnlyIfExists = OnlyIfExists;
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -174,12 +174,12 @@ float UMetasoundParameterPack::SetFloat(bool OnlyIfExists, enum class ESetParamR
 // Function MetasoundFrontend.MetasoundParameterPack.SetBool
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// bool                               InValue                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// bool                               OnlyIfExists                                                     (Edit, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
-// enum class ESetParamResult         ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               OnlyIfExists                                                     (ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// enum class ESetParamResult         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UMetasoundParameterPack::SetBool(bool OnlyIfExists, enum class ESetParamResult ReturnValue)
+bool UMetasoundParameterPack::SetBool(class FName ParameterName, enum class ESetParamResult ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -188,7 +188,7 @@ bool UMetasoundParameterPack::SetBool(bool OnlyIfExists, enum class ESetParamRes
 
 	Params::UMetasoundParameterPack_SetBool_Params Parms{};
 
-	Parms.OnlyIfExists = OnlyIfExists;
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -207,7 +207,7 @@ bool UMetasoundParameterPack::SetBool(bool OnlyIfExists, enum class ESetParamRes
 // Function MetasoundFrontend.MetasoundParameterPack.MakeMetasoundParameterPack
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UMetasoundParameterPack*     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UMetasoundParameterPack*     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UMetasoundParameterPack::MakeMetasoundParameterPack(class UMetasoundParameterPack* ReturnValue)
 {
@@ -234,10 +234,10 @@ void UMetasoundParameterPack::MakeMetasoundParameterPack(class UMetasoundParamet
 // Function MetasoundFrontend.MetasoundParameterPack.HasTrigger
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UMetasoundParameterPack::HasTrigger(bool ReturnValue)
+void UMetasoundParameterPack::HasTrigger(class FName ParameterName, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -246,6 +246,7 @@ class FName UMetasoundParameterPack::HasTrigger(bool ReturnValue)
 
 	Params::UMetasoundParameterPack_HasTrigger_Params Parms{};
 
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -256,18 +257,16 @@ class FName UMetasoundParameterPack::HasTrigger(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MetasoundFrontend.MetasoundParameterPack.HasString
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UMetasoundParameterPack::HasString(bool ReturnValue)
+void UMetasoundParameterPack::HasString(class FName ParameterName, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -276,6 +275,7 @@ class FName UMetasoundParameterPack::HasString(bool ReturnValue)
 
 	Params::UMetasoundParameterPack_HasString_Params Parms{};
 
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -286,18 +286,16 @@ class FName UMetasoundParameterPack::HasString(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MetasoundFrontend.MetasoundParameterPack.HasInt
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UMetasoundParameterPack::HasInt(bool ReturnValue)
+void UMetasoundParameterPack::HasInt(class FName ParameterName, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -306,6 +304,7 @@ class FName UMetasoundParameterPack::HasInt(bool ReturnValue)
 
 	Params::UMetasoundParameterPack_HasInt_Params Parms{};
 
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -316,18 +315,16 @@ class FName UMetasoundParameterPack::HasInt(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MetasoundFrontend.MetasoundParameterPack.HasFloat
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UMetasoundParameterPack::HasFloat(bool ReturnValue)
+void UMetasoundParameterPack::HasFloat(class FName ParameterName, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -336,6 +333,7 @@ class FName UMetasoundParameterPack::HasFloat(bool ReturnValue)
 
 	Params::UMetasoundParameterPack_HasFloat_Params Parms{};
 
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -346,18 +344,16 @@ class FName UMetasoundParameterPack::HasFloat(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MetasoundFrontend.MetasoundParameterPack.HasBool
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UMetasoundParameterPack::HasBool(bool ReturnValue)
+void UMetasoundParameterPack::HasBool(class FName ParameterName, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -366,6 +362,7 @@ class FName UMetasoundParameterPack::HasBool(bool ReturnValue)
 
 	Params::UMetasoundParameterPack_HasBool_Params Parms{};
 
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -376,19 +373,17 @@ class FName UMetasoundParameterPack::HasBool(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MetasoundFrontend.MetasoundParameterPack.GetTrigger
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// enum class ESetParamResult         Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// enum class ESetParamResult         Result                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UMetasoundParameterPack::GetTrigger(enum class ESetParamResult* Result, bool ReturnValue)
+enum class ESetParamResult UMetasoundParameterPack::GetTrigger(class FName ParameterName, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -397,6 +392,7 @@ class FName UMetasoundParameterPack::GetTrigger(enum class ESetParamResult* Resu
 
 	Params::UMetasoundParameterPack_GetTrigger_Params Parms{};
 
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -406,9 +402,6 @@ class FName UMetasoundParameterPack::GetTrigger(enum class ESetParamResult* Resu
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Result != nullptr)
-		*Result = Parms.Result;
 
 	return Parms.ReturnValue;
 
@@ -418,11 +411,11 @@ class FName UMetasoundParameterPack::GetTrigger(enum class ESetParamResult* Resu
 // Function MetasoundFrontend.MetasoundParameterPack.GetString
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// enum class ESetParamResult         Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// enum class ESetParamResult         Result                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UMetasoundParameterPack::GetString(enum class ESetParamResult* Result, const class FString& ReturnValue)
+enum class ESetParamResult UMetasoundParameterPack::GetString(class FName ParameterName, const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -431,6 +424,7 @@ class FName UMetasoundParameterPack::GetString(enum class ESetParamResult* Resul
 
 	Params::UMetasoundParameterPack_GetString_Params Parms{};
 
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -440,9 +434,6 @@ class FName UMetasoundParameterPack::GetString(enum class ESetParamResult* Resul
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Result != nullptr)
-		*Result = Parms.Result;
 
 	return Parms.ReturnValue;
 
@@ -452,11 +443,11 @@ class FName UMetasoundParameterPack::GetString(enum class ESetParamResult* Resul
 // Function MetasoundFrontend.MetasoundParameterPack.GetInt
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// enum class ESetParamResult         Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// enum class ESetParamResult         Result                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UMetasoundParameterPack::GetInt(enum class ESetParamResult* Result, int32 ReturnValue)
+enum class ESetParamResult UMetasoundParameterPack::GetInt(class FName ParameterName, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -465,6 +456,7 @@ class FName UMetasoundParameterPack::GetInt(enum class ESetParamResult* Result, 
 
 	Params::UMetasoundParameterPack_GetInt_Params Parms{};
 
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -474,9 +466,6 @@ class FName UMetasoundParameterPack::GetInt(enum class ESetParamResult* Result, 
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Result != nullptr)
-		*Result = Parms.Result;
 
 	return Parms.ReturnValue;
 
@@ -486,11 +475,11 @@ class FName UMetasoundParameterPack::GetInt(enum class ESetParamResult* Result, 
 // Function MetasoundFrontend.MetasoundParameterPack.GetFloat
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// enum class ESetParamResult         Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// float                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// enum class ESetParamResult         Result                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
+// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UMetasoundParameterPack::GetFloat(enum class ESetParamResult* Result, float ReturnValue)
+enum class ESetParamResult UMetasoundParameterPack::GetFloat(class FName ParameterName, float ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -499,6 +488,7 @@ class FName UMetasoundParameterPack::GetFloat(enum class ESetParamResult* Result
 
 	Params::UMetasoundParameterPack_GetFloat_Params Parms{};
 
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -508,9 +498,6 @@ class FName UMetasoundParameterPack::GetFloat(enum class ESetParamResult* Result
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Result != nullptr)
-		*Result = Parms.Result;
 
 	return Parms.ReturnValue;
 
@@ -520,11 +507,11 @@ class FName UMetasoundParameterPack::GetFloat(enum class ESetParamResult* Result
 // Function MetasoundFrontend.MetasoundParameterPack.GetBool
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// enum class ESetParamResult         Result                                                           (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        ParameterName                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// enum class ESetParamResult         Result                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UMetasoundParameterPack::GetBool(enum class ESetParamResult* Result, bool ReturnValue)
+enum class ESetParamResult UMetasoundParameterPack::GetBool(class FName ParameterName, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -533,6 +520,7 @@ class FName UMetasoundParameterPack::GetBool(enum class ESetParamResult* Result,
 
 	Params::UMetasoundParameterPack_GetBool_Params Parms{};
 
+	Parms.ParameterName = ParameterName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -542,9 +530,6 @@ class FName UMetasoundParameterPack::GetBool(enum class ESetParamResult* Result,
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Result != nullptr)
-		*Result = Parms.Result;
 
 	return Parms.ReturnValue;
 

@@ -9,65 +9,68 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x568 (0xF90 - 0xA28)
+// 0x570 (0xFA8 - 0xA38)
 // WidgetBlueprintGeneratedClass ReMainMenuUI_ASA.ReMainMenuUI_ASA_C
 class UReMainMenuUI_ASA_C : public UUI_MainMenu
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA28(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-	class UWidgetAnimation*                      FadePanel;                                         // 0xA30(0x8)(BlueprintVisible, ExportObject, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	class UWidgetAnimation*                      FadeIntro;                                         // 0xA38(0x8)(ConstParm, BlueprintVisible, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	class UWidgetAnimation*                      FadeOutOverrideBackground;                         // 0xA40(0x8)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
-	class UWidgetAnimation*                      FadeInOverrideBackground;                          // 0xA48(0x8)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
-	class UWidgetAnimation*                      FadeIn;                                            // 0xA50(0x8)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
-	class UWidgetAnimation*                      FadeOut;                                           // 0xA58(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
-	class UWidgetAnimation*                      Close;                                             // 0xA60(0x8)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, SubobjectReference)
-	class UWidgetAnimation*                      Open;                                              // 0xA68(0x8)(Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst)
-	class UASAUI_MainMenu_GameModeSelect_C*      ASAUI_MainMenu_GameModeSelect;                     // 0xA70(0x8)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, GlobalConfig)
-	class UASAUI_MainMenu_LandingScreen_C*       ASAUI_MainMenu_LandingScreen;                      // 0xA78(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, Transient, Config, GlobalConfig)
-	class UBorder*                               BackgroundMediaIntro;                              // 0xA80(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
-	class UBorder*                               BackgroundMediaLoop;                               // 0xA88(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
-	class UBorder*                               BackgroundMediaLoop_1;                             // 0xA90(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference, Interp)
-	class UWidgetSwitcher*                       BGSwitcher;                                        // 0xA98(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
-	class UCustomButtonWidget*                   CreditsButton;                                     // 0xAA0(0x8)(Edit, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UCustomButtonWidget*                   ExitButton;                                        // 0xAA8(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, InstancedReference, SubobjectReference)
-	class UCustomButtonWidget*                   HostButton;                                        // 0xAB0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UImage*                                Image_18;                                          // 0xAB8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, RepNotify, Interp, NoDestructor)
-	class UImage*                                Image_19;                                          // 0xAC0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, NonTransactional, NoDestructor)
-	class UImage*                                Image_28;                                          // 0xAC8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, RepNotify, NonTransactional, EditorOnly, NoDestructor)
-	class UImage*                                Image_107;                                         // 0xAD0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, NonTransactional, EditorOnly, AutoWeak)
-	class UCanvasPanel*                          LeftSideMenuButtons;                               // 0xAD8(0x8)(Parm, OutParm, InstancedReference, SubobjectReference)
-	class UCustomButtonWidget*                   ListSessionsButton;                                // 0xAE0(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, InstancedReference, SubobjectReference)
-	class UWidgetSwitcher*                       MainMenuWidgetSwitcher;                            // 0xAE8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	class UCustomButtonWidget*                   ModsButton;                                        // 0xAF0(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	class UCustomButtonWidget*                   OptionsButton;                                     // 0xAF8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, InstancedReference, SubobjectReference)
-	class UCustomButtonWidget*                   PatchNotesButton;                                  // 0xB00(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, InstancedReference, SubobjectReference)
-	class UASAUIWidget_Button_Style1A_C*         SettingsButton;                                    // 0xB08(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UCustomButtonWidget*                   SOTFButton;                                        // 0xB10(0x8)(ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
-	class UButton*                               WebLink;                                           // 0xB18(0x8)(Edit, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
-	class UClass*                                SponsoredModsUIClass;                              // 0xB20(0x8)(EditFixedSize, Parm, OutParm, InstancedReference, SubobjectReference)
-	class UMediaPlayer*                          MoviePlayer;                                       // 0xB28(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
-	struct FButtonStyle                          AlternateCTAStyle;                                 // 0xB30(0x3F0)(Edit, ConstParm, BlueprintVisible, InstancedReference, SubobjectReference)
-	class UBinkMediaPlayer*                      IntroBGMediaPlayer;                                // 0xF20(0x8)(Edit, ExportObject, Net, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	TSoftObjectPtr<class UASAUI_MainMenuWidget_SettingsOverlay_C> SettingsOverlay;                                   // 0xF28(0x30)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
-	class UClass*                                VisualSettingsTemplate;                            // 0xF58(0x8)(Edit, ConstParm, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UBinkMediaPlayer*                      IntroBGMediaPlayerLoop;                            // 0xF60(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	bool                                         bIntroPlayed;                                      // 0xF68(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
-	uint8                                        Pad_4C25[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        IntroTimeToShowPanel;                              // 0xF6C(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	float                                        IntoTimeToShowLoop;                                // 0xF70(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_4C26[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FTimerHandle                          IntroTimeToShowPanelTimerHandle;                   // 0xF78(0x8)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	struct FTimerHandle                          IntroTimeToShowLoopTimerHandle;                    // 0xF80(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	class UBinkMediaPlayer*                      IntroBGMediaPlayerLoop_NoLogo;                     // 0xF88(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA38(0x8)(BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+	class UWidgetAnimation*                      FadePanel;                                         // 0xA40(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UWidgetAnimation*                      FadeIntro;                                         // 0xA48(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UWidgetAnimation*                      FadeOutOverrideBackground;                         // 0xA50(0x8)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class UWidgetAnimation*                      FadeInOverrideBackground;                          // 0xA58(0x8)(OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class UWidgetAnimation*                      FadeIn;                                            // 0xA60(0x8)(BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
+	class UWidgetAnimation*                      FadeOut;                                           // 0xA68(0x8)(ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
+	class UWidgetAnimation*                      Close;                                             // 0xA70(0x8)(BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	class UWidgetAnimation*                      Open;                                              // 0xA78(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst)
+	class UASAUI_MainMenu_GameModeSelect_C*      ASAUI_MainMenu_GameModeSelect;                     // 0xA80(0x8)(ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
+	class UASAUI_MainMenu_LandingScreen_C*       ASAUI_MainMenu_LandingScreen;                      // 0xA88(0x8)(Edit, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, GlobalConfig)
+	class UBorder*                               BackgroundMediaIntro;                              // 0xA90(0x8)(BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UBorder*                               BackgroundMediaLoop;                               // 0xA98(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UBorder*                               BackgroundMediaLoop_1;                             // 0xAA0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
+	class UWidgetSwitcher*                       BGSwitcher;                                        // 0xAA8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UCustomButtonWidget*                   CreditsButton;                                     // 0xAB0(0x8)(BlueprintVisible, Net, EditFixedSize, Parm, EditConst, GlobalConfig, SubobjectReference)
+	class UCustomButtonWidget*                   ExitButton;                                        // 0xAB8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class UCustomButtonWidget*                   HostButton;                                        // 0xAC0(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class UImage*                                Image_18;                                          // 0xAC8(0x8)(Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, RepNotify, Interp, NoDestructor)
+	class UImage*                                Image_19;                                          // 0xAD0(0x8)(Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, NonTransactional, NoDestructor)
+	class UImage*                                Image_28;                                          // 0xAD8(0x8)(Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, RepNotify, NonTransactional, EditorOnly, NoDestructor)
+	class UImage*                                Image_107;                                         // 0xAE0(0x8)(Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, NonTransactional, EditorOnly, AutoWeak)
+	class UCanvasPanel*                          LeftSideMenuButtons;                               // 0xAE8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class UCustomButtonWidget*                   ListSessionsButton;                                // 0xAF0(0x8)(BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class UWidgetSwitcher*                       MainMenuWidgetSwitcher;                            // 0xAF8(0x8)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UCustomButtonWidget*                   ModsButton;                                        // 0xB00(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UCustomButtonWidget*                   OptionsButton;                                     // 0xB08(0x8)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class UCustomButtonWidget*                   PatchNotesButton;                                  // 0xB10(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class UASAUIWidget_Button_Style1A_C*         SettingsButton;                                    // 0xB18(0x8)(ConstParm, ExportObject, Parm, OutParm, EditConst, GlobalConfig, SubobjectReference)
+	class UCustomButtonWidget*                   SOTFButton;                                        // 0xB20(0x8)(ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UButton*                               WebLink;                                           // 0xB28(0x8)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UClass*                                SponsoredModsUIClass;                              // 0xB30(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class UMediaPlayer*                          MoviePlayer;                                       // 0xB38(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnInstance, EditConst)
+	struct FButtonStyle                          AlternateCTAStyle;                                 // 0xB40(0x3F0)(Edit, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class UBinkMediaPlayer*                      IntroBGMediaPlayer;                                // 0xF30(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	TSoftObjectPtr<class UASAUI_MainMenuWidget_SettingsOverlay_C> SettingsOverlay;                                   // 0xF38(0x30)(Edit, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UClass*                                VisualSettingsTemplate;                            // 0xF68(0x8)(ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+	class UBinkMediaPlayer*                      IntroBGMediaPlayerLoop;                            // 0xF70(0x8)(Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bIntroPlayed;                                      // 0xF78(0x1)(Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_3B41[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        IntroTimeToShowPanel;                              // 0xF7C(0x4)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        IntoTimeToShowLoop;                                // 0xF80(0x4)(Edit, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_3B42[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FTimerHandle                          IntroTimeToShowPanelTimerHandle;                   // 0xF88(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FTimerHandle                          IntroTimeToShowLoopTimerHandle;                    // 0xF90(0x8)(Edit, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UBinkMediaPlayer*                      IntroBGMediaPlayerLoop_NoLogo;                     // 0xF98(0x8)(Edit, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UUI_NotificationManager_C*             Ui_Notif_Manager;                                  // 0xFA0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UReMainMenuUI_ASA_C* GetDefaultObj();
 
-	bool SettingsOverlayIsOpen(bool ReturnValue, bool* CallFunc_IsVisible_ReturnValue);
-	bool HighlightTheStartButton();
-	int32 OnKeyDownEvent(const struct FGeometry& MyGeometry, struct FKeyEvent* InKeyboardEvent, const struct FEventReply& ReturnValue, bool CallFunc_EqualEqual_IntInt_ReturnValue, bool* K2Node_SwitchInteger_CmpSuccess);
-	struct FMargin UpdateLeftTextPosition(bool* IsCTAVisible, bool Temp_bool_Variable, const struct FMargin& K2Node_Select_Default, class UCanvasPanelSlot** CallFunc_SlotAsCanvasSlot_ReturnValue);
+	void DeepLinkModPage(int64 RequestedModID);
+	class UUI_NotificationManager_C* CreateNotifManager(bool* CallFunc_IsValid_ReturnValue);
+	bool SettingsOverlayIsOpen(bool ReturnValue, class UObject** CallFunc_Conv_SoftObjectReferenceToObject_ReturnValue, bool* CallFunc_IsValidSoftObjectReference_ReturnValue, class UASAUI_MainMenuWidget_SettingsOverlay_C** K2Node_DynamicCast_AsASAUI_Main_Menu_Widget_Settings_Overlay);
+	void HighlightTheStartButton(bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1);
+	struct FGeometry OnKeyDownEvent(const struct FKeyEvent& InKeyboardEvent, const struct FEventReply& ReturnValue, struct FKey* LocalKey, const struct FKey& CallFunc_GetKey_ReturnValue, const struct FEventReply& CallFunc_OnKeyDownEvent_ReturnValue, int32* CallFunc_GetActiveWidgetIndex_ReturnValue, bool* CallFunc_EqualEqual_IntInt_ReturnValue, bool CallFunc_EqualEqual_KeyKey_ReturnValue, bool CallFunc_EqualEqual_KeyKey_ReturnValue_1, int32* CallFunc_GetActiveWidgetIndex_ReturnValue_1, bool* K2Node_SwitchInteger_CmpSuccess);
+	class UCanvasPanelSlot* UpdateLeftTextPosition(bool* Temp_bool_Variable, struct FMargin* K2Node_Select_Default);
 	void BndEvt__ReMainMenuUI_ASA_SettingsButton_K2Node_ComponentBoundEvent_5_OnButtonClicked__DelegateSignature();
 	void OnCreditsClicked_Event();
 	void OnQuitGameClicked_Event();
@@ -84,7 +87,7 @@ public:
 	void BndEvt__ReMainMenuUI_ASA_ASAUI_MainMenu_GameModeSelect_K2Node_ComponentBoundEvent_4_OnCreateGameClicked__DelegateSignature();
 	void ClosedEvent_Event();
 	bool OnGamepadActiveChangedBP();
-	void OnGamepadSelectionChanged(class UWidget* Widget);
+	class UWidget* OnGamepadSelectionChanged();
 	void BndEvt__ReMainMenuUI_ASA_ASAUI_MainMenu_GameModeSelect_K2Node_ComponentBoundEvent_3_OnMultiplayerClicked__DelegateSignature();
 	void OnMediaReachedEnd_Event();
 	void JumpIntro();
@@ -94,10 +97,10 @@ public:
 	void OnCFCoreUIControllerInit();
 	enum class ESlateVisibility SetMainJoinedButtonVisibility();
 	void BndEvt__ReMainMenuUI_ASA_ASAUI_MainMenu_LandingScreen_K2Node_ComponentBoundEvent_7_OnGoToLastPlayedButtonClicked__DelegateSignature();
-	float Tick(const struct FGeometry& MyGeometry);
+	float Tick();
 	void BndEvt__ReMainMenuUI_ASA_ASAUI_MainMenu_LandingScreen_K2Node_ComponentBoundEvent_1_OnStartButtonClicked__DelegateSignature();
 	void BndEvt__ReMainMenuUI_ASA_ASAUI_MainMenu_GameModeSelect_K2Node_ComponentBoundEvent_9_OnSOTFClicked__DelegateSignature();
-	TSoftObjectPtr<class UASAUI_MainMenuWidget_SettingsOverlay_C> ExecuteUbergraph_ReMainMenuUI_ASA(int32 EntryPoint, class UCFCoreUISubsystem* CallFunc_GetGameInstanceSubsystem_ReturnValue, bool* K2Node_SwitchInteger_CmpSuccess, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate, bool* CallFunc_IsVisible_ReturnValue, class UCreditsUI_C* CallFunc_Create_ReturnValue, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_1, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_2, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_3, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_4, bool* CallFunc_Play_ReturnValue, class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue, class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue_1, struct FTimerHandle* CallFunc_K2_SetTimerDelegate_ReturnValue, struct FTimerHandle* CallFunc_K2_SetTimerDelegate_ReturnValue_1, class APlayerController* CallFunc_GetOwningPlayer_ReturnValue, class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue_2, class UGameInstance** CallFunc_GetGameInstance_ReturnValue, struct FGeometry* K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime, bool* CallFunc_Play_ReturnValue_1, class UASAUI_MainMenuWidget_SettingsOverlay_C* CallFunc_Create_ReturnValue_1, FDelegateProperty_ K2Node_CreateDelegate_OutputDelegate_5);
+	FDelegateProperty_ ExecuteUbergraph_ReMainMenuUI_ASA(class UCFCoreUISubsystem** CallFunc_GetGameInstanceSubsystem_ReturnValue, bool CallFunc_RegisterModelClass_ReturnValue, int32* CallFunc_GetActiveWidgetIndex_ReturnValue, bool* K2Node_SwitchInteger_CmpSuccess, class UObject** CallFunc_Conv_SoftObjectReferenceToObject_ReturnValue, bool* CallFunc_IsValidSoftObjectReference_ReturnValue, class UASAUI_MainMenuWidget_SettingsOverlay_C** K2Node_DynamicCast_AsASAUI_Main_Menu_Widget_Settings_Overlay, bool K2Node_Event_bIsGamepadActive, class UWidget* K2Node_Event_widget, class UCustomButtonWidget* K2Node_DynamicCast_AsCustom_Button_Widget, bool* CallFunc_IsValid_ReturnValue, class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, bool* CallFunc_Rewind_ReturnValue, class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue_1, class APlayerController** CallFunc_GetOwningPlayer_ReturnValue, class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue_2, class UGameInstance** CallFunc_GetGameInstance_ReturnValue, class UShooterGameInstance* K2Node_DynamicCast_AsShooter_Game_Instance, enum class ESlateVisibility K2Node_Event_newVisibilty, const struct FGeometry& K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime, bool* CallFunc_IsValid_ReturnValue_2, TSoftObjectPtr<class UASAUI_MainMenuWidget_SettingsOverlay_C> CallFunc_Conv_ObjectToSoftObjectReference_ReturnValue);
 };
 
 }

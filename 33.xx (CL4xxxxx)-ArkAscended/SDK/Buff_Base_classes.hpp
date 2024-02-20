@@ -14,15 +14,15 @@ namespace SDK
 class ABuff_Base_C : public APrimalBuff
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xB60(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-	bool                                         bDismountingBuff;                                  // 0xB68(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xB60(0x8)(BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bDismountingBuff;                                  // 0xB68(0x1)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ABuff_Base_C* GetDefaultObj();
 
-	int32 BPCustomAllowAddBuff(class APrimalCharacter* ForCharacter, bool ReturnValue, int32* CallFunc_Array_Length_ReturnValue, int32 Temp_int_Loop_Counter_Variable, class APrimalBuff* CallFunc_Array_Get_Item, bool CallFunc_Less_IntInt_ReturnValue, bool CallFunc_BooleanAND_ReturnValue);
-	void BPDeactivated(class AActor** ForInstigator);
-	class APrimalBuff* ExecuteUbergraph_Buff_Base(int32 EntryPoint);
+	int32 BPCustomAllowAddBuff(bool ReturnValue);
+	class AActor* BPDeactivated();
+	bool ExecuteUbergraph_Buff_Base(class AActor** K2Node_Event_ForInstigator, class APrimalCharacter* K2Node_DynamicCast_AsPrimal_Character, class APrimalBuff* CallFunc_StaticAddBuff_ReturnValue);
 };
 
 }

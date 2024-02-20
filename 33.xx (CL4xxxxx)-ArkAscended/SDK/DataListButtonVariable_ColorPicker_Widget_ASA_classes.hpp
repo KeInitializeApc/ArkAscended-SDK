@@ -14,22 +14,22 @@ namespace SDK
 class UDataListButtonVariable_ColorPicker_Widget_ASA_C : public UDataListButtonVariable_Widget_ASA_C
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x478(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-	FMulticastInlineDelegateProperty_            ChangedColor;                                      // 0x480(0x10)(BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bHideColor;                                        // 0x490(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_491E[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            SelectedOption;                                    // 0x498(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, EditConst)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x478(0x8)(BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            ChangedColor;                                      // 0x480(0x10)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bHideColor;                                        // 0x490(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_3A92[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            SelectedOption;                                    // 0x498(0x10)(Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, EditConst)
 
 	static class UClass* StaticClass();
 	static class UDataListButtonVariable_ColorPicker_Widget_ASA_C* GetDefaultObj();
 
-	bool ExtraSetupToggledButton(class UWidget** CallFunc_GetChildAt_ReturnValue, class UColorPicker_ASA_Widget_C* K2Node_DynamicCast_AsColor_Picker_ASA_Widget);
-	class FText SetupTextValue(class FText ReturnText);
-	bool PreConstruct();
+	bool ExtraSetupToggledButton();
+	class FText SetupTextValue(class FText* Text);
+	void PreConstruct(bool* IsDesignTime);
 	void Construct();
 	struct FBPNetExecParams BPExecutedCommandForPrimalUI();
-	void UpdateColorPicker(struct FVector2D* ColorPickerSliderValue);
-	bool ExecuteUbergraph_DataListButtonVariable_ColorPicker_Widget_ASA(int32 EntryPoint, int32 Temp_int_Loop_Counter_Variable, const struct FVector2D& CallFunc_MakeVector2D_ReturnValue, bool K2Node_SwitchName_CmpSuccess, const struct FVector2D& K2Node_Event_ColorPickerSliderValue, class UWidget** CallFunc_GetChildAt_ReturnValue, class UColorPicker_ASA_Widget_C* K2Node_DynamicCast_AsColor_Picker_ASA_Widget, class UUI_PCOptionsMenu* CallFunc_Array_Get_Item, int32* CallFunc_Array_Length_ReturnValue, bool CallFunc_Less_IntInt_ReturnValue, bool CallFunc_BooleanAND_ReturnValue, double CallFunc_MakeVector2D_X_ImplicitCast, double CallFunc_MakeVector2D_Y_ImplicitCast);
+	struct FVector2D UpdateColorPicker();
+	double ExecuteUbergraph_DataListButtonVariable_ColorPicker_Widget_ASA(bool K2Node_SwitchName_CmpSuccess);
 	bool SelectedOption__DelegateSignature();
 	void ChangedColor__DelegateSignature(struct FLinearColor* Color);
 };

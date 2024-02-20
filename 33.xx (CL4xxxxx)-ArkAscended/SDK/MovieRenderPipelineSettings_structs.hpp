@@ -20,9 +20,9 @@ struct FMoviePipelineConsoleVariableEntry
 {
 public:
 	class FString                                Name;                                              // 0x0(0x10)(ConstParm, Net, OutParm)
-	float                                        Value;                                             // 0x10(0x4)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-	bool                                         bIsEnabled;                                        // 0x14(0x1)(BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, EditConst)
-	uint8                                        Pad_111A[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	float                                        Value;                                             // 0x10(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+	bool                                         bIsEnabled;                                        // 0x14(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
+	uint8                                        Pad_D78[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 }

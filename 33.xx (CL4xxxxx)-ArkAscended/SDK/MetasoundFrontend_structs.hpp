@@ -75,8 +75,8 @@ enum class EMetasoundFrontendLiteralType : uint8
 struct FMetasoundFrontendVersionNumber
 {
 public:
-	int32                                        Major;                                             // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Config, InstancedReference, SubobjectReference)
-	int32                                        Minor;                                             // 0x4(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, Config, InstancedReference, SubobjectReference)
+	int32                                        Major;                                             // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        Minor;                                             // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -85,7 +85,7 @@ struct FMetasoundFrontendVersion
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	struct FMetasoundFrontendVersionNumber       Number;                                            // 0x8(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, EditConst)
+	struct FMetasoundFrontendVersionNumber       Number;                                            // 0x8(0x8)(Edit, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -94,8 +94,8 @@ struct FMetasoundFrontendVertex
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	class FName                                  TypeName;                                          // 0x8(0x8)(ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	struct FGuid                                 VertexID;                                          // 0x10(0x10)(EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
+	class FName                                  TypeName;                                          // 0x8(0x8)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 VertexID;                                          // 0x10(0x10)(Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -103,14 +103,14 @@ public:
 struct FMetasoundFrontendLiteral
 {
 public:
-	enum class EMetasoundFrontendLiteralType     Type;                                              // 0x0(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	uint8                                        Pad_2506[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        AsNumDefault;                                      // 0x4(0x4)(ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<bool>                                 AsBoolean;                                         // 0x8(0x10)(ConstParm, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<int32>                                AsInteger;                                         // 0x18(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<float>                                AsFloat;                                           // 0x28(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<class FString>                        AsString;                                          // 0x38(0x10)(ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<class UObject*>                       AsUObject;                                         // 0x48(0x10)(BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EMetasoundFrontendLiteralType     Type;                                              // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config)
+	uint8                                        Pad_1893[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        AsNumDefault;                                      // 0x4(0x4)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<bool>                                 AsBoolean;                                         // 0x8(0x10)(Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<int32>                                AsInteger;                                         // 0x18(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<float>                                AsFloat;                                           // 0x28(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FString>                        AsString;                                          // 0x38(0x10)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class UObject*>                       AsUObject;                                         // 0x48(0x10)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x68 (0x68 - 0x0)
@@ -118,8 +118,8 @@ public:
 struct FMetasoundFrontendVertexLiteral
 {
 public:
-	struct FGuid                                 VertexID;                                          // 0x0(0x10)(EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, EditConst)
-	struct FMetasoundFrontendLiteral             Value;                                             // 0x10(0x58)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+	struct FGuid                                 VertexID;                                          // 0x0(0x10)(Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
+	struct FMetasoundFrontendLiteral             Value;                                             // 0x10(0x58)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 };
 
 // 0xB8 (0xB8 - 0x0)
@@ -128,13 +128,13 @@ struct FMetasoundFrontendVariable
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	class FName                                  TypeName;                                          // 0x8(0x8)(ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	struct FMetasoundFrontendLiteral             Literal;                                           // 0x10(0x58)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	class FName                                  TypeName;                                          // 0x8(0x8)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FMetasoundFrontendLiteral             Literal;                                           // 0x10(0x58)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 	struct FGuid                                 ID;                                                // 0x68(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	struct FGuid                                 VariableNodeID;                                    // 0x78(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FGuid                                 MutatorNodeID;                                     // 0x88(0x10)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FGuid>                         AccessorNodeIDs;                                   // 0x98(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FGuid>                         DeferredAccessorNodeIDs;                           // 0xA8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FGuid                                 VariableNodeID;                                    // 0x78(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 MutatorNodeID;                                     // 0x88(0x10)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FGuid>                         AccessorNodeIDs;                                   // 0x98(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FGuid>                         DeferredAccessorNodeIDs;                           // 0xA8(0x10)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -142,9 +142,9 @@ public:
 struct FMetasoundFrontendNodeInterface
 {
 public:
-	TArray<struct FMetasoundFrontendVertex>      Inputs;                                            // 0x0(0x10)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FMetasoundFrontendVertex>      Outputs;                                           // 0x10(0x10)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FMetasoundFrontendVertex>      Environment;                                       // 0x20(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FMetasoundFrontendVertex>      Inputs;                                            // 0x0(0x10)(Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FMetasoundFrontendVertex>      Outputs;                                           // 0x10(0x10)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FMetasoundFrontendVertex>      Environment;                                       // 0x20(0x10)(ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -152,7 +152,7 @@ public:
 struct FMetasoundFrontendNodeStyleDisplay
 {
 public:
-	uint8                                        Pad_250A[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_189D[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -160,7 +160,7 @@ public:
 struct FMetasoundFrontendNodeStyle
 {
 public:
-	uint8                                        Pad_250B[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_189E[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x68 (0x68 - 0x0)
@@ -169,10 +169,10 @@ struct FMetasoundFrontendNode
 {
 public:
 	struct FGuid                                 ID;                                                // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	struct FGuid                                 ClassId;                                           // 0x10(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FGuid                                 ClassId;                                           // 0x10(0x10)(Edit, BlueprintVisible, Net, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
 	class FName                                  Name;                                              // 0x20(0x8)(ConstParm, Net, OutParm)
 	struct FMetasoundFrontendNodeInterface       Interface;                                         // 0x28(0x30)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor)
-	TArray<struct FMetasoundFrontendVertexLiteral> InputLiterals;                                     // 0x58(0x10)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FMetasoundFrontendVertexLiteral> InputLiterals;                                     // 0x58(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -180,10 +180,10 @@ public:
 struct FMetasoundFrontendEdge
 {
 public:
-	struct FGuid                                 FromNodeID;                                        // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FGuid                                 FromVertexID;                                      // 0x10(0x10)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FGuid                                 ToNodeID;                                          // 0x20(0x10)(ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FGuid                                 ToVertexID;                                        // 0x30(0x10)(ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FGuid                                 FromNodeID;                                        // 0x0(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 FromVertexID;                                      // 0x10(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 ToNodeID;                                          // 0x20(0x10)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 ToVertexID;                                        // 0x30(0x10)(Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x68 (0x68 - 0x0)
@@ -191,7 +191,7 @@ public:
 struct FMetasoundFrontendEdgeStyleLiteralColorPair
 {
 public:
-	struct FMetasoundFrontendLiteral             Value;                                             // 0x0(0x58)(ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
+	struct FMetasoundFrontendLiteral             Value;                                             // 0x0(0x58)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
 	struct FLinearColor                          Color;                                             // 0x58(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
 };
 
@@ -200,9 +200,9 @@ public:
 struct FMetasoundFrontendEdgeStyle
 {
 public:
-	struct FGuid                                 NodeID;                                            // 0x0(0x10)(BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	class FName                                  OutputName;                                        // 0x10(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-	TArray<struct FMetasoundFrontendEdgeStyleLiteralColorPair> LiteralColorPairs;                                 // 0x18(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FGuid                                 NodeID;                                            // 0x0(0x10)(ConstParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  OutputName;                                        // 0x10(0x8)(ConstParm, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+	TArray<struct FMetasoundFrontendEdgeStyleLiteralColorPair> LiteralColorPairs;                                 // 0x18(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -210,9 +210,9 @@ public:
 struct FMetasoundFrontendGraphStyle
 {
 public:
-	bool                                         bIsGraphEditable;                                  // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_250F[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FMetasoundFrontendEdgeStyle>   EdgeStyles;                                        // 0x8(0x10)(ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bIsGraphEditable;                                  // 0x0(0x1)(BlueprintVisible, ExportObject, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_18A3[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FMetasoundFrontendEdgeStyle>   EdgeStyles;                                        // 0x8(0x10)(ConstParm, BlueprintVisible, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -220,9 +220,9 @@ public:
 struct FMetasoundFrontendGraph
 {
 public:
-	TArray<struct FMetasoundFrontendNode>        Nodes;                                             // 0x0(0x10)(Edit, ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FMetasoundFrontendEdge>        Edges;                                             // 0x10(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, EditConst)
-	TArray<struct FMetasoundFrontendVariable>    Variables;                                         // 0x20(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+	TArray<struct FMetasoundFrontendNode>        Nodes;                                             // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FMetasoundFrontendEdge>        Edges;                                             // 0x10(0x10)(Edit, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
+	TArray<struct FMetasoundFrontendVariable>    Variables;                                         // 0x20(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -230,7 +230,7 @@ public:
 struct FMetasoundFrontendVertexMetadata
 {
 public:
-	uint8                                        Pad_2512[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_18A4[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x14 (0x34 - 0x20)
@@ -238,8 +238,8 @@ public:
 struct FMetasoundFrontendClassVertex : public FMetasoundFrontendVertex
 {
 public:
-	struct FGuid                                 NodeID;                                            // 0x20(0x10)(BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class EMetasoundFrontendVertexAccessType AccessType;                                        // 0x30(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FGuid                                 NodeID;                                            // 0x20(0x10)(ConstParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	enum class EMetasoundFrontendVertexAccessType AccessType;                                        // 0x30(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -247,7 +247,7 @@ public:
 struct FMetasoundFrontendClassStyleDisplay
 {
 public:
-	uint8                                        Pad_2513[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_18A5[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x5C (0x90 - 0x34)
@@ -255,8 +255,8 @@ public:
 struct FMetasoundFrontendClassInput : public FMetasoundFrontendClassVertex
 {
 public:
-	uint8                                        Pad_2514[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FMetasoundFrontendLiteral             DefaultLiteral;                                    // 0x38(0x58)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_18A6[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FMetasoundFrontendLiteral             DefaultLiteral;                                    // 0x38(0x58)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x5C (0x90 - 0x34)
@@ -264,8 +264,8 @@ public:
 struct FMetasoundFrontendClassVariable : public FMetasoundFrontendClassVertex
 {
 public:
-	uint8                                        Pad_2515[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FMetasoundFrontendLiteral             DefaultLiteral;                                    // 0x38(0x58)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_18A7[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FMetasoundFrontendLiteral             DefaultLiteral;                                    // 0x38(0x58)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x0 (0x34 - 0x34)
@@ -281,9 +281,9 @@ struct FMetasoundFrontendClassEnvironmentVariable
 {
 public:
 	class FName                                  Name;                                              // 0x0(0x8)(ConstParm, Net, OutParm)
-	class FName                                  TypeName;                                          // 0x8(0x8)(ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	bool                                         bIsRequired;                                       // 0x10(0x1)(Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2516[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	class FName                                  TypeName;                                          // 0x8(0x8)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bIsRequired;                                       // 0x10(0x1)(Edit, ConstParm, Net, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_18AB[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -291,7 +291,7 @@ public:
 struct FMetasoundFrontendInterfaceStyle
 {
 public:
-	uint8                                        Pad_2517[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_18AC[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x40 (0x40 - 0x0)
@@ -299,10 +299,10 @@ public:
 struct FMetasoundFrontendClassInterface
 {
 public:
-	TArray<struct FMetasoundFrontendClassInput>  Inputs;                                            // 0x0(0x10)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FMetasoundFrontendClassOutput> Outputs;                                           // 0x10(0x10)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FMetasoundFrontendClassEnvironmentVariable> Environment;                                       // 0x20(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGuid                                 ChangeID;                                          // 0x30(0x10)(BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<struct FMetasoundFrontendClassInput>  Inputs;                                            // 0x0(0x10)(Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FMetasoundFrontendClassOutput> Outputs;                                           // 0x10(0x10)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FMetasoundFrontendClassEnvironmentVariable> Environment;                                       // 0x20(0x10)(ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 ChangeID;                                          // 0x30(0x10)(ConstParm, ExportObject, Net, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x50 - 0x40)
@@ -310,7 +310,7 @@ public:
 struct FMetasoundFrontendInterface : public FMetasoundFrontendClassInterface
 {
 public:
-	struct FMetasoundFrontendVersion             Version;                                           // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnInstance)
+	struct FMetasoundFrontendVersion             Version;                                           // 0x40(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -318,9 +318,9 @@ public:
 struct FMetasoundFrontendClassName
 {
 public:
-	class FName                                  Namespace;                                         // 0x0(0x8)(Edit, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference)
+	class FName                                  Namespace;                                         // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference)
 	class FName                                  Name;                                              // 0x8(0x8)(ConstParm, Net, OutParm)
-	class FName                                  Variant;                                           // 0x10(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, SubobjectReference)
+	class FName                                  Variant;                                           // 0x10(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
 };
 
 // 0x34 (0x34 - 0x0)
@@ -328,13 +328,13 @@ public:
 struct FMetasoundFrontendClassMetadata
 {
 public:
-	struct FMetasoundFrontendClassName           ClassName;                                         // 0x0(0x18)(ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	struct FMetasoundFrontendVersionNumber       Version;                                           // 0x18(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnInstance)
-	enum class EMetasoundFrontendClassType       Type;                                              // 0x20(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-	bool                                         bIsDeprecated;                                     // 0x21(0x1)(EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bAutoUpdateManagesInterface;                       // 0x22(0x1)(Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_2519[0x1];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FGuid                                 ChangeID;                                          // 0x24(0x10)(BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FMetasoundFrontendClassName           ClassName;                                         // 0x0(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+	struct FMetasoundFrontendVersionNumber       Version;                                           // 0x18(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance)
+	enum class EMetasoundFrontendClassType       Type;                                              // 0x20(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config)
+	bool                                         bIsDeprecated;                                     // 0x21(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bAutoUpdateManagesInterface;                       // 0x22(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_18B3[0x1];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FGuid                                 ChangeID;                                          // 0x24(0x10)(ConstParm, ExportObject, Net, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -342,7 +342,7 @@ public:
 struct FMetasoundFrontendClassStyle
 {
 public:
-	uint8                                        Pad_251A[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_18B4[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x90 (0x90 - 0x0)
@@ -350,10 +350,10 @@ public:
 struct FMetasoundFrontendClass
 {
 public:
-	uint8                                        Pad_2521[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	uint8                                        Pad_18B5[0x8];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FGuid                                 ID;                                                // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	struct FMetasoundFrontendClassMetadata       MetaData;                                          // 0x18(0x34)(Edit, ConstParm, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_2522[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FMetasoundFrontendClassMetadata       MetaData;                                          // 0x18(0x34)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	uint8                                        Pad_18B6[0x4];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FMetasoundFrontendClassInterface      Interface;                                         // 0x50(0x40)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor)
 };
 
@@ -362,9 +362,9 @@ public:
 struct FMetasoundFrontendGraphClassPresetOptions
 {
 public:
-	bool                                         bIsPreset;                                         // 0x0(0x1)(BlueprintVisible, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst, InstancedReference)
-	uint8                                        Pad_2523[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TSet<class FName>                            InputsInheritingDefault;                           // 0x8(0x50)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bIsPreset;                                         // 0x0(0x1)(Edit, ConstParm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference)
+	uint8                                        Pad_18BB[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TSet<class FName>                            InputsInheritingDefault;                           // 0x8(0x50)(ConstParm, BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x88 (0x118 - 0x90)
@@ -372,8 +372,8 @@ public:
 struct FMetasoundFrontendGraphClass : public FMetasoundFrontendClass
 {
 public:
-	struct FMetasoundFrontendGraph               Graph;                                             // 0x90(0x30)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FMetasoundFrontendGraphClassPresetOptions PresetOptions;                                     // 0xC0(0x58)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FMetasoundFrontendGraph               Graph;                                             // 0x90(0x30)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FMetasoundFrontendGraphClassPresetOptions PresetOptions;                                     // 0xC0(0x58)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -381,7 +381,7 @@ public:
 struct FMetasoundFrontendDocumentMetadata
 {
 public:
-	struct FMetasoundFrontendVersion             Version;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnInstance)
+	struct FMetasoundFrontendVersion             Version;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance)
 };
 
 // 0x1C8 (0x1C8 - 0x0)
@@ -389,14 +389,14 @@ public:
 struct FMetasoundFrontendDocument
 {
 public:
-	uint8                                        Pad_2525[0x10];                                    // Fixing Size After Last Property  > TateDumper <
-	struct FMetasoundFrontendDocumentMetadata    MetaData;                                          // 0x10(0x10)(Edit, ConstParm, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-	TSet<struct FMetasoundFrontendVersion>       Interfaces;                                        // 0x20(0x50)(Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	struct FMetasoundFrontendGraphClass          RootGraph;                                         // 0x70(0x118)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FMetasoundFrontendGraphClass>  Subgraphs;                                         // 0x188(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FMetasoundFrontendClass>       Dependencies;                                      // 0x198(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-	struct FMetasoundFrontendVersion             ArchetypeVersion;                                  // 0x1A8(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	TArray<struct FMetasoundFrontendVersion>     InterfaceVersions;                                 // 0x1B8(0x10)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_18BC[0x10];                                    // Fixing Size After Last Property  > TateDumper <
+	struct FMetasoundFrontendDocumentMetadata    MetaData;                                          // 0x10(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	TSet<struct FMetasoundFrontendVersion>       Interfaces;                                        // 0x20(0x50)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FMetasoundFrontendGraphClass          RootGraph;                                         // 0x70(0x118)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FMetasoundFrontendGraphClass>  Subgraphs;                                         // 0x188(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FMetasoundFrontendClass>       Dependencies;                                      // 0x198(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+	struct FMetasoundFrontendVersion             ArchetypeVersion;                                  // 0x1A8(0x10)(Edit, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FMetasoundFrontendVersion>     InterfaceVersions;                                 // 0x1B8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

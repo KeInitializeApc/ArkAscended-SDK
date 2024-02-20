@@ -716,11 +716,11 @@ class UDatasmithContentBlueprintLibrary* UDatasmithContentBlueprintLibrary::GetD
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UObject*                     Object                                                           (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// class FName                        Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// bool                               bPartialMatchKey                                                 (Edit, ConstParm, ExportObject, Net, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<class FString>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// bool                               bPartialMatchKey                                                 (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UDatasmithContentBlueprintLibrary::GetDatasmithUserDataValuesForKey(class UObject** Object, class FName Key, bool bPartialMatchKey, const TArray<class FString>& ReturnValue)
+bool UDatasmithContentBlueprintLibrary::GetDatasmithUserDataValuesForKey(class UObject** Object, const TArray<class FString>& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -729,8 +729,6 @@ void UDatasmithContentBlueprintLibrary::GetDatasmithUserDataValuesForKey(class U
 
 	Params::UDatasmithContentBlueprintLibrary_GetDatasmithUserDataValuesForKey_Params Parms{};
 
-	Parms.Key = Key;
-	Parms.bPartialMatchKey = bPartialMatchKey;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -743,6 +741,8 @@ void UDatasmithContentBlueprintLibrary::GetDatasmithUserDataValuesForKey(class U
 
 	if (Object != nullptr)
 		*Object = Parms.Object;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -751,11 +751,11 @@ void UDatasmithContentBlueprintLibrary::GetDatasmithUserDataValuesForKey(class U
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UObject*                     Object                                                           (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// class FName                        Key                                                              (BlueprintVisible, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance)
-// bool                               bPartialMatchKey                                                 (Edit, ConstParm, ExportObject, Net, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// bool                               bPartialMatchKey                                                 (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UDatasmithContentBlueprintLibrary::GetDatasmithUserDataValueForKey(class UObject** Object, class FName Key, bool bPartialMatchKey, const class FString& ReturnValue)
+bool UDatasmithContentBlueprintLibrary::GetDatasmithUserDataValueForKey(class UObject** Object, const class FString& ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -764,8 +764,6 @@ void UDatasmithContentBlueprintLibrary::GetDatasmithUserDataValueForKey(class UO
 
 	Params::UDatasmithContentBlueprintLibrary_GetDatasmithUserDataValueForKey_Params Parms{};
 
-	Parms.Key = Key;
-	Parms.bPartialMatchKey = bPartialMatchKey;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -779,6 +777,8 @@ void UDatasmithContentBlueprintLibrary::GetDatasmithUserDataValueForKey(class UO
 	if (Object != nullptr)
 		*Object = Parms.Object;
 
+	return Parms.ReturnValue;
+
 }
 
 
@@ -786,11 +786,11 @@ void UDatasmithContentBlueprintLibrary::GetDatasmithUserDataValueForKey(class UO
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
 // class UObject*                     Object                                                           (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// class FString                      StringToMatch                                                    (Edit, ConstParm, Net, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<class FName>                OutKeys                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<class FString>              OutValues                                                        (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      StringToMatch                                                    (BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// TArray<class FName>                OutKeys                                                          (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// TArray<class FString>              OutValues                                                        (ConstParm, BlueprintReadOnly, Net, Config, InstancedReference, SubobjectReference)
 
-TArray<class FString> UDatasmithContentBlueprintLibrary::GetDatasmithUserDataKeysAndValuesForValue(class UObject** Object, const class FString& StringToMatch, const TArray<class FName>& OutKeys)
+TArray<class FName> UDatasmithContentBlueprintLibrary::GetDatasmithUserDataKeysAndValuesForValue(class UObject** Object, const TArray<class FString>& OutValues)
 {
 	static class UFunction* Func = nullptr;
 
@@ -799,8 +799,7 @@ TArray<class FString> UDatasmithContentBlueprintLibrary::GetDatasmithUserDataKey
 
 	Params::UDatasmithContentBlueprintLibrary_GetDatasmithUserDataKeysAndValuesForValue_Params Parms{};
 
-	Parms.StringToMatch = StringToMatch;
-	Parms.OutKeys = OutKeys;
+	Parms.OutValues = OutValues;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -822,7 +821,7 @@ TArray<class FString> UDatasmithContentBlueprintLibrary::GetDatasmithUserDataKey
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UObject*                     Object                                                           (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// class UDatasmithAssetUserData*     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UDatasmithAssetUserData*     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UDatasmithContentBlueprintLibrary::GetDatasmithUserData(class UObject** Object, class UDatasmithAssetUserData* ReturnValue)
 {
@@ -936,9 +935,9 @@ class ADatasmithImportedSequencesActor* ADatasmithImportedSequencesActor::GetDef
 // Function DatasmithContent.DatasmithImportedSequencesActor.PlayLevelSequence
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class ULevelSequence*              SequenceToPlay                                                   (BlueprintVisible, BlueprintReadOnly, Net, Parm, Config, EditConst, InstancedReference, SubobjectReference)
+// class ULevelSequence*              SequenceToPlay                                                   (Edit, Net, EditFixedSize, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-void ADatasmithImportedSequencesActor::PlayLevelSequence(class ULevelSequence* SequenceToPlay)
+class ULevelSequence* ADatasmithImportedSequencesActor::PlayLevelSequence()
 {
 	static class UFunction* Func = nullptr;
 
@@ -947,7 +946,6 @@ void ADatasmithImportedSequencesActor::PlayLevelSequence(class ULevelSequence* S
 
 	Params::ADatasmithImportedSequencesActor_PlayLevelSequence_Params Parms{};
 
-	Parms.SequenceToPlay = SequenceToPlay;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -956,6 +954,8 @@ void ADatasmithImportedSequencesActor::PlayLevelSequence(class ULevelSequence* S
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

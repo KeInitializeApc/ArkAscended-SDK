@@ -43,7 +43,7 @@ class UGameServerQuerySubsystem* UGameServerQuerySubsystem::GetDefaultObj()
 // Function NitradoGameServerQuery.GameServerQuerySubsystem.Start
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UGameServerQuerySubsystem::Start(bool ReturnValue)
 {
@@ -70,7 +70,7 @@ void UGameServerQuerySubsystem::Start(bool ReturnValue)
 // Function NitradoGameServerQuery.GameServerQuerySubsystem.SetVersion
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Version                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnInstance)
+// class FString                      Version                                                          (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance)
 
 class FString UGameServerQuerySubsystem::SetVersion()
 {
@@ -98,9 +98,9 @@ class FString UGameServerQuerySubsystem::SetVersion()
 // Function NitradoGameServerQuery.GameServerQuerySubsystem.SetUniqueID
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      UniqueID                                                         (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FString                      UniqueID                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
 
-class FString UGameServerQuerySubsystem::SetUniqueID()
+void UGameServerQuerySubsystem::SetUniqueID(const class FString& UniqueID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -108,6 +108,33 @@ class FString UGameServerQuerySubsystem::SetUniqueID()
 		Func = Class->GetFunction("GameServerQuerySubsystem", "SetUniqueID");
 
 	Params::UGameServerQuerySubsystem_SetUniqueID_Params Parms{};
+
+	Parms.UniqueID = UniqueID;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+}
+
+
+// Function NitradoGameServerQuery.GameServerQuerySubsystem.SetTicksPerSecond
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// int32                              TickCount                                                        (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+
+int32 UGameServerQuerySubsystem::SetTicksPerSecond()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("GameServerQuerySubsystem", "SetTicksPerSecond");
+
+	Params::UGameServerQuerySubsystem_SetTicksPerSecond_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -119,33 +146,6 @@ class FString UGameServerQuerySubsystem::SetUniqueID()
 	Func->FunctionFlags = Flgs;
 
 	return Parms.ReturnValue;
-
-}
-
-
-// Function NitradoGameServerQuery.GameServerQuerySubsystem.SetTicksPerSecond
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// int32                              TickCount                                                        (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-
-void UGameServerQuerySubsystem::SetTicksPerSecond(int32 TickCount)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("GameServerQuerySubsystem", "SetTicksPerSecond");
-
-	Params::UGameServerQuerySubsystem_SetTicksPerSecond_Params Parms{};
-
-	Parms.TickCount = TickCount;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
 
 }
 
@@ -182,9 +182,9 @@ void UGameServerQuerySubsystem::SetServerName(class FString* Name)
 // Function NitradoGameServerQuery.GameServerQuerySubsystem.SetReady
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               Ready                                                            (BlueprintVisible, Parm, Config, InstancedReference, SubobjectReference)
+// bool                               Ready                                                            (ConstParm, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void UGameServerQuerySubsystem::SetReady(bool Ready)
+void UGameServerQuerySubsystem::SetReady(bool* Ready)
 {
 	static class UFunction* Func = nullptr;
 
@@ -193,7 +193,6 @@ void UGameServerQuerySubsystem::SetReady(bool Ready)
 
 	Params::UGameServerQuerySubsystem_SetReady_Params Parms{};
 
-	Parms.Ready = Ready;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -203,15 +202,18 @@ void UGameServerQuerySubsystem::SetReady(bool Ready)
 
 	Func->FunctionFlags = Flgs;
 
+	if (Ready != nullptr)
+		*Ready = Parms.Ready;
+
 }
 
 
 // Function NitradoGameServerQuery.GameServerQuerySubsystem.SetPlayerMax
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              Count                                                            (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, EditConst)
+// int32                              Count                                                            (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, EditConst)
 
-void UGameServerQuerySubsystem::SetPlayerMax(int32* Count)
+int32 UGameServerQuerySubsystem::SetPlayerMax()
 {
 	static class UFunction* Func = nullptr;
 
@@ -229,8 +231,7 @@ void UGameServerQuerySubsystem::SetPlayerMax(int32* Count)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Count != nullptr)
-		*Count = Parms.Count;
+	return Parms.ReturnValue;
 
 }
 
@@ -238,9 +239,9 @@ void UGameServerQuerySubsystem::SetPlayerMax(int32* Count)
 // Function NitradoGameServerQuery.GameServerQuerySubsystem.SetPlayerCount
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              Count                                                            (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, EditConst)
+// int32                              Count                                                            (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, EditConst)
 
-void UGameServerQuerySubsystem::SetPlayerCount(int32* Count)
+int32 UGameServerQuerySubsystem::SetPlayerCount()
 {
 	static class UFunction* Func = nullptr;
 
@@ -258,8 +259,7 @@ void UGameServerQuerySubsystem::SetPlayerCount(int32* Count)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Count != nullptr)
-		*Count = Parms.Count;
+	return Parms.ReturnValue;
 
 }
 
@@ -267,9 +267,9 @@ void UGameServerQuerySubsystem::SetPlayerCount(int32* Count)
 // Function NitradoGameServerQuery.GameServerQuerySubsystem.SetPasswordProtected
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               Enabled                                                          (Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
+// bool                               Enabled                                                          (Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
 
-void UGameServerQuerySubsystem::SetPasswordProtected(bool* Enabled)
+bool UGameServerQuerySubsystem::SetPasswordProtected()
 {
 	static class UFunction* Func = nullptr;
 
@@ -287,8 +287,7 @@ void UGameServerQuerySubsystem::SetPasswordProtected(bool* Enabled)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Enabled != nullptr)
-		*Enabled = Parms.Enabled;
+	return Parms.ReturnValue;
 
 }
 
@@ -349,7 +348,7 @@ void UGameServerQuerySubsystem::Reset()
 // Function NitradoGameServerQuery.GameServerQuerySubsystem.RemoveTag
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Tag                                                              (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Tag                                                              (ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 class FString UGameServerQuerySubsystem::RemoveTag()
 {
@@ -377,7 +376,7 @@ class FString UGameServerQuerySubsystem::RemoveTag()
 // Function NitradoGameServerQuery.GameServerQuerySubsystem.RemovePlatform
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EPlatform               Platform                                                         (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+// enum class EPlatform               Platform                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
 enum class EPlatform UGameServerQuerySubsystem::RemovePlatform()
 {
@@ -453,7 +452,7 @@ void UGameServerQuerySubsystem::DecrementPlayerCount()
 // Function NitradoGameServerQuery.GameServerQuerySubsystem.AddTag
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Tag                                                              (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      Tag                                                              (ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
 class FString UGameServerQuerySubsystem::AddTag()
 {
@@ -481,7 +480,7 @@ class FString UGameServerQuerySubsystem::AddTag()
 // Function NitradoGameServerQuery.GameServerQuerySubsystem.AddPlatform
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EPlatform               Platform                                                         (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+// enum class EPlatform               Platform                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
 enum class EPlatform UGameServerQuerySubsystem::AddPlatform()
 {
@@ -510,7 +509,7 @@ enum class EPlatform UGameServerQuerySubsystem::AddPlatform()
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class FString                      ID                                                               (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// class FString                      Version                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnInstance)
+// class FString                      Version                                                          (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance)
 
 class FString UGameServerQuerySubsystem::AddModInfo(class FString* ID)
 {
@@ -541,11 +540,11 @@ class FString UGameServerQuerySubsystem::AddModInfo(class FString* ID)
 // Function NitradoGameServerQuery.GameServerQuerySubsystem.AddListenPortInfo
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EPortType               Type                                                             (Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config)
-// int32                              Port                                                             (Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// class FString                      Address                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, InstancedReference, SubobjectReference)
+// enum class EPortType               Type                                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config)
+// int32                              Port                                                             (Edit, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
+// class FString                      Address                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UGameServerQuerySubsystem::AddListenPortInfo(const class FString& Address)
+int32 UGameServerQuerySubsystem::AddListenPortInfo(enum class EPortType Type, class FString* Address)
 {
 	static class UFunction* Func = nullptr;
 
@@ -554,7 +553,7 @@ int32 UGameServerQuerySubsystem::AddListenPortInfo(const class FString& Address)
 
 	Params::UGameServerQuerySubsystem_AddListenPortInfo_Params Parms{};
 
-	Parms.Address = Address;
+	Parms.Type = Type;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -563,6 +562,9 @@ int32 UGameServerQuerySubsystem::AddListenPortInfo(const class FString& Address)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Address != nullptr)
+		*Address = std::move(Parms.Address);
 
 	return Parms.ReturnValue;
 

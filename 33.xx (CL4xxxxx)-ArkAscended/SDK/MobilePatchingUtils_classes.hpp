@@ -14,12 +14,12 @@ namespace SDK
 class UMobileInstalledContent : public UObject
 {
 public:
-	uint8                                        Pad_2675[0x20];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_ED7[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMobileInstalledContent* GetDefaultObj();
 
-	class FString Mount(bool ReturnValue);
+	void Mount(int32 PakOrder, const class FString& MountPoint, bool ReturnValue);
 	void GetInstalledContentSize(float ReturnValue);
 	void GetDiskFreeSpace(float ReturnValue);
 };
@@ -29,12 +29,12 @@ public:
 class UMobilePendingContent : public UMobileInstalledContent
 {
 public:
-	uint8                                        Pad_268F[0x40];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_F84[0x40];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMobilePendingContent* GetDefaultObj();
 
-	FDelegateProperty_ StartInstall(FDelegateProperty_ OnFailed);
+	void StartInstall(FDelegateProperty_ OnSucceeded, FDelegateProperty_* OnFailed);
 	void GetTotalDownloadedSize(float ReturnValue);
 	void GetRequiredDiskSpace(float ReturnValue);
 	void GetInstallProgress(float ReturnValue);
@@ -52,10 +52,10 @@ public:
 	static class UClass* StaticClass();
 	static class UMobilePatchingLibrary* GetDefaultObj();
 
-	FDelegateProperty_ RequestContent(FDelegateProperty_ OnFailed);
+	void RequestContent(const class FString& RemoteManifestURL, const class FString& CloudURL, const class FString& InstallDirectory, FDelegateProperty_ OnSucceeded, FDelegateProperty_* OnFailed);
 	void HasActiveWiFiConnection(bool ReturnValue);
 	void GetSupportedPlatformNames(const TArray<class FString>& ReturnValue);
-	class FString GetInstalledContent(class UMobileInstalledContent* ReturnValue);
+	void GetInstalledContent(const class FString& InstallDirectory, class UMobileInstalledContent* ReturnValue);
 	void GetActiveDeviceProfileName(const class FString& ReturnValue);
 };
 

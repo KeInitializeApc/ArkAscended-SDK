@@ -14,13 +14,13 @@ namespace SDK
 class UUI_DownloadSize_C : public UPrimalUserWidget
 {
 public:
-	class UImage*                                IMG_Overlay;                                       // 0x330(0x8)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	class UTextBlock*                            TEXT_DownloadSize;                                 // 0x338(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class UImage*                                IMG_Overlay;                                       // 0x330(0x8)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UTextBlock*                            TEXT_DownloadSize;                                 // 0x338(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UUI_DownloadSize_C* GetDefaultObj();
 
-	class FText SetSizeText();
+	void SetSizeText(class FText* InText);
 };
 
 }

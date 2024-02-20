@@ -43,7 +43,7 @@ class UUI_HelpPage_C* UUI_HelpPage_C::GetDefaultObj()
 // Function UI_HelpPage.UI_HelpPage_C.GetSizeboxForExtraHandheldScaling
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class USizeBox*                    ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class USizeBox*                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UUI_HelpPage_C::GetSizeboxForExtraHandheldScaling(class USizeBox* ReturnValue)
 {
@@ -64,7 +64,7 @@ void UUI_HelpPage_C::GetSizeboxForExtraHandheldScaling(class USizeBox* ReturnVal
 // Function UI_HelpPage.UI_HelpPage_C.GetWidgetToScaleForHandheld
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UWidget*                     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UWidget*                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UUI_HelpPage_C::GetWidgetToScaleForHandheld(class UWidget* ReturnValue)
 {
@@ -85,9 +85,9 @@ void UUI_HelpPage_C::GetWidgetToScaleForHandheld(class UWidget* ReturnValue)
 // Function UI_HelpPage.UI_HelpPage_C.BPHandleDockedModeChange
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               bIsDocked                                                        (ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bIsDocked                                                        (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-bool UUI_HelpPage_C::BPHandleDockedModeChange()
+void UUI_HelpPage_C::BPHandleDockedModeChange(bool bIsDocked)
 {
 	static class UFunction* Func = nullptr;
 
@@ -96,10 +96,9 @@ bool UUI_HelpPage_C::BPHandleDockedModeChange()
 
 	Params::UUI_HelpPage_C_BPHandleDockedModeChange_Params Parms{};
 
+	Parms.bIsDocked = bIsDocked;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -125,15 +124,15 @@ void UUI_HelpPage_C::Construct()
 // Function UI_HelpPage.UI_HelpPage_C.ExecuteUbergraph_UI_HelpPage
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FMargin                     K2Node_MakeStruct_Margin                                         (ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               Temp_bool_Variable                                               (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnInstance, SubobjectReference)
-// bool                               K2Node_Event_bIsDocked                                           (Edit, ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UVerticalBoxSlot*            CallFunc_SlotAsVerticalBoxSlot_ReturnValue                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UVerticalBoxSlot*            CallFunc_SlotAsVerticalBoxSlot_ReturnValue_1                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
-// struct FMargin                     K2Node_Select_Default                                            (EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// struct FMargin                     K2Node_MakeStruct_Margin                                         (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               Temp_bool_Variable                                               (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, SubobjectReference)
+// bool                               K2Node_Event_bIsDocked                                           (Edit, Parm, ZeroConstructor, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
+// class UVerticalBoxSlot*            CallFunc_SlotAsVerticalBoxSlot_ReturnValue                       (BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
+// class UVerticalBoxSlot*            CallFunc_SlotAsVerticalBoxSlot_ReturnValue_1                     (BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference, Interp)
+// struct FMargin                     K2Node_Select_Default                                            (ConstParm, Net, Parm, OutParm, Config, SubobjectReference)
 
-struct FMargin UUI_HelpPage_C::ExecuteUbergraph_UI_HelpPage(int32 EntryPoint, bool Temp_bool_Variable, bool K2Node_Event_bIsDocked, class UVerticalBoxSlot** CallFunc_SlotAsVerticalBoxSlot_ReturnValue, class UVerticalBoxSlot** CallFunc_SlotAsVerticalBoxSlot_ReturnValue_1, const struct FMargin& K2Node_Select_Default)
+class UVerticalBoxSlot* UUI_HelpPage_C::ExecuteUbergraph_UI_HelpPage(bool* Temp_bool_Variable, struct FMargin* K2Node_Select_Default)
 {
 	static class UFunction* Func = nullptr;
 
@@ -142,18 +141,14 @@ struct FMargin UUI_HelpPage_C::ExecuteUbergraph_UI_HelpPage(int32 EntryPoint, bo
 
 	Params::UUI_HelpPage_C_ExecuteUbergraph_UI_HelpPage_Params Parms{};
 
-	Parms.EntryPoint = EntryPoint;
-	Parms.Temp_bool_Variable = Temp_bool_Variable;
-	Parms.K2Node_Event_bIsDocked = K2Node_Event_bIsDocked;
-	Parms.K2Node_Select_Default = K2Node_Select_Default;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_SlotAsVerticalBoxSlot_ReturnValue != nullptr)
-		*CallFunc_SlotAsVerticalBoxSlot_ReturnValue = Parms.CallFunc_SlotAsVerticalBoxSlot_ReturnValue;
+	if (Temp_bool_Variable != nullptr)
+		*Temp_bool_Variable = Parms.Temp_bool_Variable;
 
-	if (CallFunc_SlotAsVerticalBoxSlot_ReturnValue_1 != nullptr)
-		*CallFunc_SlotAsVerticalBoxSlot_ReturnValue_1 = Parms.CallFunc_SlotAsVerticalBoxSlot_ReturnValue_1;
+	if (K2Node_Select_Default != nullptr)
+		*K2Node_Select_Default = std::move(Parms.K2Node_Select_Default);
 
 	return Parms.ReturnValue;
 

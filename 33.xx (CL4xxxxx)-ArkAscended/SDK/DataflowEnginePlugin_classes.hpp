@@ -14,7 +14,7 @@ namespace SDK
 class ADataflowActor : public AActor
 {
 public:
-	class UDataflowComponent*                    DataflowComponent;                                 // 0x4C8(0x8)(BlueprintVisible, Net, DisableEditOnTemplate, Transient, SubobjectReference)
+	class UDataflowComponent*                    DataflowComponent;                                 // 0x4C8(0x8)(Edit, ConstParm, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
 
 	static class UClass* StaticClass();
 	static class ADataflowActor* GetDefaultObj();
@@ -26,7 +26,7 @@ public:
 class UDataflowComponent : public UPrimitiveComponent
 {
 public:
-	uint8                                        Pad_21B3[0x148];                                   // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_15F0[0x148];                                   // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UDataflowComponent* GetDefaultObj();

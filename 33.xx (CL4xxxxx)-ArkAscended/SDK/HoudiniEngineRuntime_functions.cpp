@@ -128,10 +128,10 @@ class UHoudiniAssetBlueprintComponent* UHoudiniAssetBlueprintComponent::GetDefau
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// bool                               Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
+// bool                               Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 
-int32 UHoudiniAssetBlueprintComponent::SetToggleValueAt(class FString* Name, bool Value)
+void UHoudiniAssetBlueprintComponent::SetToggleValueAt(class FString* Name, bool* Value, int32* Index)
 {
 	static class UFunction* Func = nullptr;
 
@@ -140,7 +140,6 @@ int32 UHoudiniAssetBlueprintComponent::SetToggleValueAt(class FString* Name, boo
 
 	Params::UHoudiniAssetBlueprintComponent_SetToggleValueAt_Params Parms{};
 
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -153,7 +152,11 @@ int32 UHoudiniAssetBlueprintComponent::SetToggleValueAt(class FString* Name, boo
 	if (Name != nullptr)
 		*Name = std::move(Parms.Name);
 
-	return Parms.ReturnValue;
+	if (Value != nullptr)
+		*Value = Parms.Value;
+
+	if (Index != nullptr)
+		*Index = Parms.Index;
 
 }
 
@@ -162,10 +165,10 @@ int32 UHoudiniAssetBlueprintComponent::SetToggleValueAt(class FString* Name, boo
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// float                              Value                                                            (ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Config)
-// int32                              Index                                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
+// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 
-int32 UHoudiniAssetBlueprintComponent::SetFloatParameter(class FString* Name, float Value)
+void UHoudiniAssetBlueprintComponent::SetFloatParameter(class FString* Name, float* Value, int32* Index)
 {
 	static class UFunction* Func = nullptr;
 
@@ -174,7 +177,6 @@ int32 UHoudiniAssetBlueprintComponent::SetFloatParameter(class FString* Name, fl
 
 	Params::UHoudiniAssetBlueprintComponent_SetFloatParameter_Params Parms{};
 
-	Parms.Value = Value;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -187,7 +189,11 @@ int32 UHoudiniAssetBlueprintComponent::SetFloatParameter(class FString* Name, fl
 	if (Name != nullptr)
 		*Name = std::move(Parms.Name);
 
-	return Parms.ReturnValue;
+	if (Value != nullptr)
+		*Value = Parms.Value;
+
+	if (Index != nullptr)
+		*Index = Parms.Index;
 
 }
 
@@ -196,7 +202,7 @@ int32 UHoudiniAssetBlueprintComponent::SetFloatParameter(class FString* Name, fl
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniAssetBlueprintComponent::HasParameter(class FString* Name, bool ReturnValue)
 {
@@ -223,678 +229,6 @@ void UHoudiniAssetBlueprintComponent::HasParameter(class FString* Name, bool Ret
 }
 
 
-// Class HoudiniEngineRuntime.HoudiniAssetParameter
-// (None)
-
-class UClass* UHoudiniAssetParameter::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameter");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameter HoudiniEngineRuntime.Default__HoudiniAssetParameter
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameter* UHoudiniAssetParameter::GetDefaultObj()
-{
-	static class UHoudiniAssetParameter* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameter*>(UHoudiniAssetParameter::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterButton
-// (None)
-
-class UClass* UHoudiniAssetParameterButton::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterButton");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterButton HoudiniEngineRuntime.Default__HoudiniAssetParameterButton
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterButton* UHoudiniAssetParameterButton::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterButton* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterButton*>(UHoudiniAssetParameterButton::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterChoice
-// (None)
-
-class UClass* UHoudiniAssetParameterChoice::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterChoice");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterChoice HoudiniEngineRuntime.Default__HoudiniAssetParameterChoice
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterChoice* UHoudiniAssetParameterChoice::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterChoice* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterChoice*>(UHoudiniAssetParameterChoice::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterColor
-// (None)
-
-class UClass* UHoudiniAssetParameterColor::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterColor");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterColor HoudiniEngineRuntime.Default__HoudiniAssetParameterColor
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterColor* UHoudiniAssetParameterColor::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterColor* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterColor*>(UHoudiniAssetParameterColor::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterFile
-// (None)
-
-class UClass* UHoudiniAssetParameterFile::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterFile");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterFile HoudiniEngineRuntime.Default__HoudiniAssetParameterFile
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterFile* UHoudiniAssetParameterFile::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterFile* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterFile*>(UHoudiniAssetParameterFile::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterFloat
-// (None)
-
-class UClass* UHoudiniAssetParameterFloat::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterFloat");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterFloat HoudiniEngineRuntime.Default__HoudiniAssetParameterFloat
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterFloat* UHoudiniAssetParameterFloat::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterFloat* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterFloat*>(UHoudiniAssetParameterFloat::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterFolder
-// (None)
-
-class UClass* UHoudiniAssetParameterFolder::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterFolder");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterFolder HoudiniEngineRuntime.Default__HoudiniAssetParameterFolder
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterFolder* UHoudiniAssetParameterFolder::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterFolder* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterFolder*>(UHoudiniAssetParameterFolder::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterFolderList
-// (None)
-
-class UClass* UHoudiniAssetParameterFolderList::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterFolderList");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterFolderList HoudiniEngineRuntime.Default__HoudiniAssetParameterFolderList
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterFolderList* UHoudiniAssetParameterFolderList::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterFolderList* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterFolderList*>(UHoudiniAssetParameterFolderList::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterInt
-// (None)
-
-class UClass* UHoudiniAssetParameterInt::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterInt");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterInt HoudiniEngineRuntime.Default__HoudiniAssetParameterInt
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterInt* UHoudiniAssetParameterInt::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterInt* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterInt*>(UHoudiniAssetParameterInt::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterLabel
-// (None)
-
-class UClass* UHoudiniAssetParameterLabel::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterLabel");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterLabel HoudiniEngineRuntime.Default__HoudiniAssetParameterLabel
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterLabel* UHoudiniAssetParameterLabel::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterLabel* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterLabel*>(UHoudiniAssetParameterLabel::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterMultiparm
-// (None)
-
-class UClass* UHoudiniAssetParameterMultiparm::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterMultiparm");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterMultiparm HoudiniEngineRuntime.Default__HoudiniAssetParameterMultiparm
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterMultiparm* UHoudiniAssetParameterMultiparm::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterMultiparm* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterMultiparm*>(UHoudiniAssetParameterMultiparm::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterRamp
-// (None)
-
-class UClass* UHoudiniAssetParameterRamp::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterRamp");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterRamp HoudiniEngineRuntime.Default__HoudiniAssetParameterRamp
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterRamp* UHoudiniAssetParameterRamp::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterRamp* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterRamp*>(UHoudiniAssetParameterRamp::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterSeparator
-// (None)
-
-class UClass* UHoudiniAssetParameterSeparator::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterSeparator");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterSeparator HoudiniEngineRuntime.Default__HoudiniAssetParameterSeparator
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterSeparator* UHoudiniAssetParameterSeparator::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterSeparator* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterSeparator*>(UHoudiniAssetParameterSeparator::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterString
-// (None)
-
-class UClass* UHoudiniAssetParameterString::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterString");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterString HoudiniEngineRuntime.Default__HoudiniAssetParameterString
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterString* UHoudiniAssetParameterString::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterString* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterString*>(UHoudiniAssetParameterString::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetParameterToggle
-// (None)
-
-class UClass* UHoudiniAssetParameterToggle::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetParameterToggle");
-
-	return Clss;
-}
-
-
-// HoudiniAssetParameterToggle HoudiniEngineRuntime.Default__HoudiniAssetParameterToggle
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetParameterToggle* UHoudiniAssetParameterToggle::GetDefaultObj()
-{
-	static class UHoudiniAssetParameterToggle* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetParameterToggle*>(UHoudiniAssetParameterToggle::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetComponentMaterials_V1
-// (None)
-
-class UClass* UHoudiniAssetComponentMaterials_V1::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetComponentMaterials_V1");
-
-	return Clss;
-}
-
-
-// HoudiniAssetComponentMaterials_V1 HoudiniEngineRuntime.Default__HoudiniAssetComponentMaterials_V1
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetComponentMaterials_V1* UHoudiniAssetComponentMaterials_V1::GetDefaultObj()
-{
-	static class UHoudiniAssetComponentMaterials_V1* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetComponentMaterials_V1*>(UHoudiniAssetComponentMaterials_V1::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniHandleComponent_V1
-// (SceneComponent)
-
-class UClass* UHoudiniHandleComponent_V1::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniHandleComponent_V1");
-
-	return Clss;
-}
-
-
-// HoudiniHandleComponent_V1 HoudiniEngineRuntime.Default__HoudiniHandleComponent_V1
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniHandleComponent_V1* UHoudiniHandleComponent_V1::GetDefaultObj()
-{
-	static class UHoudiniHandleComponent_V1* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniHandleComponent_V1*>(UHoudiniHandleComponent_V1::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniSplineComponent_V1
-// (SceneComponent)
-
-class UClass* UHoudiniSplineComponent_V1::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniSplineComponent_V1");
-
-	return Clss;
-}
-
-
-// HoudiniSplineComponent_V1 HoudiniEngineRuntime.Default__HoudiniSplineComponent_V1
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniSplineComponent_V1* UHoudiniSplineComponent_V1::GetDefaultObj()
-{
-	static class UHoudiniSplineComponent_V1* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniSplineComponent_V1*>(UHoudiniSplineComponent_V1::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetInput
-// (None)
-
-class UClass* UHoudiniAssetInput::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetInput");
-
-	return Clss;
-}
-
-
-// HoudiniAssetInput HoudiniEngineRuntime.Default__HoudiniAssetInput
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetInput* UHoudiniAssetInput::GetDefaultObj()
-{
-	static class UHoudiniAssetInput* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetInput*>(UHoudiniAssetInput::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetInstanceInput
-// (None)
-
-class UClass* UHoudiniAssetInstanceInput::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetInstanceInput");
-
-	return Clss;
-}
-
-
-// HoudiniAssetInstanceInput HoudiniEngineRuntime.Default__HoudiniAssetInstanceInput
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetInstanceInput* UHoudiniAssetInstanceInput::GetDefaultObj()
-{
-	static class UHoudiniAssetInstanceInput* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetInstanceInput*>(UHoudiniAssetInstanceInput::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetInstanceInputField
-// (None)
-
-class UClass* UHoudiniAssetInstanceInputField::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetInstanceInputField");
-
-	return Clss;
-}
-
-
-// HoudiniAssetInstanceInputField HoudiniEngineRuntime.Default__HoudiniAssetInstanceInputField
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetInstanceInputField* UHoudiniAssetInstanceInputField::GetDefaultObj()
-{
-	static class UHoudiniAssetInstanceInputField* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetInstanceInputField*>(UHoudiniAssetInstanceInputField::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniAssetComponent_V1
-// (SceneComponent, PrimitiveComponent)
-
-class UClass* UHoudiniAssetComponent_V1::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniAssetComponent_V1");
-
-	return Clss;
-}
-
-
-// HoudiniAssetComponent_V1 HoudiniEngineRuntime.Default__HoudiniAssetComponent_V1
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniAssetComponent_V1* UHoudiniAssetComponent_V1::GetDefaultObj()
-{
-	static class UHoudiniAssetComponent_V1* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniAssetComponent_V1*>(UHoudiniAssetComponent_V1::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniInstancedActorComponent_V1
-// (SceneComponent)
-
-class UClass* UHoudiniInstancedActorComponent_V1::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniInstancedActorComponent_V1");
-
-	return Clss;
-}
-
-
-// HoudiniInstancedActorComponent_V1 HoudiniEngineRuntime.Default__HoudiniInstancedActorComponent_V1
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniInstancedActorComponent_V1* UHoudiniInstancedActorComponent_V1::GetDefaultObj()
-{
-	static class UHoudiniInstancedActorComponent_V1* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniInstancedActorComponent_V1*>(UHoudiniInstancedActorComponent_V1::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
-// Class HoudiniEngineRuntime.HoudiniMeshSplitInstancerComponent_V1
-// (SceneComponent)
-
-class UClass* UHoudiniMeshSplitInstancerComponent_V1::StaticClass()
-{
-	static class UClass* Clss = nullptr;
-
-	if (!Clss)
-		Clss = UObject::FindClassFast("HoudiniMeshSplitInstancerComponent_V1");
-
-	return Clss;
-}
-
-
-// HoudiniMeshSplitInstancerComponent_V1 HoudiniEngineRuntime.Default__HoudiniMeshSplitInstancerComponent_V1
-// (Public, ClassDefaultObject, ArchetypeObject)
-
-class UHoudiniMeshSplitInstancerComponent_V1* UHoudiniMeshSplitInstancerComponent_V1::GetDefaultObj()
-{
-	static class UHoudiniMeshSplitInstancerComponent_V1* Default = nullptr;
-
-	if (!Default)
-		Default = static_cast<UHoudiniMeshSplitInstancerComponent_V1*>(UHoudiniMeshSplitInstancerComponent_V1::StaticClass()->DefaultObject);
-
-	return Default;
-}
-
-
 // Class HoudiniEngineRuntime.HoudiniEngineCopyPropertiesInterface
 // (None)
 
@@ -918,6 +252,34 @@ class IHoudiniEngineCopyPropertiesInterface* IHoudiniEngineCopyPropertiesInterfa
 
 	if (!Default)
 		Default = static_cast<IHoudiniEngineCopyPropertiesInterface*>(IHoudiniEngineCopyPropertiesInterface::StaticClass()->DefaultObject);
+
+	return Default;
+}
+
+
+// Class HoudiniEngineRuntime.HoudiniEngineEditorSettings
+// (None)
+
+class UClass* UHoudiniEngineEditorSettings::StaticClass()
+{
+	static class UClass* Clss = nullptr;
+
+	if (!Clss)
+		Clss = UObject::FindClassFast("HoudiniEngineEditorSettings");
+
+	return Clss;
+}
+
+
+// HoudiniEngineEditorSettings HoudiniEngineRuntime.Default__HoudiniEngineEditorSettings
+// (Public, ClassDefaultObject, ArchetypeObject)
+
+class UHoudiniEngineEditorSettings* UHoudiniEngineEditorSettings::GetDefaultObj()
+{
+	static class UHoudiniEngineEditorSettings* Default = nullptr;
+
+	if (!Default)
+		Default = static_cast<UHoudiniEngineEditorSettings*>(UHoudiniEngineEditorSettings::StaticClass()->DefaultObject);
 
 	return Default;
 }
@@ -1086,6 +448,34 @@ class UHoudiniInputSkeletalMesh* UHoudiniInputSkeletalMesh::GetDefaultObj()
 
 	if (!Default)
 		Default = static_cast<UHoudiniInputSkeletalMesh*>(UHoudiniInputSkeletalMesh::StaticClass()->DefaultObject);
+
+	return Default;
+}
+
+
+// Class HoudiniEngineRuntime.HoudiniInputAnimation
+// (None)
+
+class UClass* UHoudiniInputAnimation::StaticClass()
+{
+	static class UClass* Clss = nullptr;
+
+	if (!Clss)
+		Clss = UObject::FindClassFast("HoudiniInputAnimation");
+
+	return Clss;
+}
+
+
+// HoudiniInputAnimation HoudiniEngineRuntime.Default__HoudiniInputAnimation
+// (Public, ClassDefaultObject, ArchetypeObject)
+
+class UHoudiniInputAnimation* UHoudiniInputAnimation::GetDefaultObj()
+{
+	static class UHoudiniInputAnimation* Default = nullptr;
+
+	if (!Default)
+		Default = static_cast<UHoudiniInputAnimation*>(UHoudiniInputAnimation::StaticClass()->DefaultObject);
 
 	return Default;
 }
@@ -1399,6 +789,34 @@ class UHoudiniInputActor* UHoudiniInputActor::GetDefaultObj()
 }
 
 
+// Class HoudiniEngineRuntime.HoudiniInputLevelInstance
+// (None)
+
+class UClass* UHoudiniInputLevelInstance::StaticClass()
+{
+	static class UClass* Clss = nullptr;
+
+	if (!Clss)
+		Clss = UObject::FindClassFast("HoudiniInputLevelInstance");
+
+	return Clss;
+}
+
+
+// HoudiniInputLevelInstance HoudiniEngineRuntime.Default__HoudiniInputLevelInstance
+// (Public, ClassDefaultObject, ArchetypeObject)
+
+class UHoudiniInputLevelInstance* UHoudiniInputLevelInstance::GetDefaultObj()
+{
+	static class UHoudiniInputLevelInstance* Default = nullptr;
+
+	if (!Default)
+		Default = static_cast<UHoudiniInputLevelInstance*>(UHoudiniInputLevelInstance::StaticClass()->DefaultObject);
+
+	return Default;
+}
+
+
 // Class HoudiniEngineRuntime.HoudiniInputLandscape
 // (None)
 
@@ -1539,6 +957,118 @@ class UHoudiniInputBlueprint* UHoudiniInputBlueprint::GetDefaultObj()
 }
 
 
+// Class HoudiniEngineRuntime.HoudiniInputPackedLevelActor
+// (None)
+
+class UClass* UHoudiniInputPackedLevelActor::StaticClass()
+{
+	static class UClass* Clss = nullptr;
+
+	if (!Clss)
+		Clss = UObject::FindClassFast("HoudiniInputPackedLevelActor");
+
+	return Clss;
+}
+
+
+// HoudiniInputPackedLevelActor HoudiniEngineRuntime.Default__HoudiniInputPackedLevelActor
+// (Public, ClassDefaultObject, ArchetypeObject)
+
+class UHoudiniInputPackedLevelActor* UHoudiniInputPackedLevelActor::GetDefaultObj()
+{
+	static class UHoudiniInputPackedLevelActor* Default = nullptr;
+
+	if (!Default)
+		Default = static_cast<UHoudiniInputPackedLevelActor*>(UHoudiniInputPackedLevelActor::StaticClass()->DefaultObject);
+
+	return Default;
+}
+
+
+// Class HoudiniEngineRuntime.HoudiniInputLandscapeSplineActor
+// (None)
+
+class UClass* UHoudiniInputLandscapeSplineActor::StaticClass()
+{
+	static class UClass* Clss = nullptr;
+
+	if (!Clss)
+		Clss = UObject::FindClassFast("HoudiniInputLandscapeSplineActor");
+
+	return Clss;
+}
+
+
+// HoudiniInputLandscapeSplineActor HoudiniEngineRuntime.Default__HoudiniInputLandscapeSplineActor
+// (Public, ClassDefaultObject, ArchetypeObject)
+
+class UHoudiniInputLandscapeSplineActor* UHoudiniInputLandscapeSplineActor::GetDefaultObj()
+{
+	static class UHoudiniInputLandscapeSplineActor* Default = nullptr;
+
+	if (!Default)
+		Default = static_cast<UHoudiniInputLandscapeSplineActor*>(UHoudiniInputLandscapeSplineActor::StaticClass()->DefaultObject);
+
+	return Default;
+}
+
+
+// Class HoudiniEngineRuntime.HoudiniInputLandscapeSplinesComponent
+// (None)
+
+class UClass* UHoudiniInputLandscapeSplinesComponent::StaticClass()
+{
+	static class UClass* Clss = nullptr;
+
+	if (!Clss)
+		Clss = UObject::FindClassFast("HoudiniInputLandscapeSplinesComponent");
+
+	return Clss;
+}
+
+
+// HoudiniInputLandscapeSplinesComponent HoudiniEngineRuntime.Default__HoudiniInputLandscapeSplinesComponent
+// (Public, ClassDefaultObject, ArchetypeObject)
+
+class UHoudiniInputLandscapeSplinesComponent* UHoudiniInputLandscapeSplinesComponent::GetDefaultObj()
+{
+	static class UHoudiniInputLandscapeSplinesComponent* Default = nullptr;
+
+	if (!Default)
+		Default = static_cast<UHoudiniInputLandscapeSplinesComponent*>(UHoudiniInputLandscapeSplinesComponent::StaticClass()->DefaultObject);
+
+	return Default;
+}
+
+
+// Class HoudiniEngineRuntime.HoudiniInputSplineMeshComponent
+// (None)
+
+class UClass* UHoudiniInputSplineMeshComponent::StaticClass()
+{
+	static class UClass* Clss = nullptr;
+
+	if (!Clss)
+		Clss = UObject::FindClassFast("HoudiniInputSplineMeshComponent");
+
+	return Clss;
+}
+
+
+// HoudiniInputSplineMeshComponent HoudiniEngineRuntime.Default__HoudiniInputSplineMeshComponent
+// (Public, ClassDefaultObject, ArchetypeObject)
+
+class UHoudiniInputSplineMeshComponent* UHoudiniInputSplineMeshComponent::GetDefaultObj()
+{
+	static class UHoudiniInputSplineMeshComponent* Default = nullptr;
+
+	if (!Default)
+		Default = static_cast<UHoudiniInputSplineMeshComponent*>(UHoudiniInputSplineMeshComponent::StaticClass()->DefaultObject);
+
+	return Default;
+}
+
+
 // Class HoudiniEngineRuntime.HoudiniInstancedActorComponent
 // (SceneComponent)
 
@@ -1674,6 +1204,62 @@ class UHoudiniLandscapeOutput* UHoudiniLandscapeOutput::GetDefaultObj()
 
 	if (!Default)
 		Default = static_cast<UHoudiniLandscapeOutput*>(UHoudiniLandscapeOutput::StaticClass()->DefaultObject);
+
+	return Default;
+}
+
+
+// Class HoudiniEngineRuntime.HoudiniLandscapeSplineTargetLayerOutput
+// (None)
+
+class UClass* UHoudiniLandscapeSplineTargetLayerOutput::StaticClass()
+{
+	static class UClass* Clss = nullptr;
+
+	if (!Clss)
+		Clss = UObject::FindClassFast("HoudiniLandscapeSplineTargetLayerOutput");
+
+	return Clss;
+}
+
+
+// HoudiniLandscapeSplineTargetLayerOutput HoudiniEngineRuntime.Default__HoudiniLandscapeSplineTargetLayerOutput
+// (Public, ClassDefaultObject, ArchetypeObject)
+
+class UHoudiniLandscapeSplineTargetLayerOutput* UHoudiniLandscapeSplineTargetLayerOutput::GetDefaultObj()
+{
+	static class UHoudiniLandscapeSplineTargetLayerOutput* Default = nullptr;
+
+	if (!Default)
+		Default = static_cast<UHoudiniLandscapeSplineTargetLayerOutput*>(UHoudiniLandscapeSplineTargetLayerOutput::StaticClass()->DefaultObject);
+
+	return Default;
+}
+
+
+// Class HoudiniEngineRuntime.HoudiniLandscapeSplinesOutput
+// (None)
+
+class UClass* UHoudiniLandscapeSplinesOutput::StaticClass()
+{
+	static class UClass* Clss = nullptr;
+
+	if (!Clss)
+		Clss = UObject::FindClassFast("HoudiniLandscapeSplinesOutput");
+
+	return Clss;
+}
+
+
+// HoudiniLandscapeSplinesOutput HoudiniEngineRuntime.Default__HoudiniLandscapeSplinesOutput
+// (Public, ClassDefaultObject, ArchetypeObject)
+
+class UHoudiniLandscapeSplinesOutput* UHoudiniLandscapeSplinesOutput::GetDefaultObj()
+{
+	static class UHoudiniLandscapeSplinesOutput* Default = nullptr;
+
+	if (!Default)
+		Default = static_cast<UHoudiniLandscapeSplinesOutput*>(UHoudiniLandscapeSplinesOutput::StaticClass()->DefaultObject);
 
 	return Default;
 }
@@ -2466,10 +2052,10 @@ class UHoudiniStaticMesh* UHoudiniStaticMesh::GetDefaultObj()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetVertexPosition
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InVertexIndex                                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector3f                   InPosition                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InVertexIndex                                                    (ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// struct FVector3f                   InPosition                                                       (Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FVector3f UHoudiniStaticMesh::SetVertexPosition()
+void UHoudiniStaticMesh::SetVertexPosition(uint32* InVertexIndex, struct FVector3f* InPosition)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2487,7 +2073,11 @@ struct FVector3f UHoudiniStaticMesh::SetVertexPosition()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InVertexIndex != nullptr)
+		*InVertexIndex = Parms.InVertexIndex;
+
+	if (InPosition != nullptr)
+		*InPosition = std::move(Parms.InPosition);
 
 }
 
@@ -2495,11 +2085,11 @@ struct FVector3f UHoudiniStaticMesh::SetVertexPosition()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleVertexVTangent
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint8                              InTriangleVertexIndex                                            (ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector3f                   InVTangent                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// uint8                              InTriangleVertexIndex                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// struct FVector3f                   InVTangent                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FVector3f UHoudiniStaticMesh::SetTriangleVertexVTangent()
+void UHoudiniStaticMesh::SetTriangleVertexVTangent(uint32* InTriangleIndex, uint8* InTriangleVertexIndex, struct FVector3f* InVTangent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2517,7 +2107,14 @@ struct FVector3f UHoudiniStaticMesh::SetTriangleVertexVTangent()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
+	if (InTriangleVertexIndex != nullptr)
+		*InTriangleVertexIndex = Parms.InTriangleVertexIndex;
+
+	if (InVTangent != nullptr)
+		*InVTangent = std::move(Parms.InVTangent);
 
 }
 
@@ -2525,12 +2122,12 @@ struct FVector3f UHoudiniStaticMesh::SetTriangleVertexVTangent()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleVertexUV
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint8                              InTriangleVertexIndex                                            (ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint8                              InUVLayer                                                        (Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector2f                   InUV                                                             (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// uint8                              InTriangleVertexIndex                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// uint8                              InUVLayer                                                        (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// struct FVector2f                   InUV                                                             (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FVector2f UHoudiniStaticMesh::SetTriangleVertexUV()
+void UHoudiniStaticMesh::SetTriangleVertexUV(uint32* InTriangleIndex, uint8* InTriangleVertexIndex, uint8* InUVLayer, struct FVector2f* InUV)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2548,7 +2145,17 @@ struct FVector2f UHoudiniStaticMesh::SetTriangleVertexUV()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
+	if (InTriangleVertexIndex != nullptr)
+		*InTriangleVertexIndex = Parms.InTriangleVertexIndex;
+
+	if (InUVLayer != nullptr)
+		*InUVLayer = Parms.InUVLayer;
+
+	if (InUV != nullptr)
+		*InUV = std::move(Parms.InUV);
 
 }
 
@@ -2556,11 +2163,11 @@ struct FVector2f UHoudiniStaticMesh::SetTriangleVertexUV()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleVertexUTangent
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint8                              InTriangleVertexIndex                                            (ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector3f                   InUTangent                                                       (Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// uint8                              InTriangleVertexIndex                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// struct FVector3f                   InUTangent                                                       (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FVector3f UHoudiniStaticMesh::SetTriangleVertexUTangent()
+void UHoudiniStaticMesh::SetTriangleVertexUTangent(uint32* InTriangleIndex, uint8* InTriangleVertexIndex, struct FVector3f* InUTangent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2578,7 +2185,14 @@ struct FVector3f UHoudiniStaticMesh::SetTriangleVertexUTangent()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
+	if (InTriangleVertexIndex != nullptr)
+		*InTriangleVertexIndex = Parms.InTriangleVertexIndex;
+
+	if (InUTangent != nullptr)
+		*InUTangent = std::move(Parms.InUTangent);
 
 }
 
@@ -2586,11 +2200,11 @@ struct FVector3f UHoudiniStaticMesh::SetTriangleVertexUTangent()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleVertexNormal
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint8                              InTriangleVertexIndex                                            (ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector3f                   InNormal                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// uint8                              InTriangleVertexIndex                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// struct FVector3f                   InNormal                                                         (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FVector3f UHoudiniStaticMesh::SetTriangleVertexNormal()
+void UHoudiniStaticMesh::SetTriangleVertexNormal(uint32* InTriangleIndex, uint8* InTriangleVertexIndex, struct FVector3f* InNormal)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2608,7 +2222,14 @@ struct FVector3f UHoudiniStaticMesh::SetTriangleVertexNormal()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
+	if (InTriangleVertexIndex != nullptr)
+		*InTriangleVertexIndex = Parms.InTriangleVertexIndex;
+
+	if (InNormal != nullptr)
+		*InNormal = std::move(Parms.InNormal);
 
 }
 
@@ -2616,10 +2237,10 @@ struct FVector3f UHoudiniStaticMesh::SetTriangleVertexNormal()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleVertexIndices
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FIntVector                  InTriangleVertexIndices                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// struct FIntVector                  InTriangleVertexIndices                                          (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FIntVector UHoudiniStaticMesh::SetTriangleVertexIndices()
+void UHoudiniStaticMesh::SetTriangleVertexIndices(uint32* InTriangleIndex, struct FIntVector* InTriangleVertexIndices)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2637,7 +2258,11 @@ struct FIntVector UHoudiniStaticMesh::SetTriangleVertexIndices()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
+	if (InTriangleVertexIndices != nullptr)
+		*InTriangleVertexIndices = std::move(Parms.InTriangleVertexIndices);
 
 }
 
@@ -2645,11 +2270,11 @@ struct FIntVector UHoudiniStaticMesh::SetTriangleVertexIndices()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleVertexColor
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint8                              InTriangleVertexIndex                                            (ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FColor                      InColor                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// uint8                              InTriangleVertexIndex                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// struct FColor                      InColor                                                          (ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FColor UHoudiniStaticMesh::SetTriangleVertexColor()
+void UHoudiniStaticMesh::SetTriangleVertexColor(uint32* InTriangleIndex, uint8* InTriangleVertexIndex, struct FColor* InColor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2667,7 +2292,14 @@ struct FColor UHoudiniStaticMesh::SetTriangleVertexColor()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
+	if (InTriangleVertexIndex != nullptr)
+		*InTriangleVertexIndex = Parms.InTriangleVertexIndex;
+
+	if (InColor != nullptr)
+		*InColor = std::move(Parms.InColor);
 
 }
 
@@ -2675,10 +2307,10 @@ struct FColor UHoudiniStaticMesh::SetTriangleVertexColor()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetTriangleMaterialID
 // (Final, Native, Public)
 // Parameters:
-// uint32                             InTriangleIndex                                                  (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              InMaterialID                                                     (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InTriangleIndex                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InMaterialID                                                     (ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-int32 UHoudiniStaticMesh::SetTriangleMaterialID()
+void UHoudiniStaticMesh::SetTriangleMaterialID(uint32* InTriangleIndex, int32* InMaterialID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2696,7 +2328,11 @@ int32 UHoudiniStaticMesh::SetTriangleMaterialID()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InTriangleIndex != nullptr)
+		*InTriangleIndex = Parms.InTriangleIndex;
+
+	if (InMaterialID != nullptr)
+		*InMaterialID = Parms.InMaterialID;
 
 }
 
@@ -2704,10 +2340,10 @@ int32 UHoudiniStaticMesh::SetTriangleMaterialID()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetStaticMaterial
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// uint32                             InMaterialIndex                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FStaticMaterial             InStaticMaterial                                                 (Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InMaterialIndex                                                  (ConstParm, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// struct FStaticMaterial             InStaticMaterial                                                 (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-struct FStaticMaterial UHoudiniStaticMesh::SetStaticMaterial()
+void UHoudiniStaticMesh::SetStaticMaterial(uint32 InMaterialIndex, const struct FStaticMaterial& InStaticMaterial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2716,6 +2352,8 @@ struct FStaticMaterial UHoudiniStaticMesh::SetStaticMaterial()
 
 	Params::UHoudiniStaticMesh_SetStaticMaterial_Params Parms{};
 
+	Parms.InMaterialIndex = InMaterialIndex;
+	Parms.InStaticMaterial = InStaticMaterial;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2725,17 +2363,15 @@ struct FStaticMaterial UHoudiniStaticMesh::SetStaticMaterial()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetNumUVLayers
 // (Final, Native, Public)
 // Parameters:
-// uint32                             InNumUVLayers                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InNumUVLayers                                                    (Edit, ConstParm, BlueprintVisible, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-uint32 UHoudiniStaticMesh::SetNumUVLayers()
+void UHoudiniStaticMesh::SetNumUVLayers(uint32* InNumUVLayers)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2753,7 +2389,8 @@ uint32 UHoudiniStaticMesh::SetNumUVLayers()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InNumUVLayers != nullptr)
+		*InNumUVLayers = Parms.InNumUVLayers;
 
 }
 
@@ -2761,9 +2398,9 @@ uint32 UHoudiniStaticMesh::SetNumUVLayers()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetNumStaticMaterials
 // (Final, Native, Public)
 // Parameters:
-// uint32                             InNumStaticMaterials                                             (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InNumStaticMaterials                                             (Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-uint32 UHoudiniStaticMesh::SetNumStaticMaterials()
+void UHoudiniStaticMesh::SetNumStaticMaterials(uint32* InNumStaticMaterials)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2781,7 +2418,8 @@ uint32 UHoudiniStaticMesh::SetNumStaticMaterials()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InNumStaticMaterials != nullptr)
+		*InNumStaticMaterials = Parms.InNumStaticMaterials;
 
 }
 
@@ -2789,9 +2427,9 @@ uint32 UHoudiniStaticMesh::SetNumStaticMaterials()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetHasTangents
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInHasTangents                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHasTangents                                                   (ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::SetHasTangents()
+void UHoudiniStaticMesh::SetHasTangents(bool bInHasTangents)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2800,6 +2438,7 @@ bool UHoudiniStaticMesh::SetHasTangents()
 
 	Params::UHoudiniStaticMesh_SetHasTangents_Params Parms{};
 
+	Parms.bInHasTangents = bInHasTangents;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2809,17 +2448,15 @@ bool UHoudiniStaticMesh::SetHasTangents()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetHasPerFaceMaterials
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInHasPerFaceMaterials                                           (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHasPerFaceMaterials                                           (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::SetHasPerFaceMaterials()
+void UHoudiniStaticMesh::SetHasPerFaceMaterials(bool bInHasPerFaceMaterials)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2828,6 +2465,7 @@ bool UHoudiniStaticMesh::SetHasPerFaceMaterials()
 
 	Params::UHoudiniStaticMesh_SetHasPerFaceMaterials_Params Parms{};
 
+	Parms.bInHasPerFaceMaterials = bInHasPerFaceMaterials;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2837,17 +2475,15 @@ bool UHoudiniStaticMesh::SetHasPerFaceMaterials()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetHasNormals
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInHasNormals                                                    (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHasNormals                                                    (BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::SetHasNormals()
+void UHoudiniStaticMesh::SetHasNormals(bool bInHasNormals)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2856,6 +2492,7 @@ bool UHoudiniStaticMesh::SetHasNormals()
 
 	Params::UHoudiniStaticMesh_SetHasNormals_Params Parms{};
 
+	Parms.bInHasNormals = bInHasNormals;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2865,17 +2502,15 @@ bool UHoudiniStaticMesh::SetHasNormals()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.SetHasColors
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInHasColors                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHasColors                                                     (Edit, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::SetHasColors()
+void UHoudiniStaticMesh::SetHasColors(bool bInHasColors)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2884,6 +2519,7 @@ bool UHoudiniStaticMesh::SetHasColors()
 
 	Params::UHoudiniStaticMesh_SetHasColors_Params Parms{};
 
+	Parms.bInHasColors = bInHasColors;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2892,8 +2528,6 @@ bool UHoudiniStaticMesh::SetHasColors()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -2925,10 +2559,10 @@ void UHoudiniStaticMesh::Optimize()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.IsValid
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               bInSkipVertexIndicesCheck                                        (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bInSkipVertexIndicesCheck                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UHoudiniStaticMesh::IsValid(bool ReturnValue)
+void UHoudiniStaticMesh::IsValid(bool* bInSkipVertexIndicesCheck, bool ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2947,7 +2581,8 @@ bool UHoudiniStaticMesh::IsValid(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInSkipVertexIndicesCheck != nullptr)
+		*bInSkipVertexIndicesCheck = Parms.bInSkipVertexIndicesCheck;
 
 }
 
@@ -2955,16 +2590,16 @@ bool UHoudiniStaticMesh::IsValid(bool ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.Initialize
 // (Final, Native, Public)
 // Parameters:
-// uint32                             InNumVertices                                                    (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint32                             InNumTriangles                                                   (BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint32                             InNumUVLayers                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint32                             InInitialNumStaticMaterials                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bInHasNormals                                                    (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bInHasTangents                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bInHasColors                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bInHasPerFaceMaterials                                           (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint32                             InNumVertices                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// uint32                             InNumTriangles                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// uint32                             InNumUVLayers                                                    (Edit, ConstParm, BlueprintVisible, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// uint32                             InInitialNumStaticMaterials                                      (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bInHasNormals                                                    (BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bInHasTangents                                                   (ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bInHasColors                                                     (Edit, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bInHasPerFaceMaterials                                           (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::Initialize()
+void UHoudiniStaticMesh::Initialize(uint32* InNumVertices, uint32* InNumTriangles, uint32* InNumUVLayers, uint32 InInitialNumStaticMaterials, bool bInHasNormals, bool bInHasTangents, bool bInHasColors, bool bInHasPerFaceMaterials)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2973,6 +2608,11 @@ bool UHoudiniStaticMesh::Initialize()
 
 	Params::UHoudiniStaticMesh_Initialize_Params Parms{};
 
+	Parms.InInitialNumStaticMaterials = InInitialNumStaticMaterials;
+	Parms.bInHasNormals = bInHasNormals;
+	Parms.bInHasTangents = bInHasTangents;
+	Parms.bInHasColors = bInHasColors;
+	Parms.bInHasPerFaceMaterials = bInHasPerFaceMaterials;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2982,7 +2622,14 @@ bool UHoudiniStaticMesh::Initialize()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InNumVertices != nullptr)
+		*InNumVertices = Parms.InNumVertices;
+
+	if (InNumTriangles != nullptr)
+		*InNumTriangles = Parms.InNumTriangles;
+
+	if (InNumUVLayers != nullptr)
+		*InNumUVLayers = Parms.InNumUVLayers;
 
 }
 
@@ -2990,7 +2637,7 @@ bool UHoudiniStaticMesh::Initialize()
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.HasTangents
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::HasTangents(bool ReturnValue)
 {
@@ -3017,7 +2664,7 @@ void UHoudiniStaticMesh::HasTangents(bool ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.HasPerFaceMaterials
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::HasPerFaceMaterials(bool ReturnValue)
 {
@@ -3044,7 +2691,7 @@ void UHoudiniStaticMesh::HasPerFaceMaterials(bool ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.HasNormals
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::HasNormals(bool ReturnValue)
 {
@@ -3071,7 +2718,7 @@ void UHoudiniStaticMesh::HasNormals(bool ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.HasColors
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::HasColors(bool ReturnValue)
 {
@@ -3098,7 +2745,7 @@ void UHoudiniStaticMesh::HasColors(bool ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetVertexPositions
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FVector3f>           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector3f>           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetVertexPositions(const TArray<struct FVector3f>& ReturnValue)
 {
@@ -3125,7 +2772,7 @@ void UHoudiniStaticMesh::GetVertexPositions(const TArray<struct FVector3f>& Retu
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetVertexInstanceVTangents
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FVector3f>           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector3f>           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetVertexInstanceVTangents(const TArray<struct FVector3f>& ReturnValue)
 {
@@ -3152,7 +2799,7 @@ void UHoudiniStaticMesh::GetVertexInstanceVTangents(const TArray<struct FVector3
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetVertexInstanceUVs
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FVector2f>           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector2f>           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetVertexInstanceUVs(const TArray<struct FVector2f>& ReturnValue)
 {
@@ -3179,7 +2826,7 @@ void UHoudiniStaticMesh::GetVertexInstanceUVs(const TArray<struct FVector2f>& Re
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetVertexInstanceUTangents
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FVector3f>           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector3f>           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetVertexInstanceUTangents(const TArray<struct FVector3f>& ReturnValue)
 {
@@ -3206,7 +2853,7 @@ void UHoudiniStaticMesh::GetVertexInstanceUTangents(const TArray<struct FVector3
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetVertexInstanceNormals
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FVector3f>           ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FVector3f>           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetVertexInstanceNormals(const TArray<struct FVector3f>& ReturnValue)
 {
@@ -3233,7 +2880,7 @@ void UHoudiniStaticMesh::GetVertexInstanceNormals(const TArray<struct FVector3f>
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetVertexInstanceColors
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FColor>              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FColor>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetVertexInstanceColors(const TArray<struct FColor>& ReturnValue)
 {
@@ -3260,7 +2907,7 @@ void UHoudiniStaticMesh::GetVertexInstanceColors(const TArray<struct FColor>& Re
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetTriangleIndices
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FIntVector>          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FIntVector>          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetTriangleIndices(const TArray<struct FIntVector>& ReturnValue)
 {
@@ -3287,7 +2934,7 @@ void UHoudiniStaticMesh::GetTriangleIndices(const TArray<struct FIntVector>& Ret
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetStaticMaterials
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<struct FStaticMaterial>     ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<struct FStaticMaterial>     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetStaticMaterials(const TArray<struct FStaticMaterial>& ReturnValue)
 {
@@ -3314,7 +2961,7 @@ void UHoudiniStaticMesh::GetStaticMaterials(const TArray<struct FStaticMaterial>
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetNumVertices
 // (Final, Native, Public, Const)
 // Parameters:
-// uint32                             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// uint32                             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetNumVertices(uint32 ReturnValue)
 {
@@ -3341,7 +2988,7 @@ void UHoudiniStaticMesh::GetNumVertices(uint32 ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetNumVertexInstances
 // (Final, Native, Public, Const)
 // Parameters:
-// uint32                             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// uint32                             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetNumVertexInstances(uint32 ReturnValue)
 {
@@ -3368,7 +3015,7 @@ void UHoudiniStaticMesh::GetNumVertexInstances(uint32 ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetNumUVLayers
 // (Final, Native, Public, Const)
 // Parameters:
-// uint32                             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// uint32                             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetNumUVLayers(uint32 ReturnValue)
 {
@@ -3395,7 +3042,7 @@ void UHoudiniStaticMesh::GetNumUVLayers(uint32 ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetNumTriangles
 // (Final, Native, Public, Const)
 // Parameters:
-// uint32                             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// uint32                             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetNumTriangles(uint32 ReturnValue)
 {
@@ -3422,7 +3069,7 @@ void UHoudiniStaticMesh::GetNumTriangles(uint32 ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetNumStaticMaterials
 // (Final, Native, Public, Const)
 // Parameters:
-// uint32                             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// uint32                             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetNumStaticMaterials(uint32 ReturnValue)
 {
@@ -3449,10 +3096,10 @@ void UHoudiniStaticMesh::GetNumStaticMaterials(uint32 ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetMaterialIndex
 // (Final, Native, Public, Const)
 // Parameters:
-// class FName                        InMaterialSlotName                                               (EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InMaterialSlotName                                               (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UHoudiniStaticMesh::GetMaterialIndex(int32 ReturnValue)
+void UHoudiniStaticMesh::GetMaterialIndex(class FName InMaterialSlotName, int32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3461,6 +3108,7 @@ class FName UHoudiniStaticMesh::GetMaterialIndex(int32 ReturnValue)
 
 	Params::UHoudiniStaticMesh_GetMaterialIndex_Params Parms{};
 
+	Parms.InMaterialSlotName = InMaterialSlotName;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -3471,15 +3119,13 @@ class FName UHoudiniStaticMesh::GetMaterialIndex(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetMaterialIDsPerTriangle
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<int32>                      ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<int32>                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::GetMaterialIDsPerTriangle(const TArray<int32>& ReturnValue)
 {
@@ -3506,10 +3152,10 @@ void UHoudiniStaticMesh::GetMaterialIDsPerTriangle(const TArray<int32>& ReturnVa
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.GetMaterial
 // (Final, Native, Public)
 // Parameters:
-// int32                              InMaterialIndex                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UMaterialInterface*          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              InMaterialIndex                                                  (ConstParm, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// class UMaterialInterface*          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UHoudiniStaticMesh::GetMaterial(class UMaterialInterface* ReturnValue)
+void UHoudiniStaticMesh::GetMaterial(int32 InMaterialIndex, class UMaterialInterface* ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3518,6 +3164,7 @@ int32 UHoudiniStaticMesh::GetMaterial(class UMaterialInterface* ReturnValue)
 
 	Params::UHoudiniStaticMesh_GetMaterial_Params Parms{};
 
+	Parms.InMaterialIndex = InMaterialIndex;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -3528,17 +3175,15 @@ int32 UHoudiniStaticMesh::GetMaterial(class UMaterialInterface* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.CalculateTangents
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInComputeWeightedNormals                                        (Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInComputeWeightedNormals                                        (BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::CalculateTangents()
+void UHoudiniStaticMesh::CalculateTangents(bool bInComputeWeightedNormals)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3547,6 +3192,7 @@ bool UHoudiniStaticMesh::CalculateTangents()
 
 	Params::UHoudiniStaticMesh_CalculateTangents_Params Parms{};
 
+	Parms.bInComputeWeightedNormals = bInComputeWeightedNormals;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3556,17 +3202,15 @@ bool UHoudiniStaticMesh::CalculateTangents()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.CalculateNormals
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInComputeWeightedNormals                                        (Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInComputeWeightedNormals                                        (BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-bool UHoudiniStaticMesh::CalculateNormals()
+void UHoudiniStaticMesh::CalculateNormals(bool bInComputeWeightedNormals)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3575,6 +3219,7 @@ bool UHoudiniStaticMesh::CalculateNormals()
 
 	Params::UHoudiniStaticMesh_CalculateNormals_Params Parms{};
 
+	Parms.bInComputeWeightedNormals = bInComputeWeightedNormals;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3584,15 +3229,13 @@ bool UHoudiniStaticMesh::CalculateNormals()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.CalcBounds
 // (Final, Native, Public, HasDefaults, Const)
 // Parameters:
-// struct FBox                        ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FBox                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMesh::CalcBounds(const struct FBox& ReturnValue)
 {
@@ -3619,10 +3262,10 @@ void UHoudiniStaticMesh::CalcBounds(const struct FBox& ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMesh.AddStaticMaterial
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// struct FStaticMaterial             InStaticMaterial                                                 (Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint32                             ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FStaticMaterial             InStaticMaterial                                                 (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// uint32                             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FStaticMaterial UHoudiniStaticMesh::AddStaticMaterial(uint32 ReturnValue)
+void UHoudiniStaticMesh::AddStaticMaterial(const struct FStaticMaterial& InStaticMaterial, uint32 ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3631,6 +3274,7 @@ struct FStaticMaterial UHoudiniStaticMesh::AddStaticMaterial(uint32 ReturnValue)
 
 	Params::UHoudiniStaticMesh_AddStaticMaterial_Params Parms{};
 
+	Parms.InStaticMaterial = InStaticMaterial;
 	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
@@ -3640,8 +3284,6 @@ struct FStaticMaterial UHoudiniStaticMesh::AddStaticMaterial(uint32 ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -3677,9 +3319,9 @@ class UHoudiniStaticMeshComponent* UHoudiniStaticMeshComponent::GetDefaultObj()
 // Function HoudiniEngineRuntime.HoudiniStaticMeshComponent.SetMesh
 // (Final, Native, Public)
 // Parameters:
-// class UHoudiniStaticMesh*          InMesh                                                           (ConstParm, ExportObject, Parm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UHoudiniStaticMesh*          InMesh                                                           (Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 
-void UHoudiniStaticMeshComponent::SetMesh(class UHoudiniStaticMesh* InMesh)
+class UHoudiniStaticMesh* UHoudiniStaticMeshComponent::SetMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3688,7 +3330,6 @@ void UHoudiniStaticMeshComponent::SetMesh(class UHoudiniStaticMesh* InMesh)
 
 	Params::UHoudiniStaticMeshComponent_SetMesh_Params Parms{};
 
-	Parms.InMesh = InMesh;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3698,15 +3339,17 @@ void UHoudiniStaticMeshComponent::SetMesh(class UHoudiniStaticMesh* InMesh)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function HoudiniEngineRuntime.HoudiniStaticMeshComponent.SetHoudiniIconVisible
 // (Final, Native, Public)
 // Parameters:
-// bool                               bInHoudiniIconVisible                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInHoudiniIconVisible                                            (Edit, ExportObject, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 
-void UHoudiniStaticMeshComponent::SetHoudiniIconVisible(bool bInHoudiniIconVisible)
+bool UHoudiniStaticMeshComponent::SetHoudiniIconVisible()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3715,7 +3358,6 @@ void UHoudiniStaticMeshComponent::SetHoudiniIconVisible(bool bInHoudiniIconVisib
 
 	Params::UHoudiniStaticMeshComponent_SetHoudiniIconVisible_Params Parms{};
 
-	Parms.bInHoudiniIconVisible = bInHoudiniIconVisible;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3724,6 +3366,8 @@ void UHoudiniStaticMeshComponent::SetHoudiniIconVisible(bool bInHoudiniIconVisib
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3755,7 +3399,7 @@ void UHoudiniStaticMeshComponent::NotifyMeshUpdated()
 // Function HoudiniEngineRuntime.HoudiniStaticMeshComponent.IsHoudiniIconVisible
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMeshComponent::IsHoudiniIconVisible(bool ReturnValue)
 {
@@ -3782,7 +3426,7 @@ void UHoudiniStaticMeshComponent::IsHoudiniIconVisible(bool ReturnValue)
 // Function HoudiniEngineRuntime.HoudiniStaticMeshComponent.GetMesh
 // (Final, Native, Public)
 // Parameters:
-// class UHoudiniStaticMesh*          ReturnValue                                                      (Edit, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UHoudiniStaticMesh*          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 void UHoudiniStaticMeshComponent::GetMesh(class UHoudiniStaticMesh* ReturnValue)
 {
@@ -3803,6 +3447,182 @@ void UHoudiniStaticMeshComponent::GetMesh(class UHoudiniStaticMesh* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+}
+
+
+// Class HoudiniEngineRuntime.HoudiniToolData
+// (None)
+
+class UClass* UHoudiniToolData::StaticClass()
+{
+	static class UClass* Clss = nullptr;
+
+	if (!Clss)
+		Clss = UObject::FindClassFast("HoudiniToolData");
+
+	return Clss;
+}
+
+
+// HoudiniToolData HoudiniEngineRuntime.Default__HoudiniToolData
+// (Public, ClassDefaultObject, ArchetypeObject)
+
+class UHoudiniToolData* UHoudiniToolData::GetDefaultObj()
+{
+	static class UHoudiniToolData* Default = nullptr;
+
+	if (!Default)
+		Default = static_cast<UHoudiniToolData*>(UHoudiniToolData::StaticClass()->DefaultObject);
+
+	return Default;
+}
+
+
+// Function HoudiniEngineRuntime.HoudiniToolData.SaveToJSONFile
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// class FString                      JsonFilePath                                                     (Edit, ExportObject, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+class FString UHoudiniToolData::SaveToJSONFile(bool ReturnValue)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("HoudiniToolData", "SaveToJSONFile");
+
+	Params::UHoudiniToolData_SaveToJSONFile_Params Parms{};
+
+	Parms.ReturnValue = ReturnValue;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function HoudiniEngineRuntime.HoudiniToolData.PopulateFromJSONFile
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// class FString                      JsonFilePath                                                     (Edit, ExportObject, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+class FString UHoudiniToolData::PopulateFromJSONFile(bool ReturnValue)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("HoudiniToolData", "PopulateFromJSONFile");
+
+	Params::UHoudiniToolData_PopulateFromJSONFile_Params Parms{};
+
+	Parms.ReturnValue = ReturnValue;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function HoudiniEngineRuntime.HoudiniToolData.PopulateFromJSONData
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// class FString                      JSONData                                                         (BlueprintVisible, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+class FString UHoudiniToolData::PopulateFromJSONData(bool ReturnValue)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("HoudiniToolData", "PopulateFromJSONData");
+
+	Params::UHoudiniToolData_PopulateFromJSONData_Params Parms{};
+
+	Parms.ReturnValue = ReturnValue;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function HoudiniEngineRuntime.HoudiniToolData.ConvertToJSONData
+// (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
+// Parameters:
+// class FString                      JSONData                                                         (BlueprintVisible, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+class FString UHoudiniToolData::ConvertToJSONData(bool ReturnValue)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("HoudiniToolData", "ConvertToJSONData");
+
+	Params::UHoudiniToolData_ConvertToJSONData_Params Parms{};
+
+	Parms.ReturnValue = ReturnValue;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Class HoudiniEngineRuntime.HoudiniToolsPackageAsset
+// (None)
+
+class UClass* UHoudiniToolsPackageAsset::StaticClass()
+{
+	static class UClass* Clss = nullptr;
+
+	if (!Clss)
+		Clss = UObject::FindClassFast("HoudiniToolsPackageAsset");
+
+	return Clss;
+}
+
+
+// HoudiniToolsPackageAsset HoudiniEngineRuntime.Default__HoudiniToolsPackageAsset
+// (Public, ClassDefaultObject, ArchetypeObject)
+
+class UHoudiniToolsPackageAsset* UHoudiniToolsPackageAsset::GetDefaultObj()
+{
+	static class UHoudiniToolsPackageAsset* Default = nullptr;
+
+	if (!Default)
+		Default = static_cast<UHoudiniToolsPackageAsset*>(UHoudiniToolsPackageAsset::StaticClass()->DefaultObject);
+
+	return Default;
 }
 
 

@@ -18,7 +18,7 @@ namespace Params
 struct IPrimalItemArmor_SaddleGeneric_Tek_Interface_C_IGet_Max_Ammo_Params
 {
 public:
-	int32                                        RetVal;                                            // 0x0(0x4)(BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	int32                                        RetVal;                                            // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
 };
 
 }

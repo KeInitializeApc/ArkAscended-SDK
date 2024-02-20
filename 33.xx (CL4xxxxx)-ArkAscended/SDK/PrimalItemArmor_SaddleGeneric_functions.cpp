@@ -43,15 +43,15 @@ class UPrimalItemArmor_SaddleGeneric_C* UPrimalItemArmor_SaddleGeneric_C::GetDef
 // Function PrimalItemArmor_SaddleGeneric.PrimalItemArmor_SaddleGeneric_C.BPOverrideEquippedDurabilityPercentage
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// float                              OutDurabilityPercentageValue                                     (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              CallFunc_GetItemStatModifier_ReturnValue                         (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Greater_DoubleDouble_ReturnValue                        (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               CallFunc_Greater_DoubleDouble_ReturnValue_1                      (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
-// float                              K2Node_FunctionResult_OutDurabilityPercentageValue_ImplicitCast  (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
-// double                             CallFunc_Greater_DoubleDouble_A_ImplicitCast                     (Edit, ExportObject, BlueprintReadOnly, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              OutDurabilityPercentageValue                                     (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              CallFunc_GetItemStatModifier_ReturnValue                         (ExportObject, Net, Parm, DisableEditOnTemplate, Config, SubobjectReference)
+// bool                               CallFunc_Greater_DoubleDouble_ReturnValue                        (ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// double                             CallFunc_Divide_DoubleFloat_ReturnValue                          (ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_Greater_DoubleDouble_ReturnValue_1                      (ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
+// float                              K2Node_FunctionResult_OutDurabilityPercentageValue_ImplicitCast  (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, SubobjectReference)
+// double                             CallFunc_Greater_DoubleDouble_A_ImplicitCast                     (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
 
-float UPrimalItemArmor_SaddleGeneric_C::BPOverrideEquippedDurabilityPercentage(bool CallFunc_Greater_DoubleDouble_ReturnValue, double* CallFunc_Divide_DoubleFloat_ReturnValue, bool CallFunc_Greater_DoubleDouble_ReturnValue_1, float K2Node_FunctionResult_OutDurabilityPercentageValue_ImplicitCast, double CallFunc_Greater_DoubleDouble_A_ImplicitCast)
+double UPrimalItemArmor_SaddleGeneric_C::BPOverrideEquippedDurabilityPercentage(float OutDurabilityPercentageValue, float CallFunc_GetItemStatModifier_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -60,15 +60,10 @@ float UPrimalItemArmor_SaddleGeneric_C::BPOverrideEquippedDurabilityPercentage(b
 
 	Params::UPrimalItemArmor_SaddleGeneric_C_BPOverrideEquippedDurabilityPercentage_Params Parms{};
 
-	Parms.CallFunc_Greater_DoubleDouble_ReturnValue = CallFunc_Greater_DoubleDouble_ReturnValue;
-	Parms.CallFunc_Greater_DoubleDouble_ReturnValue_1 = CallFunc_Greater_DoubleDouble_ReturnValue_1;
-	Parms.K2Node_FunctionResult_OutDurabilityPercentageValue_ImplicitCast = K2Node_FunctionResult_OutDurabilityPercentageValue_ImplicitCast;
-	Parms.CallFunc_Greater_DoubleDouble_A_ImplicitCast = CallFunc_Greater_DoubleDouble_A_ImplicitCast;
+	Parms.OutDurabilityPercentageValue = OutDurabilityPercentageValue;
+	Parms.CallFunc_GetItemStatModifier_ReturnValue = CallFunc_GetItemStatModifier_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_Divide_DoubleFloat_ReturnValue != nullptr)
-		*CallFunc_Divide_DoubleFloat_ReturnValue = Parms.CallFunc_Divide_DoubleFloat_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -78,10 +73,10 @@ float UPrimalItemArmor_SaddleGeneric_C::BPOverrideEquippedDurabilityPercentage(b
 // Function PrimalItemArmor_SaddleGeneric.PrimalItemArmor_SaddleGeneric_C.ResetSaddleDurabilityToSavedValue
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_Greater_DoubleDouble_ReturnValue                        (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// float                              K2Node_VariableSet_ItemDurability_ImplicitCast                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Greater_DoubleDouble_ReturnValue                        (ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              K2Node_VariableSet_ItemDurability_ImplicitCast                   (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, SubobjectReference)
 
-void UPrimalItemArmor_SaddleGeneric_C::ResetSaddleDurabilityToSavedValue(bool CallFunc_Greater_DoubleDouble_ReturnValue, float K2Node_VariableSet_ItemDurability_ImplicitCast)
+float UPrimalItemArmor_SaddleGeneric_C::ResetSaddleDurabilityToSavedValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -90,10 +85,10 @@ void UPrimalItemArmor_SaddleGeneric_C::ResetSaddleDurabilityToSavedValue(bool Ca
 
 	Params::UPrimalItemArmor_SaddleGeneric_C_ResetSaddleDurabilityToSavedValue_Params Parms{};
 
-	Parms.CallFunc_Greater_DoubleDouble_ReturnValue = CallFunc_Greater_DoubleDouble_ReturnValue;
-	Parms.K2Node_VariableSet_ItemDurability_ImplicitCast = K2Node_VariableSet_ItemDurability_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -101,9 +96,9 @@ void UPrimalItemArmor_SaddleGeneric_C::ResetSaddleDurabilityToSavedValue(bool Ca
 // Function PrimalItemArmor_SaddleGeneric.PrimalItemArmor_SaddleGeneric_C.SaveSaddleDurability
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// double                             K2Node_VariableSet_SavedSaddleDurability_ImplicitCast            (Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// double                             K2Node_VariableSet_SavedSaddleDurability_ImplicitCast            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, SubobjectReference)
 
-void UPrimalItemArmor_SaddleGeneric_C::SaveSaddleDurability(double K2Node_VariableSet_SavedSaddleDurability_ImplicitCast)
+double UPrimalItemArmor_SaddleGeneric_C::SaveSaddleDurability()
 {
 	static class UFunction* Func = nullptr;
 
@@ -112,9 +107,10 @@ void UPrimalItemArmor_SaddleGeneric_C::SaveSaddleDurability(double K2Node_Variab
 
 	Params::UPrimalItemArmor_SaddleGeneric_C_SaveSaddleDurability_Params Parms{};
 
-	Parms.K2Node_VariableSet_SavedSaddleDurability_ImplicitCast = K2Node_VariableSet_SavedSaddleDurability_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -122,11 +118,11 @@ void UPrimalItemArmor_SaddleGeneric_C::SaveSaddleDurability(double K2Node_Variab
 // Function PrimalItemArmor_SaddleGeneric.PrimalItemArmor_SaddleGeneric_C.BlueprintEquipped
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               bIsFromSaveGame                                                  (Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// double                             CallFunc_GetGameTimeInSeconds_ReturnValue                        (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               bIsFromSaveGame                                                  (ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// double                             CallFunc_GetGameTimeInSeconds_ReturnValue                        (Edit, ConstParm, Net, Parm, ReturnParm, Config, SubobjectReference)
 
-double UPrimalItemArmor_SaddleGeneric_C::BlueprintEquipped(bool* bIsFromSaveGame)
+double UPrimalItemArmor_SaddleGeneric_C::BlueprintEquipped(bool bIsFromSaveGame, bool* CallFunc_IsValid_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -135,11 +131,12 @@ double UPrimalItemArmor_SaddleGeneric_C::BlueprintEquipped(bool* bIsFromSaveGame
 
 	Params::UPrimalItemArmor_SaddleGeneric_C_BlueprintEquipped_Params Parms{};
 
+	Parms.bIsFromSaveGame = bIsFromSaveGame;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (bIsFromSaveGame != nullptr)
-		*bIsFromSaveGame = Parms.bIsFromSaveGame;
+	if (CallFunc_IsValid_ReturnValue != nullptr)
+		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 	return Parms.ReturnValue;
 

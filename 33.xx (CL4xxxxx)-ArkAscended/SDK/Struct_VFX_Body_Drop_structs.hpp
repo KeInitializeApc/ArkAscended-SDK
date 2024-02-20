@@ -19,8 +19,8 @@ namespace SDK
 struct FStruct_VFX_Body_Drop
 {
 public:
-	double                                       Size_5_02800F84414BF36B281454B877DDE4F6;           // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	double                                       Size_Mult_7_A9D2703F48EC6AE892B493B811ECB4DD;      // 0x8(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+	double                                       Size_5_02800F84414BF36B281454B877DDE4F6;           // 0x0(0x8)(Edit, ConstParm, OutParm, ReturnParm, Config, SubobjectReference)
+	double                                       Size_Mult_7_A9D2703F48EC6AE892B493B811ECB4DD;      // 0x8(0x8)(ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Config, SubobjectReference)
 };
 
 }
